@@ -32,7 +32,10 @@ public class AddTwoNumbers {
 
         }
 
-
+        // If there's a leftover carry, add it 
+        if (carry > 0) {
+            curr.next = new ListNode(carry);
+        }
 
         return dummy.next;
     }
