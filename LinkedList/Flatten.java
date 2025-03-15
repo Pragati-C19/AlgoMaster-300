@@ -30,7 +30,7 @@ public class Flatten {
             if (curr.child != null) {
 
                 Node childTail = flattenHelper(curr.child);     // Recursively flatten the child list
-                System.out.println("childTail after recursion : " + childTail.val);
+                System.out.println("After Recursion childTail : " + childTail.val);
 
                 curr.next = curr.child;
                 curr.child.prev = curr;
@@ -42,15 +42,15 @@ public class Flatten {
                 }
 
                 tail = childTail;
-                System.out.println("tail = childTail in if loop : " + tail.val + " = " + childTail.val);
+                System.out.println("If loop | tail = childTail : " + tail.val + " = " + childTail.val);
 
             } else {
                 tail = curr;
-                System.out.println("if curr.child == null : " + tail.val);
+                System.out.println("If curr.child == null : " + tail.val);
             }
             curr = next;
 
-            System.out.println("End of While loop curr : " + (curr != null ? curr.val : "null"));
+            System.out.println("End of While loop curr : " + (curr != null ? curr.val : "null") + "\n");
         }
         return tail;
 
