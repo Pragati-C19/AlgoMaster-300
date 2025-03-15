@@ -11,8 +11,49 @@ public class Flatten {
     }
 
     public Node flatten(Node head) {
+        if (head == null)
+            return null;
+
+        flattenHelper(head); // Call helper function to recursively flatten the list
 
         return head;
+    }
+
+    public Node flattenHelper(Node head) {
+
+        Node curr = head;
+        Node tail = head;   // Track the tail of the current flattened list
+
+        while (curr != null) {
+            Node next = curr.next;
+
+            if (curr.child != null) {
+
+                Node childTail = flattenHelper(curr.child);     // Recursively flatten the child list
+                System.out.println("childTail after recursion : " + childTail.val);
+
+                curr.next = curr.child;
+                curr.child.prev = curr;
+                curr.child = null;
+
+                if (next != null) {
+                    childTail.next = next;
+                    next.prev = childTail;
+                }
+
+                tail = childTail;
+                System.out.println("tail = childTail in if loop : " + tail.val + " = " + childTail.val);
+
+            } else {
+                tail = curr;
+                System.out.println("if curr.child == null : " + tail.val);
+            }
+            curr = next;
+
+            System.out.println("End of While loop curr : " + (curr != null ? curr.val : "null"));
+        }
+        return tail;
+
     }
 
     // Helper function to print the list (for debugging)
@@ -112,51 +153,55 @@ public class Flatten {
  * Intutions :
  * 
  * 1. Dealing with a multilevel doubly linked list
- *      - next points to next node
- *      - prev points to previous node
- *      - child points to sublist
- * 2. The goal is to flatten this structure into a single, linear doubly linked list
- *      - Each node's child list becomes part of the main list immediately after that node.
- *      - Don't change the order of nodes
- *      - child pointers should be nullified after flattening.
- * 3. Iteration + Stack + Recursion
+ * - next points to next node
+ * - prev points to previous node
+ * - child points to sublist
+ * 2. The goal is to flatten this structure into a single, linear doubly linked
+ * list
+ * - Each node's child list becomes part of the main list immediately after that
+ * node.
+ * - Don't change the order of nodes
+ * - child pointers should be nullified after flattening.
+ * 
  * 
  * Pattern :
  * 
  * 1. Traversal — traverse the list like normal (curr = curr.next).
  * 2. Check for child — If a node has a child:
- *      - Save curr.next (the original next node).
- *      - Connect curr.next to the child.
- *      - Go to the end of this child list and connect its last node to the saved next node.
- * 3. Continue — Repeat this for every node, flattening each child list when encountered.
+ * - Save curr.next (the original next node).
+ * - Connect curr.next to the child.
+ * - Go to the end of this child list and connect its last node to the saved
+ * next node.
+ * 3. Continue — Repeat this for every node, flattening each child list when
+ * encountered.
  * 
  * 
- * Pseudo Code : 
+ * Pseudo Code :
  * 
  * function flatten(head):
-    if head is null:
-        return head
-    
-    stack = []
-    curr = head
-    
-    while curr:
-        if curr.child:
-            if curr.next:
-                stack.push(curr.next)
-            
-            curr.next = curr.child
-            curr.next.prev = curr
-            curr.child = null
-
-        if not curr.next and stack is not empty:
-            curr.next = stack.pop()
-            curr.next.prev = curr
-
-        curr = curr.next
-
-    return head
-
+ * if head is null:
+ * return head
+ * 
+ * stack = []
+ * curr = head
+ * 
+ * while curr:
+ * if curr.child:
+ * if curr.next:
+ * stack.push(curr.next)
+ * 
+ * curr.next = curr.child
+ * curr.next.prev = curr
+ * curr.child = null
+ * 
+ * if not curr.next and stack is not empty:
+ * curr.next = stack.pop()
+ * curr.next.prev = curr
+ * 
+ * curr = curr.next
+ * 
+ * return head
+ * 
  * 
  * 
  */
