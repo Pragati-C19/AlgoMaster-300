@@ -3,7 +3,27 @@ package Queues;
 import java.util.*;
 
 public class RecentCounter {
+    // Declared a queue to store timestamps
+    private Queue<Integer> queue;
 
+    // Constructor initializes the queue as a LinkedList
+    public RecentCounter() {
+        queue = new LinkedList<>();
+    }
+
+    public int ping(int t) {
+
+        return t;
+    }
+
+    public static void main(String[] args) {
+        RecentCounter solution = new RecentCounter();
+
+        System.out.println(solution.ping(1));
+        System.out.println(solution.ping(100));
+        System.out.println(solution.ping(3001));
+        System.out.println(solution.ping(3002));
+    }
 }
 
 /*
@@ -51,19 +71,29 @@ public class RecentCounter {
  * 
  * 2. ping(1) - queue = [1]... timestamp range is [1-3000, 1] -> [-2999, 1]
  * The only request that is within this range is 1 itself.
- * So, the output for this ping is 1 because there is only one request in the range [-2999, 1].
+ * So, the output for this ping is 1 because there is only one request in the
+ * range [-2999, 1].
  * 
- * 3. ping(100) - queue = [1, 100]... timestamp range is [100 - 3000, 100] -> [-2900, 100]
- * The requests in this range are 1 and 100. Both are within the range [-2900, 100].
- * So, the output for this ping is 2 because there are two requests in the range [-2900, 100].
+ * 3. ping(100) - queue = [1, 100]... timestamp range is [100 - 3000, 100] ->
+ * [-2900, 100]
+ * The requests in this range are 1 and 100. Both are within the range [-2900,
+ * 100].
+ * So, the output for this ping is 2 because there are two requests in the range
+ * [-2900, 100].
  * 
- * 4. ping(3001) - queue = [1, 100, 3001]... timestamp range is [3001 - 3000, 3001] -> [1, 3001]
- * The requests in this range are 1, 100, and 3001. All are within the range [1, 3001]
- * So, the output for this ping is 3 because there are three requests in the range [1, 3001]
+ * 4. ping(3001) - queue = [1, 100, 3001]... timestamp range is [3001 - 3000,
+ * 3001] -> [1, 3001]
+ * The requests in this range are 1, 100, and 3001. All are within the range [1,
+ * 3001]
+ * So, the output for this ping is 3 because there are three requests in the
+ * range [1, 3001]
  * 
- * 5. ping(3002) - queue = [1, 100, 3001, 3002]... timestamp range is [3002 - 3000, 3002] -> [2, 3002]
- * The requests in this range are 100, 3001, and 3002, request 1 is no longer in the time frame
- * So, the output for this ping is 3 because there are three requests in the range [2, 3002]
+ * 5. ping(3002) - queue = [1, 100, 3001, 3002]... timestamp range is [3002 -
+ * 3000, 3002] -> [2, 3002]
+ * The requests in this range are 100, 3001, and 3002, request 1 is no longer in
+ * the time frame
+ * So, the output for this ping is 3 because there are three requests in the
+ * range [2, 3002]
  * 
  * 
  */
