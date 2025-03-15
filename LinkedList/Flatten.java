@@ -22,14 +22,14 @@ public class Flatten {
     public Node flattenHelper(Node head) {
 
         Node curr = head;
-        Node tail = head;   // Track the tail of the current flattened list
+        Node tail = head; // Track the tail of the current flattened list
 
         while (curr != null) {
             Node next = curr.next;
 
             if (curr.child != null) {
 
-                Node childTail = flattenHelper(curr.child);     // Recursively flatten the child list
+                Node childTail = flattenHelper(curr.child); // Recursively flatten the child list
                 System.out.println("After Recursion childTail : " + childTail.val);
 
                 curr.next = curr.child;
