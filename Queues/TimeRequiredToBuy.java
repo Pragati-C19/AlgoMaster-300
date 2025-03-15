@@ -18,21 +18,30 @@ public class TimeRequiredToBuy {
             queue.add(i);
         }
 
+        System.out.println("Initial queue: " + queue);
+        System.out.println("Tickets: " + Arrays.toString(tickets));
+
         // Process the queue
         while (!queue.isEmpty()) {
             int current = queue.poll();     // Get the front person
             tickets[current]--;             // They buy one ticket
             time++;                         // Time increases by 1 second
+            
+            System.out.println("Person " + current + " buys a ticket. Remaining tickets: " + Arrays.toString(tickets));
+            System.out.println("Time elapsed: " + time + "s");
 
             // If they still need tickets, go to the end of the queue
             if (tickets[current] > 0) {
                 queue.add(current);
+                System.out.println("Person " + current + " goes to the end of the line.");
             }
 
             // If "k" has finished buying tickets
             if (k == current && tickets[current] == 0) {
                 break;
             }
+
+            System.out.println("Current queue: " + queue + "\n");
         }
 
         return time;
