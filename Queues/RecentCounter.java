@@ -1,5 +1,3 @@
-package Queues;
-
 import java.util.*;
 
 public class RecentCounter {
@@ -13,7 +11,15 @@ public class RecentCounter {
 
     public int ping(int t) {
 
-        return t;
+        // Add the current timestamps to the queue
+        queue.add(t);
+
+        // Remove timestamps that is older then (t-3000)
+        while (queue.peek() < t - 3000) {
+            queue.poll(); // Remove outdated request
+        }
+
+        return queue.size();
     }
 
     public static void main(String[] args) {
@@ -37,7 +43,9 @@ public class RecentCounter {
  * - adding new requests
  * - removing old requests
  * - counting current valid request
- * 
+ * 5. add() - works as append which add the current element in queue
+ * 6. poll() - work as pop which removes the front element of the queue
+ * 7. peek() - this is like checking who’s first in line but leaving them there.
  * 
  * Pattern :
  * 
