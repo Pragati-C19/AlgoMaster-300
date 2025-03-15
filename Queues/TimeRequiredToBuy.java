@@ -9,19 +9,43 @@ public class TimeRequiredToBuy {
         queue = new LinkedList<>();
     }
 
-    public int timeRequiredToBuy(int[] tickets, int k){
+    public int timeRequiredToBuy(int[] tickets, int k) {
 
-        return k;
+        int time = 0;
+
+        // Add each person (by their index) into the queue initially
+        for (int i = 0; i < tickets.length; i++) {
+            queue.add(i);
+        }
+
+        // Process the queue
+        while (!queue.isEmpty()) {
+            int current = queue.poll();     // Get the front person
+            tickets[current]--;             // They buy one ticket
+            time++;                         // Time increases by 1 second
+
+            // If they still need tickets, go to the end of the queue
+            if (tickets[current] > 0) {
+                queue.add(current);
+            }
+
+            // If "k" has finished buying tickets
+            if (k == current && tickets[current] == 0) {
+                break;
+            }
+        }
+
+        return time;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TimeRequiredToBuy solution = new TimeRequiredToBuy();
-        
-        int[] tickets1 = {2,3,5};
+
+        int[] tickets1 = { 2, 3, 5 };
         int k1 = 2;
         System.out.println("Time for k1: " + solution.timeRequiredToBuy(tickets1, k1));
 
-        int[] tickets2 = {5, 1, 1, 1};
+        int[] tickets2 = { 5, 1, 1, 1 };
         int k2 = 0;
         System.out.println("Time for k2: " + solution.timeRequiredToBuy(tickets2, k2));
 
@@ -52,7 +76,7 @@ public class TimeRequiredToBuy {
  * Input: tickets = [2,3,2], k = 2
  * Output: 6
  * 
- * 1. Initialize the queue 
+ * 1. Initialize the queue
  * 2. Track time = 0
  * 3. Loop through the queue repeatedly
  * - For each person i:
