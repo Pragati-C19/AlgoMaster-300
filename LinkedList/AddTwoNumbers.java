@@ -11,7 +11,30 @@ public class AddTwoNumbers {
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
-        return l1;
+        ListNode dummy = new ListNode(0);    // Dummy Node for result
+        ListNode curr = dummy;
+        int carry = 0;
+
+        // Traverse both lists
+        while (l1 != null || l2 !=null) {
+            int val1 = (l1 !=null) ? l1.val : 0;    // If l1 is shorter, take 0
+            int val2 = (l2 !=null) ? l2.val : 0;    // If l2 is shorter, take 0
+
+            int sum = val1 + val2 + carry;
+            carry = sum / 10;                       // Carry for next addition
+
+            curr.next = new ListNode(sum % 10);     // Last digit to store
+            curr = curr.next;                      // Move to next position
+
+            // move to next nodes
+            if(l1 != null)  l1 = l1.next;
+            if(l2 != null)  l2 = l2.next;
+
+        }
+
+
+
+        return dummy.next;
     }
 
     // Helper function to print the list (for debugging)
@@ -73,19 +96,24 @@ public class AddTwoNumbers {
  * 
  * 1. Initialize dummy node and carry = 0
  * 2. While l1 or l2 exists:
- *      - Get values from l1 and l2 (0 if null)
- *      - Sum = l1.val + l2.val + carry.val
- *      - Create new node with (sum % 10)
- *      - Update carry = sum / 10
- *      - Move to next nodes in l1, l2, and result
+ * - Get values from l1 and l2 (0 if null)
+ * - Sum = l1.val + l2.val + carry.val
+ * - Create new node with (sum % 10)
+ * - Update carry = sum / 10
+ * - Move to next nodes in l1, l2, and result
  * 3. If carry > 0, add final node with carry
  * 4. Return dummy.next (head of result list)
  *
  *
  * why that sum % 10 and sum / 10
- *      -  If sum = 15, that time we need only 5 → 15 % 10 = 5
- *      -  If sum = 15, that time we need to carry 1 → 15 / 10 = 1
+ * - If sum = 15, that time we need only 5 → 15 % 10 = 5
+ * - If sum = 15, that time we need to carry 1 → 15 / 10 = 1
  * 
  * 
+ * Do I need to reverse the list or traveserse from back?
+ * - Noo.. lists aren't actually traversed from back to front.
+ * - we are just adding numbers and all game is of carry...
+ * - like in normal addition we do we used add right side number then add that carry to left side one..
+ * - same thing here , just we are adding left side numbers then adding that carry to right side one 
  * 
  */
