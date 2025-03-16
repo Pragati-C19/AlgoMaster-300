@@ -2,29 +2,55 @@ import java.util.*;
 
 public class DeckRevealedIncreasing {
 
-    public int[] deckRevealedIncreasing(int[] deck){
+    public int[] deckRevealedIncreasing(int[] deck) {
+        // Sorting the deck
+        Arrays.sort(deck);
+        System.out.println("Sorted deck: " + Arrays.toString(deck));
 
-        return deck;
+        int n = deck.length;
+        LinkedList<Integer> result = new LinkedList<>();
+
+        // Start with largest card and build backwards
+        result.addFirst(deck[n-1]);
+        System.out.println("Start with largest card: " + result);
+
+        // Loop from second lasrgest to smallest
+        for (int i = n-2; i >= 0; i--) {
+            // Move the last card to the front
+            int lastCard = result.removeLast();
+            result.addFirst(lastCard);
+
+            // Place the current card at the front
+            result.addFirst(deck[i]);
+            
+            System.out.println("After placing " + deck[i] + ": " + result);
+        }
+
+         //Convert LinkedList to array
+         int[] output = new int[n];
+         for (int i = 0; i < n; i++) {
+             output[i] = result.get(i);
+         }
+
+        return output;
     }
 
-
-    public static void main(String[] args){
+    public static void main(String[] args) {
         DeckRevealedIncreasing solution = new DeckRevealedIncreasing();
 
-        int[] deck1 = {17, 13, 11, 2, 3, 5, 7};
+        int[] deck1 = { 17, 13, 11, 2, 3, 5, 7 };
         int[] result1 = solution.deckRevealedIncreasing(deck1);
-        System.out.println("Final Result for deck1: " + Arrays.toString(result1) + "\n"); 
+        System.out.println("Final Result for deck1: " + Arrays.toString(result1) + "\n");
 
-        int[] deck2 = {1, 1000};
+        int[] deck2 = { 1, 1000 };
         int[] result2 = solution.deckRevealedIncreasing(deck2);
         System.out.println("Final Result for deck2: " + Arrays.toString(result2) + "\n");
 
         int[] deck3 = { 42 };
         int[] result3 = solution.deckRevealedIncreasing(deck3);
         System.out.println("Final Result for deck3: " + Arrays.toString(result3) + "\n");
-        
-    }
 
+    }
 
 }
 
@@ -69,6 +95,7 @@ public class DeckRevealedIncreasing {
  * a) Move the last card in the deck to the front.
  * b) Add the current card to the front.
  * 5. Return the result deck.
+ * 
  * 
  * 
  */
