@@ -13,36 +13,52 @@ public class TimeRequiredToBuy {
 
         int time = 0;
 
-        // Add each person (by their index) into the queue initially
+        // 🔹 Loop through each person in the line
         for (int i = 0; i < tickets.length; i++) {
-            queue.add(i);
-        }
 
-        System.out.println("Initial queue: " + queue);
-        System.out.println("Tickets: " + Arrays.toString(tickets));
-
-        // Process the queue
-        while (!queue.isEmpty()) {
-            int current = queue.poll();     // Get the front person
-            tickets[current]--;             // They buy one ticket
-            time++;                         // Time increases by 1 second
-            
-            System.out.println("Person " + current + " buys a ticket. Remaining tickets: " + Arrays.toString(tickets));
-            System.out.println("Time elapsed: " + time + "s");
-
-            // If they still need tickets, go to the end of the queue
-            if (tickets[current] > 0) {
-                queue.add(current);
-                System.out.println("Person " + current + " goes to the end of the line.");
+            // 🔸 Case 1: People before or at `k` get all their tickets or `tickets[k]` tickets max
+            if (i <= k) {
+                time += Math.min(tickets[i], tickets[k]);
+            } 
+            // 🔸 Case 2: People after `k` get tickets only until `k` finishes (max `tickets[k] - 1`)
+            else {
+                time += Math.min(tickets[i], tickets[k] - 1);
             }
 
-            // If "k" has finished buying tickets
-            if (k == current && tickets[current] == 0) {
-                break;
-            }
-
-            System.out.println("Current queue: " + queue + "\n");
+            // 🔹 Debugging output to see how time accumulates per person
+            System.out.println("Person " + i + " - Tickets left: " + tickets[i] + ", Time: " + time);
         }
+
+        // // Add each person (by their index) into the queue initially
+        // for (int i = 0; i < tickets.length; i++) {
+        //     queue.add(i);
+        // }
+
+        // System.out.println("Initial queue: " + queue);
+        // System.out.println("Tickets: " + Arrays.toString(tickets));
+
+        // // Process the queue
+        // while (!queue.isEmpty()) {
+        //     int current = queue.poll(); // Get the front person
+        //     tickets[current]--; // They buy one ticket
+        //     time++; // Time increases by 1 second
+
+        //     System.out.println("Person " + current + " buys a ticket. Remaining tickets: " + Arrays.toString(tickets));
+        //     System.out.println("Time elapsed: " + time + "s");
+
+        //     // If they still need tickets, go to the end of the queue
+        //     if (tickets[current] > 0) {
+        //         queue.add(current);
+        //         System.out.println("Person " + current + " goes to the end of the line.");
+        //     }
+
+        //     // If "k" has finished buying tickets
+        //     if (k == current && tickets[current] == 0) {
+        //         break;
+        //     }
+
+        //     System.out.println("Current queue: " + queue + "\n");
+        // }
 
         return time;
     }
@@ -79,6 +95,16 @@ public class TimeRequiredToBuy {
  * 2. If it's person k's turn and they get their last ticket, we stop and return
  * the total time.
  * 
+ * 1. People before or at position k ( i <= k ):
+ * They get their turn every time, so they buy either all their tickets or stop
+ * when k finishes.
+ * Each person i buys min(tickets[i], tickets[k]) tickets.
+ * 
+ * 2️. People after position k ( i > k ):
+ * They only buy tickets until person k is done.
+ * They get at most tickets[k] - 1 turns (because k gets the final turn to
+ * finish).
+ * Each such person buys min(tickets[i], tickets[k] - 1) tickets.
  * 
  * Psuedo Code :
  * 
@@ -95,6 +121,20 @@ public class TimeRequiredToBuy {
  * - If person `k` has tickets[k] == 0 after buying, return the total time
  * 3. Repeat until person `k` finishes
  * 4. Return time
+ * 
+ * 
+ * Input: tickets[], k
+ * Output: Total time taken for person `k` to finish buying tickets.
+ * 
+ * 1. Initialize `time = 0`
+ * 
+ * 2. Loop through each person `i` in the queue:
+ * a) If `i <= k` (before or at `k`):
+ * ➜ Add `min(tickets[i], tickets[k])` to `time`
+ * b) If `i > k` (after `k`):
+ * ➜ Add `min(tickets[i], tickets[k] - 1)` to `time`
+ * 
+ * 3. Return `time`
  * 
  * 
  */
