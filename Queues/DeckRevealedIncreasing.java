@@ -1,4 +1,30 @@
+import java.util.*;
+
 public class DeckRevealedIncreasing {
+
+    public int[] deckRevealedIncreasing(int[] deck){
+
+        return deck;
+    }
+
+
+    public static void main(String[] args){
+        DeckRevealedIncreasing solution = new DeckRevealedIncreasing();
+
+        int[] deck1 = {17, 13, 11, 2, 3, 5, 7};
+        int[] result1 = solution.deckRevealedIncreasing(deck1);
+        System.out.println("Final Result for deck1: " + Arrays.toString(result1) + "\n"); 
+
+        int[] deck2 = {1, 1000};
+        int[] result2 = solution.deckRevealedIncreasing(deck2);
+        System.out.println("Final Result for deck2: " + Arrays.toString(result2) + "\n");
+
+        int[] deck3 = { 42 };
+        int[] result3 = solution.deckRevealedIncreasing(deck3);
+        System.out.println("Final Result for deck3: " + Arrays.toString(result3) + "\n");
+        
+    }
+
 
 }
 
