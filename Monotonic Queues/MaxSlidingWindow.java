@@ -1,51 +1,58 @@
 import java.util.*;
 
 public class MaxSlidingWindow {
-    public int maxSlidingWindow(int[] nums, int k){
-        
+    public int[] maxSlidingWindow(int[] nums, int k) {
+
         // If input array is empty or window size is invalid
-        if(nums == null || nums.length == 0 || k <= 0) return new int[0];
+        if (nums == null || nums.length == 0 || k <= 0)
+            return new int[0];
 
         int n = nums.length;
-        int[] result = new int[n - k + 1];      // Result array to store the max of each window
-        Deque<Integer> deque = new ArrayDeque<>();      // Deque to store indices of useful elements
+        int[] result = new int[n - k + 1]; // Result array to store the max of each window
+        Deque<Integer> deque = new ArrayDeque<>(); // Deque to store indices of useful elements
 
         // Traverse the array
-        for(int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
+            System.out.println("Processing index " + i + " with value " + nums[i]);
 
             // Remove Elements from the front of the deque if they are out of this window
-            while(!deque.isEmpty() && deque.peekFirst() < i - k + 1){
+            while (!deque.isEmpty() && deque.peekFirst() < i - k + 1) {
+                System.out.println("Removing index " + deque.peekFirst() + " (out of window)");
                 deque.pollFirst();
             }
 
             // Remove elements from the back if they are smaller than the current element
-            while(!deque.isEmpty() && nums[deque.peekLast()] < nums[i]){
+            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+                System.out.println("Removing index " + deque.peekLast() + " (smaller value)");
                 deque.pollLast();
             }
 
             // Add current index to deque
             deque.offerLast(i);
+            System.out.println("Added index " + i + " to deque");
 
             // Record the maximum value for this window
-            if(i >= k - 1){
+            if (i >= k - 1) {
                 result[i - k + 1] = nums[deque.peekFirst()];
+                System.out.println("Window [" + (i - k + 1) + " to " + i + "] -> Max: " + nums[deque.peekFirst()]);
             }
 
+            System.out.println("Current Deque: " + deque + "\n");
         }
 
         return result;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         MaxSlidingWindow solution = new MaxSlidingWindow();
 
-        int[] nums1 = {1, 3, -1, -3, 5, 3, 6, 7};
+        int[] nums1 = { 1, 3, -1, -3, 5, 3, 6, 7 };
         int k1 = 3;
-        System.out.println("Result1: " + solution.maxSlidingWindow(nums1, k1) + "\n");
+        System.out.println("Result1: " + Arrays.toString(solution.maxSlidingWindow(nums1, k1)) + "\n");
 
-        int[] nums2 = {1};
+        int[] nums2 = { 1 };
         int k2 = 1;
-        System.out.println("Result2: " + solution.maxSlidingWindow(nums2, k2) + "\n");
+        System.out.println("Result2: " + Arrays.toString(solution.maxSlidingWindow(nums2, k2)) + "\n");
 
     }
 
