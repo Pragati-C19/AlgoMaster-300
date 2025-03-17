@@ -1,7 +1,38 @@
+import java.util.*;
+
 public class MaxResult {
     public int maxResult(int[] nums, int k){
+        int n = nums.length;
 
-        return k;
+        // If only one element, return it
+        if(n==1) return nums[0];
+
+        // Deque to store indices of best scores
+        Deque<Integer> deque = new ArrayDeque<>();
+        deque.offer(0);
+
+        // Tracking max score (reuse nums array to save space)
+        for(int i = 1; i < n; i++){
+
+            // Deque's front is within valid range
+            while(!deque.isEmpty() && deque.peekFirst() < i - k){
+                deque.pollFirst();
+            }
+
+            // Calculate the current score from the best previous index
+            nums[i] = nums[i] + nums[deque.peekFirst()];
+
+            // Deque in descending order 
+            while(!deque.isEmpty() && nums[deque.peekLast()] <= nums[i]){
+                deque.pollLast();
+            }
+
+            // Add current index to the deque
+            deque.offerLast(i);
+
+        }
+
+        return nums[n-1];
     }
 
     public static void main(String[] args){
