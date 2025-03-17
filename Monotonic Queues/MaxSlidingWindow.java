@@ -1,6 +1,23 @@
 import java.util.*;
 
 public class MaxSlidingWindow {
+    public int maxSlidingWindow(int[] nums, int k){
+        
+        return k;
+    }
+
+    public static void main(String[] args){
+        MaxSlidingWindow solution = new MaxSlidingWindow();
+
+        int[] nums1 = {1, 3, -1, -3, 5, 3, 6, 7};
+        int k1 = 3;
+        System.out.println("Result1: " + solution.maxSlidingWindow(nums1, k1) + "\n");
+
+        int[] nums2 = {1};
+        int k2 = 1;
+        System.out.println("Result2: " + solution.maxSlidingWindow(nums2, k2) + "\n");
+
+    }
 
 }
 
