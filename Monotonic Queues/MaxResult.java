@@ -1,5 +1,24 @@
 public class MaxResult {
+    public int maxResult(int[] nums, int k){
 
+        return k;
+    }
+
+    public static void main(String[] args){
+        MaxResult solution = new MaxResult();
+
+        int[] nums1 = {1, -1, -2, 4, -7, 3};
+        int k1 = 2;
+        System.out.println("Final Result for nums1: " + solution.maxResult(nums1, k1) + "\n");
+
+        int[] nums2 = {10, -5, -2, 4, 0, 3};
+        int k2 = 3;
+        System.out.println("Final Result for nums2: " + solution.maxResult(nums2, k2) + "\n");
+
+        int[] nums3 = {1, -5, -20, 4, -1, 3, -6, -3};
+        int k3 = 2;
+        System.out.println("Final Result for nums3: " + solution.maxResult(nums3, k3) + "\n");
+    }
 }
 
 /**
