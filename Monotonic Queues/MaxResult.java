@@ -13,23 +13,27 @@ public class MaxResult {
 
         // Tracking max score (reuse nums array to save space)
         for(int i = 1; i < n; i++){
+            System.out.println("Current index: " + i);
 
             // Deque's front is within valid range
             while(!deque.isEmpty() && deque.peekFirst() < i - k){
+                System.out.println("Removing index " + deque.peekFirst() + " (out of range)");
                 deque.pollFirst();
             }
 
             // Calculate the current score from the best previous index
             nums[i] = nums[i] + nums[deque.peekFirst()];
+            System.out.println("Current nums[" + i + "] = " + nums[i] + " (best path from index " + deque.peekFirst() + ")");
 
             // Deque in descending order 
             while(!deque.isEmpty() && nums[deque.peekLast()] <= nums[i]){
+                System.out.println("Removing index " + deque.peekLast() + " (inferior score)");
                 deque.pollLast();
             }
 
             // Add current index to the deque
             deque.offerLast(i);
-
+            System.out.println("Deque state: " + deque + "\n");
         }
 
         return nums[n-1];
