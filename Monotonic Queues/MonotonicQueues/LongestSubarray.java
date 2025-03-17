@@ -1,6 +1,25 @@
-
+import java.util.*;
 public record LongestSubarray() {
+    public int longestSubarray(int[] nums, int limit){
+        
+        return limit;
+    }
 
+    public static void main(String[] args){
+        LongestSubarray solution = new LongestSubarray();
+
+        int[] nums1 = {8, 2, 4, 7};
+        int limit1 = 4;
+        System.out.println("Final Result1: " + solution.longestSubarray(nums1, limit1) + "\n");
+
+        int[] nums2 = {10, 1, 2, 4, 7, 2};
+        int limit2 = 5;
+        System.out.println("Final Result2: " + solution.longestSubarray(nums2, limit2) + "\n");
+
+        int[] nums3 = {4,2,2,2,4,4,2,2};
+        int limit3 = 0;
+        System.out.println("Final Result3: " + solution.longestSubarray(nums3, limit3) + "\n");
+    }
 }
 
 /*
