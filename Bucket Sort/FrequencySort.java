@@ -10,12 +10,15 @@ public class FrequencySort {
             char c = s.charAt(i);
             frequencyMap.put(c, frequencyMap.getOrDefault(c, 0)+1);
         }
+        System.out.println("Frequency Map: " + frequencyMap); 
 
         // Bucket sort setup — create buckets (index = frequency)
         List<Character>[] buckets = new List[s.length()+1];
         for(int i=0; i<=s.length(); i++) {
             char c = s.charAt(i);
             int freq = frequencyMap.get(c);
+
+            System.out.println("Processing character: " + c + " with frequency: " + freq);
 
             if(buckets[freq] == null){
                 buckets[freq] = new ArrayList<>();
@@ -25,6 +28,7 @@ public class FrequencySort {
                 buckets[freq].add(c);
             }
         }
+        System.out.println("Buckets: " + Arrays.toString(buckets));
 
         // Build result string from buckets (highest frequency first)
         StringBuilder result = new StringBuilder();
@@ -32,6 +36,9 @@ public class FrequencySort {
             if(buckets[i] != null) {
                 for(int j=0; j<buckets[i].size(); j++){
                     char c = buckets[i].get(j);
+
+                    System.out.println("Adding character: " + c + " repeated " + i + " times"); 
+
                     for(int k=0; k<i; k++){
                         result.append(c);
                     }
@@ -39,6 +46,7 @@ public class FrequencySort {
             }
         }
 
+        System.out.println("Final Result: " + result.toString()); 
         return result.toString();
     }
 
