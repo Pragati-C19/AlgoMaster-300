@@ -1,8 +1,45 @@
+import java.util.*;
+
 public class FrequencySort {
 
     public String frequencySort(String s){
+        // Count frequency of each charecter
+        Map<Character, Integer> frequencyMap = new HashMap<>();
 
-        return s;
+        for(int i=0; i<s.length(); i++){
+            char c = s.charAt(i);
+            frequencyMap.put(c, frequencyMap.getOrDefault(c, 0)+1);
+        }
+
+        // Bucket sort setup — create buckets (index = frequency)
+        List<Character>[] buckets = new List[s.length()+1];
+        for(int i=0; i<=s.length(); i++) {
+            char c = s.charAt(i);
+            int freq = frequencyMap.get(c);
+
+            if(buckets[freq] == null){
+                buckets[freq] = new ArrayList<>();
+            }
+
+            if(!buckets[freq].contains(c)){
+                buckets[freq].add(c);
+            }
+        }
+
+        // Build result string from buckets (highest frequency first)
+        StringBuilder result = new StringBuilder();
+        for(int i=buckets.length-1; i>=0; i--) {
+            if(buckets[i] != null) {
+                for(int j=0; j<buckets[i].size(); j++){
+                    char c = buckets[i].get(j);
+                    for(int k=0; k<i; k++){
+                        result.append(c);
+                    }
+                }
+            }
+        }
+
+        return result.toString();
     }
 
     public static void main(String[] args){
