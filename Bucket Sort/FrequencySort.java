@@ -1,5 +1,18 @@
 public class FrequencySort {
 
+    public String frequencySort(String s){
+
+        return s;
+    }
+
+    public static void main(String[] args){
+        FrequencySort solution = new FrequencySort();
+
+        System.out.println("Output 1: " + solution.frequencySort("tree"));      // eetr or eer or other valid output
+        System.out.println("Output 2: " + solution.frequencySort("cccaaa"));    // cccaaa or aaaccc
+        System.out.println("Output 3: " + solution.frequencySort("Aabb"));      // bbAa or bbaA
+
+    }
 }
 
 /*
