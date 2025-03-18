@@ -3,18 +3,44 @@ import java.util.*;
 public class FindMaxValueOfEquation {
     public int findMaxValueOfEquation(int[][] points, int k) {
 
+        Deque<Integer> deque = new ArrayDeque<>();
+        int maxResult = Integer.MIN_VALUE;
+
+        int i = 0;
+        while (i < points.length) {
+            int[] point = points[i];
+
+            int xj = point[0];
+            int yj = point[1];
+
+            // Remove points out of range (xj - xi > k)
+            while (!deque.isEmpty() && Math.abs(deque.peekLast() - xj) > k){
+                deque.pollLast();   // Remove from front
+            }
+
+            // If valid points exist, calculate max result
+            if (!deque.isEmpty()) {
+                int xi = deque.peekFirst();
+                int yi = deque.peekLast();
+                int result = Math.abs(xi * yj - xj * yi);
+                maxResult = Math.max(maxResult, result);
+            }
+            
+            i++;
+        }
+
         return k;
-        
+
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         FindMaxValueOfEquation solution = new FindMaxValueOfEquation();
 
-        int[][] point1 = {{1, 3}, {2, 0}, {5, 10}, {6, -10}};
+        int[][] point1 = { { 1, 3 }, { 2, 0 }, { 5, 10 }, { 6, -10 } };
         int k1 = 1;
         System.out.println("Output 1: " + solution.findMaxValueOfEquation(point1, k1) + "\n");
 
-        int[][] point2 = {{0, 0}, {3, 0}, {9, 2}};
+        int[][] point2 = { { 0, 0 }, { 3, 0 }, { 9, 2 } };
         int k2 = 3;
         System.out.println("Output 2: " + solution.findMaxValueOfEquation(point2, k2) + "\n");
 
