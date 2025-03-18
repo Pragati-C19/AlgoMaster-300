@@ -6,15 +6,15 @@ public class FindMaxValueOfEquation {
         Deque<Integer> deque = new ArrayDeque<>();
         int maxResult = Integer.MIN_VALUE;
 
-        int i = 0;
         for (int j = 0; j < points.length; j++) {
 
-            int xj = points[0];
-            int yj = points[1];
+            int xj = points[j][0];
+            int yj = points[j][1];
             System.out.println("Processing point: (" + xj + ", " + yj + ")");
-            
+
             // Remove points out of range (xj - xi > k)
             while (!deque.isEmpty() && Math.abs(deque.peekLast() - xj) > k){
+                System.out.println("Removing point (out of range): (" + points[deque.peekFirst()][0] + ", " + points[deque.peekFirst()][1] + ")");
                 deque.pollLast();   // Remove from front
             }
 
@@ -23,13 +23,19 @@ public class FindMaxValueOfEquation {
                 int xi = deque.peekFirst();
                 int yi = deque.peekLast();
                 int result = Math.abs(xi * yj - xj * yi);
+                System.out.println("Calculating result with (" + xi + ", " + yi + ") -> " + result);
                 maxResult = Math.max(maxResult, result);
             }
 
+            // Add current point to deque
+            System.out.println("Adding point to deque: (" + xj + ", " + yj + ")");
+            deque.offerLast(j);
+
+            System.out.println("Current Deque: " + deque + "\n");
         }
 
-        return k;
-
+        System.out.println("Final Maximum Result: " + maxResult);
+        return maxResult;
     }
 
     public static void main(String[] args) {
