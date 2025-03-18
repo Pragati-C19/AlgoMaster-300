@@ -27,6 +27,12 @@ public class FindMaxValueOfEquation {
                 maxResult = Math.max(maxResult, result);
             }
 
+            // Maintain deque in decreasing order of (yi - xi)
+            while (!deque.isEmpty() && (points[deque.peekLast()][1] - points[deque.peekLast()][0]) <= (yj - xj)) {
+                System.out.println("Removing less useful point: (" + points[deque.peekLast()][0] + ", " + points[deque.peekLast()][1] + ")");
+                deque.pollLast();
+            }
+
             // Add current point to deque
             System.out.println("Adding point to deque: (" + xj + ", " + yj + ")");
             deque.offerLast(j);
