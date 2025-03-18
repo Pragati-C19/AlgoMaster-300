@@ -13,9 +13,9 @@ public class FindMaxValueOfEquation {
             System.out.println("Processing point: (" + xj + ", " + yj + ")");
 
             // Remove points out of range (xj - xi > k)
-            while (!deque.isEmpty() && Math.abs(deque.peekLast() - xj) > k){
+            while (!deque.isEmpty() && Math.abs(deque.peekFirst() - xj) > k){
                 System.out.println("Removing point (out of range): (" + points[deque.peekFirst()][0] + ", " + points[deque.peekFirst()][1] + ")");
-                deque.pollLast();   // Remove from front
+                deque.pollFirst();   // Remove from front
             }
 
             // If valid points exist, calculate max result
@@ -28,14 +28,14 @@ public class FindMaxValueOfEquation {
             }
 
             // Maintain deque in decreasing order of (yi - xi)
-            while (!deque.isEmpty() && (points[deque.peekLast()][1] - points[deque.peekLast()][0]) <= (yj - xj)) {
+            while (!deque.isEmpty() && Math.abs(deque.peekFirst() - deque.peekLast()) <= (yj - xj)) {
                 System.out.println("Removing less useful point: (" + points[deque.peekLast()][0] + ", " + points[deque.peekLast()][1] + ")");
                 deque.pollLast();
             }
 
             // Add current point to deque
             System.out.println("Adding point to deque: (" + xj + ", " + yj + ")");
-            deque.offerLast(j);
+            deque.addLast(j);
 
             System.out.println("Current Deque: " + deque + "\n");
         }
