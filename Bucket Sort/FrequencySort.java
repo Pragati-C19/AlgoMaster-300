@@ -6,16 +6,15 @@ public class FrequencySort {
         // Count frequency of each charecter
         Map<Character, Integer> frequencyMap = new HashMap<>();
 
-        for(int i=0; i<s.length(); i++){
-            char c = s.charAt(i);
+        for(char c : s.toCharArray()){
             frequencyMap.put(c, frequencyMap.getOrDefault(c, 0)+1);
         }
         System.out.println("Frequency Map: " + frequencyMap); 
 
         // Bucket sort setup — create buckets (index = frequency)
         List<Character>[] buckets = new List[s.length()+1];
-        for(int i=0; i<=s.length(); i++) {
-            char c = s.charAt(i);
+
+        for(char c : frequencyMap.keySet()) {
             int freq = frequencyMap.get(c);
 
             System.out.println("Processing character: " + c + " with frequency: " + freq);
@@ -24,19 +23,17 @@ public class FrequencySort {
                 buckets[freq] = new ArrayList<>();
             }
 
-            if(!buckets[freq].contains(c)){
-                buckets[freq].add(c);
-            }
+            buckets[freq].add(c);
         }
         System.out.println("Buckets: " + Arrays.toString(buckets));
 
         // Build result string from buckets (highest frequency first)
         StringBuilder result = new StringBuilder();
-        for(int i=buckets.length-1; i>=0; i--) {
-            if(buckets[i] != null) {
-                for(int j=0; j<buckets[i].size(); j++){
-                    char c = buckets[i].get(j);
 
+        for(int i = buckets.length - 1; i >= 0; i--) {
+            if(buckets[i] != null) {
+                for(char c : buckets[i]){
+                    
                     System.out.println("Adding character: " + c + " repeated " + i + " times"); 
 
                     for(int k=0; k<i; k++){
@@ -53,9 +50,9 @@ public class FrequencySort {
     public static void main(String[] args){
         FrequencySort solution = new FrequencySort();
 
-        System.out.println("Output 1: " + solution.frequencySort("tree"));      // eetr or eer or other valid output
-        System.out.println("Output 2: " + solution.frequencySort("cccaaa"));    // cccaaa or aaaccc
-        System.out.println("Output 3: " + solution.frequencySort("Aabb"));      // bbAa or bbaA
+        System.out.println("Output 1: " + solution.frequencySort("tree") + "\n");      // eetr or eer or other valid output
+        System.out.println("Output 2: " + solution.frequencySort("cccaaa") + "\n");    // cccaaa or aaaccc
+        System.out.println("Output 3: " + solution.frequencySort("Aabb") + "\n");      // bbAa or bbaA
 
     }
 }
