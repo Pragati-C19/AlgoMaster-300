@@ -1,5 +1,24 @@
-public class FindMaxValueOfEquation {
+import java.util.*;
 
+public class FindMaxValueOfEquation {
+    public int findMaxValueOfEquation(int[][] points, int k) {
+
+        return k;
+        
+    }
+
+    public static void main(String[] args){
+        FindMaxValueOfEquation solution = new FindMaxValueOfEquation();
+
+        int[][] point1 = {{1, 3}, {2, 0}, {5, 10}, {6, -10}};
+        int k1 = 1;
+        System.out.println("Output 1: " + solution.findMaxValueOfEquation(point1, k1) + "\n");
+
+        int[][] point2 = {{0, 0}, {3, 0}, {9, 2}};
+        int k2 = 3;
+        System.out.println("Output 2: " + solution.findMaxValueOfEquation(point2, k2) + "\n");
+
+    }
 }
 
 /**
