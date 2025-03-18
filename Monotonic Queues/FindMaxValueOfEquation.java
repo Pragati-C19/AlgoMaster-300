@@ -7,12 +7,12 @@ public class FindMaxValueOfEquation {
         int maxResult = Integer.MIN_VALUE;
 
         int i = 0;
-        while (i < points.length) {
-            int[] point = points[i];
+        for (int j = 0; j < points.length; j++) {
 
-            int xj = point[0];
-            int yj = point[1];
-
+            int xj = points[0];
+            int yj = points[1];
+            System.out.println("Processing point: (" + xj + ", " + yj + ")");
+            
             // Remove points out of range (xj - xi > k)
             while (!deque.isEmpty() && Math.abs(deque.peekLast() - xj) > k){
                 deque.pollLast();   // Remove from front
@@ -25,8 +25,7 @@ public class FindMaxValueOfEquation {
                 int result = Math.abs(xi * yj - xj * yi);
                 maxResult = Math.max(maxResult, result);
             }
-            
-            i++;
+
         }
 
         return k;
