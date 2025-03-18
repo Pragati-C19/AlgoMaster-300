@@ -22,7 +22,7 @@ public class FindMaxValueOfEquation {
             if (!deque.isEmpty()) {
                 int xi = deque.peekFirst();
                 int yi = deque.peekLast();
-                int result = Math.abs(xi * yj - xj * yi);
+                int result = Math.abs(yj + xj + yi - xi);
                 System.out.println("Calculating result with (" + xi + ", " + yi + ") -> " + result);
                 maxResult = Math.max(maxResult, result);
             }
