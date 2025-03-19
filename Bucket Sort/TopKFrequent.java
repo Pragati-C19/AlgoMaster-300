@@ -2,6 +2,26 @@ import java.util.*;
 
 public class TopKFrequent {
 
+    public List<String> topKFrequent(String[] words, int k) {
+
+        return words;
+        
+    }
+
+    public static void main(String[] args){
+        TopKFrequent solution = new TopKFrequent();
+
+        String[] words1 = {"i", "love", "leetcode", "i", "love", "coding"};
+        int k1 = 2;
+        System.out.println("Result1: " + solution.topKFrequent(words1, k1) + "\n");
+
+        String[] words2 = {"the","day","is","sunny","the","the","the","sunny","is","is"};
+        int k2 = 4;
+        System.out.println("Result2: " + solution.topKFrequent(words2, k2) + "\n");
+
+    }
+
+
 }
 
 /**
