@@ -27,7 +27,7 @@ public class MaximumGap {
         System.out.println("Min value: " + minVal + " | Max value: " + maxVal);
 
         // Calculate Bucket size and count
-        int bucketSize = (maxVal - minVal) / (n - 1);
+        int bucketSize = Math.max(1, (maxVal - minVal) / (n - 1));
         int bucketCount = (maxVal - minVal) / bucketSize + 1;
         System.out.println("Bucket size: " + bucketSize + " | Bucket count: " + bucketCount);
 
@@ -83,9 +83,11 @@ public class MaximumGap {
 
         int[] nums1 = { 3, 6, 9, 1 };
         int[] nums2 = { 10 };
+        int[] nums3 = { 0, 0, 0, 0};
 
         System.out.println("Result1: " + solution.maximumGap(nums1) + "\n");
         System.out.println("Result2: " + solution.maximumGap(nums2) + "\n");
+        System.out.println("Result3: " + solution.maximumGap(nums3) + "\n");
 
     }
 
