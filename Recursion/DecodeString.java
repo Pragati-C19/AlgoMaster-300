@@ -4,6 +4,44 @@ public class DecodeString {
 
     public String decodeString(String s) {
         
+        Stack<String> stringStack = new Stack<>();
+        Stack<Integer> numStack = new Stack<>();
+
+        StringBuilder curr = new StringBuilder();
+        int num = 0;
+
+        for(char c : s.toCharArray()){
+
+            if(Character.isDigit(c)){
+                // Build the number 
+                num = num * 10 + (c - '0');
+            }
+            else if(c == '['){
+                // Push the current string and number to the stack
+                stringStack.push(curr.toString());
+                numStack.push(num);
+
+                curr = new StringBuilder();
+                num = 0;
+            }
+            else if(c == ']'){
+                // Pop the number and string from the stack
+                StringBuilder decoded = new StringBuilder(stringStack.pop());
+                int repeatCount = numStack.pop();
+
+                for(int i = 0; i < repeatCount - 1; i++){
+                    decoded.append(curr);
+                }
+
+                curr = decoded;
+            }
+            else{
+                // Add the character to the current string
+                curr.append(c);
+            }
+        }
+
+        return curr.toString();
     }
 
     public static void main(String[] args){
