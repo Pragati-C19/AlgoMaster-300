@@ -28,7 +28,7 @@ public class MaximumGap {
 
         // Calculate Bucket size and count
         int bucketSize = (maxVal - minVal) / (n - 1);
-        int bucketCount = (maxVal - minVal) / bucketSize ;
+        int bucketCount = (maxVal - minVal) / bucketSize + 1;
         System.out.println("Bucket size: " + bucketSize + " | Bucket count: " + bucketCount);
 
         
@@ -46,6 +46,8 @@ public class MaximumGap {
 
         // Place numbers into buckets
         for(int num : nums){
+            System.out.println("num : " + num);
+
             int bucketIndex = (num - minVal) / bucketSize;
             System.out.println("Bucket Index: " + bucketIndex);
 
