@@ -1,4 +1,23 @@
+import java.util.*;
+
 public class DecodeString {
+
+    public String decodeString(String s) {
+        
+    }
+
+    public static void main(String[] args){
+        DecodeString solution = new DecodeString();
+
+        String s1 = "3[a]2[bc]";
+        String s2 = "3[a2[c]]";
+        String s3 = "2[abc]3[cd]ef";
+
+        System.out.println("Output1: " + solution.decodeString(s1) + "\n"); // "aaabcbc"
+        System.out.println("Output2: " + solution.decodeString(s2) + "\n"); // "accaccacc"
+        System.out.println("Output3: " + solution.decodeString(s3) + "\n"); // "abcabccdcdcdef"
+
+    }
 
 }
 
