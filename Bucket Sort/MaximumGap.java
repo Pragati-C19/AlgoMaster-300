@@ -1,5 +1,20 @@
 
 public class MaximumGap {
+    public static int maximumGap(int[] nums) {
+
+        return nums;
+    }
+
+    public static void main(String[] args){
+        MaximumGap solution = new MaximumGap();
+
+        int[] nums1 = {3, 6, 9, 1};
+        int[] nums2 = {10};
+
+        System.out.println("Result1: " + solution.maximumGap(nums1) + "\n");
+        System.out.println("Result2: " + solution.maximumGap(nums2) + "\n");
+
+    }
 
 }
 
