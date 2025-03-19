@@ -1,6 +1,27 @@
 
 public class MyPow {
 
+    public double myPow(double x, int n) {
+        
+    }
+
+    public static void main(String[] args){
+        MyPow solution = new MyPow();
+
+        double x1 = 2.00000;
+        int n1 = 10;
+        System.out.println("Output1: " + solution.myPow(x1, n1) + "\n");    // 1024.00000
+
+        double x2 = 2.10000;
+        int n2 = 3;
+        System.out.println("Output2: " + solution.myPow(x2, n2) + "\n");    // 9.26100
+
+        double x3 = 2.00000;
+        int n3 = -2;
+        System.out.println("Output3: " + solution.myPow(x3, n3) + "\n");    // 0.25000
+
+    }
+
 }
 
 /**
