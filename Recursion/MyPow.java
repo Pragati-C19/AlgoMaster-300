@@ -2,19 +2,25 @@
 public class MyPow {
 
     public double myPow(double x, int n) {
-        
+
+        // power of 0 is always 1
         if(n == 0) return 1;
 
-        // Handle negative powers
-        if (n < 0) {
+        // Handle Integer.MIN_VALUE overflow ( Convert n to long to avoid overflow)
+        long power = n;
+
+        // Handle negative powers 
+        if (power < 0) {
             x = 1 / x;
-            n = -n;
+            power = - power;     // Flip power safely
         }
         
         double result = 1;
 
-        while (n > 0) {
-            if (n % 2 == 1) {
+        // Exponentiation by squaring
+        while (power > 0) {
+            // If power is odd , Multiply the result by x
+            if (power % 2 == 1) {
                 result = result * x;
             }
 
@@ -22,7 +28,7 @@ public class MyPow {
             x = x * x;
             
             // Halve the power
-            n = n / 2;
+            power = power / 2;
         }
 
         return result;
