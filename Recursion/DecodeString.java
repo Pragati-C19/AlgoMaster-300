@@ -4,13 +4,16 @@ public class DecodeString {
 
     public String decodeString(String s) {
         
+        // Two stacks to track strings and repeat counts
         Stack<String> stringStack = new Stack<>();
         Stack<Integer> numStack = new Stack<>();
 
         StringBuilder curr = new StringBuilder();
         int num = 0;
 
+        // Traverse the string character by character
         for(char c : s.toCharArray()){
+            System.out.println("Charecter : " + c);
 
             if(Character.isDigit(c)){
                 // Build the number 
@@ -21,6 +24,7 @@ public class DecodeString {
                 stringStack.push(curr.toString());
                 numStack.push(num);
 
+                // Reset current string and number for the new segment
                 curr = new StringBuilder();
                 num = 0;
             }
@@ -29,18 +33,21 @@ public class DecodeString {
                 StringBuilder decoded = new StringBuilder(stringStack.pop());
                 int repeatCount = numStack.pop();
 
+                // Repeat the current string 'repeatCount' times
                 for(int i = 0; i < repeatCount; i++){
                     decoded.append(curr);
                 }
 
+                // Set the current string to the decoded string
                 curr = decoded;
             }
             else{
-                // Add the character to the current string
+                // If it's a regular character, add it to the current string
                 curr.append(c);
             }
         }
 
+        // Return the final decoded string
         return curr.toString();
     }
 
