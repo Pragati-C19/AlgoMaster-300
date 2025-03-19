@@ -8,8 +8,10 @@ public class MaximumGap {
         int n = nums.length;
 
         // If nums has less than 2 elements, return 0.
-        if (n < 2)
+        if (n < 2){
+            System.out.println("Array has less than 2 elements, returning 0.");
             return 0;
+        }
 
         // Find min and max values
         int minVal = Integer.MAX_VALUE;
@@ -22,33 +24,42 @@ public class MaximumGap {
             // Max Values
             if (num > maxVal) maxVal = num;
         }
+        System.out.println("Min value: " + minVal + " | Max value: " + maxVal);
 
         // Calculate Bucket size and count
         int bucketSize = (maxVal - minVal) / (n - 1);
         int bucketCount = (maxVal - minVal) / bucketSize ;
+        System.out.println("Bucket size: " + bucketSize + " | Bucket count: " + bucketCount);
 
+        
         // Create buckets to store min and max
         int[] bucketMin = new int[bucketCount];
         int[] bucketMax = new int[bucketCount];
+        System.out.println("Before Initialization | BucketMin: " + Arrays.toString(bucketMin) + ", BucketMax: " + Arrays.toString(bucketMax)); 
 
         for (int i = 0; i < bucketCount; i++) {
             bucketMin[i] = Integer.MAX_VALUE;
             bucketMax[i] = Integer.MIN_VALUE;
-        }        
+        } 
+        System.out.println("After Initialization | BucketMin: " + Arrays.toString(bucketMin) + ", BucketMax: " + Arrays.toString(bucketMax));      
+
 
         // Place numbers into buckets
         for(int num : nums){
             int bucketIndex = (num - minVal) / bucketSize;
+            System.out.println("Bucket Index: " + bucketIndex);
 
             bucketMin[bucketIndex] = Math.min(bucketMin[bucketIndex], num);
             bucketMax[bucketIndex] = Math.max(bucketMax[bucketIndex], num);
         }
+        System.out.println("Numbers placed | BucketMin: " + Arrays.toString(bucketMin) + ", BucketMax: " + Arrays.toString(bucketMax));      
+        
 
         // Calculate maximum gap
         int maxGap = 0;
         int prevBucketMax = minVal;
-        for (int i = 0; i < bucketCount; i++) {
 
+        for (int i = 0; i < bucketCount; i++) {
             // Skip empthy buckets
             if (bucketMin[i] == Integer.MAX_VALUE) {
                 continue;
@@ -56,9 +67,12 @@ public class MaximumGap {
 
             // Gap is from prev bucket Max to current bucket's min
             maxGap = Math.max(maxGap, bucketMin[i] - prevBucketMax);
+            System.out.println("Gap between prevBucketMax and bucketMin " + (bucketMin[i] - prevBucketMax));
+
             prevBucketMax = bucketMax[i];
         }
 
+        System.out.println("Maximum gap found: " + maxGap);
         return maxGap;
     }
 
