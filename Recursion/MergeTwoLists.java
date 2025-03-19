@@ -1,6 +1,50 @@
+import java.util.*;
 
 public class MergeTwoLists {
+    private static class ListNode {
+        int val;
+        ListNode next;
 
+        ListNode(int val) {
+            this.val = val;
+        }
+    }
+
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        
+    }
+
+    // Helper function to print the list (for debugging)
+    public void printList(ListNode head) {
+        while (head != null) {
+            System.out.print(head.val + " -> ");
+            head = head.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        MergeTwoLists solution = new MergeTwoLists();
+
+        ListNode l1 = new ListNode(1);
+        l1.next = new ListNode(2);
+        l1.next.next = new ListNode(4);
+
+        ListNode l2 = new ListNode(1);
+        l2.next = new ListNode(3);
+        l2.next.next = new ListNode(4);
+
+        System.out.println("First list:");
+        solution.printList(l1);
+
+        System.out.println("Second List:");
+        solution.printList(l2);
+
+        ListNode mergeList = solution.mergeTwoLists(l1, l2);
+
+        System.out.println("Merge Result: ");
+        solution.printList(mergeList);
+    }
 }
 
 /**
