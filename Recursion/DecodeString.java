@@ -29,7 +29,7 @@ public class DecodeString {
                 StringBuilder decoded = new StringBuilder(stringStack.pop());
                 int repeatCount = numStack.pop();
 
-                for(int i = 0; i < repeatCount - 1; i++){
+                for(int i = 0; i < repeatCount; i++){
                     decoded.append(curr);
                 }
 
