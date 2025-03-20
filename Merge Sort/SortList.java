@@ -42,12 +42,7 @@ public class SortList {
             fast = fast.next.next;
         }
 
-        // Disconnect the left half from the right half
-        if (prev != null) {
-            prev.next = null;
-        }
-        
-        return slow;
+        return prev;
     }
 
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
