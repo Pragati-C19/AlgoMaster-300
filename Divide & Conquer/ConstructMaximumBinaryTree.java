@@ -2,6 +2,43 @@ import java.util.*;
 
 public class ConstructMaximumBinaryTree {
 
+    private class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int val){
+            this.val = val;
+        }
+    }
+
+    public TreeNode constructMaximumBinaryTree(int[] nums) {
+        
+        return nums;
+    }
+
+    // Function to print the tree
+    public void printTree(TreeNode root){
+        if(root == null) return;
+        System.out.println(root.val + " ");
+
+        printTree(root.left);
+        printTree(root.right);
+    }
+
+    public static void main(String[] args){
+        ConstructMaximumBinaryTree solution = new ConstructMaximumBinaryTree();
+
+        int[] nums = {3,2,1,6,0,5};
+
+        System.out.println("Input Array: " + Arrays.toString(nums));
+        TreeNode root = solution.constructMaximumBinaryTree(nums);
+
+        System.out.println("Output Tree:");
+        solution.printTree(root);
+    }
+    }
+
 }
 
 /*
