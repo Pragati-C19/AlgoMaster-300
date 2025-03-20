@@ -1,7 +1,52 @@
 import java.util.*;
 
 public class SortList {
+    private static class ListNode {
+        int val;
+        ListNode next;
 
+        ListNode(int val) {
+            this.val = val;
+        }
+    }
+
+    public ListNode sortList(ListNode head) {
+        
+        return head;
+    }
+
+    // Helper function to print the list (for debugging)
+    public void printList(ListNode head) {
+        while (head != null) {
+            System.out.print(head.val + " -> ");
+            head = head.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        SortList solution = new SortList();
+
+        ListNode l1 = new ListNode(4);
+        l1.next = new ListNode(2);
+        l1.next.next = new ListNode(1);
+        l1.next.next.next = new ListNode(3);
+
+        ListNode l2 = new ListNode(-1);
+        l2.next = new ListNode(5);
+        l2.next.next = new ListNode(3);
+        l2.next.next.next = new ListNode(4);
+        l2.next.next.next.next = new ListNode(0);
+
+        ListNode sortList1 = solution.sortList(l1);
+        ListNode sortList2 = solution.sortList(l2);
+
+        System.out.println("Sort Result for list1: ");
+        solution.printList(sortList1);
+
+        System.out.println("Sort Result for list2: ");
+        solution.printList(sortList2);
+    }
 }
 
 /*
