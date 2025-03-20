@@ -77,8 +77,38 @@ public class Construct {
                     return false;
             }
         }
-        
+
         return true;
+    }
+
+    // Helper function to serialize the Quad Tree into the desired output format
+    private List<List<Integer>> serialize(Node node) {
+
+        List<List<Integer>> result = new ArrayList<>();
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(node);
+
+        while (!queue.isEmpty()) {
+
+            Node current = queue.poll();
+
+            if (current == null) {
+                result.add(null);
+                continue;
+            }
+
+            result.add(Arrays.asList(current.isLeaf ? 1 : 0, current.val ? 1 : 0));
+
+            if (!current.isLeaf) {
+                queue.add(current.topLeft);
+                queue.add(current.topRight);
+                queue.add(current.bottomLeft);
+                queue.add(current.bottomRight);
+            }
+        }
+
+        return result;
     }
 
     public static void main(String[] args) {
@@ -99,8 +129,9 @@ public class Construct {
         Node root1 = solution.construct(grid1);
         Node root2 = solution.construct(grid2);
 
-        System.out.println("Constructed for grid1");
-        System.out.println("Constructed for grid2");
+        System.out.println("QuadTree for grid1: " + solution.serialize(solution.construct(grid1)) + "\n");
+        System.out.println("QuadTree for grid2: " + solution.serialize(solution.construct(grid2)) + "\n");
+    
     }
 
 }
