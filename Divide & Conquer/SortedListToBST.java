@@ -28,7 +28,34 @@ public class SortedListToBST {
 
     public TreeNode sortedListToBST(ListNode head){
 
-        return head;
+        // Base Case
+        if(head == null) return null;
+
+        // If only one node, make it a leaf node
+        if(head.next == null) return TreeNode(head.val);
+
+        // Find the middle node using slow and fast pointer 
+        ListNode prev = null;
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast.next != null) {
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Disconnect left half from middle
+        prev.next = null;
+
+        // Middle node becomes the root
+        TreeNode root = new TreeNode(slow.val);
+        
+        // Recursively build left and right subtrees
+        root.left = sortedListToBST(head);     // Left half
+        root.right = sortedListToBST(slow.next);     // Right half
+
+        return root;
     }
 
     // function to print the tree
