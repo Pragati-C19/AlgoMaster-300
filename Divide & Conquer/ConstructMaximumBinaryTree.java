@@ -14,7 +14,38 @@ public class ConstructMaximumBinaryTree {
 
     public TreeNode constructMaximumBinaryTree(int[] nums) {
         
-        return nums;
+        // If array is empty, return null
+        if (nums.length == 0){
+            System.out.println("Array is empty");
+            return null;
+        }
+
+        // Find the index of the maximum number
+        int maxIndex = findMaxIndex(nums);
+        System.out.println("Max value: " + nums[maxIndex] + "at index: " + maxIndex);
+
+        // Create the root node with the maximum number
+        TreeNode root = new TreeNode(nums[maxIndex]);
+        System.out.println("Created root node with value: " + root.val);
+
+        // Recursively build the left and right subtree
+        root.left = constructMaximumBinaryTree(Arrays.copyOfRange(nums, 0, maxIndex));
+        root.right = constructMaximumBinaryTree(Arrays.copyOfRange(nums, maxIndex + 1, nums.length));
+
+        return root;
+    }
+
+    // Helper function to find max index num from the array
+    private int findMaxIndex(int[] nums){
+        int maxIndex = 0;
+
+        for(int i = 1; i < nums.length; i++){
+            if (nums[i] > nums[maxIndex]) {
+                maxIndex = i;
+            }
+        }
+
+        return maxIndex;
     }
 
     // Function to print the tree
@@ -36,7 +67,6 @@ public class ConstructMaximumBinaryTree {
 
         System.out.println("Output Tree:");
         solution.printTree(root);
-    }
     }
 
 }
