@@ -2,6 +2,61 @@ import java.util.*;
 
 public class SortedListToBST {
     
+    // Defination for signly-linked list
+    private class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int val){
+            this.val = val;
+            this.next = null;
+        }
+    }
+
+    // Defination for TreeNode (BST Node)
+    private class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int val){
+            this.val = val;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    public TreeNode sortedListToBST(ListNode head){
+
+        return head;
+    }
+
+    // function to print the tree
+    public void printBST(TreeNode root) {
+        if (root == null) return;
+        System.out.print(root.val + " ");
+        
+        printBST(root.left);
+        printBST(root.right);
+    }
+
+    public static void main(String[] args){
+        SortedListToBST solution = new SortedListToBST();
+
+        // [-10, -3, 0, 5, 9]
+        ListNode head = new ListNode(-10);
+        head.next = new ListNode(-3);
+        head.next.next = new ListNode(0);
+        head.next.next.next = new ListNode(5);
+        head.next.next.next.next = new ListNode(9);
+
+        // Convert the sorted linked list to a height-balanced BST
+        TreeNode root = solution.sortedListToBST(head);
+
+        System.out.println("Output : \n" );
+        solution.printBST(root);
+    }
+
 }
 
 /*
