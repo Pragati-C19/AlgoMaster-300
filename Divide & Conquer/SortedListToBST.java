@@ -3,7 +3,7 @@ import java.util.*;
 public class SortedListToBST {
     
     // Defination for signly-linked list
-    private class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 
@@ -14,7 +14,7 @@ public class SortedListToBST {
     }
 
     // Defination for TreeNode (BST Node)
-    private class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -32,14 +32,14 @@ public class SortedListToBST {
         if(head == null) return null;
 
         // If only one node, make it a leaf node
-        if(head.next == null) return TreeNode(head.val);
+        if(head.next == null) return new TreeNode(head.val);
 
         // Find the middle node using slow and fast pointer 
         ListNode prev = null;
         ListNode slow = head;
         ListNode fast = head;
 
-        while (fast.next != null) {
+        while (fast != null && fast.next != null) {
             prev = slow;
             slow = slow.next;
             fast = fast.next.next;
