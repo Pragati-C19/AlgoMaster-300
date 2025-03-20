@@ -23,8 +23,9 @@ public class SortList {
         ListNode leftSorted = sortList(head);
         ListNode rightSorted = sortList(rightHalf);
 
-        return leftSorted;
+        ListNode result = mergeTwoLists(leftSorted, rightSorted);
 
+        return result;
     }
 
     public ListNode findMiddle(ListNode head){
@@ -40,6 +41,36 @@ public class SortList {
 
         return slow;
     }
+
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode dummy = new ListNode(0);    // Dummy Node for result
+        ListNode curr = dummy;
+
+        while (list1 != null && list2 != null) {
+            
+            if (list1.val < list2.val ) {
+                curr.next = list1;
+                list1 = list1.next;
+            }
+            else {
+                curr.next = list2;
+                list2 = list2.next;
+            }
+
+            curr = curr.next;
+        }
+
+        if (list1 != null) {
+            curr.next = list1;
+        }
+
+        if (list2 != null) {
+            curr.next = list2;
+        }
+
+        return dummy.next;
+    }
+
 
     // Helper function to print the list (for debugging)
     public void printList(ListNode head) {
