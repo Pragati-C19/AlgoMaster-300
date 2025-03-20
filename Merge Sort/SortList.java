@@ -11,8 +11,34 @@ public class SortList {
     }
 
     public ListNode sortList(ListNode head) {
-        
-        return head;
+        // If list is empty or has one node, it's already sorted
+        if (head == null || head.next == null) return head;
+
+        // Divide : Split the list into two halves
+        ListNode midIndex = findMiddle(head);
+        ListNode rightHalf = midIndex.next;
+        midIndex.next = null;
+
+        // Recursion : sort both halves
+        ListNode leftSorted = sortList(head);
+        ListNode rightSorted = sortList(rightHalf);
+
+        return leftSorted;
+
+    }
+
+    public ListNode findMiddle(ListNode head){
+        // Find the middle of the list
+        ListNode slow = head;
+        ListNode fast = head;
+
+        // Move fast twice as fast as slow
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
     }
 
     // Helper function to print the list (for debugging)
