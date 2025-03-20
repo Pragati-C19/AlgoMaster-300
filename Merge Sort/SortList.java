@@ -12,7 +12,8 @@ public class SortList {
 
     public ListNode sortList(ListNode head) {
         // If list is empty or has one node, it's already sorted
-        if (head == null || head.next == null) return head;
+        if (head == null || head.next == null)
+            return head;
 
         // Divide : Split the list into two halves
         ListNode midIndex = findMiddle(head);
@@ -28,31 +29,37 @@ public class SortList {
         return result;
     }
 
-    public ListNode findMiddle(ListNode head){
+    public ListNode findMiddle(ListNode head) {
         // Find the middle of the list
         ListNode slow = head;
         ListNode fast = head;
+        ListNode prev = null; // Track the node before slow
 
         // Move fast twice as fast as slow
         while (fast != null && fast.next != null) {
+            prev = slow;
             slow = slow.next;
             fast = fast.next.next;
         }
 
+        // Disconnect the left half from the right half
+        if (prev != null) {
+            prev.next = null;
+        }
+        
         return slow;
     }
 
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode dummy = new ListNode(0);    // Dummy Node for result
+        ListNode dummy = new ListNode(0); // Dummy Node for result
         ListNode curr = dummy;
 
         while (list1 != null && list2 != null) {
-            
-            if (list1.val < list2.val ) {
+
+            if (list1.val < list2.val) {
                 curr.next = list1;
                 list1 = list1.next;
-            }
-            else {
+            } else {
                 curr.next = list2;
                 list2 = list2.next;
             }
@@ -70,7 +77,6 @@ public class SortList {
 
         return dummy.next;
     }
-
 
     // Helper function to print the list (for debugging)
     public void printList(ListNode head) {
