@@ -34,7 +34,6 @@ public class SortColors {
                 nums[next] = nums[curr];
                 nums[curr] = temp;
                 next--;
-                curr++;
 
                 System.out.println("[ELSE] Current Num : " + nums[curr] + " | Current Index : " + curr);
                 System.out.println("[ELSE] Next Num : " + nums[next] + " | Next Index : " + next);
@@ -50,7 +49,7 @@ public class SortColors {
         SortColors solution = new SortColors();
 
         int[] nums1 = { 2, 0, 2, 1, 1, 0 };
-        int[] nums2 = { 2, 0, 1 };
+        int[] nums2 = { 1, 2, 0 };
 
         // int[] result1 = solution.sortColors(nums1);
         // int[] result2 = solution.sortColors(nums2);
