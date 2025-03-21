@@ -3,7 +3,21 @@ import java.util.*;
 public class FindKthLargest {
     
     public int findKthLargest(int[] nums, int k) {
+        // Create a min-heap (smallest element on top)
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
         
+        // Add each number to the heap
+        for (int num : nums) {
+            minHeap.add(num);
+            
+            // IF heap size exceeds k , remove the smallest number
+            if (minHeap.size() > k) {
+                minHeap.poll();
+            }
+        }
+
+        // Top of the heap is now the Kth largest 
+        return minHeap.peek();
     }
 
     public static void main(String[] args) {
