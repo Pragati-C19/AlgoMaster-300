@@ -2,6 +2,21 @@ import java.util.*;
 
 public class FindKthLargest {
     
+    public int findKthLargest(int[] nums, int k) {
+        
+    }
+
+    public static void main(String[] args) {
+        FindKthLargest solution = new FindKthLargest();
+
+        int[] nums1 = {3, 2, 1, 5, 6, 4};
+        int k1 = 2;
+        System.out.println("Kth largest in nums1: " + solution.findKthLargest(nums1, k1));
+
+        int[] nums2 = {3, 2, 3, 1, 2, 4, 5, 5, 6};
+        int k2 = 4;
+        System.out.println("Kth largest in nums2: " + solution.findKthLargest(nums2, k2));
+    }
 }
 
 /*
