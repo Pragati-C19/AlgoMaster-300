@@ -1,7 +1,24 @@
 import java.util.*;
 
 public class SortColors {
-    
+    public int[] sortColors(int[] nums) {
+        
+        return nums;
+    }
+
+    public static void main(String[] args){
+        SortColors solution = new SortColors();
+
+        int[] nums1 = {2,0,2,1,1,0};
+        int[] nums2 = {2,0,1};
+
+        int[] result1 = solution.sortColors(nums1);
+        int[] result2 = solution.sortColors(nums2);
+
+        System.out.println("Result1 : " + Arrays.toString(result1) + "\n");
+        System.out.println("Result2 : " + Arrays.toString(result2) + "\n");
+    }
+
 }
 
 
