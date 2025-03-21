@@ -15,8 +15,8 @@ public class FindKthLargest {
             
             // IF heap size exceeds k , remove the smallest number
             if (minHeap.size() > k) {
-                minHeap.poll();
-                System.out.println("Heap size exceeded " + k + ". Removed smallest: " + minHeap.poll());
+                int removed = minHeap.poll();
+                System.out.println("Heap size exceeded " + k + ". Removed smallest: " + removed);
                 System.out.println("Heap after removal: " + minHeap);
             }
         }
