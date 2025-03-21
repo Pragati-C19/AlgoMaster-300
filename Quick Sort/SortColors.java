@@ -5,21 +5,28 @@ public class SortColors {
         
         int n = nums.length;
         int prev = 0;       // Red Color
-        // int curr = 0;       // White Color
+        int curr = 0;       // White Color
         int next = n - 1;   // Blue Color
 
         System.out.println("Starting Length of Array: " + n);
 
-        for(int curr = 0; curr < n; curr++){
-            
+        while(curr < next){
+
+            System.out.println("Current Num : " + nums[curr] + " | Current Index : " + curr);
+
             if(nums[curr] == 0 ){
                 // Swap (curr, prev)
                 int temp = nums[prev];
                 nums[prev] = nums[curr];
                 nums[curr] = temp;
                 prev++;
+
+                System.out.println("[IF] Current Num : " + nums[curr] + " | Current Index : " + curr);
+                System.out.println("[IF] Prev Num : " + nums[prev] + " | Prev Index : " + prev);
+
             }
             else if(nums[curr] == 1){
+                System.out.println("[ELSEIF] Current Num : " + nums[curr] + " | Current Index : " + curr);
                 continue;
             }
             else{
@@ -28,8 +35,13 @@ public class SortColors {
                 nums[next] = nums[curr];
                 nums[curr] = temp;
                 next--;
+                
+                System.out.println("[ELSE] Current Num : " + nums[curr] + " | Current Index : " + curr);
+                System.out.println("[ELSE] Next Num : " + nums[next] + " | Next Index : " + next);
             }
-        
+            
+            curr++;
+
             System.out.println("Current Length of Array: " + n);
             System.out.println("Current Array: " + Arrays.toString(nums) + "\n");
         }
