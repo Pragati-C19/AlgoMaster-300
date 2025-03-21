@@ -3,6 +3,37 @@ import java.util.*;
 public class SortColors {
     public int[] sortColors(int[] nums) {
         
+        int n = nums.length;
+        int prev = 0;       // Red Color
+        // int curr = 0;       // White Color
+        int next = n - 1;   // Blue Color
+
+        System.out.println("Starting Length of Array: " + n);
+
+        for(int curr = 0; curr < n; curr++){
+            
+            if(nums[curr] == 0 ){
+                // Swap (curr, prev)
+                int temp = nums[prev];
+                nums[prev] = nums[curr];
+                nums[curr] = temp;
+                prev++;
+            }
+            else if(nums[curr] == 1){
+                continue;
+            }
+            else{
+                // Swap (curr, next)
+                int temp = nums[next];
+                nums[next] = nums[curr];
+                nums[curr] = temp;
+                next--;
+            }
+        
+            System.out.println("Current Length of Array: " + n);
+            System.out.println("Current Array: " + Arrays.toString(nums) + "\n");
+        }
+
         return nums;
     }
 
