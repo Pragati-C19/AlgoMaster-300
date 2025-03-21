@@ -6,13 +6,18 @@ public class FindKthLargest {
         // Create a min-heap (smallest element on top)
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
         
+        System.out.println("Initial Array: " + Arrays.toString(nums));
+
         // Add each number to the heap
         for (int num : nums) {
             minHeap.add(num);
+            System.out.println("Added: " + num + " | Current Heap: " + minHeap);
             
             // IF heap size exceeds k , remove the smallest number
             if (minHeap.size() > k) {
                 minHeap.poll();
+                System.out.println("Heap size exceeded " + k + ". Removed smallest: " + minHeap.poll());
+                System.out.println("Heap after removal: " + minHeap);
             }
         }
 
@@ -25,7 +30,7 @@ public class FindKthLargest {
 
         int[] nums1 = {3, 2, 1, 5, 6, 4};
         int k1 = 2;
-        System.out.println("Kth largest in nums1: " + solution.findKthLargest(nums1, k1));
+        System.out.println("Kth largest in nums1: " + solution.findKthLargest(nums1, k1) + "\n");
 
         int[] nums2 = {3, 2, 3, 1, 2, 4, 5, 5, 6};
         int k2 = 4;
