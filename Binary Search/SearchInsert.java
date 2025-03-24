@@ -5,11 +5,6 @@ public class SearchInsert {
     public int searchInsert(int[] nums, int target) {
         int n = nums.length;
 
-        // Base Cases:
-        if (n < 1) {
-            return 0;
-        }
-
         for(int i = 0 ; i < n - 1 ; i++){
             // if u found the target or u can place that target on the specific index 
             if(nums[i] >= target) return i;
