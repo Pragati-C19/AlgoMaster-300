@@ -2,6 +2,29 @@ import java.util.*;
 
 public class SearchInsert {
     
+    public int searchInsert(int[] nums, int target) {
+        
+        return target;
+    }
+
+    public static void main(String[] args){
+        SearchInsert solution = new SearchInsert();
+
+        int[] nums = {1,3,5,6};
+        
+        int target1 = 5;
+        int result1 = solution.searchInsert(nums, target1);
+        System.out.println("Result1 : " + result1 + "\n");
+
+        int target2 = 2;
+        int result2 = solution.searchInsert(nums, target2);
+        System.out.println("Result2 : " + result2 + "\n");
+
+        int target3 = 7;
+        int result3 = solution.searchInsert(nums, target3);
+        System.out.println("Result3 : " + result3);
+
+    }
 
 }
 
