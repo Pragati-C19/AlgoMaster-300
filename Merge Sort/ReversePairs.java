@@ -47,7 +47,7 @@ public class ReversePairs {
 
         // Count reverse pairs
         for (int i = left; i <= mid; i++) {
-            while (j <= right && nums[i] > 2 * nums[j]) {
+            while (j <= right && nums[i] > 2L * nums[j]) {
                 j++;
             }
             count += j - (mid + 1);
