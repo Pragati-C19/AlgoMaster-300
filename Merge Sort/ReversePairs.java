@@ -2,6 +2,22 @@ import java.util.*;
 
 public class ReversePairs {
     
+    public int reversePairs(int[] nums){
+        
+        return nums;
+    }
+
+
+    public static void main(String[] args){
+        ReversePairs solution = new ReversePairs();
+
+        int[] nums1 = {1,3,2,3,1};
+        int[] nums2 = {2,4,3,5,1};
+
+        System.out.println("Output1: " + solution.reversePairs(nums1) + "\n");
+        System.out.println("Output2: " + solution.reversePairs(nums2) + "\n");
+    }
+
 }
 
 
