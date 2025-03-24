@@ -24,9 +24,10 @@ public class ReversePairs {
         // Count in left half, right half, and across the halves
         count += mergeSort(nums, left, mid);
         count += mergeSort(nums, mid+1, right);
+        count += mergeAndCount(nums, left, mid, right);
 
         System.out.println("mergeSort -> count: " + count);
-        System.out.println("After merge: " + Arrays.toString(Arrays.copyOfRange(nums, left, right + 1)));
+        System.out.println("After merge: " + Arrays.toString(Arrays.copyOfRange(nums, left, right + 1)) + "\n");
 
 
         return count ; 
@@ -34,6 +35,54 @@ public class ReversePairs {
 
     private int mergeAndCount(int[] nums, int left, int mid, int right){
         int count = 0;
+        int j = mid + 1;
+
+        System.out.println("mergeAndCount -> mid: " + mid + " | left: " + left + " | right: " + right);
+        System.out.println("mergeAndCount -> Counting reverse pairs between left: " + Arrays.toString(Arrays.copyOfRange(nums, left, mid+1)) + " and right: " + Arrays.toString(Arrays.copyOfRange(nums, mid+1, right+1)));
+
+        // Count reverse pairs 
+        for(int i = left; i <= mid; i++){
+            while (j <= right && nums[i] > 2 * nums[j]) {
+                j++;
+            }
+            count += j - (mid + 1);
+            System.out.println("Reverse pairs found: ( " + i + " , " + j + " )");
+        }
+        System.out.println("mergeAndCount -> count: " + count);
+
+        // Merge two sorted halves
+        List<Integer> temp = new ArrayList<>();
+        int i = left;
+        j = mid + 1;
+
+        System.out.println("Merging left part: " + Arrays.toString(Arrays.copyOfRange(nums, left, mid + 1)));
+        System.out.println("Merging right part: " + Arrays.toString(Arrays.copyOfRange(nums, mid + 1, right + 1)));
+
+        while (i <= mid && j <= right) {
+            if (nums[i] <= nums[j]) {
+                temp.add(nums[i]);
+                System.out.println("Taking from left: " + nums[i++]);
+            } else {
+                temp.add(nums[j]);
+                System.out.println("Taking from right: " + nums[j++]);
+            }
+        }
+        
+        while (i <= mid) {
+            temp.add(nums[i]);
+            System.out.println("Adding remaining from left: " + nums[i++]);
+        }
+        
+        while (j <= right) {
+            temp.add(nums[j]);
+            System.out.println("Adding remaining from right: " + nums[j++]);
+        }
+        
+        // Copy merged array back
+        for (int k = left; k <= right; k++) nums[k] = temp.get(k - left);
+        
+        System.out.println("Merged array: " + Arrays.toString(Arrays.copyOfRange(nums, left, right + 1)));
+
 
         return count;
     }
@@ -53,6 +102,12 @@ public class ReversePairs {
 
 
 /**
+ * 
+ * Disclaimer :
+ * 
+ * 1. I took gpt's help
+ * 2. I tried to make it as simple as possible
+ * 3. I tried to understand the solution but I don't get it...
  * 
  * 
  * Understand the problem :
