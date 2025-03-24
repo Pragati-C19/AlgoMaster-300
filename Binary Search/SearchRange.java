@@ -1,7 +1,30 @@
 import java.util.*;
 
 public class SearchRange {
+    public int[] searchRange(int[] nums, int target) {
 
+        return nums;
+    }
+
+    public static void main(String[] args){
+        SearchRange solution = new SearchRange();
+        
+        int[] nums1 = {5,7,7,8,8,10};
+        int[] nums2 = {};
+        
+        int target1 = 8;
+        int[] result1 = solution.searchRange(nums1, target1);
+        System.out.println("Result 1: " + Arrays.toString(result1) + "\n");
+
+        int target2 = 6;
+        int[] result2 = solution.searchRange(nums1, target2);
+        System.out.println("Result 2: " + Arrays.toString(result2) + "\n");
+
+        int target3 = 1;
+        int[] result3 = solution.searchRange(nums2, target3);
+        System.out.println("Result 3: " + Arrays.toString(result3));
+
+    }
 }
 
 /*
