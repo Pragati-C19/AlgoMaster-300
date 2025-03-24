@@ -13,8 +13,22 @@ public class ReversePairs {
 
     private int mergeSort(int[] nums, int left, int right){
         int count = 0;
+        int mid = (left + right) / 2;
 
-        
+        System.out.println("mergeSort -> mid: " + mid + " | left: " + left + " | right: " + right);
+        System.out.println("Splitting: " + Arrays.toString(Arrays.copyOfRange(nums, left, right + 1)));
+
+        // Base Case:
+        if(left >= right) return 0;
+
+        // Count in left half, right half, and across the halves
+        count += mergeSort(nums, left, mid);
+        count += mergeSort(nums, mid+1, right);
+
+        System.out.println("mergeSort -> count: " + count);
+        System.out.println("After merge: " + Arrays.toString(Arrays.copyOfRange(nums, left, right + 1)));
+
+
         return count ; 
     }
 
