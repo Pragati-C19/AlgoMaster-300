@@ -3,8 +3,25 @@ import java.util.*;
 public class ReversePairs {
     
     public int reversePairs(int[] nums){
+        int n = nums.length;
         
-        return nums;
+        // Base Case :
+        if( n <= 1) return 0;
+
+        return mergeSort(nums, 0, n-1);
+    }
+
+    private int mergeSort(int[] nums, int left, int right){
+        int count = 0;
+
+        
+        return count ; 
+    }
+
+    private int mergeAndCount(int[] nums, int left, int mid, int right){
+        int count = 0;
+
+        return count;
     }
 
 
