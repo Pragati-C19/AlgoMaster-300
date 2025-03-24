@@ -2,8 +2,25 @@ import java.util.*;
 
 public class SearchRange {
     public int[] searchRange(int[] nums, int target) {
+        int n = nums.length;
+        int first = -1;
+        int last = -1;
 
-        return nums;
+        // Base Case :
+        if(nums == null || n == 0) return new int[]{-1, -1};
+
+        for(int i=0; i < n; i++){
+            if(nums[i] == target) {
+                // Set first occurrence only once
+                if(first == -1) first = i;
+                
+                // Always update last occurrence
+                last = i;
+            }
+        }
+
+        // Return the result: [first, last] or [-1, -1] if target not found
+        return new int[]{first, last};
     }
 
     public static void main(String[] args){
