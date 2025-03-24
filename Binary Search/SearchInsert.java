@@ -3,7 +3,22 @@ import java.util.*;
 public class SearchInsert {
     
     public int searchInsert(int[] nums, int target) {
-        
+        int n = nums.length;
+
+        // Base Cases:
+        if (n < 1) {
+            return 0;
+        }
+
+        for(int i = 0 ; i < n - 1 ; i++){
+            // if u found the target or u can place that target on the specific index 
+            if(nums[i] >= target) return i;
+
+            // If ur target is going to be placed at end of the string
+            if(nums[i] < target) return i+1;
+            
+        }
+
         return target;
     }
 
@@ -22,7 +37,11 @@ public class SearchInsert {
 
         int target3 = 7;
         int result3 = solution.searchInsert(nums, target3);
-        System.out.println("Result3 : " + result3);
+        System.out.println("Result3 : " + result3 + "\n");
+
+        int target4 = 0;
+        int result4 = solution.searchInsert(nums, target4);
+        System.out.println("Result4 : " + result4);
 
     }
 
