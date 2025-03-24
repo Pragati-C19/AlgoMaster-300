@@ -4,17 +4,16 @@ public class SearchInsert {
     
     public int searchInsert(int[] nums, int target) {
         int n = nums.length;
+        System.out.println("n: " + n);
 
-        for(int i = 0 ; i < n - 1 ; i++){
+        for(int i = 0 ; i < n ; i++){
+            
             // if u found the target or u can place that target on the specific index 
             if(nums[i] >= target) return i;
-
-            // If ur target is going to be placed at end of the string
-            if(nums[i] < target) return i+1;
             
         }
 
-        return target;
+        return n;
     }
 
     public static void main(String[] args){
