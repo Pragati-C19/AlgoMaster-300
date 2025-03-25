@@ -2,12 +2,25 @@ import java.util.*;
 
 public class PickIndex {
     
+    List<Integer> list = new ArrayList<>();
+
+    // Expand weights into a list of indices
     public PickIndex(int[] w) {
-        
+        for(int i = 0; i < w.length; i++){
+            for(int j = 0; j < w[i]; j++){
+                // Add index 'i' multiple times based on its weight
+                list.add(i);
+            }
+        }
+        System.out.println("List Made from w array :  " + list);
     }
     
     public int pickIndex() {
+
+        int randomIndex = (int) (Math.random() * list.size());
+        System.out.println("randomIndex: " + randomIndex);
         
+        return list.get(randomIndex);
     }
 
     public static void main(String[] args){
