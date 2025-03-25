@@ -1,18 +1,26 @@
 import java.util.*;
 
 public class Search {
-    
+
     public int search(int[] nums, int target) {
-        
+
+        if (nums.length == 0)
+            return -1;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target)
+                return i;
+        }
+
         return -1;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Search solution = new Search();
 
-        int[] nums1 = {4,5,6,7,0,1,2};
-        int[] nums2 = { };
-        
+        int[] nums1 = { 4, 5, 6, 7, 0, 1, 2 };
+        int[] nums2 = {};
+
         int target1 = 0;
         System.out.println("Result1: " + solution.search(nums1, target1) + "\n");
 
@@ -28,7 +36,7 @@ public class Search {
 
 /*
  * 
- * Intuitions : 
+ * Intuitions :
  * 
  * 1. I think it's just checking the nums[i] == target and return i
  * 2. otherwise return -1
@@ -36,20 +44,21 @@ public class Search {
  * 
  * Pattern :
  * 
+ * 1. Even if string is rotated still we have to find the index of target soo
+ * brute force worked well here
  * 
- * 
- * Pseudo Code : 
+ * Pseudo Code :
  * 
  * 1. Brute force:
  * 
  * function search(nums, target){
- *     
+ * 
  * if(nums.length == 0) return -1;
  * 
  * for( int i = 0; i < nums.length - 1; i++){
- *      if(nums[i] == target){
- *          return i;
- *      }
+ * if(nums[i] == target){
+ * return i;
+ * }
  * }
  * 
  * return -1;
