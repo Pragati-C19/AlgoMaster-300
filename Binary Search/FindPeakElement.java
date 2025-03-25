@@ -4,19 +4,52 @@ public class FindPeakElement {
 
     public int findPeakElement(int[] nums) {
 
-        int max = Integer.MIN_VALUE;
+        int left = 0;
+        int right = nums.length - 1;
 
-        for (int i = 0; i < nums.length; i++) {
-            max = Math.max(max, nums[i]);
-        }
+        System.out.println("Initial Values | left: " + left + " , Right: " + right);
 
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == max) {
-                return i;
+        while(left < right){
+            
+            int mid = (left + right) / 2;
+            System.out.println("left value : " + left);
+            System.out.println("right value : " + right);
+            System.out.println("Mid value : " + mid);
+
+            if(nums[mid] > nums[mid+1]){
+                // peak could be on the left side (or mid itself), so move right
+                right = mid;
+
+                System.out.println("Updated | Right Value: " + right);
             }
+            else{
+                // peak could be on the right side, so move left
+                left = mid + 1;
+
+                System.out.println("Updated | Left Value: " + left);
+            }
+
         }
 
-        return max;
+        System.out.println("Ending Values | left: " + left + " , Right: " + right);
+
+        // when left == right then loop ends so here u can write left or right no issue
+        return left; 
+
+
+        // int max = Integer.MIN_VALUE;
+
+        // for (int i = 0; i < nums.length; i++) {
+        //     max = Math.max(max, nums[i]);
+        // }
+
+        // for (int i = 0; i < nums.length; i++) {
+        //     if (nums[i] == max) {
+        //         return i;
+        //     }
+        // }
+
+        // return max;
     }
 
     public static void main(String[] args) {
