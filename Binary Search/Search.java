@@ -2,7 +2,28 @@ import java.util.*;
 
 public class Search {
     
-    
+    public int search(int[] nums, int target) {
+        
+        return -1;
+    }
+
+    public static void main(String[] args){
+        Search solution = new Search();
+
+        int[] nums1 = {4,5,6,7,0,1,2};
+        int[] nums2 = { };
+        
+        int target1 = 0;
+        System.out.println("Result1: " + solution.search(nums1, target1) + "\n");
+
+        int target2 = 3;
+        System.out.println("Result2: " + solution.search(nums1, target2) + "\n");
+
+        int target3 = 0;
+        System.out.println("Result3: " + solution.search(nums2, target3));
+
+    }
+
 }
 
 /*
