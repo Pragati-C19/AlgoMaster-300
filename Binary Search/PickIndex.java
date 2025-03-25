@@ -2,25 +2,52 @@ import java.util.*;
 
 public class PickIndex {
     
-    List<Integer> list = new ArrayList<>();
+    int[] prefix;
 
-    // Expand weights into a list of indices
+    // Constructor: Build the prefix sum array
     public PickIndex(int[] w) {
-        for(int i = 0; i < w.length; i++){
-            for(int j = 0; j < w[i]; j++){
-                // Add index 'i' multiple times based on its weight
-                list.add(i);
-            }
+        prefix = new int[w.length];
+        prefix[0] = w[0];
+
+        // Create cumulative prefix sum 
+        for(int i = 1; i < w.length; i++){
+            prefix[i] = prefix[i-1] + w[i];
+            System.out.println("Prefix[ " + i + " ] : " + prefix[i]);
         }
-        System.out.println("List Made from w array :  " + list);
+
+        System.out.println("Prefix Sum Array: " + Arrays.toString(prefix) + "\n");
     }
     
     public int pickIndex() {
 
-        int randomIndex = (int) (Math.random() * list.size());
-        System.out.println("randomIndex: " + randomIndex);
+        int last = prefix.length - 1;
+        int totalSum = prefix[last];
+        int randomIndex = (int) (Math.random() * totalSum);
+        
+        System.out.println("Last: " + last);
+        System.out.println("Total Prefix Sum: " + totalSum);
+        System.out.println("Random Index: " + randomIndex);
 
-        return list.get(randomIndex);
+        // Binary search for the index within prefix sums
+        int left = 0;
+        int right = last;
+
+        while (left < right) {
+            int mid = (left + right) / 2;
+            System.out.println("Left: " + left + ", Right: " + right + ", Mid: " + mid);
+
+            if (prefix[mid] < randomIndex ) {
+                left = mid + 1;
+                System.out.println("Updated | Left Value: " + left);
+            }
+            else{
+                right = mid;
+                System.out.println("Updated | Right Value: " + right);
+            }
+        }
+
+        System.out.println("Ending Values | left: " + left + " , Right: " + right);
+        return left;
     }
 
     public static void main(String[] args){
@@ -28,14 +55,38 @@ public class PickIndex {
         PickIndex solution = new PickIndex(weights);
 
         // Simulate multiple calls to pickIndex()
+        System.out.println(solution.pickIndex() + "\n");
+        System.out.println(solution.pickIndex() + "\n");
+        System.out.println(solution.pickIndex() + "\n");
+        System.out.println(solution.pickIndex() + "\n");
         System.out.println(solution.pickIndex());
-        System.out.println(solution.pickIndex());
-        System.out.println(solution.pickIndex());
-        System.out.println(solution.pickIndex());
-        System.out.println(solution.pickIndex());
+        
     }
 
+
+    // List<Integer> list = new ArrayList<>();
+    // // Expand weights into a list of indices
+    // public PickIndex(int[] w) {
+    //     for(int i = 0; i < w.length; i++){
+    //         for(int j = 0; j < w[i]; j++){
+    //             // Add index 'i' multiple times based on its weight
+    //             list.add(i);
+    //         }
+    //     }
+    //     System.out.println("List Made from w array :  " + list);
+    // }
+    
+    // public int pickIndex() {
+
+    //     int randomIndex = (int) (Math.random() * list.size());
+    //     System.out.println("randomIndex: " + randomIndex);
+
+    //     return list.get(randomIndex);
+    // }
+
 }
+
+
 
 /*
  * 
