@@ -3,15 +3,15 @@ import java.util.*;
 public class FindPeakElement {
 
     public int findPeakElement(int[] nums) {
-        
-        int max = 0;
 
-        for(int i = 0; i< nums.length ; i++){
-           max = Math.max(max, nums[i]);
+        int max = Integer.MIN_VALUE;
+
+        for (int i = 0; i < nums.length; i++) {
+            max = Math.max(max, nums[i]);
         }
 
-        for(int i = 0; i< nums.length ; i++){
-            if(nums[i] == max){
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == max) {
                 return i;
             }
         }
@@ -19,13 +19,13 @@ public class FindPeakElement {
         return max;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         FindPeakElement solution = new FindPeakElement();
 
-        int[] nums1 = {1, 2, 3, 1};
+        int[] nums1 = { 1, 2, 3, 1 };
         System.out.println("Result1: " + solution.findPeakElement(nums1) + "\n");
 
-        int[] nums2 = {1,2,1,3,5,6,4};
+        int[] nums2 = { 1, 2, 1, 3, 5, 6, 4 };
         System.out.println("Result2: " + solution.findPeakElement(nums2));
     }
 
@@ -98,7 +98,8 @@ public class FindPeakElement {
  * - why we use return left (both left and right will converge to the peak)?
  * 
  * When left == right, the loop stops:
- * -> Both pointers collapse to the same index, which is guaranteed to be a peak!
+ * -> Both pointers collapse to the same index, which is guaranteed to be a
+ * peak!
  * 
  * - Why return left works?
  * Since both left and right point to the same peak index by the end, returning
