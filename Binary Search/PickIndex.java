@@ -1,6 +1,26 @@
 import java.util.*;
 
 public class PickIndex {
+    
+    public PickIndex(int[] w) {
+        
+    }
+    
+    public int pickIndex() {
+        
+    }
+
+    public static void main(String[] args){
+        int[] weights = {1, 3};
+        PickIndex solution = new PickIndex(weights);
+
+        // Simulate multiple calls to pickIndex()
+        System.out.println(solution.pickIndex());
+        System.out.println(solution.pickIndex());
+        System.out.println(solution.pickIndex());
+        System.out.println(solution.pickIndex());
+        System.out.println(solution.pickIndex());
+    }
 
 }
 
