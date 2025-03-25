@@ -19,7 +19,7 @@ public class PickIndex {
 
         int randomIndex = (int) (Math.random() * list.size());
         System.out.println("randomIndex: " + randomIndex);
-        
+
         return list.get(randomIndex);
     }
 
@@ -63,7 +63,7 @@ public class PickIndex {
  * 1. this que is like below 
  * 2. if u have 1 ticket of red color and 3 ticket of blue color
  * and now u are blind fold the probability of u picking blue ticket is more right?
- * 3. 
+ * 3. Took GPT's help 
  * 
  * Pattern :
  * 
@@ -99,6 +99,40 @@ public class PickIndex {
  * 
  * Binary Search :
  * 
+ * 1. Convert weights into prefix sums (cumulative sums)
+ * - Example: w = [1, 3] → prefix = [1, 4]
  * 
+ * 2. Generate a random number between 1 and total sum.
+ * - total sum = 4, so random number ∈ [1, 4]
+ * 
+ * 3. Use binary search to find the smallest index where the prefix sum ≥ random number.
+ * 
+ * 
+ * // Constructor: Expands weights into a list of indices
+ * function Solution (int[] w){
+ *      prefix[0] = w[0]
+ *      
+ *      for(int i = 1; i<w.length; i++){
+ *          prefix[i] = prefix[i - 1] + w[i]
+ *      }
+ * }
+ * 
+ * // Pick Random index
+ * function pickIndex(){
+ *      int target = random(1, prefix[last])
+ *      int left = 0 
+ *      int right = prefix.length -1
+ *      
+ *      while left < right {
+ *          int mid = (left + right) / 2
+ *          if(prefix[mid] < target){
+ *              left = mid + 1
+ *          }
+ *          else {
+ *              right = mid
+ *          }
+ *      }
+ *      return left
+ * }
  * 
  */
