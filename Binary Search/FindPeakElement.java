@@ -2,6 +2,21 @@ import java.util.*;
 
 public class FindPeakElement {
 
+    public int findPeakElement(int[] nums) {
+        
+        return -1;
+    }
+
+    public static void main(String[] args){
+        FindPeakElement solution = new FindPeakElement();
+
+        int[] nums1 = {1, 2, 3, 1};
+        System.out.println("Result1: " + solution.findPeakElement(nums1) + "\n");
+
+        int[] nums2 = {1,2,1,3,5,6,4};
+        System.out.println("Result2: " + solution.findPeakElement(nums2));
+    }
+
 }
 
 /*
