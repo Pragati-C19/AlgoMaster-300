@@ -36,7 +36,7 @@ public class MinEatingSpeed {
             
             for(int pile : piles){
                 // using ceil will round up the division
-                timeTaken += Math.ceil(pile / mid);
+                timeTaken += Math.ceil((double) pile / mid);
             } 
             System.out.println("[for] timeTaken: " + timeTaken);
 
