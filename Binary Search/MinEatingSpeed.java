@@ -82,21 +82,37 @@ public class MinEatingSpeed {
  * 
  * low = high so return low which is 4
  *          
+ * - Check if the pile is a multiple of k
+ * - if yes, time = piles[i] / k
+ * - if not, we need extra hr.
+ * - for that we need to use round up function 
+ * - Lastly add all hrs for each pile
  * 
+ * - will use ceil to round up a number 
+ * - ceil(1.2) → 2
+ * - ceil(3.0) → 3
+ * - ceil(4.9) → 5
  * 
  * Pseudo Code :
  * 
  * function minEatingSpeed(piles, h):
  * 
- *      low = 1;    // smallest value k can possibly be
- *      high = maximum of piles     // highest value k can possibly be
+ *      low = 1;    // smallest value of k 
+ *      high = maximum of piles     // highest value of k 
  *      
- *      // Basic setup of binary search
+ *      // Basic setup of binary search between low and high speeds
  *      while low < high : 
  *          // mid of low and high of k
  *          mid = (low + high) / 2
  *          
- *          if( takenHrs <= hrs ){
+ *          // Calculate time taken 
+ *          timeTaken = 0;
+ *          for(pile : piles){
+ *              timeTaken = timeTaken + Math.ceil(pile /mid )
+ *          }
+ *          
+ *          // If time taken is within h hours, try slower speed
+ *          if( timeTaken <= hrs ){
  *              high = mid;
  *          }
  *          else {
@@ -105,7 +121,6 @@ public class MinEatingSpeed {
  *      
  *      return low
  *      
- * // TODO : think of how to find taken_hrs
  * 
  * 
  * 
