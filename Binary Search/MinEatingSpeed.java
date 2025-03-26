@@ -1,6 +1,27 @@
 import java.util.*;
 
 public class MinEatingSpeed {
+    
+    public int minEatingSpeed(int[] piles, int h) {
+        
+        return h;
+    }
+
+    public static void main(String[] args){
+        MinEatingSpeed solution = new MinEatingSpeed();
+
+        int[] piles1 = {3,6,7,11};
+        int h1 = 8;
+        System.out.println("Result1: " + solution.minEatingSpeed(piles1, h1) + "\n");
+
+        int[] piles2 = {30,11,23,4,20};
+        int h2 = 5;
+        int h3 = 6;
+        System.out.println("Result2: " + solution.minEatingSpeed(piles2, h2) + "\n");
+        
+        System.out.println("Result3: " + solution.minEatingSpeed(piles2, h3));
+
+    }
 
 }
 
