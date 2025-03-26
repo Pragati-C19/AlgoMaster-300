@@ -19,11 +19,38 @@ public class MinEatingSpeed {
 
     public int minEatingSpeed(int[] piles, int h) {
         
+        // low - smallest value of k , high - highest value of k 
         int low = 1;
         int high = getMax(piles);
         System.out.println("Initial Values | Low: " + low + " , High: " + high);
 
-        return high;
+        // Binary search between low and high speeds
+        while(low < high){
+
+            // middle speed to test
+            int mid = (low + high) / 2;
+            System.out.println("Mid: " + mid);
+
+            // Calculate the time taken with this speed k
+            int timeTaken = 0;
+            
+            for(int pile : piles){
+                // using ceil will round up the division
+                timeTaken += Math.ceil(pile / mid);
+            } 
+            System.out.println("[for] timeTaken: " + timeTaken);
+
+            if(timeTaken <= h){
+                // if time taken is less than or equal to hours, increase speed k
+                high = mid;
+            }
+            else{
+                // if time taken is more than hours, decrease speed k
+                low = mid + 1;
+            }
+        }
+
+        return low;
     }
 
     public static void main(String[] args){
