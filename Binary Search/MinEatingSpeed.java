@@ -2,9 +2,28 @@ import java.util.*;
 
 public class MinEatingSpeed {
     
+    // Get Maximum Pile from Array
+    private int getMax(int[] piles){
+        int max = piles[0];
+        
+        for(int pile : piles){
+            if(pile > max){
+                max = pile;
+                System.out.println("[IF] max: " + max);
+            }
+        }
+
+        System.out.println("max: " + max);
+        return max;
+    }
+
     public int minEatingSpeed(int[] piles, int h) {
         
-        return h;
+        int low = 1;
+        int high = getMax(piles);
+        System.out.println("Initial Values | Low: " + low + " , High: " + high);
+
+        return high;
     }
 
     public static void main(String[] args){
