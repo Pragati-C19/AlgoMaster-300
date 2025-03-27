@@ -36,14 +36,28 @@ public class FindInMountainArray {
     // Function to find the minimum index of target element in the mountain array.
     public int findInMountainArray(int target, MountainArray mountainArr) {
         
+        int n = mountainArr.length();   // length of arr
+        int start = 0;                  // first index of arr
+        int end = n - 1;                // last index of arr
+        System.out.println("Start: " + start + " , End: " + end);
 
-        return target;
+        int peak = findPeakElement(mountainArr, end);
+        System.out.println("Peak: " + peak);
+
+        int leftSideIndex = searchInHalf(start, peak);
+        int rightSideIndex = searchInHalf(peak, end);
+        System.out.println("Left Side Index: " + leftSideIndex + " , Right Side Index: " + rightSideIndex);
+
+        int minIndex = Math.min(leftSideIndex, rightSideIndex);
+        System.out.println("Min Index: " + minIndex);
+
+        return minIndex;
     }
 
     // Helper function to find the peak element in the mountain array.
     private int findPeakElement(MountainArray mountainArr, int end){
 
-        return low;
+        return end;
     }
 
     // Binary search helper function to find the target in one half of the array.
