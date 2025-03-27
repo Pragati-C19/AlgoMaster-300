@@ -65,6 +65,7 @@ public class FindInMountainArray {
  * 4. We have to use mountainArray.get(index) return element at that specific index
  * 5. We have to use mountainArray.length() to get the length of the array.
  * 6. We have to use binary search to find the target in the mountain array.
+ * 7. We need to create Interface which is done with the help of gpt a little.. 
  * 
  * Pattern :
  * 
