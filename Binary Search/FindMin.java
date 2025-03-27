@@ -6,19 +6,24 @@ public class FindMin {
         
         int first = 0;
         int last = nums.length - 1;
+        System.out.println("Initial Value | first: " + first + " , last: " + last);
 
         while (first < last) {
             
             int mid = (first + last) / 2;
+            System.out.println("Mid: " + mid);
 
-            if( nums[mid] >= nums[first] ){
+            if( nums[mid] > nums[last] ){
                 first = mid + 1;
+                System.out.println("[IF] first: " + first);
             }
             else{
                 last = mid;
+                System.out.println("[ELSE] last: " + last);
             }
         }
 
+        System.out.println("End Value | first: " + first + " , last: " + last);
         return nums[first];
     }
 
@@ -39,22 +44,23 @@ public class FindMin {
 
 /*
  * 
+ * Remember : Always compare mid woth last not first 
+ * 
  * Intuitions : 
  * 
  * 1. Find Minumun from rotated array
  * 2. Use Binary search
  * 3. Find the mid element
  * 4. Compare the mid element with the first and last element
- * 5. if first <= mid then first = mid + 1
- * 6. else last = mid 
- *  
+ * 5. if last <= mid then first = mid + 1
+ * 6. else last = mid  
  *  
  * Pattern :
  * 
  * 1. declare first, last
  * 2. use while loop till first < last
  * 3. find mid
- * 4. compare mid with first and last
+ * 4. compare mid with last
  * 5. update first and last
  * 6. return nums[first]
  * 
@@ -70,7 +76,7 @@ public class FindMin {
  *      
  *          mid = (first + last) / 2
  *          
- *          if( mid >= first ){
+ *          if( mid > last ){
  *              first = mid + 1    
  *          }
  *          else {
