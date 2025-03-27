@@ -48,7 +48,7 @@ public class FindInMountainArray {
         int leftSideIndex = searchInHalf(mountainArr, target, start, peak);
         System.out.println("Left Index: " + leftSideIndex + "\n");
 
-        int rightSideIndex = searchInHalf(mountainArr, target, peak, end);
+        int rightSideIndex = searchInHalf(mountainArr, target, peak + 1, end);
         System.out.println("Right Index: " + rightSideIndex + "\n");
 
         if (leftSideIndex == -1 && rightSideIndex == -1) {
@@ -130,16 +130,19 @@ public class FindInMountainArray {
         FindInMountainArray solution = new FindInMountainArray();
 
         int[] arr1 = {1,2,3,4,5,3,1};
-        int[] arr2 = {0,1,2,4,2,1};
+        int[] arr2 = {0,1,2,1};
+        int[] arr3 = {1,5,2};
 
         // Wrap arr into MountainArray 
         MountainArray mountainArr1 = new MountainArrayImpl(arr1);
         MountainArray mountainArr2 = new MountainArrayImpl(arr2);
+        MountainArray mountainArr3 = new MountainArrayImpl(arr3);
         
-        int target = 3;
+        int target = 2;
 
         System.out.println("Result1 : " + solution.findInMountainArray(target, mountainArr1) + "\n \n");
-        System.out.println("Result2 : " + solution.findInMountainArray(target, mountainArr2));
+        System.out.println("Result2 : " + solution.findInMountainArray(target, mountainArr2) + "\n \n");
+        System.out.println("Result3 : " + solution.findInMountainArray(target, mountainArr3));
         
     }
 
