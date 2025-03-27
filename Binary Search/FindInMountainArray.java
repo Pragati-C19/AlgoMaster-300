@@ -8,31 +8,48 @@ public class FindInMountainArray {
         public int length();
     }
 
-
-    // Class to implements MountainArray
-    //? Static class so it can be used without needing an instance of FindInMountainArray or right this class outside of FindInMountainArray class it will work 
-    
+    /*
+    * Class to implements MountainArray
+        - Static class so it can be used without needing an instance of FindInMountainArray 
+        or write this class outside of FindInMountainArray class it will work 
+    */
     static class MountainArrayImpl implements MountainArray {
 
-        private int[] arr;
+        private int[] arr;  // Array to store the mountain array values
 
+        // Constructor to initialize the mountain array
         public MountainArrayImpl(int[] arr) {
             this.arr = arr;
         }
 
-        // Given in Leetcode already
+        // Returns the element at the given index
         public int get(int index) {
             return arr[index];
         }
         
+        // Returns the length of the array
         public int length() {
             return arr.length;
         }
     }
     
+    // Function to find the minimum index of target element in the mountain array.
     public int findInMountainArray(int target, MountainArray mountainArr) {
         
+
         return target;
+    }
+
+    // Helper function to find the peak element in the mountain array.
+    private int findPeakElement(MountainArray mountainArr, int end){
+
+        return low;
+    }
+
+    // Binary search helper function to find the target in one half of the array.
+    private int searchInHalf(int left, int right){
+
+        return left;
     }
 
     public static void main(String[] args){
@@ -89,6 +106,19 @@ public class FindInMountainArray {
  * function findInMountainArray(target, mountainArray){
  *      
  *      end = arr.length - 1
+ *      
+ *      peak = findPeakElement(mountainarr, end)
+ * 
+ *      leftSideIndex = searchInHalf(0, peak)
+ *      rightSideIndex = searchInHalf(peak, end)
+ *
+ *      int minIndex = min(leftSide, rightSide)
+ *      
+ *      return minIndex
+ * }
+ * 
+ * function findPeakElement(mountainarr, end){
+ *      
  *      low = 0
  *      high = end
  * 
@@ -104,17 +134,8 @@ public class FindInMountainArray {
  *          }
  *      }
  *  
- *      peak = low;
- *      
- *      leftSideIndex = searchInHalf(0, peak)
- *      rightSideIndex = searchInHalf(peak, end)
- *
- *      int minIndex = min(leftSide, rightSide)
- *      
- *      return minIndex
+ *      return low
  * }
- * 
- * 
  * 
  * function searchInHalf(left, right){
  *      
