@@ -45,10 +45,10 @@ public class FindInMountainArray {
         int peak = findPeakElement(mountainArr, end);
         System.out.println("Peak: " + peak + "\n");
 
-        int leftSideIndex = searchInHalf(mountainArr, target, start, peak);
+        int leftSideIndex = searchInHalf(mountainArr, target, start, peak, true);
         System.out.println("Left Index: " + leftSideIndex + "\n");
 
-        int rightSideIndex = searchInHalf(mountainArr, target, peak + 1, end);
+        int rightSideIndex = searchInHalf(mountainArr, target, peak + 1, end, false);
         System.out.println("Right Index: " + rightSideIndex + "\n");
 
         if (leftSideIndex == -1 && rightSideIndex == -1) {
@@ -98,7 +98,7 @@ public class FindInMountainArray {
     }
 
     // Binary search helper function to find the target in one half of the array.
-    private int searchInHalf(MountainArray mountainArr, int target, int left, int right){
+    private int searchInHalf(MountainArray mountainArr, int target, int left, int right, boolean isAscending){
 
         System.out.println("[searchInHalf] Initial Values | target : " + target + " , left: " + left + " , right: " + right);
 
@@ -107,19 +107,41 @@ public class FindInMountainArray {
             int mid = (left + right) / 2;
             System.out.println("[searchInHalf] mid: " + mid);
 
+            int midValue = mountainArr.get(mid);
+            System.out.println("[searchInHalf] midValue: " + midValue);
+
             // If target found return the index
-            if (mountainArr.get(mid) == target) {
+            if (midValue == target) {
                 System.out.println("[searchInHalf] [IF] right: " + right);
                 return mid;
             }
-            else if( mountainArr.get(mid) > target){
-                right = mid - 1;
-                System.out.println("[searchInHalf] [IF] right: " + right);
+            
+            if (isAscending) {
+                // Binary search for increasing order (means left side)
+
+                if (midValue > target) {
+                    right = mid - 1;
+                    System.out.println("[searchInHalf] [isAscending] [IF] right: " + right);
+                }
+                else{
+                    left = mid + 1;
+                    System.out.println("[searchInHalf] [isAscending] [ELSE] left: " + left);
+                }
+
             }
-            else{
-                left = mid + 1;
-                System.out.println("[searchInHalf] [ELSE] left: " + left);
+            else {
+                // Binary search for decreasing order (means right side)
+
+                if (midValue > target) {
+                    left = mid + 1;
+                    System.out.println("[searchInHalf] [isDescending] [IF] left: " + left);
+                }
+                else{
+                    right = mid - 1;
+                    System.out.println("[searchInHalf] [isDescending] [ELSE] right: " + right);
+                }
             }
+            
         }
 
         System.out.println("[searchInHalf] End Values | left: " + left + " , right: " + right);
@@ -130,7 +152,7 @@ public class FindInMountainArray {
         FindInMountainArray solution = new FindInMountainArray();
 
         int[] arr1 = {1,2,3,4,5,3,1};
-        int[] arr2 = {0,1,2,1};
+        int[] arr2 = {0,5,3,1};
         int[] arr3 = {1,5,2};
 
         // Wrap arr into MountainArray 
@@ -138,7 +160,7 @@ public class FindInMountainArray {
         MountainArray mountainArr2 = new MountainArrayImpl(arr2);
         MountainArray mountainArr3 = new MountainArrayImpl(arr3);
         
-        int target = 2;
+        int target = 1;
 
         System.out.println("Result1 : " + solution.findInMountainArray(target, mountainArr1) + "\n \n");
         System.out.println("Result2 : " + solution.findInMountainArray(target, mountainArr2) + "\n \n");
