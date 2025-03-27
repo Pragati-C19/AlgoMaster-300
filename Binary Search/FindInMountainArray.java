@@ -1,6 +1,24 @@
 import java.util.*;
 
 public class FindInMountainArray {
+    
+    public int findInMountainArray(int target, MountainArray mountainArr) {
+        
+    }
+
+    public static void main(String[] args){
+        FindInMountainArray solution = new FindInMountainArray();
+
+        int[] mountainArr1 = {1,2,3,4,5,3,1};
+
+        int[] mountainArr2 = {0,1,2,4,2,1};
+        
+        int target = 3;
+
+        System.out.println("Result1 : " + solution.findInMountainArray(target, mountainArr1) + "\n");
+        System.out.println("Result2 : " + solution.findInMountainArray(target, mountainArr2));
+        
+    }
 
 }
 
