@@ -2,6 +2,23 @@ import java.util.*;
 
 public class FindMin {
     
+    public int findMin(int[] nums) {
+        
+        return nums;
+    }
+
+    public static void main(String[] args){
+        FindMin solution = new FindMin();
+
+        int[] nums1 = {};
+        int[] nums2 = {};
+        int[] nums3 = {};
+
+        System.out.println("Result 1: " + solution.findMin(nums1) + "\n");
+        System.out.println("Result 2: " + solution.findMin(nums2) + "\n");
+        System.out.println("Result 3: " + solution.findMin(nums3));
+    }
+
 }
 
 
