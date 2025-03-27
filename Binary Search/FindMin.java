@@ -4,15 +4,30 @@ public class FindMin {
     
     public int findMin(int[] nums) {
         
-        return nums;
+        int first = 0;
+        int last = nums.length - 1;
+
+        while (first < last) {
+            
+            int mid = (first + last) / 2;
+
+            if( nums[mid] >= nums[first] ){
+                first = mid + 1;
+            }
+            else{
+                last = mid;
+            }
+        }
+
+        return nums[first];
     }
 
     public static void main(String[] args){
         FindMin solution = new FindMin();
 
-        int[] nums1 = {};
-        int[] nums2 = {};
-        int[] nums3 = {};
+        int[] nums1 = {3,4,5,1,2};
+        int[] nums2 = {4,5,6,7,0,1,2};
+        int[] nums3 = {11,13,15,17};
 
         System.out.println("Result 1: " + solution.findMin(nums1) + "\n");
         System.out.println("Result 2: " + solution.findMin(nums2) + "\n");
@@ -41,7 +56,7 @@ public class FindMin {
  * 3. find mid
  * 4. compare mid with first and last
  * 5. update first and last
- * 6. return first
+ * 6. return nums[first]
  * 
  * Pseudo Code :
  * 
@@ -63,7 +78,7 @@ public class FindMin {
  *          }
  *      }
  *      
- *      retuh first
+ *      retuh nums[first]
  * }
  * 
  */
