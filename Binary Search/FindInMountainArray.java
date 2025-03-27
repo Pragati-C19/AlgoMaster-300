@@ -1,17 +1,49 @@
 import java.util.*;
 
 public class FindInMountainArray {
+
+    // Interface for MountainArray
+    interface MountainArray {
+        public int get(int index);
+        public int length();
+    }
+
+
+    // Class to implements MountainArray
+    //? Static class so it can be used without needing an instance of FindInMountainArray or right this class outside of FindInMountainArray class it will work 
+    
+    static class MountainArrayImpl implements MountainArray {
+
+        private int[] arr;
+
+        public MountainArrayImpl(int[] arr) {
+            this.arr = arr;
+        }
+
+        // Given in Leetcode already
+        public int get(int index) {
+            return arr[index];
+        }
+        
+        public int length() {
+            return arr.length;
+        }
+    }
     
     public int findInMountainArray(int target, MountainArray mountainArr) {
         
+        return target;
     }
 
     public static void main(String[] args){
         FindInMountainArray solution = new FindInMountainArray();
 
-        int[] mountainArr1 = {1,2,3,4,5,3,1};
+        int[] arr1 = {1,2,3,4,5,3,1};
+        int[] arr2 = {0,1,2,4,2,1};
 
-        int[] mountainArr2 = {0,1,2,4,2,1};
+        // Wrap arr into MountainArray 
+        MountainArray mountainArr1 = new MountainArrayImpl(arr1);
+        MountainArray mountainArr2 = new MountainArrayImpl(arr2);
         
         int target = 3;
 
