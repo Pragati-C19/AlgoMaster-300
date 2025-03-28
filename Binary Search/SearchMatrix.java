@@ -4,6 +4,38 @@ public class SearchMatrix {
 
     public boolean searchMatrix(int[][] matrix, int target) {
 
+        int m = matrix.length;      // Number of rows
+        int n = matrix[0].length;   // Number of col
+        System.out.println("Matrix of ( " + m + " * " + n + " )");
+
+        int left = 0;
+        int right = (m * n) - 1;    // (m * n) is length of whole matrix
+        System.out.println("Initial Values | left: " + left + " , Right: " + right);
+
+        while (left <= right) {
+            
+            int mid = (left + right) / 2;
+            System.out.println("Mid value : " + mid);
+
+            int row = mid / n;  // find row of that mid
+            int col = mid % n;  // find col of that mid
+
+            if(matrix[row][col] == target){
+                System.out.println("Target found at row: " + row + " col: " + col);
+                return true;
+            }
+            else if (matrix[row][col] > target) {
+                right = mid - 1;
+                System.out.println("[IF] Right Value: " + right);
+            }
+            else {
+                left = mid + 1;
+                System.out.println("[ELSE] Left Value: " + left);
+            }
+
+        }
+        
+        System.out.println("Target not found");
         return false;
     }
 
