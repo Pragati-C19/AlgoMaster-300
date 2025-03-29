@@ -6,36 +6,61 @@ public class FindMedianSortedArrays {
         
         int n1 = nums1.length;
         int n2 = nums2.length;
-        int n = n1 + n2;
-        int sum = 0;
-        int i = 0;
+        
+        System.out.println("[findMedianSortedArrays] n1: " + n1 + " , n2: " + n2 );
+        
+        int[] mergedArr = mergedArrays(nums1, n1, nums2, n2);
+        System.out.println("Merged Array: " + Arrays.toString(mergedArr) + "\n");
 
-        int[] mergedArr = mergedArrays(nums1, nums2, n);
-        System.out.println("Merged Array: " + Arrays.toString(mergedArr));
+        int left = 0;
+        int right = mergedArr.length - 1;
+        System.out.println("Length of Merged Array: " + right);
 
-        while (i < n) {
-            sum = sum + mergedArr[i];
-        }
-        System.out.println("Sum of nums: " + sum);
-
-        double median = sum / n;
+        // 2.0 is a double, so Java promotes the entire expression to floating-point division.
+        double median = (mergedArr[left] + mergedArr[right]) / 2.0;
         System.out.println("Median of nums: " + median);
 
         return median;
     }
 
-    private int[] mergedArrays(int[] nums1, int[] nums2, int n){
+    private int[] mergedArrays(int[] nums1, int n1, int[] nums2, int n2){
         
-        int[] mergedArr = new int[n];
+        int[] mergedArr = new int[n1 + n2];
         int i = 0;
         int j = 0;
         int k = 0;
 
-        while (i < n || j < n) {
-            
-        }
+        while (i < n1 && j < n2) {
+            if (nums1[i] < nums2[j]) {
+                mergedArr[k] = nums1[i];
+                k++;
+                i++;
         
-        return nums1;
+                System.out.println("[mergedArrays] Merged Array: " + Arrays.toString(mergedArr));
+                System.out.println("[mergedArrays | IF] i: " + i + " , j: " + j + " , k: " + k);
+            }
+            else{
+                mergedArr[k] = nums2[j];
+                k++;
+                j++;
+                System.out.println("[mergedArrays] Merged Array: " + Arrays.toString(mergedArr));
+                System.out.println("[mergedArrays | ELSE] i: " + i + " , j: " + j + " , k: " + k);
+            }
+        }
+
+        while (i < n1) {
+            mergedArr[k] = nums1[i];
+            k++;
+            i++;
+        }
+
+        while (j < n2) {
+            mergedArr[k] = nums2[j];
+            k++;
+            j++;
+        }
+
+        return mergedArr;
     }
 
     public static void main(String[] args){
