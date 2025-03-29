@@ -2,6 +2,34 @@ import java.util.*;
 
 public class FindMedianSortedArrays {
     
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        
+        int[] mergedArr = mergedArrays(nums1, nums2, 2);
+        double median = 0;
+
+        System.out.println("mergedArr: " + Arrays.toString(mergedArr));
+        return median;
+    }
+
+    private int[] mergedArrays(int[] nums1, int[] nums2, int n){
+
+        return nums1;
+    }
+
+    public static void main(String[] args){
+
+        FindMedianSortedArrays solution = new FindMedianSortedArrays();
+
+        int[] nums1 = {1, 3};
+        int[] nums2 = {2};
+        System.out.println("Median1: " + solution.findMedianSortedArrays(nums1, nums2) + "\n");
+
+        int[] nums3 = {1, 2};
+        int[] nums4 = {3, 4};
+        System.out.println("Median2: " + solution.findMedianSortedArrays(nums3, nums4));
+
+    }
+
 }
 
 
