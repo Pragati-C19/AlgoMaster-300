@@ -4,15 +4,37 @@ public class FindMedianSortedArrays {
     
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         
-        int[] mergedArr = mergedArrays(nums1, nums2, 2);
-        double median = 0;
+        int n1 = nums1.length;
+        int n2 = nums2.length;
+        int n = n1 + n2;
+        int sum = 0;
+        int i = 0;
 
-        System.out.println("mergedArr: " + Arrays.toString(mergedArr));
+        int[] mergedArr = mergedArrays(nums1, nums2, n);
+        System.out.println("Merged Array: " + Arrays.toString(mergedArr));
+
+        while (i < n) {
+            sum = sum + mergedArr[i];
+        }
+        System.out.println("Sum of nums: " + sum);
+
+        double median = sum / n;
+        System.out.println("Median of nums: " + median);
+
         return median;
     }
 
     private int[] mergedArrays(int[] nums1, int[] nums2, int n){
+        
+        int[] mergedArr = new int[n];
+        int i = 0;
+        int j = 0;
+        int k = 0;
 
+        while (i < n || j < n) {
+            
+        }
+        
         return nums1;
     }
 
