@@ -17,7 +17,10 @@ public class FindMedianSortedArrays {
         System.out.println("Length of Merged Array: " + right);
 
         // 2.0 is a double, so Java promotes the entire expression to floating-point division.
-        double median = (mergedArr[left] + mergedArr[right]) / 2.0;
+        int mid = (left + right) / 2;
+        System.out.println("Mid: " + mid);
+
+        double median = mergedArr[mid];
         System.out.println("Median of nums: " + median);
 
         return median;
@@ -73,7 +76,11 @@ public class FindMedianSortedArrays {
 
         int[] nums3 = {1, 2};
         int[] nums4 = {3, 4};
-        System.out.println("Median2: " + solution.findMedianSortedArrays(nums3, nums4));
+        System.out.println("Median2: " + solution.findMedianSortedArrays(nums3, nums4) + "\n");
+
+        int[] nums5 = {2, 2, 4, 4};
+        int[] nums6 = {2, 2, 2, 4, 4};
+        System.out.println("Median3: " + solution.findMedianSortedArrays(nums5, nums6));
 
     }
 
