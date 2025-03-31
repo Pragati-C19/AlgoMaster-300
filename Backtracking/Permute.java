@@ -2,6 +2,29 @@ import java.util.*;
 
 public class Permute {
     
+    // find all permutations  
+    public List<List<Integer>> permute(int[] nums) {
+        
+    }
+
+    // Helper function : to backtrack permutation num recursively
+    private void backtrack(int[] nums, int n, List<List<Integer>> result, List<Integer> current, List<Set> usedSet) {
+
+    }
+
+    public static void main(String[] args) {
+        Permute solution = new Permute();
+
+        int[] nums1 = {1, 2, 3};
+        System.out.println("Output1: " + solution.permute(nums1) + "\n");
+
+        int[] nums2 = {0, 1};
+        System.out.println("Output2: " + solution.permute(nums2) + "\n");
+
+        int[] nums3 = {1};
+        System.out.println("Output3: " + solution.permute(nums3));
+        
+    }
 }
 
 /**
@@ -9,7 +32,9 @@ public class Permute {
  * Intuitions : 
  * 
  * - Find permutation of given array
- * 
+ * - will use hashset here bcoz it will only track unique num and it can check quickly if the num is present or not
+ *
+ *  
  * Pattern :
  * 
  * 1. Base case: If the current permutation reaches the size of nums, add it to the result.
