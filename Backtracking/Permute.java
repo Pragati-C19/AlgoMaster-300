@@ -20,11 +20,11 @@ public class Permute {
     // Helper function : to backtrack permutation num recursively
     private void backtrack(int[] nums, int n, List<List<Integer>> result, List<Integer> current, Set<Integer> usedSet) {
 
-        System.out.println("[backtrack] Current: '" + current + "' | usedSet: " + usedSet + " | result: " + result);
+        System.out.println("[backtrack] Current: " + current + " | usedSet: " + usedSet + " | result: " + result);
         
         if(current.size() == n){
             result.add(current);
-            System.out.println("[backtrack] Added to result: [" + current + "]" + "\n");
+            System.out.println("[backtrack] Added to result: " + current + " | Result: " + result + "\n");
             return;
         }
 
@@ -32,14 +32,13 @@ public class Permute {
             if(!usedSet.contains(num)){
                 usedSet.add(num);
                 current.add(num);
-                System.out.println("[backtrack : adding num] Current : [" + current + "] | UsedSet: [" + usedSet + "]");
+                System.out.println("[backtrack : adding num] Current : " + current + " | UsedSet: " + usedSet );
 
                 backtrack(nums, n, result, current, usedSet);
 
                 current.remove(current.size() - 1);
                 usedSet.remove(num);
-                System.out.println("[backtrack : removing num] Current : [" + current + "] | UsedSet: [" + usedSet + "]");
-
+                System.out.println("[backtrack : removing num] Current : " + current + " | UsedSet: " + usedSet);
             }
         }
     }
