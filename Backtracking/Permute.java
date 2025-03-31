@@ -5,11 +5,43 @@ public class Permute {
     // find all permutations  
     public List<List<Integer>> permute(int[] nums) {
         
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> current = new ArrayList<>();
+        Set<Integer> usedSet = new HashSet<>();
+        int n = nums.length;
+
+        System.out.println("Starting Backtracking...");
+        backtrack(nums, n, result, current, usedSet);
+
+        System.out.println("Final Result: " + result);
+        return result;
     }
 
     // Helper function : to backtrack permutation num recursively
-    private void backtrack(int[] nums, int n, List<List<Integer>> result, List<Integer> current, List<Set> usedSet) {
+    private void backtrack(int[] nums, int n, List<List<Integer>> result, List<Integer> current, Set<Integer> usedSet) {
 
+        System.out.println("[backtrack] Current: '" + current + "' | usedSet: " + usedSet + " | result: " + result);
+        
+        if(current.size() == n){
+            result.add(current);
+            System.out.println("[backtrack] Added to result: [" + current + "]" + "\n");
+            return;
+        }
+
+        for(int num : nums){
+            if(!usedSet.contains(num)){
+                usedSet.add(num);
+                current.add(num);
+                System.out.println("[backtrack : adding num] Current : [" + current + "] | UsedSet: [" + usedSet + "]");
+
+                backtrack(nums, n, result, current, usedSet);
+
+                current.remove(current.size() - 1);
+                usedSet.remove(num);
+                System.out.println("[backtrack : removing num] Current : [" + current + "] | UsedSet: [" + usedSet + "]");
+
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -23,7 +55,7 @@ public class Permute {
 
         int[] nums3 = {1};
         System.out.println("Output3: " + solution.permute(nums3));
-        
+
     }
 }
 
