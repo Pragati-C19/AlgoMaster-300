@@ -22,6 +22,8 @@ public class Subsets {
         System.out.println("[backtrack] Current: " + current + " | Start: " + start + " | result: " + result + "\n");
 
         for (int i = start; i < nums.length; i++) {
+            System.out.println(" i : " + i + " | Start : " + start);
+            
             current.add(nums[i]);
             System.out.println("[backtrack] Adding " + nums[i] + " to current");
 
