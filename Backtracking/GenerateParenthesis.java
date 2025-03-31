@@ -22,17 +22,19 @@ public class GenerateParenthesis {
         // open = close = n
         if (current.length() == max * 2){
             result.add(current);
-            System.out.println("[backtrack] Added to result: '" + current + "'");
+            System.out.println("[backtrack] Added to result: '" + current + "'" + "\n");
             return;
         }
-        else if (openCount < max) {
+        
+        if (openCount < max) {
             // Adding "(" in String current and increasing the open count
-            System.out.println("[backtrack : IF] Current : '" + current + "('");
+            System.out.println("[backtrack : openCount Increases] Current : '" + current + "('");
             backtrack(result, openCount + 1, closeCount, max, current + "(");
         }
-        else if (closeCount < openCount) {
+        
+        if (closeCount < openCount) {
             // Adding ")" in String current and increasing the close count
-            System.out.println("[backtrack : ELSE] Current : '" + current + ")'");
+            System.out.println("[backtrack : closeCount Decreases] Current : '" + current + ")'");
             backtrack(result, openCount, closeCount + 1, max, current + ")");
         }
 
