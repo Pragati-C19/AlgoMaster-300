@@ -23,7 +23,7 @@ public class Permute {
         System.out.println("[backtrack] Current: " + current + " | usedSet: " + usedSet + " | result: " + result);
         
         if(current.size() == n){
-            result.add(current);
+            result.add(new ArrayList<>(current));
             System.out.println("[backtrack] Added to result: " + current + " | Result: " + result + "\n");
             return;
         }
