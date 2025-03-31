@@ -2,6 +2,29 @@ import java.util.*;
 
 public class GenerateParenthesis {
 
+    // Function to generate Parenthesis
+    public List<String> generateParenthesis(int n) {
+        
+    }
+
+    // Helper function to backtrack and create strings to ad in result array recursively 
+    private void backtrack(List<String> result, int OpenCount, int CloseCount, int n, String current){
+
+    }
+
+    public static void main(String[] args){
+        GenerateParenthesis solution = new GenerateParenthesis();
+
+        int n1 = 3;
+        List<String> output1 = solution.generateParenthesis(n1);
+        System.out.println("Output1 : " + output1 + "\n");
+
+        int n2 = 1;
+        List<String> output2 = solution.generateParenthesis(n2);
+        System.out.println("Output2 : " + output2);
+
+    }
+
 }
 
 /*
