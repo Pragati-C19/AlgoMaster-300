@@ -23,12 +23,6 @@ public class Subsets {
         result.add(new ArrayList<>(current));
         System.out.println("[backtrack] Current: " + current + " | usedSet: " + usedSet + " | result: " + result);
 
-        // if(usedSet.size() == n ){
-        //     result.add(new ArrayList<>(current));
-        //     System.out.println("[backtrack : IF] Current: " + current + " | usedSet: " + usedSet + " | result: " + result);
-        //     return;
-        // }
-
         for(int num : nums){
             if(!usedSet.contains(num)){
                 current.add(num);
@@ -54,8 +48,8 @@ public class Subsets {
         int[] nums1 = {1, 2, 3};
         System.out.println("Output1 : " + solution.subsets(nums1) + "\n");
 
-        // int[] nums2 = {0};
-        // System.out.println("Output2 : " + solution.subsets(nums2) + "\n");
+        int[] nums2 = {0};
+        System.out.println("Output2 : " + solution.subsets(nums2) + "\n");
     }
 
 }
