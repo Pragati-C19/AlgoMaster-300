@@ -25,13 +25,14 @@ public class Subsets {
 
         System.out.println("[backtrack] Current: " + current + " | usedSet: " + usedSet + " | result: " + result);
 
-        if(usedSet.size() == n ){
+        if(current.size() == n ){
             result.add(new ArrayList<>(current));
             System.out.println("[backtrack : IF] Current: " + current + " | usedSet: " + usedSet + " | result: " + result);
             return;
         }
 
         for(int num : nums){
+            
             current.add(num);
             usedSet.add(num);
             System.out.println("[backtrack : BEFORE : FOR] Current: " + current + " | usedSet: " + usedSet + " | result: " + result);
@@ -48,8 +49,8 @@ public class Subsets {
     public static void main(String[] args){
         Subsets solution = new Subsets();
 
-        int[] nums1 = {1, 2, 3};
-        System.out.println("Output1 : " + solution.subsets(nums1) + "\n");
+        // int[] nums1 = {1, 2, 3};
+        // System.out.println("Output1 : " + solution.subsets(nums1) + "\n");
 
         int[] nums2 = {0};
         System.out.println("Output2 : " + solution.subsets(nums2) + "\n");
