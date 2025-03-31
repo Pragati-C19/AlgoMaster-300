@@ -1,7 +1,28 @@
+import java.lang.Character.Subset;
 import java.util.*;
 
 public class Subsets {
     
+    // Function to get subsets
+    public List<List<Integer>> subsets(int[] nums) {
+        
+    }
+
+    // Helper Function: helping with backtracking recursive action
+    private void backtrack(int[] nums, int n, List<List<Integer>> result, List<Integer> current, Set<Integer> usedSet){
+
+    }
+
+    public static void main(String[] args){
+        Subsets solution = new Subsets();
+
+        int[] nums1 = {1, 2, 3};
+        System.out.println("Output1 : " + solution.subsets(nums1) + "\n");
+
+        int[] nums2 = {0};
+        System.out.println("Output2 : " + solution.subsets(nums2) + "\n");
+    }
+
 }
 
 
