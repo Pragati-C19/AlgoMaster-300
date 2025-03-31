@@ -7,35 +7,29 @@ public class Subsets {
         
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> current = new ArrayList<>();
-        Set<Integer> usedSet = new HashSet<>();
-        int n = nums.length;
 
         System.out.println("Starting Backtracking...");
-        backtrack(nums, n, result, current, usedSet);
+        backtrack(nums, 0, result, current);
 
         System.out.println("Final Result: " + result);
         return result;
     }
 
     // Helper Function: helping with backtracking recursive action
-    private void backtrack(int[] nums, int n, List<List<Integer>> result, List<Integer> current, Set<Integer> usedSet){
+    private void backtrack(int[] nums, int start, List<List<Integer>> result, List<Integer> current){
 
         result.add(new ArrayList<>(current));
-        System.out.println("[backtrack] Current: " + current + " | usedSet: " + usedSet + " | result: " + result);
+        System.out.println("[backtrack] Current: " + current + " | Start: " + start + " | result: " + result + "\n");
 
-        for(int num : nums){
-            if(!usedSet.contains(num)){
-                current.add(num);
-                usedSet.add(num);
-                // System.out.println("[backtrack : BEFORE : FOR] Current: " + current + " | usedSet: " + usedSet + " | result: " + result);
-    
-                backtrack(nums, n, result, current, usedSet);
-    
-                current.remove(current.size() - 1);
-                usedSet.remove(usedSet.size());
+        for (int i = start; i < nums.length; i++) {
+            current.add(nums[i]);
+            System.out.println("[backtrack] Adding " + nums[i] + " to current");
 
-                System.out.println("[backtrack : AFTER : FOR] Current: " + current + " | usedSet: " + usedSet + " | result: " + result);
-            }    
+            backtrack(nums, i + 1, result, current);
+            
+            current.remove(current.size() - 1);
+            System.out.println("[backtrack] Removing last element from current | Current: " + current);
+        
         }
 
         return;
@@ -57,11 +51,14 @@ public class Subsets {
 
 /**
  * 
+ * ? Rememeber : will use index instead of set now.
+ * 
  * Intuition :
  * 
  * 1. a integer array is given with unique elements
  * 2. we need to find all possible subsets of the array
  * 3. will use almost same logic as we used for permutate
+ * 
  * 
  * 
  * Pattern :
