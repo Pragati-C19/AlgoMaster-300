@@ -6,10 +6,42 @@ public class Subsets {
     // Function to get subsets
     public List<List<Integer>> subsets(int[] nums) {
         
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> current = new ArrayList<>();
+        Set<Integer> usedSet = new HashSet<>();
+        int n = nums.length;
+
+        result.add(current);
+
+        System.out.println("Starting Backtracking...");
+        backtrack(nums, n, result, current, usedSet);
+
+        System.out.println("Final Result: " + result);
+        return result;
     }
 
     // Helper Function: helping with backtracking recursive action
     private void backtrack(int[] nums, int n, List<List<Integer>> result, List<Integer> current, Set<Integer> usedSet){
+
+        System.out.println("[backtrack] Current: " + current + " | usedSet: " + usedSet + " | result: " + result);
+
+        if(usedSet.size() == n ){
+            result.add(new ArrayList<>(current));
+            System.out.println("[backtrack : IF] Current: " + current + " | usedSet: " + usedSet + " | result: " + result);
+            return;
+        }
+
+        for(int num : nums){
+            current.add(num);
+            usedSet.add(num);
+            System.out.println("[backtrack : BEFORE : FOR] Current: " + current + " | usedSet: " + usedSet + " | result: " + result);
+
+            backtrack(nums, n, result, current, usedSet);
+
+            current.remove(current.size() - 1);
+            System.out.println("[backtrack : AFTER : FOR] Current: " + current + " | usedSet: " + usedSet + " | result: " + result);
+
+        }
 
     }
 
