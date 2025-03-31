@@ -5,10 +5,33 @@ public class GenerateParenthesis {
     // Function to generate Parenthesis
     public List<String> generateParenthesis(int n) {
         
+        List<String> result = new ArrayList<>();
+
+        backtrack(result, 0, 0, n, "");
+
+        System.out.println("Result : " + result);
+        return result;
     }
 
     // Helper function to backtrack and create strings to ad in result array recursively 
-    private void backtrack(List<String> result, int OpenCount, int CloseCount, int n, String current){
+    private void backtrack(List<String> result, int openCount, int closeCount, int max, String current){
+
+        // open = close = n
+        if (current.length() == max * 2){
+            result.add(current);
+            System.out.println("[backtrack] Result : " + result + " | Current : " + current);
+            return;
+        }
+        else if (openCount < max) {
+            // Adding "(" in String current and increasing the open count
+            backtrack(result, openCount + 1, closeCount, max, current + "(");
+            System.out.println("[backtrack : IF] Result : " + result + " | Current : " + current);
+        }
+        else if (closeCount < openCount) {
+            // Adding ")" in String current and increasing the close count
+            backtrack(result, openCount, closeCount + 1, max, current + ")");
+            System.out.println("[backtrack : ELSE] Result : " + result + " | Current : " + current);
+        }
 
     }
 
