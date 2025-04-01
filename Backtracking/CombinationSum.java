@@ -9,6 +9,8 @@ public class CombinationSum {
         List<Integer> current = new ArrayList<>();
         int sum = 0;
         int start = 0;
+        
+        Arrays.sort(candidates);
 
         System.out.println("Starting Backtracking...");
         backtrack(candidates, target, sum, current, result, start);
@@ -52,17 +54,17 @@ public class CombinationSum {
     public static void main(String[] args){
         CombinationSum solution = new CombinationSum();
 
-        int[] candidates1 = {2,3,5};
-        int target1 = 8;
-        System.out.println("Output1 : " + solution.combinationSum(candidates1, target1) + "\n");
+        // int[] candidates1 = {2,3,5};
+        // int target1 = 8;
+        // System.out.println("Output1 : " + solution.combinationSum(candidates1, target1) + "\n");
 
-        int[] candidates2 = {2,3,6,7};
-        int target2 = 7;
+        int[] candidates2 = {8,7,4,3};
+        int target2 = 11;
         System.out.println("Output2 : " + solution.combinationSum(candidates2, target2) + "\n");
 
-        int[] candidates3 = {2};
-        int target3 = 1;
-        System.out.println("Output3 : " + solution.combinationSum(candidates3, target3) + "\n");
+        // int[] candidates3 = {2};
+        // int target3 = 1;
+        // System.out.println("Output3 : " + solution.combinationSum(candidates3, target3) + "\n");
         
     }
     
