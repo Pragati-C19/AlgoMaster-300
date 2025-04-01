@@ -49,6 +49,15 @@ public class CombinationSum {
 
             }
         }
+
+        //? another method to write this for loop without sorting array 
+        // for (int i = start; i < nums.length; i++) {
+        //     if (sum + nums[i] > target) continue; // Skip if sum exceeds target
+            
+        //     current.add(nums[i]);
+        //     backtrack(nums, target, sum + nums[i], current, result, i); // Pass sum + nums[i] directly
+        //     current.remove(current.size() - 1); // Undo choice
+        // }
     }
 
     public static void main(String[] args){
