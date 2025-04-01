@@ -2,6 +2,33 @@ import java.util.*;
 
 public class CombinationSum {
     
+    // Function to find all combinations whos sum is equal to target
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        
+    }
+
+    // Helper Function : to backtrack recurssively 
+    private void backtrack(int[] nums, int target, int sum, List<Integer> current, List<List<Integer>> result){
+
+    }
+
+    public static void main(String[] args){
+        CombinationSum solution = new CombinationSum();
+
+        int[] candidates1 = {2,3,5};
+        int target1 = 8;
+        System.out.println("Output1 : " + solution.combinationSum(candidates1, target1) + "\n");
+
+        int[] candidates2 = {2,3,6,7};
+        int target2 = 7;
+        System.out.println("Output2 : " + solution.combinationSum(candidates2, target2) + "\n");
+
+        int[] candidates3 = {2};
+        int target3 = 1;
+        System.out.println("Output3 : " + solution.combinationSum(candidates3, target3) + "\n");
+        
+    }
+    
 }
 
 
