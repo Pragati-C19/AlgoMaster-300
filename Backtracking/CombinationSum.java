@@ -5,11 +5,53 @@ public class CombinationSum {
     // Function to find all combinations whos sum is equal to target
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> current = new ArrayList<>();
+        int sum = 0;
+
+        System.out.println("Starting Backtracking...");
+        backtrack(candidates, target, sum, current, result);
+
+        System.out.println("Final Result: " + result);
+        return result;
+
     }
 
     // Helper Function : to backtrack recurssively 
     private void backtrack(int[] nums, int target, int sum, List<Integer> current, List<List<Integer>> result){
+        
+        System.out.println("[backtrack] Sum: " + sum + " | Current: " + current + " | result: " + result + "\n");
 
+        // Base Case
+        if(sum == target){
+            result.add(new ArrayList<>(current));
+            System.out.println("[backtrack] Added to result: " + current + " | Result: " + result + "\n");
+            return;
+        }
+
+        for(int num : nums){
+            sum = sum + num;
+            System.out.println(" num : " + num + " | Sum : " + sum);
+
+            if(sum < target){
+                current.add(num);
+                System.out.println(" [IF : BEFORE] Current : " + current + " | Sum : " + sum + " | Result : " + result);
+
+                backtrack(nums, target, sum, current, result);
+
+                sum = sum - num;
+                current.remove(current.size() - 1);
+                
+                System.out.println(" [IF : AFTER] Current : " + current + " | Sum : " + sum + " | Result : " + result);
+
+            }
+            // else if(sum > target){
+                
+            //     System.out.println(" [ELSEIF] Current : " + current + " | Sum : " + sum + " | Result : " + result);
+            //     return;
+            
+            // }
+        }
     }
 
     public static void main(String[] args){
@@ -19,13 +61,13 @@ public class CombinationSum {
         int target1 = 8;
         System.out.println("Output1 : " + solution.combinationSum(candidates1, target1) + "\n");
 
-        int[] candidates2 = {2,3,6,7};
-        int target2 = 7;
-        System.out.println("Output2 : " + solution.combinationSum(candidates2, target2) + "\n");
+        // int[] candidates2 = {2,3,6,7};
+        // int target2 = 7;
+        // System.out.println("Output2 : " + solution.combinationSum(candidates2, target2) + "\n");
 
-        int[] candidates3 = {2};
-        int target3 = 1;
-        System.out.println("Output3 : " + solution.combinationSum(candidates3, target3) + "\n");
+        // int[] candidates3 = {2};
+        // int target3 = 1;
+        // System.out.println("Output3 : " + solution.combinationSum(candidates3, target3) + "\n");
         
     }
     
