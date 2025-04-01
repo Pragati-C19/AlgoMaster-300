@@ -2,6 +2,27 @@ import java.util.*;
 
 public class LetterCombinations {
     
+    // Function to find all combinations of a phone number
+    public List<String> letterCombinations(String digits) {
+        
+    }
+
+    // Helper recursive function
+    private void backtrack(String digits, int n, Set<String> telephoneMap, String current, List<String> result, int start){
+
+    }
+
+    public static void main(String[] args){
+        LetterCombinations solution = new LetterCombinations();
+
+        String digits1 = "23";
+        System.out.println("Output1 : " + solution.letterCombinations(digits1) + "\n");
+        
+        String digits2 = "";
+        System.out.println("Output1 : " + solution.letterCombinations(digits2) + "\n");
+
+    }
+
 }
 
 /**
