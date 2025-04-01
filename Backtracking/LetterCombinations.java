@@ -21,23 +21,31 @@ public class LetterCombinations {
         telephoneMap.put('8', "tuv");
         telephoneMap.put('9', "wxyz");
 
-        telephoneMap.forEach((key, value) -> System.out.println(key + " -> " + value)); 
-
         // Base Case : If String is null
         if (digits == null || n == 0) {
             return result;
         }
 
-        backtrack(digits, n, null, current, result, 0);
+        telephoneMap.forEach((key, value) -> System.out.println(key + " -> " + value)); 
+        
+        System.out.println("Letters At specific Index : " + telephoneMap.get(digits.charAt(0)));
+        
+        // backtrack(digits, n, null, current, result, 0);
 
         return result;
 
     }
 
     // Helper recursive function
-    private void backtrack(String digits, int n, HashMap<Integer, String> telephoneMap, String current, List<String> result, int start){
+    private void backtrack(String digits, int n, HashMap<Integer, String> telephoneMap, String current, List<String> result, int index){
 
-        return;
+        // Base Case 
+        if (current.length() == n) {
+            result.add(current);
+            return;
+        }
+        
+        
     }
 
     public static void main(String[] args){
@@ -47,7 +55,10 @@ public class LetterCombinations {
         System.out.println("Output1 : " + solution.letterCombinations(digits1) + "\n");
         
         String digits2 = "";
-        System.out.println("Output1 : " + solution.letterCombinations(digits2) + "\n");
+        System.out.println("Output2 : " + solution.letterCombinations(digits2) + "\n");
+
+        String digits3 = "2";
+        System.out.println("Output2 : " + solution.letterCombinations(digits3) + "\n");
 
     }
 
