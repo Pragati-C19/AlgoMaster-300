@@ -8,9 +8,10 @@ public class CombinationSum {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> current = new ArrayList<>();
         int sum = 0;
+        int start = 0;
 
         System.out.println("Starting Backtracking...");
-        backtrack(candidates, target, sum, current, result);
+        backtrack(candidates, target, sum, current, result, start);
 
         System.out.println("Final Result: " + result);
         return result;
@@ -18,7 +19,7 @@ public class CombinationSum {
     }
 
     // Helper Function : to backtrack recurssively 
-    private void backtrack(int[] nums, int target, int sum, List<Integer> current, List<List<Integer>> result){
+    private void backtrack(int[] nums, int target, int sum, List<Integer> current, List<List<Integer>> result, int start){
         
         System.out.println("[backtrack] Sum: " + sum + " | Current: " + current + " | result: " + result);
 
@@ -29,28 +30,22 @@ public class CombinationSum {
             return;
         }
 
-        for(int num : nums){
-            sum = sum + num;
-            System.out.println(" num : " + num + " | Sum : " + sum);
+        for(int i = start; i < nums.length; i++){
+            sum = sum + nums[i];
+            System.out.println(" num : " + nums[i] + " | Sum : " + sum);
 
             if(sum <= target){
-                current.add(num);
+                current.add(nums[i]);
                 System.out.println(" [IF : BEFORE] Current : " + current + " | Sum : " + sum + " | Result : " + result + "\n");
 
-                backtrack(nums, target, sum, current, result);
+                backtrack(nums, target, sum, current, result, i);
 
-                sum = sum - num;
+                sum = sum - nums[i];
                 current.remove(current.size() - 1);
                 
                 System.out.println(" [IF : AFTER] Current : " + current + " | Sum : " + sum + " | Result : " + result);
 
             }
-            // else if(sum > target){
-                
-            //     System.out.println(" [ELSEIF] Current : " + current + " | Sum : " + sum + " | Result : " + result);
-            //     return;
-            
-            // }
         }
     }
 
