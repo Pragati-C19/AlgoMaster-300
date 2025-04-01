@@ -32,47 +32,48 @@ public class CombinationSum2 {
             return;
         }
 
-        for(int i = start; i < nums.length; i++){
-            sum = sum + nums[i];
-            System.out.println(" num : " + nums[i] + " | Sum : " + sum);
-
-            if(sum <= target){
-                current.add(nums[i]);
-                System.out.println(" [IF : BEFORE] Current : " + current + " | Sum : " + sum + " | Result : " + result + "\n");
-
-                backtrack(nums, target, sum, current, result, i + 1);
-
-                sum = sum - nums[i];
-                current.remove(current.size() - 1);
-                
-                System.out.println(" [IF : AFTER] Current : " + current + " | Sum : " + sum + " | Result : " + result);
-            }
-        }
-
-        //? another method to write this for loop without sorting array 
-        // for (int i = start; i < nums.length; i++) {
-            
+        // for(int i = start; i < nums.length; i++){
+        //     sum = sum + nums[i];
         //     System.out.println(" num : " + nums[i] + " | Sum : " + sum);
 
-        //     if (sum + nums[i] > target) continue; // Skip if sum exceeds target
-            
-        //     current.add(nums[i]);
-        //     System.out.println(" [IF : BEFORE] Current : " + current + " | Sum : " + sum + " | Result : " + result + "\n");
+        //     if(sum <= target){
+        //         current.add(nums[i]);
+        //         System.out.println(" [IF : BEFORE] Current : " + current + " | Sum : " + sum + " | Result : " + result + "\n");
 
-        //     backtrack(nums, target, sum + nums[i], current, result, i + 1); // Pass sum + nums[i] directly
-            
-        //     current.remove(current.size() - 1); // Undo choice
-        //     System.out.println(" [IF : AFTER] Current : " + current + " | Sum : " + sum + " | Result : " + result);
+        //         backtrack(nums, target, sum, current, result, i + 1);
 
+        //         sum = sum - nums[i];
+        //         current.remove(current.size() - 1);
+                
+        //         System.out.println(" [IF : AFTER] Current : " + current + " | Sum : " + sum + " | Result : " + result);
+        //     }
         // }
+
+        //? another method to write this for loop without sorting array 
+        for (int i = start; i < nums.length; i++) {
+            
+            System.out.println(" num : " + nums[i] + " | Sum : " + sum);
+            
+            // Skip duplicate numbers at the same level
+            if (i > start && nums[i] == nums[i - 1]) continue;
+             
+            current.add(nums[i]);
+            System.out.println(" [IF : BEFORE] Current : " + current + " | Sum : " + sum + " | Result : " + result + "\n");
+
+            backtrack(nums, target, sum + nums[i], current, result, i + 1); // Pass sum + nums[i] directly
+            
+            current.remove(current.size() - 1); // Undo choice
+            System.out.println(" [IF : AFTER] Current : " + current + " | Sum : " + sum + " | Result : " + result);
+
+        }
     }
 
     public static void main(String[] args){
         CombinationSum2 solution = new CombinationSum2();
 
-        int[] candidates1 = {10,1,2,7,6,1,5};
-        int target1 = 8;
-        System.out.println("Output1 : " + solution.combinationSum2(candidates1, target1) + "\n");
+        // int[] candidates1 = {10,1,2,7,6,1,5};
+        // int target1 = 8;
+        // System.out.println("Output1 : " + solution.combinationSum2(candidates1, target1) + "\n");
 
         int[] candidates2 = {2,5,2,1,2};
         int target2 = 5;
