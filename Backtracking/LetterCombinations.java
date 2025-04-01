@@ -26,18 +26,18 @@ public class LetterCombinations {
             return result;
         }
 
-        telephoneMap.forEach((key, value) -> System.out.println(key + " -> " + value)); 
+        // telephoneMap.forEach((key, value) -> System.out.println(key + " -> " + value)); 
         
-        System.out.println("Letters At specific Index : " + telephoneMap.get(digits.charAt(0)));
+        // System.out.println("Letters At specific Index : " + telephoneMap.get(digits.charAt(0)));
         
-        // backtrack(digits, n, null, current, result, 0);
+        backtrack(digits, n, telephoneMap, current, result, 0);
 
         return result;
 
     }
 
     // Helper recursive function
-    private void backtrack(String digits, int n, HashMap<Integer, String> telephoneMap, String current, List<String> result, int index){
+    private void backtrack(String digits, int n, HashMap<Character, String> telephoneMap, String current, List<String> result, int index){
 
         // Base Case 
         if (current.length() == n) {
@@ -45,7 +45,13 @@ public class LetterCombinations {
             return;
         }
         
+        // Strings in Java are not directly iterable, .toCharArray() converts the string to a char[] array, which is iterable.
         
+        String lettersAtIndex = telephoneMap.get(digits.charAt(index));
+        
+        for(char letter : lettersAtIndex.toCharArray()){
+            backtrack(digits, n, telephoneMap, current + letter, result, index + 1);
+        }
     }
 
     public static void main(String[] args){
@@ -65,6 +71,8 @@ public class LetterCombinations {
 }
 
 /**
+ * 
+ * Took help to create Hashmap and for few syntax like converting string to char[] array
  * 
  * Intuitions : 
  * 
