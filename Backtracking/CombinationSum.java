@@ -20,7 +20,7 @@ public class CombinationSum {
     // Helper Function : to backtrack recurssively 
     private void backtrack(int[] nums, int target, int sum, List<Integer> current, List<List<Integer>> result){
         
-        System.out.println("[backtrack] Sum: " + sum + " | Current: " + current + " | result: " + result + "\n");
+        System.out.println("[backtrack] Sum: " + sum + " | Current: " + current + " | result: " + result);
 
         // Base Case
         if(sum == target){
@@ -33,9 +33,9 @@ public class CombinationSum {
             sum = sum + num;
             System.out.println(" num : " + num + " | Sum : " + sum);
 
-            if(sum < target){
+            if(sum <= target){
                 current.add(num);
-                System.out.println(" [IF : BEFORE] Current : " + current + " | Sum : " + sum + " | Result : " + result);
+                System.out.println(" [IF : BEFORE] Current : " + current + " | Sum : " + sum + " | Result : " + result + "\n");
 
                 backtrack(nums, target, sum, current, result);
 
