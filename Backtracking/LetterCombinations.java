@@ -5,11 +5,39 @@ public class LetterCombinations {
     // Function to find all combinations of a phone number
     public List<String> letterCombinations(String digits) {
         
+        List<String> result = new ArrayList<>();
+        String current = "";
+        int n = digits.length();
+        
+        //? Writing a HashMap : In java need to use .put to write all values in map. No other way   
+        HashMap<Integer, String> telephoneMap = new HashMap<>();
+
+        telephoneMap.put(2, "abc");
+        telephoneMap.put(3, "def");
+        telephoneMap.put(4, "ghi");
+        telephoneMap.put(5, "jkl");
+        telephoneMap.put(6, "mno");
+        telephoneMap.put(7, "pqrs");
+        telephoneMap.put(8, "tuv");
+        telephoneMap.put(9, "wxyz");
+
+        telephoneMap.forEach((key, value) -> System.out.println(key + " -> " + value)); 
+
+        // Base Case : If String is null
+        if (digits == null || n == 0) {
+            return result;
+        }
+
+        backtrack(digits, n, null, current, result, 0);
+
+        return result;
+
     }
 
     // Helper recursive function
-    private void backtrack(String digits, int n, Set<String> telephoneMap, String current, List<String> result, int start){
+    private void backtrack(String digits, int n, HashMap<Integer, String> telephoneMap, String current, List<String> result, int start){
 
+        return;
     }
 
     public static void main(String[] args){
