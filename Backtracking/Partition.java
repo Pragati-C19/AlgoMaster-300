@@ -5,11 +5,17 @@ public class Partition {
     // Get All types of partitions which are palindrome
     public List<List<String>> partition(String s) {
         
+        List<List<String>> result = new ArrayList<>();
+        List<String> current = new ArrayList<>();
+
+        backtrack(s, 0, current, result);
+
+        return result;
     }
 
     // Helper Function : To backtrack recursively 
     private void backtrack(String s, int start, List<String> current, List<List<String>> result){
-
+        
         return;
     }
 
