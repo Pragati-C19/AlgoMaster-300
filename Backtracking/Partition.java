@@ -8,25 +8,57 @@ public class Partition {
         List<List<String>> result = new ArrayList<>();
         List<String> current = new ArrayList<>();
 
+        System.out.println("Starting Backtracking..." + s);
         backtrack(s, 0, current, result);
 
+        System.out.println("Final Result: " + result);
         return result;
     }
 
     // Helper Function : To backtrack recursively 
     private void backtrack(String s, int start, List<String> current, List<List<String>> result){
-        
-        return;
+
+        System.out.println("[backtrack] Start: " + start + " | Current: " + current + " | result: " + result);
+
+        // Base Case 
+        if(start == s.length()){
+            result.add(new ArrayList<>(current));
+            System.out.println("[backtrack] Added to result: " + current + " | Result: " + result + "\n");
+            return;
+        }
+
+        // Check from Start to end
+        for(int i = start ; i < s.length(); i++){
+
+            System.out.println("[backtrack] Start of String: " + start + " | End of String: " + (i + 1) );
+
+            String partitionSubstring = s.substring(start, i + 1);
+            System.out.println("[backtrack] Partition : " + partitionSubstring + " \n Where Start of String: " + start + " | End of String: " + (i + 1) );
+
+
+            if(isPalindrome(partitionSubstring)){
+                
+                current.add(partitionSubstring);
+                
+                backtrack(s, i + 1, current, result);
+                
+                current.remove(current.size() - 1);
+                
+                System.out.println("[backtrack] Start: " + start + " | Current: " + current + " | result: " + result);
+
+            }
+        }
+
     }
 
     // Helper Function : TO check if it's palindrome or not
-    private boolean isPalindrome(String substring) {
+    private boolean isPalindrome(String partitionSubstring) {
 
-        String reversed = new StringBuilder(substring).reverse().toString();
+        String reversed = new StringBuilder(partitionSubstring).reverse().toString();
 
-        System.out.println("[isPalindrome] SubString : " + substring + " | Reversed : " + reversed);
+        System.out.println("[isPalindrome] SubString : " + partitionSubstring + " | Reversed : " + reversed);
         
-        if(substring.equals(reversed)){
+        if(partitionSubstring.equals(reversed)){
             return true;
         }
 
