@@ -2,6 +2,35 @@ import java.util.*;
 
 public class Partition {
     
+    // Get All types of partitions which are palindrome
+    public List<List<String>> partition(String s) {
+        
+    }
+
+    // Helper Function : To backtrack recursively 
+    private void backtrack(String s, int start, List<String> current, List<List<String>> result){
+
+        return;
+    }
+
+    // Helper Function : TO check if it's palindrome or not
+    private boolean isPalindrome(String s) {
+
+        return false;
+    }
+
+    public static void main(String[] args){
+
+        Partition solution = new Partition();
+
+        String s1 = "aab";
+        System.out.println("Output1: " + solution.partition(s1) + "\n");
+
+        String s2 = "a";
+        System.out.println("Output2: " + solution.partition(s2) + "\n");
+        
+    }
+
 }
 
 
