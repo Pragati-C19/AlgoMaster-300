@@ -14,7 +14,15 @@ public class Partition {
     }
 
     // Helper Function : TO check if it's palindrome or not
-    private boolean isPalindrome(String s) {
+    private boolean isPalindrome(String substring) {
+
+        String reversed = new StringBuilder(substring).reverse().toString();
+
+        System.out.println("[isPalindrome] SubString : " + substring + " | Reversed : " + reversed);
+        
+        if(substring.equals(reversed)){
+            return true;
+        }
 
         return false;
     }
@@ -28,7 +36,7 @@ public class Partition {
 
         String s2 = "a";
         System.out.println("Output2: " + solution.partition(s2) + "\n");
-        
+
     }
 
 }
