@@ -18,7 +18,7 @@ public class Partition {
     // Helper Function : To backtrack recursively 
     private void backtrack(String s, int start, List<String> current, List<List<String>> result){
 
-        System.out.println("[backtrack] Start: " + start + " | Current: " + current + " | result: " + result);
+        System.out.println("[backtrack : BeforeRemoving] Start: " + start + " | Current: " + current + " | result: " + result);
 
         // Base Case 
         if(start == s.length()){
@@ -29,8 +29,6 @@ public class Partition {
 
         // Check from Start to end
         for(int i = start ; i < s.length(); i++){
-
-            System.out.println("[backtrack] Start of String: " + start + " | End of String: " + (i + 1) );
 
             String partitionSubstring = s.substring(start, i + 1);
             System.out.println("[backtrack] Partition : " + partitionSubstring + " \n Where Start of String: " + start + " | End of String: " + (i + 1) );
@@ -43,8 +41,8 @@ public class Partition {
                 backtrack(s, i + 1, current, result);
                 
                 current.remove(current.size() - 1);
-                
-                System.out.println("[backtrack] Start: " + start + " | Current: " + current + " | result: " + result);
+
+                System.out.println("[backtrack : AfterRemoving] Start: " + start + " | Current: " + current + " | result: " + result);
 
             }
         }
@@ -56,7 +54,7 @@ public class Partition {
 
         String reversed = new StringBuilder(partitionSubstring).reverse().toString();
 
-        System.out.println("[isPalindrome] SubString : " + partitionSubstring + " | Reversed : " + reversed);
+        System.out.println("    [isPalindrome] SubString : " + partitionSubstring + " | Reversed : " + reversed + "\n");
         
         if(partitionSubstring.equals(reversed)){
             return true;
