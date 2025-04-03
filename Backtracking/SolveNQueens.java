@@ -16,6 +16,23 @@ public class SolveNQueens {
     // Helper Function : As we wanted string in "..Q." format so we need to generate it before pusshing in current
     private String generateString(int n, int row) {
 
+        StringBuilder colStr = new StringBuilder();
+        
+        for (int i = 0; i < n; i++) {
+            if (i == row) {
+                
+                colStr.append("Q");
+            
+            } else {
+                    
+                colStr.append(".");
+                    
+            }
+                    
+        }
+                    
+        return colStr.toString();
+                
     }
 
     public static void main(String[] args){
