@@ -2,7 +2,7 @@ import java.util.*;
 
 public class LevelOrder {
     
-    private class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
