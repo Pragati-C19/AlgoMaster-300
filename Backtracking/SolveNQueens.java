@@ -15,14 +15,7 @@ public class SolveNQueens {
         Map<Integer, Boolean> checkLowerDiagonal = new HashMap<>();
         
         // Remember we are traveling column to column so just taking above 3 thing in consideration
-        for (int i = 0; i <= n; i++) {
-
-            checkLeftRows.put(i, false);
-            checkUpperDiagonal.put(i, false);
-            checkLowerDiagonal.put(i, false);
-
-        }
-
+        
         System.out.println("Starting Backtracking for " + n + "...");
 
         backtrack(n, col, checkLeftRows, checkUpperDiagonal, checkLowerDiagonal, current, result);
@@ -48,7 +41,12 @@ public class SolveNQueens {
         for(int row = 0; row < n; row++){
 
             // let's check if placing queen in that place is safe or not
-            if(checkLeftRows.get(row) == true || checkUpperDiagonal.get(row - col) == true || checkLowerDiagonal.get(row + col) == true){
+            // if(checkLeftRows.get(row) == true || checkUpperDiagonal.get(row - col) == true || checkLowerDiagonal.get(row + col) == true){
+            //     continue;
+            // }
+
+            // As we getting NullPointerException in diagonal checks, will use getOrDefault instead of get
+            if(checkLeftRows.getOrDefault(row, false) == true || checkUpperDiagonal.getOrDefault(row - col) == true || checkLowerDiagonal.getOrDefault(row + col) == true){
                 continue;
             }
 
@@ -153,6 +151,9 @@ public class SolveNQueens {
  * - If we used queenCount, we'd have to manually decrease it after placing a queen, which adds extra complexity.
  * - Since the recursion naturally moves row by row, we just check if we've placed queens in all n rows → done!
  * 
+ * Getting NullPointerException in diagonal checks. 
+ * - checkUpperDiagonal.get(row - col) returned null as it hits to uninitialized keys
+ * - To solve this I'm using getOrDefault(key, defaultValue) function -> ensures a default value (false) if the key is missing, avoiding null.
  * 
  * Pseudo Code :
  * 
