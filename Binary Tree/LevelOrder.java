@@ -2,6 +2,62 @@ import java.util.*;
 
 public class LevelOrder {
     
+    private class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        
+    }
+
+    // Helper function to build a tree from an array (for testing)
+    public static TreeNode buildTree(Integer[] nodes) {
+        
+        // Node is empty
+        if (nodes.length == 0 || nodes[0] == null) return null;
+        
+        TreeNode root = new TreeNode(nodes[0]);
+        Queue<TreeNode> queue = new LinkedList<>();
+        
+        queue.add(root);
+        
+        int i = 1;
+
+        while (!queue.isEmpty() && i < nodes.length) {
+            TreeNode parent = queue.poll();
+            
+            if (nodes[i] != null) {
+                parent.left = new TreeNode(nodes[i]);
+                queue.add(parent.left);
+            }
+            i++;
+            
+            if (i < nodes.length && nodes[i] != null) {
+                current.right = new TreeNode(nodes[i]);
+                queue.add(parent.right);
+            }
+            i++;
+        }
+        
+        return root;
+    }
+
+    public static void main(String[] args) {
+        Integer[] treeArray = {3, 9, 20, null, null, 15, 7};
+        TreeNode root = buildTree(treeArray);
+        
+        List<List<Integer>> result = levelOrder(root);
+        System.out.println(result);
+    }
 }
 
 /*
