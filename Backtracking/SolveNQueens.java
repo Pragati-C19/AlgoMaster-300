@@ -5,7 +5,7 @@ public class SolveNQueens {
 }
 
 /*
- * //? Took help from Babbar video 
+ * //? Took help from love Babber video and ig it's nothing different than what logic I was using, but it helped me in pseudo code writing 
  * 
  * Intuitions :
  * 
