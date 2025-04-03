@@ -28,7 +28,7 @@ public class SolveNQueens {
     // Helper Function : Backtrack in recursion
     private void backtrack(int n, int col, Map<Integer, Boolean> checkLeftRows, Map<Integer, Boolean> checkUpperDiagonal, Map<Integer, Boolean> checkLowerDiagonal, List<String> current, List<List<String>> result) {
 
-        System.out.println(" \n [backtrack : BeforeRemoving] col: " + col + "\n  checkLeftRows : " + checkLeftRows + "\n  checkUpperDiagonal : " + checkUpperDiagonal + "\n  checkLowerDiagonal : " + checkLowerDiagonal + "\n  Current: " + current + " | Result: " + result);
+        System.out.println("\n [backtrack : BeforeRemoving] col: " + col + "\n  checkLeftRows : " + checkLeftRows + "\n  checkUpperDiagonal : " + checkUpperDiagonal + "\n  checkLowerDiagonal : " + checkLowerDiagonal + "\n  Current: " + current + " | Result: " + result + "\n");
 
         // Base Case :
         if(col == n){
@@ -41,12 +41,8 @@ public class SolveNQueens {
         for(int row = 0; row < n; row++){
 
             // let's check if placing queen in that place is safe or not
-            // if(checkLeftRows.get(row) == true || checkUpperDiagonal.get(row - col) == true || checkLowerDiagonal.get(row + col) == true){
-            //     continue;
-            // }
-
             // As we getting NullPointerException in diagonal checks, will use getOrDefault instead of get
-            if(checkLeftRows.getOrDefault(row, false) == true || checkUpperDiagonal.getOrDefault(row - col) == true || checkLowerDiagonal.getOrDefault(row + col) == true){
+            if(checkLeftRows.getOrDefault(row, false) == true || checkUpperDiagonal.getOrDefault((row - col), false) == true || checkLowerDiagonal.getOrDefault((row + col), false) == true){
                 continue;
             }
 
