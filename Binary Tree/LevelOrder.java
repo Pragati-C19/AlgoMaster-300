@@ -38,7 +38,7 @@ public class LevelOrder {
                 TreeNode node = queue.poll();
 
                 // Add that Node to level array
-                level.add(node);
+                level.add(node.val);
                 
                 if (node.left != null) {
                     queue.add(node.left);
