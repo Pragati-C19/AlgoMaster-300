@@ -2,6 +2,30 @@ import java.util.*;
 
 public class SolveNQueens {
 
+    //Driver Function
+    public List<List<String>> solveNQueens(int n) {
+        
+    }
+
+    // Helper Function : Backtrack in recursion
+    private void backtrack(int n, int col, Map<Integer, Boolean> checkLeftRows, Map<Integer, Boolean> checkUpperDiagonal, Map<Integer, Boolean> checkLowerDiagonal, List<String> current, List<List<String>> Result) {
+
+        return;
+    }
+
+    // Helper Function : As we wanted string in "..Q." format so we need to generate it before pusshing in current
+    private String generateString(int n, int row) {
+
+    }
+
+    public static void main(String[] args){
+        SolveNQueens solution = new SolveNQueens();
+
+        int n1 = 4;
+        System.out.println("Output1: " + solution.solveNQueens(n1) + "\n");
+
+    }
+
 }
 
 /*
