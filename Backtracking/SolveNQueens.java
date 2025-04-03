@@ -5,10 +5,25 @@ public class SolveNQueens {
     //Driver Function
     public List<List<String>> solveNQueens(int n) {
         
+        List<List<String>> result = new ArrayList<>();
+        List<String> current = new ArrayList<>();
+        int col = 0;
+
+        // All Maps Which store if block is used or not
+        Map<Integer, Boolean> checkLeftRows = new HashMap<>();
+        Map<Integer, Boolean> checkUpperDiagonal = new HashMap<>();
+        Map<Integer, Boolean> checkLowerDiagonal = new HashMap<>();
+        
+        // Remember we are traveling column to column so just taking above 3 thing in consideration
+        
+        backtrack(n, col, checkLeftRows, checkUpperDiagonal, checkLowerDiagonal, current, result);
+
+        return result;
+        
     }
 
     // Helper Function : Backtrack in recursion
-    private void backtrack(int n, int col, Map<Integer, Boolean> checkLeftRows, Map<Integer, Boolean> checkUpperDiagonal, Map<Integer, Boolean> checkLowerDiagonal, List<String> current, List<List<String>> Result) {
+    private void backtrack(int n, int col, Map<Integer, Boolean> checkLeftRows, Map<Integer, Boolean> checkUpperDiagonal, Map<Integer, Boolean> checkLowerDiagonal, List<String> current, List<List<String>> result) {
 
         return;
     }
