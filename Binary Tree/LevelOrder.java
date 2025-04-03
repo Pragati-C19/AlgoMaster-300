@@ -79,7 +79,7 @@ public class LevelOrder {
             i++;
             
             if (i < nodes.length && nodes[i] != null) {
-                current.right = new TreeNode(nodes[i]);
+                parent.right = new TreeNode(nodes[i]);
                 queue.add(parent.right);
             }
             i++;
