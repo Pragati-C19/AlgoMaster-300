@@ -15,7 +15,14 @@ public class SolveNQueens {
         Map<Integer, Boolean> checkLowerDiagonal = new HashMap<>();
         
         // Remember we are traveling column to column so just taking above 3 thing in consideration
-        
+        for (int i = 0; i <= n; i++) {
+
+            checkLeftRows.put(i, false);
+            checkUpperDiagonal.put(i, false);
+            checkLowerDiagonal.put(i, false);
+
+        }
+
         System.out.println("Starting Backtracking for " + n + "...");
 
         backtrack(n, col, checkLeftRows, checkUpperDiagonal, checkLowerDiagonal, current, result);
@@ -28,7 +35,7 @@ public class SolveNQueens {
     // Helper Function : Backtrack in recursion
     private void backtrack(int n, int col, Map<Integer, Boolean> checkLeftRows, Map<Integer, Boolean> checkUpperDiagonal, Map<Integer, Boolean> checkLowerDiagonal, List<String> current, List<List<String>> result) {
 
-        System.out.println("[backtrack : BeforeRemoving] col: " + col + " | checkLeftRows : " + checkLeftRows + " | checkUpperDiagonal : " + checkUpperDiagonal + " | checkLowerDiagonal : " + checkLowerDiagonal + " | Current: " + current + " | result: " + result);
+        System.out.println(" \n [backtrack : BeforeRemoving] col: " + col + "\n  checkLeftRows : " + checkLeftRows + "\n  checkUpperDiagonal : " + checkUpperDiagonal + "\n  checkLowerDiagonal : " + checkLowerDiagonal + "\n  Current: " + current + " | Result: " + result);
 
         // Base Case :
         if(col == n){
@@ -60,7 +67,7 @@ public class SolveNQueens {
             checkUpperDiagonal.put(row - col, false);
             checkLowerDiagonal.put(row + col, false);
 
-           System.out.println("[backtrack : AfterRemoving] col: " + col + " | checkLeftRows : " + checkLeftRows + " | checkUpperDiagonal : " + checkUpperDiagonal + " | checkLowerDiagonal : " + checkLowerDiagonal + " | Current: " + current + " | result: " + result);
+           System.out.println("[backtrack : AfterRemoving] col: " + col + "\n  checkLeftRows : " + checkLeftRows + "\n  checkUpperDiagonal : " + checkUpperDiagonal + "\n  checkLowerDiagonal : " + checkLowerDiagonal + "\n  Current: " + current + " | Result: " + result + "\n");
             
         }
     }
