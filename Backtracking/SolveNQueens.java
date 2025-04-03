@@ -16,16 +16,53 @@ public class SolveNQueens {
         
         // Remember we are traveling column to column so just taking above 3 thing in consideration
         
+        System.out.println("Starting Backtracking for " + n + "...");
+
         backtrack(n, col, checkLeftRows, checkUpperDiagonal, checkLowerDiagonal, current, result);
 
+        System.out.println("Final Result for " + n + " : " + result);
         return result;
-        
+
     }
 
     // Helper Function : Backtrack in recursion
     private void backtrack(int n, int col, Map<Integer, Boolean> checkLeftRows, Map<Integer, Boolean> checkUpperDiagonal, Map<Integer, Boolean> checkLowerDiagonal, List<String> current, List<List<String>> result) {
 
-        return;
+        System.out.println("[backtrack : BeforeRemoving] col: " + col + " | checkLeftRows : " + checkLeftRows + " | checkUpperDiagonal : " + checkUpperDiagonal + " | checkLowerDiagonal : " + checkLowerDiagonal + " | Current: " + current + " | result: " + result);
+
+        // Base Case :
+        if(col == n){
+            result.add(new ArrayList<>(current));
+            System.out.println("[backtrack] Added to result: " + current + " | Result: " + result + "\n");
+            return;
+        }
+
+        // We'll check every row from that specific column
+        for(int row = 0; row < n; row++){
+
+            // let's check if placing queen in that place is safe or not
+            if(checkLeftRows.get(row) == true || checkUpperDiagonal.get(row - col) == true || checkLowerDiagonal.get(row + col) == true){
+                continue;
+            }
+
+            String colStr = generateString(n, row);
+            System.out.println(" String Generated after compliting first column : " + colStr);
+            
+            current.add(colStr);   // Store String in current
+            checkLeftRows.put(row, true);
+            checkUpperDiagonal.put(row - col, true);
+            checkLowerDiagonal.put(row + col, true);
+
+            backtrack(n, col + 1, checkLeftRows, checkUpperDiagonal, checkLowerDiagonal, current, result);
+
+            current.remove(current.size() - 1);
+            checkLeftRows.put(row, false);
+            checkUpperDiagonal.put(row - col, false);
+            checkLowerDiagonal.put(row + col, false);
+
+           System.out.println("[backtrack : AfterRemoving] col: " + col + " | checkLeftRows : " + checkLeftRows + " | checkUpperDiagonal : " + checkUpperDiagonal + " | checkLowerDiagonal : " + checkLowerDiagonal + " | Current: " + current + " | result: " + result);
+            
+        }
     }
 
     // Helper Function : As we wanted string in "..Q." format so we need to generate it before pusshing in current
