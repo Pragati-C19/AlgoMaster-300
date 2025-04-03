@@ -17,6 +17,43 @@ public class LevelOrder {
 
     public List<List<Integer>> levelOrder(TreeNode root) {
         
+        List<List<Integer>> result = new ArrayList<>();
+
+        // Base Case 
+        if (root == null) {
+            return result;
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(root.val);
+
+        while (!queue.isEmpty()) {
+            
+            List<Integer> level = new ArrayList<>();
+            int levelSize = queue.size();
+
+            for (int i = 0; i < levelSize; i++) {
+                
+                // Remove Node and Declare it
+                TreeNode node = queue.poll();
+
+                // Add that Node to level array
+                level.add(node);
+                
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+
+            }
+
+            result.add(level);
+        }
+
+        return result;
     }
 
     // Helper function to build a tree from an array (for testing)
@@ -47,7 +84,7 @@ public class LevelOrder {
             }
             i++;
         }
-        
+
         return root;
     }
 
