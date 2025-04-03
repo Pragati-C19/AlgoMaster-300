@@ -89,11 +89,26 @@ public class LevelOrder {
     }
 
     public static void main(String[] args) {
-        Integer[] treeArray = {3, 9, 20, null, null, 15, 7};
-        TreeNode root = buildTree(treeArray);
+        // First Example
+        Integer[] treeArray1 = {3, 9, 20, null, null, 15, 7};
+        TreeNode root1 = buildTree(treeArray1);
         
-        List<List<Integer>> result = levelOrder(root);
-        System.out.println(result);
+        List<List<Integer>> result1 = levelOrder(root1);
+        System.out.println("Result1: " + result1 + "\n");
+
+        // Second Example
+        Integer[] treeArray2 = {1};
+        TreeNode root2 = buildTree(treeArray2);
+        
+        List<List<Integer>> result2 = levelOrder(root2);
+        System.out.println("Result2: " + result2 + "\n");
+
+        // Third Example
+        Integer[] treeArray3 = {};
+        TreeNode root3 = buildTree(treeArray3);
+        
+        List<List<Integer>> result3 = levelOrder(root3);
+        System.out.println("Result3: " + result3);
     }
 }
 
