@@ -15,7 +15,7 @@ public class LevelOrder {
         }
     }
 
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public static List<List<Integer>> levelOrder(TreeNode root) {
         
         List<List<Integer>> result = new ArrayList<>();
 
