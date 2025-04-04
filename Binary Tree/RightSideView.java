@@ -35,13 +35,25 @@ public class RightSideView {
 
         while (!queue.isEmpty()) {
             
-            TreeNode node = queue.poll();
+            int levelSize = queue.size();
+            
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode node = queue.poll();
 
-            result.add(node.val);
+                result.add(node.val);
+                System.out.println("Adding " + node.val + " into " + result);
 
-            // We need only right side view so just check for right side
-            if (node.right != null) {
-                queue.add(node.right);
+                // We need only right side view so just check for right side                
+                if (node.right != null) {
+                    queue.add(node.right);
+                    System.out.println("[IF] right node val: " + node.right.val);
+                }
+
+                if (node.left != null) {
+                    queue.add(node.left);
+                    System.out.println("[IF] left node val: " + node.left.val);
+                }
+
             }
         }
 
