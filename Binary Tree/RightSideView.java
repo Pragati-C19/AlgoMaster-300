@@ -35,23 +35,26 @@ public class RightSideView {
 
         while (!queue.isEmpty()) {
             
+            // getting size of queue
             int levelSize = queue.size();
             
             for (int i = 0; i < levelSize; i++) {
                 TreeNode node = queue.poll();
 
-                result.add(node.val);
-                System.out.println("Adding " + node.val + " into " + result);
-
-                // We need only right side view so just check for right side                
-                if (node.right != null) {
-                    queue.add(node.right);
-                    System.out.println("[IF] right node val: " + node.right.val);
+                if (i == (levelSize - 1)) {
+                    result.add(node.val);
+                    System.out.println("Adding " + node.val + " into " + result);   
                 }
 
+                // Below thing will always be same for all level order problems : Remember first left then right               
                 if (node.left != null) {
                     queue.add(node.left);
                     System.out.println("[IF] left node val: " + node.left.val);
+                }
+
+                if (node.right != null) {
+                    queue.add(node.right);
+                    System.out.println("[IF] right node val: " + node.right.val);
                 }
 
             }
