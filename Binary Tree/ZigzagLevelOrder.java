@@ -20,6 +20,56 @@ public class ZigzagLevelOrder {
     // Driver Function
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         
+        List<List<Integer>> result = new ArrayList<>();
+
+        if(root == null){
+            return result;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            
+            // if we declare current at start it will add all nodes in it like this -> [[3, 20, 9, 15, 7], [3, 20, 9, 15, 7], [3, 20, 9, 15, 7]]
+            List<Integer> current = new ArrayList<>();
+
+            int queueSize = queue.size();
+
+            for (int i = 0; i < queueSize; i++) {
+                
+                TreeNode node = queue.poll();
+
+                current.add(node.val);
+
+                if (i == (queueSize - 1)) {
+                    
+                    // right first then left
+                    if (node.right != null) {
+                        queue.add(node.right);
+                    }
+
+                    if (node.left != null) {
+                        queue.add(node.left);
+                    }
+                }
+                else {
+                    
+                    // left first then right 
+                    if (node.left != null) {
+                        queue.add(node.left);
+                    }
+
+                    if (node.right != null) {
+                        queue.add(node.right);
+                    }
+                }
+            }
+
+            result.add(current);
+        }
+
+        return result;
     }
 
     // Helper Function : to build a tree from an array (for testing)
