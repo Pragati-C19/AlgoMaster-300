@@ -20,6 +20,32 @@ public class RightSideView {
     // Driver Function
     public List<Integer> rightSideView(TreeNode root) {
         
+        List<Integer> result = new ArrayList<>();
+
+        // Base Case
+        if (root == null) {
+            return result;
+        }
+
+        // Declare Queue
+        Queue<TreeNode> queue = new LinkedList<>();
+
+        // Add root to the Queue
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            
+            TreeNode node = queue.poll();
+
+            result.add(node.val);
+
+            // We need only right side view so just check for right side
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+        }
+
+        return result;
     }
 
     // Helper Function : to build a tree from an array (for testing)
@@ -57,33 +83,29 @@ public class RightSideView {
     }
 
     public static void main(String[] args) {
+        
+        RightSideView solution = new RightSideView();
+
         // First Example
         Integer[] treeArray1 = {1, 2, 3, null, 5, null, 4};
         TreeNode root1 = buildTree(treeArray1);
-        
-        List<List<Integer>> result1 = levelOrder(root1);
-        System.out.println("Result1: " + result1 + "\n");
+        System.out.println("Result1: " + solution.rightSideView(root1) + "\n");
 
         // Second Example
         Integer[] treeArray2 = {1, 2, 3, 4, null, null, null, 5};
         TreeNode root2 = buildTree(treeArray2);
-        
-        List<List<Integer>> result2 = levelOrder(root2);
-        System.out.println("Result2: " + result2 + "\n");
+        System.out.println("Result2: " + solution.rightSideView(root2) + "\n");
 
         // Third Example
         Integer[] treeArray3 = {1, null, 3};
         TreeNode root3 = buildTree(treeArray3);
+        System.out.println("Result3: " + solution.rightSideView(root3) + "\n");
         
-        List<List<Integer>> result3 = levelOrder(root3);
-        System.out.println("Result3: " + result3);
-
         // Fourth Example
-        Integer[] treeArray4 = {1, null, 3};
+        Integer[] treeArray4 = {};
         TreeNode root4 = buildTree(treeArray4);
+        System.out.println("Result4: " + solution.rightSideView(root4) + "\n");
         
-        List<List<Integer>> result4 = levelOrder(root4);
-        System.out.println("Result4: " + result4);
     }
 }
 
