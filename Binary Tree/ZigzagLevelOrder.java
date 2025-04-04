@@ -29,9 +29,12 @@ public class ZigzagLevelOrder {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
+        // In general flow of Binary Tree is left to right so we are writing it as true
+        boolean leftToRight = true; 
+
         while (!queue.isEmpty()) {
             
-            // if we declare current at start it will add all nodes in it like this -> [[3, 20, 9, 15, 7], [3, 20, 9, 15, 7], [3, 20, 9, 15, 7]]
+            // If we declare current at start it will add all nodes in it like this -> [[3, 20, 9, 15, 7], [3, 20, 9, 15, 7], [3, 20, 9, 15, 7]]
             List<Integer> current = new ArrayList<>();
 
             int queueSize = queue.size();
@@ -40,33 +43,32 @@ public class ZigzagLevelOrder {
                 
                 TreeNode node = queue.poll();
 
-                current.add(node.val);
-
-                if (i == (queueSize - 1)) {
-                    
-                    // right first then left
-                    if (node.right != null) {
-                        queue.add(node.right);
-                    }
-
-                    if (node.left != null) {
-                        queue.add(node.left);
-                    }
+                // addFirst and addLast are inbuild functions in java so using it here
+                if (leftToRight) {
+                    // If it's normal flow (left to right) then next node will add after the last time added node
+                    current.addLast(node.val);
                 }
                 else {
-                    
-                    // left first then right 
-                    if (node.left != null) {
-                        queue.add(node.left);
-                    }
-
-                    if (node.right != null) {
-                        queue.add(node.right);
-                    }
+                    // If it's right to left then next node will add before the last time added node
+                    current.addFirst(node.val);
                 }
+
+                // Below thing will always be same for all level order problems : Remember left first then right 
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+                
             }
 
+            // Changed flow at the end of level : if current level is left -> right then here it change to right -> left
+            leftToRight =! leftToRight; 
+
             result.add(current);
+
         }
 
         return result;
@@ -124,6 +126,11 @@ public class ZigzagLevelOrder {
         Integer[] treeArray3 = {};
         TreeNode root3 = buildTree(treeArray3);
         System.out.println("Result3: " + solution.zigzagLevelOrder(root3) + "\n");
+
+        // Fourth Example
+        Integer[] treeArray4 = {1, 2, 3, 4, 5};
+        TreeNode root4 = buildTree(treeArray4);
+        System.out.println("Result4: " + solution.zigzagLevelOrder(root4) + "\n");
         
     }
 }
