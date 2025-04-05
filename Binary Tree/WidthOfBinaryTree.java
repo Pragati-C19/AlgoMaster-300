@@ -26,6 +26,7 @@ public class WidthOfBinaryTree {
         }
         
         int level = 0;
+        int maxWidth = 0;
 
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
@@ -33,6 +34,12 @@ public class WidthOfBinaryTree {
         while (!queue.isEmpty()) {
             
             int levelSize = queue.size();
+
+            System.out.println(" Current Level is " + level);
+
+            maxWidth = Math.max(maxWidth, level);
+
+            System.out.println(" Current Max Width is " + level);
             
             for (int i = 0; i < levelSize; i++) {
                 
@@ -48,9 +55,10 @@ public class WidthOfBinaryTree {
             }
 
             level++;
+
         }
 
-        return level;
+        return maxWidth;
     }
 
     // Helper Function : to build a tree from an array (for testing)
