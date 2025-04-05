@@ -42,29 +42,30 @@ public class Connect {
 
             for (int i = 0; i < levelSize ; i++) {
                 
-                Node head = queue.poll();
+                Node curr = queue.poll();
                 
-                System.out.println("[FOR] Head : " + head.val);
+                System.out.println("[FOR] Current Node : " + curr.val);
 
-                root.next = head;
+                if(i < (levelSize - 1)){
+                    // queue.peek() means: "show me the next element in the queue, but don’t remove it."
+                    curr.next = queue.peek();
+                    System.out.println("[IF] Next Node of Current Node  : " + curr.next.val);
 
-                // if(i == (levelSize - 1)){
-                //     root.next = null;
-                // }
-
-                // Below thing will always be same for all level order problems : Remember left first then right 
-                if (head.left != null) {
-                    queue.add(head.left);
                 }
 
-                if (head.right != null) {
-                    queue.add(head.right);
+                // Below thing will always be same for all level order problems : Remember left first then right 
+                if (curr.left != null) {
+                    queue.add(curr.left);
+                }
+
+                if (curr.right != null) {
+                    queue.add(curr.right);
                 }
             }
 
         }
 
-        return root.next;
+        return root;
 
     }
 
@@ -102,6 +103,30 @@ public class Connect {
         return root;
     }
 
+    // Helper Function : To Print List
+    public static void printNextPointers(Node root) {
+        Node levelStart = root;
+        
+        if (levelStart == null) {
+            System.out.println("null");
+        }
+    
+        while (levelStart != null) {
+            Node curr = levelStart;
+            levelStart = null;
+    
+            while (curr != null) {
+                System.out.print(curr.val + " -> ");
+                if (levelStart == null) {
+                    if (curr.left != null) levelStart = curr.left;
+                    else if (curr.right != null) levelStart = curr.right;
+                }
+                curr = curr.next;
+            }
+            System.out.println("null");
+        }
+    }    
+
     public static void main(String[] args) {
         
         Connect solution = new Connect();
@@ -109,12 +134,14 @@ public class Connect {
         // First Example
         Integer[] treeArray1 = {1, 2, 3, 4, 5, null, 7};
         Node root1 = buildTree(treeArray1);
-        System.out.println("Result1: " + solution.connect(root1) + "\n");
+        // System.out.println("Result1: " + solution.connect(root1) + "\n");
+        solution.printNextPointers(solution.connect(root1));
 
         // Second Example
         Integer[] treeArray2 = {};
         Node root2 = buildTree(treeArray2);
-        System.out.println("Result2: " + solution.connect(root2) + "\n");
+        solution.printNextPointers(solution.connect(root2));
+
 
     }
 
@@ -157,13 +184,13 @@ public class Connect {
  *          levelSize = queue.size() - 1
  *          
  *          for (i till levelSize){
- *              Node head = queue.pop();
+ *              Node curr = queue.pop();
  *              
- *              result.add(head.val)
+ *              result.add(curr.val)
  *              if(i == (levelSize - 1)) result.add("#")
  *              
- *              if(head.left != null) queue.add(head.left)
- *              if(head.right != null) queue.add(head.right)
+ *              if(curr.left != null) queue.add(curr.left)
+ *              if(curr.right != null) queue.add(curr.right)
  *             
  *          }
  *      }
