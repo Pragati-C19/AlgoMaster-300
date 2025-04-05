@@ -44,7 +44,7 @@ public class Connect {
                 
                 Node head = queue.poll();
 
-                head.next = head.val;
+                head.next = head;
 
                 if(i == (levelSize - 1)){
                     head.next = "#";
