@@ -62,7 +62,7 @@ public class Connect {
 
         }
 
-        return head.next;
+        return root.next;
 
     }
 
