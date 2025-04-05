@@ -17,6 +17,16 @@ public class WidthOfBinaryTree {
         }
     }
 
+    private static class NodeIndexPair {
+        TreeNode node;
+        int index;
+    
+        NodeIndexPair(TreeNode node, int index) {
+            this.node = node;
+            this.index = index;
+        }
+    }
+
     // Driver Function 
     public int widthOfBinaryTree(TreeNode root) {
         
@@ -24,41 +34,46 @@ public class WidthOfBinaryTree {
         if (root == null) {
             return 0;
         }
-        
-        int level = 0;
+    
         int maxWidth = 0;
 
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
+        // Will store not only root but it's index too in queue
+        Queue<NodeIndexPair> queue = new LinkedList<>();
+        queue.add(new NodeIndexPair(root, 0));  // root has index 0
 
         while (!queue.isEmpty()) {
             
             int levelSize = queue.size();
+            System.out.println(" LevelSize : " + levelSize);
 
-            System.out.println(" Current Level : " + level);
+            int minIndex = queue.peek().index; // first index at this level
+            System.out.println(" Minimum Index : " + minIndex);
 
-            int twosPow = (int) Math.pow(2, level);
-            System.out.println(" 2 ^ level is : " + twosPow);
-
-            maxWidth = Math.max(maxWidth, twosPow);
-
-            System.out.println(" Current Max Width :  " + level);
+            int firstIndexOfLevel = 0;
+            int lastIndexOfLevel = 0;
             
             for (int i = 0; i < levelSize; i++) {
                 
-                TreeNode node = queue.poll();
+                NodeIndexPair pair = queue.poll();
+
+                TreeNode node = pair.node;      // Here TreeNode is Key so 
+                int index = pair.index - minIndex;     // normalize to prevent overflow
+
+                if(i == 0) firstIndexOfLevel = index;
+                if(i == (levelSize - 1)) lastIndexOfLevel = index;
+
 
                 if (node.left != null) {
-                    queue.add(node.left);
+                    queue.add(new NodeIndexPair(node.left, 2 * index));
                 }
 
                 if (node.right != null) {
-                    queue.add(node.right);
+                    queue.add(new NodeIndexPair(node.right, 2 * index + 1));
                 }
             }
 
-            level++;
-
+            int width = lastIndexOfLevel - firstIndexOfLevel + 1;
+            maxWidth = Math.max(maxWidth, width);
         }
 
         return maxWidth;
@@ -266,7 +281,6 @@ public class WidthOfBinaryTree {
  *          int firstIndexOfLevel = 0;
  *          int lastIndexOfLevel = 0;
  *          
- *          maxWidth = Math.Max(maxWidth, 2 ^ level)
  * 
  *          for (i till levelSize){
  *              Pair<TreeNode,Integer> node = queue.pop();
