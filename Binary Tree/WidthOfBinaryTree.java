@@ -35,11 +35,14 @@ public class WidthOfBinaryTree {
             
             int levelSize = queue.size();
 
-            System.out.println(" Current Level is " + level);
+            System.out.println(" Current Level : " + level);
 
-            maxWidth = Math.max(maxWidth, level);
+            int twosPow = (int) Math.pow(2, level);
+            System.out.println(" 2 ^ level is : " + twosPow);
 
-            System.out.println(" Current Max Width is " + level);
+            maxWidth = Math.max(maxWidth, twosPow);
+
+            System.out.println(" Current Max Width :  " + level);
             
             for (int i = 0; i < levelSize; i++) {
                 
