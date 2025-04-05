@@ -47,7 +47,7 @@ public class Connect {
                 head.next = head;
 
                 if(i == (levelSize - 1)){
-                    head.next = "#";
+                    head.next = null;
                 }
 
                 // Below thing will always be same for all level order problems : Remember left first then right 
