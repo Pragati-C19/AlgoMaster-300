@@ -1,7 +1,4 @@
-import java.util.LinkedList;
-import java.util.Queue;
-
-import javax.swing.tree.TreeNode;
+import java.util.*;
 
 public class Connect {
 
@@ -67,31 +64,31 @@ public class Connect {
     }
 
     // Helper Function : to build a tree from an array (for testing)
-    public static TreeNode buildTree(Integer[] nodes) {
+    public static Node buildTree(Integer[] nodes) {
         
         // Node is empty
         if (nodes.length == 0 || nodes[0] == null) return null;
         
-        TreeNode root = new TreeNode(nodes[0]);
-        Queue<TreeNode> queue = new LinkedList<>();
+        Node root = new Node(nodes[0]);
+        Queue<Node> queue = new LinkedList<>();
         
         queue.add(root);
         
         int i = 1;  // Start from second element
 
         while (!queue.isEmpty() && i < nodes.length) {
-            TreeNode parent = queue.poll();
+            Node parent = queue.poll();
             
             // Assign left child
             if (nodes[i] != null) {
-                parent.left = new TreeNode(nodes[i]);
+                parent.left = new Node(nodes[i]);
                 queue.add(parent.left);
             }
             i++;
             
             // Assign right child (check if there's still an element)
             if (i < nodes.length && nodes[i] != null) {
-                parent.right = new TreeNode(nodes[i]);
+                parent.right = new Node(nodes[i]);
                 queue.add(parent.right);
             }
             i++;
@@ -106,12 +103,12 @@ public class Connect {
 
         // First Example
         Integer[] treeArray1 = {1, 2, 3, 4, 5, null, 7};
-        TreeNode root1 = buildTree(treeArray1);
+        Node root1 = buildTree(treeArray1);
         System.out.println("Result1: " + solution.connect(root1) + "\n");
 
         // Second Example
         Integer[] treeArray2 = {};
-        TreeNode root2 = buildTree(treeArray2);
+        Node root2 = buildTree(treeArray2);
         System.out.println("Result2: " + solution.connect(root2) + "\n");
 
     }
