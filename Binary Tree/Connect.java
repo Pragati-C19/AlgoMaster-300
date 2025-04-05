@@ -30,6 +30,40 @@ public class Connect {
     // Driver Function
     public Node connect(Node root) {
         
+        // Base Case
+        if (root == null) return null;
+
+        Queue queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            
+            int levelSize = queue.size();
+
+            for (int i = 0; i < levelSize ; i++) {
+                
+                Node head = queue.poll();
+
+                head.next = head.val;
+
+                if(i == (levelSize - 1)){
+                    head.next = "#";
+                }
+
+                // Below thing will always be same for all level order problems : Remember left first then right 
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+
+        }
+
+        return head.next;
+
     }
 
     // Helper Function : to build a tree from an array (for testing)
