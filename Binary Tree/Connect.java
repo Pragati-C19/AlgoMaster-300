@@ -33,7 +33,7 @@ public class Connect {
         Queue<Node> queue = new LinkedList<>();
         queue.add(root);
 
-        System.out.println("[FOR] Root : " + root.val);
+        System.out.println("Root At Start : " + root.val);
 
         while (!queue.isEmpty()) {
             
@@ -50,7 +50,6 @@ public class Connect {
                     // queue.peek() means: "show me the next element in the queue, but don’t remove it."
                     curr.next = queue.peek();
                     System.out.println("[IF] Next Node of Current Node  : " + curr.next.val);
-
                 }
 
                 // Below thing will always be same for all level order problems : Remember left first then right 
@@ -63,6 +62,7 @@ public class Connect {
                 }
             }
 
+            System.out.println("\n");
         }
 
         return root;
@@ -104,28 +104,31 @@ public class Connect {
     }
 
     // Helper Function : To Print List
-    public static void printNextPointers(Node root) {
+    public static void printNextAsList(Node root) {
+        List<String> output = new ArrayList<>();
         Node levelStart = root;
-        
-        if (levelStart == null) {
-            System.out.println("null");
-        }
     
         while (levelStart != null) {
             Node curr = levelStart;
             levelStart = null;
     
             while (curr != null) {
-                System.out.print(curr.val + " -> ");
+                output.add(String.valueOf(curr.val));
+    
                 if (levelStart == null) {
                     if (curr.left != null) levelStart = curr.left;
                     else if (curr.right != null) levelStart = curr.right;
                 }
+    
                 curr = curr.next;
             }
-            System.out.println("null");
+    
+            output.add("#");
         }
-    }    
+    
+        System.out.println(output);
+    }
+    
 
     public static void main(String[] args) {
         
@@ -134,14 +137,15 @@ public class Connect {
         // First Example
         Integer[] treeArray1 = {1, 2, 3, 4, 5, null, 7};
         Node root1 = buildTree(treeArray1);
-        // System.out.println("Result1: " + solution.connect(root1) + "\n");
-        solution.printNextPointers(solution.connect(root1));
+        // System.out.println("Result1: ");
+        printNextAsList(solution.connect(root1));
+        System.out.println("\n");
 
         // Second Example
         Integer[] treeArray2 = {};
         Node root2 = buildTree(treeArray2);
-        solution.printNextPointers(solution.connect(root2));
-
+        // System.out.println("Result2: ");
+        printNextAsList(solution.connect(root2));
 
     }
 
@@ -165,11 +169,10 @@ public class Connect {
  * 4. then will start while loop till queue is not empty 
  * 5. get queueSize which is as same as levelSize bcoz level means the horizontal bradth of tree
  * 6. then will start for loop till i = levelSize
- * 7. will pop root from the queue and store it in node 
- * 8. if(i == (levelsize - 1)) add "#"
- * 9. else add node.next = next node of same level (which is node.val)
- * 10. As always do the checks of node.left and node.right
- * 11. return result
+ * 7. will pop root from the queue and store it in curr 
+ * 8. if(i < (levelsize - 1)) curr.next = next node of same level (which will take by using peek())
+ * 9. As always do the checks of curr.left and curr.right
+ * 10. return root
  * 
  * Psuedo Code :
  * 
@@ -181,20 +184,20 @@ public class Connect {
  *      queue.add(root)
  * 
  *      while(!queue.isEmpty){
- *          levelSize = queue.size() - 1
+ *          levelSize = queue.size()
  *          
  *          for (i till levelSize){
  *              Node curr = queue.pop();
  *              
- *              result.add(curr.val)
- *              if(i == (levelSize - 1)) result.add("#")
+ *              if(i < (levelSize - 1)) curr.next = queue.peek()
  *              
  *              if(curr.left != null) queue.add(curr.left)
  *              if(curr.right != null) queue.add(curr.right)
  *             
  *          }
  *      }
- * 
+ *  
+ *      return root
  * }
  * 
  */
