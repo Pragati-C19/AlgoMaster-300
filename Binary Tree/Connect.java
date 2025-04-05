@@ -51,12 +51,12 @@ public class Connect {
                 }
 
                 // Below thing will always be same for all level order problems : Remember left first then right 
-                if (node.left != null) {
-                    queue.add(node.left);
+                if (head.left != null) {
+                    queue.add(head.left);
                 }
 
-                if (node.right != null) {
-                    queue.add(node.right);
+                if (head.right != null) {
+                    queue.add(head.right);
                 }
             }
 
