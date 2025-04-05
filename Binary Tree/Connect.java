@@ -33,19 +33,24 @@ public class Connect {
         Queue<Node> queue = new LinkedList<>();
         queue.add(root);
 
+        System.out.println("[FOR] Root : " + root.val);
+
         while (!queue.isEmpty()) {
             
             int levelSize = queue.size();
+            System.out.println("Level of Size " + levelSize + " Started ");
 
             for (int i = 0; i < levelSize ; i++) {
                 
                 Node head = queue.poll();
+                
+                System.out.println("[FOR] Head : " + head.val);
 
-                head.next = head;
+                root.next = head;
 
-                if(i == (levelSize - 1)){
-                    head.next = null;
-                }
+                // if(i == (levelSize - 1)){
+                //     root.next = null;
+                // }
 
                 // Below thing will always be same for all level order problems : Remember left first then right 
                 if (head.left != null) {
