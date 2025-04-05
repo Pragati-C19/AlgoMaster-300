@@ -33,7 +33,7 @@ public class Connect {
         // Base Case
         if (root == null) return null;
 
-        Queue queue = new LinkedList<>();
+        Queue<Node> queue = new LinkedList<>();
         queue.add(root);
 
         while (!queue.isEmpty()) {
