@@ -245,6 +245,48 @@ public class WidthOfBinaryTree {
  * }
  * 
  * 
+ * 4. Will Assign index to all nodes 
+ * 
+ * function connect(Node root){
+ * 
+ *      Base Case 
+ *      if(root == null) return 0
+ *      
+ *      int maxWidth = 0;
+ *      
+ *      // Will store not only root but it's index too in queue
+ *      queue = new Queue<Pair<TreeNode, index>>
+ *      queue.add(new Pair(root, 0))    
+ * 
+ *      while(!queue.isEmpty){
+ *          levelSize = queue.size()
+ *          
+ *          minIndex = queue.peek().index
+ *          
+ *          int firstIndexOfLevel = 0;
+ *          int lastIndexOfLevel = 0;
+ *          
+ *          maxWidth = Math.Max(maxWidth, 2 ^ level)
+ * 
+ *          for (i till levelSize){
+ *              Pair<TreeNode,Integer> node = queue.pop();
+ * 
+ *              int index = node.index - minIndex;  // normalize to prevent overflow
+ * 
+ *              if(i == 0) firstIndexOfLevel = index
+ *              if(i == levelSize - 1) lastIndexOfLevel = index;
+ *              
+ *              if(node.left != null) queue.add(Pair (node.left, 2 * index))
+ *              if(node.right != null) queue.add(Pair (node.right, 2 * index + 1)
+ *             
+ *          }
+ *          
+ *          width = lastIndexOfLevel - firstIndexOfLevel
+ *          maxWidth = Math.max(maxWidth, width)
+ *      }
+ *  
+ *      return maxWidth;
+ * }
  * 
  * 
  */
