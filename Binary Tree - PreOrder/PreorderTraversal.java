@@ -17,6 +17,37 @@ public class PreorderTraversal {
     // Driver Function
     public List<Integer> preorderTraversal(TreeNode root) {
         
+        List<Integer> result = new ArrayList<>();
+
+        if (root == null) {
+            return result;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            
+            int stackSize = stack.size();
+
+            for (int i = 0; i < stackSize; i++) {
+                
+                TreeNode node = stack.pop();
+
+                result.add(node.val);
+
+                // Stack is FILO approach so we are checking right side first
+                if (node.right != null) {
+                    stack.push(node.right);
+                }
+
+                if (node.left != null) {
+                    stack.push(node.left);
+                }
+            }
+        }
+
+        return result;
     }
 
     // Helper Function : to build a tree from an array (for testing)
