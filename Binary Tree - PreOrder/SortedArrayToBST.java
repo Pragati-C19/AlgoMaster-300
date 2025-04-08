@@ -25,11 +25,11 @@ public class SortedArrayToBST {
         int end = nums.length - 1;
         
         // building Tree
-        return buildTree(nums, start, end);
+        return buildHeightBalancedBST(nums, start, end);
     }
 
     // Recursion Function : Used to build Tree
-    private TreeNode buildTree(int[] nums, int left, int right){
+    private TreeNode buildHeightBalancedBST(int[] nums, int left, int right){
 
         // Base Case : this is same as we do in binary search while(left < right) thing
         if (left > right) return null;
@@ -41,10 +41,10 @@ public class SortedArrayToBST {
         TreeNode root = new TreeNode(nums[mid]);
 
         // Adding left side of root
-        root.left = buildTree(nums, left, mid - 1); 
+        root.left = buildHeightBalancedBST(nums, left, mid - 1); 
 
         // Adding right side of root
-        root.right = buildTree(nums, mid + 1, right); 
+        root.right = buildHeightBalancedBST(nums, mid + 1, right); 
 
         return root;
     }
@@ -80,7 +80,7 @@ public class SortedArrayToBST {
  * 1. we need to find mid here
  * 2. will divide aray in two parts from that mid
  * 3. will make mid as root
- * 4. will recursively call for buildTree function which I'm using all the time
+ * 4. will recursively call for buildHeightBalancedBST function which I'm using all the time
  * for both parts
  * 5. merge both sides with mid as at the start
  * 6. will not pas mid to any side.. at the end will just add it at the start as
@@ -101,10 +101,10 @@ public class SortedArrayToBST {
  *      left = 0
  *      right = nums.length - 1
  *      
- *      return buildTree(nums, left, right)
+ *      return buildHeightBalancedBST(nums, left, right)
  * }
  * 
- * function buildTree(int[] nums, int left, int right) {        
+ * function buildHeightBalancedBST(int[] nums, int left, int right) {        
  *          
  *      // I pick the mid element
  *      mid = (left + right) / 2
@@ -113,10 +113,10 @@ public class SortedArrayToBST {
  *      root = nums[mid]
  * 
  *      // Adding left side of root 
- *      root.left = buildTree(nums, left, mid - 1)
+ *      root.left = buildHeightBalancedBST(nums, left, mid - 1)
  *      
  *      adding right side of root
- *      root.right = buildTree(nums, mid + 1, right)
+ *      root.right = buildHeightBalancedBST(nums, mid + 1, right)
  *      
  *      return root;
  * }
