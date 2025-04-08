@@ -1,7 +1,69 @@
 import java.util.*;
 
+import javax.swing.tree.TreeNode;
+
 public class IsSameTree {
     
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    // Driver Function
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        
+    }
+
+    // Helper Function : to build a tree from an array (for testing)
+    public static TreeNode buildTree(Integer[] nodes, int index) {
+        
+        // Base Case: if index is out of bounds or node is null
+        if (index >= nodes.length || nodes[index] == null) return null;
+
+        TreeNode root = new TreeNode(nodes[index]);
+
+        // Recursively build left and right children
+        root.left = buildTreeHelper(nodes, 2 * index + 1);
+        root.right = buildTreeHelper(nodes, 2 * index + 2);
+
+        return root;
+    }
+
+
+    public static void main(String[] args) {
+        
+        PreorderTraversal solution = new PreorderTraversal();
+
+        // First Example
+        Integer[] p1 = {1, 2, 3};
+        Integer[] q1 = {1, 2, 3};
+        TreeNode root1 = buildTree(p1 , 0);
+        TreeNode root2 = buildTree(q1 , 0);
+        System.out.println("Result1: " + solution.isSameTree(root1, root2) + "\n");
+
+        // Second Example
+        Integer[] p3 = {1, 2};
+        Integer[] q4 = {1, null, 2};
+        TreeNode root3 = buildTree(p3 , 0);
+        TreeNode root4 = buildTree(q4 , 0);
+        System.out.println("Result1: " + solution.isSameTree(root3, root4) + "\n");
+
+        // Third Example
+        Integer[] p5 = {1, 2, 1};
+        Integer[] q6 = {1, 1, 2};
+        TreeNode root5 = buildTree(p5 , 0);
+        TreeNode root6 = buildTree(q6 , 0);
+        System.out.println("Result1: " + solution.isSameTree(root5, root6) + "\n");
+
+    }
 }
 
 
