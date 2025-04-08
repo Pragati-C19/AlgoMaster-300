@@ -26,6 +26,13 @@ public class SortedArrayToBST {
  * 6. will not pas mid to any side.. at the end will just add it at the start as
  * root
  * 
+ * 7. we don't need to merge as we want a root so.. 
+ * 8. lets try with one node then will think of other
+ * - Pick the mid elemet
+ * - make it root
+ * - root.left = nums[mid - 1]
+ * - root.right = nums[mid + 1]
+ * 
  * 
  * Pseudo Code :
  * 
@@ -34,25 +41,23 @@ public class SortedArrayToBST {
  *      left = 0
  *      right = nums.length - 1
  *      
- *      mid = (left + right) / 2
- * 
- *      leftSideTree = buildTree(nums, left, mid - 1)
- *      rightSideTree = buildTree(nums, mid + 1, right)
- * 
- *      return merge(root, leftSideTree, rightSideTree)
+ *      return buildTree(nums, left, right)
  * }
  * 
- * public static TreeNode buildTree(Integer[] nodes, int index) {
+ * function buildTree(int[] nums, int left, int right) {        
+ *          
+ *      // I pick the mid element
+ *      mid = (left + right) / 2
+ *          
+ *      // Make it root
+ *      root = nums[mid]
  * 
- *      // Base Case: if index is out of bounds or node is null
- *      if (index >= nodes.length || nodes[index] == null) return null;
- * 
- *      TreeNode root = new TreeNode(nodes[index]);
- * 
- *      // Recursively build left and right children
- *      root.left = buildTree(nodes, 2 * index + 1);
- *      root.right = buildTree(nodes, 2 * index + 2);
- * 
+ *      // Adding left side of root 
+ *      root.left = buildTree(nums, left, mid - 1)
+ *      
+ *      adding right side of root
+ *      root.right = buildTree(nums, mid + 1, right)
+ *      
  *      return root;
  * }
  * 
