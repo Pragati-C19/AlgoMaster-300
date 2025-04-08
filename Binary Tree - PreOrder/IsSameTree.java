@@ -1,5 +1,7 @@
 import java.util.*;
 
+import javax.swing.tree.TreeNode;
+
 public class IsSameTree {
     
     private static class TreeNode {
@@ -18,23 +20,27 @@ public class IsSameTree {
     // Driver Function
     public boolean isSameTree(TreeNode p, TreeNode q) {
         
-        System.out.println( "At start ->  p : " + p.val + " q : " + q.val);
-        if (p == null && q == null) return true;
-        
-        if (p.val != q.val) {
+        if (p == null && q == null) {
+            System.out.println("Both vals are null");
+            return true;
+        }
+        else if (p.val != q.val) {
+            System.out.println("Both vals are different ->  p : " + p.val + " q : " + q.val);
             return false;
         }
-
-        if (p.val == q.val) {
+        else if (p.val == q.val) {
+            System.out.println("Both vals are same ->  p : " + p.val + " q : " + q.val);
             
             // check left side of it
             isSameTree(p.left, q.left);
 
             // check right side of it
             isSameTree(p.right, q.right);
+
         }
 
-        return false;
+        // Return combined result of both recursive calls
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
 
     // Helper Function : to build a tree from an array (for testing)
