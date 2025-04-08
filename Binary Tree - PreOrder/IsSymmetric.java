@@ -18,6 +18,29 @@ public class IsSymmetric {
     // Driver Function
     public boolean isSymmetric(TreeNode root) {
         
+        if (root.left == null && root.right == null) {
+            System.out.println("Both left and right of root is Null");
+            return true;
+        }
+        else if (root.left == null || root.right == null) {
+            System.out.println("One of the side of root is Null");
+            return false;
+        }
+        else if (root.left.val != root.right.val) {
+            System.out.println("Both side of " + root.val + " is Different -> left : " + root.left.val + " right : " + root.right.val);
+            return false;
+        }
+        else if (root.left.val == root.right.val) {
+            System.out.println("Both side of " + root.val + " is Same -> left : " + root.left.val + " right : " + root.right.val);
+            isSameTree(root.left, root.right);
+        }
+
+        return isSameTree(root.left, root.right);
+    }
+
+    // Recursion Function : Which tells if the left and right side of node is mirror image or not
+    private boolean isSameTree(TreeNode p, TreeNode q){
+
         return true;
     }
 
