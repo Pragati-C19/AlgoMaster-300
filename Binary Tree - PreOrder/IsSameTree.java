@@ -18,8 +18,9 @@ public class IsSameTree {
     // Driver Function
     public boolean isSameTree(TreeNode p, TreeNode q) {
         
+        System.out.println( "At start ->  p : " + p.val + " q : " + q.val);
         if (p == null && q == null) return true;
-
+        
         if (p.val != q.val) {
             return false;
         }
@@ -33,7 +34,7 @@ public class IsSameTree {
             isSameTree(p.right, q.right);
         }
 
-        return true;
+        return false;
     }
 
     // Helper Function : to build a tree from an array (for testing)
@@ -64,11 +65,11 @@ public class IsSameTree {
         System.out.println("Result1: " + solution.isSameTree(root1, root2) + "\n");
 
         // Second Example
-        Integer[] p3 = {1, 2};
-        Integer[] q4 = {1, null, 2};
-        TreeNode root3 = buildTree(p3 , 0);
-        TreeNode root4 = buildTree(q4 , 0);
-        System.out.println("Result1: " + solution.isSameTree(root3, root4) + "\n");
+        // Integer[] p3 = {1, 2};
+        // Integer[] q4 = {1, null, 2};
+        // TreeNode root3 = buildTree(p3 , 0);
+        // TreeNode root4 = buildTree(q4 , 0);
+        // System.out.println("Result1: " + solution.isSameTree(root3, root4) + "\n");
 
         // Third Example
         Integer[] p5 = {1, 2, 1};
