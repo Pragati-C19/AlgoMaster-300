@@ -21,6 +21,17 @@ public class BinaryTreePaths {
     // Driver Function
     public List<String> binaryTreePaths(TreeNode root) {
         
+        List<String> result = new ArrayList<>();
+        String currentPath = root.val;
+
+        if (root.val == null) {
+            return result;
+        }
+
+        System.out.println("Starting Backtracking at " + root.val + " ...");
+        backtrack(root, currentPath, result);
+        
+        return result;
     }
 
     // Recursion Backtracking Function
