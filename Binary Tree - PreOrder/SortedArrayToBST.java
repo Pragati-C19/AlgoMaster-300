@@ -21,15 +21,31 @@ public class SortedArrayToBST {
     // Driver Function 
     public TreeNode sortedArrayToBST(int[] nums) {
         
+        int start = 0;
+        int end = nums.length - 1;
+        
+        // building Tree
+        return buildTree(nums, start, end);
     }
 
     // Recursion Function : Used to build Tree
     private TreeNode buildTree(int[] nums, int left, int right){
 
+        // Getting mid element
+        int mid = (left + right) / 2;
+
+        // Making mid element as root
+        TreeNode root = nums[mid];
+
+        // Adding left side of root
+        root.left = buildTree(nums, left, mid - 1);
+
+        // Adding right side of root
+        root.right = buildTree(nums, mid + 1, right);
     }
 
-    
-    public static void main (Strings[] args){
+
+    public static void main (String[] args){
 
         SortedArrayToBST solution = new SortedArrayToBST();
 
