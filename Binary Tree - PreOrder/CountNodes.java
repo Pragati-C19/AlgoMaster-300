@@ -21,7 +21,38 @@ public class CountNodes {
     // Driver Function 
     public int countNodes(TreeNode root) {
         
-        return 0;
+        // Base Case :
+        if (root == null) {
+            return 0;
+        }
+        
+        int currentCount = 0;
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            
+            int stackSize = stack.size();
+
+            for (int i = 0; i < stackSize; i++) {
+                
+                TreeNode node = stack.pop();
+
+                currentCount++;
+
+                if (node.right != null) {
+                    stack.push(node.right);
+                }
+
+                if(node.left != null){
+                    stack.push(node.left);
+                } 
+
+            }
+        }
+
+        return currentCount;
     }
 
 
