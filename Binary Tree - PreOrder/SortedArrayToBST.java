@@ -35,13 +35,15 @@ public class SortedArrayToBST {
         int mid = (left + right) / 2;
 
         // Making mid element as root
-        TreeNode root = nums[mid];
+        TreeNode root = new TreeNode(nums[mid]);
 
         // Adding left side of root
         root.left = buildTree(nums, left, mid - 1);
 
         // Adding right side of root
         root.right = buildTree(nums, mid + 1, right);
+
+        return root;
     }
 
 
