@@ -25,34 +25,11 @@ public class CountNodes {
         if (root == null) {
             return 0;
         }
-        
-        int currentCount = 0;
 
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
+        // will use shortcut here for more details check pseudo code
+        // currentCount + leftNodeCount + rightNodeCount
+        return 1 + countNodes(root.left) + countNodes(root.right);
 
-        while (!stack.isEmpty()) {
-            
-            int stackSize = stack.size();
-
-            for (int i = 0; i < stackSize; i++) {
-                
-                TreeNode node = stack.pop();
-
-                currentCount++;
-
-                if (node.right != null) {
-                    stack.push(node.right);
-                }
-
-                if(node.left != null){
-                    stack.push(node.left);
-                } 
-
-            }
-        }
-
-        return currentCount;
     }
 
 
@@ -102,12 +79,22 @@ public class CountNodes {
  * 2. we need to count nodes
  * 3. we should use recursion ig let's see
  * 
+ * 
  * Pattern :
  * 
  * 1. We need a int currentCount which stores count of nodes
  * 2. will use stack approach first as it's my first brute force type thought so 
+ * 3. with recursion 
+ * - Base case: if root is null, return 0
+ * - Count this current node → 1
+ * - Go left → get count of nodes from left side
+ * - Go right → get count of nodes from right side
+ * - Add all of them → done
+ * 
  * 
  * Pseudo Code :
+ * 
+ * 1. With stack - just like brute force
  * 
  * function countNodes (TreeNode root){
  *      
@@ -131,6 +118,30 @@ public class CountNodes {
  *      }
  *      
  *      return currentCount;
+ * }
+ * 
+ * 
+ * 2. with recursion
+ * 
+ * function countNodes (TreeNode root){
+ *      
+ *      // count the current node
+ *      int currentCount = 1
+ * 
+ *      // count left node
+ *      int leftNodeCount = countNodes(root.left)
+ * 
+ *      // count right node
+ *      int rightNodeCount = countNodes(root.right)
+ * 
+ *      int total = currentCount + leftCount + rightCount
+ * 
+ *      return total
+ * 
+ * 
+ *      //todo: short version of all of this is 
+ *      // currentNode + leftNodeCount + rightNodeCount
+ *      return 1 + countNodes(root.left) + countNodes(root.right)
  * }
  * 
  */
