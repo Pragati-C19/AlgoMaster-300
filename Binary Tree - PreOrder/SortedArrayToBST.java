@@ -48,17 +48,45 @@ public class SortedArrayToBST {
 
         return root;
     }
+    
 
+    // Helper Function : To Print Binary Tree 
+    public static List<String> printTreeAsArrayFormat(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+    
+        queue.add(root);
+    
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+    
+            if (node == null) {
+                result.add("null");
+            } else {
+                result.add(String.valueOf(node.val));
+                queue.add(node.left);
+                queue.add(node.right);
+            }
+        }
+    
+        // Trim trailing "null"s (Leetcode does this)
+        int i = result.size() - 1;
+        while (i >= 0 && result.get(i).equals("null")) {
+            result.remove(i--);
+        }
+    
+        return result;
+    }    
 
     public static void main (String[] args){
 
         SortedArrayToBST solution = new SortedArrayToBST();
 
         int[] nums1 = {-10, -3, 0, 5, 9};
-        System.out.println("Output1 : " + solution.sortedArrayToBST(nums1) + "\n");
+        System.out.println("Output1 : " + printTreeAsArrayFormat(solution.sortedArrayToBST(nums1)) + "\n");
 
         int[] nums2 = {1, 3};
-        System.out.println("Output2 : " + solution.sortedArrayToBST(nums2));
+        System.out.println("Output2 : " + printTreeAsArrayFormat(solution.sortedArrayToBST(nums2)));
 
     }
     
