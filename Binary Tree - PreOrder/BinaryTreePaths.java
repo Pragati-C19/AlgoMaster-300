@@ -24,7 +24,8 @@ public class BinaryTreePaths {
         List<String> result = new ArrayList<>();
         String currentPath = root.val;
 
-        if (root.val == null) {
+        // Base Case :
+        if (root == null) {
             return result;
         }
 
@@ -35,7 +36,25 @@ public class BinaryTreePaths {
     }
 
     // Recursion Backtracking Function
-    private List<String> backtrack(TreeNode node, String currentPath, List<String> result){
+    private void backtrack(TreeNode node, String currentPath, List<String> result){
+        
+        // Base Case :
+        if (node.left == null && node.right == null) {
+            result.add(currentPath);
+            return;
+        }
+
+        // If left child exists, add left
+        if (node.left != null) {
+            currentPath = currentPath + "->" + node.left.val;
+            backtrack(node, currentPath, result);
+        }
+
+        // If right child exists, add right
+        if (node.right != null) {
+            currentPath = currentPath + "->" + node.right.val;
+            backtrack(node, currentPath, result);
+        }
 
     }
 
