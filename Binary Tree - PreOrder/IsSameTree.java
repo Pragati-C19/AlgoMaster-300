@@ -24,6 +24,10 @@ public class IsSameTree {
             System.out.println("Both vals are null");
             return true;
         }
+        else if (p == null || q == null) {
+            System.out.println("One of us is null");
+            return false;
+        }
         else if (p.val != q.val) {
             System.out.println("Both vals are different ->  p : " + p.val + " q : " + q.val);
             return false;
@@ -41,6 +45,7 @@ public class IsSameTree {
 
         // Return combined result of both recursive calls
         return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+        
     }
 
     // Helper Function : to build a tree from an array (for testing)
@@ -71,11 +76,11 @@ public class IsSameTree {
         System.out.println("Result1: " + solution.isSameTree(root1, root2) + "\n");
 
         // Second Example
-        // Integer[] p3 = {1, 2};
-        // Integer[] q4 = {1, null, 2};
-        // TreeNode root3 = buildTree(p3 , 0);
-        // TreeNode root4 = buildTree(q4 , 0);
-        // System.out.println("Result1: " + solution.isSameTree(root3, root4) + "\n");
+        Integer[] p3 = {1, 2};
+        Integer[] q4 = {1, null, 2};
+        TreeNode root3 = buildTree(p3 , 0);
+        TreeNode root4 = buildTree(q4 , 0);
+        System.out.println("Result1: " + solution.isSameTree(root3, root4) + "\n");
 
         // Third Example
         Integer[] p5 = {1, 2, 1};
