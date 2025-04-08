@@ -20,6 +20,22 @@ public class IsSameTree {
     // Driver Function
     public boolean isSameTree(TreeNode p, TreeNode q) {
         
+        if (p == null && q == null) return true;
+
+        if (p.val != q.val) {
+            return false;
+        }
+
+        if (p.val == q.val) {
+            
+            // check left side of it
+            isSameTree(p.left, q.left);
+
+            // check right side of it
+            isSameTree(p.right, q.right);
+        }
+
+        return true;
     }
 
     // Helper Function : to build a tree from an array (for testing)
