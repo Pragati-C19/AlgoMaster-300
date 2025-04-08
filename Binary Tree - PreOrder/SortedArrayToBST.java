@@ -1,7 +1,46 @@
 import java.util.*;
 
+import javax.swing.tree.TreeNode;
+
 public class SortedArrayToBST {
 
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+
+    // Driver Function 
+    public TreeNode sortedArrayToBST(int[] nums) {
+        
+    }
+
+    // Recursion Function : Used to build Tree
+    private TreeNode buildTree(int[] nums, int left, int right){
+
+    }
+
+    
+    public static void main (Strings[] args){
+
+        SortedArrayToBST solution = new SortedArrayToBST();
+
+        int[] nums1 = {-10, -3, 0, 5, 9};
+        System.out.println("Output1 : " + solution.sortedArrayToBST(nums1) + "\n");
+
+        int[] nums2 = {1, 3};
+        System.out.println("Output2 : " + solution.sortedArrayToBST(nums2));
+
+    }
+    
 }
 
 /*
