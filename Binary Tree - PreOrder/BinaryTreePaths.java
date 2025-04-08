@@ -46,14 +46,12 @@ public class BinaryTreePaths {
 
         // If left child exists, add left
         if (node.left != null) {
-            currentPath = currentPath + "->" + node.left.val;
-            backtrack(node, currentPath, result);
+            backtrack(node.left, currentPath + "->" + node.left.val, result);
         }
 
         // If right child exists, add right
         if (node.right != null) {
-            currentPath = currentPath + "->" + node.right.val;
-            backtrack(node, currentPath, result);
+            backtrack(node.right, currentPath + "->" + node.right.val, result);
         }
 
     }
