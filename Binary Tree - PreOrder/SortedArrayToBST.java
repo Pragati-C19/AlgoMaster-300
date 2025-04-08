@@ -29,7 +29,18 @@ public class SortedArrayToBST {
  * 
  * Pseudo Code :
  * 
+ * function SortedArrayToBST(int[] nums){
+ *      
+ *      left = 0
+ *      right = nums.length - 1
+ *      
+ *      mid = (left + right) / 2
  * 
+ *      leftSideTree = buildTree(nums, left, mid - 1)
+ *      rightSideTree = buildTree(nums, mid + 1, right)
+ * 
+ *      return merge(root, leftSideTree, rightSideTree)
+ * }
  * 
  * public static TreeNode buildTree(Integer[] nodes, int index) {
  * 
