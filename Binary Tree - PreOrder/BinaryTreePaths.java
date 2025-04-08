@@ -9,9 +9,20 @@ public class BinaryTreePaths {
  * 
  * Intuitions :
  * 
- * 1. root is given 
+ * 1. We are given the root of the tree.
  * 2. need to return root->leaf path
- * 3. will use stack here
+ * 3. will use recursion here
+ * 4. Appraoch
+ * - Start from root.
+ * - Build a string like "1->2->5" while going down.
+ * - When at a leaf (left and right are null), save the string.
+ * - Then backtrack so the same string isn’t reused for the next branch.
+ * 5. So this is more like building up a string as we go down.
+ * 6. When we reach a leaf node (no left or right), we save that path.
+ * 7. We can do this using:
+ * - Normal string building (current + "->" + nextVal)
+ * - Or using StringBuilder for efficiency and clear backtracking
+ * 
  * 
  * Pattern :
  * 
@@ -23,42 +34,106 @@ public class BinaryTreePaths {
  * - if(root.left != null) stack.push(root.left)
  * - if(root.right != null) stack.push(root.right)
  * 
- * 4. now I think of it I need to use backtracking here.. 
+ * 4. Now I think of it I need to use backtracking here.. 
  * - if we see the flow 1->2->5, 1->3 see it just not taking that value out of stack it's backtracking it removing it's traces
  * - just I'm not able to think of how to use it yet.. 
  * - Base Case : if(root.left && root.right == null) result.add(current)
- * 
+ * - Go left if it exists.
+ * - Go right if it exists.
+ * - But before doing that:
+ *      - In normal string approach: just build the string.
+ *      - In StringBuilder approach:
+ *          - Save length before
+ *          - Append "->" and value
+ *          - Recurse
+ *          - Then reset length to backtrack
  * 
  * 
  * Pseudo Code :
  * 
  * 
+ * 1. Not using StringBuilder Normal approach
  * 
  * function binaryTreePaths(root) {
  * 
  *      result = new arraylist
- *      current = new String
+ *      string currentPath = InttoString(root.val)
  *      
- *      backtrack(root, current, result)
+ *      // Start with root node and its value as the path
+ *      backtrack(root, currentPath, result)
  *  
  *      return result;
  * }
  * 
  * 
- * function backtrack(node, current, result) {
+ * function backtrack(TreeNode node, String currentPath, List<String> result) {
  * 
  *      // Base Case:
  *      if(node.left == null && node.right == null) {
- *          result.add(current)
+ *          result.add(currentPath)
  *      }
  *      
+ *      // If left child exists, go left
  *      if(node.left != null) {
- * 
+ *          backtrack(node.left, currentPath + "->" + node.left.val, result)
+ *          current.remove(current.size() - 3)
  *      }
  * 
+ *      // If right child exists, go right
  *      if(node.right != null){
- *          
+ *          backtrack(node.right, currentPath + "->" + node.right.val, result)
+ *          current.remove(current.size() - 3)
  *      }
+ * }
+ * 
+ * 
+ * 2. Using StringBulder and Clear backtracking thing (Took help from Gpt)
+ * 
+ * List<String> binaryTreePaths(TreeNode root) {
+ *      
+ *      result = new arraylist;
+ *      
+ *      // Initialize StringBuilder with root value
+ *      StringBuilder currentPath = new StringBuilder();
+ *      currentPath.append(root.val);
+ * 
+ *      // Start recursive traversal
+ *      backtrack(root, currentPath, result);   
+ *      return result;
+ * 
+ * }
+ * 
+ * function backtrack(TreeNode node, StringBuilder currentPath, List<String> result) {
+ * 
+ *      // Base case: if it's a leaf node, store the full path
+ *      if (node.left == null && node.right == null) {
+ *          result.add(currentPath);
+ *      }
+ * 
+ *      // Explore left child
+ *      if (node.left != null) {
+ * 
+ *          int lenBefore = currentPath.length();  // Save current length
+ *          
+ *          currentPath.append("->").append(node.left.val);  // Append to path
+ *          
+ *          backtrack(node.left, currentPath, result);       // Recurse
+ *              
+ *          currentPath.setLength(lenBefore);  // Backtrack
+ *      }
+ * 
+ *      // Explore right child
+ *      if (node.right != null) {
+ *      
+ *          int lenBefore = currentPath.length();  // Save current length
+ * 
+ *          currentPath.append("->").append(node.right.val);
+ * 
+ *          backtrack(node.right, currentPath, result);
+ *      
+ *          currentPath.setLength(lenBefore);  // Backtrack
+ *      }
+ * 
  * }
  * 
  */
