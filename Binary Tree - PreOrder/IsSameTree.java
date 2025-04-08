@@ -1,7 +1,5 @@
 import java.util.*;
 
-import javax.swing.tree.TreeNode;
-
 public class IsSameTree {
     
     private static class TreeNode {
@@ -47,8 +45,8 @@ public class IsSameTree {
         TreeNode root = new TreeNode(nodes[index]);
 
         // Recursively build left and right children
-        root.left = buildTreeHelper(nodes, 2 * index + 1);
-        root.right = buildTreeHelper(nodes, 2 * index + 2);
+        root.left = buildTree(nodes, 2 * index + 1);
+        root.right = buildTree(nodes, 2 * index + 2);
 
         return root;
     }
@@ -56,7 +54,7 @@ public class IsSameTree {
 
     public static void main(String[] args) {
         
-        PreorderTraversal solution = new PreorderTraversal();
+        IsSameTree solution = new IsSameTree();
 
         // First Example
         Integer[] p1 = {1, 2, 3};
