@@ -2,6 +2,57 @@ import java.util.*;
 
 public class IsSymmetric {
 
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    // Driver Function
+    public boolean isSymmetric(TreeNode root) {
+        
+        return true;
+    }
+
+    // Helper Function : to build a tree from an array (for testing)
+    public static TreeNode buildTree(Integer[] nodes, int index) {
+        
+        // Base Case: if index is out of bounds or node is null
+        if (index >= nodes.length || nodes[index] == null) return null;
+
+        TreeNode root = new TreeNode(nodes[index]);
+
+        // Recursively build left and right children
+        root.left = buildTree(nodes, 2 * index + 1);
+        root.right = buildTree(nodes, 2 * index + 2);
+
+        return root;
+    }
+
+
+    public static void main(String[] args) {
+        
+        IsSymmetric solution = new IsSymmetric();
+
+       // First Example
+       Integer[] treeArray1 = {1, 2, 2, 3, 4, 4, 3};
+       TreeNode root1 = buildTree(treeArray1, 0);
+       System.out.println("Result1: " + solution.isSymmetric(root1) + "\n");
+
+       // Second Example
+       Integer[] treeArray2 = { 1, 2, 2, null, 3, null, 3 };
+       TreeNode root2 = buildTree(treeArray2, 0);
+       System.out.println("Result2: " + solution.isSymmetric(root2) + "\n");
+
+    }
+
 }
 
 /*
