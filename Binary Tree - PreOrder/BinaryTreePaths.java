@@ -22,7 +22,7 @@ public class BinaryTreePaths {
     public List<String> binaryTreePaths(TreeNode root) {
         
         List<String> result = new ArrayList<>();
-        String currentPath = root.val;
+        String currentPath = String.valueOf(root.val);
 
         // Base Case :
         if (root == null) {
