@@ -31,6 +31,9 @@ public class SortedArrayToBST {
     // Recursion Function : Used to build Tree
     private TreeNode buildTree(int[] nums, int left, int right){
 
+        // Base Case : this is same as we do in binary search while(left < right) thing
+        if (left > right) return null;
+
         // Getting mid element
         int mid = (left + right) / 2;
 
