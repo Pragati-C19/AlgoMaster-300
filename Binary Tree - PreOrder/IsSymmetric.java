@@ -1,5 +1,7 @@
 import java.util.*;
 
+import javax.swing.tree.TreeNode;
+
 public class IsSymmetric {
 
     private static class TreeNode {
@@ -41,7 +43,21 @@ public class IsSymmetric {
     // Recursion Function : Which tells if the left and right side of node is mirror image or not
     private boolean isSameTree(TreeNode p, TreeNode q){
 
-        return true;
+        if (p == null && q == null) {
+            System.out.println("Both vals of p and q are null");
+            return true;
+        }
+        else if (p == null || q == null) {
+            System.out.println("One of val of p and q are null");
+            return false;
+        }
+        else if (p.val != q.val) {
+            System.out.println("Both vals of p and q are Different -> p : " + p.val + " q : " + q.val);
+            return false;
+        }
+
+        // Return combined result of both recursive calls
+        return isSameTree(p.left, q.right) && isSameTree(p.right, q.left);
     }
 
     // Helper Function : to build a tree from an array (for testing)
