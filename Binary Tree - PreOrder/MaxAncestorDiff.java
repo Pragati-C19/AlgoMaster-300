@@ -20,11 +20,30 @@ public class MaxAncestorDiff {
     // Driver Function 
     public int maxAncestorDiff(TreeNode root) {
         
+        // here we have assigned root.val to both minSoFar and MaxSoFar bcoz we are going to compare with that value
+        return findMinMax(root, root.val, root.val);
+
     }
 
     // Recursion Function : To Find MinMax
-    private int FindMinMax(TreeNode node, int minSoFar, int maxSoFar){
+    private int findMinMax(TreeNode node, int minSoFar, int maxSoFar){
 
+        // Base Case
+        if (node == null){
+            return 0;
+        }
+
+        // Update Min and Max values with current node value
+        int minSoFar = Math.min(minSoFar, node.val);
+        int maxSoFar = Math.max(maxSoFar, node.val);
+        
+        // Recursive call for left and right child
+        int leftDiff = findMinMax(node.left, minSoFar, maxSoFar);
+        int rightDiff = findMinMax(node.right, minSoFar, maxSoFar);
+
+        int currentDiff = Math.max((node.val - minSoFar), (node.val - maxSoFar));
+
+        return currentDiff;
     }
 
 
