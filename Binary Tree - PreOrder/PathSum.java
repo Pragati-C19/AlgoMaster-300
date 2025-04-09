@@ -44,7 +44,7 @@ public class PathSum {
 
         // Base Case
         if(node == null) return 0;
-        
+
         System.out.println("    Visiting Node: " + node.val + ", Remaining Target: " + targetSum);
 
         int count = 0;
@@ -93,6 +93,12 @@ public class PathSum {
         TreeNode root2 = buildTree(treeArray2, 0);
         int targetSum2 = 22;
         System.out.println("Result2: " + solution.pathSum(root2, targetSum2) + "\n");
+
+        // Third Example
+        Integer[] treeArray3 = { 1000000000, 1000000000, null, 294967296, null, 1000000000, null, 1000000000, null, 1000000000 };
+        TreeNode root3 = buildTree(treeArray3, 0);
+        int targetSum3 = 0;
+        System.out.println("Result3: " + solution.pathSum(root3, targetSum3) + "\n");
 
     }
 
