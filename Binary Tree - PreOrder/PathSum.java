@@ -24,25 +24,31 @@ public class PathSum {
 
         int count = checkSum(root, targetSum, 0, 0);
 
+        System.out.println("Final path count: " + count);
         return count;
     }
 
     // Recursion Function : to check sum
     private int checkSum(TreeNode root, int targetSum, int currentSum, int pathCount){
 
+        if (root == null) return pathCount;
+
+        System.out.println("Visiting Node: " + root.val + ", CurrentSum: " + currentSum);
+
         // Base Case 
         if (currentSum == targetSum) {
-            return pathCount++;
+            pathCount++;
+            System.out.println("Path Found Count : " + pathCount);
         }
-
-        if (currentSum > targetSum) {
+        else if (currentSum > targetSum) {
             currentSum = 0;
+            System.out.println("CurrentSum > targetSum, restarting from children...");
             checkSum(root.left, targetSum, currentSum, pathCount);
             checkSum(root.right, targetSum, currentSum, pathCount);
         }
-
-        if (currentSum < targetSum) {
+        else if (currentSum < targetSum) {
             currentSum += root.val;
+            System.out.println("Continue path left and right...");
             checkSum(root.left, targetSum, currentSum, pathCount);
             checkSum(root.right, targetSum, currentSum, pathCount);
         }
