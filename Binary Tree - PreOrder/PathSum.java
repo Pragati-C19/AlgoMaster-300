@@ -26,7 +26,7 @@ public class PathSum {
         System.out.println("Starting new path from Node: " + root.val);
         
         // Try path Starting from node
-        int countFromRoot = countPathFromNode(root, targetSum);
+        int countFromRoot = countPathFromNode(root, (long) targetSum);
         System.out.println("  Paths from Node " + root.val + ": " + countFromRoot);
         
         // Try path of left and right 
@@ -40,7 +40,7 @@ public class PathSum {
     }
 
     // Recursion Function : Count Path from Node
-    private int countPathFromNode(TreeNode node, int targetSum) {
+    private int countPathFromNode(TreeNode node, long targetSum) {
 
         // Base Case
         if(node == null) return 0;
@@ -136,8 +136,16 @@ public class PathSum {
  * 2. Why resetting currentSum = 0 doesn’t work
  * - Suppose you're on some path that failed, restarting from current node's child won't help,
  * - Instead, you should start a new DFS from each node, not just continue with same recursion.
-
-
+ * 
+ * 
+ * Why VS Code works but LeetCode doesn’t?
+ * - Your VS Code setup might be using Java 8+ or IntelliJ/JDK that ignores or handles overflow silently.
+ * - LeetCode runs Java on a stricter environment, and may be:
+ * - Using strict integer arithmetic
+ * - Running in a sandboxed JVM that handles arithmetic differently
+ * - Executing on Java 11+, where behavior may differ subtly
+ ! Solution: Use long instead of int for sum calculations To prevent overflow,
+ * 
  * Pseudo Code :
  * 
  * 1. Approach is mine but it has some flaws 
