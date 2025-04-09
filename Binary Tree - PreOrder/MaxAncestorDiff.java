@@ -50,7 +50,7 @@ public class MaxAncestorDiff {
         int currentDiff = Math.max(leftDiff, rightDiff);
         System.out.println("    currentDiff : " + currentDiff);
 
-        return currentDiff;
+        return currentDiff; 
     }
 
 
