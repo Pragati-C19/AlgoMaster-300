@@ -55,16 +55,35 @@ public class MaxAncestorDiff {
 
 
     // Helper Function : to build a tree from an array (for testing)
-    public static TreeNode buildTree(Integer[] nodes, int index) {
+    public static TreeNode buildTree(Integer[] nodes) {
         
-        // Base Case: if index is out of bounds or node is null
-        if (index >= nodes.length || nodes[index] == null) return null;
+        // Node is empty
+        if (nodes.length == 0 || nodes[0] == null) return null;
+        
+        TreeNode root = new TreeNode(nodes[0]);
+        Queue<TreeNode> queue = new LinkedList<>();
+        
+        queue.add(root);
+        
+        int i = 1;  // Start from second element
 
-        TreeNode root = new TreeNode(nodes[index]);
-
-        // Recursively build left and right children
-        root.left = buildTree(nodes, 2 * index + 1);
-        root.right = buildTree(nodes, 2 * index + 2);
+        while (!queue.isEmpty() && i < nodes.length) {
+            TreeNode parent = queue.poll();
+            
+            // Assign left child
+            if (nodes[i] != null) {
+                parent.left = new TreeNode(nodes[i]);
+                queue.add(parent.left);
+            }
+            i++;
+            
+            // Assign right child (check if there's still an element)
+            if (i < nodes.length && nodes[i] != null) {
+                parent.right = new TreeNode(nodes[i]);
+                queue.add(parent.right);
+            }
+            i++;
+        }
 
         return root;
     }
@@ -75,12 +94,12 @@ public class MaxAncestorDiff {
 
         // First Example
         Integer[] treeArray1 = {8, 3, 10, 1, 6, null, 14, null, null, 4, 7, 13};
-        TreeNode root1 = buildTree(treeArray1, 0);
+        TreeNode root1 = buildTree(treeArray1);
         System.out.println("Result1: " + solution.maxAncestorDiff(root1) + "\n");
 
         // Second Example
         Integer[] treeArray2 = { 1, null, 2, null, 0, 3 };
-        TreeNode root2 = buildTree(treeArray2, 0);
+        TreeNode root2 = buildTree(treeArray2);
         System.out.println("Result2: " + solution.maxAncestorDiff(root2) + "\n");
 
     }
