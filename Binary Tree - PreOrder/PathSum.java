@@ -43,14 +43,16 @@ public class PathSum {
         else if (currentSum > targetSum) {
             currentSum = 0;
             System.out.println("CurrentSum > targetSum, restarting from children...");
-            checkSum(root.left, targetSum, currentSum, pathCount);
-            checkSum(root.right, targetSum, currentSum, pathCount);
+            
+            pathCount = checkSum(root.left, targetSum, currentSum, pathCount);
+            pathCount = checkSum(root.right, targetSum, currentSum, pathCount);
         }
         else if (currentSum < targetSum) {
             currentSum += root.val;
             System.out.println("Continue path left and right...");
-            checkSum(root.left, targetSum, currentSum, pathCount);
-            checkSum(root.right, targetSum, currentSum, pathCount);
+            
+            pathCount = checkSum(root.left, targetSum, currentSum, pathCount);
+            pathCount = checkSum(root.right, targetSum, currentSum, pathCount);
         }
 
         return pathCount;
