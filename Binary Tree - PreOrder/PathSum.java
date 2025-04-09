@@ -1,7 +1,66 @@
 import java.util.*;
 
+import javax.swing.tree.TreeNode;
+
 public class PathSum {
     
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    // Driver Function
+    public int pathSum(TreeNode root, int targetSum) {
+        
+    }
+
+    // Recursion Function : to check sum
+    private int checkSum(TreeNode root, int targetSum, int currentSum, int pathCount){
+        
+    }
+
+
+    // Helper Function : to build a tree from an array (for testing)
+    public static TreeNode buildTree(Integer[] nodes, int index) {
+        
+        // Base Case: if index is out of bounds or node is null
+        if (index >= nodes.length || nodes[index] == null) return null;
+
+        TreeNode root = new TreeNode(nodes[index]);
+
+        // Recursively build left and right children
+        root.left = buildTree(nodes, 2 * index + 1);
+        root.right = buildTree(nodes, 2 * index + 2);
+
+        return root;
+    }
+
+    public static void main(String[] args) {
+        
+        PathSum solution = new PathSum();
+
+        // First Example
+        Integer[] treeArray1 = {10, 5, -3, 3, 2, null, 11, 3, -2, null, 1};
+        TreeNode root1 = buildTree(treeArray1, 0);
+        int targetSum1 = 3;
+        System.out.println("Result1: " + solution.pathSum(root1, targetSum1) + "\n");
+
+        // Second Example
+        Integer[] treeArray2 = { 5, 4, 8, 11, null, 13, 4, 7, 2, null, null, 5, 1 };
+        TreeNode root2 = buildTree(treeArray2, 0);
+        int targetSum2 = 22;
+        System.out.println("Result2: " + solution.pathSum(root2, targetSum2) + "\n");
+
+    }
+
 }
 
 /*
