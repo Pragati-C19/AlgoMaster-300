@@ -20,11 +20,34 @@ public class PathSum {
     // Driver Function
     public int pathSum(TreeNode root, int targetSum) {
         
+        if (root == null) return 0;
+
+        int count = checkSum(root, targetSum, 0, 0);
+
+        return count;
     }
 
     // Recursion Function : to check sum
     private int checkSum(TreeNode root, int targetSum, int currentSum, int pathCount){
-        
+
+        // Base Case 
+        if (currentSum == targetSum) {
+            return pathCount++;
+        }
+
+        if (currentSum > targetSum) {
+            currentSum = 0;
+            checkSum(root.left, targetSum, currentSum, pathCount);
+            checkSum(root.right, targetSum, currentSum, pathCount);
+        }
+
+        if (currentSum < targetSum) {
+            currentSum += root.val;
+            checkSum(root.left, targetSum, currentSum, pathCount);
+            checkSum(root.right, targetSum, currentSum, pathCount);
+        }
+
+        return pathCount;
     }
 
 
