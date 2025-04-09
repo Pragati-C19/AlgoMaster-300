@@ -30,7 +30,7 @@ public class MaxAncestorDiff {
 
         // Base Case
         if (node == null){
-            return 0;
+            return maxSoFar - minSoFar;
         }
 
         System.out.println("Starting Values | Node : " + node.val + " Minimun Node : " + minSoFar + " Maximum Node : " + maxSoFar);
@@ -47,9 +47,9 @@ public class MaxAncestorDiff {
         int rightDiff = findMinMax(node.right, minSoFar, maxSoFar);
         System.out.println("    rightDiff : " + rightDiff);
 
-        int currentDiff = Math.max((node.val - minSoFar), (node.val - maxSoFar));
+        int currentDiff = Math.max(leftDiff, rightDiff);
         System.out.println("    currentDiff : " + currentDiff);
-        
+
         return currentDiff;
     }
 
