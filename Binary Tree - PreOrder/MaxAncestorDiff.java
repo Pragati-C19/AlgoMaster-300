@@ -33,16 +33,23 @@ public class MaxAncestorDiff {
             return 0;
         }
 
+        System.out.println("Starting Values | Node : " + node.val + " Minimun Node : " + minSoFar + " Maximum Node : " + maxSoFar);
+
         // Update Min and Max values with current node value
         minSoFar = Math.min(minSoFar, node.val);
         maxSoFar = Math.max(maxSoFar, node.val);
-        
+        System.out.println("After and Update | minSoFar : " + minSoFar + " maxSoFar : " + maxSoFar);
+
         // Recursive call for left and right child
         int leftDiff = findMinMax(node.left, minSoFar, maxSoFar);
+        System.out.println("    leftDiff : " + leftDiff);
+
         int rightDiff = findMinMax(node.right, minSoFar, maxSoFar);
+        System.out.println("    rightDiff : " + rightDiff);
 
         int currentDiff = Math.max((node.val - minSoFar), (node.val - maxSoFar));
-
+        System.out.println("    currentDiff : " + currentDiff);
+        
         return currentDiff;
     }
 
