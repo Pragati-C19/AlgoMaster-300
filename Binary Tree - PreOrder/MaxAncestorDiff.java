@@ -34,8 +34,8 @@ public class MaxAncestorDiff {
         }
 
         // Update Min and Max values with current node value
-        int minSoFar = Math.min(minSoFar, node.val);
-        int maxSoFar = Math.max(maxSoFar, node.val);
+        minSoFar = Math.min(minSoFar, node.val);
+        maxSoFar = Math.max(maxSoFar, node.val);
         
         // Recursive call for left and right child
         int leftDiff = findMinMax(node.left, minSoFar, maxSoFar);
