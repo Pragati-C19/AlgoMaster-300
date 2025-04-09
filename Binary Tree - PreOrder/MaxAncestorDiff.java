@@ -42,7 +42,9 @@ public class MaxAncestorDiff {
  * 
  * Pseudo Code :
  * 
- * 1. My Approach similar to PathSum
+ * 1. First Approach
+ * - Compare only left/right child
+ * - Get min/max from children
  * 
  * function maxAncestorDiff(TreeNode root){
  * 
@@ -59,7 +61,7 @@ public class MaxAncestorDiff {
  * function findMinMax(root){
  *      
  *      if(root.left.val <= root.val){
- *          minVal = root.left.val;
+ *          minVal = (root.left.val);
  *      } 
  *      else {
  *          maxVal = root.left.val;
@@ -76,6 +78,46 @@ public class MaxAncestorDiff {
  *  
  *      return currentMaxDiff
  * }
+ * 
+ * 
+ * 2. Second Approach
+ * - Compare with deepest descendant
+ * - Pass min/max down and update while going deeper
+ * 
+ * function maxAncestorDiff(TreeNode root){
+ * 
+ *      // Let's start with root
+ *      
+ *      currentMaxDiff = findMinMax(root);
+ *      
+ *      v = Math.max(max, currentMaxDiff)
+ * 
+ *      return v;
+ * }
+ * 
+ * 
+ * function findMinMax(TreeNode root, int minSoFar, int maxSoFar){
+ *      
+ *      if(root == null) return 0;
+ * 
+ *      currentMaxDiff = Math.max((root.val - minSoFar), (root.val - maxSoFar))
+ * 
+ *      if(root.val <= minSoFar){
+ *          minSoFar = findMinMax(root.left, root.val, maxSoFar)
+ *          minSoFar = findMinMax(root.right, root.val, maxSoFar)
+ *      } 
+ *      else {
+ *          maxSoFar = findMinMax(root.left, minSoFar, root.val)
+ *          maxSoFar = findMinMax(root.right, minSoFar, root.val)
+ *      }
+ *  
+ *      return currentMaxDiff
+ * }
+ * 
+ * 
+ * 3. Third Approach
+ * - 
+ * 
  * 
  * 
  */
