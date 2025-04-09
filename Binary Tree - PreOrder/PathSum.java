@@ -20,45 +20,46 @@ public class PathSum {
     // Driver Function
     public int pathSum(TreeNode root, int targetSum) {
         
-        if (root == null) return 0;
+        // Base Case
+        if(root == null) return 0;
+        
+        System.out.println("Starting new path from Node: " + root.val);
+        
+        // Try path Starting from node
+        int countFromRoot = countPathFromNode(root, targetSum);
+        System.out.println("  Paths from Node " + root.val + ": " + countFromRoot);
+        
+        // Try path of left and right 
+        int countLeftPath = pathSum(root.left, targetSum);
+        int countRightPath = pathSum(root.right, targetSum);
+        
+        int total = countFromRoot + countLeftPath + countRightPath;
+        System.out.println("  Total paths at Node " + root.val + ": " + total);
 
-        int count = checkSum(root, targetSum, 0, 0);
-
-        System.out.println("Final path count: " + count);
-        return count;
+        return total;
     }
 
-    // Recursion Function : to check sum
-    private int checkSum(TreeNode root, int targetSum, int currentSum, int pathCount){
+    // Recursion Function : Count Path from Node
+    private int countPathFromNode(TreeNode node, int targetSum) {
 
-        if (root == null) return pathCount;
-
-        System.out.println("Visiting Node: " + root.val + ", CurrentSum: " + currentSum);
-
-        currentSum += root.val;
-
-        System.out.println("CurrentSum after update : " + currentSum);
-
-        // Base Case 
-        if (currentSum == targetSum) {
-            pathCount++;
-            System.out.println("Path Found Count : " + pathCount);
-        }
+        // Base Case
+        if(node == null) return 0;
         
-        if (currentSum > targetSum) {
-            System.out.println("CurrentSum > targetSum, restarting from children...");
-            
-            pathCount = checkSum(root.left, targetSum, 0, pathCount);
-            pathCount = checkSum(root.right, targetSum, 0, pathCount);
-        }
-        else if (currentSum < targetSum) {
-            System.out.println("Continue path left and right...");
-            
-            pathCount = checkSum(root.left, targetSum, currentSum, pathCount);
-            pathCount = checkSum(root.right, targetSum, currentSum, pathCount);
+        System.out.println("    Visiting Node: " + node.val + ", Remaining Target: " + targetSum);
+
+        int count = 0;
+
+        if (node.val == targetSum) {
+            count++;
+            System.out.println("     Found path ending at Node " + node.val + " (Remaining target matched!)");
+   
         }
 
-        return pathCount;
+        // Keep reducing target and go deeper
+        count += countPathFromNode(node.left, targetSum - node.val);
+        count += countPathFromNode(node.right, targetSum - node.val);
+
+        return count;
     }
 
 
