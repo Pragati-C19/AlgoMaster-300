@@ -37,6 +37,8 @@ public class PathSum {
 
         currentSum += root.val;
 
+        System.out.println("CurrentSum after update : " + currentSum);
+
         // Base Case 
         if (currentSum == targetSum) {
             pathCount++;
@@ -82,7 +84,7 @@ public class PathSum {
         // First Example
         Integer[] treeArray1 = {10, 5, -3, 3, 2, null, 11, 3, -2, null, 1};
         TreeNode root1 = buildTree(treeArray1, 0);
-        int targetSum1 = 3;
+        int targetSum1 = 8;
         System.out.println("Result1: " + solution.pathSum(root1, targetSum1) + "\n");
 
         // Second Example
