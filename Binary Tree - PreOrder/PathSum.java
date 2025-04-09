@@ -113,8 +113,27 @@ public class PathSum {
  * 3. if pathSum < targetSum -> add root.left or root.right in path and call recursion
  * 4. if pathSum > targetSum -> reset pathSum to zero and check for root.left or root.right and call recursion
  * 
+ * 
+ * What I was Doing Right:
+ * - Recursion is the key
+ * - tracking the path sum 
+ * - Paths don’t have to start from root or end at leaf
+ * - using currentSum to track a running sum 
+ * - trying to restart when sum exceeds targetSum (like pruning)
+ * 
+!   Where the Thinking Breaks (Slightly): 
+ * 1. Every node can be the start of a path
+ * - I'm only tracking one path at a time, starting from root. But the trick is:
+ * - need to try every node as the starting point of a path.
+ * 
+ * 2. Why resetting currentSum = 0 doesn’t work
+ * - Suppose you're on some path that failed, restarting from current node's child won't help,
+ * - Instead, you should start a new DFS from each node, not just continue with same recursion.
+
+
  * Pseudo Code :
  * 
+ * 1. Approach is mine but it has some flaws 
  * 
  * function pathSum (root, targetSum) {
  *      
@@ -142,6 +161,39 @@ public class PathSum {
  *      }
  * 
  *      return count;
+ * }
+ * 
+ * 
+ * 2. Correct Approach
+ * 
+ * funtion pathSum(root, target){
+ *      
+ *      // Base Case
+ *      if(root == null) return 0;
+ * 
+ *      // Try path Starting from node
+ *      countFromRoot = countPathFromNode(root, targetSum)
+ * 
+ *      // Try path of left and right 
+ *      countLeftPath = pathSum(root.left, targetSum)
+ *      countRightPath = pathSum(root.right, targetSum)
+ * 
+ *      return countFromRoot + countLeftPath + countRightPath
+ * 
+ * }
+ * 
+ * 
+ * function countPathFromNode(node, targetSum){
+ * 
+ *      if(node == null) return 0
+ * 
+ *      if(node.val == targetSum) count++;
+ * 
+ *      // Keep reducing target and go deeper
+ *      count += countPathFromNode(node.left, targetSum - node.val)
+ *      count += countPathFromNode(node.right, targetSum - node.val)
+ *      
+ *      return count
  * }
  * 
  * 
