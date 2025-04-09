@@ -35,20 +35,21 @@ public class PathSum {
 
         System.out.println("Visiting Node: " + root.val + ", CurrentSum: " + currentSum);
 
+        currentSum += root.val;
+
         // Base Case 
         if (currentSum == targetSum) {
             pathCount++;
             System.out.println("Path Found Count : " + pathCount);
         }
-        else if (currentSum > targetSum) {
-            currentSum = 0;
+        
+        if (currentSum > targetSum) {
             System.out.println("CurrentSum > targetSum, restarting from children...");
             
-            pathCount = checkSum(root.left, targetSum, currentSum, pathCount);
-            pathCount = checkSum(root.right, targetSum, currentSum, pathCount);
+            pathCount = checkSum(root.left, targetSum, 0, pathCount);
+            pathCount = checkSum(root.right, targetSum, 0, pathCount);
         }
         else if (currentSum < targetSum) {
-            currentSum += root.val;
             System.out.println("Continue path left and right...");
             
             pathCount = checkSum(root.left, targetSum, currentSum, pathCount);
