@@ -116,7 +116,34 @@ public class MaxAncestorDiff {
  * 
  * 
  * 3. Third Approach
- * - 
+ * - use Min Max function to get min and max between minSoFar and root.val
+ * 
+ *  
+ * function maxAncestorDiff(TreeNode root){
+ *      
+ *      return findMinMax(root, root.val, root.val)
+ * 
+ * }
+ * 
+ * 
+ * function findMinMax(TreeNode root, int minSoFar, int maxSoFar){
+ *      
+ *      // Base Case
+ *      if(root == null) return 0;
+ *      
+ *      // Update Min and Max values with current node value
+ *      minSoFar = Math.min(minSoFar, root.val)
+ *      maxSoFar = Math.max(maxSoFar, root.val)
+ * 
+ *      // Check left and right
+ *      leftDiff = findMinMax(root.left, minSoFar, maxSoFar)
+ *      rightDiff = findMinMax(root.right, minSoFar, maxSoFar)
+ *      
+ *      // Max difference at this level
+ *      currentMaxDiff = Math.max((root - minSoFar), (root - maxSoFar))
+ *      
+ *      return currentMaxDiff
+ * }
  * 
  * 
  * 
