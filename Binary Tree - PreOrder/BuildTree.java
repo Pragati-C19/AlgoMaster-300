@@ -1,12 +1,72 @@
 import java.util.*;
 
-import javax.swing.tree.TreeNode;
-
 public class BuildTree {
  
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    // Driver Function
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        
+    }
+
+    // Recursion Function : to build tree
+    private TreeNode build(int[] preorder, int[] inorder, Map<Integer, Integer> inorderMap, int inorderStart, int inorderEnd, int preorderIndex){
+
+        return root;
+    }
+
+    // Helper Function : To Print Binary Tree 
+    public static List<String> printTreeAsArrayFormat(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
     
+        queue.add(root);
+    
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+    
+            if (node == null) {
+                result.add("null");
+            } else {
+                result.add(String.valueOf(node.val));
+                queue.add(node.left);
+                queue.add(node.right);
+            }
+        }
+    
+        // Trim trailing "null"s (Leetcode does this)
+        int i = result.size() - 1;
+        while (i >= 0 && result.get(i).equals("null")) {
+            result.remove(i--);
+        }
+    
+        return result;
+    }    
 
+    public static void main (String[] args){
 
+        BuildTree solution = new BuildTree();
+
+        int[] preorder1 = {3, 9, 20, 15, 7};
+        int[] inorder1 = {9, 3, 15, 20, 7};
+        System.out.println("Output1 : " + printTreeAsArrayFormat(solution.buildTree(preorder1, inorder1)) + "\n");
+
+        int[] preorder2 = { -1 };
+        int[] inorder2 = { -1 };
+        System.out.println("Output2 : " + printTreeAsArrayFormat(solution.buildTree(preorder2, inorder2)));
+
+    }
 
 }
 
