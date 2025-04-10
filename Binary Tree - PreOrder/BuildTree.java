@@ -60,5 +60,67 @@ public class BuildTree {
  * Pseudo Code :
  * 
  * 
+ * function buildTree(preorder, inorder){
+ * 
+ *      Integer[] treeArray = dfs(preorder[0], inorder, inorder)
+ *      
+ *      TreeNode rootOfBinaryTree = buildTreeWithArray(treeArray)
+ *      
+ *      return rootOfBinaryTree;
+ * 
+ * }
+ * 
+ * function TreeNode buildTreeWithArray(Integer[] nodes) {
+ * 
+ *      // Node is empty
+ *      if (nodes.length == 0 || nodes[0] == null) return null;
+ * 
+ *      TreeNode root = new TreeNode(nodes[0]);
+ *      Queue<TreeNode> queue = new LinkedList<>();
+ *      queue.add(root);
+ * 
+ *      int i = 1;  // Start from second element
+ * 
+ *      while (!queue.isEmpty() && i < nodes.length) {
+ * 
+ *          TreeNode parent = queue.poll();
+ * 
+ *          // Assign left child
+ *          if (nodes[i] != null) {
+ *              parent.left = new TreeNode(nodes[i]);
+ *              queue.add(parent.left);
+ *          }
+ *          i++;
+ *          
+ *          // Assign right child (check if there's still an element)
+ *          if (i < nodes.length && nodes[i] != null) {
+ *              parent.right = new TreeNode(nodes[i]);
+ *              queue.add(parent.right);
+ *          }
+ *          i++;
+ *      }
+ * 
+ *      return root;
+ * }
+ * 
+ * 
+ * function dfs(int preorderNum, int[] leftInorder, int[] rightInorder, Integer[] result) {
+ *      
+ *      if(leftInorder.length == 0 || rightInorder.length == 0){
+ *          result.add(null)
+ *      }
+ * 
+ *      if(leftInorder.length == 0 && rightInorder.length == 0){
+ *          return result;
+ *      }
+ * 
+ *      left = 0;
+ *      right = 
+ * 
+ *      leftInorder = dfs( 0, inorder - 1)
+ * }
+ * 
+ * 
+ * 
  * 
  */
