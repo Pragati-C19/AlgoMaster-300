@@ -1,7 +1,13 @@
 import java.util.*;
 
+import javax.swing.tree.TreeNode;
+
 public class BuildTree {
+ 
     
+
+
+
 }
 
 
@@ -59,14 +65,15 @@ public class BuildTree {
  * 
  * Pseudo Code :
  * 
- * 
+ * 1. Without using map
  * function buildTree(preorder, inorder){
  *      
  *      Integer[] result = new ArrayList
- *      int start = 0
- *      int end = inorder.length - 1
+ *      
+ *      // Tracking how far preorder is gone
+ *      preorderIndex = 0
  * 
- *      Integer[] treeArray = dfs(preorder, inorder, start, end, result)
+ *      Integer[] treeArray = dfs(preorder, inorder, preorderIndex, result)
  *      
  *      TreeNode rootOfBinaryTree = buildTreeWithArray(treeArray)
  *      
@@ -108,21 +115,22 @@ public class BuildTree {
  * }
  * 
  * 
- * function dfs(int[] preorder, int[] inorder, int start, int end, Integer[] result) {
+ * function dfs(int[] preorder, int[] inorder, int start, int end, int preorderIndex, Integer[] result) {
  *      
- *      if(inorder.lenght == 0){
+ *      // if (inorder.length == 0) 
+ *      // That always checks the full length. 
+ *      // But we are working with a segment from start to end.
+ *      if(start > end){
  *          result.add(null)
  *          return;
  *      }
  *      
- *      left = 0
- *      right = inorder.lenght - 1
  * 
- *      for(int i = left; i <= right; i++){
+ *      for(int i = start; i <= end; i++){
  *          
- *          if(preorder[start] == inorder[i]){
- *              leftInorder = dfs( preorder, inorder[left : i - 1], start++, result)
- *              rightInorder = dfs( preorder, inorder[i + 1 : right], start++, result)
+ *          if(preorder[preorderIndex] == inorder[i]){
+ *              leftInorder = dfs( preorder, inorder, start, i - 1, preorderIndex++, result)
+ *              rightInorder = dfs( preorder, inorder, i + 1, end, preorderIndex++, result)
  *          } 
  *       
  *      }
@@ -131,6 +139,8 @@ public class BuildTree {
  * }
  * 
  * 
+ * 2. with map
  * 
+ *  
  * 
  */
