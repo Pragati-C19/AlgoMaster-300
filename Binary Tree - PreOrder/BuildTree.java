@@ -13,6 +13,17 @@ public class BuildTree {
 
 /*
  * 
+ * Core Pattern :
+ * 
+ * - First create map for inorder to store value and index
+ * - set global starting index or preIndex or postIndex
+ * - function should have (int[] A, int[] B, int bStart, int bEnd, int aIndex)
+ * - store root took by preIndex or postIndex in rootVal 
+ * - Find index of root in inorder
+ * - calculate leftSize and right Size 
+ * - recure root.left and roo.right
+ * - return root
+
  * 
  * Intuitions :
  * 
@@ -139,7 +150,42 @@ public class BuildTree {
  * }
  * 
  * 
- * 2. with map
+ * 2. with Core Pattern of mapping
+ * 
+ * function buildTree( int[] preorder, int[] postorder){
+ *      
+ *      preorderIndex = 0
+ *      
+ *      inorderMap = new Hashmap
+ *      
+ *      // storing value and index of inorder in map
+ *      for(int i = 0; i < inorder.length; i++){
+ *          map.put(inorder[i], i)
+ *      }
+ * 
+ *      return build(preorder, inorder, inorderMap, 0, (inorder.length - 1), preorderIndex)
+ * }
+ * 
+ * function build(int[] preorder, int[] inorder, Map<Integer, Integer> inorderMap, int inorderStart, int inorderEnd, int preorderIndex){
+ *      
+ *      // Base Case :
+ *      if(inorderStart > inorderEnd) return null;
+ * 
+ *      // We are getting root from preorder so added it in rootVal
+ *      int rootVal = preorder[preIndex]
+ *      
+ *      // Find root index in inorder 
+ *      int rootIndex = inorderMap.get(rootVal)
+ *      
+ *      // Storing that rootVal in TreeNode root
+ *      TreeNode root = new TreeNode(rootVal)
+ * 
+ *      // Check left and right now
+ *      root.left = build(preorder, inorder, inorderMap, inorderStart, rootIndex - 1 , preIndex++);
+ *      root.right = build(preorder, inorder, inorderMap, rootIndex + 1, inorderEnd, preIndex++);
+ *      
+ *      return root;
+ * }
  * 
  *  
  * 
