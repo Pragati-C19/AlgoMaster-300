@@ -18,10 +18,39 @@ public class BuildTree {
     // Driver Function
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         
+        int preIndex = 0;
+
+        Map<Integer, Integer> inorderMap = new HashMap<>();
+
+        for (int i = 0; i < inorder.length; i++) {
+            inorderMap.put(inorder[i], i);
+        }
+
+        return build(preorder, inorder, inorderMap, 0, (inorder.length - 1), preIndex);
     }
 
     // Recursion Function : to build tree
     private TreeNode build(int[] preorder, int[] inorder, Map<Integer, Integer> inorderMap, int inorderStart, int inorderEnd, int preorderIndex){
+
+        // Base Case :
+        if (inorderStart > inorderEnd) {
+            return null;
+        }
+
+        // We are getting root from preorder so added it in rootVal
+        int rootVal = preorder[preorderIndex];
+        System.out.println(" rootVal : " + rootVal);
+
+        // Find root index in inorder
+        int rootIndex = inorderMap.get(rootVal);
+        System.out.println(" rootIndex in Inorder : " + rootIndex);
+
+        // Storing that rootVal in TreeNode
+        TreeNode root = new TreeNode(rootVal);
+
+        // Checking left and right
+        root.left = build(preorder, inorder, inorderMap, inorderStart, rootIndex - 1, preorderIndex++);
+        root.right = build(preorder, inorder, inorderMap, rootIndex + 1, inorderEnd, preorderIndex++);
 
         return root;
     }
