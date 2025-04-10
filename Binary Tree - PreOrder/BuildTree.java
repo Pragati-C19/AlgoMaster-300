@@ -66,7 +66,7 @@ public class BuildTree {
  *      int start = 0
  *      int end = inorder.length - 1
  * 
- *      Integer[] treeArray = dfs(preorder[0], inorder, start, end, result)
+ *      Integer[] treeArray = dfs(preorder, inorder, start, end, result)
  *      
  *      TreeNode rootOfBinaryTree = buildTreeWithArray(treeArray)
  *      
@@ -108,15 +108,26 @@ public class BuildTree {
  * }
  * 
  * 
- * function dfs(int preorderNum, int[] inorder, int start, int end, Integer[] result) {
+ * function dfs(int[] preorder, int[] inorder, int start, int end, Integer[] result) {
  *      
  *      if(inorder.lenght == 0){
  *          result.add(null)
  *          return;
  *      }
+ *      
+ *      left = 0
+ *      right = inorder.lenght - 1
  * 
- *      leftInorder = dfs( preorderNum++, inorder 0, inorder - 1, result)
- * rightInorder = dfs( preorderNum++, 0, inorder - 1, result)
+ *      for(int i = left; i <= right; i++){
+ *          
+ *          if(preorder[start] == inorder[i]){
+ *              leftInorder = dfs( preorder, inorder[left : i - 1], start++, result)
+ *              rightInorder = dfs( preorder, inorder[i + 1 : right], start++, result)
+ *          } 
+ *       
+ *      }
+ *      
+ *      return result.add(leftInorder).add(rightInorder);
  * }
  * 
  * 
