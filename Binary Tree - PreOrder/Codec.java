@@ -76,21 +76,21 @@ public class Codec {
     }
 
     // Decodes your encoded data to tree.
-    public TreeNode deserialize(String serializeString) {
+    public TreeNode deserialize(String data) {
         
         // Base Case:
-        if (serializeString.length() == 0) {
+        if (data.length() == 0) {
             System.out.println("String is empty so root will be null...");
             return null;
         }
 
         // Split String and create a String array so that we can track index
-        String[] splitSerializeString = serializeString.split(", ");
-        System.out.println("Split String Values are : " + Arrays.toString(splitSerializeString));
+        String[] splitData = data.split(", ");
+        System.out.println("Split String Values are : " + Arrays.toString(splitData));
 
         // Create that first index as root
         //? To convert String to int used Integer.parseInt
-        TreeNode root = new TreeNode(Integer.parseInt(splitSerializeString[0]));
+        TreeNode root = new TreeNode(Integer.parseInt(splitData[0]));
 
         // Create a queue
         Queue<TreeNode> queue = new LinkedList<>();
@@ -104,10 +104,10 @@ public class Codec {
             TreeNode node = queue.poll();
 
             // We are doing level order traversal so will assign first index to left side then right
-            if (!splitSerializeString[index].equals("null")) {
+            if (!splitData[index].equals("null")) {
                 
-                System.out.println("    [IF : index!=null] Added " + splitSerializeString[index] + " value in left node ");
-                node.left = new TreeNode(Integer.parseInt(splitSerializeString[index]));
+                System.out.println("    [IF : index!=null] Added " + splitData[index] + " value in left node ");
+                node.left = new TreeNode(Integer.parseInt(splitData[index]));
                 queue.add(node.left);   
                 
             }
@@ -119,10 +119,10 @@ public class Codec {
             }
             index++; // checking for next index and assign it to the right side
 
-            if (!splitSerializeString[index].equals("null")) {
+            if (!splitData[index].equals("null")) {
                 
-                System.out.println("    [IF : index!=null] Added " + splitSerializeString[index] + " value in right node ");
-                node.right = new TreeNode(Integer.parseInt(splitSerializeString[index]));
+                System.out.println("    [IF : index!=null] Added " + splitData[index] + " value in right node ");
+                node.right = new TreeNode(Integer.parseInt(splitData[index]));
                 queue.add(node.right);
 
             }
