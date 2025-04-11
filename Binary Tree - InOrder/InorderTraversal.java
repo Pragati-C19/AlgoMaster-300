@@ -2,6 +2,49 @@ import java.util.*;
 
 public class InorderTraversal {
     
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+
+    // Driver Function
+    public List<Integer> inorderTraversal(TreeNode root) {
+        
+    }
+
+    // Recursion Function : it will help to build tree in inorder way and also store result
+    private void buildInorderTraversal(TreeNode root, List<Integer> result){
+
+    }
+    
+
+    public static void main (String[] args){
+
+        InorderTraversal solution = new InorderTraversal();
+
+        TreeNode root1 = {1, null, 2, 3};
+        System.out.println("Output1 : " + solution.inorderTraversal(root1) + "\n");
+
+        TreeNode root2 = {1, 2, 3, 4, 5, null, 8, null, null, 6, 7, 9};
+        System.out.println("Output2 : " + solution.inorderTraversal(root2) + "\n");
+
+        TreeNode root3 = {};
+        System.out.println("Output3 : " + solution.inorderTraversal(root3) + "\n");
+
+        TreeNode root4 = {1};
+        System.out.println("Output4 : " + solution.inorderTraversal(root4) + "\n");
+
+    }
+
 }
 
 /*
