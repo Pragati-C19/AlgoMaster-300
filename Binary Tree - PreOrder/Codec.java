@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Serialize {
+public class Codec {
 
 }
 
