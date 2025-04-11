@@ -1,6 +1,73 @@
 import java.util.*;
 
+import javax.swing.tree.TreeNode;
+
 public class BuildTreePostIn {
+
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    // Driver Function 
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        
+    }
+    
+    // Recursion Function : to build the binary tree
+    private TreeNode build(int[] inorder, int[] postorder, int inorderStart, int inorderEnd, Map<Integer, Integer> inorderMap){
+
+    }
+
+    // Helper Function : To Print Binary Tree 
+    public static List<String> printTreeAsArrayFormat(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+    
+        queue.add(root);
+    
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+    
+            if (node == null) {
+                result.add("null");
+            } else {
+                result.add(String.valueOf(node.val));
+                queue.add(node.left);
+                queue.add(node.right);
+            }
+        }
+    
+        // Trim trailing "null"s (Leetcode does this)
+        int i = result.size() - 1;
+        while (i >= 0 && result.get(i).equals("null")) {
+            result.remove(i--);
+        }
+    
+        return result;
+    }    
+
+    public static void main (String[] args){
+
+        BuildTreePostIn solution = new BuildTreePostIn();
+
+        int[] postorder1 = {9, 15, 7, 20, 3};
+        int[] inorder1 = {9, 3, 15, 20, 7};
+        System.out.println("Output1 : " + printTreeAsArrayFormat(solution.buildTree(inorder1, postorder1)) + "\n");
+
+        int[] postorder2 = { -1 };
+        int[] inorder2 = { -1 };
+        System.out.println("Output2 : " + printTreeAsArrayFormat(solution.buildTree(inorder2, postorder2)));
+
+    }
 
 }
 
