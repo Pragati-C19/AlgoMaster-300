@@ -49,7 +49,7 @@ public class Codec {
             }
             else {
 
-                serializeString.append(", null ");
+                serializeString.append(", null");
                 System.out.println("    [IF : Left=null] String Values are : " + serializeString);
             
             }
@@ -57,7 +57,7 @@ public class Codec {
             // Check right node and added it in string
             if (node.right != null) {
                 
-                serializeString.append(", ").append(node.right);
+                serializeString.append(", ").append(node.right.val);
                 System.out.println("    [IF : Right!=null] String Values are : " + serializeString);
 
                 queue.add(node.right);
@@ -65,7 +65,7 @@ public class Codec {
             }
             else {
 
-                serializeString.append(", null ");
+                serializeString.append(", null");
                 System.out.println("    [IF : Right=null] String Values are : " + serializeString);
 
             }
