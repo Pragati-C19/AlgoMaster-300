@@ -72,12 +72,13 @@ public class Codec {
 
         }
 
-        return serializeString;
+        return serializeString.toString();
     }
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
         
+        return null;
     }
 
 
@@ -129,18 +130,17 @@ public class Codec {
         Codec ser = new Codec();
         Codec deser = new Codec();
 
-        Integer[] root1 = {1, 2, 3, null, null, 4, 5};
-        TreeNode root = buildTree(root1, 0);
+        Integer[] treeArray1 = {1, 2, 3, null, null, 4, 5};
+        TreeNode root1 = buildTree(treeArray1, 0);
         String ansForSerialize1 = ser.serialize(root1);
         System.out.println("Output For Serialize : " + ansForSerialize1 + "\n");
         // TreeNode ansForDeserialize1 = deser.deserialize(ansForSerialize1);
         // System.out.println("Output1 : " + printTreeAsArrayFormat(ansForDeserialize1) + "\n");
 
-        Integer[] root2 = {};
-        TreeNode root2Deser = buildTree(root2, 0);
+        Integer[] treeArray2 = {};
+        TreeNode root2 = buildTree(treeArray2, 0);
         String ansForSerialize2 = ser.serialize(root2);
         System.out.println("Output For Serialize : " + ansForSerialize2 + "\n");
-
         // TreeNode ansForDeserialize2 = deser.deserialize(ansForSerialize2);
         // System.out.println("Output2 : " + printTreeAsArrayFormat(ansForDeserialize1) + "\n");
 
