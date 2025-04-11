@@ -49,8 +49,6 @@ public class InorderTraversal {
         // Checking right side
         buildInorderTraversal(root.right, result);
 
-        return;
-
     }
 
     // Helper Function : to build a tree from an array (for testing)
