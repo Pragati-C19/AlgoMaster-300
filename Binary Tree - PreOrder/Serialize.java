@@ -39,6 +39,11 @@ public class Serialize {
  * store values in string for null will add it in string not in queue
  * 2. will use StringBuilder to store the values
  * 
+ * Deserialize String to Binary
+ * 1. will use BFS approach here -> queue to store root and when we pop it will 
+ * start adding values at root root.left and root.right
+ * 2. will use StringBuilder to store the values
+ * 3. will use same methode we use for helper function of building tree 
  * 
  * 
  * Pseudo Code :
@@ -82,9 +87,42 @@ public class Serialize {
  *  
  *      // Base Case 
  *      if(string.size() == 0) return null;
- * 
  *      
+ *      //need to split the string and convert it into String array
+ *      String[] stringSplit = string.split("")
  * 
+ *      root = new TreeNode(stringSplit[0])
+ *      
+ *      queue = new linkedList
+ *      queue.add(root)
+ *      
+ *      index = 0
+ *      
+ *      while(!queue.isEmpty){
+ *          
+ *          TreeNode node = queue.pop()
+ *          
+ *          if(stringSplit[index] != "null"){
+ *              node.left = new TreeNode(stringSplit[index])
+ *              queue.add(node.left)
+ *          }
+ *          else {
+ *              node.left = null
+ *          }
+ *          index++
+ * 
+ *          if(stringSplit[index] != "null"){
+ *              node.right = new TreeNode(stringSplit[index])
+ *              queue.add(node.right)
+ *          }
+ *          else{
+ *              node.right = null
+ *          }
+ *          index++;
+ *          
+ *      }
+ * 
+ *      return root;
  * }
  * 
  * 
