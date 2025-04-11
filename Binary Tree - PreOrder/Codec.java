@@ -98,12 +98,12 @@ public class Codec {
         // index will track where the string's current point is at
         int index = 0;
 
-        while (!queue.isEmpty) {
+        while(!queue.isEmpty()) {
             
             TreeNode node = queue.poll();
 
             // We are doing level order traversal so will assign first index to left side then right
-            if (splitSerializeString[index] != "null") {
+            if (!splitSerializeString[index].equals("null")) {
                 
                 System.out.println("    [IF : index!=null] Added value in left node ");
                 node.left = new TreeNode(splitSerializeString[index]);
@@ -118,7 +118,7 @@ public class Codec {
             }
             index++; // checking for next index and assign it to the right side
 
-            if (serializeString[index] !== "null") {
+            if (!splitSerializeString[index].equals("null")) {
                 
                 System.out.println("    [IF : index!=null] Added value in right node ");
                 node.right = new TreeNode(splitSerializeString[index]);
