@@ -56,16 +56,35 @@ public class InorderTraversal {
     }
 
     // Helper Function : to build a tree from an array (for testing)
-    public static TreeNode buildTree(Integer[] nodes, int index) {
+    public static TreeNode buildTree(Integer[] nodes) {
         
-        // Base Case: if index is out of bounds or node is null
-        if (index >= nodes.length || nodes[index] == null) return null;
+        // Node is empty
+        if (nodes.length == 0 || nodes[0] == null) return null;
+        
+        TreeNode root = new TreeNode(nodes[0]);
+        Queue<TreeNode> queue = new LinkedList<>();
+        
+        queue.add(root);
+        
+        int i = 1;  // Start from second element
 
-        TreeNode root = new TreeNode(nodes[index]);
-
-        // Recursively build left and right children
-        root.left = buildTree(nodes, 2 * index + 1);
-        root.right = buildTree(nodes, 2 * index + 2);
+        while (!queue.isEmpty() && i < nodes.length) {
+            TreeNode parent = queue.poll();
+            
+            // Assign left child
+            if (nodes[i] != null) {
+                parent.left = new TreeNode(nodes[i]);
+                queue.add(parent.left);
+            }
+            i++;
+            
+            // Assign right child (check if there's still an element)
+            if (i < nodes.length && nodes[i] != null) {
+                parent.right = new TreeNode(nodes[i]);
+                queue.add(parent.right);
+            }
+            i++;
+        }
 
         return root;
     }
@@ -75,22 +94,22 @@ public class InorderTraversal {
         InorderTraversal solution = new InorderTraversal();
 
         Integer[] treeArray1 = {1, null, 2, 3};
-        TreeNode root1 = buildTree(treeArray1, 0);
+        TreeNode root1 = buildTree(treeArray1);
         System.out.println("Output1 : " + solution.inorderTraversal(root1) + "\n");
 
 
         Integer[] treeArray2 = {1, 2, 3, 4, 5, null, 8, null, null, 6, 7, 9};
-        TreeNode root2 = buildTree(treeArray2, 0);
+        TreeNode root2 = buildTree(treeArray2);
         System.out.println("Output2 : " + solution.inorderTraversal(root2) + "\n");
 
   
         Integer[] treeArray3 = {};
-        TreeNode root3 = buildTree(treeArray3, 0);
+        TreeNode root3 = buildTree(treeArray3);
         System.out.println("Output3 : " + solution.inorderTraversal(root3) + "\n");
 
 
         Integer[] treeArray4 = {1};
-        TreeNode root4 = buildTree(treeArray4, 0);
+        TreeNode root4 = buildTree(treeArray4);
         System.out.println("Output4 : " + solution.inorderTraversal(root4) + "\n");
 
     }
