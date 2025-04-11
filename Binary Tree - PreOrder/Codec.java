@@ -97,7 +97,7 @@ public class Codec {
         queue.add(root);
 
         // index will track where the string's current point is at
-        int index = 0;
+        int index = 1;
 
         while(!queue.isEmpty()) {
             
@@ -106,7 +106,7 @@ public class Codec {
             // We are doing level order traversal so will assign first index to left side then right
             if (!splitSerializeString[index].equals("null")) {
                 
-                System.out.println("    [IF : index!=null] Added value in left node ");
+                System.out.println("    [IF : index!=null] Added " + splitSerializeString[index] + " value in left node ");
                 node.left = new TreeNode(Integer.parseInt(splitSerializeString[index]));
                 queue.add(node.left);   
                 
@@ -121,7 +121,7 @@ public class Codec {
 
             if (!splitSerializeString[index].equals("null")) {
                 
-                System.out.println("    [IF : index!=null] Added value in right node ");
+                System.out.println("    [IF : index!=null] Added " + splitSerializeString[index] + " value in right node ");
                 node.right = new TreeNode(Integer.parseInt(splitSerializeString[index]));
                 queue.add(node.right);
 
@@ -131,6 +131,8 @@ public class Codec {
                 System.out.println("    [IF : index==null] Right node is null ");
                 node.right = null;
             }
+            index++;    // sending to the next index
+
         }
 
         return root;
