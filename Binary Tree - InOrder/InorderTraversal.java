@@ -26,30 +26,30 @@ public class InorderTraversal {
             return result;
         }
 
-        result = buildInorderTraversal(root, result);
+        buildInorderTraversal(root, result);
 
         return result;
 
     }
 
     // Recursion Function : it will help to build tree in inorder way and also store result
-    private List<Integer> buildInorderTraversal(TreeNode root, List<Integer> result){
+    private void buildInorderTraversal(TreeNode root, List<Integer> result){
 
         // Base Case :
         if (root == null) {
-            return result;
+            return;
         }
 
         // We'll check Left side first
-        root.left = buildInorderTraversal(root.left, result);
+        buildInorderTraversal(root.left, result);
 
         // Add root in result
         result.add(root.val);
 
         // Checking right side
-        root.right = buildInorderTraversal(root.right, result);
+        buildInorderTraversal(root.right, result);
 
-        return result;
+        return;
 
     }
 
