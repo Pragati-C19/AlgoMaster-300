@@ -26,6 +26,7 @@ public class InorderTraversal {
             return result;
         }
 
+        System.out.println("Started The recursion for " + root.val + "...");
         buildInorderTraversal(root, result);
 
         return result;
@@ -42,12 +43,15 @@ public class InorderTraversal {
 
         // We'll check Left side first
         buildInorderTraversal(root.left, result);
+        System.out.println("Result after Traveling to left of " + root.val + " is " + result );
 
         // Add root in result
         result.add(root.val);
-
+        System.out.println("Added " + root.val + " to the result : " + result);
+        
         // Checking right side
         buildInorderTraversal(root.right, result);
+        System.out.println("Result after Traveling to right of " + root.val + " is " + result + "\n");
 
     }
 
