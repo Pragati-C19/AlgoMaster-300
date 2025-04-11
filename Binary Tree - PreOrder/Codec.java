@@ -23,7 +23,7 @@ public class Codec {
         
         //Base Case :
         if (root == null) {
-            System.out.println("root is null so String is also Empty");
+            System.out.println("root is null so String is also Empty...");
             return "";
         }
 
@@ -76,9 +76,63 @@ public class Codec {
     }
 
     // Decodes your encoded data to tree.
-    public TreeNode deserialize(String data) {
+    public TreeNode deserialize(String serializeString) {
         
-        return null;
+        // Base Case:
+        if (serializeString.length() == 0) {
+            System.out.println("String is empty so root will be null...");
+            return null;
+        }
+
+        // Split String and create a String array so that we can track index
+        String[] splitSerializeString = serializeString.split(", ");
+        System.out.println("Split String Values are : " + Arrays.toString(splitSerializeString));
+
+        // Create that first index as root
+        TreeNode root = new TreeNode(splitSerializeString[0]);
+
+        // Create a queue
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        // index will track where the string's current point is at
+        int index = 0;
+
+        while (!queue.isEmpty) {
+            
+            TreeNode node = queue.poll();
+
+            // We are doing level order traversal so will assign first index to left side then right
+            if (splitSerializeString[index] != "null") {
+                
+                System.out.println("    [IF : index!=null] Added value in left node ");
+                node.left = new TreeNode(splitSerializeString[index]);
+                queue.add(node.left);   
+                
+            }
+            else {
+                
+                System.out.println("    [IF : index==null] Left node is null ");
+                node.left = null;
+
+            }
+            index++; // checking for next index and assign it to the right side
+
+            if (serializeString[index] !== "null") {
+                
+                System.out.println("    [IF : index!=null] Added value in right node ");
+                node.right = new TreeNode(splitSerializeString[index]);
+                queue.add(node.right);
+
+            }
+            else {
+
+                System.out.println("    [IF : index==null] Right node is null ");
+                node.right = null;
+            }
+        }
+
+        return root;
     }
 
 
@@ -136,8 +190,8 @@ public class Codec {
         String ansForSerialize1 = ser.serialize(root1);
         System.out.println("Output For Serialize : " + ansForSerialize1 + "\n");
         
-        // TreeNode ansForDeserialize1 = deser.deserialize(ansForSerialize1);
-        // System.out.println("Output For Deserialize : " + printTreeAsArrayFormat(ansForDeserialize1) + "\n");
+        TreeNode ansForDeserialize1 = deser.deserialize(ansForSerialize1);
+        System.out.println("Output For Deserialize : " + printTreeAsArrayFormat(ansForDeserialize1) + "\n");
 
         Integer[] treeArray2 = {};
         TreeNode root2 = buildTree(treeArray2, 0);
@@ -145,8 +199,8 @@ public class Codec {
         String ansForSerialize2 = ser.serialize(root2);
         System.out.println("Output For Serialize : " + ansForSerialize2 + "\n");
         
-        // TreeNode ansForDeserialize2 = deser.deserialize(ansForSerialize2);
-        // System.out.println("Output For Deserialize : " + printTreeAsArrayFormat(ansForDeserialize1) + "\n");
+        TreeNode ansForDeserialize2 = deser.deserialize(ansForSerialize2);
+        System.out.println("Output For Deserialize : " + printTreeAsArrayFormat(ansForDeserialize1) + "\n");
 
     }
 
