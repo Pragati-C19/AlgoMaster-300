@@ -21,6 +21,58 @@ public class Codec {
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
         
+        //Base Case :
+        if (root == null) {
+            System.out.println("root is null so String is also Empty");
+            return "";
+        }
+
+        StringBuilder serializeString = new StringBuilder();
+        serializeString.append(root.val);
+        System.out.println("At start String Values are : " + serializeString);
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            
+            TreeNode node = queue.poll();
+
+            // Check left nodes and added it in string
+            if (node.left != null) {
+                
+                serializeString.append(", ").append(node.left.val);
+                System.out.println("    [IF : Left!=null] String Values are : " + serializeString);
+
+                queue.add(node.left);
+
+            }
+            else {
+
+                serializeString.append(", null ");
+                System.out.println("    [IF : Left=null] String Values are : " + serializeString);
+            
+            }
+
+            // Check right node and added it in string
+            if (node.right != null) {
+                
+                serializeString.append(", ").append(node.right);
+                System.out.println("    [IF : Right!=null] String Values are : " + serializeString);
+
+                queue.add(node.right);
+            
+            }
+            else {
+
+                serializeString.append(", null ");
+                System.out.println("    [IF : Right=null] String Values are : " + serializeString);
+
+            }
+
+        }
+
+        return serializeString;
     }
 
     // Decodes your encoded data to tree.
@@ -57,18 +109,40 @@ public class Codec {
         return result;
     }    
 
+    // Helper Function : to build a tree from an array (for testing)
+    public static TreeNode buildTree(Integer[] nodes, int index) {
+        
+        // Base Case: if index is out of bounds or node is null
+        if (index >= nodes.length || nodes[index] == null) return null;
+
+        TreeNode root = new TreeNode(nodes[index]);
+
+        // Recursively build left and right children
+        root.left = buildTree(nodes, 2 * index + 1);
+        root.right = buildTree(nodes, 2 * index + 2);
+
+        return root;
+    }
+
     public static void main (String[] args){
 
         Codec ser = new Codec();
         Codec deser = new Codec();
 
-        TreeNode root1 = {1, 2, 3, null, null, 4, 5};
-        TreeNode ans1 = deser.deserialize(ser.serialize(root1))
-        System.out.println("Output1 : " + printTreeAsArrayFormat(ans1) + "\n");
+        Integer[] root1 = {1, 2, 3, null, null, 4, 5};
+        TreeNode root = buildTree(root1, 0);
+        String ansForSerialize1 = ser.serialize(root1);
+        System.out.println("Output For Serialize : " + ansForSerialize1 + "\n");
+        // TreeNode ansForDeserialize1 = deser.deserialize(ansForSerialize1);
+        // System.out.println("Output1 : " + printTreeAsArrayFormat(ansForDeserialize1) + "\n");
 
-        TreeNode root2 = { };
-        TreeNode ans2 = deser.deserialize(ser.serialize(root2))
-        System.out.println("Output2 : " + printTreeAsArrayFormat(ans2) + "\n");
+        Integer[] root2 = {};
+        TreeNode root2Deser = buildTree(root2, 0);
+        String ansForSerialize2 = ser.serialize(root2);
+        System.out.println("Output For Serialize : " + ansForSerialize2 + "\n");
+
+        // TreeNode ansForDeserialize2 = deser.deserialize(ansForSerialize2);
+        // System.out.println("Output2 : " + printTreeAsArrayFormat(ansForDeserialize1) + "\n");
 
     }
 
