@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class BuildTree {
+public class BuildTreePreIn {
  
     private static class TreeNode {
         int val;
@@ -89,7 +89,7 @@ public class BuildTree {
 
     public static void main (String[] args){
 
-        BuildTree solution = new BuildTree();
+        BuildTreePreIn solution = new BuildTreePreIn();
 
         int[] preorder1 = {3, 9, 20, 15, 7};
         int[] inorder1 = {9, 3, 15, 20, 7};
