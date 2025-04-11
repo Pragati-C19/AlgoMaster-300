@@ -56,7 +56,7 @@ public class BuildTreePostIn {
         // create a root against that root value
         TreeNode root = new TreeNode(rootVal);
 
-        // Find root's left and right Values
+        // Find root's left and right Values (Order matters here, as we are traveling from backward in postorder we need to use right first then left)
         root.right = build(inorder, postorder, rootIndex + 1, inorderEnd, inorderMap);
         root.left = build(inorder, postorder, inorderStart, rootIndex - 1, inorderMap);
 
