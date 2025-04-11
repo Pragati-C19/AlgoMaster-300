@@ -17,13 +17,50 @@ public class BuildTreePostIn {
         }
     }
 
+
+    // Globally assign Postorder Index to track the index of postorder in all recursion
+    int postIndex;
+
     // Driver Function 
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         
+        // Assinging starting value to postorder index (We are traveleling from back)
+        postIndex = postorder.length - 1;
+
+        // Creating map for inorder to store value and index
+        Map<Integer, Integer> inorderMap = new HashMap<>();
+
+        for (int i = 0; i < inorder.length; i++) {
+            inorderMap.put(inorder[i], i);
+        }
+
+        // call Recursion function to get root
+        return build(inorder, postorder, 0, inorder.length - 1, inorderMap);
     }
     
     // Recursion Function : to build the binary tree
     private TreeNode build(int[] inorder, int[] postorder, int inorderStart, int inorderEnd, Map<Integer, Integer> inorderMap){
+
+        // Base Case 
+        if (inorderStart > inorderEnd) {
+            return null;
+        }
+
+        // Get root value from postorder and decreament postorder index
+        int rootVal = postorder[postIndex];
+        postIndex--;
+
+        // check that root value in inorder and get index of it
+        int rootIndex = inorderMap.get(rootVal);
+
+        // create a root against that root value
+        TreeNode root = new TreeNode(rootVal);
+
+        // Find root's left and right Values
+        root.right = build(inorder, postorder, rootIndex + 1, inorderEnd, inorderMap);
+        root.left = build(inorder, postorder, inorderStart, rootIndex - 1, inorderMap);
+
+        return root;
 
     }
 
