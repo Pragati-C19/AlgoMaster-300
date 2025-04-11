@@ -89,7 +89,8 @@ public class Codec {
         System.out.println("Split String Values are : " + Arrays.toString(splitSerializeString));
 
         // Create that first index as root
-        TreeNode root = new TreeNode(splitSerializeString[0]);
+        //? To convert String to int used Integer.parseInt
+        TreeNode root = new TreeNode(Integer.parseInt(splitSerializeString[0]));
 
         // Create a queue
         Queue<TreeNode> queue = new LinkedList<>();
@@ -106,7 +107,7 @@ public class Codec {
             if (!splitSerializeString[index].equals("null")) {
                 
                 System.out.println("    [IF : index!=null] Added value in left node ");
-                node.left = new TreeNode(splitSerializeString[index]);
+                node.left = new TreeNode(Integer.parseInt(splitSerializeString[0]));
                 queue.add(node.left);   
                 
             }
@@ -121,7 +122,7 @@ public class Codec {
             if (!splitSerializeString[index].equals("null")) {
                 
                 System.out.println("    [IF : index!=null] Added value in right node ");
-                node.right = new TreeNode(splitSerializeString[index]);
+                node.right = new TreeNode(Integer.parseInt(splitSerializeString[0]));
                 queue.add(node.right);
 
             }
