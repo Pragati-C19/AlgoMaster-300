@@ -107,7 +107,7 @@ public class Codec {
             if (!splitSerializeString[index].equals("null")) {
                 
                 System.out.println("    [IF : index!=null] Added value in left node ");
-                node.left = new TreeNode(Integer.parseInt(splitSerializeString[0]));
+                node.left = new TreeNode(Integer.parseInt(splitSerializeString[index]));
                 queue.add(node.left);   
                 
             }
@@ -122,7 +122,7 @@ public class Codec {
             if (!splitSerializeString[index].equals("null")) {
                 
                 System.out.println("    [IF : index!=null] Added value in right node ");
-                node.right = new TreeNode(Integer.parseInt(splitSerializeString[0]));
+                node.right = new TreeNode(Integer.parseInt(splitSerializeString[index]));
                 queue.add(node.right);
 
             }
@@ -201,7 +201,7 @@ public class Codec {
         System.out.println("Output For Serialize : " + ansForSerialize2 + "\n");
         
         TreeNode ansForDeserialize2 = deser.deserialize(ansForSerialize2);
-        System.out.println("Output For Deserialize : " + printTreeAsArrayFormat(ansForDeserialize1) + "\n");
+        System.out.println("Output For Deserialize : " + printTreeAsArrayFormat(ansForDeserialize2) + "\n");
 
     }
 
