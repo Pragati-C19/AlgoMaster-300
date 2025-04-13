@@ -17,40 +17,43 @@ public class MinDiffInBST {
         }
     }
 
+    // Globally Declaring variables with by default values
+    Integer prevNode = null;
+    int minDiff = Integer.MAX_VALUE;
+
     // Driver Function
     public int minDiffInBST(TreeNode root) {
         
-        return findMinDiff(root, root.val, root.val);
+        findMinDiff(root);
 
+        return minDiff;
     }
 
     // Recursion Function : To find Minimum Difference
-    private int findMinDiff( TreeNode root, int minSoFar, int maxSoFar){
+    private void findMinDiff(TreeNode node){
 
         // Base Case:
-        if (root == null) {
-            return (maxSoFar - minSoFar);
+        if (node == null) {
+            return;
         }
 
-        System.out.println("Starting Values | Node : " + root.val + " Minimun Node : " + minSoFar + " Maximum Node : " + maxSoFar);
+        System.out.println("Visiting | Node : " + node.val + " PrevNode : " + prevNode);
 
-        // Get Value of minSoFar and maxSoFar
-        minSoFar = Math.min(root.val, minSoFar);
-        maxSoFar = Math.max(root.val, maxSoFar);
-        System.out.println("After and Update | minSoFar : " + minSoFar + " maxSoFar : " + maxSoFar);
+        // Check Left Side
+        findMinDiff(node.left);
+        System.out.println("    leftDiff : " + minDiff);
 
-        // Check leftSubtree and rightSubtree
-        int leftMinDiff = findMinDiff(root.left, minSoFar, maxSoFar);
-        System.out.println("    leftDiff : " + leftMinDiff);
+        // Visit node : check minDiff 
+        if (prevNode != null) {
+            minDiff = Math.min(minDiff, (node.val - prevNode));
+        }
 
-        int rightMinDiff = findMinDiff(root.right, minSoFar, maxSoFar);
-        System.out.println("    rightDiff : " + rightMinDiff);
+        prevNode = node.val;
 
-        // check minimum difference between left side and right side
-        int currentMinDiff = Math.min(leftMinDiff, rightMinDiff);
-        System.out.println("    currentDiff : " + currentMinDiff);
+        // check right side
+        findMinDiff(node.right);
+        System.out.println("    rightDiff : " + minDiff);
 
-        return currentMinDiff;
     }
 
     // Helper Function : to build a tree from an array (for testing)
