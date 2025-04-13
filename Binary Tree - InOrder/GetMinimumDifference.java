@@ -18,16 +18,38 @@ public class GetMinimumDifference {
     }
 
     // Global Declaration of variables 
-    
+    Integer prevNode = null;
+    int minDiff = Integer.MAX_VALUE;
+
     // Driver function 
     public int getMinimumDifference(TreeNode root) {
         
+        inorderTraversal(root);
+        return minDiff;
+
     }
 
     // Recursion Function : To sort BST and get MinDiff
-    private void inorderTraversal(TreeNode root){
+    private void inorderTraversal(TreeNode node){
 
+        // Base Case :
+        if (node == null) {
+            return;
+        }
+
+        // check left node
+        inorderTraversal(node.left);
+
+        // visit node : find the minDiff here
+        if (prevNode != null) {
+            minDiff = Math.min(minDiff, Math.abs(node.val - prevNode));
+        }
+        prevNode = node.val;
+
+        // check right node
+        inorderTraversal(node.right);
     }
+
 
     // Helper Function : to build a tree from an array (for testing)
     public static TreeNode buildTree(Integer[] nodes) {
@@ -65,17 +87,17 @@ public class GetMinimumDifference {
 
     public static void main(String[] args) {
         
-        MinDiffInBST solution = new MinDiffInBST();
+        GetMinimumDifference solution = new GetMinimumDifference();
 
         // First Example
         Integer[] treeArray1 = {4, 2, 6, 1, 3};
         TreeNode root1 = buildTree(treeArray1);
-        System.out.println("Result1: " + solution.minDiffInBST(root1) + "\n");
+        System.out.println("Result1: " + solution.getMinimumDifference(root1) + "\n");
 
         // Second Example
         Integer[] treeArray2 = { 1, 0, 48, null, null, 12, 49 };
         TreeNode root2 = buildTree(treeArray2);
-        System.out.println("Result2: " + solution.minDiffInBST(root2) + "\n");
+        System.out.println("Result2: " + solution.getMinimumDifference(root2) + "\n");
 
     }
 }
