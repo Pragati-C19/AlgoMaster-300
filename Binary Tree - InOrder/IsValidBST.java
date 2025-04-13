@@ -19,16 +19,38 @@ public class IsValidBST {
 
 
     // Global Declaration of variables 
-
+    boolean isValid = true;
+    Integer prevNode = null;
+    Integer nextNode = null;
 
     // Driver Function
     public boolean isValidBST(TreeNode root) {
-        
+        inorderTraversal(root);
+        return isValid;
     }
 
     // Recursion Function : To check if BST is valid or not with inorder function
     private void inorderTraversal(TreeNode node){
         
+        // Base Case:
+        if(node == null) return;
+
+        // check left side of node
+        inorderTraversal(node.left);
+
+        // visit node : check condition here
+        if(prevNode != null && nextNode != null){
+            if(prevNode < node.val && node.val < nextNode){
+                isValid = true;
+            }
+            else {
+                isValid = false;
+            }
+        }
+        prevNode = node.val;
+        nextNode = node.right.val;
+
+        inorderTraversal(node.right);
     }
 
 
