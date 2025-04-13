@@ -17,17 +17,34 @@ public class KthSmallest {
         }
     }
 
-    
-    // Globally declared variables
 
+    // Globally declared variables
+    int smallestElement;
+    int index = 1;
 
     // Driver Function
     public int kthSmallest(TreeNode root, int k) {
-        
+        inorderTraversal(root, k);
+        return smallestElement;
     }
 
     // Recursion Function : to find smallest Element
-    private void inorderTraversal(root, k){
+    private void inorderTraversal(TreeNode node, int k){
+
+        // Base Case :
+        if(node == null) return;
+
+        // Traverse Left Subtree
+        inorderTraversal(node.left, k);
+
+        // Visit Node : check if index is equal to k or not 
+        if (index == k) {
+            smallestElement = node.val;
+        }
+        index++;
+
+        // Traverse Right Subtree
+        inorderTraversal(node.right, k);
 
     }
     
@@ -68,17 +85,19 @@ public class KthSmallest {
 
     public static void main(String[] args) {
         
-        IsValidBST solution = new IsValidBST();
+        KthSmallest solution = new KthSmallest();
 
         // First Example
-        Integer[] treeArray1 = {2, 1, 3};
+        Integer[] treeArray1 = {3, 1, 4, null, 2};
         TreeNode root1 = buildTree(treeArray1);
-        System.out.println("Result1: " + solution.isValidBST(root1) + "\n");
+        int k1 = 1;
+        System.out.println("Result1: " + solution.kthSmallest(root1, k1) + "\n");
 
         // Second Example
-        Integer[] treeArray2 = { 5, 1, 4, null, null, 3, 6 };
+        Integer[] treeArray2 = { 5, 3, 6, 2, 4, null, null, 1 };
         TreeNode root2 = buildTree(treeArray2);
-        System.out.println("Result2: " + solution.isValidBST(root2) + "\n");
+        int k2 = 3;
+        System.out.println("Result2: " + solution.kthSmallest(root2, k2) + "\n");
 
     }
 
