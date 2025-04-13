@@ -20,12 +20,37 @@ public class MinDiffInBST {
     // Driver Function
     public int minDiffInBST(TreeNode root) {
         
+        return findMinDiff(root, root.val, root.val);
+
     }
 
     // Recursion Function : To find Minimum Difference
     private int findMinDiff( TreeNode root, int minSoFar, int maxSoFar){
 
+        // Base Case:
+        if (root == null) {
+            return (maxSoFar - minSoFar);
+        }
 
+        System.out.println("Starting Values | Node : " + root.val + " Minimun Node : " + minSoFar + " Maximum Node : " + maxSoFar);
+
+        // Get Value of minSoFar and maxSoFar
+        minSoFar = Math.min(root.val, minSoFar);
+        maxSoFar = Math.max(root.val, maxSoFar);
+        System.out.println("After and Update | minSoFar : " + minSoFar + " maxSoFar : " + maxSoFar);
+
+        // Check leftSubtree and rightSubtree
+        int leftMinDiff = findMinDiff(root.left, minSoFar, maxSoFar);
+        System.out.println("    leftDiff : " + leftMinDiff);
+
+        int rightMinDiff = findMinDiff(root.right, minSoFar, maxSoFar);
+        System.out.println("    rightDiff : " + rightMinDiff);
+
+        // check minimum difference between left side and right side
+        int currentMinDiff = Math.min(leftMinDiff, rightMinDiff);
+        System.out.println("    currentDiff : " + currentMinDiff);
+
+        return currentMinDiff;
     }
 
     // Helper Function : to build a tree from an array (for testing)
