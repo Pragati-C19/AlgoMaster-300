@@ -21,7 +21,6 @@ public class IsValidBST {
     // Global Declaration of variables 
     boolean isValid = true;
     Integer prevNode = null;
-    Integer nextNode = null;
 
     // Driver Function
     public boolean isValidBST(TreeNode root) {
@@ -39,8 +38,8 @@ public class IsValidBST {
         inorderTraversal(node.left);
 
         // visit node : check condition here
-        if(prevNode != null && nextNode != null){
-            if(prevNode < node.val && node.val < nextNode){
+        if(prevNode != null){
+            if(prevNode < node.val){
                 isValid = true;
             }
             else {
@@ -48,7 +47,6 @@ public class IsValidBST {
             }
         }
         prevNode = node.val;
-        nextNode = node.right.val;
 
         inorderTraversal(node.right);
     }
