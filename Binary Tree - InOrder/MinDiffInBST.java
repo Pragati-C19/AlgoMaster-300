@@ -107,14 +107,106 @@ public class MinDiffInBST {
 
 /*
  * 
- * Intuitions :
+ * 
+ * Let's Start Fresh
+ * 
+ * Intuitions : 
+ * 1. Root of Binary Tree is given
+ * 2. Find the minimum of any two different nodes from the tree 
+ * 3. As u know now Inorder is a Sorted version of BST
+ * 4. means if we check BST's inorder Traversal it can give sorted array
+ * 5. and to get minimun difference we only need to check difference of adjucent nodes from array
+ * 
+ *
+ * Pattern : 
+ * 
+ * 1. first approaches : We need to create sorted array with the help of inorder
+ * - Create a array where u can put sorted values
+ * - call inorder function to sort BST
+ *  	- check if root is null -> return
+ *      - check leftSide
+ *      - add value of root in array
+ *      - check right value
+ * - run for loop from 1 to array.length 
+ * - find minDiff = min(minDiff, (array[i] - array[i - 1])
+ * - return minDiff
+ * 
+ * function minDiffInBST(root){
+ * 
+ *      List<Integer> sortedArray = new Array
+ *      
+ *      inorder(root, sortedArray)
+ * 
+ *      minDiff = Integer.MAX_Value
+ *      for(i from 1 to sortedArray.length){
+ *          minDiff = min(minDiff, (sortedArray[i] - sortedArray[i - 1]))
+ *      }
+ *      
+ *      return minDiff
+ * }
+ * 
+ * function inorder(node, sortedArray){
+ *      if(node == null) return 
+ *  
+ *      // check left node
+ *      inorder(node.left, sortedArray)
+ * 
+ *      // Visit root
+ *      sortedArray.add(node.val)
+ * 
+ *      // check right node
+ *      inorder(node.right, sortedArray)
+ *      
+ * }
+ * 
+ * 2. second approach : We need to create global variables and then use inorder traversal to find minDiff
+ * - Create two variables Globally -> prevNode = null, minDiff = Integer.Max_Value
+ * - call inorder recursion function
+ *		- check if node is null -> return
+ *		- check leftSide
+ *		- see if prevNode != null -> minDiff =  min(minDiff, (node - prevNode)
+ *		- else prevNode = node.val
+ *		- check rightSide
+ * - return minDiff
+ * 
+ * Integer prevNode = null
+ * int minDiff = Integer.MAX_VALUE
+ * 
+ * function minDiffInBST(root){
+ *      inorder(root)
+ *      return minDiff
+ * }
+ * 
+ * function inorder(node){
+ *      if(node == null) return 
+ *  
+ *      // check left node
+ *      inorder(node.left)
+ * 
+ *      // Visit root
+ *      if(prev != null) minDiff = min(minDiff, (node - prevNode))
+ *      
+ *      prevNode = node.val
+ *  
+ *      // Check right node
+ *      inorder(node.right)
+ * }
+ * 
+ * 
+ * 
+ * 
+ * ------------------------------------------------------------------------------
+ * 
+ * 
+ * 
+ * Old Intuitions :
  * 
  * 1. Root of Binary Tree is given
  * 2. Find the minimum of any two different nodes from the tree 
  * 3. this problem is almost same as MaxAncestorDiff
  * 
- * 
- * Pattern :
+
+ * OLd Pattern :
  * 
  * 1. We'll use recursion here
  * 2. We'll find the minimum of the left subtree and the right subtree
@@ -123,8 +215,10 @@ public class MinDiffInBST {
  * 5. then will call for recursion first left then right
  * 6. will find min(leftSubtree, rightSubtree)
  * 
+ * 
  * Pseudo Code :
  * 
+ * 1. Thought will use same logic as maxAcenture but it's wrong
  * 
  * function minDiffInBST(root){
  * 
@@ -146,6 +240,11 @@ public class MinDiffInBST {
  *      return currentMinDiff;
  * 
  * }
+ * 
+ * 
+ * 
+ * 2. using inorder
+ * 
  * 
  * 
  */
