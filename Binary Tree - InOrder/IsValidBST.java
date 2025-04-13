@@ -38,13 +38,9 @@ public class IsValidBST {
         inorderTraversal(node.left);
 
         // visit node : check condition here
-        if(prevNode != null && prevNode < node.val){
-            isValid = true;
-        } 
-        else{
+        if(prevNode != null && prevNode >= node.val){
             isValid = false;
         }
-        
         prevNode = node.val;
 
         inorderTraversal(node.right);
@@ -186,6 +182,13 @@ public class IsValidBST {
  * - nextNode = node.right.val 
  * - call recursion to check right side
  * 3. return isValid
+ * 
+ * //! Things we changed
+ * - we don't need nextNode only prevNode is enough
+ * - our by default value is true.. 
+ * - if I use if loop as (prev! null && prev < node) -> it will return true al the time bcoz it's alwasy true and never go in else side
+ * - so we need to use if loop as (prev != null && prev >= node) -> return false
+ * - this only check else condition and return isValid accordingly
  * 
  * 
  * prevNode = null;
