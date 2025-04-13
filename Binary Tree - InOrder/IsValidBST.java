@@ -224,16 +224,6 @@ public class IsValidBST {
  * 
  * }
  * 
- * Pseudo Code :
- * 
- * 1st Approach :
- * 
- * 
- * 
- * 2nd Approach :
- * 
- * prevNode = null;
- * nextNode = null;
  * 
  * 
  * 
