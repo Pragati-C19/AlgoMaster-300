@@ -45,7 +45,7 @@ public class MinDiffInBST {
 
         // Visit node : check minDiff 
         if (prevNode != null) {
-            minDiff = Math.min(minDiff, (node.val - prevNode));
+            minDiff = Math.min(minDiff, Math.abs(node.val - prevNode));
         }
 
         prevNode = node.val;
