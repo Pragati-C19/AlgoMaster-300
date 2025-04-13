@@ -20,28 +20,34 @@ public class KthSmallest {
 
     // Globally declared variables
     int smallestElement;
-    int index = 1;
+    int index;
 
     // Driver Function
     public int kthSmallest(TreeNode root, int k) {
+        index = 1;
         inorderTraversal(root, k);
         return smallestElement;
     }
 
     // Recursion Function : to find smallest Element
     private void inorderTraversal(TreeNode node, int k){
-
+        
         // Base Case :
         if(node == null) return;
 
+        System.out.println("Initial Values | Node : " + node.val + ", Index : " + index + " K : " + k);
+        
         // Traverse Left Subtree
         inorderTraversal(node.left, k);
 
         // Visit Node : check if index is equal to k or not 
         if (index == k) {
             smallestElement = node.val;
+            System.out.println("- Node : " + node.val + " is smallestElement (" + smallestElement + ") " ); 
+            System.out.println("    where index is " + index + " and k is " + k);
         }
         index++;
+        System.out.println("updated Index : " + index + "\n");
 
         // Traverse Right Subtree
         inorderTraversal(node.right, k);
