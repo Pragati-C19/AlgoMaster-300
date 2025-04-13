@@ -38,14 +38,13 @@ public class IsValidBST {
         inorderTraversal(node.left);
 
         // visit node : check condition here
-        if(prevNode != null){
-            if(prevNode < node.val){
-                isValid = true;
-            }
-            else {
-                isValid = false;
-            }
+        if(prevNode != null && prevNode < node.val){
+            isValid = true;
+        } 
+        else{
+            isValid = false;
         }
+        
         prevNode = node.val;
 
         inorderTraversal(node.right);
