@@ -71,6 +71,34 @@ public class InvertTree {
         return root;
     }
 
+    // Helper Function : To Print Binary Tree 
+    public static List<String> printTreeAsArrayFormat(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+    
+        queue.add(root);
+    
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+    
+            if (node == null) {
+                result.add("null");
+            } else {
+                result.add(String.valueOf(node.val));
+                queue.add(node.left);
+                queue.add(node.right);
+            }
+        }
+    
+        // Trim trailing "null"s (Leetcode does this)
+        int i = result.size() - 1;
+        while (i >= 0 && result.get(i).equals("null")) {
+            result.remove(i--);
+        }
+    
+        return result;
+    }    
+
     public static void main(String[] args) {
         
         InvertTree solution = new InvertTree();
@@ -78,17 +106,17 @@ public class InvertTree {
         // First Example
         Integer[] treeArray1 = {4, 2, 7, 1, 3, 6, 9};
         TreeNode root1 = buildTree(treeArray1);
-        System.out.println("Result1: " + solution.invertTree(root1) + "\n");
+        System.out.println("Result1: " + printTreeAsArrayFormat(solution.invertTree(root1)) + "\n");
 
         // Second Example
         Integer[] treeArray2 = { 2, 1, 3 };
         TreeNode root2 = buildTree(treeArray2);
-        System.out.println("Result2: " + solution.invertTree(root2) + "\n");
+        System.out.println("Result2: " + printTreeAsArrayFormat(solution.invertTree(root2)) + "\n");
 
         // Third Example
         Integer[] treeArray3 = {};
         TreeNode root3 = buildTree(treeArray3);
-        System.out.println("Result3: " + solution.invertTree(root3) + "\n");
+        System.out.println("Result3: " + printTreeAsArrayFormat(solution.invertTree(root3)) + "\n");
 
     }
 
