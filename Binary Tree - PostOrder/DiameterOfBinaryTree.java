@@ -40,10 +40,10 @@ public class DiameterOfBinaryTree {
 
         System.out.println("\nVisiting node: " + root.val);
 
-        int leftSideLongestPath = backtrack(root.left, currPath);
+        int leftSideLongestPath = backtrack(root.left, new ArrayList<>());
         System.out.println("  Left longest path for node " + root.val + " = " + leftSideLongestPath);
 
-        int rightSideLongestPath = backtrack(root.right, currPath);
+        int rightSideLongestPath = backtrack(root.right, new ArrayList<>());
         System.out.println("  Right longest path for node " + root.val + " = " + rightSideLongestPath);
 
         int currDiameter = leftSideLongestPath + rightSideLongestPath;
@@ -116,9 +116,9 @@ public class DiameterOfBinaryTree {
         DiameterOfBinaryTree solution = new DiameterOfBinaryTree();
 
         // First Example
-        // Integer[] treeArray1 = {1, 2, 3, 4, 5};
-        // TreeNode root1 = buildTree(treeArray1);
-        // System.out.println("Result1: " + solution.diameterOfBinaryTree(root1) + "\n");
+        Integer[] treeArray1 = {1, 2, 3, 4, 5};
+        TreeNode root1 = buildTree(treeArray1);
+        System.out.println("Result1: " + solution.diameterOfBinaryTree(root1) + "\n");
 
         // Second Example
         Integer[] treeArray2 = { 1, 2 };
