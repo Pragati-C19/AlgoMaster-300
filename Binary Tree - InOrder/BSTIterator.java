@@ -26,15 +26,21 @@ public class BSTIterator {
         
         stack = new Stack<>();
 
+        System.out.println("Initializing BSTIterator...");
+
         // Adding element in stack
         while (root != null) {
+            
+            System.out.println("  → Pushing to stack (leftmost path): " + root.val);
+
             // Add root in stack
             stack.add(root);
 
-            // At a time we need to add left most elements so just checking for left for now
+            // we need to add leftMost elements in stack so updating root to left 
             root = root.left;
         }
-
+        
+        System.out.println("Initialization complete" + "\n");
     }
     
     // Moves pointer to next and return the value of node
@@ -43,17 +49,29 @@ public class BSTIterator {
         // We already check if it has next with hasNext()
         // So we can directly pop from stack
         TreeNode node = stack.pop();
-        System.out.println(" current node : " + node.val);
+        System.out.println(" - Popped from stack : " + node.val);
 
         // Will check right side of node and add left most elements of it to stack
         if (node.right != null) {
 
-            // Add nodes to stack
-            stack.add(node.right);
+            System.out.println("    Right child exists for node " + node.val + ": " + node.right.val);
+            
+            // adding node's right in temp
+            TreeNode temp = node.right;
 
-            node = node.left;
-            System.out.println(" adding nodes of rightSubtree in stack : " + node.val);
-
+            // Push all left nodes of the right subtree
+            while (temp != null) {
+                System.out.println("  → Pushing leftmost node of right child: " + temp.val);
+                
+                // Add temp in stack
+                stack.push(temp);
+                
+                // we need to add leftMost elements in stack so updating root to left  
+                temp = temp.left;
+            }
+        } 
+        else {
+            System.out.println("    No right child for node " + node.val);
         }
 
         return node.val;
