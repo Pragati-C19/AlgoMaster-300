@@ -51,8 +51,8 @@ public class BSTIterator {
             // Add nodes to stack
             stack.add(node.right);
 
-            node = node.right;
-            System.out.println(" adding nodes of rightSibtree in stack : " + node.val);
+            node = node.left;
+            System.out.println(" adding nodes of rightSubtree in stack : " + node.val);
 
         }
 
