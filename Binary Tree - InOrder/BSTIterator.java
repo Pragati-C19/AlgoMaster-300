@@ -28,10 +28,17 @@ public class BSTIterator {
 
         System.out.println("Initializing BSTIterator...");
 
-        // Adding element in stack
+        // Adding leftmost element in stack
+        pushLefts(root);
+        
+        System.out.println("Initialization complete" + "\n");
+    }
+    
+    // Push all left nodes of root
+    private void pushLefts(TreeNode root){
         while (root != null) {
             
-            System.out.println("  → Pushing to stack (leftmost path): " + root.val);
+            System.out.println("    -> Pushing to stack (leftmost path): " + root.val);
 
             // Add root in stack
             stack.add(root);
@@ -39,39 +46,27 @@ public class BSTIterator {
             // we need to add leftMost elements in stack so updating root to left 
             root = root.left;
         }
-        
-        System.out.println("Initialization complete" + "\n");
     }
-    
+
     // Moves pointer to next and return the value of node
     public int next() {
         
         // We already check if it has next with hasNext()
         // So we can directly pop from stack
         TreeNode node = stack.pop();
-        System.out.println(" - Popped from stack : " + node.val);
+        System.out.println("    Popped from stack : " + node.val);
 
         // Will check right side of node and add left most elements of it to stack
         if (node.right != null) {
 
-            System.out.println("    Right child exists for node " + node.val + ": " + node.right.val);
-            
-            // adding node's right in temp
-            TreeNode temp = node.right;
+            System.out.println("    > Right child exists for node " + node.val + " : " + node.right.val);
 
-            // Push all left nodes of the right subtree
-            while (temp != null) {
-                System.out.println("  → Pushing leftmost node of right child: " + temp.val);
-                
-                // Add temp in stack
-                stack.push(temp);
-                
-                // we need to add leftMost elements in stack so updating root to left  
-                temp = temp.left;
-            }
+            // Push all leftmost elements of the right subtree
+            pushLefts(node.right);
+
         } 
         else {
-            System.out.println("    No right child for node " + node.val);
+            System.out.println("    > No right child for node " + node.val);
         }
 
         return node.val;
@@ -134,15 +129,15 @@ public class BSTIterator {
         BSTIterator solution = new BSTIterator(root1);
 
         System.out.println("Final Result : ");
-        System.out.println("    1st Iteration : " + solution.next());  // Output: 3
-        System.out.println("    2nd Iteration : " + solution.next());  // Output: 7
-        System.out.println("    3rd Iteration : " + solution.hasNext());  // Output: true
-        System.out.println("    4th Iteration : " + solution.next());  // Output: 9
-        System.out.println("    5th Iteration : " + solution.hasNext());  // Output: true
-        System.out.println("    6th Iteration : " + solution.next());  // Output: 15
-        System.out.println("    7th Iteration : " + solution.hasNext());  // Output: true
-        System.out.println("    8th Iteration : " + solution.next());  // Output: 20
-        System.out.println("    9th Iteration : " + solution.hasNext());  // Output: false
+        System.out.println("  1st Iteration : " + solution.next());  // Output: 3
+        System.out.println("  2nd Iteration : " + solution.next());  // Output: 7
+        System.out.println("  3rd Iteration : " + solution.hasNext());  // Output: true
+        System.out.println("  4th Iteration : " + solution.next());  // Output: 9
+        System.out.println("  5th Iteration : " + solution.hasNext());  // Output: true
+        System.out.println("  6th Iteration : " + solution.next());  // Output: 15
+        System.out.println("  7th Iteration : " + solution.hasNext());  // Output: true
+        System.out.println("  8th Iteration : " + solution.next());  // Output: 20
+        System.out.println("  9th Iteration : " + solution.hasNext());  // Output: false
 
     }
 
