@@ -21,11 +21,30 @@ public class PostorderTraversal {
     // Driver Function 
     public List<Integer> postorderTraversal(TreeNode root) {
         
+        List<Integer> result = new ArrayList<>();
+
+        // Call recursion 
+        postOrder(root, result);
+ 
+        return result;
+
     }
 
     // Recursion Function : write actual code of post order
     private void postOrder(TreeNode root, List<Integer> result){
 
+        // Base Case :
+        if(root == null) return;
+
+        // Check left subtree
+        postOrder(root.left, result);
+
+        // Check right subtree
+        postOrder(root.right, result);
+
+        // Visit root
+        result.add(root.val);
+    
     }
 
 
