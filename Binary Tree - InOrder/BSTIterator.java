@@ -18,19 +18,55 @@ public class BSTIterator {
     }
 
     
+    // Globally Declaring Stack
+    Stack<TreeNode> stack;
+
     // To initialize an object of the BSTIterator Class
     public BSTIterator(TreeNode root) {
         
+        stack = new Stack<>();
+
+        // Adding element in stack
+        while (root != null) {
+            // Add root in stack
+            stack.add(root);
+
+            // At a time we need to add left most elements so just checking for left for now
+            root = root.left;
+        }
+
     }
     
     // Moves pointer to next and return the value of node
     public int next() {
         
+        // We already check if it has next with hasNext()
+        // So we can directly pop from stack
+        TreeNode node = stack.pop();
+
+        // Will check right side of node and add left most elements of it to stack
+        if (node.right != null) {
+
+            // Add nodes to stack
+            stack.add(node.right);
+
+            node = node.right;
+        }
+
+        return node.val;
+
     }
     
     // Checks if any next value exist or not
     public boolean hasNext() {
         
+        if (!stack.isEmpty()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    
     }
 
 
