@@ -37,7 +37,7 @@ public class DiameterOfBinaryTree {
             System.out.println("Visited null node. Skipping...");
             return maxDiameter;
         }
-
+        
         System.out.println("\nVisiting node: " + root.val);
 
         int leftSideLongestPath = backtrack(root.left, new ArrayList<>());
@@ -51,6 +51,11 @@ public class DiameterOfBinaryTree {
 
         maxDiameter = Math.max(maxDiameter, currDiameter);
         System.out.println("  Updated max diameter = " + maxDiameter);
+
+
+        // checking left and right side
+        postOrder(root.left, currPath, maxDiameter);
+        postOrder(root.right, currPath, maxDiameter);
 
         return maxDiameter;
 
@@ -68,9 +73,9 @@ public class DiameterOfBinaryTree {
         currPath.add(root.val);
         System.out.println("    [backtrack] Visiting node : " + root.val + ", current path: " + currPath);
 
-        backtrack(root.left, currPath);
+        backtrack(root.left, new ArrayList<>(currPath));
 
-        backtrack(root.right, currPath);
+        backtrack(root.right, new ArrayList<>(currPath));
 
         return currPath.size();
 
