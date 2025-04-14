@@ -19,6 +19,21 @@ public class InvertTree {
     // Driver Function 
     public TreeNode invertTree(TreeNode root) {
         
+        // Base Case :
+        if(root == null) return null;
+
+        // Check left side
+        invertTree(root.left);
+
+        // Check right side
+        invertTree(root.right);
+
+        // Visit Root
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+
+        return root;
     }
 
 
