@@ -43,6 +43,7 @@ public class BSTIterator {
         // We already check if it has next with hasNext()
         // So we can directly pop from stack
         TreeNode node = stack.pop();
+        System.out.println(" current node : " + node.val);
 
         // Will check right side of node and add left most elements of it to stack
         if (node.right != null) {
@@ -51,6 +52,8 @@ public class BSTIterator {
             stack.add(node.right);
 
             node = node.right;
+            System.out.println(" adding nodes of rightSibtree in stack : " + node.val);
+
         }
 
         return node.val;
