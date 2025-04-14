@@ -22,20 +22,35 @@ public class DiameterOfBinaryTree {
         List<Integer> currPath = new ArrayList<>();
         int maxDiameter = 0;
         
+        System.out.println("Starting post-order traversal to find diameter...");
+
         maxDiameter = postOrder(root, currPath, maxDiameter);
 
+        System.out.println("Final max diameter: " + maxDiameter);
         return maxDiameter;
     }
 
     // Recursion Function : to check all paths
     private int postOrder(TreeNode root, List<Integer> currPath, int maxDiameter){
 
+        if (root == null) {
+            System.out.println("Visited null node. Skipping...");
+            return maxDiameter;
+        }
+
+        System.out.println("\nVisiting node: " + root.val);
+
         int leftSideLongestPath = backtrack(root.left, currPath);
+        System.out.println("  Left longest path for node " + root.val + " = " + leftSideLongestPath);
+
         int rightSideLongestPath = backtrack(root.right, currPath);
+        System.out.println("  Right longest path for node " + root.val + " = " + rightSideLongestPath);
 
         int currDiameter = leftSideLongestPath + rightSideLongestPath;
+        System.out.println("  Current diameter at node " + root.val + " = " + currDiameter);
 
         maxDiameter = Math.max(maxDiameter, currDiameter);
+        System.out.println("  Updated max diameter = " + maxDiameter);
 
         return maxDiameter;
 
@@ -46,10 +61,12 @@ public class DiameterOfBinaryTree {
 
         // Base Case:
         if(root == null){
+            System.out.println("    Reached leaf. Current path: " + currPath + ", size: " + currPath.size());
             return currPath.size();
         }
 
         currPath.add(root.val);
+        System.out.println("    [backtrack] Visiting node : " + root.val + ", current path: " + currPath);
 
         backtrack(root.left, currPath);
 
@@ -99,9 +116,9 @@ public class DiameterOfBinaryTree {
         DiameterOfBinaryTree solution = new DiameterOfBinaryTree();
 
         // First Example
-        Integer[] treeArray1 = {1, 2, 3, 4, 5};
-        TreeNode root1 = buildTree(treeArray1);
-        System.out.println("Result1: " + solution.diameterOfBinaryTree(root1) + "\n");
+        // Integer[] treeArray1 = {1, 2, 3, 4, 5};
+        // TreeNode root1 = buildTree(treeArray1);
+        // System.out.println("Result1: " + solution.diameterOfBinaryTree(root1) + "\n");
 
         // Second Example
         Integer[] treeArray2 = { 1, 2 };
@@ -109,9 +126,9 @@ public class DiameterOfBinaryTree {
         System.out.println("Result2: " + solution.diameterOfBinaryTree(root2) + "\n");
 
         // Third Example
-        Integer[] treeArray3 = { 4, -7, -3, null, null, -9, -3, 9, -7, -4, null, 6, null, -6, -6, null, null, 0, 6, 5, null, 9, null, null, -1, -4, null, null, null, -2};
-        TreeNode root3 = buildTree(treeArray3);
-        System.out.println("Result3: " + solution.diameterOfBinaryTree(root3) + "\n");
+        // Integer[] treeArray3 = { 4, -7, -3, null, null, -9, -3, 9, -7, -4, null, 6, null, -6, -6, null, null, 0, 6, 5, null, 9, null, null, -1, -4, null, null, null, -2};
+        // TreeNode root3 = buildTree(treeArray3);
+        // System.out.println("Result3: " + solution.diameterOfBinaryTree(root3) + "\n");
         
     }
 
