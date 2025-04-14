@@ -15,69 +15,46 @@ public class DiameterOfBinaryTree {
         }
     }
 
+    //todo: Globally declaring variable bcoz I don't wan't it to change for every call
+    int maxDiameter = Integer.MIN_VALUE;
 
     // Driver Function 
     public int diameterOfBinaryTree(TreeNode root) {
         
-        List<Integer> currPath = new ArrayList<>();
-        int maxDiameter = 0;
-        
         System.out.println("Starting post-order traversal to find diameter...");
 
-        maxDiameter = postOrder(root, currPath, maxDiameter);
+        //todo: Removed currPath bcoz I'm not using it in recursion function and maxDiameter as I'm declaring it globally
+        maxDiameter = postOrder(root);
 
         System.out.println("Final max diameter: " + maxDiameter);
         return maxDiameter;
     }
 
     // Recursion Function : to check all paths
-    private int postOrder(TreeNode root, List<Integer> currPath, int maxDiameter){
+    private int postOrder(TreeNode root){
 
         if (root == null) {
-            System.out.println("Visited null node. Skipping...");
-            return maxDiameter;
+            System.out.println("Visited null node. Height : 0");
+            return 0;
         }
         
         System.out.println("\nVisiting node: " + root.val);
 
-        int leftSideLongestPath = backtrack(root.left, new ArrayList<>());
-        System.out.println("  Left longest path for node " + root.val + " = " + leftSideLongestPath);
-
-        int rightSideLongestPath = backtrack(root.right, new ArrayList<>());
-        System.out.println("  Right longest path for node " + root.val + " = " + rightSideLongestPath);
-
+        // Checking left first then right
+        int leftSideLongestPath = postOrder(root.left);
+        int rightSideLongestPath = postOrder(root.right);
+        
+        // Visiting Root
         int currDiameter = leftSideLongestPath + rightSideLongestPath;
+
+        System.out.println("  Node " + root.val + " -> Left Side Diameter: " + leftSideLongestPath + ", Right Side Diameter: " + rightSideLongestPath);
         System.out.println("  Current diameter at node " + root.val + " = " + currDiameter);
 
         maxDiameter = Math.max(maxDiameter, currDiameter);
         System.out.println("  Updated max diameter = " + maxDiameter);
 
-
-        // checking left and right side
-        postOrder(root.left, currPath, maxDiameter);
-        postOrder(root.right, currPath, maxDiameter);
-
-        return maxDiameter;
-
-    }
-
-    // Backtrack Function : to get longest Path
-    private int backtrack(TreeNode root, List<Integer> currPath){
-
-        // Base Case:
-        if(root == null){
-            System.out.println("    Reached leaf. Current path: " + currPath + ", size: " + currPath.size());
-            return currPath.size();
-        }
-
-        currPath.add(root.val);
-        System.out.println("    [backtrack] Visiting node : " + root.val + ", current path: " + currPath);
-
-        backtrack(root.left, new ArrayList<>(currPath));
-
-        backtrack(root.right, new ArrayList<>(currPath));
-
-        return currPath.size();
+        //todo: return longest path of current node (we are not returning maxDiameter here bcoz it's declared globally)
+        return Math.max(leftSideLongestPath, rightSideLongestPath);
 
     }
 
@@ -210,6 +187,38 @@ public class DiameterOfBinaryTree {
  *      if(root.right != null){
  *          backtrack(root.right, currPath)
  *      }     
+ *      
+ * }
+ * 
+ * 
+ * 
+ * 2nd Approach :
+ * 
+ * // Globally declare 
+ * maxDiameter = Integer.Min_Value or 0
+ * 
+ * function diameterOfBinaryTree(root){
+ * 
+ *      postOrder(root)
+ *      return maxDiameter;
+ * }
+ * 
+ * function postOrder(root){
+ *      
+ *      // Base Case:
+ *      if(root == null) return 0;
+ * 
+ *      // check left side
+ *      leftDiameter = postOrder(root.left)
+ *      
+ *      // Check right Side
+ *      rightDiameter = postOrder(root.right)
+ * 
+ *      currDiameter = leftDiameter + rightDiameter
+ *      maxDiameter = Math.max(currDiameter, maxDiameter)
+ *  
+ *      // return longest path of current node (we are not returning maxDiameter here bcoz it's declared globally)
+ *      return Math.max(leftDiameter, rightDiameter)
  *      
  * }
  * 
