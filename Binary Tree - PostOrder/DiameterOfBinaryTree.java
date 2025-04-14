@@ -15,18 +15,18 @@ public class DiameterOfBinaryTree {
         }
     }
 
-    //todo: Globally declaring variable bcoz I don't wan't it to change for every call
+    // Globally declaring variable bcoz I don't wan't it to change for every call
     int maxDiameter;
 
     // Driver Function 
     public int diameterOfBinaryTree(TreeNode root) {
         
-        maxDiameter = Integer.MIN_VALUE;
+        maxDiameter = 0;
 
         System.out.println("Starting post-order traversal to find diameter...");
 
-        //todo: Removed currPath bcoz I'm not using it in recursion function and maxDiameter as I'm declaring it globally
-        maxDiameter = postOrder(root);
+        // Removed currPath bcoz I'm not using it in recursion function and maxDiameter as I'm declaring it globally
+        postOrder(root);
 
         System.out.println("Final max diameter: " + maxDiameter);
         return maxDiameter;
@@ -55,7 +55,7 @@ public class DiameterOfBinaryTree {
         maxDiameter = Math.max(maxDiameter, currDiameter);
         System.out.println("  Updated max diameter = " + maxDiameter);
 
-        //todo: return longest path of current node (we are not returning maxDiameter here bcoz it's declared globally)
+        // return longest path of current node (we are not returning maxDiameter here bcoz it's declared globally)
         return 1 + Math.max(leftSideLongestPath, rightSideLongestPath);
 
     }
