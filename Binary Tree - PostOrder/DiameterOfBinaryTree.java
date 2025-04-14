@@ -19,15 +19,43 @@ public class DiameterOfBinaryTree {
     // Driver Function 
     public int diameterOfBinaryTree(TreeNode root) {
         
+        List<Integer> currPath = new ArrayList<>();
+        int maxDiameter = 0;
+        
+        maxDiameter = postOrder(root, currPath, maxDiameter);
+
+        return maxDiameter;
     }
 
     // Recursion Function : to check all paths
-    private int postOrder(TreeNode root, int diameter, List<Integer> currPath){
+    private int postOrder(TreeNode root, List<Integer> currPath, int maxDiameter){
+
+        int leftSideLongestPath = backtrack(root.left, currPath);
+        int rightSideLongestPath = backtrack(root.right, currPath);
+
+        int currDiameter = leftSideLongestPath + rightSideLongestPath;
+
+        maxDiameter = Math.max(maxDiameter, currDiameter);
+
+        return maxDiameter;
 
     }
 
     // Backtrack Function : to get longest Path
-    private void postOrder(TreeNode root, List<Integer> currPath){
+    private int backtrack(TreeNode root, List<Integer> currPath){
+
+        // Base Case:
+        if(root == null){
+            return currPath.size();
+        }
+
+        currPath.add(root.val);
+
+        backtrack(root.left, currPath);
+
+        backtrack(root.right, currPath);
+
+        return currPath.size();
 
     }
 
