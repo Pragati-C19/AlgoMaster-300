@@ -1,5 +1,7 @@
 import java.util.*;
 
+import javax.swing.tree.TreeNode;
+
 public class DelNodes {
     
     private static class TreeNode {
@@ -16,14 +18,68 @@ public class DelNodes {
     }
 
     // Globally Declare variable
+    List<TreeNode> result;
+    Map<Integer> deleteMap = new HashMap<>();
 
     // Driver Function 
     public List<TreeNode> delNodes(TreeNode root, int[] to_delete) {
         
+        // Assinging value to result
+        result = new ArrayList<>();
+
+        for (int i = 0; i < to_delete.length; i++) {
+            deleteMap.put(to_delete[i]);
+        }
+
+        // Print entire deleteMap after filling
+        System.out.println("deleteMap: " + deleteMap);
+
+        postOrder(root);
+
+        // Print entire deleteMap after filling
+        System.out.println("Final Result: " + result);
+
+        return result;
     }
 
     // Recursion Function : postOrder
-    private TreeNode postOrder(root){
+    private TreeNode postOrder(TreeNode root){
+
+        // Base Case :
+        if (root == null){
+            return null;
+        }
+
+        System.out.println("Visiting root : " + root.val);
+
+        // Recur to left side
+        TreeNode leftSubTree = postOrder(root.left);
+
+        // Recur to right side
+        TreeNode rightSubTree = postOrder(root.right);
+
+        // Visit Node
+        if (deleteMap.containsKey(root.val)){
+            
+            System.out.println("Node " + root.val + " is marked for deletion.");
+            
+            // If Node is to be deleted then add left and right subtrees to result
+            if (leftSubTree != null) {
+                result.add(leftSubTree);
+                System.out.println("  Adding left subtree of node " + root.val + " (root: " + leftSubTree.val + ") to result.");
+            }
+
+            if (rightSubTree != null) {
+                result.add(rightSubTree);
+                System.out.println("  Adding right subtree of node " + root.val + " (root: " + rightSubTree.val + ") to result.");
+            }
+
+            // bcoz we have deleted the node
+            return null;
+        }
+
+        System.out.println("Returning node " + root.val + " as part of current tree.");
+        return root;
 
     }
 
@@ -61,6 +117,34 @@ public class DelNodes {
         return root;
     }
 
+    // Helper Function : To Print Binary Tree 
+    public static List<String> printTreeAsArrayFormat(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+    
+        queue.add(root);
+    
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+    
+            if (node == null) {
+                result.add("null");
+            } else {
+                result.add(String.valueOf(node.val));
+                queue.add(node.left);
+                queue.add(node.right);
+            }
+        }
+    
+        // Trim trailing "null"s (Leetcode does this)
+        int i = result.size() - 1;
+        while (i >= 0 && result.get(i).equals("null")) {
+            result.remove(i--);
+        }
+    
+        return result;
+    }    
+
     // Helper Function : to serialize trees to list format
     public static List<List<String>> serializeForest(List<TreeNode> forest) {
         List<List<String>> result = new ArrayList<>();
@@ -82,10 +166,10 @@ public class DelNodes {
         System.out.println("Result1: " + serializeForest(solution.delNodes(root1, to_delete1)) + "\n");
 
         // Second Example
-        Integer[] treeArray1 = {1, 2, 4, null, 3};
-        TreeNode root1 = buildTree(treeArray1);
+        Integer[] treeArray2 = {1, 2, 4, null, 3};
+        TreeNode root2 = buildTree(treeArray2);
         int[] to_delete2 = {3};
-        System.out.println("Result1: " + serializeForest(solution.delNodes(root1, to_delete2)) + "\n");
+        System.out.println("Result1: " + serializeForest(solution.delNodes(root2, to_delete2)) + "\n");
 
     }
 }
