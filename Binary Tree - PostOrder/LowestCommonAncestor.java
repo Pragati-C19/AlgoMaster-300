@@ -2,6 +2,80 @@ import java.util.*;
 
 public class LowestCommonAncestor {
     
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+
+    // Driver Function
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        
+    }
+
+
+    // Helper Function : to build a tree from an array (for testing)
+    public static TreeNode buildTree(Integer[] nodes) {
+        
+        // Node is empty
+        if (nodes.length == 0 || nodes[0] == null) return null;
+        
+        TreeNode root = new TreeNode(nodes[0]);
+        Queue<TreeNode> queue = new LinkedList<>();
+        
+        queue.add(root);
+        
+        int i = 1;  // Start from second element
+
+        while (!queue.isEmpty() && i < nodes.length) {
+            TreeNode parent = queue.poll();
+            
+            // Assign left child
+            if (nodes[i] != null) {
+                parent.left = new TreeNode(nodes[i]);
+                queue.add(parent.left);
+            }
+            i++;
+            
+            // Assign right child (check if there's still an element)
+            if (i < nodes.length && nodes[i] != null) {
+                parent.right = new TreeNode(nodes[i]);
+                queue.add(parent.right);
+            }
+            i++;
+        }
+
+        return root;
+    }
+
+    public static void main(String[] args) {
+        
+        LowestCommonAncestor solution = new LowestCommonAncestor();
+
+        // First Example
+        Integer[] treeArray1 = {3, 5, 1, 6, 2, 0, 8, null, null, 7, 4};
+        TreeNode root1 = buildTree(treeArray1);
+        int p1 = 5, q1 = 1; 
+        System.out.println("Result1: " + solution.lowestCommonAncestor(root1, p1, q1) + "\n");
+
+        int p2 = 5, q2 = 4; 
+        System.out.println("Result1: " + solution.lowestCommonAncestor(root1, p2, q2) + "\n");
+
+        // Second Example
+        Integer[] treeArray3 = { 1, 2 };
+        TreeNode root3 = buildTree(treeArray3);
+        int p3 = 1, q3 = 2;
+        System.out.println("Result2: " + solution.lowestCommonAncestor(root3 , p3, q3 ) + "\n");
+
+    }
 }
 /*
  * 
