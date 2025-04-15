@@ -19,23 +19,34 @@ public class LowestCommonAncestor {
     // Driver Function
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         
-        // Base Case 
+        // Base Case 1: If root is null, then there's no LCA in this path
         if(root == null) return null;
 
-        // If p or q is found on that root
-        if(root == p || root == q) return root;
+        // Base Case 2: If the current node is either p or q, we return the current node
+        // This means one of the targets is found
+        if (root == p) {
+            System.out.println("Found node p: " + p.val + " at node " + root.val);
+            return root;
+        }
+        if (root == q) {
+            System.out.println("Found node q: " + q.val + " at node " + root.val);
+            return root;
+        }
 
-        // Check left Side
+        // Recur on left subtrees
         TreeNode leftSubtree = lowestCommonAncestor(root.left, p, q);
 
-        // Check right Side
+        // Recur on right subtrees
         TreeNode rightSubtree = lowestCommonAncestor(root.right, p, q);
 
-        // Visit Node
+        // Visit Node 
+        // If both sides return not null, it means p and q are found in different subtrees => current node is their LCA
         if(leftSubtree != null && rightSubtree != null){
             return root;
         }
         
+        // If one side is null, return the non-null side
+        // This means both p and q are in one subtree, or not found yet
         if (leftSubtree == null) {
             return rightSubtree;
         }
