@@ -34,14 +34,17 @@ public class LowestCommonAncestor {
         }
 
         // Recur on left subtrees
+        System.out.println("Going left from node: " + root.val);
         TreeNode leftSubtree = lowestCommonAncestor(root.left, p, q);
 
         // Recur on right subtrees
+        System.out.println("Going right from node: " + root.val);
         TreeNode rightSubtree = lowestCommonAncestor(root.right, p, q);
 
         // Visit Node 
         // If both sides return not null, it means p and q are found in different subtrees => current node is their LCA
         if(leftSubtree != null && rightSubtree != null){
+            System.out.println("Node " + root.val + " is the Lowest Common Ancestor of " + p.val + " and " + q.val);
             return root;
         }
         
@@ -90,6 +93,17 @@ public class LowestCommonAncestor {
         return root;
     }
 
+    // Helper: find reference of a node with a given value
+    public static TreeNode findNode(TreeNode root, int val) {
+        if (root == null) return null;
+        if (root.val == val) return root;
+
+        TreeNode left = findNode(root.left, val);
+        if (left != null) return left;
+
+        return findNode(root.right, val);
+    }
+
     public static void main(String[] args) {
         
         LowestCommonAncestor solution = new LowestCommonAncestor();
@@ -97,20 +111,19 @@ public class LowestCommonAncestor {
         // First Example
         Integer[] treeArray1 = {3, 5, 1, 6, 2, 0, 8, null, null, 7, 4};
         TreeNode root1 = buildTree(treeArray1);
-        TreeNode p1 = new TreeNode(5); 
-        TreeNode q1 = new TreeNode(1); 
-        System.out.println("Result1: " + solution.lowestCommonAncestor(root1, p1, q1) + "\n");
+        TreeNode p1 = findNode(root1, 5); 
+        TreeNode q1 = findNode(root1, 1); 
+        System.out.println("Result1: " + solution.lowestCommonAncestor(root1, p1, q1).val + "\n");
 
-        TreeNode p2 = new TreeNode(5); 
-        TreeNode q2 = new TreeNode(4); 
-        System.out.println("Result1: " + solution.lowestCommonAncestor(root1, p2, q2) + "\n");
+        TreeNode q2 = findNode(root1, 4) ;
+        System.out.println("Result1: " + solution.lowestCommonAncestor(root1, p1, q2).val + "\n");
 
         // Second Example
         Integer[] treeArray3 = { 1, 2 };
         TreeNode root3 = buildTree(treeArray3);
-        TreeNode p3 = new TreeNode(1); 
-        TreeNode q3 = new TreeNode(2); 
-        System.out.println("Result2: " + solution.lowestCommonAncestor(root3 , p3, q3 ) + "\n");
+        TreeNode p3 = findNode(root3, 1);
+        TreeNode q3 = findNode(root3, 2);
+        System.out.println("Result2: " + solution.lowestCommonAncestor(root3 , p3, q3 ).val + "\n");
 
     }
 }
