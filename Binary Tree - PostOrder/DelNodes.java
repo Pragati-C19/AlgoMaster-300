@@ -19,7 +19,7 @@ public class DelNodes {
 
     // Globally Declare variable
     List<TreeNode> result;
-    Map<Integer> deleteMap = new HashMap<>();
+    Set<Integer> deleteSet = new HashSet<>();
 
     // Driver Function 
     public List<TreeNode> delNodes(TreeNode root, int[] to_delete) {
@@ -28,11 +28,11 @@ public class DelNodes {
         result = new ArrayList<>();
 
         for (int i = 0; i < to_delete.length; i++) {
-            deleteMap.put(to_delete[i]);
+            deleteSet.add(to_delete[i]);
         }
 
         // Print entire deleteMap after filling
-        System.out.println("deleteMap: " + deleteMap);
+        System.out.println("deleteSet: " + deleteSet);
 
         postOrder(root);
 
@@ -59,7 +59,7 @@ public class DelNodes {
         TreeNode rightSubTree = postOrder(root.right);
 
         // Visit Node
-        if (deleteMap.containsKey(root.val)){
+        if (deleteSet.contains(root.val)){
             
             System.out.println("Node " + root.val + " is marked for deletion.");
             
@@ -176,12 +176,16 @@ public class DelNodes {
 
 /*
  * 
+ * 
  * Intuitions :
  * 
  * 1. root of binary tree and to_delete array is given
  * 2. we need to delete a node from binary tree
  * 3. In return we need a list of new TreeNodes
- * 4. I need to use hashmap here which stores 
+ * 4. I need to use hashmap here which stores
+ * 
+ * correction :
+ * - will use hashSet not hashmap bcoz in hashSet we only store key or value and in hashMap we store key and value both  
  * 
  * Pattern :
  * 
