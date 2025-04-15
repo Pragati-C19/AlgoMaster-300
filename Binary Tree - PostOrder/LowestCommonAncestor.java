@@ -19,6 +19,29 @@ public class LowestCommonAncestor {
     // Driver Function
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         
+        // Base Case 
+        if(root == null) return null;
+
+        // If p or q is found on that root
+        if(root == p || root == q) return root;
+
+        // Check left Side
+        TreeNode leftSubtree = lowestCommonAncestor(root.left, p, q);
+
+        // Check right Side
+        TreeNode rightSubtree = lowestCommonAncestor(root.right, p, q);
+
+        // Visit Node
+        if(leftSubtree != null && rightSubtree != null){
+            return root;
+        }
+        
+        if (leftSubtree == null) {
+            return rightSubtree;
+        }
+        
+        return leftSubtree;
+
     }
 
 
@@ -63,16 +86,19 @@ public class LowestCommonAncestor {
         // First Example
         Integer[] treeArray1 = {3, 5, 1, 6, 2, 0, 8, null, null, 7, 4};
         TreeNode root1 = buildTree(treeArray1);
-        int p1 = 5, q1 = 1; 
+        TreeNode p1 = new TreeNode(5); 
+        TreeNode q1 = new TreeNode(1); 
         System.out.println("Result1: " + solution.lowestCommonAncestor(root1, p1, q1) + "\n");
 
-        int p2 = 5, q2 = 4; 
+        TreeNode p2 = new TreeNode(5); 
+        TreeNode q2 = new TreeNode(4); 
         System.out.println("Result1: " + solution.lowestCommonAncestor(root1, p2, q2) + "\n");
 
         // Second Example
         Integer[] treeArray3 = { 1, 2 };
         TreeNode root3 = buildTree(treeArray3);
-        int p3 = 1, q3 = 2;
+        TreeNode p3 = new TreeNode(1); 
+        TreeNode q3 = new TreeNode(2); 
         System.out.println("Result2: " + solution.lowestCommonAncestor(root3 , p3, q3 ) + "\n");
 
     }
