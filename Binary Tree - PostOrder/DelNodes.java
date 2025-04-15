@@ -2,6 +2,92 @@ import java.util.*;
 
 public class DelNodes {
     
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    // Globally Declare variable
+
+    // Driver Function 
+    public List<TreeNode> delNodes(TreeNode root, int[] to_delete) {
+        
+    }
+
+    // Recursion Function : postOrder
+    private TreeNode postOrder(root){
+
+    }
+
+    // Helper Function : to build a tree from an array (for testing)
+    public static TreeNode buildTree(Integer[] nodes) {
+        
+        // Node is empty
+        if (nodes.length == 0 || nodes[0] == null) return null;
+        
+        TreeNode root = new TreeNode(nodes[0]);
+        Queue<TreeNode> queue = new LinkedList<>();
+        
+        queue.add(root);
+        
+        int i = 1;  // Start from second element
+
+        while (!queue.isEmpty() && i < nodes.length) {
+            TreeNode parent = queue.poll();
+            
+            // Assign left child
+            if (nodes[i] != null) {
+                parent.left = new TreeNode(nodes[i]);
+                queue.add(parent.left);
+            }
+            i++;
+            
+            // Assign right child (check if there's still an element)
+            if (i < nodes.length && nodes[i] != null) {
+                parent.right = new TreeNode(nodes[i]);
+                queue.add(parent.right);
+            }
+            i++;
+        }
+
+        return root;
+    }
+
+    // Helper Function : to serialize trees to list format
+    public static List<List<String>> serializeForest(List<TreeNode> forest) {
+        List<List<String>> result = new ArrayList<>();
+        for (TreeNode node : forest) {
+            result.add(printTreeAsArrayFormat(node));
+        }
+        return result;
+    }
+    
+
+    public static void main(String[] args) {
+        
+        DelNodes solution = new DelNodes();
+
+        // First Example
+        Integer[] treeArray1 = {1, 2, 3, 4, 5, 6, 7};
+        TreeNode root1 = buildTree(treeArray1);
+        int[] to_delete1 = {3, 5};
+        System.out.println("Result1: " + serializeForest(solution.delNodes(root1, to_delete1)) + "\n");
+
+        // Second Example
+        Integer[] treeArray1 = {1, 2, 4, null, 3};
+        TreeNode root1 = buildTree(treeArray1);
+        int[] to_delete2 = {3};
+        System.out.println("Result1: " + serializeForest(solution.delNodes(root1, to_delete2)) + "\n");
+
+    }
 }
 
 /*
