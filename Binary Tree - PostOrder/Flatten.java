@@ -62,7 +62,7 @@ public class Flatten {
             head.right = leftSubtree;
         }
 
-        return root;
+        return head;
         
     }
 
@@ -136,17 +136,20 @@ public class Flatten {
         // First Example
         Integer[] treeArray1 = {1, 2, 5, 3, 4, null, 6};
         TreeNode root1 = buildTree(treeArray1);
-        System.out.println("Result1: " + printTreeAsArrayFormat(solution.flatten(root1)) + "\n");
+        solution.flatten(root1);
+        System.out.println("Result1: " + printTreeAsArrayFormat(root1) + "\n");
 
         // Second Example
         Integer[] treeArray2 = {};
         TreeNode root2 = buildTree(treeArray2);
-        System.out.println("Result2: " + printTreeAsArrayFormat(solution.flatten(root2)) + "\n");
+        solution.flatten(root2);
+        System.out.println("Result2: " + printTreeAsArrayFormat(root2) + "\n");
 
         // Third Example
         Integer[] treeArray3 = {0};
         TreeNode root3 = buildTree(treeArray3);
-        System.out.println("Result3: " + printTreeAsArrayFormat(solution.flatten(root3)) + "\n");
+        solution.flatten(root3);
+        System.out.println("Result3: " + printTreeAsArrayFormat(root3) + "\n");
 
     }
 }
