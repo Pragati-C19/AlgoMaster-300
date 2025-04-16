@@ -1,7 +1,128 @@
 import java.util.*;
 
+import javax.swing.tree.TreeNode;
+
 public class FindDuplicateSubtrees {
+ 
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+
+    // Globally Declaring Variables
+
+
+    // Driver Function 
+    public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+        
+    }
+
+    // Recursion Function : Check if u found duplicates or not (bottom-up pattern)
+    private String postOrder(TreeNode root){
+
+    }
+
+
+    // Helper Function : to build a tree from an array (for testing)
+    public static TreeNode buildTree(Integer[] nodes) {
+        
+        // Node is empty
+        if (nodes.length == 0 || nodes[0] == null) return null;
+        
+        TreeNode root = new TreeNode(nodes[0]);
+        Queue<TreeNode> queue = new LinkedList<>();
+        
+        queue.add(root);
+        
+        int i = 1;  // Start from second element
+
+        while (!queue.isEmpty() && i < nodes.length) {
+            TreeNode parent = queue.poll();
+            
+            // Assign left child
+            if (nodes[i] != null) {
+                parent.left = new TreeNode(nodes[i]);
+                queue.add(parent.left);
+            }
+            i++;
+            
+            // Assign right child (check if there's still an element)
+            if (i < nodes.length && nodes[i] != null) {
+                parent.right = new TreeNode(nodes[i]);
+                queue.add(parent.right);
+            }
+            i++;
+        }
+
+        return root;
+    }
+
+    // Helper Function : To Print Binary Tree 
+    public static List<String> printTreeAsArrayFormat(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
     
+        queue.add(root);
+    
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+    
+            if (node == null) {
+                result.add("null");
+            } else {
+                result.add(String.valueOf(node.val));
+                queue.add(node.left);
+                queue.add(node.right);
+            }
+        }
+    
+        // Trim trailing "null"s (Leetcode does this)
+        int i = result.size() - 1;
+        while (i >= 0 && result.get(i).equals("null")) {
+            result.remove(i--);
+        }
+    
+        return result;
+    }    
+
+    // Helper Function : to serialize trees to list format
+    public static List<List<String>> serializeForest(List<TreeNode> forest) {
+        List<List<String>> result = new ArrayList<>();
+        for (TreeNode node : forest) {
+            result.add(printTreeAsArrayFormat(node));
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        
+        FindDuplicateSubtrees solution = new FindDuplicateSubtrees();
+
+        // First Example
+        Integer[] treeArray1 = {2, 1, 1};
+        TreeNode root1 = buildTree(treeArray1);
+        System.out.println("Result1: " + serializeForest(solution.findDuplicateSubtrees(root1)) + "\n");
+
+        // Second Example
+        Integer[] treeArray2 = {2, 2, 2, 3, null, 3, null};
+        TreeNode root2 = buildTree(treeArray2);
+        System.out.println("Result2: " + serializeForest(solution.findDuplicateSubtrees(root2)) + "\n");
+
+        // Third Example
+        Integer[] treeArray3 = {1, 2, 3, 4, null, 2, 4, null, null, 4};
+        TreeNode root3 = buildTree(treeArray3);
+        System.out.println("Result3: " + serializeForest(solution.findDuplicateSubtrees(root3)) + "\n");
+
+    }
 }
 
 /*
