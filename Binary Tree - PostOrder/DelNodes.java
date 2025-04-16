@@ -34,10 +34,16 @@ public class DelNodes {
         // Print entire deleteMap after filling
         System.out.println("deleteSet: " + deleteSet);
 
-        postOrder(root);
+        TreeNode updatedRoot = postOrder(root);
 
-        // Print entire deleteMap after filling
-        System.out.println("Final Result: " + result);
+        // PostOrder adds children only when deleting. If root is not deleted, I must manually save it.
+        if (!deleteSet.contains(root.val)) {
+            result.add(updatedRoot);
+            System.out.println("Root " + root.val + " is not deleted. Adding to result.");
+        }
+
+        // Print Final result
+        System.out.println("Final Result: " + serializeForest(result));
 
         return result;
     }
@@ -186,7 +192,8 @@ public class DelNodes {
  * 
  * correction :
  * - will use hashSet not hashmap bcoz in hashSet we only store key or value and in hashMap we store key and value both  
- * 
+ * - We have to manually handle the main root if it's not deleted for more info check notes
+ *  
  * Pattern :
  * 
  * 1. Globally Declare deleteMap
