@@ -19,19 +19,54 @@ public class Flatten {
 
 
     // Globally Declaring Variables
-
+    TreeNode head;
 
     // Driver Function
     public void flatten(TreeNode root){
 
+        // Assign value to head
+        head = new TreeNode();
+
+        // calling recursion function 
+        dfs(root);
+
+        return;
     }
 
     // Recursion Function : To get the the Linked List
     public TreeNode dfs(TreeNode root){
 
+        // Base Case :
+        if(root == null){
+            return null;
+        }
+
+        // Recur to left side and add it in linkedlist
+        TreeNode leftSubtree = dfs(root.left);
+
+        // Recur to right side and add it in linkedlist
+        TreeNode rightSubtree = dfs(root.right);
+
+        // Visit Node
+        head = root;
+        head.left = null;
+
+        if (leftSubtree != null && rightSubtree != null) {
+            head.right = leftSubtree;
+            head.right.right = rightSubtree;
+        }
+        else if (leftSubtree == null) {
+            head.right = rightSubtree;
+        }
+        else if (rightSubtree == null) {
+            head.right = leftSubtree;
+        }
+
+        return root;
+        
     }
 
-    
+
     // Helper Function : to build a tree from an array (for testing)
     public static TreeNode buildTree(Integer[] nodes) {
         
