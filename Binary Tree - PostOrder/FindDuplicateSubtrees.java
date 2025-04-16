@@ -8,7 +8,7 @@ public class FindDuplicateSubtrees {
  * 
  *  * Few Important things to understand here
  * 
- * 1. will use String + Subtree Serialization + DFS + Hashing format
+ * 1. will use String + Subtree Serialization + DFS (Bottom-up | postorder) + Hashing format
  * 
  * 2. Why we use string instead of array to store currSubtree?
  * - You can’t use an array as a Map or Set key directly unless you override equality and hashcode.
@@ -37,23 +37,48 @@ public class FindDuplicateSubtrees {
  * 1. We need to use map to check if we found duplicate or not
  * 2. result to store all subtrees
  * 3. Recursion call
- * - Base Case : if(root == null) return null
+ * - Base Case : if(root == null) -> add # to the string to note root is null
  * - Traverse the tree to left side and store the subtree in map
  * - Traverse the tree to right side and store the subtree in map
- * - if(duplicateMap.values(currSubtree) == 2) -> frequency of currSubTree is 2 means we found duplicate result.add(currSubtree)
- * - else -> add node to currSubtree and map duplicateMap.put(currSubtree)
- * - return root
+ * - need to get value for currString 
+ *      -> here we have to append root.val then left then right of that root which we have checked by above lines
+ *      -> or u can declare new function called serialization and return this append root.val + left + right
+ * - for every string in map our default value will be 0 as we haven't store it yet 
+ *      -> after storing will increase it to 1 time and then we have added it in map
+ *      -> so will check for duplicateMap.count == 1 ? if yes means same string already exist in map so this will be duplicate now then add currString in result
+ * - will increase the count after of duplicate strings or add default value for non existing string
+ *      -> duplicateMap.put(currString, value + 1)
+ *      -> here by default we think as 0 for every string as it's not store will do +1 means we have added it now
+ *      -> so if we have duplicate string then value will be 2 and we will add it in the map
  * 4. return result
  * 
- * Serialize Binary to String
- * 1. will use BFS approach here -> queue to store root and when we pop it will
- * store values in string for null will add it in string not in queue
- * 2. will use StringBuilder to store the values
+ * Approach :
+ * 
+ * 1. Use a map to check if we’ve found a duplicate subtree or not
+ * 2. Use a result list to store all duplicate subtrees
+ *
+ * 3. Recursively traverse the tree
+ *    - Base Case: if (root == null) → return "#"
+ *
+ *    - Recur on the left subtree and get its serialized string
+ *    - Recur on the right subtree and get its serialized string
+ *
+ *    - Now build the current subtree string
+ *        → Append root.val + left + right
+ *        → Or use a helper function like serialize(root.val, left, right)
+ *
+ *    - Check in map: for every string, default value is 0 (means we haven’t seen it yet)
+ *        → If map.get(currString) == 1 → this is the 2nd time, so it’s a duplicate now → add currString to result
+ *    
+ *    - Update the map with new count
+ *        → map.put(currString, value + 1)
+ *        → If it was unseen before, treat value as 0 → now it becomes 1 after this step
+ *
+ * 4. After recursion completes, return the result list
+ * 
  * 
  * 
  * Pseudo Code :
- * 
- * 
  * 
  * // Globally Declare variables
  * map<String, Integer> duplicateMap
@@ -63,36 +88,33 @@ public class FindDuplicateSubtrees {
  * 
  *      result = new ArrayList
  *      duplicateMap = new HashMap
- *      
- *      StringBuilder currString = new Stringbuilder
  * 
- *      postOrder(root, currString)
+ *      postOrder(root)
  * 
  *      return result
  * }
  * 
- * function String postOrder(root, currString){
+ * function String postOrder(root){
  * 
  *      // Base Case :
  *      if(root == null) return currString.append("#")
  * 
  *      // Recur left side
- *      postOrder(root.left)
+ *      left = postOrder(root.left)
  * 
  *      // Recur right side
- *      postOrder(root.right)
+ *      right = postOrder(root.right)
+ * 
+ *      currString = root.val + "," + left + "," + right
  * 
  *      // Visit node
- *      if(duplicateMap.values(currString) == 2){
+ *      if(duplicateMap.get(currString) == 1){
  *          result.add(new Array(currString))
- *          duplicateMap.values(currString)++
  *      }
  * 
- *      currString.append(root.val)
- *      duplicateMap.put(currString)
+ *      duplicateMap.put(currString, value + 1)
  *      
  *      return currString
- *      
  * }
  * 
  */
