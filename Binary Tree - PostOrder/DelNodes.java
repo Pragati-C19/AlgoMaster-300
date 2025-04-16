@@ -64,6 +64,10 @@ public class DelNodes {
         // Recur to right side
         TreeNode rightSubTree = postOrder(root.right);
 
+        // Reconnect the updated left and right : Leetcode need to know what's left and right side of non deleting root 
+        root.left = leftSubTree;
+        root.right = rightSubTree;
+
         // Visit Node
         if (deleteSet.contains(root.val)){
             
