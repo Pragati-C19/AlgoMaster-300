@@ -68,7 +68,7 @@ public class FindDuplicateSubtrees {
         if (valueCount == 1) {
             // key value count is 1 means atring is already exist in hashmap 
             // so add it to result list
-            System.out.println("        Duplicate detected for: " + currSerializedString + " → adding to result");
+            System.out.println("        Duplicate detected for: " + currSerializedString + " -> adding to result");
             result.add(root);
         }
 
@@ -159,7 +159,7 @@ public class FindDuplicateSubtrees {
         // First Example
         Integer[] treeArray1 = {2, 1, 1};
         TreeNode root1 = buildTree(treeArray1);
-        System.out.println("Result1: " + solution.findDuplicateSubtrees(root1) + "\n");
+        System.out.println("Result1: " + solution.findDuplicateSubtrees(root1).toString() + "\n");
 
         // // Second Example
         // Integer[] treeArray2 = {2, 2, 2, 3, null, 3, null};
