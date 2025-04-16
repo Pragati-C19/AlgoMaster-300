@@ -73,7 +73,7 @@ public class FindDuplicateSubtrees {
         }
 
         // Adding new string to hashmap and increasing count of already existing string
-        stringFrequencyMap.put(stringFrequencyMap, valueCount + 1);
+        stringFrequencyMap.put(currSerializedString, valueCount + 1);
         System.out.println("Updated count for '" + currSerializedString + "': " + (valueCount + 1));
         
         return currSerializedString;
