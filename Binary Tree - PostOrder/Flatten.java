@@ -27,9 +27,11 @@ public class Flatten {
         // Assign value to head
         head = new TreeNode();
 
+        System.out.println("Starting Recursion...");
         // calling recursion function 
         dfs(root);
 
+        System.out.println("Final Result: " + root.val);
         return;
     }
 
@@ -41,12 +43,25 @@ public class Flatten {
             return null;
         }
 
+        System.out.println("\nVisiting root : " + root.val);
+
         // Recur to left side and add it in linkedlist
         TreeNode leftSubtree = dfs(root.left);
+        // Debugging Calls
+        if (leftSubtree != null)
+            System.out.println("    - Left subtree of " + root.val + " starts at: " + printTreeAsArrayFormat(leftSubtree));
+        else
+            System.out.println("    - Left subtree of " + root.val + " is null");
+
 
         // Recur to right side and add it in linkedlist
         TreeNode rightSubtree = dfs(root.right);
-
+        if (rightSubtree != null)
+            System.out.println("    - Right subtree of " + root.val + " starts at: " + printTreeAsArrayFormat(rightSubtree));
+        else
+            System.out.println("    - Right subtree of " + root.val + " is null");
+        
+        
         // Visit Node
         head = root;
         head.left = null;
@@ -54,12 +69,15 @@ public class Flatten {
         if (leftSubtree != null && rightSubtree != null) {
             head.right = leftSubtree;
             head.right.right = rightSubtree;
+            System.out.println("     [IF] head : " + printTreeAsArrayFormat(head));
         }
         else if (leftSubtree == null) {
             head.right = rightSubtree;
+            System.out.println("     [ELSEIF1] head : " + printTreeAsArrayFormat(head));
         }
         else if (rightSubtree == null) {
             head.right = leftSubtree;
+            System.out.println("     [ELSEIF2] head : " + printTreeAsArrayFormat(head));
         }
 
         return head;
@@ -139,17 +157,17 @@ public class Flatten {
         solution.flatten(root1);
         System.out.println("Result1: " + printTreeAsArrayFormat(root1) + "\n");
 
-        // Second Example
-        Integer[] treeArray2 = {};
-        TreeNode root2 = buildTree(treeArray2);
-        solution.flatten(root2);
-        System.out.println("Result2: " + printTreeAsArrayFormat(root2) + "\n");
+        // // Second Example
+        // Integer[] treeArray2 = {};
+        // TreeNode root2 = buildTree(treeArray2);
+        // solution.flatten(root2);
+        // System.out.println("Result2: " + printTreeAsArrayFormat(root2) + "\n");
 
-        // Third Example
-        Integer[] treeArray3 = {0};
-        TreeNode root3 = buildTree(treeArray3);
-        solution.flatten(root3);
-        System.out.println("Result3: " + printTreeAsArrayFormat(root3) + "\n");
+        // // Third Example
+        // Integer[] treeArray3 = {0};
+        // TreeNode root3 = buildTree(treeArray3);
+        // solution.flatten(root3);
+        // System.out.println("Result3: " + printTreeAsArrayFormat(root3) + "\n");
 
     }
 }
