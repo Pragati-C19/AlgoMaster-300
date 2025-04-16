@@ -19,15 +19,64 @@ public class FindDuplicateSubtrees {
 
 
     // Globally Declaring Variables
-
+    Map<String, Integer> stringFrequencyMap;
+    List<TreeNode> result;
 
     // Driver Function 
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
         
+        // Assigning value for global variables 
+        stringFrequencyMap = new HashMap<>();
+        result = new ArrayList<>();
+
+        // Recur Call
+        System.out.println("Starting Recursion...");
+        postOrder(root);
+
+        // return result
+        System.out.println("Final Result: " + serializeForest(result));
+        return result;
     }
 
     // Recursion Function : Check if u found duplicates or not (bottom-up pattern)
     private String postOrder(TreeNode root){
+
+        // Base Case : if root is null return # to the string to indicate null
+        if(root == null) return "#";
+
+        System.out.println("\nVisiting root : " + root.val);
+    
+        // Recur to left subtree and get its serialized string
+        String left = postOrder(root.left);
+        System.out.println("    - Left subtree of node " + root.val + ": " + left);
+
+        // Recur to right subtree and get its serialized string
+        String right = postOrder(root.right);
+        System.out.println("    - Right subtree of node " + root.val + ": " + right);
+
+
+        // Now build a serialized string with current data we have till now
+        String currSerializedString = root.val + "," + left + "," + right ;
+        System.out.println("    - Serialized subtree rooted at " + root.val + ": " + currSerializedString);
+
+        // Get value of that serialized string key from hashmap and store it in count
+        // for every string, default value is 0 (means we haven’t seen it yet)
+        int valueCount = stringFrequencyMap.getOrDefault(currSerializedString, 0);
+        System.out.println("        Current count for '" + currSerializedString + "': " + valueCount);
+
+        // If u found the duplicate for that string
+        if (valueCount == 1) {
+            // key value count is 1 means atring is already exist in hashmap 
+            // so add it to result list
+            System.out.println("        Duplicate detected for: " + currSerializedString + " → adding to result");
+            result.add(new TreeNode(currSerializedString));
+        }
+
+        // Adding new string to hashmap and increasing count of already existing string
+        stringFrequencyMap.put(stringFrequencyMap, valueCount + 1);
+        System.out.println("Updated count for '" + currSerializedString + "': " + (valueCount + 1));
+        
+        return currSerializedString;
 
     }
 
@@ -110,17 +159,17 @@ public class FindDuplicateSubtrees {
         // First Example
         Integer[] treeArray1 = {2, 1, 1};
         TreeNode root1 = buildTree(treeArray1);
-        System.out.println("Result1: " + serializeForest(solution.findDuplicateSubtrees(root1)) + "\n");
+        System.out.println("Result1: " + solution.findDuplicateSubtrees(root1) + "\n");
 
         // Second Example
         Integer[] treeArray2 = {2, 2, 2, 3, null, 3, null};
         TreeNode root2 = buildTree(treeArray2);
-        System.out.println("Result2: " + serializeForest(solution.findDuplicateSubtrees(root2)) + "\n");
+        System.out.println("Result2: " + solution.findDuplicateSubtrees(root2) + "\n");
 
         // Third Example
         Integer[] treeArray3 = {1, 2, 3, 4, null, 2, 4, null, null, 4};
         TreeNode root3 = buildTree(treeArray3);
-        System.out.println("Result3: " + serializeForest(solution.findDuplicateSubtrees(root3)) + "\n");
+        System.out.println("Result3: " + solution.findDuplicateSubtrees(root3) + "\n");
 
     }
 }
