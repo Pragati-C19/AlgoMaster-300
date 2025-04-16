@@ -31,7 +31,7 @@ public class Flatten {
         // calling recursion function 
         dfs(root);
 
-        System.out.println("Final Result: " + root.val);
+        System.out.println("Flattening Completed...");
         return;
     }
 
@@ -67,9 +67,22 @@ public class Flatten {
         head.left = null;
 
         if (leftSubtree != null && rightSubtree != null) {
-            head.right = leftSubtree;
-            head.right.right = rightSubtree;
-            System.out.println("     [IF] head : " + printTreeAsArrayFormat(head));
+            head.right = leftSubtree;   
+            System.out.println("     [IF] head before adding hrr : " + printTreeAsArrayFormat(head));
+            
+            // problem  is at below line it should add rigthSubTree at tail of leftSubtree
+            // head.right.right = rightSubtree;
+
+            // changing above logic and finding tail or leftSubtree
+            // Till head.right.right != null it will move it's position to next when it hit to null it will rightSubtree there 
+            TreeNode tail = head.right;
+            while (tail.right != null) {
+                tail = tail.right;
+                System.out.println("     [IF] tail : " + printTreeAsArrayFormat(tail));    
+            }
+            tail.right = rightSubtree;
+            
+            System.out.println("     [IF] head after adding hrr : " + printTreeAsArrayFormat(head));
         }
         else if (leftSubtree == null) {
             head.right = rightSubtree;
