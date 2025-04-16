@@ -159,17 +159,17 @@ public class FindDuplicateSubtrees {
         // First Example
         Integer[] treeArray1 = {2, 1, 1};
         TreeNode root1 = buildTree(treeArray1);
-        System.out.println("Result1: " + solution.findDuplicateSubtrees(root1).toString() + "\n");
+        System.out.println("Result1: " + serializeForest(solution.findDuplicateSubtrees(root1)) + "\n");
 
-        // // Second Example
-        // Integer[] treeArray2 = {2, 2, 2, 3, null, 3, null};
-        // TreeNode root2 = buildTree(treeArray2);
-        // System.out.println("Result2: " + solution.findDuplicateSubtrees(root2) + "\n");
+        // Second Example
+        Integer[] treeArray2 = {2, 2, 2, 3, null, 3, null};
+        TreeNode root2 = buildTree(treeArray2);
+        System.out.println("Result2: " + serializeForest(solution.findDuplicateSubtrees(root2)) + "\n");
 
-        // // Third Example
-        // Integer[] treeArray3 = {1, 2, 3, 4, null, 2, 4, null, null, 4};
-        // TreeNode root3 = buildTree(treeArray3);
-        // System.out.println("Result3: " + solution.findDuplicateSubtrees(root3) + "\n");
+        // Third Example
+        Integer[] treeArray3 = {1, 2, 3, 4, null, 2, 4, null, null, 4};
+        TreeNode root3 = buildTree(treeArray3);
+        System.out.println("Result3: " + serializeForest(solution.findDuplicateSubtrees(root3)) + "\n");
 
     }
 }
