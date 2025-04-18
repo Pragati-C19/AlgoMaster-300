@@ -18,17 +18,49 @@ public class MaxPathSum {
     }
 
     // Globally Declare Variable
-
+    int pathSum;
 
     // Driver Function 
     public int maxPathSum(TreeNode root) {
         
+        // Here I haven't wrote 0 bcoz constraints says node.val can be -1000 too 
+        pathSum = Integer.MIN_VALUE;
+
+        System.out.println("Starting Recursion...");
+        postOrder(root);
+
+        System.out.println("Ending Recursion...");
+        return pathSum;
     }
 
     // Recursion Function : to check sum of paths
     private int postOrder(TreeNode node){
 
+        // Base Case:
+        if (node == null) {
+            return 0;
+        }
+
+        // Recur to left Side
+        int leftPathSum = postOrder(node.left);
+        System.out.println("    - Left Side's Path Sum of " + node.val + " : " + leftPathSum);
+        
+        // Recur to right side
+        int rightPathSum = postOrder(node.right);
+        System.out.println("    - Right Side's Path Sum of " + node.val + " : " + rightPathSum);
+
+        // Check current sum 
+        int currentSum = node.val + leftPathSum + rightPathSum;
+        System.out.println("        -> Current Path Sum of " + node.val + " : " + currentSum);
+
+        // Get max path sum till now
+        pathSum = Math.max(pathSum, currentSum);
+        System.out.println("        -> Path Sum till now : " + pathSum);
+
+        // Return current path's sum
+        return currentSum;
     }
+
 
     // Helper Function : to build a tree from an array (for testing)
     public static TreeNode buildTree(Integer[] nodes) {
