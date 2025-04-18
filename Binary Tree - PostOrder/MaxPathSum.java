@@ -49,16 +49,30 @@ public class MaxPathSum {
         int rightPathSum = postOrder(node.right);
         System.out.println("    - Right Side's Path Sum of " + node.val + " : " + rightPathSum);
 
+
         // Check current sum 
-        int currentSum = node.val + leftPathSum + rightPathSum;
-        System.out.println("        -> Current Path Sum of " + node.val + " : " + currentSum);
+        int currPathSum;
+
+        if (leftPathSum < 0 && rightPathSum < 0) {
+            currPathSum = node.val;
+        }
+        else if (leftPathSum < 0) {
+            currPathSum = node.val + rightPathSum;
+        }
+        else if (rightPathSum < 0) {
+            currPathSum = node.val + leftPathSum;
+        }
+        else {
+            currPathSum = node.val + leftPathSum + rightPathSum;
+        }
+        System.out.println("        -> Current Path Sum of " + node.val + " : " + currPathSum);
 
         // Get max path sum till now
-        pathSum = Math.max(pathSum, currentSum);
+        pathSum = Math.max(pathSum, currPathSum);
         System.out.println("        -> Path Sum till now : " + pathSum);
 
         // Return current path's sum
-        return currentSum;
+        return currPathSum;
     }
 
 
