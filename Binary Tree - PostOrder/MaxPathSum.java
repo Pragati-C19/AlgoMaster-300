@@ -71,8 +71,11 @@ public class MaxPathSum {
         pathSum = Math.max(pathSum, currPathSum);
         System.out.println("        -> Path Sum till now : " + pathSum);
 
-        // Return current path's sum
-        return currPathSum;
+        // Return statement was wrong : we need to be stricly one sided for next paths
+        int returnPathSum = node.val + Math.max(leftPathSum, rightPathSum);
+        System.out.println("        -> Return Path Sum : " + returnPathSum);
+
+        return returnPathSum;
     }
 
 
@@ -125,7 +128,7 @@ public class MaxPathSum {
         // System.out.println("Result2: " + solution.maxPathSum(root2) + "\n");
 
         // Third Example
-        Integer[] treeArray3 = {2, -1};
+        Integer[] treeArray3 = {5,4,8,11,null,13,4,7,2,null,null,null,1};
         TreeNode root3 = buildTree(treeArray3);
         System.out.println("Result3: " + solution.maxPathSum(root3) + "\n");
     
@@ -138,6 +141,8 @@ public class MaxPathSum {
  * Intuitions :
  * 
  * 1. root is given return maximum path sum of path
+ * 2. The global max might come from a "fork" path (left + node + right) — even if you can't return that to a parent.
+ * 3. But when returning to parent, you must be one-sided don't use both left and right, not forked — just a straight segment upward.
  * 
  * 
  * Pattern :
