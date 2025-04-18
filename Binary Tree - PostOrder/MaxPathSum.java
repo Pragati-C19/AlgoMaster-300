@@ -100,15 +100,20 @@ public class MaxPathSum {
         
         MaxPathSum solution = new MaxPathSum();
 
-        // First Example
-        Integer[] treeArray1 = {1, 2, 3};
-        TreeNode root1 = buildTree(treeArray1);
-        System.out.println("Result1: " + solution.maxPathSum(root1) + "\n");
+        // // First Example
+        // Integer[] treeArray1 = {1, 2, 3};
+        // TreeNode root1 = buildTree(treeArray1);
+        // System.out.println("Result1: " + solution.maxPathSum(root1) + "\n");
 
-        // Second Example
-        Integer[] treeArray2 = {-10, 9, 20, null, null, 15, 7};
-        TreeNode root2 = buildTree(treeArray2);
-        System.out.println("Result2: " + solution.maxPathSum(root2) + "\n");
+        // // Second Example
+        // Integer[] treeArray2 = {-10, 9, 20, null, null, 15, 7};
+        // TreeNode root2 = buildTree(treeArray2);
+        // System.out.println("Result2: " + solution.maxPathSum(root2) + "\n");
+
+        // Third Example
+        Integer[] treeArray3 = {2, -1};
+        TreeNode root3 = buildTree(treeArray3);
+        System.out.println("Result3: " + solution.maxPathSum(root3) + "\n");
     
     }
 }
