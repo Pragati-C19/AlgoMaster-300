@@ -72,7 +72,8 @@ public class MaxPathSum {
         System.out.println("        -> Path Sum till now : " + pathSum);
 
         // Return statement was wrong : we need to be stricly one sided for next paths
-        int returnPathSum = node.val + Math.max(leftPathSum, rightPathSum);
+        // rejecting negative path sums by allowing 0 instead of including bad paths( negative path)
+        int returnPathSum = node.val + Math.max(0, Math.max(leftPathSum, rightPathSum));
         System.out.println("        -> Return Path Sum : " + returnPathSum);
 
         return returnPathSum;
@@ -127,10 +128,20 @@ public class MaxPathSum {
         // TreeNode root2 = buildTree(treeArray2);
         // System.out.println("Result2: " + solution.maxPathSum(root2) + "\n");
 
-        // Third Example
-        Integer[] treeArray3 = {5,4,8,11,null,13,4,7,2,null,null,null,1};
-        TreeNode root3 = buildTree(treeArray3);
-        System.out.println("Result3: " + solution.maxPathSum(root3) + "\n");
+        // // Third Example
+        // Integer[] treeArray3 = {2, -1};
+        // TreeNode root3 = buildTree(treeArray3);
+        // System.out.println("Result3: " + solution.maxPathSum(root3) + "\n");
+
+        // // Forth Example
+        // Integer[] treeArray4 = {5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1};
+        // TreeNode root4 = buildTree(treeArray4);
+        // System.out.println("Result4: " + solution.maxPathSum(root4) + "\n");
+
+        // Fifth Example
+        Integer[] treeArray5 = {9, 6, -3, null, null, -6, 2, null, null, 2, null, -6, -6, -6};
+        TreeNode root5 = buildTree(treeArray5);
+        System.out.println("Result5: " + solution.maxPathSum(root5) + "\n");
     
     }
 }
