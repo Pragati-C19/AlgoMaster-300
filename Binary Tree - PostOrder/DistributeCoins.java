@@ -19,15 +19,50 @@ public class DistributeCoins {
 
 
     // Globally Declare Variables
-
+    int minMoves;
 
     // Driver Function 
     public int distributeCoins(TreeNode root) {
         
+        minMoves = 0;
+
+        System.out.println("Starting Recursion...");
+        postOrder(root);
+
+        System.out.println("Ending Recursion...");
+        return minMoves;
     }
 
     // Recursion Function : to get extra coins and moves
     private int postOrder(TreeNode node){
+
+        // Base Case : if node == null return 0 extra coins return
+        if (node == null) {
+            return 0;
+        }
+
+        // Recur to left Side
+        int leftExtraCoins = postOrder(node.left);
+        System.out.println("    - Left Side's Extra Coins of " + node.val + " : " + leftExtraCoins);
+
+        // Recur to right side
+        int rightExtraCoins = postOrder(node.right);
+        System.out.println("    - Right Side's Extra Coins of " + node.val + " : " + rightExtraCoins);
+
+        // Check total coins at this node
+        int totalCoins = node.val + leftExtraCoins + rightExtraCoins;
+        System.out.println("        -> Total Coins at " + node.val + " : " + totalCoins);
+
+        // Check how many extra coin it has (it can be positive or negative)
+        int extraCoins = totalCoins - 1;
+        System.out.println("        -> Extra Coins at " + node.val + " : " + extraCoins);
+
+        // Count Moves taken by node to move those extraCoins from node to node 
+        // for here will only check child to parent, -1 will do it's job for parent to child
+        minMoves += Math.abs(leftExtraCoins) + Math.abs(rightExtraCoins);
+
+        // Return extra coins to root
+        return extraCoins; 
 
     }
 
@@ -85,20 +120,20 @@ public class DistributeCoins {
         TreeNode root3 = buildTree(treeArray3);
         System.out.println("Result3: " + solution.distributeCoins(root3) + "\n");
 
-        // Forth Example
-        Integer[] treeArray4 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100};
-        TreeNode root4 = buildTree(treeArray4);
-        System.out.println("Result4: " + solution.distributeCoins(root4) + "\n");
+        // // Forth Example
+        // Integer[] treeArray4 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100};
+        // TreeNode root4 = buildTree(treeArray4);
+        // System.out.println("Result4: " + solution.distributeCoins(root4) + "\n");
 
-        // Fifth Example
-        Integer[] treeArray5 = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
-        TreeNode root5 = buildTree(treeArray5);
-        System.out.println("Result5: " + solution.distributeCoins(root5) + "\n");
+        // // Fifth Example
+        // Integer[] treeArray5 = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+        // TreeNode root5 = buildTree(treeArray5);
+        // System.out.println("Result5: " + solution.distributeCoins(root5) + "\n");
 
-        // Sixth Example
-        Integer[] treeArray6 = {2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,0};
-        TreeNode root6 = buildTree(treeArray6);
-        System.out.println("Result6: " + solution.distributeCoins(root6) + "\n");
+        // // Sixth Example
+        // Integer[] treeArray6 = {2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,0};
+        // TreeNode root6 = buildTree(treeArray6);
+        // System.out.println("Result6: " + solution.distributeCoins(root6) + "\n");
 
     }
 }
