@@ -42,29 +42,31 @@ public class MaxPathSum {
         }
 
         // Recur to left Side
-        int leftPathSum = postOrder(node.left);
+        int leftPathSum = Math.max(0, postOrder(node.left));
         System.out.println("    - Left Side's Path Sum of " + node.val + " : " + leftPathSum);
         
         // Recur to right side
-        int rightPathSum = postOrder(node.right);
+        int rightPathSum = Math.max(0, postOrder(node.right));
         System.out.println("    - Right Side's Path Sum of " + node.val + " : " + rightPathSum);
 
 
         // Check current sum 
-        int currPathSum;
+        // int currPathSum;
+        // if (leftPathSum < 0 && rightPathSum < 0) {
+        //     currPathSum = node.val;
+        // }
+        // else if (leftPathSum < 0) {
+        //     currPathSum = node.val + rightPathSum;
+        // }
+        // else if (rightPathSum < 0) {
+        //     currPathSum = node.val + leftPathSum;
+        // }
+        // else {
+        //     currPathSum = node.val + leftPathSum + rightPathSum;
+        // }
 
-        if (leftPathSum < 0 && rightPathSum < 0) {
-            currPathSum = node.val;
-        }
-        else if (leftPathSum < 0) {
-            currPathSum = node.val + rightPathSum;
-        }
-        else if (rightPathSum < 0) {
-            currPathSum = node.val + leftPathSum;
-        }
-        else {
-            currPathSum = node.val + leftPathSum + rightPathSum;
-        }
+        // More clean solid Optimal instead of this if else get max of left and right at the recur call
+        int currPathSum = node.val + leftPathSum + rightPathSum;
         System.out.println("        -> Current Path Sum of " + node.val + " : " + currPathSum);
 
         // Get max path sum till now
