@@ -59,7 +59,9 @@ public class DistributeCoins {
 
         // Count Moves taken by node to move those extraCoins from node to node 
         // for here will only check child to parent, -1 will do it's job for parent to child
+        // I can do one more thing here -> minMoves += Math.abs(extraCoins) it will give me same output
         minMoves += Math.abs(leftExtraCoins) + Math.abs(rightExtraCoins);
+        // minMoves += Math.abs(extraCoins)
 
         // Return extra coins to root
         return extraCoins; 
@@ -140,6 +142,7 @@ public class DistributeCoins {
 
 /*
  * 
+ * //? Took help to understand the problem from : https://www.youtube.com/watch?v=FmHxY2104hc&ab_channel=codestorywithMIK
  * 
  * Intuitions :
  * 
