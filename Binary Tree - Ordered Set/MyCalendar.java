@@ -16,18 +16,18 @@ public class MyCalendar {
     
     public boolean book(int startTime, int endTime) {
         
-        int floorKey = eventMap.floorKey(startTime);
+        Integer floorKey = eventMap.floorKey(startTime);
         System.out.println("    Floor Key : Check if there is any event started Before " + startTime + " : " + floorKey);
 
-        if (eventMap.get(floorKey) > startTime) {
+        if (floorKey != null && eventMap.get(floorKey) > startTime) {
             System.out.println("    - " + eventMap.get(floorKey) + " > " + startTime + " means the event I want to add is overlapping by : " + (eventMap.get(floorKey) - startTime));
             return false;
         }
 
-        int ceilingKey = eventMap.ceilingKey(startTime);
+        Integer ceilingKey = eventMap.ceilingKey(startTime);
         System.out.println("    Ceiling Key : Check if there is any event started After " + startTime + " : " + ceilingKey);
 
-        if (ceilingKey < endTime) {
+        if (ceilingKey != null && ceilingKey < endTime) {
             System.out.println("    - " + ceilingKey + " > " + endTime + " means the event I want to add is overlapping by : " + (endTime - ceilingKey));
             return false;
         }
