@@ -1,7 +1,27 @@
 import java.util.*;
 
 public class MyCalendar {
+    
+    public MyCalendar() {
+        
+    }
+    
+    public boolean book(int startTime, int endTime) {
+        
+    }
 
+
+    public static void main (String[] args){
+        
+        MyCalendar solution = new MyCalendar();
+
+        // First Example
+        System.out.println("Final Result : ");
+        System.out.println("  1st Iteration : " + solution.book(10, 20));  // Output: true
+        System.out.println("  2nd Iteration : " + solution.book(15, 25));  // Output: false
+        System.out.println("  3rd Iteration : " + solution.book(20, 30));  // Output: true
+        
+    }
 }
 
 
