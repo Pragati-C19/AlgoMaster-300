@@ -19,6 +19,30 @@ public class TrimBST {
     // Driver Function
     public TreeNode trimBST(TreeNode root, int low, int high) {
         
+        // Base Case :
+        if(root == null) {
+            return null;
+        }
+
+        // Recursive Case :
+
+        // 1. if root value is lower than low it means root is not in range[low, high] -> So will check right side only
+        if(root.val < low) {
+            return trimBST(root.right, low, high);
+        }
+
+        // 2. if root value is greater than high it means root is not in range[low, high] -> so will check left side only
+        if(root.val > high) {
+            return trimBST(root.left, low, high);
+        }
+
+        // 3. if both conditions are failed means root.val in range[low, high] -> so checking all values and adding it in root
+        root.left = trimBST(root.left, low, high);
+        root.right = trimBST(root.right, low, high);
+
+        // Return current value                                                                                                                                                                                                                                                                                           
+        return root;
+
     }
 
 
@@ -56,18 +80,46 @@ public class TrimBST {
         return root;
     }
 
+    // Helper Function : To Print Binary Tree 
+    public static List<String> printTreeAsArrayFormat(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+    
+        queue.add(root);
+    
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+    
+            if (node == null) {
+                result.add("null");
+            } else {
+                result.add(String.valueOf(node.val));
+                queue.add(node.left);
+                queue.add(node.right);
+            }
+        }
+    
+        // Trim trailing "null"s (Leetcode does this)
+        int i = result.size() - 1;
+        while (i >= 0 && result.get(i).equals("null")) {
+            result.remove(i--);
+        }
+    
+        return result;
+    }    
+
     public static void main(String[] args) {
-        TrimBST tree = new TrimBST();
+        TrimBST solution = new TrimBST();
 
         // First Example
         Integer[] treeArray1 = {1, 0, 2};
         TreeNode root1 = buildTree(treeArray1);
-        System.out.println("Result1: " + solution.trimBST(root1) + "\n");
+        System.out.println("Result1: " + printTreeAsArrayFormat(solution.trimBST(root1, 1, 2)) + "\n");
 
         // Second Example
         Integer[] treeArray2 = {3, 0, 4, null, 2, null, null, 1};
         TreeNode root2 = buildTree(treeArray2);
-        System.out.println("Result2: " + solution.trimBST(root2) + "\n");
+        System.out.println("Result2: " + printTreeAsArrayFormat(solution.trimBST(root2, 1, 3)) + "\n");
 
     }
 
