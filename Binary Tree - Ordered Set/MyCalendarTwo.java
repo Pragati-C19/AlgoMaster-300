@@ -39,26 +39,26 @@ public class MyCalendarTwo {
         System.out.println("    [SBE] Floor Key : Check if there is any event started Before " + startTime + " : " + floorKeySBE);
         System.out.println("    [SBE] Ceiling Key : Check if there is any event started After " + startTime + " : " + ceilingKeySBE);
 
-        if (floorKeySBE != null && doubleBookingEvents.get(floorKeySBE) > startTime) {
-            System.out.println("    - [DBE] " + doubleBookingEvents.get(floorKeySBE) + " > " + startTime + " means the event I want to add is overlapping by : " + (doubleBookingEvents.get(floorKeySBE) - startTime));
+        if (floorKeySBE != null && singleBookingEvents.get(floorKeySBE) > startTime) {
+            System.out.println("    - [SBE] " + singleBookingEvents.get(floorKeySBE) + " > " + startTime + " means the event I want to add is overlapping by : " + (singleBookingEvents.get(floorKeySBE) - startTime));
             
             doubleBookingEvents.put(startTime, endTime);
-            System.out.println("    - Event Added in " + doubleBookingEvents + " : " + startTime + " -> " + endTime);
+            System.out.println("    - Event Added in DBE " + doubleBookingEvents + " : " + startTime + " -> " + endTime);
 
             return true;
         }
         if (ceilingKeySBE != null && ceilingKeySBE < endTime) {
-            System.out.println("    - [DBE] " + ceilingKeySBE + " > " + endTime + " means the event I want to add is overlapping by : " + (endTime - ceilingKeySBE));
+            System.out.println("    - [SBE] " + ceilingKeySBE + " > " + endTime + " means the event I want to add is overlapping by : " + (endTime - ceilingKeySBE));
             
             doubleBookingEvents.put(startTime, endTime);
-            System.out.println("    - Event Added in " + doubleBookingEvents + " : " + startTime + " -> " + endTime);
+            System.out.println("    - Event Added in DBE " + doubleBookingEvents + " : " + startTime + " -> " + endTime);
 
             return true;
         }
         
 
         singleBookingEvents.put(startTime, endTime);
-        System.out.println("    - Event Added in " + singleBookingEvents + " : " + startTime + " -> " + endTime);
+        System.out.println("    - Event Added in SBE " + singleBookingEvents + " : " + startTime + " -> " + endTime);
         
         return true;
     }
