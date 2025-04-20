@@ -1,21 +1,72 @@
 import java.util.*;
 
-public class MyCalenderTwo {
+public class MyCalendarTwo {
     
     // Global variables
+    TreeMap<Integer, Integer> singleBookingEvents;
+    TreeMap<Integer, Integer> doubleBookingEvents;
 
-    public MyCalendar() {
+    public MyCalendarTwo() {
+            
+        // Assigning value to treemap
+        singleBookingEvents = new TreeMap<>();
+        doubleBookingEvents = new TreeMap<>();
+
+        System.out.println("Starting the Iteration... \n");
 
     }
     
     public boolean book(int startTime, int endTime) {
         
+        Integer floorKeyDBE = doubleBookingEvents.floorKey(startTime);
+        Integer ceilingKeyDBE = doubleBookingEvents.ceilingKey(startTime);
+        
+        System.out.println("    [DBE] Floor Key : Check if there is any event started Before " + startTime + " : " + floorKeyDBE);
+        System.out.println("    [DBE] Ceiling Key : Check if there is any event started After " + startTime + " : " + ceilingKeyDBE);
+
+        if (floorKeyDBE != null && doubleBookingEvents.get(floorKeyDBE) > startTime) {
+            System.out.println("    - [DBE] " + doubleBookingEvents.get(floorKeyDBE) + " > " + startTime + " means the event I want to add is overlapping by : " + (doubleBookingEvents.get(floorKeyDBE) - startTime));
+            return false;
+        }
+        if (ceilingKeyDBE != null && ceilingKeyDBE < endTime) {
+            System.out.println("    - [DBE] " + ceilingKeyDBE + " > " + endTime + " means the event I want to add is overlapping by : " + (endTime - ceilingKeyDBE));
+            return false;
+        }
+
+        Integer floorKeySBE = singleBookingEvents.floorKey(startTime);
+        Integer ceilingKeySBE = singleBookingEvents.ceilingKey(startTime);
+        
+        System.out.println("    [SBE] Floor Key : Check if there is any event started Before " + startTime + " : " + floorKeySBE);
+        System.out.println("    [SBE] Ceiling Key : Check if there is any event started After " + startTime + " : " + ceilingKeySBE);
+
+        if (floorKeySBE != null && doubleBookingEvents.get(floorKeySBE) > startTime) {
+            System.out.println("    - [DBE] " + doubleBookingEvents.get(floorKeySBE) + " > " + startTime + " means the event I want to add is overlapping by : " + (doubleBookingEvents.get(floorKeySBE) - startTime));
+            
+            doubleBookingEvents.put(startTime, endTime);
+            System.out.println("    - Event Added in " + doubleBookingEvents + " : " + startTime + " -> " + endTime);
+
+            return true;
+        }
+        if (ceilingKeySBE != null && ceilingKeySBE < endTime) {
+            System.out.println("    - [DBE] " + ceilingKeySBE + " > " + endTime + " means the event I want to add is overlapping by : " + (endTime - ceilingKeySBE));
+            
+            doubleBookingEvents.put(startTime, endTime);
+            System.out.println("    - Event Added in " + doubleBookingEvents + " : " + startTime + " -> " + endTime);
+
+            return true;
+        }
+        
+
+        singleBookingEvents.put(startTime, endTime);
+        System.out.println("    - Event Added in " + singleBookingEvents + " : " + startTime + " -> " + endTime);
+        
+        return true;
     }
 
 
     public static void main (String[] args){
         
-        MyCalendarTwo solution = new MyCalenderTwo();
+        MyCalendarTwo solution = new MyCalendarTwo();
 
         // First Example
         System.out.println("Final Result : ");
