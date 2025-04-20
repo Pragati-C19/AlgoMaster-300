@@ -24,12 +24,12 @@ public class MyCalendarTwo {
         System.out.println("    [DBE] Floor Key : Check if there is any event started Before " + startTime + " : " + floorKeyDBE);
         System.out.println("    [DBE] Ceiling Key : Check if there is any event started After " + startTime + " : " + ceilingKeyDBE);
 
-        if (floorKeyDBE != null && doubleBookingEvents.get(floorKeyDBE) > startTime) {
+        if (floorKeyDBE != null && doubleBookingEvents.get(floorKeyDBE) < startTime) {
             System.out.println("    - [DBE] " + doubleBookingEvents.get(floorKeyDBE) + " > " + startTime + " means the event I want to add is overlapping by : " + (doubleBookingEvents.get(floorKeyDBE) - startTime));
             return false;
         }
         if (ceilingKeyDBE != null && ceilingKeyDBE < endTime) {
-            System.out.println("    - [DBE] " + ceilingKeyDBE + " > " + endTime + " means the event I want to add is overlapping by : " + (endTime - ceilingKeyDBE));
+            System.out.println("    - [DBE] " + ceilingKeyDBE + " < " + endTime + " means the event I want to add is overlapping by : " + (endTime - ceilingKeyDBE));
             return false;
         }
 
@@ -48,7 +48,7 @@ public class MyCalendarTwo {
             return true;
         }
         if (ceilingKeySBE != null && ceilingKeySBE < endTime) {
-            System.out.println("    - [SBE] " + ceilingKeySBE + " > " + endTime + " means the event I want to add is overlapping by : " + (endTime - ceilingKeySBE));
+            System.out.println("    - [SBE] " + ceilingKeySBE + " < " + endTime + " means the event I want to add is overlapping by : " + (endTime - ceilingKeySBE));
             
             doubleBookingEvents.put(startTime, endTime);
             System.out.println("    - Event Added in DBE " + doubleBookingEvents + " : " + startTime + " -> " + endTime);
