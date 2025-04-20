@@ -2,6 +2,31 @@ import java.util.*;
 
 public class MyCalenderTwo {
     
+    // Global variables
+
+    public MyCalendar() {
+
+    }
+    
+    public boolean book(int startTime, int endTime) {
+        
+    }
+
+
+    public static void main (String[] args){
+        
+        MyCalendarTwo solution = new MyCalenderTwo();
+
+        // First Example
+        System.out.println("Final Result : ");
+        System.out.println("  1st Iteration : " + solution.book(10, 20));  // Output: true
+        System.out.println("  2nd Iteration : " + solution.book(50, 60));  // Output: true
+        System.out.println("  3rd Iteration : " + solution.book(10, 40));  // Output: true
+        System.out.println("  4th Iteration : " + solution.book(5, 15));  // Output: false
+        System.out.println("  5th Iteration : " + solution.book(5, 10));  // Output: true
+        System.out.println("  6th Iteration : " + solution.book(25, 55));  // Output: true
+        
+    }
 }
 
 
