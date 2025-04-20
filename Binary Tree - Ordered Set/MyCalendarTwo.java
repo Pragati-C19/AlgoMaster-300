@@ -18,44 +18,40 @@ public class MyCalendarTwo {
     
     public boolean book(int startTime, int endTime) {
         
-        Integer floorKeyDBE = doubleBookingEvents.floorKey(startTime);
-        Integer ceilingKeyDBE = doubleBookingEvents.ceilingKey(startTime);
-        
-        System.out.println("    [DBE] Floor Key : Check if there is any event started Before " + startTime + " : " + floorKeyDBE);
-        System.out.println("    [DBE] Ceiling Key : Check if there is any event started After " + startTime + " : " + ceilingKeyDBE);
-
-        if (floorKeyDBE != null && doubleBookingEvents.get(floorKeyDBE) < startTime) {
-            System.out.println("    - [DBE] " + doubleBookingEvents.get(floorKeyDBE) + " > " + startTime + " means the event I want to add is overlapping by : " + (doubleBookingEvents.get(floorKeyDBE) - startTime));
-            return false;
-        }
-        if (ceilingKeyDBE != null && ceilingKeyDBE < endTime) {
-            System.out.println("    - [DBE] " + ceilingKeyDBE + " < " + endTime + " means the event I want to add is overlapping by : " + (endTime - ceilingKeyDBE));
-            return false;
-        }
-
-        Integer floorKeySBE = singleBookingEvents.floorKey(startTime);
-        Integer ceilingKeySBE = singleBookingEvents.ceilingKey(startTime);
-        
-        System.out.println("    [SBE] Floor Key : Check if there is any event started Before " + startTime + " : " + floorKeySBE);
-        System.out.println("    [SBE] Ceiling Key : Check if there is any event started After " + startTime + " : " + ceilingKeySBE);
-
-        if (floorKeySBE != null && singleBookingEvents.get(floorKeySBE) > startTime) {
-            System.out.println("    - [SBE] " + singleBookingEvents.get(floorKeySBE) + " > " + startTime + " means the event I want to add is overlapping by : " + (singleBookingEvents.get(floorKeySBE) - startTime));
+        for(Map.Entry<Integer, Integer> event : doubleBookingEvents.entrySet()){
             
-            doubleBookingEvents.put(startTime, endTime);
-            System.out.println("    - Event Added in DBE " + doubleBookingEvents + " : " + startTime + " -> " + endTime);
+            int keyDBE = event.getKey(); 
+            int valueDBE = event.getValue();
+            System.out.println("    [DBE] current event : " + keyDBE + " , " + valueDBE);
 
-            return true;
+            if (startTime < valueDBE && endTime > keyDBE) {
+                System.out.println("    [DBE] startTime (" + startTime + ") < valueDBE (" + valueDBE + ") and endTime (" + endTime + ") > keyDBE (" + keyDBE + ")");
+                System.out.println("        - Means there is Triple Booking");
+                
+                return false;
+            }
         }
-        if (ceilingKeySBE != null && ceilingKeySBE < endTime) {
-            System.out.println("    - [SBE] " + ceilingKeySBE + " < " + endTime + " means the event I want to add is overlapping by : " + (endTime - ceilingKeySBE));
+
+        for(Map.Entry<Integer, Integer> event : singleBookingEvents.entrySet()){
             
-            doubleBookingEvents.put(startTime, endTime);
-            System.out.println("    - Event Added in DBE " + doubleBookingEvents + " : " + startTime + " -> " + endTime);
+            int keySBE = event.getKey(); 
+            int valueSBE = event.getValue();
+            System.out.println("    [SBE] current event : " + keySBE + " , " + valueSBE);
 
-            return true;
+            if (startTime < valueSBE && endTime > keySBE) {
+                System.out.println("    [SBE] startTime (" + startTime + ") < valueSBE (" + valueSBE + ") and endTime (" + endTime + ") > keySBE (" + keySBE + ")");
+                System.out.println("        - Means there is Double Booking");
+                
+                // There's an overlap → record it into double booking
+                int overlapStart = Math.max(startTime, keySBE);
+                int overlapEnd = Math.min(endTime, valueSBE);
+                
+                doubleBookingEvents.put(overlapStart, overlapEnd);
+                System.out.println("    - Event Added in DBE " + doubleBookingEvents + " : " + overlapStart + " -> " + overlapEnd);
+
+                return true;
+            }
         }
-        
 
         singleBookingEvents.put(startTime, endTime);
         System.out.println("    - Event Added in SBE " + singleBookingEvents + " : " + startTime + " -> " + endTime);
