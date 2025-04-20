@@ -82,6 +82,14 @@ public class MyCalendarTwo {
 
 
 /*
+ * //? Use Map.Entry here
+ * Map.Entry<Integer, Integer> entry : doubleBookingEvents.entrySet()
+ * - This line is use for checking all entries from the map
+ * - map.entrySet() is use for getting all the set of key and values in map
+ * - entry.getKey() is use for getting the key of the entry
+ * - entry.getValue() is use for getting the value of the entry
+ * 
+ * 
  * 
  * Intuitions :
  * 
@@ -108,7 +116,6 @@ public class MyCalendarTwo {
  *      -> ceilingKey < endTime ? add in dBE
  * - if above all condtions are not fullfilled then add it in singleBookingEvents map
  * - return true
- * 
  * 
  * 
  * Pseudo Code :
@@ -144,5 +151,66 @@ public class MyCalendarTwo {
  *      -> add event in singleBookingEvents map
  *      -> return true
  * }
+ * 
+ * 
+ * 
+ * 2nd Approach - Using Map.entry 
+ * 
+ * 
+ * 1. Loop through doubleBookingEvents:
+ *      - If (start < endDouble && startDouble < end), return false (triple booking)
+ * 2. Loop through singleBookingEvents:
+ *      - If (start < endSingle && startSingle < end), then:
+ *         - Calculate overlap range: max(start, startSingle), min(end, endSingle)
+ *         - Add that range to doubleBookingEvents
+ * 3. Finally, add the original [start, end) to singleBookingEvents
+ * 
+ * 4. in above approach we are doing same thing... just slight difference of for loop
+ *      - in first approach I used value.floorkey > startTime
+ *      - here I'm saying endTimeDBE > currstartTime, value.floorKey is a value at that startTime entry na
+ *      - in first approch I used ceilingKey < endTime
+ *      - here I'm saying startTimeDBE < currendTime, ceilingKey is the key of that startTime entry na
+ * 
+ * 5. he bagh khup simple ahe.. 
+ * - floorKey sangte ki curr key pekshya immediate lahan konti key ahe ka mazyakde? 
+ * - ceilingKey sangte ki curr key pekshya immediate Mothi konti key ahe ka mazyakde?
+ * - mala range madhe yetay currKey and currValue he check karaychy
+ * - tyasathi me baghtey ki floorKey chi value ahe ti mothi ahe ka currKey pekshya?
+ * - or me baghtey ki ceilingKey ahe ti lahan ahe ka currValue pekshya?
+ * 
+ * 
+ * 
+ * function book(startTime, EndTime){
+ * 
+ *      for(Map.Entry<Integer, Integer> entry : doubleBookingEvents.entrySet()){
+ *          
+ *          -> get key and value
+ *          startTimeDBE = entry.getKey
+ *          endTimeDBE = entry.getValue
+ * 
+ *          -> check if the currStart time or currEnd Time is overlapping ?
+ *          if(currstartTime < endTimeDBE &&  currEndTime > startTimeDBE ) 
+ *              return false
+ * 
+ *      }
+ *
+ *      -> do same for singleBookingEvents
+ *      for(Map.Entry<Integer, Integer> entry : singleBookingEvents.entrySet()){
+ *          
+ *          -> get key and value
+ *          startTimeSBE = entry.getKey
+ *          endTimeSBE = entry.getValue
+ * 
+ *          -> check if the currStart time or currEnd Time is overlapping ?
+ *          if(currstartTime < endTimeSBE &&  currEndTime > startTimeSBE ) 
+ *              doubleBoookingEvents.add(key, value)
+ *              return true
+ *      }
+ * 
+ *      -> add event in singleBookingEvents if above any condition is not valid
+ *      -> return true
+ * }
+ * 
+ * 
  * 
  */
