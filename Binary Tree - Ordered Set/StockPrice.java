@@ -4,13 +4,15 @@ public class StockPrice {
 
     // Globally declare Variables
     TreeMap<Integer, Integer> stockPriceMap;
-    // int latestTimeStamp;
+    TreeMap<Integer, Integer> priceFreqMap;
 
     public StockPrice() {
         
         // Assigning value to global variables
         stockPriceMap = new TreeMap<>();
-        // latestTimeStamp = 0;
+
+        // priceFreMap will store price and how many times that price is assign to different timestamps
+        priceFreqMap = new TreeMap<>();
 
         System.out.println("Starting the Iteration...");
 
@@ -18,9 +20,25 @@ public class StockPrice {
     
     public void update(int timestamp, int price) {
         
-        // latestTimeStamp = timestamp;
-        // System.out.println("    Latest Timestamp : " + latestTimeStamp);
+        if (stockPriceMap.containsKey(timestamp)) {
+            
+            // Gets value of timestamp from stockPriceMap
+            int oldPriceAtTimestamp = stockPriceMap.get(timestamp);
 
+            // Decreasing frequncy count of that price in priceFreqMap
+            // I tried to remove price related to timestamp but it removes all prices if two timestamp have same values
+            priceFreqMap.put(oldPriceAtTimestamp, priceFreqMap.get(oldPriceAtTimestamp) - 1);
+
+            // If freq hits to 0 remove that price from map bcoz no timestamp has that price now
+            if (priceFreqMap.get(oldPriceAtTimestamp) == 0) {
+                priceFreqMap.remove(oldPriceAtTimestamp);
+            }
+
+        }
+
+        priceFreqMap.put(price, priceFreqMap.getOrDefault(price, 0) + 1);
+        System.out.println("    Price Frequency Map after updated : " + priceFreqMap);
+        
         stockPriceMap.put(timestamp, price);
         System.out.println("    Stock Price Map after updated : " + stockPriceMap);
         
@@ -28,9 +46,6 @@ public class StockPrice {
     }
     
     public int current() {
-        
-        // int latestPrice = stockPriceMap.get(latestTimeStamp);
-        // System.out.println("    Latest Price : " + latestPrice);
 
         int latestKey = stockPriceMap.lastKey();
         System.out.println("    Latest Key : " + latestKey);
@@ -43,33 +58,17 @@ public class StockPrice {
     
     public int maximum() {
         
-        int maxPrice = Integer.MIN_VALUE;
-
-        for(Map.Entry<Integer, Integer> stock : stockPriceMap.entrySet()){
-            
-            int currPrice = stock.getValue();
-            System.out.println("    [Max] Current Checking Price : " + currPrice);
-
-            maxPrice =  Math.max(maxPrice, currPrice);
-        }
-
+        int maxPrice = priceFreqMap.lastKey(); 
         System.out.println("    Maximum Price : " + maxPrice);
+        
         return maxPrice;
     }
     
     public int minimum() {
         
-        int minPrice = Integer.MAX_VALUE;
-
-        for(Map.Entry<Integer, Integer> stock : stockPriceMap.entrySet()){
-            
-            int currPrice = stock.getValue();
-            System.out.println("    [Min] Current Checking Price : " + currPrice);
-
-            minPrice =  Math.min(minPrice, currPrice);
-        }
-
+        int minPrice = priceFreqMap.firstKey();
         System.out.println("    Minimum Price : " + minPrice);
+        
         return minPrice;
     }
 
@@ -101,6 +100,23 @@ public class StockPrice {
 }
 
 /*
+ * 
+ * 
+ * Correction :
+ * 
+ * 1. with the for loops in maximum and minium I was getting Time limit Exceeds
+ * 2. So I wanted to use lastKey and firstKey but for that we need to sort map by price
+ * 3. in stockPriceMap I was giving timestamp as key so it's sorting map by key
+ * 4. so I created new map which take price as key 
+ * 5. I thought of treeset and treemap both but something was missing it was considering all prices which are getting removed that too
+ * 6. Then I come up with frequncy count thing.. it also call multiset
+ * 7. check if the timestamp exist -> if yes then do below step
+ *      -> take that timestamps oldPrice from stockPriceMap
+ *      -> then decrement it's frequency by 1
+ *      -> if multiple timestamp have same price then we can't fully remove that price na.. that's why just decreasing freq
+ *      -> if that freq hit 0 then remove price as no timestamp has that price
+ * 8. if timestamp don't exist already -> then add new price to priceFreqMap with freq 1
+ * 9. then update stockPriceMap with new price and timestamp
  * 
  * 
  * Intuitions :
