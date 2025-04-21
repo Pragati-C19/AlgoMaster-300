@@ -36,6 +36,9 @@ public class StockPrice {
  * 5. int current() -
  *      - So far I know I have to return value of key 
  *      - but I need to think abt how to get latest key
+ *      - I think lets create a Global variable latestTimestamp 
+ *      - this latestTimestamp will get value from update and store it
+ *      - then in current will take value against that latestTimeStamp key
  * 6. int maximum() -
  *      - will use for loop here till we check every value in map
  *      - check max = Math.max(max, map.get(key)) 
@@ -51,9 +54,11 @@ public class StockPrice {
  * 
  * // Gloabally declare map
  * Map<Integer, Integer> stockPriceMap
+ * int latestTimeStamp
  * 
  * StockPrice () {
  *      -> stockPriceMap = new TreeMap
+ *      -> latestTimeStamp = 0
  * }
  * 
  * void update(int timestamp, int price) {
@@ -64,13 +69,13 @@ public class StockPrice {
  *      -> I think below line is enough I don't need to check if bcoz Map uses unique key
  *      -> So if it detacts key already exist it will just update it's value automatically
  *      stockPriceMap.put(timestamp, price)
- * 
+ *      
+ *      latestTimeStamp = timestamp
  * }
  * 
  * 
  * int current() {
- * 
- * 
+ *      return stockPriceMap.getKey(timestamp)
  * }
  * 
  * 
