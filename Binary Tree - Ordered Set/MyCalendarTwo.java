@@ -53,7 +53,7 @@ public class MyCalendarTwo {
                 
                 // Temporary store that time of overlap in overlapping map 
                 overlapingEvents.add(new int[] {overlapStart, overlapEnd});
-                System.out.println("    - Event Added in OE " + overlapingEvents + " : " + overlapStart + " -> " + overlapEnd);
+                System.out.println("    - Event Added in OE " + Arrays.deepToString(overlapingEvents.toArray()) + " : " + overlapStart + " -> " + overlapEnd);
 
             }
         }
@@ -123,6 +123,8 @@ public class MyCalendarTwo {
  * - map.entrySet() is use for getting all the set of key and values in map
  * - entry.getKey() is use for getting the key of the entry
  * - entry.getValue() is use for getting the value of the entry
+ * 
+ * - Used Arrays.deepToString to get list of array 
  * 
  * 
  * 
