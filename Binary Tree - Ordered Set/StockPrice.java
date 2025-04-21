@@ -2,6 +2,45 @@ import java.util.*;
 
 public class StockPrice {
 
+    // Globally declare Variables
+
+    
+    public StockPrice() {
+        
+    }
+    
+    public void update(int timestamp, int price) {
+        
+    }
+    
+    public int current() {
+        
+    }
+    
+    public int maximum() {
+        
+    }
+    
+    public int minimum() {
+        
+    }
+
+    public static void main (String[] args){
+        
+        StockPrice solution = new StockPrice();
+
+        // First Example
+        System.out.println("Final Result : ");
+        System.out.println("  1st Iteration : " + solution.update(1, 10));  
+        System.out.println("  2nd Iteration : " + solution.update(2, 5));  
+        System.out.println("  3rd Iteration : " + solution.current());      // output : 5
+        System.out.println("  4th Iteration : " + solution.maximum());      // output : 10
+        System.out.println("  5th Iteration : " + solution.update(1, 3));      
+        System.out.println("  6th Iteration : " + solution.maximum());      // output : 5
+        System.out.println("  5th Iteration : " + solution.update(4, 2));      
+        System.out.println("  8th Iteration : " + solution.minimum());      // output : 2
+
+    }
 }
 
 /*
