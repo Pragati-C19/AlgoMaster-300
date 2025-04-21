@@ -4,13 +4,13 @@ public class StockPrice {
 
     // Globally declare Variables
     TreeMap<Integer, Integer> stockPriceMap;
-    int latestTimeStamp;
+    // int latestTimeStamp;
 
     public StockPrice() {
         
         // Assigning value to global variables
         stockPriceMap = new TreeMap<>();
-        latestTimeStamp = 0;
+        // latestTimeStamp = 0;
 
         System.out.println("Starting the Iteration...");
 
@@ -18,8 +18,8 @@ public class StockPrice {
     
     public void update(int timestamp, int price) {
         
-        latestTimeStamp = timestamp;
-        System.out.println("    Latest Timestamp : " + latestTimeStamp);
+        // latestTimeStamp = timestamp;
+        // System.out.println("    Latest Timestamp : " + latestTimeStamp);
 
         stockPriceMap.put(timestamp, price);
         System.out.println("    Stock Price Map after updated : " + stockPriceMap);
@@ -29,7 +29,13 @@ public class StockPrice {
     
     public int current() {
         
-        int latestPrice = stockPriceMap.get(latestTimeStamp);
+        // int latestPrice = stockPriceMap.get(latestTimeStamp);
+        // System.out.println("    Latest Price : " + latestPrice);
+
+        int latestKey = stockPriceMap.lastKey();
+        System.out.println("    Latest Key : " + latestKey);
+
+        int latestPrice = stockPriceMap.get(latestKey);
         System.out.println("    Latest Price : " + latestPrice);
 
         return latestPrice;
@@ -129,6 +135,11 @@ public class StockPrice {
  *      - I think lets create a Global variable latestTimestamp 
  *      - this latestTimestamp will get value from update and store it
  *      - then in current will take value against that latestTimeStamp key
+ *      -> Getting issue in this 
+ *      -> I think Finds the latest price of the stock based on the current records. The latest price is the price at the latest timestamp recorded.
+ *      -> I think above line means not latest value or timestamp added 
+ *      -> It means Last record with biggest Timestamp..
+ *      -> After checking the testcase that has wrong ans I think of this
  * 6. int maximum() -
  *      - will use for loop here till we check every value in map
  *      - check max = Math.max(max, map.get(key)) 
