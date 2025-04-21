@@ -3,26 +3,68 @@ import java.util.*;
 public class StockPrice {
 
     // Globally declare Variables
+    TreeMap<Integer, Integer> stockPriceMap;
+    int latestTimeStamp;
 
-    
     public StockPrice() {
         
+        // Assigning value to global variables
+        stockPriceMap = new TreeMap<>();
+        latestTimeStamp = 0;
+
+        System.out.println("Starting the Iteration...");
+
     }
     
     public void update(int timestamp, int price) {
         
+        latestTimeStamp = timestamp;
+        System.out.println("    Latest Timestamp : " + latestTimeStamp);
+
+        stockPriceMap.put(timestamp, price);
+        System.out.println("    Stock Price Map after updated : " + stockPriceMap);
+        
+        return;
     }
     
     public int current() {
         
+        int latestPrice = stockPriceMap.get(latestTimeStamp);
+        System.out.println("    Latest Price : " + latestPrice);
+
+        return latestPrice;
     }
     
     public int maximum() {
         
+        int maxPrice = Integer.MIN_VALUE;
+
+        for(Map.Entry<Integer, Integer> stock : stockPriceMap.entrySet()){
+            
+            int currPrice = stock.getValue();
+            System.out.println("    [Max] Current Checking Price : " + currPrice);
+
+            maxPrice =  Math.max(maxPrice, currPrice);
+        }
+
+        System.out.println("    Maximum Price : " + maxPrice);
+        return maxPrice;
     }
     
     public int minimum() {
         
+        int minPrice = Integer.MAX_VALUE;
+
+        for(Map.Entry<Integer, Integer> stock : stockPriceMap.entrySet()){
+            
+            int currPrice = stock.getValue();
+            System.out.println("    [Min] Current Checking Price : " + currPrice);
+
+            minPrice =  Math.min(minPrice, currPrice);
+        }
+
+        System.out.println("    Minimum Price : " + minPrice);
+        return minPrice;
     }
 
     public static void main (String[] args){
@@ -31,13 +73,22 @@ public class StockPrice {
 
         // First Example
         System.out.println("Final Result : ");
-        System.out.println("  1st Iteration : " + solution.update(1, 10));  
-        System.out.println("  2nd Iteration : " + solution.update(2, 5));  
+
+        solution.update(1, 10);
+        System.out.println("  1st Iteration : ");  
+        
+        solution.update(2, 5);
+        System.out.println("  2nd Iteration : ");
+          
         System.out.println("  3rd Iteration : " + solution.current());      // output : 5
         System.out.println("  4th Iteration : " + solution.maximum());      // output : 10
-        System.out.println("  5th Iteration : " + solution.update(1, 3));      
+        
+        solution.update(1, 3);
+        System.out.println("  5th Iteration : ");      
         System.out.println("  6th Iteration : " + solution.maximum());      // output : 5
-        System.out.println("  5th Iteration : " + solution.update(4, 2));      
+        
+        solution.update(4, 2);
+        System.out.println("  5th Iteration : ");      
         System.out.println("  8th Iteration : " + solution.minimum());      // output : 2
 
     }
