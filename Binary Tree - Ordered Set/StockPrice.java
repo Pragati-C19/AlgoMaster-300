@@ -49,5 +49,52 @@ public class StockPrice {
  * Pseudo Code :
  * 
  * 
+ * // Gloabally declare map
+ * Map<Integer, Integer> stockPriceMap
+ * 
+ * StockPrice () {
+ *      -> stockPriceMap = new TreeMap
+ * }
+ * 
+ * void update(int timestamp, int price) {
+ * 
+ *      if(stockPriceMap.containsKey(timestamp))
+ *          stockPriceMap.put(timestamp, price)
+ * 
+ *      -> I think below line is enough I don't need to check if bcoz Map uses unique key
+ *      -> So if it detacts key already exist it will just update it's value automatically
+ *      stockPriceMap.put(timestamp, price)
+ * 
+ * }
+ * 
+ * 
+ * int current() {
+ * 
+ * 
+ * }
+ * 
+ * 
+ * int maximum() {
+ * 
+ *      int max = Integer.Min_Value
+ * 
+ *      for(all stock from StokPrice)
+ *          currPrice = stockPriceMap.get(stock)
+ *          max = Math.max(max, currPrice)
+ *      
+ *      return max
+ * }
+ * 
+ * int minimum() {
+ * 
+ *      int min = Integer.Max_Value
+ * 
+ *      for(all stock from StokPrice)
+ *          currPrice = stockPriceMap.get(stock)
+ *          min = Math.min(min, currPrice)
+ *      
+ *      return min
+ * }
+ * 
  * 
  */
