@@ -18,6 +18,7 @@ public class MyCalendarTwo {
     
     public boolean book(int startTime, int endTime) {
         
+        // 1. Check for Triple Booking
         for(Map.Entry<Integer, Integer> event : doubleBookingEvents.entrySet()){
             
             int keyDBE = event.getKey(); 
@@ -32,6 +33,10 @@ public class MyCalendarTwo {
             }
         }
 
+        // 2. Declare a overlapping map to temporary store overlapping time till for loop get's completed 
+        Map<Integer, Integer> overlapingEvents = new HashMap<>();
+
+        // 3. Check for Double Booking -> if found add it in overlapingEvents map
         for(Map.Entry<Integer, Integer> event : singleBookingEvents.entrySet()){
             
             int keySBE = event.getKey(); 
@@ -42,17 +47,26 @@ public class MyCalendarTwo {
                 System.out.println("    [SBE] startTime (" + startTime + ") < valueSBE (" + valueSBE + ") and endTime (" + endTime + ") > keySBE (" + keySBE + ")");
                 System.out.println("        - Means there is Double Booking");
                 
-                // There's an overlap → record it into double booking
+                // There's an overlap → get time of overlap only
                 int overlapStart = Math.max(startTime, keySBE);
                 int overlapEnd = Math.min(endTime, valueSBE);
                 
-                doubleBookingEvents.put(overlapStart, overlapEnd);
-                System.out.println("    - Event Added in DBE " + doubleBookingEvents + " : " + overlapStart + " -> " + overlapEnd);
+                // Temporary store that time of overlap in overlapping map 
+                overlapingEvents.put(overlapStart, overlapEnd);
+                System.out.println("    - Event Added in OE " + overlapingEvents + " : " + overlapStart + " -> " + overlapEnd);
 
-                return true;
             }
         }
 
+        // 4. After getting all overlapping events add it in doubleMap now.. this is the last count
+        for(Map.Entry<Integer, Integer> event : overlapingEvents.entrySet()){
+
+            doubleBookingEvents.put(event.getKey(), event.getValue());
+            System.out.println("    - Event Added in DBE " + doubleBookingEvents + " : " + event.getKey() + " -> " + event.getValue());
+
+        }
+
+        // 5. Otherwise add it in singleBooking map
         singleBookingEvents.put(startTime, endTime);
         System.out.println("    - Event Added in SBE " + singleBookingEvents + " : " + startTime + " -> " + endTime);
         
@@ -64,14 +78,39 @@ public class MyCalendarTwo {
         
         MyCalendarTwo solution = new MyCalendarTwo();
 
-        // First Example
-        System.out.println("Final Result : ");
-        System.out.println("  1st Iteration : " + solution.book(10, 20));  // Output: true
-        System.out.println("  2nd Iteration : " + solution.book(50, 60));  // Output: true
-        System.out.println("  3rd Iteration : " + solution.book(10, 40));  // Output: true
-        System.out.println("  4th Iteration : " + solution.book(5, 15));  // Output: false
-        System.out.println("  5th Iteration : " + solution.book(5, 10));  // Output: true
-        System.out.println("  6th Iteration : " + solution.book(25, 55));  // Output: true
+        // // First Example
+        // System.out.println("Final Result : ");
+        // System.out.println("  1st Iteration : " + solution.book(10, 20));  // Output: true
+        // System.out.println("  2nd Iteration : " + solution.book(50, 60));  // Output: true
+        // System.out.println("  3rd Iteration : " + solution.book(10, 40));  // Output: true
+        // System.out.println("  4th Iteration : " + solution.book(5, 15));  // Output: false
+        // System.out.println("  5th Iteration : " + solution.book(5, 10));  // Output: true
+        // System.out.println("  6th Iteration : " + solution.book(25, 55));  // Output: true
+
+        int[][] bookings = {
+            {51, 58}, {77, 85}, {35, 44}, {53, 61}, {86, 93}, {55, 61}, {43, 50},
+            {64, 69}, {76, 82}, {98, 100}, {35, 40}, {25, 32}, {8, 17}, {37, 43},
+            {53, 60}, {86, 91}, {97, 100}, {37, 43}, {41, 50}, {83, 92}, {66, 75},
+            {42, 48}, {55, 64}, {37, 46}, {92, 97}, {69, 76}, {85, 94}, {60, 66},
+            {27, 34}, {36, 44}, {32, 38}, {56, 62}, {93, 99}, {11, 18}, {21, 30},
+            {81, 89}, {18, 26}, {81, 90}, {91, 96}, {43, 49}, {3, 12}, {97, 100},
+            {72, 80}, {15, 23}, {63, 70}, {8, 16}, {1, 6}, {16, 24}, {45, 54},
+            {3, 9}, {30, 36}, {29, 35}, {41, 48}, {21, 26}, {79, 87}, {27, 32},
+            {88, 96}, {47, 55}, {71, 76}, {32, 40}, {68, 74}, {51, 59}, {44, 50},
+            {65, 71}, {83, 90}, {86, 94}, {48, 57}, {26, 32}, {27, 32}, {78, 83},
+            {27, 35}, {19, 24}, {26, 31}, {67, 75}, {87, 92}, {6, 15}, {37, 44},
+            {62, 68}, {13, 18}, {41, 46}
+        };
+
+        int i = 0;
+
+        for (int[] booking : bookings) {
+
+            boolean result = solution.book(booking[0], booking[1]);
+            System.out.print("  " + i + " Iteration : " + result + "\n");
+
+            i++;
+        }
         
     }
 }
