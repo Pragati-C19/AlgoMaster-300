@@ -1,0 +1,105 @@
+import java.util.*;
+
+public class WordDictionary {
+    
+}
+
+
+/*
+ * 
+ * 
+ * Intuitions :
+ * 
+ * 1. We need to create a word dictionary
+ * 2. WordDictionary() Initializes the object.
+ * 3. void addWord(word) Adds word to the data structure, it can be matched later.
+ * 4. bool search(word) Returns true if there is any string that matches word
+ * 5. Word may contain . where dot can be any letter
+ * 6. will use dfs to search
+ * 7. This pattern is called WildCard Search
+ * 
+ * Pattern :
+ * 
+ * 1. Create a struct for TrieNode with HashMap or Array
+ * 2. We create a TrieNode class that contains:
+ *      - An array of size 26 for children nodes (a to z)
+ *      - A boolean flag isEndOfWord to mark the end of a word
+ * 3. Why?
+ *      - Arrays give O(1) access time since we map characters using ch - 'a'
+ *      - It’s faster and more memory predictable than HashMap
+ * 3. WordDrictonary() -> assign value to globally declared root 
+ * 4. void addWord(word) -> use inseartion code here..
+ *      - declare a node to track starting point of word
+ *      - Loop through each character in the word.
+ *      - Convert character to index using: int idx = ch - 'a'
+ *      - If node.children[idx] is null → create a new TrieNode
+ *      - else move node to the next node
+ *      - After loop, mark isEndOfWord = true
+ * 5. bool search(word) -> it's same as we did before just new thing is . 
+ *      - We use a recursive dfs() function to handle . wildcard.
+ *      - If current index equals word length → return if current node marks as endOfWord.
+ *      - If current character is . → try all 26 children.
+ *      - Otherwise → follow the path at the specific character index.
+ * 
+ * 
+ * Pseudo Code :
+ * 
+ * 
+ * TrieNode {
+ *      TrieNode[] child = new TrieNode[26]
+ *      bool isEndOfWord = false
+ * }
+ * 
+ * // Globally declare root to track starting points
+ * TrieNode root
+ * 
+ * WordDictionary(){
+ *      - Assign value to root
+ * }
+ * 
+ * void addWord(word){
+ *      node = root
+ * 
+ *      for(char ch : word){
+ *          
+ *          idexOfChar = ch - 'a'
+ * 
+ *          if(node.child[idexOfChar] == null) -> add ch to the array
+ *          
+ *          // Move node to next
+ *          node = node.child[idexOfChar] 
+ *      }
+ *      
+ *      isEndOfWord = true
+ *      
+ * }
+ * 
+ * 
+ * bool search(word) {
+ *      dfs(word, 0, root)
+ * }
+ * 
+ * bool dfs(word, index, node){
+ * 
+ *      if(index == word.length) return node.isEndOfWord
+ *      
+ *      // take charecter at that index
+ *      ch = word.charAt(index)
+ * 
+ *      if(ch == '.') {
+ *          
+ *          // Check all alphabets till we get next letter same as we are searching
+ *          for(TrieNode child : node.child) {
+ *              return child != null && dfs(word, index + 1, child)
+ *          }
+ * 
+ *          return false
+ *      }
+ *      else {
+ *          idexOfChar = ch - 'a';
+ *          
+ *          return child != null && dfs(word, index + 1, node.child[idexOfChar])
+ *      }
+ * }
+ * 
+ */
