@@ -71,7 +71,9 @@ public class WordDictionary {
         if (ch == '.') {
             
             for(TrieNode kid : node.child){
-                return kid != null && dfs(word, index + 1, kid);
+                if (kid != null && dfs(word, index + 1, kid)) {
+                    return true;
+                }
             }
 
             return false;
