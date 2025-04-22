@@ -1,8 +1,48 @@
 import java.util.*;
 
+import Binary Tree - Ordered Set.MyCalendar;
+
 public class Trie {
     
+
+    // Basic TrieNode Structure :
+    private static class TrieNode {
+
+    }
+
+    // Globally Declare root
    
+
+    public Trie() {
+        
+    }
+    
+    public void insert(String word) {
+    
+    }
+    
+    public boolean search(String word) {
+        
+    }
+    
+    public boolean startsWith(String prefix) {
+        
+    }
+   
+    public static void main (String[] args){
+        
+        Trie solution = new Trie();
+
+        // First Example
+        System.out.println("Final Result : ");
+        System.out.println("  1st Iteration : " + solution.insert("apple")); 
+        System.out.println("  2nd Iteration : " + solution.search("apple"));  // Output: true
+        System.out.println("  3rd Iteration : " + solution.search("app"));  // Output: false
+        System.out.println("  4th Iteration : " + solution.startsWith("app"));  // Output: true
+        System.out.println("  5th Iteration : " + solution.insert("app")); 
+        System.out.println("  6th Iteration : " + solution.search("app"));  // Output: true
+        
+    }
     
 }
 
