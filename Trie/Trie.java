@@ -47,12 +47,33 @@ public class Trie {
     
     public boolean search(String word) {
         
-        return true;
+        TrieNode node = root;
+        System.out.println("    [SEARCH] Initialized Node : " + node.child.keySet());
+
+        for(char ch : word.toCharArray()){
+
+            if (!node.child.containsKey(ch)) {
+                System.out.println("        -> Node is not present..." );
+                return false;
+            }
+
+            // Point node to next char
+            node = node.child.get(ch);
+            System.out.println("      ~ Pointing node to: " +  node.child.keySet());
+
+        }
+        
+        System.out.println("    Is word ended ? " + node.isWordEnded);
+
+        return node.isWordEnded;
     }
     
     public boolean startsWith(String prefix) {
         
-        return false;
+        TrieNode node = root;
+        System.out.println("    [STARTWITH] Initialized Node : " + node.child.keySet());
+
+        return true;
     }
    
     public static void main (String[] args){
@@ -69,6 +90,7 @@ public class Trie {
         solution.insert("app");
         System.out.println("  5th Iteration : "); 
         System.out.println("  6th Iteration : " + solution.search("app"));  // Output: true
+        System.out.println("  7th Iteration : " + solution.search("apple"));  // Output: true
         
     }
     
