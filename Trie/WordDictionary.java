@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class WordDictionary {
@@ -5,20 +6,53 @@ public class WordDictionary {
     // Basic TrieNode Structure :
     private static class TrieNode {
 
+        // Array is create of all alphabets with null as initial value
+        TrieNode[] child = new TrieNode[26];
+
+        // to check if word is ended at that letter
+        boolean isEndOfWord = false;
     }
 
     // Globally Declare root
-    
+    TrieNode root;
+
     public WordDictionary() {
         
+        // Assign the value for root
+        root = new TrieNode();
+
+        System.out.println(" Starting of Iteration...");
+
     }
     
     public void addWord(String word) {
         
+        TrieNode node = root;
+    
+        for(char ch : word.toCharArray()){
+
+            int indexOfChar = ch - 'a';
+            
+            // If there is no letterplaces at that index place it
+            if (node.child[indexOfChar] == null) {
+                node.child[indexOfChar] = new TrieNode();
+                System.out.println("    -> New node created for letter: " + ch);
+            }
+           
+            // Move to the next node
+            node = node.child[indexOfChar];
+
+        }
+
+        node.isEndOfWord = true;
+
+        System.out.println("   -> Marked end of word.\n");
+        return;
     }
     
     public boolean search(String word) {
         
+        return true;
     }
 
     public static void main (String[] args){
@@ -27,11 +61,11 @@ public class WordDictionary {
 
         // First Example
         System.out.println("Final Result : ");
-        solution.insert("bad");
+        solution.addWord("bad");
         System.out.println("  1st Iteration : Word Inserted");
-        solution.insert("dad");
+        solution.addWord("dad");
         System.out.println("  2nd Iteration : Word Inserted");
-        solution.insert("mad");
+        solution.addWord("mad");
         System.out.println("  3rd Iteration : Word Inserted"); 
         System.out.println("  4th Iteration : " + solution.search("pad"));  // Output: false
         System.out.println("  5th Iteration : " + solution.search("bad"));  // Output: true
