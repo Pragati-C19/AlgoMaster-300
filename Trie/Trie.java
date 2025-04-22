@@ -7,7 +7,9 @@ public class Trie {
     private static class TrieNode {
 
         Map<Character, TrieNode> child = new HashMap<>();
-        boolean isWordEnded = false;
+        
+        // It will tell if the key is end of any word?
+        boolean isEndOfWord = false;
 
     }
 
@@ -39,9 +41,9 @@ public class Trie {
 
         }
         
-        node.isWordEnded = true;
+        node.isEndOfWord = true;
 
-        System.out.println("    Word Added : " + node.isWordEnded);
+        System.out.println("    Word Added : " + node.isEndOfWord);
         return;
     }
     
@@ -63,9 +65,9 @@ public class Trie {
 
         }
         
-        System.out.println("    Is word ended ? " + node.isWordEnded);
+        System.out.println("    Is word ended ? " + node.isEndOfWord);
 
-        return node.isWordEnded;
+        return node.isEndOfWord;
     }
     
     public boolean startsWith(String prefix) {
@@ -73,6 +75,20 @@ public class Trie {
         TrieNode node = root;
         System.out.println("    [STARTWITH] Initialized Node : " + node.child.keySet());
 
+        for(char ch : prefix.toCharArray()){
+
+            if (!node.child.containsKey(ch)) {
+                System.out.println("        -> Node is not present..." );
+                return false;
+            }
+
+            // Point node to next char
+            node = node.child.get(ch);
+            System.out.println("      ~ Pointing node to: " +  node.child.keySet());
+
+        }
+
+        System.out.println("    Prefix Found...");
         return true;
     }
    
@@ -140,7 +156,7 @@ public class Trie {
  * 
  * TrieNode {
  *      child = hashmap
- *      isWordEnded = false
+ *      isEndOfWord = false
  * }
  * 
  * // Globally Declare root : to store the starting point of tree
@@ -162,7 +178,7 @@ public class Trie {
  *          node = node.child.get(ch)
  *      }
  * 
- *      isWordEnded = true
+ *      isEndOfWord = true
  * }
  * 
  * search(word) {
@@ -176,7 +192,7 @@ public class Trie {
  *          node = node.child.get(ch)
  *      }
  * 
- *      return node.isWordEnded
+ *      return node.isEndOfWord
  * }
  * 
  * startWith(prefix) {
