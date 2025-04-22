@@ -1,32 +1,58 @@
 import java.util.*;
 
-import Binary Tree - Ordered Set.MyCalendar;
-
 public class Trie {
     
 
     // Basic TrieNode Structure :
     private static class TrieNode {
 
+        Map<Character, TrieNode> child = new HashMap<>();
+        boolean isWordEnded = false;
+
     }
 
     // Globally Declare root
-   
+    TrieNode root;
 
     public Trie() {
-        
+        // Assign Value to root
+        root = new TrieNode();
+
+        System.out.println(" Starting of Iteration...");
     }
     
     public void insert(String word) {
-    
+        
+        TrieNode node = root;
+        System.out.println("    [INSERT] Initialized Node : " + node.child.keySet());
+
+        for(char ch : word.toCharArray()){
+
+            if (!node.child.containsKey(ch)) {
+                node.child.put(ch, new TrieNode());
+                System.out.println("        -> New Node Added : " + node.child.keySet());
+            }
+
+            // Point node to next char
+            node = node.child.get(ch);
+            System.out.println("      ~ Pointing node to: " +  node.child.keySet());
+
+        }
+        
+        node.isWordEnded = true;
+
+        System.out.println("    Word Added : " + node.isWordEnded);
+        return;
     }
     
     public boolean search(String word) {
         
+        return true;
     }
     
     public boolean startsWith(String prefix) {
         
+        return false;
     }
    
     public static void main (String[] args){
@@ -35,11 +61,13 @@ public class Trie {
 
         // First Example
         System.out.println("Final Result : ");
-        System.out.println("  1st Iteration : " + solution.insert("apple")); 
+        solution.insert("apple");
+        System.out.println("  1st Iteration : "); 
         System.out.println("  2nd Iteration : " + solution.search("apple"));  // Output: true
         System.out.println("  3rd Iteration : " + solution.search("app"));  // Output: false
         System.out.println("  4th Iteration : " + solution.startsWith("app"));  // Output: true
-        System.out.println("  5th Iteration : " + solution.insert("app")); 
+        solution.insert("app");
+        System.out.println("  5th Iteration : "); 
         System.out.println("  6th Iteration : " + solution.search("app"));  // Output: true
         
     }
