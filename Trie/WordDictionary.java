@@ -2,6 +2,43 @@ import java.util.*;
 
 public class WordDictionary {
     
+    // Basic TrieNode Structure :
+    private static class TrieNode {
+
+    }
+
+    // Globally Declare root
+    
+    public WordDictionary() {
+        
+    }
+    
+    public void addWord(String word) {
+        
+    }
+    
+    public boolean search(String word) {
+        
+    }
+
+    public static void main (String[] args){
+        
+        WordDictionary solution = new WordDictionary();
+
+        // First Example
+        System.out.println("Final Result : ");
+        solution.insert("bad");
+        System.out.println("  1st Iteration : Word Inserted");
+        solution.insert("dad");
+        System.out.println("  2nd Iteration : Word Inserted");
+        solution.insert("mad");
+        System.out.println("  3rd Iteration : Word Inserted"); 
+        System.out.println("  4th Iteration : " + solution.search("pad"));  // Output: false
+        System.out.println("  5th Iteration : " + solution.search("bad"));  // Output: true
+        System.out.println("  6th Iteration : " + solution.search(".ad"));  // Output: true
+        System.out.println("  7th Iteration : " + solution.search("b.."));  // Output: true
+        
+    }
 }
 
 
