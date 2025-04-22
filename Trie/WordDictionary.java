@@ -51,8 +51,40 @@ public class WordDictionary {
     }
     
     public boolean search(String word) {
-        
-        return true;
+
+        // Use recursion
+        return dfs(word, 0, root);
+    }
+
+    // Recursion Function : for wildcard Search
+    private boolean dfs(String word, int index, TrieNode node){
+
+        System.out.println("  ~ Visiting ( " + word + " , " + index + " )");
+        if (index == word.length()) {
+            System.out.println("    -> index (" + index + ") is similar to word's length (" + word.length() + ")");
+            return node.isEndOfWord;
+        }
+
+        char ch = word.charAt(index);
+        System.out.println("    Check Charecter at " + index + " : " + ch);
+
+        if (ch == '.') {
+            
+            for(TrieNode kid : node.child){
+                return kid != null && dfs(word, index + 1, kid);
+            }
+
+            return false;
+        }
+        else {
+            
+            int indexOfChar = ch - 'a';
+
+            System.out.println("    Charecter at " + indexOfChar + " : " + (char) (indexOfChar + 'a'));
+
+            return node.child[indexOfChar] != null && dfs(word, index + 1, node.child[indexOfChar]);
+        }
+
     }
 
     public static void main (String[] args){
@@ -61,15 +93,19 @@ public class WordDictionary {
 
         // First Example
         System.out.println("Final Result : ");
-        solution.addWord("bad");
+
         System.out.println("  1st Iteration : Word Inserted");
-        solution.addWord("dad");
+        solution.addWord("bad");
+       
         System.out.println("  2nd Iteration : Word Inserted");
+        solution.addWord("dad");
+       
+        System.out.println("  3rd Iteration : Word Inserted");
         solution.addWord("mad");
-        System.out.println("  3rd Iteration : Word Inserted"); 
-        System.out.println("  4th Iteration : " + solution.search("pad"));  // Output: false
-        System.out.println("  5th Iteration : " + solution.search("bad"));  // Output: true
-        System.out.println("  6th Iteration : " + solution.search(".ad"));  // Output: true
+         
+        System.out.println("  4th Iteration : " + solution.search("pad") + "\n");  // Output: false
+        System.out.println("  5th Iteration : " + solution.search("bad") + "\n");  // Output: true
+        System.out.println("  6th Iteration : " + solution.search(".ad") + "\n");  // Output: true
         System.out.println("  7th Iteration : " + solution.search("b.."));  // Output: true
         
     }
