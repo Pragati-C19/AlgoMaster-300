@@ -2,6 +2,23 @@ import java.util.*;
 
 public class LongestWord {
 
+    // Driver Function 
+    public String longestWord(String[] words) {
+        
+    }
+
+
+    public static void main(String[] args){
+
+        LongestWord solution = new LongestWord();
+
+        String[] words1 = {"w","wo","wor","worl","world"};
+        System.out.println("-> Result 1 : " + solution.longestWord(words1) + "\n");
+
+        String[] words2 = {"a","banana","app","appl","ap","apply","apple"};
+        System.out.println("-> Result 2 : " + solution.longestWord(words2) + "\n");
+    }
+
 }
 
 /*
