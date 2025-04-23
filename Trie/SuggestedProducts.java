@@ -19,7 +19,9 @@ public class SuggestedProducts {
 
             List<String> currList = new ArrayList<>();
 
-            for (int i = 0; i < products.length; i++) {
+            int start = binarySearch(products, prefix);
+
+            for (int i = start; i < Math.min( start + 3, products.length); i++) {
                 
                 System.out.println("      -> Product we are checking : " + products[i]);
 
@@ -31,12 +33,36 @@ public class SuggestedProducts {
                 System.out.println("      Current list So far : " + currList);
             }
 
-            result.add(new ArrayList<>(currList.subList(0, Math.min(3, currList.size()))));
+            result.add(currList);
             System.out.println("    Result list So far : " + result);   
             
         }
 
         return result;
+    }
+
+    // Helper Function : Instead of scanning every product for every character typed, use binary search to find the range of matching products
+    private int binarySearch(String[] products, String prefix){
+
+        int left = 0;
+        int right = products.length;
+
+        while (left < right) {
+            
+            int mid = (left + right) / 2;
+
+            if (products[mid].compareTo(prefix) < 0) {
+                // "app".compareTo("apple")   →  < 0 (means "app" is *before* "apple")
+                left = mid + 1;
+            }
+            else {
+                // "apple".compareTo("app")   →  > 0 (means "apple" is *after* "app")
+                right = mid;
+            }
+
+        }
+
+        return left;
     }
 
 
@@ -59,7 +85,14 @@ public class SuggestedProducts {
 /**
  * 
  //?    We can use binary search here.. left right and mid thing.. fo rnot searching all elemnts of produts
- *
+ *  if (products[mid].compareTo(prefix) < 0) {
+ *       -> Move to the right half (because products[mid] is lexicographically less than prefix)
+ *   } else if (products[mid].compareTo(prefix) > 0) {
+ *       -> Move to the left half (because products[mid] is lexicographically greater than prefix)
+ *   } else {
+ *       -> products[mid] is equal to prefix (match found), so we can stop or process this match
+ *       -> If compareTo() returns 0, it means the current word matches the prefix.
+ *  }
  *  
  * Intuitions :
  * 
