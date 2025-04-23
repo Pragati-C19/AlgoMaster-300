@@ -5,6 +5,24 @@ public class FindMaximumXOR {
 
     public int findMaximumXOR(int[] nums) {
         
+        int maxXOR = Integer.MIN_VALUE;
+        
+        int currXOR = nums[0];
+
+        int index = 1;
+
+        while (index < nums.length) {
+            
+            currXOR ^= nums[index];
+            System.out.println("        Current XOR at index " + index + " : " + currXOR);
+            
+            maxXOR = Math.max(maxXOR, currXOR);
+            System.out.println("        Max XOR at index " + index + " : " + maxXOR);
+
+            index++;
+        }
+
+        return maxXOR;
     }
 
     public static void main(String[] args){
