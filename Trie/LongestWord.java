@@ -5,6 +5,38 @@ public class LongestWord {
     // Driver Function 
     public String longestWord(String[] words) {
         
+        String result = "";
+        Set<String> buildWordSet = new HashSet<>();
+
+        Arrays.sort(words);
+        System.out.println("    Sorted Products List : " + Arrays.toString(words));
+
+        for (String word : words) {
+            
+            System.out.println("      -> Word we are checking : " + word);
+
+            String prefix = word.substring(0, word.length() - 1);
+
+            if ( word.length() == 1 || buildWordSet.contains(prefix) ) {
+
+                buildWordSet.add(word);
+
+                if (word.length() > result.length() ||
+                (word.length() == result.length() && word.compareTo(result) < 0)
+                ) {
+                    // "apply".compareTo("apple") > 0  // false so it dosen't change result, if it's true then it has changes the result
+
+                    result = word;
+                    System.out.println("      -> Word ( " + word + " ) Added in Current Result : " + result);   
+                }
+            }
+
+            
+            System.out.println("      -> Set Contains : " + buildWordSet);
+        }
+
+        System.out.println("    Result : " + result);
+        return result;
     }
 
 
