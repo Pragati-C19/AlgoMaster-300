@@ -6,6 +6,37 @@ public class SuggestedProducts {
     // Driver Function
     public List<List<String>> suggestedProducts(String[] products, String searchWord) {
         
+        List<List<String>> result = new ArrayList<>();
+        String prefix = "";
+
+        Arrays.sort(products);
+        System.out.println("    Sorted Products List : " + Arrays.toString(products));
+
+        for(char ch : searchWord.toCharArray()){
+
+            prefix += ch;
+            System.out.println("    ~ Prefix we are checking : " + prefix);
+
+            List<String> currList = new ArrayList<>();
+
+            for (int i = 0; i < products.length; i++) {
+                
+                System.out.println("      -> Product we are checking : " + products[i]);
+
+                // startsWith is an inbuild Function
+                if(products[i].startsWith(prefix)){
+                    currList.add(products[i]);
+                }
+
+                System.out.println("      Current list So far : " + currList);
+            }
+
+            result.add(currList);
+            System.out.println("    Result list So far : " + result);
+
+        }
+
+        return result;
     }
 
 
@@ -17,7 +48,7 @@ public class SuggestedProducts {
         String searchWord1 = "mouse";
         System.out.println("-> Result 1 : " + solution.suggestedProducts(products1, searchWord1) + "\n");
 
-        String products2 = {"havana"};
+        String[] products2 = {"havana"};
         String searchWord2 = "havana";
         System.out.println("-> Result 2 : " + solution.suggestedProducts(products2, searchWord2) + "\n");
 
