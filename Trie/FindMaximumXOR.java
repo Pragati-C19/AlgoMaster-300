@@ -2,6 +2,22 @@ import java.util.*;
 
 public class FindMaximumXOR {
     
+
+    public int findMaximumXOR(int[] nums) {
+        
+    }
+
+    public static void main(String[] args){
+
+        FindMaximumXOR solution = new FindMaximumXOR();
+
+        int[] nums1 = {3,10,5,25,2,8};
+        System.out.println("-> Result 1 : " + solution.findMaximumXOR(nums1) + "\n");
+
+        int[] nums2 = {14,70,53,83,49,91,36,80,92,51,66,70};
+        System.out.println("-> Result 2 : " + solution.findMaximumXOR(nums2));
+    }
+
 }
 
 
