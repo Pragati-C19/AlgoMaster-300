@@ -40,6 +40,10 @@ public class FindMaximumXOR {
 
 /*
  * 
+ * 
+ * //?  We use hashset and xor or bitwise operations to solve this problem.. check out below link for more details
+ *      -> https://chatgpt.com/share/68091e91-fdcc-8002-b67e-2385c7d789dc
+ * 
  * Intuitions :
  * 
  * 1. Integer array is given
@@ -73,5 +77,59 @@ public class FindMaximumXOR {
  * 
  *      return maxXOR
  * }
+ * 
+ * 
+ * 
+ * 
+ * 2. Let's do with Trie 
+ * 
+ * class Solution {
+ *     public int findMaximumXOR(int[] nums) {
+ *         int maxXOR = 0; // This will store our final max XOR
+ *         int mask = 0;   // Used to extract left bits (prefixes) of the numbers
+ * 
+ *         // Step 1: Loop from bit 31 to bit 0
+ *         for (int i = 31; i >= 0; i--) {
+ *             mask = mask | (1 << i); // Set the ith bit to 1 in the mask
+ * 
+ *             // e.g., if i=31 → mask = 100000000...0 (MSB on)
+ *             // if i=30 → mask = 110000000...0 (next MSB also on)
+ * 
+ *             Set<Integer> prefixes = new HashSet<>();
+ * 
+ *             // Step 2: Collect all prefixes of nums with 'i' bits
+ *             for (int num : nums) {
+ *                 // `num & mask` keeps only the left i bits
+ *                 prefixes.add(num & mask);
+ *             }
+ * 
+ *             // Step 3: Try to "greedily" set the ith bit in result to 1
+ *             int candidate = maxXOR | (1 << i);
+ * 
+ *             // Example: 
+ *             // If maxXOR = 00010000 (say bit 4 is on)
+ *             // candidate = 00011000 (trying to turn bit i=3 on too)
+ * 
+ *             for (int prefix : prefixes) {
+ *                 // Why this line?
+ *                 // If a ^ b = c  →  then a ^ c = b
+ *                 // So, if we have two prefixes `a` and `b` such that:
+ *                 // a ^ b = candidate, then b = a ^ candidate
+ * 
+ *                 if (prefixes.contains(prefix ^ candidate)) {
+ *                     maxXOR = candidate;
+ *                     break;
+ *                 }
+ *             }
+ *         }
+ * 
+ *         return maxXOR;
+ *     }
+ * }
+ * 
+ * 
+ * 
+ * 
+ * 
  * 
  */
