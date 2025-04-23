@@ -6,20 +6,19 @@ public class FindMaximumXOR {
     public int findMaximumXOR(int[] nums) {
         
         int maxXOR = Integer.MIN_VALUE;
-        
-        int currXOR = nums[0];
 
-        int index = 1;
-
-        while (index < nums.length) {
+        for (int i = 0; i < nums.length; i++) {
             
-            currXOR ^= nums[index];
-            System.out.println("        Current XOR at index " + index + " : " + currXOR);
-            
-            maxXOR = Math.max(maxXOR, currXOR);
-            System.out.println("        Max XOR at index " + index + " : " + maxXOR);
+            for (int j = i; j < nums.length; j++) {
+                
+                int currXOR = nums[i] ^ nums[j];
+                System.out.println("        Current XOR for nums " + nums[i] + " ^ " + nums[j] + " = " + currXOR);
+                
+                maxXOR = Math.max(maxXOR, currXOR);
+            }
 
-            index++;
+            System.out.println("    -> Max XOR for num " + nums[i] + " : " + maxXOR);
+    
         }
 
         return maxXOR;
