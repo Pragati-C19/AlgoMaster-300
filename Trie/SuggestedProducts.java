@@ -2,6 +2,26 @@ import java.util.*;
 
 public class SuggestedProducts {
     
+
+    // Driver Function
+    public List<List<String>> suggestedProducts(String[] products, String searchWord) {
+        
+    }
+
+
+    public static void main(String[] args){
+
+        SuggestedProducts solution = new SuggestedProducts();
+
+        String[] products1 = {"mobile","mouse","moneypot","monitor","mousepad"};
+        String searchWord1 = "mouse";
+        System.out.println("-> Result 1 : " + solution.suggestedProducts(products1, searchWord1) + "\n");
+
+        String products2 = {"havana"};
+        String searchWord2 = "havana";
+        System.out.println("-> Result 2 : " + solution.suggestedProducts(products2, searchWord2) + "\n");
+
+    }
 }
 
 
