@@ -31,9 +31,9 @@ public class SuggestedProducts {
                 System.out.println("      Current list So far : " + currList);
             }
 
-            result.add(currList);
-            System.out.println("    Result list So far : " + result);
-
+            result.add(new ArrayList<>(currList.subList(0, Math.min(3, currList.size()))));
+            System.out.println("    Result list So far : " + result);   
+            
         }
 
         return result;
@@ -58,7 +58,9 @@ public class SuggestedProducts {
 
 /**
  * 
- * 
+ //?    We can use binary search here.. left right and mid thing.. fo rnot searching all elemnts of produts
+ *
+ *  
  * Intuitions :
  * 
  * 1. suggest 3 product names from products after each char of searchWOrd
