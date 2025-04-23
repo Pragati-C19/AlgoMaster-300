@@ -1,0 +1,75 @@
+import java.util.*;
+
+public class SuggestedProducts {
+    
+}
+
+
+/**
+ * 
+ * 
+ * Intuitions :
+ * 
+ * 1. suggest 3 product names from products after each char of searchWOrd
+ * 2. suggest products should have common prefix with searchWord
+ * 3. if there are more than 3 products with same prefix then return first 3 lexicographically minimun products
+ * 4. Return list of suggested products after each charecter of searchWord
+ * 
+ * 5. So basically mala products cha array dilay and ek search word dilay
+ * 6. me first letter ghenar search word ch ani check karel ki te ahe ka array madhe?
+ * - if yes then add 3 whole word in the result array
+ * - if words are greater than 3 then add first 3 words
+ * - if words are less than 3 then add all words
+ * 
+ * 
+ * Pattern :
+ * 
+ * 1. you need to sort string array to get lexicographically order
+ * 2. assign a result array to store result
+ * 3. assign a prefix to store char one by one 
+ * 4. for loop (ch : searchWord) 
+ *      - prefix.add(ch)
+ *      - create a curr array (creating here means getting new value for every new prefix)
+ *      - for loop (int i from 0 to products.length)
+ *          - If the products[i] startsWith(prefix) -> add that product in curr
+ *      - result.add(curr)
+ * 5. return result
+ * 
+ * Pseudo Code :
+ * 
+ * 
+ * function suggestedProducts (products, searchWord){
+ * 
+ *      products.sort()
+ *      result = new Array
+ *      prefix = ""
+ * 
+ *      for (ch : searchWord){
+ * 
+ *          -> Adding ch in prefix 
+ *          prefix =+ ch
+ *          
+ *          -> creating a curr to store products
+ *          curr = new array
+ * 
+ *          for (int i = 0; i < products.length; i++){
+ *              if(products[i].startWith(prefix)) -> curr.add(products[i])
+ *          }
+ * 
+ *          -> Add curr in result
+ * 
+ *          if(curr.length > 3){
+ *              for(int i = 0 ; i < 3; i++){
+ *                  result.add(curr[i])
+ *              }
+ *          }
+ *          else{
+ *              result.add(curr)
+ *          }
+ *          
+ *      }
+ * 
+ *      return result;
+ * }
+ * 
+ */
