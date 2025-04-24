@@ -3,15 +3,17 @@ import java.util.*;
 public class FindWords {
     
     List<String> result;
+    Set<String> foundWords;
 
     public List<String> findWords(char[][] board, String[] words){
         
         int m = board.length;
         int n = board[0].length;
 
-        boolean[][] visited = new boolean[m][n];
-        int start = 0;
+        boolean[][] visitedBlock = new boolean[m][n];
+
         result = new ArrayList<>();
+        foundWords = new HashSet<>();
 
         System.out.println("Starting Recurssion...");
 
@@ -19,7 +21,7 @@ public class FindWords {
         for (String word : words) {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
-                    dfs(i, j, start, board, word, visited, m, n);
+                    dfs(i, j, 0, board, word, visitedBlock, m, n);
                 }
             }
         }
@@ -28,12 +30,15 @@ public class FindWords {
     }
 
     // Helper Function  : it's a dfs function used for checking col and row recurssively
-    public void dfs(int i , int j, int start, char[][] board, String word, boolean[][] visited, int m, int n){
+    public void dfs(int i , int j, int start, char[][] board, String word, boolean[][] visitedBlock, int m, int n){
 
         // Check if word it complete or not 
         if (start == word.length()) {
-            result.add(word);
-            System.out.println("      ~ Word Found...");
+            if (!foundWords.contains(word)) {
+                result.add(word);
+                foundWords.add(word);
+                System.out.println("      ~ Word Found: " + word + " Added in HashSet : " + foundWords);
+            }
             return;
         }
         
@@ -43,10 +48,10 @@ public class FindWords {
             return;    
         }
 
-        System.out.println("    -> Visiting ( " + board[i][j] + " , " + word.charAt(start) + " , " + visited[i][j] + " , " + result + " )");
+        System.out.println("    -> Visiting ( " + board[i][j] + " , " + word.charAt(start) + " , " + visitedBlock[i][j] + " , " + result + " )");
 
-        if (visited[i][j] == true) {
-            System.out.println("        Block is already visited"); 
+        if (visitedBlock[i][j] == true) {
+            System.out.println("        Block is already visitedBlock"); 
             return;
          }
 
@@ -58,19 +63,19 @@ public class FindWords {
 
         System.out.println("        -> Char found at [" + i + " , " + j + " ]");
 
-        visited[i][j] = true;
+        visitedBlock[i][j] = true;
 
         // Checking other sides
-        dfs(i+1, j, start+1, board, word, visited, m, n);
+        dfs(i+1, j, start+1, board, word, visitedBlock, m, n);
         
-        dfs(i, j+1, start+1, board, word, visited, m, n);
+        dfs(i, j+1, start+1, board, word, visitedBlock, m, n);
         
-        dfs(i-1, j, start+1, board, word, visited, m, n);
+        dfs(i-1, j, start+1, board, word, visitedBlock, m, n);
         
-        dfs(i, j-1, start+1, board, word, visited, m, n);
+        dfs(i, j-1, start+1, board, word, visitedBlock, m, n);
         
         // backtrack 
-        visited[i][j] = false;
+        visitedBlock[i][j] = false;
     }
 
 
