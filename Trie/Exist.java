@@ -2,28 +2,41 @@ import java.util.*;
 
 public class Exist {
     
+    boolean result = false;
+
     public boolean exist(char[][] board, String word) {
         
         int m = board.length;
         int n = board[0].length;
 
         boolean[][] visited = new boolean[m][n];
-        boolean result = false;
         int start = 0;
 
         System.out.println("Starting Recurssion...");
 
-        dfs(0, 0, start, board, word, visited, result);
+        dfs(0, 0, start, board, word, visited, m, n);
         
         return result;
     }
 
     // Helper Function  : it's a dfs function used for checking col and row recurssively
-    public void dfs(int i , int j, int start, char[][] board, String word, boolean[][] visited, boolean result){
+    public void dfs(int i , int j, int start, char[][] board, String word, boolean[][] visited, int m, int n){
 
-        System.out.println("    -> Visiting ( " + board[i][j] + " , " + word.charAt(start) + " , " + visited[i][j] + " , " + result + " )");
+        // Check if word it complete or not 
+        if (start == word.length()) {
+            result = true;
+            System.out.println("      ~ Word Found...");
+            return;
+        }
         
         // Base Cases :
+        if (i < 0 || i >= m || j < 0 || j >= n) {
+            System.out.println("        It's an end of row or col...");
+            return;    
+        }
+
+        System.out.println("    -> Visiting ( " + board[i][j] + " , " + word.charAt(start) + " , " + visited[i][j] + " , " + result + " )");
+
         if (board[i][j] != word.charAt(start)){
             System.out.println("        -> Word is not at [" + i + " , " + j + "]");
             return;
@@ -34,25 +47,19 @@ public class Exist {
            return;
         }
 
-        // Check if word it complete or not 
-        if (start == word.length()) {
-            result = true;
-            System.out.println("      ~ Word Found...");
-            return;
-        }
 
         System.out.println("        -> Char found at [" + i + " , " + j + " ]");
 
         visited[i][j] = true;
 
         // Checking other sides
-        dfs(i+1, j, start+1, board, word, visited, result);
+        dfs(i+1, j, start+1, board, word, visited, m, n);
         
-        dfs(i, j+1, start+1, board, word, visited, result);
+        dfs(i, j+1, start+1, board, word, visited, m, n);
         
-        dfs(i-1, j, start+1, board, word, visited, result);
+        dfs(i-1, j, start+1, board, word, visited, m, n);
         
-        dfs(i, j-1, start+1, board, word, visited, result);
+        dfs(i, j-1, start+1, board, word, visited, m, n);
         
         // backtrack 
         visited[i][j] = false;
