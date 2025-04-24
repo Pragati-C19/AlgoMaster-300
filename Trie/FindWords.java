@@ -63,6 +63,7 @@ public class FindWords {
         node.wordStored = word;
         node.isEndOfWord = true;
 
+        System.out.println("    Inserted word is " + node.wordStored);
         return;
     } 
 
@@ -70,15 +71,30 @@ public class FindWords {
     private void dfs(int i , int j, TrieNode node, char[][] board, boolean[][] visitedBlock, int m, int n){
 
         // Base Cases :
-        if (i < 0 || i >= m || j < 0 || j >= n) {
-            System.out.println("        It's an end of row or col...");
+        if (i < 0 || i >= m || j < 0 || j >= n || visitedBlock[i][j]) {
+            System.out.println("        It's an end of row or col or block already visited...");
             return;    
         }
 
-        if (visitedBlock[i][j] == true) {
-            System.out.println("        Block is already visited..."); 
+        System.out.println("    -> Visiting ( " + board[i][j] + " , " + node.wordStored + " , " + visitedBlock[i][j] + " , " + result + " )");
+
+        // Check if charecter at this block exist in Trie if yes then it means word is present with that char
+
+        char ch = board[i][j];
+        int indexOfChar = ch - 'a';
+        System.out.println("        index for charecter " + ch + " : " + indexOfChar);
+
+        // if that node is null means charecter in board is not in the child of that node 
+        // means if I'm checking oath and first letter block madhe a hot so te check kela tr to null asel bcoz first letter tr o ahe maz 
+        if (node.child[indexOfChar] == null) {
+            System.out.println("         ! Char at [" + i + " , " + j + "] is not in Trie ");
             return;
         }
+
+        System.out.println("        ~ Char at [" + i + " , " + j + " ] is in Trie ");
+
+        // move node to the child if it's present
+        node = node.child[indexOfChar];
 
         // Get result after checking word is exist or not
         if (node.wordStored != null) {
@@ -90,31 +106,15 @@ public class FindWords {
             node.wordStored = null;
             return;
         }
-        
 
-        System.out.println("    -> Visiting ( " + board[i][j] + " , " + node.wordStored + " , " + visitedBlock[i][j] + " , " + result + " )");
-
-        // Check if charecter at this block exist in Trie if yes then it means word is present with that char
-
-        char ch = board[i][j];
-
-        int indexOfChar = ch - 'a';
-        System.out.println("        index for charecter " + ch + " : " + indexOfChar);
-
-        if (node.child[indexOfChar] == null) {
-            System.out.println("         ! Word is not at [" + i + " , " + j + "]");
-            return;
-        }
-
-        System.out.println("        ~ Char found at [" + i + " , " + j + " ]");
-
+        // Marking this block as visited
         visitedBlock[i][j] = true;
 
         // Checking other sides
-        dfs(i+1, j, node.child[indexOfChar], board, visitedBlock, m, n);
-        dfs(i, j+1, node.child[indexOfChar], board, visitedBlock, m, n);
-        dfs(i-1, j, node.child[indexOfChar], board, visitedBlock, m, n);
-        dfs(i, j-1, node.child[indexOfChar], board, visitedBlock, m, n);
+        dfs(i+1, j, node, board, visitedBlock, m, n);
+        dfs(i, j+1, node, board, visitedBlock, m, n);
+        dfs(i-1, j, node, board, visitedBlock, m, n);
+        dfs(i, j-1, node, board, visitedBlock, m, n);
         
         // backtrack 
         visitedBlock[i][j] = false;
@@ -133,7 +133,7 @@ public class FindWords {
         };               
         
         String[] word1 = {"oath","pea","eat","rain"};
-        System.out.println("-> Result 1 : " + solution.findWords(board1, word1) + "\n");
+        // System.out.println("-> Result 1 : " + solution.findWords(board1, word1) + "\n");
 
 
         char[][] board2 = {
@@ -142,10 +142,14 @@ public class FindWords {
         };
 
         String[] word2 = {"abcb"};
-        System.out.println("-> Result 2 : " + solution.findWords(board2, word2) + "\n");
+        // System.out.println("-> Result 2 : " + solution.findWords(board2, word2) + "\n");
 
-        // String word3 = "ABCB";
-        // System.out.println("-> Result 3 : " + solution.exist(board, word3) + "\n");
+        char[][] board3 = {
+            {'a'}
+        };
+
+        String[] word3 = {"a"};
+        System.out.println("-> Result 3 : " + solution.findWords(board3, word3) + "\n");
 
     }
 
