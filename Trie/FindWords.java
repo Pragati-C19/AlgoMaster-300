@@ -144,12 +144,17 @@ public class FindWords {
         String[] word2 = {"abcb"};
         // System.out.println("-> Result 2 : " + solution.findWords(board2, word2) + "\n");
 
+
         char[][] board3 = {
             {'a'}
         };
 
         String[] word3 = {"a"};
-        System.out.println("-> Result 3 : " + solution.findWords(board3, word3) + "\n");
+        // System.out.println("-> Result 3 : " + solution.findWords(board3, word3) + "\n");
+
+        
+        String[] word4 = {"oath","pea","eat","rain","oathi","oathk","oathf","oate","oathii","oathfi","oathfii"};
+        System.out.println("-> Result 4 : " + solution.findWords(board1, word4) + "\n");
 
     }
 
