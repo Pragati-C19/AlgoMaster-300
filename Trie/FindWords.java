@@ -126,8 +126,27 @@ public class FindWords {
  * Pattern :
  * 
  * 1. Wrote exact same code as I wrote for search Word.. just added one for loop [word : words]
- * 1. Declare a result List to store String
- * 2. 
+ * 
+ * Second appraoch Using Trie :-
+ * 
+ * 1. Create TrieNode Struct :
+ *      - String wordStored -> store complete word here when it's the end
+ *      - Child -> It checks if there are any child or not
+ *      - isEndOfWord -> checks if any word is ending at this char?
+ * 2. Globally declare root -> initial stage of any TrieNode
+ * 3. Declare a result List to store String
+ * 4. Declare foundWords hashSet to avoid duplicates
+ * 5. focus on insearting all words in the Trie
+ *      -> for(word : words) -> inseart(word)
+ *          Traverse through each charecter of that word
+ *          create a node if missing
+ *          at the end make isEndOfWord = true and wordStored = word
+ * 5. Start traversing matrix use for loop here
+ *      -> call dfs recursion
+ *          Base Cases : 0 < i, j >= board.length || visitedBlock -> return  
+ *          If isEndOfWord = true and word is not in set -> add that word to set and and result return
+ *          check if char at board[i][j] is present in TrieNode? -> if yes then check (down, right, up, left) 
+ * 6. return result
  * 
  * Pseudo Code :
  * 
