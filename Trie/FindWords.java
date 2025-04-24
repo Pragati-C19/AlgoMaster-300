@@ -2,8 +2,19 @@ import java.util.*;
 
 public class FindWords {
     
+    private static class TrieNode{
+
+        // Array is create of all alphabets with null as initial value
+        TrieNode[] child = new TrieNode[26];
+
+        // store complete word here when it's the end
+        String wordStored = null;
+        
+        boolean isEndOfWord = false;
+    }
+
+    TrieNode root;
     List<String> result;
-    Set<String> foundWords;
 
     public List<String> findWords(char[][] board, String[] words){
         
@@ -12,67 +23,98 @@ public class FindWords {
 
         boolean[][] visitedBlock = new boolean[m][n];
 
+        root = new TrieNode();
         result = new ArrayList<>();
-        foundWords = new HashSet<>();
 
-        System.out.println("Starting Recurssion...");
-
-        // Added for loops for checking first char
+        System.out.println("Inserting words in Trie...");
+        
         for (String word : words) {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    dfs(i, j, 0, board, word, visitedBlock, m, n);
-                }
-            }
+            insert(word);
         }
         
+        System.out.println("Starting Recurssion...");
+
+        // Checking matrix
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                dfs(i, j, root, board, visitedBlock, m, n);
+            }
+        }
+       
         return result;
     }
 
-    // Helper Function  : it's a dfs function used for checking col and row recurssively
-    public void dfs(int i , int j, int start, char[][] board, String word, boolean[][] visitedBlock, int m, int n){
+    // Helper Function : To inseart all word's charecter in TrieNode
+    private void insert(String word){
 
-        // Check if word it complete or not 
-        if (start == word.length()) {
-            if (!foundWords.contains(word)) {
-                result.add(word);
-                foundWords.add(word);
-                System.out.println("      ~ Word Found: " + word + " Added in HashSet : " + foundWords);
+        TrieNode node = root;
+
+        for (char ch : word.toCharArray()) {
+            
+            int indexOfChar = ch - 'a';
+
+            if (node.child[indexOfChar] == null) {
+                node.child[indexOfChar] = new TrieNode();
             }
-            return;
+
+            node = node.child[indexOfChar];
         }
-        
+
+        node.wordStored = word;
+        node.isEndOfWord = true;
+
+        return;
+    } 
+
+    // Helper Function  : it's a dfs function used for checking col and row recurssively
+    private void dfs(int i , int j, TrieNode node, char[][] board, boolean[][] visitedBlock, int m, int n){
+
         // Base Cases :
         if (i < 0 || i >= m || j < 0 || j >= n) {
             System.out.println("        It's an end of row or col...");
             return;    
         }
 
-        System.out.println("    -> Visiting ( " + board[i][j] + " , " + word.charAt(start) + " , " + visitedBlock[i][j] + " , " + result + " )");
-
         if (visitedBlock[i][j] == true) {
-            System.out.println("        Block is already visitedBlock"); 
-            return;
-         }
-
-        if (board[i][j] != word.charAt(start)){
-            System.out.println("        -> Word is not at [" + i + " , " + j + "]");
+            System.out.println("        Block is already visited..."); 
             return;
         }
 
+        // Get result after checking word is exist or not
+        if (node.wordStored != null) {
+            
+            result.add(node.wordStored);
+            System.out.println("    ~ Word Found: " + node.wordStored + "\n");
 
-        System.out.println("        -> Char found at [" + i + " , " + j + " ]");
+            // set that node to null to avoid duplicates
+            node.wordStored = null;
+            return;
+        }
+        
+
+        System.out.println("    -> Visiting ( " + board[i][j] + " , " + node.wordStored + " , " + visitedBlock[i][j] + " , " + result + " )");
+
+        // Check if charecter at this block exist in Trie if yes then it means word is present with that char
+
+        char ch = board[i][j];
+
+        int indexOfChar = ch - 'a';
+        System.out.println("        index for charecter " + ch + " : " + indexOfChar);
+
+        if (node.child[indexOfChar] == null) {
+            System.out.println("         ! Word is not at [" + i + " , " + j + "]");
+            return;
+        }
+
+        System.out.println("        ~ Char found at [" + i + " , " + j + " ]");
 
         visitedBlock[i][j] = true;
 
         // Checking other sides
-        dfs(i+1, j, start+1, board, word, visitedBlock, m, n);
-        
-        dfs(i, j+1, start+1, board, word, visitedBlock, m, n);
-        
-        dfs(i-1, j, start+1, board, word, visitedBlock, m, n);
-        
-        dfs(i, j-1, start+1, board, word, visitedBlock, m, n);
+        dfs(i+1, j, node.child[indexOfChar], board, visitedBlock, m, n);
+        dfs(i, j+1, node.child[indexOfChar], board, visitedBlock, m, n);
+        dfs(i-1, j, node.child[indexOfChar], board, visitedBlock, m, n);
+        dfs(i, j-1, node.child[indexOfChar], board, visitedBlock, m, n);
         
         // backtrack 
         visitedBlock[i][j] = false;
