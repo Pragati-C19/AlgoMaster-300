@@ -4,8 +4,60 @@ public class Exist {
     
     public boolean exist(char[][] board, String word) {
         
-        return false;
+        int m = board.length;
+        int n = board[0].length;
+
+        boolean[][] visited = new boolean[m][n];
+        boolean result = false;
+        int start = 0;
+
+        System.out.println("Starting Recurssion...");
+
+        dfs(0, 0, start, board, word, visited, result);
+        
+        return result;
     }
+
+    // Helper Function  : it's a dfs function used for checking col and row recurssively
+    public void dfs(int i , int j, int start, char[][] board, String word, boolean[][] visited, boolean result){
+
+        System.out.println("    -> Visiting ( " + board[i][j] + " , " + word.charAt(start) + " , " + visited[i][j] + " , " + result + " )");
+        
+        // Base Cases :
+        if (board[i][j] != word.charAt(start)){
+            System.out.println("        -> Word is not at [" + i + " , " + j + "]");
+            return;
+        }
+
+        if (visited[i][j] == true) {
+           System.out.println("        Block is already visited"); 
+           return;
+        }
+
+        // Check if word it complete or not 
+        if (start == word.length()) {
+            result = true;
+            System.out.println("      ~ Word Found...");
+            return;
+        }
+
+        System.out.println("        -> Char found at [" + i + " , " + j + " ]");
+
+        visited[i][j] = true;
+
+        // Checking other sides
+        dfs(i+1, j, start+1, board, word, visited, result);
+        
+        dfs(i, j+1, start+1, board, word, visited, result);
+        
+        dfs(i-1, j, start+1, board, word, visited, result);
+        
+        dfs(i, j-1, start+1, board, word, visited, result);
+        
+        // backtrack 
+        visited[i][j] = false;
+    }
+
 
     public static void main(String[] args){
 
