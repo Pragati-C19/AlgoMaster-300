@@ -2,6 +2,31 @@ import java.util.*;
 
 public class Exist {
     
+    public boolean exist(char[][] board, String word) {
+        
+        return false;
+    }
+
+    public static void main(String[] args){
+
+        Exist solution = new Exist();
+
+        char[][] board = {
+            {'A','B','C','E'},
+            {'S','F','C','S'},
+            {'A','D','E','E'}
+        };        
+        
+        String word1 = "ABCCED";
+        System.out.println("-> Result 1 : " + solution.exist(board, word1) + "\n");
+
+        String word2 = "SEE";
+        System.out.println("-> Result 2 : " + solution.exist(board, word2) + "\n");
+
+        String word3 = "ABCB";
+        System.out.println("-> Result 3 : " + solution.exist(board, word3) + "\n");
+
+    }
 }
 
 
