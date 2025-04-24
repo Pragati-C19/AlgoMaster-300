@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Exist {
     
-    boolean result = false;
+    boolean result;
 
     public boolean exist(char[][] board, String word) {
         
@@ -11,10 +11,16 @@ public class Exist {
 
         boolean[][] visited = new boolean[m][n];
         int start = 0;
+        result = false;
 
         System.out.println("Starting Recurssion...");
 
-        dfs(0, 0, start, board, word, visited, m, n);
+        // Added for loops for checking first char
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                dfs(i, j, start, board, word, visited, m, n);
+            }
+        }
         
         return result;
     }
@@ -37,14 +43,14 @@ public class Exist {
 
         System.out.println("    -> Visiting ( " + board[i][j] + " , " + word.charAt(start) + " , " + visited[i][j] + " , " + result + " )");
 
+        if (visited[i][j] == true) {
+            System.out.println("        Block is already visited"); 
+            return;
+         }
+
         if (board[i][j] != word.charAt(start)){
             System.out.println("        -> Word is not at [" + i + " , " + j + "]");
             return;
-        }
-
-        if (visited[i][j] == true) {
-           System.out.println("        Block is already visited"); 
-           return;
         }
 
 
