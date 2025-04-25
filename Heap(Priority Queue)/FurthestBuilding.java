@@ -2,6 +2,37 @@ import java.util.*;
 
 public class FurthestBuilding {
 
+    public int furthestBuilding(int[] heights, int bricks, int ladders) {
+        
+        return heights.length;
+    }
+
+    public static void main(String[] args){
+
+        FurthestBuilding solutions = new FurthestBuilding();
+
+        int[] heights1 = {4,2,7,6,9,14,12};
+        int bricks1 = 5;
+        int ladders1 = 1;
+        System.out.println("-> Result 1 : " + solutions.furthestBuilding(heights1, bricks1, ladders1) + "\n");
+
+        int[] heights2 = {4,12,2,7,3,18,20,3,19};
+        int bricks2 = 10;
+        int ladders2 = 2;
+        System.out.println("-> Result 2 : " + solutions.furthestBuilding(heights2, bricks2, ladders2) + "\n");
+
+        int[] heights3 = {14,3,19,3};
+        int bricks3 = 17;
+        int ladders3 = 0;
+        System.out.println("-> Result 3 : " + solutions.furthestBuilding(heights3, bricks3, ladders3) + "\n");
+
+        int[] heights4 = {1, 2, 100, 200, 201};
+        int bricks4 = 99;
+        int ladders4 = 1;
+        System.out.println("-> Result 4 : " + solutions.furthestBuilding(heights4, bricks4, ladders4) + "\n");
+
+    }
+
 }
 
 
