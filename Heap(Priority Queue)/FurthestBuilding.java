@@ -6,7 +6,7 @@ public class FurthestBuilding {
         
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
-        for (int index = 0; index < heights.length; index++) {
+        for (int index = 0; index < heights.length - 1; index++) {
             
             int diffInHeights = heights[index + 1] - heights[index];
             System.out.println("    -> difference at index " + index + " : " + diffInHeights);
@@ -14,7 +14,7 @@ public class FurthestBuilding {
             if (diffInHeights > 0) {
                 
                 minHeap.add(diffInHeights);
-                System.out.println("    Diff added in Min-Heap " + minHeap);
+                System.out.println("        difference added in Min-Heap " + minHeap);
 
                 if (minHeap.size() > ladders) {
 
@@ -22,7 +22,7 @@ public class FurthestBuilding {
                     int popedDiff = minHeap.poll();
 
                     bricks -= popedDiff;
-                    System.out.println("    Bricks ( " + popedDiff + " )used to go to next building ");
+                    System.out.println("    Bricks ( " + popedDiff + " ) used to go to next building ");
                     System.out.println("    Remaining Bricks and Ladder are [ " + bricks + " , " + ladders + " ]");
 
                 }
@@ -37,7 +37,7 @@ public class FurthestBuilding {
 
         }
 
-        return heights.length;
+        return heights.length - 1;
     }
 
     public static void main(String[] args){
