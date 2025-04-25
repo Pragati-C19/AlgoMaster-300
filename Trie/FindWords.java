@@ -104,7 +104,7 @@ public class FindWords {
 
             // set that node to null to avoid duplicates
             node.wordStored = null;
-            return;
+
         }
 
         // Marking this block as visited
@@ -133,7 +133,7 @@ public class FindWords {
         };               
         
         String[] word1 = {"oath","pea","eat","rain"};
-        // System.out.println("-> Result 1 : " + solution.findWords(board1, word1) + "\n");
+        System.out.println("-> Result 1 : " + solution.findWords(board1, word1) + "\n");
 
 
         char[][] board2 = {
@@ -142,7 +142,7 @@ public class FindWords {
         };
 
         String[] word2 = {"abcb"};
-        // System.out.println("-> Result 2 : " + solution.findWords(board2, word2) + "\n");
+        System.out.println("-> Result 2 : " + solution.findWords(board2, word2) + "\n");
 
 
         char[][] board3 = {
@@ -150,7 +150,7 @@ public class FindWords {
         };
 
         String[] word3 = {"a"};
-        // System.out.println("-> Result 3 : " + solution.findWords(board3, word3) + "\n");
+        System.out.println("-> Result 3 : " + solution.findWords(board3, word3) + "\n");
 
         
         String[] word4 = {"oath","pea","eat","rain","oathi","oathk","oathf","oate","oathii","oathfi","oathfii"};
@@ -163,6 +163,10 @@ public class FindWords {
 
 /*
  * 
+ * You return immediately after finding a word (e.g. "oath"), 
+ * so you never check if longer words that extend from "oath" (like "oathi", "oathii") are present in the Trie.
+ * 
+ * so removed return after adding the word to the result.
  * 
  * Intutions :
  * 
