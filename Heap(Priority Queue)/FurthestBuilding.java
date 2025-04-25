@@ -4,6 +4,39 @@ public class FurthestBuilding {
 
     public int furthestBuilding(int[] heights, int bricks, int ladders) {
         
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+        for (int index = 0; index < heights.length; index++) {
+            
+            int diffInHeights = heights[index + 1] - heights[index];
+            System.out.println("    -> difference at index " + index + " : " + diffInHeights);
+
+            if (diffInHeights > 0) {
+                
+                minHeap.add(diffInHeights);
+                System.out.println("    Diff added in Min-Heap " + minHeap);
+
+                if (minHeap.size() > ladders) {
+
+                    // just assign a variable to poll... easy for debugging
+                    int popedDiff = minHeap.poll();
+
+                    bricks -= popedDiff;
+                    System.out.println("    Bricks ( " + popedDiff + " )used to go to next building ");
+                    System.out.println("    Remaining Bricks and Ladder are [ " + bricks + " , " + ladders + " ]");
+
+                }
+
+                if (bricks < 0) {
+
+                    System.out.println("  -> Person is on building " + index);
+                    return index;
+                }
+
+            }
+
+        }
+
         return heights.length;
     }
 
