@@ -2,16 +2,24 @@ import java.util.*;
 
 public class MedianFinder {
     
+    // Globally declare heaps
+    PriorityQueue<Integer> minHeap;
+    PriorityQueue<Integer> maxHeap;
+
     public MedianFinder() {
-        
+        minHeap = new PriorityQueue<>();
+        maxHeap = new PriorityQueue<>((a, b) -> b - a);
     }
     
     public void addNum(int num) {
-        
+        minHeap.add(num);
+        maxHeap.add(num);
     }
     
     public double findMedian() {
         
+        double median = (minHeap.peek() + maxHeap.peek()) / 2.0;
+        return median;
     }
 
     public static void main (String[] args) {
@@ -19,10 +27,13 @@ public class MedianFinder {
         MedianFinder solution = new MedianFinder();
 
         System.out.println("Final Result : ");
-        System.out.println("  1st Iteration : " + solution.addNum(1));  
-        System.out.println("  2nd Iteration : " + solution.addNum(2));  
+        System.out.println("  1st Iteration : ");
+        solution.addNum(1);  
+        System.out.println("  2nd Iteration : ");  
+        solution.addNum(2);
         System.out.println("  3rd Iteration : " + solution.findMedian());  // Output: 1.5
-        System.out.println("  4th Iteration : " + solution.addNum(3));  
+        System.out.println("  4th Iteration : ");
+        solution.addNum(3);  
         System.out.println("  5th Iteration : " + solution.findMedian());  // Output: ]2.0
         
     }
