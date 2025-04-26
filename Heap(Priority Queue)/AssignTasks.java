@@ -35,6 +35,7 @@ public class AssignTasks {
         for (int i = 0; i < m; i++) {
             
             int task = tasks[i];
+            currentTime = Math.max(currentTime, i);
 
             if (minHeap.isEmpty()) {
 
@@ -48,7 +49,7 @@ public class AssignTasks {
                 serverIndex++;
             }
             
-            if (!minHeap.isEmpty()) {
+            if (!minHeap.isEmpty() && minHeap.peek()[2] <= currentTime) {
 
                 // I don't know how to write minheap(updatedServers[2]) <= currTime) yet so let's try else
 
