@@ -25,17 +25,25 @@ public class AssignTasks {
  * 
  * 1. I need to Declare below things
  *      - int [] result
- *      - create a new updatedServer array which has index in it
+ *      - currTime = 0
+ *      - serverIndex = 0
+ *      - create a new updatedServer array which has original Index, and availableTime in it
+ *          [serverWeight, OriginalIndex, availableTime]
  *      - sort that updatedServers
  *      - minHeap to store updatedServers 
  * 2. for loop (task : tasks)
- *      - if(minHeap.isEmpty && task[index] <= currTime) -> minHeap.add(updatedServers[0], updatedServers[1]) adding server and original index
- *      - if(!minHeap.isEmpty) -> 
- *              minHeap.poll()
- *              result.add(updatedServers[1])
- *              currTime += task
- *      - stuck at how to add s2 again in heap.. 
+ *      - if(minHeap.isEmpty) -> 
+ *              updatedServers[serverIndex][2] = currTime + task 
+ *              minHeap.add(updatedServer[serverIndex])
+ *              serverIndex++
+ *      - if(!minHeap.isEmpty && minheap(updatedServers[2]) <= currTime) -> 
+ *              server = minHeap.poll()
+ *              result[i] = server[1]
+ *              server[2] = currentTime + task
+ *              minHeap.add(server)
  *      
+ * 
+ * 
  * 
  * Pseudo code :
  * 
