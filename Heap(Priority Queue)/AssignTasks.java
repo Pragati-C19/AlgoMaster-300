@@ -2,6 +2,23 @@ import java.util.*;
 
 public class AssignTasks {
     
+    public int[] assignTasks(int[] servers, int[] tasks) {
+        
+    }
+
+    public static main(String[] args){
+
+        AssignTasks solution = new AssignTasks();
+
+        int[] servers1 = {3, 3, 2};
+        int[] tasks1 = {1, 2, 3, 2, 1, 2};
+        System.out.println("-> Result 1: " + solution.assignTasks(servers1, tasks1) + "\n");
+
+        int[] servers2 = {5,1,4,3,2};
+        int[] tasks2 = {2,1,2,4,5,2,1};
+        System.out.println("-> Result 2: " + solution.assignTasks(servers2, tasks2) + "\n");        
+
+    }
 }
 
 /*
@@ -42,8 +59,6 @@ public class AssignTasks {
  *              server[2] = currentTime + task
  *              minHeap.add(server)
  *      
- * 
- * 
  * 
  * Pseudo code :
  * 
