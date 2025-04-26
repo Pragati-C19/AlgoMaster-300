@@ -4,19 +4,80 @@ public class AssignTasks {
     
     public int[] assignTasks(int[] servers, int[] tasks) {
         
+        int m = tasks.length;
+        int n = servers.length;
+
+        int[] result = new int[m];
+        int currentTime = 0;
+        int serverIndex = 0;
+
+        // Let's update server array and add originalIndex and available Time parametter
+        int[][] updatedServers = new int[n][3];
+        
+        for (int i = 0; i < n; i++) {
+            updatedServers[0][0] = servers[i];      // serverWeight
+            updatedServers[0][1] = i;               // original index
+            updatedServers[0][2] = 0;               // availableTime
+        }
+
+        // Let's Sort the updatedServers array
+        Arrays.sort(updatedServers, (a, b) -> Integer.compare(a[0], b[0]));
+        System.out.println("    Sorted Updated Server Array : " + Arrays.deepToString(updatedServers));
+
+        // Declare a minHeap -> refere from getOrder que
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> {
+            if (a[2] != b[2]) return Integer.compare(a[2], b[2]);   // available time
+            if (a[0] != b[0]) return Integer.compare(a[0], b[0]);   // server weight
+            return Integer.compare(a[1], b[1]);                     // original index
+        });
+
+        for (int i = 0; i < m; i++) {
+            
+            int task = tasks[i];
+            
+
+            if (minHeap.isEmpty()) {
+
+                // let's updated the task first to that specific server
+                updatedServers[serverIndex][2] = currentTime + task;
+                
+                System.out.println("    updatedServer of index " + serverIndex + " : " + Arrays.toString(updatedServers[serverIndex]));
+                
+                // adding that serverIndex task to minHeap
+                minHeap.add(updatedServers[serverIndex]);
+                serverIndex++;
+            }
+            else {
+
+                // I don't know how to write minheap(updatedServers[2]) <= currTime) yet so let's try else
+
+                int[] server = minHeap.poll();
+                result[i] = server[1];
+
+                System.out.println("    Current Result Array : " + Arrays.toString(result));
+
+                server[2] = currentTime + task;
+
+                System.out.println("    serever adding to the heap is " + Arrays.toString(server));
+                minHeap.add(server);
+            }
+        }
+
+        return result;
+        
     }
 
-    public static main(String[] args){
+    public static void main(String[] args){
 
         AssignTasks solution = new AssignTasks();
 
         int[] servers1 = {3, 3, 2};
         int[] tasks1 = {1, 2, 3, 2, 1, 2};
-        System.out.println("-> Result 1: " + solution.assignTasks(servers1, tasks1) + "\n");
+        System.out.println("-> Result 1: " + Arrays.toString(solution.assignTasks(servers1, tasks1)) + "\n");
 
         int[] servers2 = {5,1,4,3,2};
         int[] tasks2 = {2,1,2,4,5,2,1};
-        System.out.println("-> Result 2: " + solution.assignTasks(servers2, tasks2) + "\n");        
+        System.out.println("-> Result 2: " + Arrays.toString(solution.assignTasks(servers2, tasks2)) + "\n");        
 
     }
 }
