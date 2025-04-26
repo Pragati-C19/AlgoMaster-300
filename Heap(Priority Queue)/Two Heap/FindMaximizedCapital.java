@@ -2,6 +2,27 @@ import java.util.*;
 
 public class FindMaximizedCapital {
     
+    public int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {
+        
+    }
+
+    public static void main(String[] args){
+
+        FindMaximizedCapital solution = new FindMaximizedCapital();
+
+        int[] profit1 = {1, 2, 3};
+        int[] capital1= {0, 1, 1};
+        int k1 = 2;
+        int w1 = 0;
+        System.out.println("-> Result 1 : " + solution.findMaximizedCapital(k1, w1, profit1, capital1) + "\n");
+
+        int[] profit2 = { 1, 2, 3};
+        int[] capital2 = {0, 1, 2};
+        int k2 = 3;
+        int w2 = 0;
+        System.out.println("-> Result 2 : " + solution.findMaximizedCapital(k2, w2, profit2, capital2));
+
+    }
 }
 
 /*
