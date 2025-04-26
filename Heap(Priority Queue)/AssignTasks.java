@@ -15,10 +15,11 @@ public class AssignTasks {
         int[][] updatedServers = new int[n][3];
         
         for (int i = 0; i < n; i++) {
-            updatedServers[0][0] = servers[i];      // serverWeight
-            updatedServers[0][1] = i;               // original index
-            updatedServers[0][2] = 0;               // availableTime
+            updatedServers[i][0] = servers[i];      // serverWeight
+            updatedServers[i][1] = i;               // original index
+            updatedServers[i][2] = 0;               // availableTime
         }
+        System.out.println("    Updated Server Array : " + Arrays.deepToString(updatedServers));
 
         // Let's Sort the updatedServers array
         Arrays.sort(updatedServers, (a, b) -> Integer.compare(a[0], b[0]));
@@ -34,7 +35,6 @@ public class AssignTasks {
         for (int i = 0; i < m; i++) {
             
             int task = tasks[i];
-            
 
             if (minHeap.isEmpty()) {
 
@@ -47,7 +47,8 @@ public class AssignTasks {
                 minHeap.add(updatedServers[serverIndex]);
                 serverIndex++;
             }
-            else {
+            
+            if (!minHeap.isEmpty()) {
 
                 // I don't know how to write minheap(updatedServers[2]) <= currTime) yet so let's try else
 
