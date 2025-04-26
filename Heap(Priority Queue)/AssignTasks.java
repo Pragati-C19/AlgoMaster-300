@@ -129,7 +129,35 @@ public class AssignTasks {
  *              minHeap.add(server)
  *      
  * 
- * Pseudo code :
+ * After refined solutions is :
+ * 
+ * 1. I need to Declare below things
+ *      - m and n length of arrays
+ *      - int [] result
+ *      - currTime = 0
+ *      - serverIndex = 0
+ *      - create a new updatedServer array which has original Index, and availableTime in it
+ *          [serverWeight, OriginalIndex, availableTime]
+ *      - sort that updatedServers
+ * 2. Create 2 minHeaps
+ *      - First to heap to check if server is available or not 
+ *          it will store serverWeight and original Index
+ *      - Second heap to check if server is busy or not
+ *          it will store ServerWeight, availableTime, OriginalIndex
+ * 3. use for loop and add all servers in available heap first 
+ *      bcoz at start every server is available na
+ * 4. for(i = 0 to tasks.length)
+ *      - taskTime = task[i]
+ *      - Move all servers that are done with tasks back to available
+ *          if(!busyHeap.isEmpty && busyHeap.peek()[0] <= currTime) 
+ *              -> poll that server and add it to available heap
+ *      - If no server available, fast-forward time to the next server's available time
+ *          currTime = busy.peek()[0]
+ *          again check while loop as above to move all servers that are done with tasks back to available
+ *      - if above conditions are not true then do below 
+ *          poll server from available
+ *          add it in result
+ *          add it in busyHeap too
  * 
  * 
  * 
