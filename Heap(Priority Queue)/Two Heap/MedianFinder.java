@@ -12,14 +12,43 @@ public class MedianFinder {
     }
     
     public void addNum(int num) {
-        minHeap.add(num);
+        
         maxHeap.add(num);
+        System.out.println("        [Start] Max Heap : " + maxHeap);
+
+        minHeap.add(maxHeap.poll());
+        System.out.println("        [Start] Min Heap : " + minHeap);
+
+        if (maxHeap.size() < minHeap.size()) {
+            maxHeap.add(minHeap.poll());
+
+            System.out.println("        [MAX < MIN] Max Heap : " + maxHeap);
+            System.out.println("        [MAX < MIN] Min Heap : " + minHeap);            
+        }
+        
+        System.out.println("        [Final] Max Heap : " + maxHeap);
+        System.out.println("        [Final] Min Heap : " + minHeap);
+        
     }
     
     public double findMedian() {
         
-        double median = (minHeap.peek() + maxHeap.peek()) / 2.0;
-        return median;
+        if (maxHeap.size() > minHeap.size()) {
+           
+            System.out.println("        - [MAX > MIN] Max Heap After Peek : " + maxHeap);
+            System.out.println("        - [MAX > MIN] Min Heap After Peek : " + minHeap);
+
+            return maxHeap.peek();
+
+        } else {
+
+            System.out.println("        - [MAX <= MIN] Max Heap After Peek : " + maxHeap);
+            System.out.println("        - [MAX <= MIN] Min Heap After Peek : " + minHeap);
+            
+            return (maxHeap.peek() + minHeap.peek()) / 2.0;
+
+        }
+
     }
 
     public static void main (String[] args) {
@@ -27,14 +56,70 @@ public class MedianFinder {
         MedianFinder solution = new MedianFinder();
 
         System.out.println("Final Result : ");
+
         System.out.println("  1st Iteration : ");
-        solution.addNum(1);  
-        System.out.println("  2nd Iteration : ");  
+        solution.addNum(6);
+
+        System.out.println("  2nd Iteration : " + solution.findMedian());
+
+        System.out.println("  3rd Iteration : ");
+        solution.addNum(10);
+
+        System.out.println("  4th Iteration : " + solution.findMedian());
+
+        System.out.println("  5th Iteration : ");
         solution.addNum(2);
-        System.out.println("  3rd Iteration : " + solution.findMedian());  // Output: 1.5
-        System.out.println("  4th Iteration : ");
-        solution.addNum(3);  
-        System.out.println("  5th Iteration : " + solution.findMedian());  // Output: ]2.0
+
+        System.out.println("  6th Iteration : " + solution.findMedian());
+
+        System.out.println("  7th Iteration : ");
+        solution.addNum(6);
+
+        System.out.println("  8th Iteration : " + solution.findMedian());
+
+        System.out.println("  9th Iteration : ");
+        solution.addNum(5);
+
+        System.out.println("  10th Iteration : " + solution.findMedian());
+
+        System.out.println("  11th Iteration : ");
+        solution.addNum(0);
+
+        System.out.println("  12th Iteration : " + solution.findMedian());
+
+        System.out.println("  13th Iteration : ");
+        solution.addNum(6);
+
+        System.out.println("  14th Iteration : " + solution.findMedian());
+
+        System.out.println("  15th Iteration : ");
+        solution.addNum(3);
+
+        System.out.println("  16th Iteration : " + solution.findMedian());
+
+        System.out.println("  17th Iteration : ");
+        solution.addNum(1);
+
+        System.out.println("  18th Iteration : " + solution.findMedian());
+
+        System.out.println("  19th Iteration : ");
+        solution.addNum(0);
+
+        System.out.println("  20th Iteration : " + solution.findMedian());
+
+        System.out.println("  21st Iteration : ");
+        solution.addNum(0);
+
+        System.out.println("  22nd Iteration : " + solution.findMedian());
+
+        // System.out.println("  1st Iteration : ");
+        // solution.addNum(1);  
+        // System.out.println("  2nd Iteration : ");  
+        // solution.addNum(2);
+        // System.out.println("  3rd Iteration : " + solution.findMedian());  // Output: 1.5
+        // System.out.println("  4th Iteration : ");
+        // solution.addNum(3);  
+        // System.out.println("  5th Iteration : " + solution.findMedian());  // Output: ]2.0
         
     }
 
@@ -61,6 +146,7 @@ public class MedianFinder {
  *      - assign value to globally declare array variable
  * 2. addNum(int num) 
  *      - arr.add(num)
+ *      - sort arr -> to find median we always sort array
  * 3. findMedian() 
  *      - if(arr.length == 1) -> return arr[0]
  *      - if(arr.length == 2) -> (arr[0] + arr[1]) / 2
