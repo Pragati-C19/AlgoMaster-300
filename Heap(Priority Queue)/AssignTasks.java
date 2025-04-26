@@ -37,21 +37,26 @@ public class AssignTasks {
             int task = tasks[i];
             currentTime = Math.max(currentTime, i);
 
+            while (serverIndex < n && updatedServers[serverIndex][2] <= currentTime) {
+                
+                System.out.println("        - [WHILE] Adding server to minHeap " + serverIndex + " : " + Arrays.toString(updatedServers[serverIndex]) + " with current time = " + currentTime);
+                
+                minHeap.add(updatedServers[serverIndex]);
+                serverIndex++;
+            }
+
             if (minHeap.isEmpty()) {
 
                 // let's updated the task first to that specific server
-                updatedServers[serverIndex][2] = currentTime + task;
+                currentTime = updatedServers[serverIndex][2];
                 
-                System.out.println("    updatedServer of index " + serverIndex + " : " + Arrays.toString(updatedServers[serverIndex]));
+                System.out.println("    updatedServer of index " + serverIndex + " : " + Arrays.toString(updatedServers[serverIndex]) + " with current time = " + currentTime);
                 
                 // adding that serverIndex task to minHeap
                 minHeap.add(updatedServers[serverIndex]);
                 serverIndex++;
             }
             
-            if (!minHeap.isEmpty() && minHeap.peek()[2] <= currentTime) {
-
-                // I don't know how to write minheap(updatedServers[2]) <= currTime) yet so let's try else
 
                 int[] server = minHeap.poll();
                 result[i] = server[1];
@@ -62,7 +67,8 @@ public class AssignTasks {
 
                 System.out.println("    serever adding to the heap is " + Arrays.toString(server));
                 minHeap.add(server);
-            }
+         
+            
         }
 
         return result;
