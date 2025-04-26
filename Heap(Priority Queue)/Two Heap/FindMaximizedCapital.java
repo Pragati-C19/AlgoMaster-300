@@ -4,6 +4,40 @@ public class FindMaximizedCapital {
     
     public int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {
         
+        int n = profits.length;
+        int projectIndex = 0;
+        int result = 0;
+
+        int[][] updatedProjects = new int[n][3];
+        for (int i = 0; i < n; i++) {
+            updatedProjects[i][0] = profits[i];     // Projects Profit
+            updatedProjects[i][1] = capital[i];     // Capital to start that project
+            updatedProjects[i][2] = i;              // Original Index
+        }
+
+        // Sort array by capital requirements so used [1]
+        Arrays.sort(updatedProjects, (a, b) -> Integer.compare(a[1], b[1]));
+        System.out.println("  Sorted Array is : " + Arrays.deepToString(updatedProjects));
+
+        PriorityQueue<Integer> availableProjects = new PriorityQueue<>((a, b) -> b - a);
+
+        for (int i = 0; i < k; i++) {
+            
+            while (projectIndex < n && updatedProjects[projectIndex][1] <= w) {
+                availableProjects.add(updatedProjects[projectIndex][0]);
+                
+                System.out.println("    available projects are : " + availableProjects);
+                projectIndex++;
+            }
+
+            if(!availableProjects.isEmpty()){
+                int currProfit = availableProjects.poll();
+                w += currProfit;
+                result = w;
+            }
+        }
+
+        return result;
     }
 
     public static void main(String[] args){
