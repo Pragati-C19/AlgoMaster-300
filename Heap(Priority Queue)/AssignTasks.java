@@ -9,66 +9,53 @@ public class AssignTasks {
 
         int[] result = new int[m];
         int currentTime = 0;
-        int serverIndex = 0;
 
-        // Let's update server array and add originalIndex and available Time parametter
-        int[][] updatedServers = new int[n][3];
+        // It will store all available servers
+        PriorityQueue<int[]> availableHeap = new PriorityQueue<>((a, b) -> {
+            if (a[0] != b[0]) return Integer.compare(a[0], b[0]);   // server weight
+            return Integer.compare(a[1], b[1]);                     // original index
+        });
         
-        for (int i = 0; i < n; i++) {
-            updatedServers[i][0] = servers[i];      // serverWeight
-            updatedServers[i][1] = i;               // original index
-            updatedServers[i][2] = 0;               // availableTime
-        }
-        System.out.println("    Updated Server Array : " + Arrays.deepToString(updatedServers));
-
-        // Let's Sort the updatedServers array
-        Arrays.sort(updatedServers, (a, b) -> Integer.compare(a[0], b[0]));
-        System.out.println("    Sorted Updated Server Array : " + Arrays.deepToString(updatedServers));
-
-        // Declare a minHeap -> refere from getOrder que
-        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> {
+        // It will store all busy servers
+        PriorityQueue<int[]> busyHeap = new PriorityQueue<>((a, b) -> {
             if (a[2] != b[2]) return Integer.compare(a[2], b[2]);   // available time
             if (a[0] != b[0]) return Integer.compare(a[0], b[0]);   // server weight
             return Integer.compare(a[1], b[1]);                     // original index
         });
 
+        // Adding all server in available heap (bcoz at start all servers will be availble)
+        for (int i = 0; i < n; i++) {
+            availableHeap.add(new int[] {servers[i], i});
+        }
+
+        // checking all task now 
         for (int i = 0; i < m; i++) {
             
             int task = tasks[i];
             currentTime = Math.max(currentTime, i);
 
-            while (serverIndex < n && updatedServers[serverIndex][2] <= currentTime) {
-                
-                System.out.println("        - [WHILE] Adding server to minHeap " + serverIndex + " : " + Arrays.toString(updatedServers[serverIndex]) + " with current time = " + currentTime);
-                
-                minHeap.add(updatedServers[serverIndex]);
-                serverIndex++;
+            while (!busyHeap.isEmpty() && busyHeap.peek()[2] <= currentTime) {
+               int[] finished = busyHeap.poll();
+               availableHeap.add(new int[]{finished[0], finished[1]});
             }
 
-            if (minHeap.isEmpty()) {
+            if (availableHeap.isEmpty()) {
 
                 // let's updated the task first to that specific server
-                currentTime = updatedServers[serverIndex][2];
+                currentTime = busyHeap.peek()[2];
+        
+                while (!busyHeap.isEmpty() && busyHeap.peek()[2] <= currentTime) {
+                    int[] finished = busyHeap.poll();
+                    availableHeap.add(new int[]{finished[0], finished[1]});
+                }
                 
-                System.out.println("    updatedServer of index " + serverIndex + " : " + Arrays.toString(updatedServers[serverIndex]) + " with current time = " + currentTime);
-                
-                // adding that serverIndex task to minHeap
-                minHeap.add(updatedServers[serverIndex]);
-                serverIndex++;
             }
             
-
-                int[] server = minHeap.poll();
-                result[i] = server[1];
-
-                System.out.println("    Current Result Array : " + Arrays.toString(result));
-
-                server[2] = currentTime + task;
-
-                System.out.println("    serever adding to the heap is " + Arrays.toString(server));
-                minHeap.add(server);
+            int[] server = availableHeap.poll();
+            result[i] = server[1];
+            System.out.println("    Current Result Array : " + Arrays.toString(result));
+            busyHeap.add(new int[]{server[0], server[1], currentTime + task});
          
-            
         }
 
         return result;
