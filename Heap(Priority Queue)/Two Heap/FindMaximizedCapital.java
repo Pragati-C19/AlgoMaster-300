@@ -6,7 +6,7 @@ public class FindMaximizedCapital {
         
         int n = profits.length;
         int projectIndex = 0;
-        int result = 0;
+        int result = w;
 
         int[][] updatedProjects = new int[n][3];
         for (int i = 0; i < n; i++) {
@@ -60,6 +60,13 @@ public class FindMaximizedCapital {
 }
 
 /*
+ * 
+ * so this test case was wrong k = 2  w = 1  profits = [1,2,3]  capital = [2,2,2]
+ * - if w = 1 and no capital has less or equal to w value then will say no project is available 
+ * - so as per rule it should return w = 1 as it is right?
+ * - my code was return 0 bcoz of 2 reasons
+ *      - I was giving return as result.. and initializing result = 0 instead of = w
+ *      - First of all I should just return w instead of creating new variable result
  * 
  * 
  * Intuitions :
