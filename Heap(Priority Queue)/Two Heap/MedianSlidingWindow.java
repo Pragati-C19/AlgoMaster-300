@@ -2,6 +2,45 @@ import java.util.*;
 
 public class MedianSlidingWindow {
 
+    // Globally declare Heap
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
+    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+    // Driver Function 
+    public double[] medianSlidingWindow(int[] nums, int k) {
+        
+    }
+
+    // Helper Function : get sub window with size k
+    private List<Integer> getSlot(int[] nums, int start, int end){
+
+    }
+
+    // Helper Function : add nums from array in the heaps and find median from it
+    private double addNums(int[] subArray){
+
+    } 
+
+    // Helper Function : find median 
+    private double findMedian(){
+
+    }
+
+
+    public static void main(String[] args){
+
+        MedianSlidingWindow solution = new MedianSlidingWindow();
+
+        int[] nums1 = {1,3,-1,-3,5,3,6,7};
+        int k1 = 3;
+        System.out.println("Result 1 : " + solution.medianSlidingWindow(nums1, k1) + "\n");
+
+        int[] nums2 = {1,2,3,4,2,3,1,4,2};
+        int k2 = 3;
+        System.out.println("Result 2 : " + solution.medianSlidingWindow(nums2, k2) + "\n");
+
+    }
+
 }
 
 /*
