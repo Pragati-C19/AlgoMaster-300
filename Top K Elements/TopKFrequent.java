@@ -17,13 +17,15 @@ public class TopKFrequent {
         for(int num : nums){
             freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
         }
+        System.out.println("  -> Map is : " + freqMap);
 
         // Now add all entries from map into heap
         maxHeap.addAll(freqMap.entrySet());
+        System.out.println("  -> Heap : " + maxHeap);
 
         for (int i = 0; i < k; i++) {
             // maxHeap.poll(); gives incompatible types: Entry<Integer,Integer> cannot be converted to int so I think I should use below
-            result[i] = maxHeap.poll().getValue();
+            result[i] = maxHeap.poll().getKey();
         }
 
         return result;
