@@ -9,20 +9,67 @@ public class MedianSlidingWindow {
     // Driver Function 
     public double[] medianSlidingWindow(int[] nums, int k) {
         
+        List<Double> currMedian = new ArrayList<>();
+
+        int start = 0;
+        int end = k - 1;
+
+        for (int i = 0; i < nums.length; i++) {
+            
+            List<Integer> subNums = getSlot(nums, start, end);
+
+            double median = addNums(subNums);
+            currMedian.add(median);
+
+            start++;
+            end++;
+        }
+
+        double[] result = new double[currMedian.size()];
+        for (int i = 0; i < currMedian.size(); i++) {
+            result[i] = currMedian.get(i);
+        }
+
+        return result;
+
     }
 
     // Helper Function : get sub window with size k
     private List<Integer> getSlot(int[] nums, int start, int end){
 
+        List<Integer> subArray = new ArrayList<>();
+
+        for (int num : nums) {
+            subArray.add(num);
+        }
+
+        return subArray;
     }
 
     // Helper Function : add nums from array in the heaps and find median from it
-    private double addNums(int[] subArray){
+    private double addNums(List<Integer> subArray){
 
+        for (int num : subArray) {
+            maxHeap.add(num);
+            minHeap.add(maxHeap.poll());
+
+            if (maxHeap.size() < minHeap.size()) {
+                maxHeap.add(minHeap.poll());
+            }
+        }
+
+        return findMedian();
     } 
 
     // Helper Function : find median 
     private double findMedian(){
+
+        if (maxHeap.size() > minHeap.size()) {
+            return maxHeap.peek();
+        }
+        else {
+            return (maxHeap.peek() + minHeap.peek()) / 2.0 ;
+        }
 
     }
 
