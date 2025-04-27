@@ -74,18 +74,20 @@ public class MedianSlidingWindow {
     // Helper Function : find median 
     private double findMedian(){
 
-        int maxHeapTop = maxHeap.peek();
-        int minHeapTop = minHeap.peek();
+        long maxHeapTop = maxHeap.peek();
+        long minHeapTop = minHeap.peek();
 
         if (maxHeap.size() > minHeap.size()) {
+            
             System.out.println("[IF] maxHeapTop : " + maxHeapTop);
             return maxHeapTop;
         }
         else {
+            
             System.out.println("[ELSE] maxHeapTop : " + maxHeapTop);
             System.out.println("[ELSE] minHeapTop : " + minHeapTop);
 
-            int sum = maxHeapTop + minHeapTop;
+            long sum = maxHeapTop + minHeapTop;
             System.out.println("sum : " + sum);
 
             return (maxHeapTop + minHeapTop) / 2.0 ;
