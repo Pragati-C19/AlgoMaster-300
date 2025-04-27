@@ -2,6 +2,32 @@ import java.util.*;
 
 public class KClosest {
     
+    public int[][] kClosest(int[][] points, int k) {
+        
+        return points;
+    }
+
+    public static void main(String[] args){
+
+        KClosest solution = new KClosest();
+
+        int[][] points1 = {
+            {1, 3},
+            {-2, 2}
+        };
+        int k1 = 1;
+        System.out.println("Result 1 : " + Arrays.deepToString(solution.kClosest(points1, k1)) + "\n");
+
+        int[][] points2 = {
+            {3, 3},
+            {5, -1},
+            {-2, 4}
+        };
+        int k2 = 2;
+        System.out.println("Result 2 : " + Arrays.deepToString(solution.kClosest(points2, k2)) + "\n");
+        
+    }
+
 }
 
 /*
