@@ -22,7 +22,8 @@ public class TopKFrequent {
         maxHeap.addAll(freqMap.entrySet());
 
         for (int i = 0; i < k; i++) {
-            result[i] = maxHeap.poll();
+            // maxHeap.poll(); gives incompatible types: Entry<Integer,Integer> cannot be converted to int so I think I should use below
+            result[i] = maxHeap.poll().getValue();
         }
 
         return result;
