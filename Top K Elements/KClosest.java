@@ -10,6 +10,7 @@ public class KClosest {
         int[][] updatedArray = new int[points.length][3];
         
         for (int i = 0; i < points.length; i++) {
+            
             updatedArray[i][0] = points[i][0];      // Store x
             updatedArray[i][1] = points[i][1];      // Store y
             updatedArray[i][2] = 0;                 // distance
@@ -19,12 +20,22 @@ public class KClosest {
         PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> a[2] - b[2]);
 
         for (int i = 0; i < updatedArray.length; i++) {
+            
             updatedArray[i][2] = (int) Math.sqrt(Math.pow(updatedArray[i][0], 2) + Math.pow(updatedArray[i][1], 2));
+            System.out.println("    Distance of (" + updatedArray[i][0] + " , " + updatedArray[i][1] + ") : " + updatedArray[i][2]);
+            
             minHeap.add(updatedArray[i]);
         }
 
         for (int i = 0; i < k; i++) {
-            result[i] = minHeap.poll()[0][1];
+            
+            int[] point = minHeap.poll();
+            System.out.println("    -> min distance point is " + Arrays.toString(point));
+            
+
+            // before this it was storing all three attributes (x, y, distance) we only need (x, y) so storing seperately
+            result[i][0] = point[0];
+            result[i][1] = point[1];
         }
 
         return result;
