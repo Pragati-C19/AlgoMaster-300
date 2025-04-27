@@ -62,6 +62,8 @@ public class MedianSlidingWindow {
                 maxHeap.add(minHeap.poll());
             }
         }
+        
+        System.out.println("        -> MaxHeap : " + maxHeap + " , MinHeap : " + minHeap);
 
         return findMedian();
     } 
