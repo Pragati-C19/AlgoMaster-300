@@ -2,6 +2,25 @@ import java.util.*;
 
 public class TopKFrequent {
     
+    public int[] topKFrequent(int[] nums, int k) {
+     
+        return nums;
+    }
+
+    public static void main(String[] args){
+
+        TopKFrequent solution = new TopKFrequent();
+
+        int[] nums1 = {1,1,1,2,2,3};
+        int k1 = 2;
+        System.out.println("Result 1 : " + Arrays.toString(solution.topKFrequent(nums1, k1)) + "\n"); 
+
+        int[] nums2 = {1};
+        int k2 = 1;
+        System.out.println("Result 2 : " + Arrays.toString(solution.topKFrequent(nums2, k2)) + "\n"); 
+
+    }
+
 }
 
 /*
