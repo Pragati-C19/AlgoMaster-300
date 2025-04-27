@@ -3,9 +3,8 @@ import java.util.*;
 public class MedianSlidingWindow {
 
     // Globally declare Heap
-    PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
-    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-
+    PriorityQueue<Integer> maxHeap;
+    PriorityQueue<Integer> minHeap;
     // Driver Function 
     public double[] medianSlidingWindow(int[] nums, int k) {
         
@@ -19,6 +18,9 @@ public class MedianSlidingWindow {
             System.out.println("start and end : " + start + " -> " + end);
 
             List<Integer> subNums = getSlot(nums, start, end);
+
+            maxHeap = new PriorityQueue<>((a, b) -> b - a);
+            minHeap = new PriorityQueue<>();
 
             double median = addNums(subNums);
             System.out.println("    Median for array " + subNums + " : " + median);
@@ -62,7 +64,7 @@ public class MedianSlidingWindow {
                 maxHeap.add(minHeap.poll());
             }
         }
-        
+
         System.out.println("        -> MaxHeap : " + maxHeap + " , MinHeap : " + minHeap);
 
         return findMedian();
