@@ -14,9 +14,9 @@ public class MedianSlidingWindow {
         int start = 0;
         int end = k;
 
-        for (int i = 0; i < nums.length; i++) {
-            
-            System.out.println("start and end for " + nums[i] + " : " + start + " -> " + end);
+        while (end <= nums.length) {
+
+            System.out.println("start and end : " + start + " -> " + end);
 
             List<Integer> subNums = getSlot(nums, start, end);
 
