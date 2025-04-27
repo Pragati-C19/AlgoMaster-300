@@ -4,7 +4,28 @@ public class TopKFrequent {
     
     public int[] topKFrequent(int[] nums, int k) {
      
-        return nums;
+        // result array's length will be k 
+        int[] result = new int[k];
+
+        // Declare a Map to store freq count of nums
+        Map<Integer, Integer> freqMap = new HashMap<>();
+
+        // Declare a maxHeap to store entry set of map which has key and value 
+        PriorityQueue<Map.Entry<Integer, Integer>> maxHeap = new PriorityQueue<>((a, b) -> b.getValue() - a.getValue());
+
+        // add nums and it's frequncy in map
+        for(int num : nums){
+            freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+        }
+
+        // Now add all entries from map into heap
+        maxHeap.addAll(freqMap.entrySet());
+
+        for (int i = 0; i < k; i++) {
+            result[i] = maxHeap.poll();
+        }
+
+        return result;
     }
 
     public static void main(String[] args){
