@@ -5,6 +5,7 @@ public class MedianSlidingWindow {
     // Globally declare Heap
     PriorityQueue<Integer> maxHeap;
     PriorityQueue<Integer> minHeap;
+
     // Driver Function 
     public double[] medianSlidingWindow(int[] nums, int k) {
         
@@ -73,11 +74,21 @@ public class MedianSlidingWindow {
     // Helper Function : find median 
     private double findMedian(){
 
+        int maxHeapTop = maxHeap.peek();
+        int minHeapTop = minHeap.peek();
+
         if (maxHeap.size() > minHeap.size()) {
-            return maxHeap.peek();
+            System.out.println("[IF] maxHeapTop : " + maxHeapTop);
+            return maxHeapTop;
         }
         else {
-            return (maxHeap.peek() + minHeap.peek()) / 2.0 ;
+            System.out.println("[ELSE] maxHeapTop : " + maxHeapTop);
+            System.out.println("[ELSE] minHeapTop : " + minHeapTop);
+
+            int sum = maxHeapTop + minHeapTop;
+            System.out.println("sum : " + sum);
+
+            return (maxHeapTop + minHeapTop) / 2.0 ;
         }
 
     }
@@ -87,13 +98,18 @@ public class MedianSlidingWindow {
 
         MedianSlidingWindow solution = new MedianSlidingWindow();
 
-        int[] nums1 = {1,3,-1,-3,5,3,6,7};
-        int k1 = 3;
-        System.out.println("Result 1 : " + Arrays.toString(solution.medianSlidingWindow(nums1, k1)) + "\n");
+        // int[] nums1 = {1,3,-1,-3,5,3,6,7};
+        // int k1 = 3;
+        // System.out.println("Result 1 : " + Arrays.toString(solution.medianSlidingWindow(nums1, k1)) + "\n");
 
-        int[] nums2 = {1,2,3,4,2,3,1,4,2};
-        int k2 = 3;
-        System.out.println("Result 2 : " + Arrays.toString(solution.medianSlidingWindow(nums2, k2)) + "\n");
+        // int[] nums2 = {1,2,3,4,2,3,1,4,2};
+        // int k2 = 3;
+        // System.out.println("Result 2 : " + Arrays.toString(solution.medianSlidingWindow(nums2, k2)) + "\n");
+
+        int[] nums3 = {2147483647,2147483647};
+        int k3 = 2;
+        System.out.println("Result 3 : " + Arrays.toString(solution.medianSlidingWindow(nums3, k3)) + "\n");
+
 
     }
 
