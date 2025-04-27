@@ -4,7 +4,30 @@ public class KClosest {
     
     public int[][] kClosest(int[][] points, int k) {
         
-        return points;
+        int[][] result = new int[k][2];
+
+        // will store distance with array
+        int[][] updatedArray = new int[points.length][3];
+        
+        for (int i = 0; i < points.length; i++) {
+            updatedArray[i][0] = points[i][0];      // Store x
+            updatedArray[i][1] = points[i][1];      // Store y
+            updatedArray[i][2] = 0;                 // distance
+        }
+
+        // Declare a heap
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> a[2] - b[2]);
+
+        for (int i = 0; i < updatedArray.length; i++) {
+            updatedArray[i][2] = (int) Math.sqrt(Math.pow(updatedArray[i][0], 2) + Math.pow(updatedArray[i][1], 2));
+            minHeap.add(updatedArray[i]);
+        }
+
+        for (int i = 0; i < k; i++) {
+            result[i] = minHeap.poll()[0][1];
+        }
+
+        return result;
     }
 
     public static void main(String[] args){
