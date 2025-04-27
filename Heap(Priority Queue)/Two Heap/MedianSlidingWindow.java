@@ -42,44 +42,84 @@ public class MedianSlidingWindow {
  * - as in me i = startingWindow to k ni karte tr ahe create a window.. 
  * - but me kaskay to parat loop madhe annar ani pudhe karnar?.. 
  * - ajun ek mala he median adding that median to result he kontya tri for loop madhe lagel without that it will only give one ans
- * - 
+ * 
+ * 
+ * - let's use pointer to solve this issue..
+ * start = 0 
+ * end = k - 1
+ * 
+ *  Like, initially it is from [0 to k-1],
+ *  next time from [1 to k],
+ *  next time from [2 to k+1],
+ *  it seems like moving both start and end by 1 at a same time
+ *  or removing one element from start and adding one element at end
+ * 
  *              
  * 
  * Pseudo Code :
  * 
  * 
- * medianSlidingWindow(int[] nums){
+ * double[] medianSlidingWindow(int[] nums){
  * 
- *      double[] result = new int[]
+ *      List<Integer> currMedian = new ArrayList
  *      
- *      startingWindow = 0
+ *      start = 0;
+ *      end = k - 1;
  * 
  *      for(i = 0 to nums.length){
- *          
  * 
- *          if(i >= k) {
- *              median = addNums(updatedArray)
- *              result[i] = median
- *          }
- *          
+ *          List<Integer> updatedArray = getSlot(start, end, nums);
+ * 
+ *          double median = addNums(updatedArray)
+ *          currMedian.add(median)
+ * 
+ *          start++;
+ *          end++;
+ *    
  *      }
- *           
- * 
  *      
- *      
+ *      double[] result = new double[currMedian.size()]
+ *      for(i = 0 to currMedian.size()){
+ *          result[i] = currMedian.get(i)
+ *      } 
  * 
+ *      return result;
  * }
  * 
  * 
- * getSlot(startingWindow, k) {
+ * List<Integer> getSlot(start, end, nums) {
  * 
  *      List<Integer> updatedArray = new Array
  *      
- *      for(i = startingWindow to k ){
- *          updatedArray.add(nums[startingWindow]);
+ *      for(i = start to end){
+ *          updatedArray.add(nums[i]);
  *      }
  * 
  *      return updatedArray;
  * }
+ * 
+ * double addNums(updatedArray){
+ * 
+ *      for(i = 0 to updatedArray.length){
+ * 
+ *          maxHeap.add(updatedArray[i]);
+ *          minHeap.add(maxHeap.poll());
+ * 
+ *          if(maxHeap < minHeap) -> maxHeap.add(minHeap.poll());
+ *      }
+ * 
+ *      double median = findMedian()
+ * 
+ *      return median
+ * }
+ * 
+ * double findMedian(){
+ * 
+ *      if(maxHeap > minHeap) -> return maxHeap.peek
+ *      
+ *      else -> 
+ *          maxHeap.peek() + minHeap.peek() / 2
+ * }
+ * 
  * 
  */
