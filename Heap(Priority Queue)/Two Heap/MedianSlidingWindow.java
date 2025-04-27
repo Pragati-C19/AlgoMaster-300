@@ -12,14 +12,19 @@ public class MedianSlidingWindow {
         List<Double> currMedian = new ArrayList<>();
 
         int start = 0;
-        int end = k - 1;
+        int end = k;
 
         for (int i = 0; i < nums.length; i++) {
             
+            System.out.println("start and end for " + nums[i] + " : " + start + " -> " + end);
+
             List<Integer> subNums = getSlot(nums, start, end);
 
             double median = addNums(subNums);
+            System.out.println("    Median for array " + subNums + " : " + median);
+
             currMedian.add(median);
+            System.out.println("    Current Median so far : " + currMedian);
 
             start++;
             end++;
@@ -39,8 +44,8 @@ public class MedianSlidingWindow {
 
         List<Integer> subArray = new ArrayList<>();
 
-        for (int num : nums) {
-            subArray.add(num);
+        for (int i = start; i < end; i++) {
+            subArray.add(nums[i]);
         }
 
         return subArray;
@@ -80,11 +85,11 @@ public class MedianSlidingWindow {
 
         int[] nums1 = {1,3,-1,-3,5,3,6,7};
         int k1 = 3;
-        System.out.println("Result 1 : " + solution.medianSlidingWindow(nums1, k1) + "\n");
+        System.out.println("Result 1 : " + Arrays.toString(solution.medianSlidingWindow(nums1, k1)) + "\n");
 
         int[] nums2 = {1,2,3,4,2,3,1,4,2};
         int k2 = 3;
-        System.out.println("Result 2 : " + solution.medianSlidingWindow(nums2, k2) + "\n");
+        System.out.println("Result 2 : " + Arrays.toString(solution.medianSlidingWindow(nums2, k2)) + "\n");
 
     }
 
