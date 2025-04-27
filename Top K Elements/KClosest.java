@@ -7,24 +7,24 @@ public class KClosest {
         int[][] result = new int[k][2];
 
         // will store distance with array
-        int[][] updatedArray = new int[points.length][3];
+        int[][] pointsWithDistance = new int[points.length][3];
         
         for (int i = 0; i < points.length; i++) {
             
-            updatedArray[i][0] = points[i][0];      // Store x
-            updatedArray[i][1] = points[i][1];      // Store y
-            updatedArray[i][2] = 0;                 // distance
+            pointsWithDistance[i][0] = points[i][0];      // Store x
+            pointsWithDistance[i][1] = points[i][1];      // Store y
+            pointsWithDistance[i][2] = 0;                 // distance
         }
 
         // Declare a heap
         PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> a[2] - b[2]);
 
-        for (int i = 0; i < updatedArray.length; i++) {
+        for (int i = 0; i < pointsWithDistance.length; i++) {
             
-            updatedArray[i][2] = (int) Math.sqrt(Math.pow(updatedArray[i][0], 2) + Math.pow(updatedArray[i][1], 2));
-            System.out.println("    Distance of (" + updatedArray[i][0] + " , " + updatedArray[i][1] + ") : " + updatedArray[i][2]);
+            pointsWithDistance[i][2] = pointsWithDistance[i][0] * pointsWithDistance[i][0] + pointsWithDistance[i][1] * pointsWithDistance[i][1];
+            System.out.println("    Distance of (" + pointsWithDistance[i][0] + " , " + pointsWithDistance[i][1] + ") : " + pointsWithDistance[i][2]);
             
-            minHeap.add(updatedArray[i]);
+            minHeap.add(pointsWithDistance[i]);
         }
 
         for (int i = 0; i < k; i++) {
@@ -59,12 +59,29 @@ public class KClosest {
         };
         int k2 = 2;
         System.out.println("Result 2 : " + Arrays.deepToString(solution.kClosest(points2, k2)) + "\n");
+
+        int[][] points3 = {
+            {2,10},
+            {-9,-9},
+            {0,8},
+            {-2,-2},
+            {8,9},
+            {-10,-7},
+            {-5,2},
+            {-4,-9}
+        };
+        int k3 = 7;
+        System.out.println("Result 3 : " + Arrays.deepToString(solution.kClosest(points3, k3)) + "\n");
         
     }
 
 }
 
 /*
+ * //? we only need x² + y² in formula 
+ * - so just checked that if distance of A² < Distance of B² then that means A is closer
+ * - so it's like squaring both side we are doing and removed the square root
+ * 
  * 
  * Intuitions :
  * 
