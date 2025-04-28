@@ -4,7 +4,27 @@ public class FindMinArrowShots {
     
     public int findMinArrowShots(int[][] points) {
         
-        return 0;
+        int arrowCount = 0;
+
+        Arrays.sort(points);
+        System.out.println("    Sorted Array : " + Arrays.toString(points));
+
+        // let's assign to value to x as end of 0th index point
+        int x = points[0][1];
+        System.out.println("    -> Initial value of x : " + x);
+        
+        for (int i = 0; i < points.length; i++) {
+            
+            if (points[i][0] > x) {
+                
+                arrowCount++;
+
+                x = points[i][1];
+                System.out.println("    -> Updated value of x : " + x);
+            }
+        }
+
+        return arrowCount;
     }
 
     public static void main(String[] args){
@@ -100,7 +120,7 @@ public class FindMinArrowShots {
  *          
  *          if( points[i][0] > x ) 
  *              arrowCount++
- *              x = points[i][0]
+ *              x = points[i][1]
  *          
  *      return arrowCount
  * 
