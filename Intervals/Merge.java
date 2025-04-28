@@ -2,6 +2,31 @@ import java.util.*;
 
 public class Merge {
     
+    public int[][] merge(int[][] intervals) {
+        
+        return intervals;
+    }
+
+    public static void main(String[] args){
+
+        Merge solution = new Merge();
+
+        int[][] intervals1 = {
+            {1, 3},
+            {2, 6},
+            {8, 10},
+            {15, 18}
+        };
+        System.out.println("Result1 -> " + Arrays.deepToString(solution.merge(intervals1)) + "\n");
+
+        int[][] intervals2 = {
+            {1, 4},
+            {4, 5}
+        };
+        System.out.println("Result2 -> " + Arrays.deepToString(solution.merge(intervals2)) + "\n");
+
+    }
+
 }
 
 /*
