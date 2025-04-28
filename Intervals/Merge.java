@@ -11,24 +11,36 @@ public class Merge {
         Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
         System.out.println("  Sorted Array : " + Arrays.deepToString(intervals));
 
-        for (int i = 0; i < n - 1; i++) {
+        // assigned initial interval at 0th index to start and end
+        int start = intervals[0][0];        // startTime[curr]
+        int end = intervals[0][1];          // endTime[curr]
+        
+        for (int i = 1; i < n ; i++) {
 
-            if (intervals[i+1][0] < intervals[i][1]) {
+            // here [i][0] means startTime endTime of next
+
+            if (intervals[i][0] <= end) {
                 
-                System.out.println(" Intervals are start[next] " + intervals[i+1][0] + " < end[curr] " + intervals[i][1]);
+                System.out.println(" Intervals are start[next] " + intervals[i][0] + " < end[curr] " + end);
 
-                result[i][0] = intervals[i][0];
-                result[i][1] = intervals[i+1][1];
+                result[i][0] = start;
+                result[i][1] = intervals[i][1];
 
-                if(intervals[i+1][1] < intervals[i][1]) {
+                start = intervals[i][0];
+
+                if(intervals[i][1] < end) {
                     
-                    System.out.println(" Intervals are end[next] " + intervals[i+1][1] + " < end[curr] " + intervals[i][1]);
+                    System.out.println(" Intervals are end[next] " + intervals[i][1] + " < end[curr] " + end);
                     
-                    result[i][1] = intervals[i][1];
+                    result[i][1] = end;
+
+                    end = intervals[i][1];
                 }
             }
         
         }
+
+        
 
         return result;
     }
@@ -66,6 +78,9 @@ public class Merge {
  *      add interval in result as [startTime[curr], endTime[next]]
  * - startTime of next < startTime of curr && endTime of next is < than endTime of curr
  *      add interval in result as [startTime[curr], endTime[curr]]
+ * 
+ * 4. let's use two pointer here to store intitial values of start and end
+ * 5. and will compare those start and end int this if
  * 
  * Pattern :
  * 
