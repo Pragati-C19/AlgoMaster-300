@@ -2,6 +2,34 @@ import java.util.*;
 
 public class Insert {
     
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        
+        return intervals;
+    }
+
+    public static void main(String[] args){
+
+        Insert solution = new Insert();
+
+        int[][] intervals1 = {
+            {1, 3},
+            {6, 9}
+        };
+        int[] newInterval1 = {2, 5};
+        System.out.println("Result 1 -> " + Arrays.deepToString(solution.insert(intervals1, newInterval1)) + "\n");
+
+        int[][] intervals2 = {
+            {1, 2},
+            {3, 5},
+            {6, 7},
+            {8, 10},
+            {12, 16}
+        };
+        int[] newInterval2 = {4, 8};
+        System.out.println("Result 2 -> " + Arrays.deepToString(solution.insert(intervals2, newInterval2)) + "\n");
+
+    }
+
 }
 
 
