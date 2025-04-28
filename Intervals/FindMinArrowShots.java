@@ -12,12 +12,17 @@ public class FindMinArrowShots {
         // let's assign to value to x as end of 0th index point
         int x = points[0][1];
         System.out.println("    -> Initial value of x : " + x);
+
+        arrowCount++;
+        System.out.println("    ~ Arrow Count : " + arrowCount);
+
         
         for (int i = 0; i < points.length; i++) {
             
             if (points[i][0] > x) {
                 
                 arrowCount++;
+                System.out.println("    ~ [IF] Arrow Count : " + arrowCount);
 
                 x = points[i][1];
                 System.out.println("    -> Updated value of x : " + x);
