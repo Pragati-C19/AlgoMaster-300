@@ -4,6 +4,13 @@ public class Merge {
     
     public int[][] merge(int[][] intervals) {
         
+        int n = intervals.length;
+
+        int[][] result = new int[n][2];
+
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        System.out.println("  Sorted Array : " + Arrays.deepToString(intervals));
+
         return intervals;
     }
 
