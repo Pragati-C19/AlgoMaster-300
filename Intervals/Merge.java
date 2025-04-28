@@ -6,42 +6,42 @@ public class Merge {
         
         int n = intervals.length;
 
-        int[][] result = new int[n][2];
+        List<int[]> currResult = new ArrayList<>();
 
         Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
         System.out.println("  Sorted Array : " + Arrays.deepToString(intervals));
 
         // assigned initial interval at 0th index to start and end
-        int start = intervals[0][0];        // startTime[curr]
-        int end = intervals[0][1];          // endTime[curr]
+        int start = intervals[0][0];        // startTime[prev]
+        int end = intervals[0][1];          // endTime[prev]
         
         for (int i = 1; i < n ; i++) {
 
             // here [i][0] means startTime endTime of next
 
             if (intervals[i][0] <= end) {
-                
-                System.out.println(" Intervals are start[next] " + intervals[i][0] + " < end[curr] " + end);
+                 // Overlapping
+                System.out.println(" Intervals are start[curr] " + intervals[i][0] + " < end[prev] " + end);
 
-                result[i][0] = start;
-                result[i][1] = intervals[i][1];
+                // will only change end of interval here.. 
+                end = Math.max(end, intervals[i][1]);
+                
+            }
+            else {
+
+                currResult.add(new int[]{start, end});
 
                 start = intervals[i][0];
-
-                if(intervals[i][1] < end) {
-                    
-                    System.out.println(" Intervals are end[next] " + intervals[i][1] + " < end[curr] " + end);
-                    
-                    result[i][1] = end;
-
-                    end = intervals[i][1];
-                }
+                end = intervals[i][1];
             }
         
         }
 
+        int[][] result = new int[currResult.size()][2];
+        for (int i = 0; i < currResult.size(); i++) {
+            result[i] = currResult.get(i);
+        }
         
-
         return result;
     }
 
