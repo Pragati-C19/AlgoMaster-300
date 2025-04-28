@@ -20,7 +20,7 @@ public class FindMinArrowShots {
         System.out.println("    ~ Arrow Count : " + arrowCount);
 
         
-        for (int i = 0; i < points.length; i++) {
+        for (int i = 1; i < points.length; i++) {
             
             if (points[i][0] > x) {
                 
@@ -73,9 +73,18 @@ public class FindMinArrowShots {
             {0,6},
             {2,8}
         };
-        
         System.out.println("Result4 -> " + solution.findMinArrowShots(points4) + "\n");
         
+        int[][] points5 = {
+            {9, 12},
+            {1, 10},
+            {4, 11},
+            {8, 12},
+            {3, 9},
+            {6, 9},
+            {6, 7}
+        };
+        System.out.println("Result5 -> " + solution.findMinArrowShots(points5));
     }
 
 }
