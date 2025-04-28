@@ -6,7 +6,7 @@ public class FindMinArrowShots {
         
         int arrowCount = 0;
 
-        Arrays.sort(points, (a,b) -> a[0] - b[0]);
+        Arrays.sort(points, (a,b) -> Integer.compare(a[0], b[0]));
         System.out.println("    Sorted Array : " + Arrays.deepToString(points));
 
         // let's assign to value to x as end of 0th index point
@@ -53,10 +53,8 @@ public class FindMinArrowShots {
         System.out.println("Result2 -> " + solution.findMinArrowShots(points2) + "\n");
 
         int[][] points3 = {
-            {1,2},
-            {2,3},
-            {3,4},
-            {4,5}
+            {-2147483646,-2147483645},
+            {2147483646,2147483647},
         };
         System.out.println("Result3 -> " + solution.findMinArrowShots(points3) + "\n");
 
@@ -66,6 +64,12 @@ public class FindMinArrowShots {
 
 
 /*
+ * 
+ * using below is good for small numbers like it
+ * Arrays.sort(points, (a, b) -> a[0] - b[0]) 
+ * 
+ * but for long or one +ve one -ve we ne to use
+ * Arrays.sort(points, (a,b) -> Integer.compare(a[0], b[0]))
  * 
  * 
  * Intuitions :
