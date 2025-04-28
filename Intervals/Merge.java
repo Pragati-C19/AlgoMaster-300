@@ -9,7 +9,7 @@ public class Merge {
         List<int[]> currResult = new ArrayList<>();
 
         Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
-        System.out.println("  Sorted Array : " + Arrays.deepToString(intervals));
+        System.out.println("Sorted Array : " + Arrays.deepToString(intervals));
 
         // assigned initial interval at 0th index to start and end
         int start = intervals[0][0];        // startTime[prev]
@@ -21,11 +21,12 @@ public class Merge {
 
             if (intervals[i][0] <= end) {
                  // Overlapping
-                System.out.println(" Intervals are start[curr] " + intervals[i][0] + " < end[prev] " + end);
+                System.out.println(" start[curr] " + intervals[i][0] + " <= end[prev] " + end);
 
                 // will only change end of interval here.. 
                 end = Math.max(end, intervals[i][1]);
-                
+                System.out.println("    [IF] updated start and end to : (" + start + " , " + end + ")");
+            
             }
             else {
 
@@ -33,9 +34,15 @@ public class Merge {
 
                 start = intervals[i][0];
                 end = intervals[i][1];
+                
+                System.out.println("    [ELSE] updated start and end to : (" + start + " , " + end + ")");
+
             }
         
         }
+
+        // add last remaining intervals 
+        currResult.add(new int[] {start, end});
 
         int[][] result = new int[currResult.size()][2];
         for (int i = 0; i < currResult.size(); i++) {
