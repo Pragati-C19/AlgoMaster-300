@@ -2,6 +2,41 @@ import java.util.*;
 
 public class FindMinArrowShots {
     
+    public int findMinArrowShots(int[][] points) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args){
+
+        FindMinArrowShots solution = new FindMinArrowShots();
+
+        int[][] points1 = {
+            {10,16},
+            {2,8},
+            {1,6},
+            {7,12}
+        };
+        System.out.println("Result1 -> " + solution.findMinArrowShots(points1) + "\n");
+
+        int[][] points2 = {
+            {1,2},
+            {3,4},
+            {5,6},
+            {7,8}
+        };
+        System.out.println("Result2 -> " + solution.findMinArrowShots(points2) + "\n");
+
+        int[][] points3 = {
+            {1,2},
+            {2,3},
+            {3,4},
+            {4,5}
+        };
+        System.out.println("Result3 -> " + solution.findMinArrowShots(points3) + "\n");
+
+    }
+
 }
 
 
