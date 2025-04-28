@@ -6,10 +6,8 @@ public class FindMinArrowShots {
         
         int arrowCount = 0;
 
-        Arrays.sort(points, (a,b) -> {
-            if (a[0] == b[0]) return Integer.compare(a[1], b[1]); // if start same, sort by end
-            return Integer.compare(a[0], b[0]);                   // else, sort by start
-        });
+        // Sort by end point here
+        Arrays.sort(points, (a,b) -> Integer.compare(a[1], b[1]));
         System.out.println("    Sorted Array : " + Arrays.deepToString(points));
 
         // let's assign to value to x as end of 0th index point
