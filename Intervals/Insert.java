@@ -18,31 +18,32 @@ public class Insert {
         Arrays.sort(afterAddNewIntervals, (a, b) -> a[0] - b[0]);
         System.out.println("sorted array of afterAddNewIntervals : " + Arrays.deepToString(afterAddNewIntervals));
 
-        return intervals;
+        List<int[]> mergeOverlapIntervals = merge(afterAddNewIntervals);
+
+        int[][] result = new int[mergeOverlapIntervals.size()][2];
+        for (int i = 0; i <mergeOverlapIntervals.size(); i++) {
+            result[i] = mergeOverlapIntervals.get(i);
+        }
+
+        return result;
     }
 
-    public List<int[]> merge(int[][] intervals) {
+    // Helper function : to merge overlaping intervals
+    private List<int[]> merge(int[][] intervals) {
         
-        int n = intervals.length;
-
         List<int[]> currResult = new ArrayList<>();
-
-        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
-        System.out.println("Sorted Array : " + Arrays.deepToString(intervals));
 
         // assigned initial interval at 0th index to start and end
         int start = intervals[0][0];        // startTime[prev]
         int end = intervals[0][1];          // endTime[prev]
         
-        for (int i = 1; i < n ; i++) {
-
-            // here [i][0] means startTime endTime of next
+        for (int i = 1; i < intervals.length ; i++) {
 
             if (intervals[i][0] <= end) {
                  // Overlapping
                 System.out.println(" start[curr] " + intervals[i][0] + " <= end[prev] " + end);
 
-                // will only change end of interval here.. 
+                // will only change end of interval here to the max one.. 
                 end = Math.max(end, intervals[i][1]);
                 System.out.println("    [IF] updated start and end to : (" + start + " , " + end + ")");
             
