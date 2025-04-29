@@ -4,7 +4,37 @@ public class EraseOverlapIntervals {
     
     public int eraseOverlapIntervals(int[][] intervals) {
         
-        return 0;
+        int removeIntervalCount = 0;
+
+        Arrays.sort(intervals, (a,b) -> a[0] - b[0]);
+        System.out.println("Sorted Array : " + Arrays.deepToString(intervals));
+
+        int prevStart = intervals[0][0];
+        int prevEnd = intervals[0][1];
+
+        for (int i = 1; i < intervals.length; i++) {
+            
+            int currStart = intervals[i][0];
+            int currEnd = intervals[i][1];
+
+            System.out.println("  Previous start and end : [" + prevStart + " , " + prevEnd + "]");
+            System.out.println("  Current start and end  : [" + currStart + " , " + currEnd + "]");
+
+            if(currStart < prevEnd){
+                
+                removeIntervalCount++;
+                System.out.println("    Remove Interval Count so far : " + removeIntervalCount);
+            }
+            else {
+
+                // Updated values of prev start and end to curr start and end
+                prevStart = currStart;
+                prevEnd = currEnd;
+            }
+
+        }
+
+        return removeIntervalCount;
     }
 
     public static void main(String[] args){
