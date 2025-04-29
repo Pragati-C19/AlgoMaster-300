@@ -5,7 +5,6 @@ public class KSmallestPairs {
     public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
      
         List<List<Integer>> result = new ArrayList<>();
-        List<Integer> currList = new ArrayList<>();
 
         PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> a[2] - b[2]);
 
@@ -21,10 +20,8 @@ public class KSmallestPairs {
         while (k > 0 && !minHeap.isEmpty()) {
             
             int[] top = minHeap.poll();
-            currList.add(top[0]);
-            currList.add(top[1]);
-
-            result.add(new ArrayList<>());
+            
+            result.add(Arrays.asList(top[0], top[1]));
 
             k--;
         }
