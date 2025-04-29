@@ -6,7 +6,10 @@ public class EraseOverlapIntervals {
         
         int removeIntervalCount = 0;
 
-        Arrays.sort(intervals, (a,b) -> a[0] - b[0]);
+        Arrays.sort(intervals, (a,b) -> {
+            if(a[0] == b[0]) return Integer.compare(a[1], b[1]);    // EndTime
+            return Integer.compare(a[0], b[0]);                     // StartTime
+        });
         System.out.println("Sorted Array : " + Arrays.deepToString(intervals));
 
         int prevStart = intervals[0][0];
@@ -61,6 +64,14 @@ public class EraseOverlapIntervals {
             {2,3}
         };
         System.out.println("Result3 -> " + solution.eraseOverlapIntervals(intervals3) + "\n");
+
+        int[][] intervals4 = {
+            {1,100},
+            {11,22},
+            {1,11},
+            {2,12}
+        };
+        System.out.println("Result4 -> " + solution.eraseOverlapIntervals(intervals4) + "\n");
 
     }
 
