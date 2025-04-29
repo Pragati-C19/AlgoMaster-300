@@ -60,6 +60,15 @@ public class MaxEvents {
         };
         System.out.println("Result2 -> " + solution.maxEvents(events2) + "\n");
 
+        int[][] events3 = {
+            {1,2},
+            {1,2},
+            {3,3},
+            {1,5},
+            {1,5}
+        };
+        System.out.println("Result3 -> " + solution.maxEvents(events3) + "\n");
+
     }
 
 }
