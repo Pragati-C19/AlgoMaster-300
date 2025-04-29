@@ -2,6 +2,32 @@ import java.util.*;
 
 public class MaxEvents {
     
+    public int maxEvents(int[][] events) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args){
+
+        MaxEvents solution = new MaxEvents();
+
+        int[][] events1 = {
+            {1,2},
+            {2,3},
+            {3,4}
+        };
+        System.out.println("Result1 -> " + solution.maxEvents(events1) + "\n");
+
+        int[][] events2 = {
+            {1,2},
+            {2,3},
+            {3,4},
+            {1,2}
+        };
+        System.out.println("Result2 -> " + solution.maxEvents(events2) + "\n");
+
+    }
+
 }
 
 
