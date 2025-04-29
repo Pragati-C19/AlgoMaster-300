@@ -14,15 +14,24 @@ public class KSmallestPairs {
                 int sum = nums1[i] + nums2[j];
                 System.out.println("    Sum of Pairs [" + nums1[i] + "," + nums2[j] + "] : " + sum);
 
-                maxHeap.add(new int[]{nums1[i], nums2[j], sum});
-                System.out.println("   MaxHeap : " + Arrays.deepToString(maxHeap.toArray()));
-                
-                if(maxHeap.size() > k){
+                if(maxHeap.size() < k){
+                    
+                    maxHeap.add(new int[]{nums1[i], nums2[j], sum});
+                    System.out.println("   MaxHeap : " + Arrays.deepToString(maxHeap.toArray()));
+                }
+                else if (maxHeap.peek()[2] > sum) {
+                    
                     System.out.println("   top getting poped out...");
                     maxHeap.poll();
+                    
+                    maxHeap.add(new int[]{nums1[i], nums2[j], sum});
                     System.out.println("   [IF] MaxHeap : " + Arrays.deepToString(maxHeap.toArray()));
 
                 }
+                else {
+                    break;
+                }
+                
         
             }
         }
