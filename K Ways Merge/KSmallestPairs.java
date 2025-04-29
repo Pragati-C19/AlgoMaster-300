@@ -2,6 +2,26 @@ import java.util.*;
 
 public class KSmallestPairs {
     
+    public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+        
+    }
+
+    public static void main(String[] args){
+        
+        KSmallestPairs solution = new KSmallestPairs();
+
+        int[] nums1 = {1,7,11};
+        int[] nums2 = {2,4,6};
+        int k1 = 3;
+        System.out.println("Result1 : " + solution.kSmallestPairs(nums1, nums2, k1) + "\n");
+
+        int[] nums3 = {1,1,2};
+        int[] nums4 = {1,2,3};
+        int k2 = 2;
+        System.out.println("Result2 : " + solution.kSmallestPairs(nums3, nums4, k2) + "\n");
+
+    }
+
 }
 
 
@@ -17,6 +37,12 @@ public class KSmallestPairs {
  * 
  * Pattern :
  * 
+ * First Approach - Brute Force 
+ *      Problems with this approach 
+ *          - Time Complexity
+ *          - Unnecessary big Heap Size -> if u think closely u are adding alll sums in that heap
+ *              it can cause overflow.. try to add only k elements in heap
+ *           
  * 1. create a heap to store pair and sum of intergers
  * 2. for(i = 0 to nums1.length)
  *      for(j = 0 to nums2.length)
@@ -27,6 +53,12 @@ public class KSmallestPairs {
  *      result[i][1] = heap.peek()[1]
  *      heap.poll()
  * 4. return result
+ * 
+ * 
+ * Second Appraoch :
+ * 
+ * 1. 
+ * 
  * 
  * Pseudo Code :
  * 
