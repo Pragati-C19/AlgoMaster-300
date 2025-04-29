@@ -9,8 +9,8 @@ public class MaxEvents {
         Set<Integer> isOccupied = new HashSet<>();
 
         Arrays.sort(events, (a, b) -> {
-            if(a[0] == b[0]) return Integer.compare(a[1], b[1]);    // EndDay
-            return Integer.compare(a[0], b[0]);                     // StartDay
+            if(a[1] == b[1]) return Integer.compare(a[0], b[0]);    // startDay
+            return Integer.compare(a[1], b[1]);                     // endDay
         });
         System.out.println("Sorted Array is " + Arrays.deepToString(events));
 
