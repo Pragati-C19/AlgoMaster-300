@@ -4,7 +4,39 @@ public class MaxEvents {
     
     public int maxEvents(int[][] events) {
         
-        return 0;
+        int countEvents = 0;
+
+        Set<Integer> isOccupied = new HashSet<>();
+
+        Arrays.sort(events, (a, b) -> {
+            if(a[0] == b[0]) return Integer.compare(a[1], b[1]);    // EndDay
+            return Integer.compare(a[0], b[0]);                     // StartDay
+        });
+        System.out.println("Sorted Array is " + Arrays.deepToString(events));
+
+        for (int i = 0; i < events.length; i++) {
+            
+            int startDay = events[i][0];
+            int endDay = events[i][1];
+            
+            System.out.println("  Start and end Day of event " + Arrays.toString(events[i]) + " : " + startDay + " -> " + endDay);
+
+            for (int d = startDay; d <= endDay; d++) {
+                
+                System.out.println("    -> checking day is " + d);
+
+                if(!isOccupied.contains(d)){
+
+                    isOccupied.add(d);
+                    countEvents++;
+
+                    System.out.println("        ~ Hashset : " + isOccupied);
+                    System.out.println("        Current Event Count is " + countEvents);
+                }
+            }
+        }
+
+        return countEvents;
     }
 
     public static void main(String[] args){
