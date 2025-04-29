@@ -3,7 +3,34 @@ import java.util.*;
 public class KSmallestPairs {
     
     public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
-        
+     
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> currList = new ArrayList<>();
+
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> a[2] - b[2]);
+
+        for (int i = 0; i < nums1.length; i++) {
+            for (int j = 0; j < nums2.length; j++) {
+                
+                int sum = nums1[i] + nums2[j];
+
+                minHeap.add(new int[]{nums1[i], nums2[j], sum});
+            }
+        }
+
+        while (k > 0 && !minHeap.isEmpty()) {
+            
+            int[] top = minHeap.poll();
+            currList.add(top[0]);
+            currList.add(top[1]);
+
+            result.add(new ArrayList<>());
+
+            k--;
+        }
+
+        return result;
+
     }
 
     public static void main(String[] args){
