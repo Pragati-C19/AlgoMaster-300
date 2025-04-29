@@ -32,6 +32,8 @@ public class MaxEvents {
 
                     System.out.println("        ~ Hashset : " + isOccupied);
                     System.out.println("        Current Event Count is " + countEvents);
+                    
+                    break;
                 }
             }
         }
