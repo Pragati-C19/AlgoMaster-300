@@ -6,24 +6,34 @@ public class KSmallestPairs {
      
         List<List<Integer>> result = new ArrayList<>();
 
-        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> a[2] - b[2]);
+        PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> b[2] - a[2]);
 
         for (int i = 0; i < nums1.length; i++) {
             for (int j = 0; j < nums2.length; j++) {
                 
                 int sum = nums1[i] + nums2[j];
+                System.out.println("    Sum of Pairs [" + nums1[i] + "," + nums2[j] + "] : " + sum);
 
-                minHeap.add(new int[]{nums1[i], nums2[j], sum});
+                maxHeap.add(new int[]{nums1[i], nums2[j], sum});
+                System.out.println("   MaxHeap : " + Arrays.deepToString(maxHeap.toArray()));
+                
+                if(maxHeap.size() > k){
+                    System.out.println("   top getting poped out...");
+                    maxHeap.poll();
+                    System.out.println("   [IF] MaxHeap : " + Arrays.deepToString(maxHeap.toArray()));
+
+                }
+        
             }
         }
 
-        while (k > 0 && !minHeap.isEmpty()) {
+        while (!maxHeap.isEmpty()) {
             
-            int[] top = minHeap.poll();
-            
-            result.add(Arrays.asList(top[0], top[1]));
+            int[] top = maxHeap.poll();
+            System.out.println("    - top of maxHeap : " + Arrays.toString(top));
 
-            k--;
+            result.add(Arrays.asList(top[0], top[1]));
+            System.out.println("    Current Result : " + result);
         }
 
         return result;
@@ -79,9 +89,15 @@ public class KSmallestPairs {
  * 4. return result
  * 
  * 
- * Second Appraoch :
+ * //? Got memory optimization error got bcoz of above approach 
+ *      - bcoz heap has soo many values let's optimize it
  * 
- * 1. 
+ * Second Appraoch : 
+ * 
+ * 1. let's use maxHeap
+ * 2. add elements in heap till value of k
+ * 3. if heap.size() > k -> maxHeap.poll
+ * 4. else -> maxHeap.add
  * 
  * 
  * Pseudo Code :
