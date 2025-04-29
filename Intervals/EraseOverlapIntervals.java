@@ -7,8 +7,8 @@ public class EraseOverlapIntervals {
         int removeIntervalCount = 0;
 
         Arrays.sort(intervals, (a,b) -> {
-            if(a[0] == b[0]) return Integer.compare(a[1], b[1]);    // EndTime
-            return Integer.compare(a[0], b[0]);                     // StartTime
+            if(a[1] == b[1]) return Integer.compare(a[0], b[0]);    // StartTime
+            return Integer.compare(a[1], b[1]);                     // EndTime
         });
         System.out.println("Sorted Array : " + Arrays.deepToString(intervals));
 
@@ -72,6 +72,22 @@ public class EraseOverlapIntervals {
             {2,12}
         };
         System.out.println("Result4 -> " + solution.eraseOverlapIntervals(intervals4) + "\n");
+
+        int[][] intervals5 = {
+            {-52, 31},
+            {-73, -26},
+            {82, 97},
+            {-65, -11},
+            {-62, -49},
+            {95, 99},
+            {58, 95},
+            {-31, 49},
+            {66, 98},
+            {-63, 2},
+            {30, 47},
+            {-40, -26}
+        };
+        System.out.println("Result5 -> " + solution.eraseOverlapIntervals(intervals5) + "\n");
 
     }
 
