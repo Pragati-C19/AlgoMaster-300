@@ -70,6 +70,14 @@ public class KSmallestPairs {
 
 /*
  * 
+ * //? Check below two videos
+ * 1. Brute Force approach :-
+ * https://youtu.be/eptC4nUL_2A?si=5ZgAk6b-QVJvezh5
+ * 
+ * 2. Optimal approach :
+ * https://youtu.be/PiGYS7BbV_Q?si=SlD-vLAw7Gjxk1AT
+ * 
+ * 
  * 
  * Intuitions :
  * 
