@@ -2,6 +2,38 @@ import java.util.*;
 
 public class EraseOverlapIntervals {
     
+    public int eraseOverlapIntervals(int[][] intervals) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args){
+
+        EraseOverlapIntervals solution = new EraseOverlapIntervals();
+
+        int[][] intervals1 = {
+            {1,2},
+            {2,3},
+            {3,4},
+            {1,3}
+        };
+        System.out.println("Result1 -> " + solution.eraseOverlapIntervals(intervals1) + "\n");
+
+        int[][] intervals2 = {
+            {1,2},
+            {1,2},
+            {1,2}
+        };
+        System.out.println("Result2 -> " + solution.eraseOverlapIntervals(intervals2) + "\n");
+
+        int[][] intervals3 = {
+            {1,2},
+            {2,3}
+        };
+        System.out.println("Result3 -> " + solution.eraseOverlapIntervals(intervals3) + "\n");
+
+    }
+
 }
 
 
