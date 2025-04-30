@@ -2,14 +2,56 @@ import java.util.*;
 
 public class KthSmallest {
     
+    //Globally Declare variable
+    int kthSmallest;
+
     // Driver Function 
     public int kthSmallest(int[][] matrix, int k) {
-        
+
+        List<Integer> flatMatrix = new ArrayList<>();
+
+        for (int[] row : matrix) {
+            for (int num : row) {
+                flatMatrix.add(num);
+            }
+        }
+        System.out.println("flatMatrix : " + flatMatrix);
+
+        int n = flatMatrix.size();
+
+        // sending k - 1 here bcoz array is 0-th index 
+        binarySearch(0, n, flatMatrix, k-1);
+
+        return kthSmallest;
+
     }
 
     // Helper Function
-    private void binarySearch(int left, int right, List<Integer> flatMatrix){
+    private void binarySearch(int left, int right, List<Integer> flatMatrix, int k){
 
+        while (left < right) {
+            
+            int midIndex = (left + right) / 2;
+            
+            if (midIndex == k) {
+
+                kthSmallest = flatMatrix.get(midIndex);
+                System.out.println("kth Smallest is found : " + kthSmallest);
+                return;
+            }
+            else if (midIndex < k) {
+                
+                left = midIndex + 1;
+                System.out.println("    -> k is at right side of that mid...");
+            }
+            else {
+
+                right = midIndex - 1;
+                System.out.println("    -> k is at left side of that mid...");
+            }
+        }
+
+        return;
     }
 
     public static void main(String[] args){
