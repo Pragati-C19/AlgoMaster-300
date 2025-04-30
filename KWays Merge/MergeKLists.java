@@ -2,6 +2,62 @@ import java.util.*;
 
 public class MergeKLists {
     
+
+    // Definition for singly-linked list.
+    private static class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+ 
+    // Driver Function
+    public ListNode mergeKLists(ListNode[] lists) {
+        
+    }
+
+
+    // HElper Function : to build a list
+    public static ListNode buildList(int[] arr) {
+        ListNode dummy = new ListNode(0);
+        ListNode curr = dummy;
+        for (int val : arr) {
+            curr.next = new ListNode(val);
+            curr = curr.next;
+        }
+        return dummy.next;
+    }
+    
+    // Helper Function : to print the list (for debugging)
+    public void printList(ListNode head) {
+        while (head != null) {
+            System.out.print(head.val + " -> ");
+            head = head.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args){
+
+        MergeKLists solution = new MergeKLists();
+
+        // Example 1
+        int[][] input1 = {
+            {1, 4, 5},
+            {1, 3, 4},
+            {2, 6}
+        };
+
+        ListNode[] lists1 = new ListNode[input1.length];
+        for (int i = 0; i < input1.length; i++) {
+            lists1[i] = buildList(input1[i]);
+        }
+
+        ListNode mergedHead1 = solution.mergeKLists(lists1);
+        printList(mergedHead1);
+    }
+
 }
 
 /*
