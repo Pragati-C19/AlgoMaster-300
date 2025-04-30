@@ -18,7 +18,7 @@ public class MergeKLists {
         ListNode dummy = new ListNode(0);
         ListNode curr = dummy;
 
-        PriorityQueue<ListNode> minHeap = new PriorityQueue<>();
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<>((a, b) -> a.val - b.val);
 
         // Add only head to minHeap
         for (ListNode listHead : lists) {
@@ -26,18 +26,30 @@ public class MergeKLists {
         }
 
         // print minHeap in console like this
-        System.out.println("Initial Heap : " + Arrays.deepToString(minHeap.toArray()));
+        System.out.print("Initial Heap values: ");
+        for (ListNode node : minHeap) {
+            System.out.print(" " + node.val);
+        }
+        System.out.println("");
+        
 
         while (!minHeap.isEmpty()) {
             
             ListNode smallestNode = minHeap.poll();
-            System.out.println("    Smallest Node is " + smallestNode);
+            System.out.println("   Smallest Node is " + smallestNode.val);
             
             curr.next = smallestNode;
             curr = curr.next;
 
             if (smallestNode.next != null) {
+
                 minHeap.add(smallestNode.next);
+                
+                System.out.print("   -> Updated Heap values: ");
+                for (ListNode node : minHeap) {
+                    System.out.print(" " + node.val);
+                }
+                System.out.println("");
             }
 
         }
