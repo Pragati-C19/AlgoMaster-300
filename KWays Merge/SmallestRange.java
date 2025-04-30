@@ -69,6 +69,39 @@ public class SmallestRange {
  *    - if difference is same for any range check it's min value if the min value is smaller than other's take that range as smallest
  * 
  * 
+ * Let's think fresh based on what we know we created a story let's code it
+ * 
+ * 1st approach without heap u can say it's a brute force
+ * 
+ * 1. we need a array (combinedNum) whose size will be k -> it stores given list's index (like i,j,k) in it
+ *      - at start it will store [0, 0, 0...] 
+ *      - tbh we are storing [listIndex, num, elmentIndex]
+ * 2. Declare a resultRange -> to store range
+ * 3. Do below steps while(true) -> bcoz we want it to loop till we say break
+ * 4. for(i = 0 to k)
+ *      - listIndex = i -> kontya list madhe present ahe
+ *      - numIndex = combinedNum[i] -> num chi list madhali index deto he 
+ *      - num = nums[listIndex][numIndex] -> value of that element
+ *      - if(num < minValue) -> 
+ *          minValue = element 
+ *          minValueIndex = listIndex
+ *      - maxValue = max(maxValue, num)
+ * 5. currDiff = maxValue - minValue
+ * 6. if(currDiff < prevDiff)
+ *      resultRange[0] = minValue
+ *      resultRange[1] = maxValue
+ *      prevDiff = currDiff
+ * 7. changedMinValueIndex = combinedNum[minValueIndex]+1
+ * 8. if(changedMinValueIndex >= nums[minValueIndex].size()) -> break
+ * 9. combinedNum[minValueIndex] = changedMinValueIndex
+ * 
+ * 10. return resultRange
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * Pseudo Code :
  * 
  * function smallestRange(lists){
