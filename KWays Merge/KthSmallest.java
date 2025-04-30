@@ -31,7 +31,7 @@ public class KthSmallest {
     // Helper Function
     private void binarySearch(int left, int right, List<Integer> flatMatrix, int k){
 
-        while (left < right) {
+        while (left <= right) {
             
             int midIndex = (left + right) / 2;
             System.out.println("  mid = " + midIndex);
