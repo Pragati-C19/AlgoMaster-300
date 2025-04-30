@@ -2,6 +2,36 @@ import java.util.*;
 
 public class KthSmallest {
     
+    // Driver Function 
+    public int kthSmallest(int[][] matrix, int k) {
+        
+    }
+
+    // Helper Function
+    private void binarySearch(int left, int right, List<Integer> flatMatrix){
+
+    }
+
+    public static void main(String[] args){
+
+        KthSmallest solution = new KthSmallest();
+
+        int[][] matrix1 = {
+            {1,5,9},
+            {10,11,13},
+            {12,13,15}
+        };
+        int k1 = 8;
+        System.out.println("Result1 -> " + solution.kthSmallest(matrix1, k1) + "\n");
+
+        int[][] matrix2 = {
+            {-5},
+        };
+        int k2 = 1;
+        System.out.println("Result2 -> " + solution.kthSmallest(matrix2, k2) + "\n");
+
+    }
+
 }
 
 /*
