@@ -15,6 +15,35 @@ public class MergeKLists {
     // Driver Function
     public ListNode mergeKLists(ListNode[] lists) {
         
+        ListNode dummy = new ListNode(0);
+        ListNode curr = dummy;
+
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<>();
+
+        // Add only head to minHeap
+        for (ListNode listHead : lists) {
+            minHeap.add(listHead);
+        }
+
+        // print minHeap in console like this
+        System.out.println("Initial Heap : " + Arrays.deepToString(minHeap.toArray()));
+
+        while (!minHeap.isEmpty()) {
+            
+            ListNode smallestNode = minHeap.poll();
+            System.out.println("    Smallest Node is " + smallestNode);
+            
+            curr.next = smallestNode;
+            curr = curr.next;
+
+            if (smallestNode.next != null) {
+                minHeap.add(smallestNode.next);
+            }
+
+        }
+
+        return dummy.next;
+
     }
 
 
@@ -30,7 +59,7 @@ public class MergeKLists {
     }
     
     // Helper Function : to print the list (for debugging)
-    public void printList(ListNode head) {
+    public static void printList(ListNode head) {
         while (head != null) {
             System.out.print(head.val + " -> ");
             head = head.next;
