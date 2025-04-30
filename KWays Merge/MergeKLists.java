@@ -22,7 +22,10 @@ public class MergeKLists {
 
         // Add only head to minHeap
         for (ListNode listHead : lists) {
-            minHeap.add(listHead);
+            
+            if (listHead != null) {
+                minHeap.add(listHead);   
+            }
         }
 
         // print minHeap in console like this
@@ -85,8 +88,8 @@ public class MergeKLists {
 
         // Example 1
         int[][] input1 = {
-            {1, 4, 5},
-            {1, 3, 4},
+            {},
+            {1},
             {2, 6}
         };
 
@@ -102,6 +105,11 @@ public class MergeKLists {
 }
 
 /*
+ * 
+ * //? for [[],[1]] this type of problem I need to think of something
+ *      - if there is [[]] only this we can fix code by saying -> if(listHead == null) return dummy.next;
+ *      - but how to skip it 
+ *      - of use if(listHead != null) minHeap.add(listHead);
  * 
  * 
  * Intuitions :
