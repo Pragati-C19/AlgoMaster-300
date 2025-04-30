@@ -17,6 +17,8 @@ public class KthSmallest {
         }
         System.out.println("flatMatrix : " + flatMatrix);
 
+        Collections.sort(flatMatrix);
+
         int n = flatMatrix.size();
 
         // sending k - 1 here bcoz array is 0-th index 
@@ -32,11 +34,12 @@ public class KthSmallest {
         while (left < right) {
             
             int midIndex = (left + right) / 2;
+            System.out.println("  mid = " + midIndex);
             
             if (midIndex == k) {
 
                 kthSmallest = flatMatrix.get(midIndex);
-                System.out.println("kth Smallest is found : " + kthSmallest);
+                System.out.println("  kth Smallest is found : " + kthSmallest);
                 return;
             }
             else if (midIndex < k) {
@@ -58,19 +61,26 @@ public class KthSmallest {
 
         KthSmallest solution = new KthSmallest();
 
-        int[][] matrix1 = {
-            {1,5,9},
-            {10,11,13},
-            {12,13,15}
-        };
-        int k1 = 8;
-        System.out.println("Result1 -> " + solution.kthSmallest(matrix1, k1) + "\n");
+        // int[][] matrix1 = {
+        //     {1,5,9},
+        //     {10,11,13},
+        //     {12,13,15}
+        // };
+        // int k1 = 8;
+        // System.out.println("Result1 -> " + solution.kthSmallest(matrix1, k1) + "\n");
 
-        int[][] matrix2 = {
-            {-5},
+        // int[][] matrix2 = {
+        //     {-5},
+        // };
+        // int k2 = 1;
+        // System.out.println("Result2 -> " + solution.kthSmallest(matrix2, k2) + "\n");
+
+        int[][] matrix3 = {
+            {1,2},
+            {1,3}
         };
-        int k2 = 1;
-        System.out.println("Result2 -> " + solution.kthSmallest(matrix2, k2) + "\n");
+        int k3 = 2;
+        System.out.println("Result3 -> " + solution.kthSmallest(matrix3, k3) + "\n");
 
     }
 
@@ -107,10 +117,20 @@ public class KthSmallest {
  *      - when that heap size get's greater than k pop out top element
  *      - after ending of loop poll() the top element which is the kth element
  * 
+ * 3. using for loop
+ *      - I didn't do anything
+ *      - I mean I just flatten the matrix to 1D
+ *      - store values in List<Integer>
+ *      - and sorted that array
+ *      - and return the k-1 index's value..
+ *      - why k-1? bcoz the array was 0-th indexed and k was 1-th indexed
+ * 
+ * 
  * Pseudo code :
  * 
- * Binary Search 
+ * 1. Binary Search 
  * 
+ * // Globally Declare 
  * kthSmallest;
  * 
  * function kthSmallest(matrix, k){
@@ -150,6 +170,25 @@ public class KthSmallest {
  * } 
  *      
  *      
+ * 2. only For Loop
  * 
+ * public int kthSmallest(int[][] matrix, int k) {
+ * 
+ *         List<Integer> flatMatrix = new ArrayList<>();
+ * 
+ *         for (int[] row : matrix) {
+ *             for (int num : row) {
+ *                 flatMatrix.add(num);
+ *             }
+ *         }
+ *         
+ *         int n = flatMatrix.size();
+ * 
+ *         // to sort List<Intger> we use this
+ *         Collections.sort(flatMatrix);
+ * 
+ *         return flatMatrix.get(k - 1); 
+ * 
+ * }
  * 
  */
