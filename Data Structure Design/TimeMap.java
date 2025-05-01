@@ -44,7 +44,41 @@ public class TimeMap {
     
     public String get(String key, int timestamp) {
         
-        return key;
+        String result = "";
+
+        // if key is not present in hashmap
+        if (!timeMap.containsKey(key)) {
+            System.out.println("    -> Hashmap don't have this key...");
+            return result;
+        }
+
+        // get value list for that key 
+        List<TimeValue> valueOfKeyList = timeMap.get(key);
+
+        // use binary search to get timestamp with less time complexity with this we don't need to search whole list will search only half
+        int left = 0;
+        int right = valueOfKeyList.size();
+
+        while (left <= right) {
+            
+            int mid = (left + right) / 2;
+
+            if (valueOfKeyList.get(mid).timestamp <= timestamp) {
+                
+                System.out.println("    -> timestamp in list (" + valueOfKeyList.get(mid).timestamp + ") <= given timestamp (" + timestamp + ")");
+
+                result = valueOfKeyList.get(mid).value;
+                System.out.println("    Result so far : " + result);
+
+                left = mid + 1;
+            }
+            else {
+                right = mid - 1;
+            }
+
+        }
+
+        return result;
     }
 
     public static void main(String[] args){
