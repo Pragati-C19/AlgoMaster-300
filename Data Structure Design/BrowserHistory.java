@@ -20,7 +20,7 @@ public class BrowserHistory {
 
     public BrowserHistory(String homepage) {
         
-        head = new ListNode("homepage");
+        head = new ListNode(homepage);
         head.prev = null;
         head.next = null;
 
@@ -42,6 +42,16 @@ public class BrowserHistory {
     
     public String back(int steps) {
         
+        while (steps > 0) {
+
+            if (currPage.prev == null) {
+                return currPage.val;
+            }
+            
+            currPage = currPage.prev;
+            steps--;    
+        }
+
         return currPage.val;
     }
     
