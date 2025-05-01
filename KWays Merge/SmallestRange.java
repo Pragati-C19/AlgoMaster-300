@@ -1,12 +1,74 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class SmallestRange {
     
     public int[] smallestRange(List<List<Integer>> nums) {
         
-        int[] resutlRange = new int[2];
+        int kLists = nums.size();
+        int[] resultRange = new int[2];
+        int prevDiff = Integer.MAX_VALUE;
+        int maxValue = Integer.MIN_VALUE;
 
-        return resutlRange;
+        // Declare a heap to store minValue inorder by a[0] which is num
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
+
+        // will store only 0'th index from all list in heap
+        for (int i = 0; i < kLists; i++) {
+            
+            int num = nums[i][0];   // num
+            int numList = i;        // num store in this list 
+            int numListIndex = 0;   // num's Index in it's list
+            
+            minHeap.add(new int[]{num, numList, numListIndex});
+            
+            maxValue = Math.max(maxValue, num);
+
+        }
+        // print int[] Heap like this 
+        System.out.println("MinHeap After adding 0'th Index : " + Arrays.deepToString(minHeap.toArray()));
+        System.out.println("MaxValue after adding 0'th index : " + maxValue);
+
+        while (!minHeap.isEmpty()) {
+            
+            int[] currMinValue = minHeap.poll();
+
+            int minValue = currMinValue[0];
+            int minValueList = currMinValue[1];
+            int minValueListIndex = currMinValue[2];
+
+            int currDiff = maxValue - minValue;
+            System.out.println("    -> Current Difference of (" + minValue + ", " + maxValue + ") : " + currDiff);
+
+            if  (currDiff < prevDiff){
+
+                resultRange[0] = minValue;
+                resultRange[1] = maxValue;
+                prevDiff = currDiff;
+
+                System.out.println("    -> Current Result Range with Difference " + Arrays.toString(resultRange) + " : " + prevDiff);
+            }
+
+            int changeMinValueListIndex = minValueListIndex + 1;
+
+            if(changeMinValueListIndex < nums[minValueList].size()){
+
+                int nextNum = nums[minValueList][changeMinValueListIndex];
+
+                minHeap.add(new int[] {nextNum, minValueList, changeMinValueListIndex});
+                
+                maxValue = Math.max(maxValue, nextNum);
+
+                System.out.println("    [Curr] MinHeap After adding 0'th Index : " + Arrays.deepToString(minHeap.toArray()));
+                System.out.println("    [Curr] MaxValue after adding 0'th index : " + maxValue);
+            }
+            else {
+                break;
+            }
+
+        }
+
+        return resultRange;
     }
 
     public static void main(String[] args){
