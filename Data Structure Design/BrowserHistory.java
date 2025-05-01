@@ -31,6 +31,10 @@ public class BrowserHistory {
     public void visit(String url) {
         
         ListNode visitURL = new ListNode(url);
+
+        // I had wrote head.next to null so we need to connect that prev node to next na
+        // so we have to attach visitURL to currPages's next first then add visitURL's prev and next
+        currPage.next = visitURL;
         visitURL.prev = currPage;
         visitURL.next = null;
 
