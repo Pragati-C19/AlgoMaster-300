@@ -3,30 +3,42 @@ import java.util.*;
 public class TimeMap {
 
     // Custom Struct to easily get value and timestamp from list
-    private static class TimeMap{
+    private static class TimeValue{
 
         String value;
         int timestamp;
 
-        TimeMap(String value, int timestamp){
+        TimeValue(String value, int timestamp){
             this.value = value;
             this.timestamp = timestamp;
         }
     }
 
     // Globally Declare variable 
-
+    Map<String, List<TimeValue>> timeMap;
 
     public TimeMap() {
         
+        // Assign initial value
+        timeMap = new HashMap<>();
     }
     
     public void set(String key, String value, int timestamp) {
         
+        // If key is not in hashmap add one with empty value
+        if (!timeMap.containsKey(key)) {
+            timeMap.put(key, new ArrayList<>());
+        }
+
+        // add value in for that key now -> u can add multiple values to one key now
+        timeMap.get(key).add(new TimeValue(value, timestamp));
+
+        return;
     }
     
     public String get(String key, int timestamp) {
         
+        return key;
     }
 
     public static void main(String[] args){
@@ -34,13 +46,13 @@ public class TimeMap {
         TimeMap solution = new TimeMap();
 
         System.out.println("Final Result : ");
-        System.out.println("  1st Iteration adding google.com"); 
+        System.out.println("  1st Iteration"); 
         solution.set("foo", "bar", 1);
         
         System.out.println("  2nd Iteration : " + solution.get("foo", 1));    // bar
         System.out.println("  3rd Iteration : " + solution.get("foo", 3));    // bar
 
-        System.out.println("  4th Iteration adding youtube.com"); 
+        System.out.println("  4th Iteration"); 
         solution.set("foo", "bar2", 4);
 
         System.out.println("  6th Iteration : " + solution.get("foo", 4));    // bar2
