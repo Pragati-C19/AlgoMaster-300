@@ -98,15 +98,88 @@ public class SmallestRange {
  * 10. return resultRange
  * 
  * 
+ * //? let's learn heap approach fully
  * 
+ * 2nd Approach with minHeap
  * 
+ * 1. Declare below things
+ *      - int[] resultRange = new int[2] -> will declare a resultRange whose size is 2 to store min and max
+ *      - prevDiff = Max_Value     -> for prevDiff set Initial value to Infinity
+ * 2. we will use minHeap to store [num, numsList, numListIndex]
+ * 3. at start add 0'th index value in heap for all lists
+ *    we are not creating any array now we are dirctly adding those values in minHeap
+ *      - numList = i -> this is the list in which element is store
+ *      - numListIndex = 0 -> list madhe kitva index la ahe to element?
+ *      - num = nums[i][0] -> this is element value
+ *      -> minHeap.add(num, numList, numListIndex)
+ *      -> maxValue = max(maxValue, num)
+ * 4. while(!minHeap.isEmpty)
+ *      - currMinValue = minHeap.poll()    - this will give minValue [num, numsList, numsListIndex]
+ *      - minValue = currMinValue[0]
+ *      - numsList = currMinValue[1]
+ *      - numsListIndex = currMinValue[2]
+ *      - maxValue                         - this we already know for 0'th index nums now
+ *      - currDiff = maxValue - minValue
+ *      -> if(currDiff < prevDiff)
+ *              resultRange[0] = currMinValue[0]
+ *              resultRange[1] = currMaxValue
+ *              prevDiff = currDiff
+ *      -> if(currDiff == prevDiff)
+ *              
+ *      - changedNumsListIndex = numsListIndex + 1
+ *      - if(changedNumsListIndex < nums[numsList].size())
+ *              nextNum = nums[numsList][changedNumsListIndex]
+ *              minHeap.add(nextNum, numsList, changedNumsListIndex)
+ *              maxValue = max(maxValue, nextNum)
+ *      - else break
+ * 
+ * 5. return resultRange
  * 
  * 
  * Pseudo Code :
  * 
  * function smallestRange(lists){
  * 
+ *      int[] resultRange = new int
+ *      prevDiff = MAX_VALUE
+ *      maxValue = MIN_VALUE
+ *  
+ *      minHeap = new pq((a,b) -> a[0] - b[0])
+ * 
+ *      for(i = 0 to k)
+ *          numList = i
+ *          numListIndex = 0  // bcoz we are adding only 0'th index of each list for now
+ *          num = nums[i][0]
+ *  
+ *          minHeap.add(num, numList, numListIndex)
+ *          
+ *          maxValue = max(maxValue, num)
  *       
+ *      while(!minHeap.isEmpty)
+ *          
+ *          currMin = minHeap.poll
+ *          
+ *          minValue = currMin[0]
+ *          minValueList = currMin[1]
+ *          minValueListIndex = currMin[2]
+ * 
+ *          currDiff = maxValue - minValue
+ *          
+ *          if(currDiff < prevDiff)
+ *              resultRange[0] = minValue
+ *              resultRange[1] = maxValue
+ *              prevDiff = currDiff
+ * 
+ *          changedListIndex = minValueListIndex + 1
+ *          if(changedListIndex < nums[minValueList].size)
+ *              
+ *              nextNum = nums[minValueList][changedListIndex]
+ *              minHeap.add(nextNum, minValueList, changedListIndex) 
+ *              maxValue = max(MaxValue, nextNum)
+ * 
+ *          else break
+ * 
+ *      retrun resultRange
  * }
  * 
  */
