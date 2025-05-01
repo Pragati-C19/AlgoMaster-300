@@ -2,6 +2,31 @@ import java.util.*;
 
 public class SmallestRange {
     
+    public int[] smallestRange(List<List<Integer>> nums) {
+        
+        int[] resutlRange = new int[2];
+
+        return resutlRange;
+    }
+
+    public static void main(String[] args){
+
+        SmallestRange solution = new SmallestRange();
+
+        List<List<Integer>> nums1 = new ArrayList<>();
+        nums1.add(Arrays.asList(4, 10, 15, 24, 26));
+        nums1.add(Arrays.asList(0, 9, 12, 20));
+        nums1.add(Arrays.asList(5, 18, 22, 30));
+        System.out.println("Result1 -> " + Arrays.toString(solution.smallestRange(nums1)));
+
+        List<List<Integer>> nums2 = new ArrayList<>();
+        nums2.add(Arrays.asList(1, 2, 3));
+        nums2.add(Arrays.asList(1, 2, 3));
+        nums2.add(Arrays.asList(1, 2, 3));
+        System.out.println("Result2 -> " + Arrays.toString(solution.smallestRange(nums2)));       
+
+
+    }
 }
 
 /*
