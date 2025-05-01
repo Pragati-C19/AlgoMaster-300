@@ -57,7 +57,7 @@ public class TimeMap {
 
         // use binary search to get timestamp with less time complexity with this we don't need to search whole list will search only half
         int left = 0;
-        int right = valueOfKeyList.size();
+        int right = valueOfKeyList.size() - 1;
 
         while (left <= right) {
             
@@ -86,17 +86,18 @@ public class TimeMap {
         TimeMap solution = new TimeMap();
 
         System.out.println("Final Result : ");
-        System.out.println("  1st Iteration"); 
-        solution.set("foo", "bar", 1);
         
-        System.out.println("  2nd Iteration : " + solution.get("foo", 1));    // bar
-        System.out.println("  3rd Iteration : " + solution.get("foo", 3));    // bar
+        solution.set("foo", "bar", 1);
+        System.out.println("  1st Iteration \n"); 
+        
+        System.out.println("  2nd Iteration : " + solution.get("foo", 1) + "\n");    // bar
+        System.out.println("  3rd Iteration : " + solution.get("foo", 3) + "\n");    // bar
 
-        System.out.println("  4th Iteration"); 
         solution.set("foo", "bar2", 4);
+        System.out.println("  4th Iteration \n");
 
-        System.out.println("  6th Iteration : " + solution.get("foo", 4));    // bar2
-        System.out.println("  7th Iteration : " + solution.get("foo", 5));    // bar2
+        System.out.println("  5th Iteration : " + solution.get("foo", 4) + "\n");    // bar2
+        System.out.println("  6th Iteration : " + solution.get("foo", 5) + "\n");    // bar2
 
     }
 }
