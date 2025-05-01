@@ -3,22 +3,44 @@ import java.util.*;
 public class SnapshotArray {
 
     // Globally Declare Variables
-
+    Map<Integer, int[]> snapShotMap;
+    int[] setArray;
+    int snapId;
     
     public SnapshotArray(int length) {
         
+        // Assign value to global variables
+        snapShotMap = new HashMap<>();
+        snapId = -1;
+        setArray = new int[length];
     }
     
     public void set(int index, int val) {
         
+        setArray[index] = val;
+        System.out.println("    -> setArray is " + Arrays.toString(setArray));
     }
     
     public int snap() {
         
+        snapId++;
+
+        snapShotMap.put(snapId, setArray);
+        System.out.println("    -> Snapshot Map : " + Arrays.toString(snapShotMap.get(0)));
+
+        return snapId;
     }
     
     public int get(int index, int snap_id) {
         
+        if (!snapShotMap.containsKey(snap_id)) {
+            return 0;
+        }
+
+        int value = snapShotMap.get(snap_id)[index];
+        System.out.println("    -> value corresponding to index and snap_id is : " + value);
+
+        return value;
     }
 
 
