@@ -12,6 +12,11 @@ public class TimeMap {
             this.value = value;
             this.timestamp = timestamp;
         }
+
+        @Override
+        public String toString() {
+            return "(" + value + ", " + timestamp + ")";
+        }
     }
 
     // Globally Declare variable 
@@ -33,6 +38,7 @@ public class TimeMap {
         // add value in for that key now -> u can add multiple values to one key now
         timeMap.get(key).add(new TimeValue(value, timestamp));
 
+        System.out.println("    -> [SET] Hash Map is " + timeMap);
         return;
     }
     
