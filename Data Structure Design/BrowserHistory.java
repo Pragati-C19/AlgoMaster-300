@@ -47,8 +47,11 @@ public class BrowserHistory {
             if (currPage.prev == null) {
                 return currPage.val;
             }
-            
+
             currPage = currPage.prev;
+
+            System.out.println("    -> Updated CurrPage is " + currPage.val);
+
             steps--;    
         }
 
@@ -56,7 +59,22 @@ public class BrowserHistory {
     }
     
     public String forward(int steps) {
+       
+        System.out.println("    -> Updated CurrPage is " + currPage.val);
         
+        while (steps > 0) {
+            
+            if (currPage.next == null) {
+                return currPage.val;
+            }
+
+            currPage = currPage.next;
+
+            System.out.println("    -> Updated CurrPage is " + currPage.val);
+
+            steps--;
+        }
+
         return currPage.val;
     }
 
@@ -74,16 +92,16 @@ public class BrowserHistory {
         System.out.println("  3rd Iteration adding youtube.com"); 
         solution.visit("youtube.com");
       
-        System.out.println("  4th Iteration : " + solution.back(1));
-        System.out.println("  5th Iteration : " + solution.back(1)); 
-        System.out.println("  6th Iteration : " + solution.forward(1)); 
+        System.out.println("  4th Iteration : " + solution.back(1));    // facebook.com
+        System.out.println("  5th Iteration : " + solution.back(1));    // google.com
+        System.out.println("  6th Iteration : " + solution.forward(1)); // facebook.com
 
         System.out.println("  7th Iteration adding linkedin.com");
         solution.visit("linkedin.com");
 
-        System.out.println("  8th Iteration : " + solution.forward(2)); 
-        System.out.println("  9th Iteration : " + solution.back(2)); 
-        System.out.println("  10th Iteration : " + solution.back(7)); 
+        System.out.println("  8th Iteration : " + solution.forward(2)); // linkedin.com
+        System.out.println("  9th Iteration : " + solution.back(2));    // google.com
+        System.out.println("  10th Iteration : " + solution.back(7));   // leetcode.com
 
     }
 }
