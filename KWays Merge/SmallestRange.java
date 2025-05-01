@@ -16,7 +16,8 @@ public class SmallestRange {
         // will store only 0'th index from all list in heap
         for (int i = 0; i < kLists; i++) {
             
-            int num = nums[i][0];   // num
+            // used double get here bcoz type of nums is List<List<Integer>>
+            int num = nums.get(i).get(0);   // num
             int numList = i;        // num store in this list 
             int numListIndex = 0;   // num's Index in it's list
             
@@ -24,7 +25,7 @@ public class SmallestRange {
             
             maxValue = Math.max(maxValue, num);
 
-        }
+        }  
         // print int[] Heap like this 
         System.out.println("MinHeap After adding 0'th Index : " + Arrays.deepToString(minHeap.toArray()));
         System.out.println("MaxValue after adding 0'th index : " + maxValue);
@@ -38,7 +39,7 @@ public class SmallestRange {
             int minValueListIndex = currMinValue[2];
 
             int currDiff = maxValue - minValue;
-            System.out.println("    -> Current Difference of (" + minValue + ", " + maxValue + ") : " + currDiff);
+            System.out.println("   -> Current Difference of (" + minValue + ", " + maxValue + ") : " + currDiff);
 
             if  (currDiff < prevDiff){
 
@@ -46,21 +47,21 @@ public class SmallestRange {
                 resultRange[1] = maxValue;
                 prevDiff = currDiff;
 
-                System.out.println("    -> Current Result Range with Difference " + Arrays.toString(resultRange) + " : " + prevDiff);
+                System.out.println("       ~ Current Result Range with Difference " + Arrays.toString(resultRange) + " : " + prevDiff);
             }
 
             int changeMinValueListIndex = minValueListIndex + 1;
 
-            if(changeMinValueListIndex < nums[minValueList].size()){
+            if(changeMinValueListIndex < nums.get(minValueList).size()){
 
-                int nextNum = nums[minValueList][changeMinValueListIndex];
+                int nextNum = nums.get(minValueList).get(changeMinValueListIndex);
 
                 minHeap.add(new int[] {nextNum, minValueList, changeMinValueListIndex});
                 
                 maxValue = Math.max(maxValue, nextNum);
 
-                System.out.println("    [Curr] MinHeap After adding 0'th Index : " + Arrays.deepToString(minHeap.toArray()));
-                System.out.println("    [Curr] MaxValue after adding 0'th index : " + maxValue);
+                System.out.println("            MinHeap After adding 0'th Index : " + Arrays.deepToString(minHeap.toArray()));
+                System.out.println("            MaxValue after adding 0'th index : " + maxValue);
             }
             else {
                 break;
@@ -79,13 +80,13 @@ public class SmallestRange {
         nums1.add(Arrays.asList(4, 10, 15, 24, 26));
         nums1.add(Arrays.asList(0, 9, 12, 20));
         nums1.add(Arrays.asList(5, 18, 22, 30));
-        System.out.println("Result1 -> " + Arrays.toString(solution.smallestRange(nums1)));
+        System.out.println("Result1 -> " + Arrays.toString(solution.smallestRange(nums1)) + "\n");
 
         List<List<Integer>> nums2 = new ArrayList<>();
         nums2.add(Arrays.asList(1, 2, 3));
         nums2.add(Arrays.asList(1, 2, 3));
         nums2.add(Arrays.asList(1, 2, 3));
-        System.out.println("Result2 -> " + Arrays.toString(solution.smallestRange(nums2)));       
+        System.out.println("Result2 -> " + Arrays.toString(solution.smallestRange(nums2)) + "\n");       
 
 
     }
