@@ -2,6 +2,44 @@ import java.util.*;
 
 public class SnapshotArray {
 
+    // Globally Declare Variables
+
+    
+    public SnapshotArray(int length) {
+        
+    }
+    
+    public void set(int index, int val) {
+        
+    }
+    
+    public int snap() {
+        
+    }
+    
+    public int get(int index, int snap_id) {
+        
+    }
+
+
+    public static void main(String[] args){
+
+        SnapshotArray solution = new SnapshotArray(3);
+
+        System.out.println("Final Result : ");
+        
+        solution.set(0, 5);
+        System.out.println("  1st Iteration \n"); 
+        
+        System.out.println("  2nd Iteration : " + solution.snap() + "\n");    // 0
+
+        solution.set(0, 6);
+        System.out.println("  3rd Iteration \n");
+
+        System.out.println("  4th Iteration : " + solution.get(0, 0) + "\n");    // 5
+
+    }
+
 }
 
 /*
