@@ -25,11 +25,18 @@ public class BrowserHistory {
         head.next = null;
 
         currPage = head;
-
+        System.out.println("  Initial CurrPage is " + currPage.val);
     }
     
     public void visit(String url) {
         
+        ListNode visitURL = new ListNode(url);
+        visitURL.prev = currPage;
+        visitURL.next = null;
+
+        currPage = visitURL; 
+        System.out.println("    -> Updated CurrPage is " + currPage.val);
+
         return; 
     }
     
