@@ -2,6 +2,60 @@ import java.util.*;
 
 public class BrowserHistory {
     
+    // ListNide Struct for Doubly LinkedList
+    private static class ListNode {
+        int val;
+        ListNode prev;
+        ListNode next;
+        ListNode child;
+
+        ListNode(int val) {
+            this.val = val;
+        }
+    }
+
+    public BrowserHistory(String homepage) {
+        
+    }
+    
+    public void visit(String url) {
+        
+    }
+    
+    public String back(int steps) {
+        
+    }
+    
+    public String forward(int steps) {
+        
+    }
+
+    public static void main(String[] args){
+
+        String homepage = "leetcode.com";
+        
+        BrowserHistory solution = new BrowserHistory(homepage);
+
+        System.out.println("Final Result : ");
+        System.out.println("  1st Iteration..."); 
+        solution.visit("google.com");
+        System.out.println("  2nd Iteration..."); 
+        solution.visit("facebook.com");
+        System.out.println("  3rd Iteration..."); 
+        solution.visit("youtube.com");
+      
+        System.out.println("  4th Iteration : " + solution.back(1));
+        System.out.println("  5th Iteration : " + solution.back(1)); 
+        System.out.println("  6th Iteration : " + solution.forward(1)); 
+
+        System.out.println("  7th Iteration...");
+        solution.visit("linkedin.com");
+
+        System.out.println("  8th Iteration : " + solution.forward(2)); 
+        System.out.println("  9th Iteration : " + solution.back(2)); 
+        System.out.println("  10th Iteration : " + solution.back(7)); 
+
+    }
 }
 
 /*
