@@ -2,6 +2,51 @@ import java.util.*;
 
 public class TimeMap {
 
+    // Custom Struct to easily get value and timestamp from list
+    private static class TimeMap{
+
+        String value;
+        int timestamp;
+
+        TimeMap(String value, int timestamp){
+            this.value = value;
+            this.timestamp = timestamp;
+        }
+    }
+
+    // Globally Declare variable 
+
+
+    public TimeMap() {
+        
+    }
+    
+    public void set(String key, String value, int timestamp) {
+        
+    }
+    
+    public String get(String key, int timestamp) {
+        
+    }
+
+    public static void main(String[] args){
+
+        TimeMap solution = new TimeMap();
+
+        System.out.println("Final Result : ");
+        System.out.println("  1st Iteration adding google.com"); 
+        solution.set("foo", "bar", 1);
+        
+        System.out.println("  2nd Iteration : " + solution.get("foo", 1));    // bar
+        System.out.println("  3rd Iteration : " + solution.get("foo", 3));    // bar
+
+        System.out.println("  4th Iteration adding youtube.com"); 
+        solution.set("foo", "bar2", 4);
+
+        System.out.println("  6th Iteration : " + solution.get("foo", 4));    // bar2
+        System.out.println("  7th Iteration : " + solution.get("foo", 5));    // bar2
+
+    }
 }
 
 /*
