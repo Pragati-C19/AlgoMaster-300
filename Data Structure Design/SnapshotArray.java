@@ -25,8 +25,9 @@ public class SnapshotArray {
         
         snapId++;
 
-        snapShotMap.put(snapId, setArray);
-        System.out.println("    -> Snapshot Map : " + Arrays.toString(snapShotMap.get(0)));
+        // used .clone() to store array in hashmap now that array will not get update
+        snapShotMap.put(snapId, setArray.clone());
+        System.out.println("    -> Snapshot Map : " + Arrays.toString(snapShotMap.get(snapId)));
 
         return snapId;
     }
@@ -36,6 +37,8 @@ public class SnapshotArray {
         if (!snapShotMap.containsKey(snap_id)) {
             return 0;
         }
+
+        System.out.println("    -> Snapshot Map : " + Arrays.toString(snapShotMap.get(snap_id)));
 
         int value = snapShotMap.get(snap_id)[index];
         System.out.println("    -> value corresponding to index and snap_id is : " + value);
