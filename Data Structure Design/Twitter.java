@@ -2,6 +2,59 @@ import java.util.*;
 
 public class Twitter {
     
+    private static class TweetTime {
+        
+    }
+
+    // Globally Declare Variable 
+
+    
+    public Twitter() {
+        
+    }
+    
+    public void postTweet(int userId, int tweetId) {
+        
+    }
+    
+    public List<Integer> getNewsFeed(int userId) {
+        
+    }
+    
+    public void follow(int followerId, int followeeId) {
+        
+    }
+    
+    public void unfollow(int followerId, int followeeId) {
+        
+    }
+
+    public static void main(String[] args){
+
+        Twitter solution = new Twitter();
+
+        System.out.println("Final Result : ");
+
+        solution.postTweet(1, 5);
+        System.out.println("  1st Iteration \n");
+
+        System.out.println("  2nd Iteration : " + solution.getNewsFeed(1) + "\n");    // 1
+
+        solution.follow(1, 2);
+        System.out.println("  3rd Iteration \n");
+
+        solution.postTweet(2, 6);
+        System.out.println("  4th Iteration \n");
+
+        System.out.println("  5th Iteration : " + solution.getNewsFeed(1) + "\n");    // 1
+
+        solution.unfollow(1, 2);
+        System.out.println("  6th Iteration \n");
+
+        System.out.println("  7th Iteration : " + solution.getNewsFeed(1) + "\n");    // 1
+
+    }
+
 }
 
 /*
