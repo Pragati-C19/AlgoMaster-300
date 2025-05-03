@@ -60,7 +60,7 @@ public class Twitter {
         for (Integer followerId : followersMap.get(userId)) {
             
             List<TweetTime> tweetList = tweetMap.get(followerId);
-            System.out.println(" getting news feed for " + userId + "'s follower " + followerId + " : " + tweetList);
+            System.out.println("    -> getting news feed for " + userId + "'s follower " + followerId + " : " + tweetList);
 
             for (int i = 0; i < tweetList.size(); i++) {
                 
@@ -85,11 +85,17 @@ public class Twitter {
     
     public void follow(int followerId, int followeeId) {
         
+        followersMap.get(followerId).add(followeeId);
+        System.out.println("    -> Adding followee in FollowerMap : " + followersMap);
+
         return;
     }
     
     public void unfollow(int followerId, int followeeId) {
         
+        followersMap.get(followerId).remove(followeeId);
+        System.out.println("    -> Removing followee from FollowerMap : " + followersMap);
+
         return;
     }
 
