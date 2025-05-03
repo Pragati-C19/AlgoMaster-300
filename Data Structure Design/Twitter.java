@@ -4,29 +4,93 @@ public class Twitter {
     
     private static class TweetTime {
         
+        int tweetId;
+        int globalTime;
+
+        TweetTime(int tweetId, int globalTime){
+            this.tweetId = tweetId;
+            this.globalTime = globalTime;
+        }
+
+        @Override
+        public String toString() {
+            return "(" + tweetId + ", " + globalTime + ")";
+        }
     }
 
     // Globally Declare Variable 
+    Map<Integer, Set<Integer>> followersMap;
+    Map<Integer, List<TweetTime>> tweetMap;
+    int globalTime;
 
-    
     public Twitter() {
         
+        // Assign values to global variables
+        followersMap = new HashMap<>();
+        tweetMap = new HashMap<>();
+        globalTime = 0;
+
     }
     
     public void postTweet(int userId, int tweetId) {
         
+        // add userId and tweetId to tweetMap
+        if (!tweetMap.containsKey(userId)) {
+            tweetMap.put(userId, new ArrayList<>());
+        }
+        tweetMap.get(userId).add(new TweetTime(tweetId, globalTime));
+        System.out.println("    -> TweetMap : " + tweetMap);
+
+        // add userId in it's followerList to get feed easily later
+        if (!followersMap.containsKey(userId)) {
+            followersMap.put(userId, new HashSet<>());
+        }
+        followersMap.get(userId).add(userId);
+        System.out.println("    -> FollowerMap : " + followersMap);
+
+        globalTime++;
+
+        return;
     }
     
     public List<Integer> getNewsFeed(int userId) {
         
+        PriorityQueue<TweetTime> minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a.globalTime, b.globalTime));
+
+        for (Integer followerId : followersMap.get(userId)) {
+            
+            List<TweetTime> tweetList = tweetMap.get(followerId);
+            System.out.println(" getting news feed for " + userId + "'s follower " + followerId + " : " + tweetList);
+
+            for (int i = 0; i < tweetList.size(); i++) {
+                
+                minHeap.add(tweetList.get(i));
+                System.out.println("      -> updated minHeap " + minHeap);
+
+                if (minHeap.size() > 10) {
+                    minHeap.poll();
+                }
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        while (minHeap.isEmpty()) {
+            TweetTime newsFeed = minHeap.poll();
+            result.add(newsFeed.tweetId);
+        }
+
+        return result;
+
     }
     
     public void follow(int followerId, int followeeId) {
         
+        return;
     }
     
     public void unfollow(int followerId, int followeeId) {
         
+        return;
     }
 
     public static void main(String[] args){
@@ -160,9 +224,9 @@ public class Twitter {
  *                  minHeap.poll
  * 
  *      - List<Integer> result
- *      - for(i = 0 to minHeap.size)
+ *      - while(minHeap.isEmpty)
  *          newsFeed = minHeap.poll()
- *          result.add(newsFeed[0])
+ *          result.add(newsFeed.tweetId)
  *      - return result   
  * 
  * 6. void follow(int followerId, int followeeId)
