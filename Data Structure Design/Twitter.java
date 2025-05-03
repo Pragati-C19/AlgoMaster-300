@@ -31,21 +31,92 @@ public class Twitter {
  * 
  * Brute force thinking
  * 1. I want to store 2 thins for 1 user that is {tweets and followers}
+ * 
  * 2. jr me ek followerList val array banavla for each user
+ *      - BASE CASE : if followerID == FolloweeID then return
  *      - and tyat tyanche followers cha track thevla
  *      - it's like followerMap<userID, List<followers>>
  *      - ohk using List<Integer> can add duplicates I don't want that so let's change it do hashset
  *      - followersMap<userID, Set<followers>>
- * 3. void follow(int followerId, int followeeId)
- *      - followerMap.get(followerId).add(followeeID)
- * 4. void unfollow(int followerId, int followeeId)
- *      - followerMap.get(followerId).remove(followeeID)
+ * 
+ * 4. jr mala feeds baghayche astil users che think abt all first
+ *      - to store userID and followers mala vatal I need a map<UserID, List<tweetID>>
+ *      - jevha me postTweet mhnel.. tevha me to tweet tyach id sobt tyala je follow kartay tyanchya List madhe pn add karel
+ *      - mg jevha get news karel tevha tya userchya list la reverse order madhe return karel till length 10
+ *      - nahitr queue madhe pn add karel to for most recent.. heap madhe fact 10 add hotil jr sixe 10 chya vr geli tr FIFO method ni jo first gelela to kadhun takel me.. 
+ *      - jevha mala getTweets karayche asel tevha me queue check karel.. tyatle 10 deil but before that me check karel ki it's for this user or not.. 
+ *
+ * 5. he varchi thinking right ahe but yat ek gost add karan is better -> Time
+ *      - minHeap banav jo by Time sort hoil
+ *      - tweets sobt tweets cha post time add kar tweetMap<userID, List<Tweet, Time>>
+ *      - postTweeets madhe fact userId chya List<Tweet, Time> madhe tweets and tyaveles cha time add karaycha
+ *      - jevha getnews karaychi asel tevha
+ *          self vale tweets adhi add kr tweetsMap madhun in heap 
+ *          minHeap automatically sort karel minTime vale varti
+ *          then check karayche if that user follows anyone 
+ *          and add those tweets in heap too
+ *          heap chi size 10 chya vr geli tr 
+ *         
+ *          
  * 
  * 
  * 
  * Pseudo code :
  * 
+ * 1. Tweet Class -> to store tweet and time in teetMap
+ *       - int tweetID
+ *       - int globalTime
  * 
+ * 2. Globally Declare variables
+ *      - tweetMap<Integer, List<Tweet>>
+ *      - followerMap<Integer, Set<Integer>>
+ *      - globalTime 
+ * 
+ * 3. Twitter() 
+ *      - tweetMap = new hashmap
+ *      - followerMap = new hashmap
+ *      - globalTime = 0
+ * 
+ * 4. void postTweet(int userId, int tweetId)
+ *      - if(!tweetMap.containsKey(userId)) 
+ *          tweetMap.put(userId, new ArrayList)
+ * 
+ *      - tweetMap.get(userId).add(new Tweet(tweetId, globalTime))
+ *    
+ *  -> Initially add userItself in that follow list, I know que says A user cannot follow himself. 
+ *      but we are not doing it by follow unfollow commad.. we are normally adding it at start.. 
+ *      it will be easy when we try to show tweets
+ *      - if(!followMap.containsKey(userId)) 
+ *          followMap.put(userId, new Hashset)
+ *      - followMap.get(userId).add(userId)
+ *      
+ *      - time++
+ * 
+ * 
+ * 5. List<Integer> getNewsFeed(int userId)
+ *      - create a minHeap sorting by globalTime
+ * 
+ *      - Check if there any followerId for that userId?
+ *          if(followerId : followMap.get(userId))
+ * 
+ *      - if yes then take tweets of that followerId add it in minHeap
+ *          List<Tweet> tweetList = tweetMap.get(followerId)
+ *          - for(i = 0 to tweetList.size)
+ *              minHeap.add(tweetList(i))
+ *              if(minHeap.size > 10)
+ *                  minHeap.poll
+ * 
+ *      - List<Integer> result
+ *      - for(i = 0 to minHeap.size)
+ *          newsFeed = minHeap.poll()
+ *          result.add(newsFeed[0])
+ *      - return result   
+ * 
+ * 6. void follow(int followerId, int followeeId)
+ *      - followerMap.get(followerId).add(followeeID)
+ * 
+ * 7. void unfollow(int followerId, int followeeId)
+ *      - followerMap.get(followerId).remove(followeeID)
  * 
  * 
  */
