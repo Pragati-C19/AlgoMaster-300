@@ -2,6 +2,52 @@ import java.util.*;
 
 public class LRUCache {
  
+       
+    // Globally Declare variables 
+
+    
+    public LRUCache(int capacity) {
+        
+    }
+    
+    public int get(int key) {
+        
+    }
+    
+    public void put(int key, int value) {
+        
+    }
+
+    public static void main(String[] args){
+
+        LRUCache solution = new LRUCache(2);
+
+        System.out.println("Final Result : ");
+
+        solution.put(1, 1);
+        System.out.println("  1st Iteration \n");
+
+        solution.put(2, 2);
+        System.out.println("  2nd Iteration \n");
+
+        System.out.println("  3rd Iteration : " + solution.get(1) + "\n");    // 1
+
+        solution.put(3, 3);
+        System.out.println("  4th Iteration \n");
+
+        System.out.println("  5th Iteration : " + solution.get(2) + "\n");    // 2
+
+        solution.put(4, 4);
+        System.out.println("  6th Iteration \n");
+
+        System.out.println("  7th Iteration : " + solution.get(1) + "\n");    // -1
+
+        System.out.println("  8th Iteration : " + solution.get(3) + "\n");    // 3
+
+        System.out.println("  9th Iteration : " + solution.get(4) + "\n");    // 4
+
+    }
+
 }
 
 /* 
