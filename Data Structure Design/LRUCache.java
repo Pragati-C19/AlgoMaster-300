@@ -9,7 +9,14 @@ public class LRUCache {
     public LRUCache(int capacity) {
         
         // Assign value to global variables
-        cacheMap = new LinkedHashMap<>(capacity, 0.75f, true);
+        cacheMap = new LinkedHashMap<>(capacity, 0.75f, true) {
+
+            // This override helps to remove any old element or any non recently used element
+            @Override
+            protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+                return size() > capacity;
+            }
+        };
 
         // I didn't knew what to write at leadFactor I wrote random thing.. bcoz it was necessary
     }
@@ -145,5 +152,18 @@ public class LRUCache {
  *      - for our condition when size() > capacity
  * 
  * 
+ * 4. what is mean by below syntax?
+ * 
+ *      cacheMap = new LinkedHashMap<Integer, Integer>(...) {
+ *          @Override
+ *          protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+ *              return size() > capacity;
+ *          }
+ *      };
+ * 
+ *      - This is an anonymous subclass of LinkedHashMap. 
+ *      - You're extending the original LinkedHashMap on the fly to override the removeEldestEntry() method. 
+ *      - That method is called after every insertion, and if it returns true, the eldest (oldest or least recently used) item is automatically removed.
+ *      
  * 
  */
