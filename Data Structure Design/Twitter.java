@@ -55,12 +55,22 @@ public class Twitter {
     
     public List<Integer> getNewsFeed(int userId) {
         
+        List<Integer> result = new ArrayList<>();
         PriorityQueue<TweetTime> minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a.globalTime, b.globalTime));
+
+        // Base Case : if userId is not in the map
+        if (!followersMap.containsKey(userId)) {
+            return result;
+        }
 
         for (Integer followerId : followersMap.get(userId)) {
             
             List<TweetTime> tweetList = tweetMap.get(followerId);
             System.out.println("    -> getting news feed for " + userId + "'s follower " + followerId + " : " + tweetList);
+
+            // Base Case if TweetTime list is empty
+            if (tweetList == null || tweetList.size() == 0)
+                continue;
 
             for (int i = 0; i < tweetList.size(); i++) {
                 
@@ -73,7 +83,6 @@ public class Twitter {
             }
         }
 
-        List<Integer> result = new ArrayList<>();
         while (!minHeap.isEmpty()) {
             
             TweetTime newsFeed = minHeap.poll();
@@ -94,6 +103,15 @@ public class Twitter {
     
     public void follow(int followerId, int followeeId) {
         
+        // Base Case if both followerId and followeeId is same
+        if (followerId == followeeId) {
+            return;
+        }
+
+        if (!followersMap.containsKey(followerId)) {
+            followersMap.put(followerId, new HashSet<>());
+        }
+
         followersMap.get(followerId).add(followeeId);
         System.out.println("    -> Adding followee in FollowerMap : " + followersMap);
 
@@ -101,10 +119,13 @@ public class Twitter {
     }
     
     public void unfollow(int followerId, int followeeId) {
-        
-        followersMap.get(followerId).remove(followeeId);
-        System.out.println("    -> Removing followee from FollowerMap : " + followersMap);
-
+       
+        if (followersMap.containsKey(followerId)) {
+            
+            followersMap.get(followerId).remove(followeeId);
+            System.out.println("    -> Removing followee from FollowerMap : " + followersMap);        
+        }
+    
         return;
     }
 
