@@ -82,6 +82,12 @@ public class Twitter {
             result.add(newsFeed.tweetId);
         }
 
+        // I used minHeap so it's popping tweet first which has min Time 
+        // and in minHeap the most recent will be at the bottom 
+        // so we can use maxHeap or reverse the result
+
+        Collections.reverse(result);
+
         return result;
 
     }
