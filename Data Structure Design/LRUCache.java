@@ -4,18 +4,34 @@ public class LRUCache {
  
        
     // Globally Declare variables 
-
+    LinkedHashMap<Integer, Integer> cacheMap;
     
     public LRUCache(int capacity) {
         
+        // Assign value to global variables
+        cacheMap = new LinkedHashMap<>(capacity, 0.75f, true);
+
+        // I didn't knew what to write at leadFactor I wrote random thing.. bcoz it was necessary
     }
     
     public int get(int key) {
         
+        if (cacheMap.containsKey(key)) {
+
+            System.out.println("    -> cahcheMap : " + cacheMap);
+            return cacheMap.get(key);
+        }
+
+        return -1;
     }
     
     public void put(int key, int value) {
         
+        cacheMap.put(key, value);
+
+        System.out.println("    -> After update cahcheMap : " + cacheMap);
+
+        return;
     }
 
     public static void main(String[] args){
