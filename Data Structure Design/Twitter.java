@@ -74,8 +74,11 @@ public class Twitter {
         }
 
         List<Integer> result = new ArrayList<>();
-        while (minHeap.isEmpty()) {
+        while (!minHeap.isEmpty()) {
+            
             TweetTime newsFeed = minHeap.poll();
+            System.out.println("    -> news Feed : " + newsFeed);
+
             result.add(newsFeed.tweetId);
         }
 
