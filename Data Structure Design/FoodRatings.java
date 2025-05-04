@@ -2,6 +2,55 @@ import java.util.*;
 
 public class FoodRatings {
     
+    private static calss FoodList{
+
+        String foodName;
+        int rating;
+
+        FoodList(String foodName, int rating){
+            this.foodName = foodName;
+            this.rating = rating;
+        }
+
+        @Override
+        public String toString() {
+            return "(" + foodName + ", " + rating + ")";
+        }
+    }
+    
+    // Gloablly Declare Variable 
+
+
+    public FoodRatings(String[] foods, String[] cuisines, int[] ratings) {
+        
+    }
+    
+    public void changeRating(String food, int newRating) {
+        
+    }
+    
+    public String highestRated(String cuisine) {
+        
+    }
+
+    public static void main(String[] args){
+
+        String[] foods = {"kimchi", "miso", "sushi", "moussaka", "ramen", "bulgogi"};
+        String[] cuisine = {"korean", "japanese", "japanese", "greek", "japanese", "korean"};
+        int[] ratings = {9, 12, 8, 15, 14, 7};
+
+        FoodRatings solution = new FoodRatings(foods, cuisine, ratings);
+
+        System.out.println("Final Result : ");
+        System.out.println("  1st Iteration : " + solution.highestRated("korean") + "\n");          // kimchi
+        System.out.println("  2nd Iteration : " + solution.highestRated("japanese") + "\n");        // ramen
+        System.out.println("  3rd Iteration : " + solution.changeRating("sushi", 16); + "\n");       
+        System.out.println("  4th Iteration : " + solution.highestRated("japanese") + "\n");        // sushi
+        System.out.println("  5th Iteration : " + solution.changeRating("ramen", 16); + "\n");       
+        System.out.println("  6th Iteration : " + solution.highestRated("japanese") + "\n");        // ramen
+        
+    }
+
 }
 
 /*
