@@ -2,7 +2,7 @@ import java.util.*;
 
 public class FoodRatings {
     
-    private static calss FoodList{
+    private static class FoodList{
 
         String foodName;
         int rating;
@@ -19,18 +19,38 @@ public class FoodRatings {
     }
     
     // Gloablly Declare Variable 
-
+    Map<String, List<FoodList>> cuisineMap;
 
     public FoodRatings(String[] foods, String[] cuisines, int[] ratings) {
         
+        int n = foods.length;
+
+        // Initialize the map
+        cuisineMap = new HashMap<>(); 
+
+        // now add value in it
+        for (int i = 0; i < n; i++) {
+            
+            if (!cuisineMap.containsKey(cuisines[i])) {
+                cuisineMap.put(cuisines[i], new ArrayList<>());
+            }
+
+            cuisineMap.get(cuisines[i]).add(new FoodList(foods[i], ratings[i]));
+
+        }
+
+        System.out.println("cuisineMap: " + cuisineMap);
+
     }
     
     public void changeRating(String food, int newRating) {
         
+        return;
     }
     
     public String highestRated(String cuisine) {
         
+        return cuisine;
     }
 
     public static void main(String[] args){
@@ -41,12 +61,14 @@ public class FoodRatings {
 
         FoodRatings solution = new FoodRatings(foods, cuisine, ratings);
 
-        System.out.println("Final Result : ");
+        System.out.println("\nFinal Result : ");
         System.out.println("  1st Iteration : " + solution.highestRated("korean") + "\n");          // kimchi
         System.out.println("  2nd Iteration : " + solution.highestRated("japanese") + "\n");        // ramen
-        System.out.println("  3rd Iteration : " + solution.changeRating("sushi", 16); + "\n");       
+        solution.changeRating("sushi", 16);
+        System.out.println("  3rd Iteration... \n");       
         System.out.println("  4th Iteration : " + solution.highestRated("japanese") + "\n");        // sushi
-        System.out.println("  5th Iteration : " + solution.changeRating("ramen", 16); + "\n");       
+        solution.changeRating("ramen", 16);
+        System.out.println("  5th Iteration... \n");       
         System.out.println("  6th Iteration : " + solution.highestRated("japanese") + "\n");        // ramen
         
     }
