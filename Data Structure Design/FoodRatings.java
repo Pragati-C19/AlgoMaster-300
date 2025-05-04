@@ -74,7 +74,12 @@ public class FoodRatings {
     
     public String highestRated(String cuisine) {
         
-        return cuisine;
+        TreeSet<FoodList> foodListFromCuisine = cuisineMap.get(cuisine);
+        System.out.println("    -> Food List for specific cuisine is " + foodListFromCuisine);
+        
+        String highestRatedFoodInCuisine = foodListFromCuisine.first().foodName;
+        
+        return highestRatedFoodInCuisine;
     }
 
     public static void main(String[] args){
