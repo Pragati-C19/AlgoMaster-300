@@ -2,7 +2,7 @@ import java.util.*;
 
 public class FoodRatings {
     
-    private static class FoodList{
+    private static class FoodList implements Comparable<FoodList>{
 
         String foodName;
         int rating;
@@ -15,6 +15,15 @@ public class FoodRatings {
         @Override
         public String toString() {
             return "(" + foodName + ", " + rating + ")";
+        }
+
+        // Added compare statement in class itself for TreeSet
+
+        public int compareTo(FoodList other) {
+            // Sort by descending rating, then ascending name
+            if (this.rating != other.rating)
+                return Integer.compare(other.rating, this.rating);
+            return this.foodName.compareTo(other.foodName);
         }
     }
     
