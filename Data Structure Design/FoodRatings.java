@@ -18,8 +18,16 @@ public class FoodRatings {
         }
     }
     
-    // Gloablly Declare Variable 
-    Map<String, List<FoodList>> cuisineMap;
+    // Gloablly Declare Variable
+    /*
+        foodToCuisine -> which can tell food's cuisine
+        foodToRating -> which can tell food's rating
+        cuisineMap -> it stores cuisine as key and TreeSet<FoodList> as value
+    */ 
+        
+    Map<String, TreeSet<FoodList>> cuisineMap;
+    Map<String, Integer> foodToRatingMap;
+    Map<String, String> foodToCuisineMap;
 
     public FoodRatings(String[] foods, String[] cuisines, int[] ratings) {
         
@@ -27,23 +35,30 @@ public class FoodRatings {
 
         // Initialize the map
         cuisineMap = new HashMap<>(); 
+        foodToRatingMap = new HashMap<>();
+        foodToCuisineMap = new HashMap<>();
 
         // now add value in it
         for (int i = 0; i < n; i++) {
             
             if (!cuisineMap.containsKey(cuisines[i])) {
-                cuisineMap.put(cuisines[i], new ArrayList<>());
+                cuisineMap.put(cuisines[i], new TreeSet<>());
             }
 
             cuisineMap.get(cuisines[i]).add(new FoodList(foods[i], ratings[i]));
 
+            foodToCuisineMap.put(foods[i], cuisines[i]);
+            foodToRatingMap.put(foods[i], ratings[i]);
         }
 
-        System.out.println("cuisineMap: " + cuisineMap);
+        System.out.println("CuisineMap: " + cuisineMap);
+        System.out.println("FoodToRatingMap: " + foodToRatingMap);
+        System.out.println("FoodToCuisineMap: " + foodToCuisineMap);
 
     }
     
     public void changeRating(String food, int newRating) {
+        
         
         return;
     }
@@ -139,7 +154,19 @@ public class FoodRatings {
  *      - return highestRated
  *          
  * 
+ * Improvements :
+ *     
+ * 1. When I tried to do changeRating that time I realized that it's not easy to find food without knowing it's cursine
+ * 2. Let's use a new map which will store food and rating
+ * 3. If I do above then it will give problem in HighestRating
  * 
+ * 4. So I need 4 Maps
+ *      foodToCuisine -> which can tell food's cuisine
+ *      foodToRating -> which can tell food's rating
+ *      cuisineMap -> it stores cuisine as key and TreeSet<FooList> as value
+ *      
+ * 
+ *      
  * Pseudo Code :
  * 
  * 
