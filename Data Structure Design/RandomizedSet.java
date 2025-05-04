@@ -3,22 +3,58 @@ import java.util.*;
 public class RandomizedSet {
     
     // Declare Global Variables 
-
+    Set<Integer> randomizSet;
 
     public RandomizedSet() {
         
+        // Assign Initial Value to Global Variables
+        randomizSet = new HashSet<>();
     }
     
     public boolean insert(int val) {
         
+        if (!randomizSet.contains(val)) {
+            randomizSet.add(val);
+            System.out.println("    -> RandomizedSet After Insertion of " + val + " : " + randomizSet);
+
+            return true;
+        }
+
+        System.out.println("    -> Val not found in set...");
+        return false;
     }
     
     public boolean remove(int val) {
         
+        if (randomizSet.contains(val)) {
+            randomizSet.remove(val);
+            System.out.println("    -> RandomizedSet After Removing of " + val + " : " + randomizSet);
+
+            return true;
+        }
+
+        System.out.println("    -> Val found in set...");
+        return false;
     }
     
     public int getRandom() {
         
+        // Convert HashSet into List
+        List<Integer> hashToList = new ArrayList<>(randomizSet);
+        int n = hashToList.size();
+        System.out.println("    -> hash list : " + hashToList);
+        
+        // Generate a random index
+        Random rand = new Random();
+        int randomIndex = rand.nextInt(n);
+        
+        // Get element from that list
+        int randomVal = hashToList.get(randomIndex);
+
+        System.out.println("    -> Random Element at " + randomIndex + " : " + randomVal);
+
+        return randomVal;
+
     }
 
     public static void main(String[] args){
