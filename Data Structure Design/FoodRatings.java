@@ -194,7 +194,16 @@ public class FoodRatings {
  *      cuisineMap -> it stores cuisine as key and TreeSet<FooList> as value
  *      
  * 
- *      
+ * 5. In My code it was adding new FoodList when I try to changeRatings 
+ *      this below testcase has that issue
+ * ["FoodRatings","changeRating","highestRated","changeRating","changeRating","changeRating","highestRated","highestRated"]
+ * [[["emgqdbo","jmvfxjohq","qnvseohnoe","yhptazyko","ocqmvmwjq"],["snaxol","snaxol","snaxol","fajbervsj","fajbervsj"],[2,6,18,6,5]],["qnvseohnoe",11],["fajbervsj"],["emgqdbo",3],["jmvfxjohq",9],["emgqdbo",14],["fajbervsj"],["snaxol"]]
+ *  
+ *      - at start [qnvseohnoe, 18]
+ *      - but then It says to changeRating to 11 
+ *      - now in map [qnvseohnoe, 11] this should be there instead of [qnvseohnoe, 18]
+ *      - but in my current code it doen't do like that
+ * 
  * Pseudo Code :
  * 
  * 
