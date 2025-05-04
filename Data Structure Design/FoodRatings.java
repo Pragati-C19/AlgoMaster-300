@@ -68,6 +68,19 @@ public class FoodRatings {
     
     public void changeRating(String food, int newRating) {
         
+        // Updated the rating of food in foodRatingMap
+        foodToRatingMap.put(food, newRating);
+
+        // Find cuisine of the food from food cuisine map
+        String cuisineOfFood = foodToCuisineMap.get(food);
+        System.out.println("    -> Food's cuisine " + cuisineOfFood);
+
+        //Need to update in cuisine map now
+        if (cuisineMap.containsKey(cuisineOfFood)) {
+            
+            cuisineMap.get(cuisineOfFood).add(new FoodList(food, newRating));
+            System.out.println("    -> Changing Rating of food in cuisine Map " + cuisineMap);
+        }
         
         return;
     }
@@ -81,6 +94,7 @@ public class FoodRatings {
         
         return highestRatedFoodInCuisine;
     }
+
 
     public static void main(String[] args){
 
