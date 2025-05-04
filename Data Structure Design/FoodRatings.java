@@ -68,6 +68,9 @@ public class FoodRatings {
     
     public void changeRating(String food, int newRating) {
         
+        // here we need foodToRating map to get oldRating easily 
+        int oldRating = foodToRatingMap.get(food);
+
         // Updated the rating of food in foodRatingMap
         foodToRatingMap.put(food, newRating);
 
@@ -80,6 +83,9 @@ public class FoodRatings {
             
             cuisineMap.get(cuisineOfFood).add(new FoodList(food, newRating));
             System.out.println("    -> Changing Rating of food in cuisine Map " + cuisineMap);
+
+            cuisineMap.get(cuisineOfFood).remove(new FoodList(food, oldRating));
+            System.out.println("    -> Removing food with old Rating in cuisine Map " + cuisineMap);
         }
         
         return;
