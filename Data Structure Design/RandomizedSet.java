@@ -2,6 +2,40 @@ import java.util.*;
 
 public class RandomizedSet {
     
+    // Declare Global Variables 
+
+
+    public RandomizedSet() {
+        
+    }
+    
+    public boolean insert(int val) {
+        
+    }
+    
+    public boolean remove(int val) {
+        
+    }
+    
+    public int getRandom() {
+        
+    }
+
+    public static void main(String[] args){
+
+        RandomizedSet solution = new RandomizedSet();
+
+        System.out.println("Final Result : ");
+        System.out.println("  1st Iteration : " + solution.insert(1) + "\n");       // true
+        System.out.println("  2nd Iteration : " + solution.remove(2) + "\n");       // false
+        System.out.println("  3rd Iteration : " + solution.insert(2) + "\n");       // true
+        System.out.println("  4th Iteration : " + solution.getRandom() + "\n");     // 1 or 2
+        System.out.println("  5th Iteration : " + solution.remove(1) + "\n");       // true
+        System.out.println("  6th Iteration : " + solution.insert(2) + "\n");       // false
+        System.out.println("  7th Iteration : " + solution.getRandom() + "\n");     // 2
+
+    }
+
 }
 
 /*
