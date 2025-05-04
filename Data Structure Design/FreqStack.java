@@ -44,7 +44,36 @@ public class FreqStack {
     
     public int pop() {
         
-        return 1;
+        // get full stack for the maxFreqCount bcoz we need to pop out top element from it
+        Stack<Integer> stack = groupOfValByFreqMap.get(maxFreqCount);
+        
+        System.out.println("    -> Stack for " + maxFreqCount + " : " + stack);
+        
+        // pop out the top element we need to store it as we want to return it
+        int mostFreqUsedVal = stack.pop();
+
+        // Now we need to decrease the freq or that val in freqMap
+        freqMap.put(mostFreqUsedVal, freqMap.get(mostFreqUsedVal) - 1);
+        
+        System.out.println("    -> After decresing the freq of " + mostFreqUsedVal + " : " + freqMap);
+
+        if (freqMap.get(mostFreqUsedVal) == 0) {
+            
+            freqMap.remove(mostFreqUsedVal);
+            System.out.println("    -> " + mostFreqUsedVal + " is freq is 0 so removing it : " + freqMap);
+        }
+
+        // If that freq stack is empty remove it from group map
+        // and also decrese the value of maxFreqCount why?.. bcoz freqCounts are increasing by 1 
+        if (stack.isEmpty()) {
+            
+            groupOfValByFreqMap.remove(maxFreqCount);
+            System.out.println("    -> Group Map after removing empty stack: " + groupOfValByFreqMap);
+
+            maxFreqCount--;
+            System.out.println("    -> Max Freq Count after removing empty stack: " + maxFreqCount);  
+        }
+        return mostFreqUsedVal;
     }
 
     public static void main(String[] args){
