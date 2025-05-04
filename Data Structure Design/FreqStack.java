@@ -3,18 +3,48 @@ import java.util.*;
 public class FreqStack {
     
     // Declare Global Variables
-
+    Map<Integer, Integer> freqMap;
+    Map<Integer, Stack> groupOfValByFreqMap;
+    int maxFreqCount;
 
     public FreqStack() {
         
+        // Assign value to global variables
+        freqMap = new HashMap<>();
+        groupOfValByFreqMap = new HashMap<>();
+        maxFreqCount = 0;
+
     }
     
     public void push(int val) {
         
+        // Get freq for the val if val not exist get default freq
+        int freqOfVal = freqMap.getOrDefault(val, 0) + 1;
+
+        // Add that val and freq to freqMap
+        freqMap.put(val, freqOfVal);
+        System.out.println("    -> Freq Map : " + freqMap);
+        
+        // add that freq as key to groupOfValByFreqMap and push val into it's stack
+        if (!groupOfValByFreqMap.containsKey(freqOfVal)) {
+            groupOfValByFreqMap.put(freqOfVal, new Stack<>());
+        }
+
+        groupOfValByFreqMap.get(freqOfVal).push(val);
+        System.out.println("    -> Group Map : " + groupOfValByFreqMap);
+
+        // Update maxFreqCount here if we find any max value
+        if (freqOfVal > maxFreqCount) {
+            maxFreqCount = freqOfVal;
+        }
+        System.out.println("    -> Max Freq Count : " + maxFreqCount);
+
+        return;
     }
     
     public int pop() {
         
+        return 1;
     }
 
     public static void main(String[] args){
