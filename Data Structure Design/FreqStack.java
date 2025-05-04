@@ -2,6 +2,54 @@ import java.util.*;
 
 public class FreqStack {
     
+    // Declare Global Variables
+
+
+    public FreqStack() {
+        
+    }
+    
+    public void push(int val) {
+        
+    }
+    
+    public int pop() {
+        
+    }
+
+    public static void main(String[] args){
+
+        FreqStack solution = new FreqStack();
+
+        System.out.println("\nFinal Result : ");
+
+        solution.push(5);
+        System.out.println("  1st Iteration.. pushing 5 here \n");
+             
+        solution.push(7);
+        System.out.println("  2nd Iteration.. pushing 7 here \n");
+
+        solution.push(5);
+        System.out.println("  3rd Iteration.. pushing 5 here \n");
+
+        solution.push(7);
+        System.out.println("  4th Iteration.. pushing 7 here \n");
+
+        solution.push(4);
+        System.out.println("  5th Iteration.. pushing 4 here \n");
+
+        solution.push(5);
+        System.out.println("  6th Iteration.. pushing 5 here \n");
+       
+        System.out.println("  7th Iteration : " + solution.pop() + "\n");        // 5
+        System.out.println("  8th Iteration : " + solution.pop() + "\n");        // 7
+        System.out.println("  9th Iteration : " + solution.pop() + "\n");        // 5
+        System.out.println("  10th Iteration : " + solution.pop() + "\n");       // 4
+
+
+        
+    }
+
 }
 
 /*
@@ -77,12 +125,6 @@ public class FreqStack {
  * 
  * 3. pop()
  *      - pop will be easier now I just need to pop eleemnt from stack which has high Freq
- *      - How to find highest freqency?
- *          for (Map.Entry<Integer, Integer> entry : groupValByFreqMap.entrySet()) {
- *              if (entry.getKey() > maxFreqCount) {
- *                  maxFreqCount = entry.getKey();
- *              }
- *	        }
  *      - Will store stack for that maxFreq in a variable for better access later
  *          stack = groupValByFreqMap.get(maxFreqCount)
  *      - pop out top element from that stack 
