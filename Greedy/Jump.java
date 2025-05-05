@@ -14,7 +14,9 @@ public class Jump {
         }
 
         // we don't want to jump from last num anywhere so let's skip it 
-        for (int i = 0; i < n - 1 ; i++) {
+        // for [3,2,1,4,4] instead of 2 it gives ans as 4. it's counting steps of index 1 and 2 so let's change i = maxFarJump
+
+        for (int i = maxFarJump; i < n ; i++) {
             
             int currMaxFarJump = i + nums[i];
             System.out.println("    We can jump from " + i + " to " + currMaxFarJump);
@@ -32,7 +34,7 @@ public class Jump {
             }
         }
 
-        return jumpCount;
+        return 0;
     }
 
     public static void main(String[] args){
