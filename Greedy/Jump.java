@@ -2,6 +2,31 @@ import java.util.*;
 
 public class Jump {
     
+    public int jump(int[] nums) {
+        
+    }
+
+    public static void main(String[] args){
+
+        Jump solution = new Jump();
+
+        int[] nums1 = {2,3,1,1,4};
+        System.out.println("Result 1 : " + solution.jump(nums1) + "\n");     // 2
+
+        int[] nums2 = {2,3,0,1,4};
+        System.out.println("Result 2 : " + solution.jump(nums2) + "\n");     // 2
+
+        int[] nums3 = {3,2,1,4,4};
+        System.out.println("Result 3 : " + solution.jump(nums3) + "\n");     // 2
+
+        int[] nums4 = {0};
+        System.out.println("Result 4 : " + solution.jump(nums4) + "\n");     // true
+
+        int[] nums5 = {0, 2, 3};
+        System.out.println("Result 5 : " + solution.jump(nums5) + "\n");     // false
+
+    }
+    
 }
 
 /*
