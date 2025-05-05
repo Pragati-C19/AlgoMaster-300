@@ -2,6 +2,22 @@ import java.util.*;
 
 public class MinAddToMakeValid {
     
+    public int minAddToMakeValid(String s) {
+        
+    }
+
+    public static void main(String[] args){
+
+        MinAddToMakeValid solution = new MinAddToMakeValid();
+
+        String s1 = "())";
+        System.out.println("Result 1 : " + solution.minAddToMakeValid(s1) + "\n");
+
+        String s2 = "(((";
+        System.out.println("Result 2 : " + solution.minAddToMakeValid(s2) + "\n");
+
+    }
+
 }
 
 /*
