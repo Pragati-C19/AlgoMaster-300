@@ -4,6 +4,34 @@ public class Jump {
     
     public int jump(int[] nums) {
         
+        int n = nums.length; 
+        int maxFarJump = 0;
+        int jumpCount = 0;
+
+        // Base Case :
+        if (n == 1) {
+            return jumpCount;
+        }
+
+        for (int i = 0; i < n ; i++) {
+            
+            int currMaxFarJump = i + nums[i];
+            System.out.println("    We can jump from " + i + " to " + currMaxFarJump);
+
+            maxFarJump = Math.max(maxFarJump, currMaxFarJump);
+            System.out.println("       -> Max far till then is : " + maxFarJump);
+
+            jumpCount++;
+            System.out.println("        -> current Jump Count is : " + jumpCount);
+            
+            if (maxFarJump == n - 1) {
+
+                System.out.println("        -> " + maxFarJump + " is reaching to end : " + jumpCount);
+                return jumpCount;
+            }
+        }
+
+        return jumpCount;
     }
 
     public static void main(String[] args){
