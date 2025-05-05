@@ -2,6 +2,22 @@ import java.util.*;
 
 public class CanJump {
     
+    public boolean canJump(int[] nums) {
+        
+    }
+
+    public static void main(String[] args){
+
+        CanJump solution = new CanJump();
+
+        int[] nums1 = {2,3,1,1,4};
+        System.out.println("Result 1 : " + solution.canJump(nums1));
+
+        int[] nums2 = {3,2,1,0,4};
+        System.out.println("Result 2 : " + solution.canJump(nums2));
+
+    }
+
 }
 
 
