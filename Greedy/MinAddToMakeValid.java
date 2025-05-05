@@ -15,18 +15,20 @@ public class MinAddToMakeValid {
             if (ch == '(') {
                 openParenthesisCount++;
             }
-
-            if (ch == ')') {
+            else if (ch == ')' && openParenthesisCount > 0) {
+                openParenthesisCount--;
+            }
+            else if (ch == ')') {
                 closeParenthesisCount++;
             }
         }
 
         System.out.println("    -> Count of open and close parenthesis :  " + openParenthesisCount + " , " + closeParenthesisCount);
 
-        moveCount = openParenthesisCount - closeParenthesisCount;
+        moveCount = openParenthesisCount + closeParenthesisCount;
         System.out.println("Move Count is : " + moveCount);
 
-        return Math.abs(moveCount);
+        return moveCount;
     }
 
     public static void main(String[] args){
@@ -129,6 +131,21 @@ public class MinAddToMakeValid {
  * 9. why add now before we were substracting
  * 10. bcoz rn we are checking how many open and close brackets we need.. not counting open and close of whole string
  * 
+ * 
+ * what's happening exactly ?
+ * 
+ *       else if (ch == ')' && openParenthesisCount > 0) {
+ *              openParenthesisCount--;
+ *       }
+ * 
+ * - I'm checking if current charecter is closing parenthesis
+ * - but before that I need to check if it's unmatch closing? -> means ekda baghun ghet konti open bracket ahe ka? ji apan yachya sobt match karu shakto?
+ * - if yes (he kasa kalnar jr openCount > 0 asel) openCount at least 1 jari asel tri chalel na 
+ * - karan fact pairing karaychiye aplyala open nantr close ashi
+ * - so bhetla tr opencount-- karaycha u can say apan open and close balance kela
+ * - yaveles apan closing bracket cha count nahi vadhvat ahe so tithe kahi issue nahi yenar
+ * - if no then apan closing count vadhavtoy
+ *      
  * 
  * 
  * 
