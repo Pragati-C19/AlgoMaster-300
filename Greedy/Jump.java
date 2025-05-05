@@ -13,7 +13,8 @@ public class Jump {
             return jumpCount;
         }
 
-        for (int i = 0; i < n ; i++) {
+        // we don't want to jump from last num anywhere so let's skip it 
+        for (int i = 0; i < n - 1 ; i++) {
             
             int currMaxFarJump = i + nums[i];
             System.out.println("    We can jump from " + i + " to " + currMaxFarJump);
