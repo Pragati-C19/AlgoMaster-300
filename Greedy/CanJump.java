@@ -47,6 +47,9 @@ public class CanJump {
         int[] nums4 = {0};
         System.out.println("Result 4 : " + solution.canJump(nums4) + "\n");
 
+        int[] nums5 = {0, 2, 3};
+        System.out.println("Result 5 : " + solution.canJump(nums5) + "\n");
+
     }
 
 }
