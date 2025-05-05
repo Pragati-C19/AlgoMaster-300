@@ -4,6 +4,29 @@ public class MinAddToMakeValid {
     
     public int minAddToMakeValid(String s) {
         
+        int moveCount = 0;
+        int openParenthesisCount = 0;
+        int closeParenthesisCount = 0;
+
+        for (char ch : s.toCharArray()) {
+            
+            System.out.println("Checking Char : " + ch);
+
+            if (ch == '(') {
+                openParenthesisCount++;
+            }
+
+            if (ch == ')') {
+                closeParenthesisCount++;
+            }
+        }
+
+        System.out.println("    -> Count of open and close parenthesis :  " + openParenthesisCount + " , " + closeParenthesisCount);
+
+        moveCount = openParenthesisCount - closeParenthesisCount;
+        System.out.println("Move Count is : " + moveCount);
+
+        return Math.abs(moveCount);
     }
 
     public static void main(String[] args){
