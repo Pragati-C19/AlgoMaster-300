@@ -25,7 +25,7 @@ public class Jump {
             jumpCount++;
             System.out.println("        -> current Jump Count is : " + jumpCount);
             
-            if (maxFarJump == n - 1) {
+            if (maxFarJump >= n - 1) {
 
                 System.out.println("        -> " + maxFarJump + " is reaching to end : " + jumpCount);
                 return jumpCount;
@@ -49,10 +49,10 @@ public class Jump {
         System.out.println("Result 3 : " + solution.jump(nums3) + "\n");     // 2
 
         int[] nums4 = {0};
-        System.out.println("Result 4 : " + solution.jump(nums4) + "\n");     // true
+        System.out.println("Result 4 : " + solution.jump(nums4) + "\n");     // 0
 
-        int[] nums5 = {0, 2, 3};
-        System.out.println("Result 5 : " + solution.jump(nums5) + "\n");     // false
+        int[] nums5 = {4, 0, 3};
+        System.out.println("Result 5 : " + solution.jump(nums5) + "\n");     // 1
 
     }
     
