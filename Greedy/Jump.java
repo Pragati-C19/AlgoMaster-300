@@ -30,8 +30,8 @@ public class Jump {
                 jumpCount++;
                 System.out.println("        -> Jump Count at " + i + " : " + jumpCount);
 
-                System.out.println("        -> Updating longestJumpSoFar from " + longestJumpSoFar + " to : " + currIndexfarthestJump);
-                longestJumpSoFar = currIndexfarthestJump;
+                System.out.println("        -> Updating longestJumpSoFar from " + longestJumpSoFar + " to : " + farthestJump);
+                longestJumpSoFar = farthestJump;
 
             }
         }
