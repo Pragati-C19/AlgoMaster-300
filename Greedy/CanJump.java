@@ -18,6 +18,12 @@ public class CanJump {
             int currMaxFarJump = i + nums[i];
             System.out.println("    We can jump from " + i + " to " + currMaxFarJump);
 
+            if (currMaxFarJump == maxFarJump) {
+                
+                System.out.println("        -> maxFar " +  + maxFarJump + " is same as currMax " + currMaxFarJump);
+                return false;
+            }
+
             maxFarJump = Math.max(maxFarJump, currMaxFarJump);
             System.out.println("       -> Max far till then is : " + maxFarJump);
             
