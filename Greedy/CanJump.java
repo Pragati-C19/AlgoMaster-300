@@ -4,6 +4,24 @@ public class CanJump {
     
     public boolean canJump(int[] nums) {
         
+        int maxFarJump = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            
+            int currMaxFarJump = i + nums[i];
+            System.out.println("We can jump from " + i + " to " + currMaxFarJump);
+
+            maxFarJump = Math.max(maxFarJump, currMaxFarJump);
+            System.out.println("  -> Max far till then is : " + maxFarJump);
+            
+            if (maxFarJump == nums.length - 1) {
+
+                System.out.println("    -> maxFar is reaching to end " + maxFarJump);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static void main(String[] args){
