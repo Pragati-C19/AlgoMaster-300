@@ -118,6 +118,13 @@ public class CanJump {
  * 3. otherwise return false
  * 
  * 
+ * 2nd Approach : 
+ * 
+ * 1. let's do the opposite here instead of checking if maxFarJump >= arr.length 
+ * 2. will check if  index > than maxFarJump 
+ * 3. mhnje jr suppose index 4 ahe for loop madhe and maza maxFarJump 3 vrch ahe ajun 
+ *      that means maybe 3 var 0 hota and ata to pudhe nahi yeu shakat
+ * 4. so will return false in that case
  * 
  * 
  * 
