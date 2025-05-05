@@ -5,8 +5,9 @@ public class Jump {
     public int jump(int[] nums) {
         
         int n = nums.length; 
-        int maxFarJump = 0;
+        int farthestJump = 0;
         int jumpCount = 0;
+        int longestJumpSoFar = 0;
 
         // Base Case :
         if (n == 1) {
@@ -15,20 +16,20 @@ public class Jump {
 
         // we don't want to jump from last num anywhere so let's skip it 
 
-        for (int i = maxFarJump; i < n ; i++) {
+        for (int i = farthestJump; i < n ; i++) {
             
-            int currMaxFarJump = i + nums[i];
-            System.out.println("    We can jump from " + i + " to " + currMaxFarJump);
+            int currIndexfarthestJump = i + nums[i];
+            System.out.println("    We can jump from " + i + " to " + currIndexfarthestJump);
 
-            maxFarJump = Math.max(maxFarJump, currMaxFarJump);
-            System.out.println("       -> Max far till then is : " + maxFarJump);
+            farthestJump = Math.max(farthestJump, currIndexfarthestJump);
+            System.out.println("       -> Max far till then is : " + farthestJump);
 
             jumpCount++;
             System.out.println("        -> current Jump Count is : " + jumpCount);
             
-            if (maxFarJump >= n - 1) {
+            if (farthestJump >= n - 1) {
 
-                System.out.println("        -> " + maxFarJump + " is reaching to end : " + jumpCount);
+                System.out.println("        -> " + farthestJump + " is reaching to end : " + jumpCount);
                 return jumpCount;
             }
         }
