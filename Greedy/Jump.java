@@ -14,7 +14,6 @@ public class Jump {
         }
 
         // we don't want to jump from last num anywhere so let's skip it 
-        // for [3,2,1,4,4] instead of 2 it gives ans as 4. it's counting steps of index 1 and 2 so let's change i = maxFarJump
 
         for (int i = maxFarJump; i < n ; i++) {
             
@@ -55,6 +54,9 @@ public class Jump {
 
         int[] nums5 = {4, 0, 3};
         System.out.println("Result 5 : " + solution.jump(nums5) + "\n");     // 1
+
+        int[] nums6 = {1,2,1,1,1};
+        System.out.println("Result 6 : " + solution.jump(nums6) + "\n");     // 3
 
     }
     
@@ -123,6 +125,37 @@ public class Jump {
  *      - jumpCount++;
  *      - check if (maxFarJump >= arr.length)
  *          return count;
+ * 
+ * 
+ * Approach 3 -> hopefully this will work now
+ * 
+ * 1. I tried to do this for [3,2,1,4,4] instead of 2 it gives ans as 4. 
+ *      it's counting steps of index 1 and 2 so let's change i = maxFarJump
+ * 2. but yat issue hota 
+ *      - for loop madhe i = maxFarJump kel tr i change navhta honar bilkul
+ *      - while loop ni kel tr to infinite loop madhe gela...
+ * 3. so ata I took a little help and changing my approach
+ *  
+ * 1. will declare one more new variable called currMaxJump 
+ *      - it will store end of the current jump 
+ *      - attaparynt apan bas check karun next index vr jat hoto tyamul te count navht hot nit
+ * 2. apan jumpCount fact tevhach increase karu jevha index = currMaxJump hoil  
+ *      example : [1, 2, 1, 1, 1]
+ *          
+ *       Step   |  index  |  nums[index]  |   maxFarJump    |  currMaxJump  |                           Action Taken                                                           
+ *    --------- | ------- | ------------- | --------------- | ------------- | -----------------------------------------------------------------------
+ *        1     |    0    |       1       |  max(0, 0+1)=1  |       0       | index == currMaxJump → jumpCount=1, currMaxJump=1                   
+ *        2     |    1    |       2       |  max(1, 1+2)=3  |       1       | index == currMaxJump → jumpCount=2, currMaxJump=3                   
+ *        3     |    2    |       1       |  max(3, 2+1)=3  |       3       | No jump yet (index < currMaxJump)                                      
+ *        4     |    3    |       1       |  max(3, 3+1)=4  |       3       | index == currMaxJump → jumpCount=3, currMaxJump=4                   
+ *        5     |    4    |       1       |  max(4, 4+1)=5  |       4       | index == currMaxJump → Technically jumCount++, but we're at last index 
+ *      
+ * 3. soo it looks like
+ *      if ( i == currMaxJump)
+ *          jumpCount++
+ *          currMaxJump = maxFarJump
+ * 4. after increasing jumpCount update the currMaxJump count too 
+ * 5. so that we can increase jump count to that index
  * 
  * 
  * Pseudo Code :
