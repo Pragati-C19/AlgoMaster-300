@@ -13,14 +13,14 @@ public class CanJump {
 
         int maxFarJump = 0;
 
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < n ; i++) {
             
             int currMaxFarJump = i + nums[i];
             System.out.println("    We can jump from " + i + " to " + currMaxFarJump);
 
-            if (currMaxFarJump == maxFarJump) {
+            if (i > maxFarJump) {
                 
-                System.out.println("        -> maxFar " +  + maxFarJump + " is same as currMax " + currMaxFarJump);
+                System.out.println("        -> " + i + " is greater than maxFarJump " + maxFarJump);
                 return false;
             }
 
@@ -34,7 +34,7 @@ public class CanJump {
             }
         }
 
-        return false;
+        return true;
     }
 
     public static void main(String[] args){
@@ -42,19 +42,19 @@ public class CanJump {
         CanJump solution = new CanJump();
 
         int[] nums1 = {2,3,1,1,4};
-        System.out.println("Result 1 : " + solution.canJump(nums1) + "\n");
+        System.out.println("Result 1 : " + solution.canJump(nums1) + "\n");     // true
 
         int[] nums2 = {3,2,1,0,4};
-        System.out.println("Result 2 : " + solution.canJump(nums2) + "\n");
+        System.out.println("Result 2 : " + solution.canJump(nums2) + "\n");     // false
 
         int[] nums3 = {3,2,1,4,4};
-        System.out.println("Result 3 : " + solution.canJump(nums3) + "\n");
+        System.out.println("Result 3 : " + solution.canJump(nums3) + "\n");     // true
 
         int[] nums4 = {0};
-        System.out.println("Result 4 : " + solution.canJump(nums4) + "\n");
+        System.out.println("Result 4 : " + solution.canJump(nums4) + "\n");     // true
 
         int[] nums5 = {0, 2, 3};
-        System.out.println("Result 5 : " + solution.canJump(nums5) + "\n");
+        System.out.println("Result 5 : " + solution.canJump(nums5) + "\n");     // false
 
     }
 
