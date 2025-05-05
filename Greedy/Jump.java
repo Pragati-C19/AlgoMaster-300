@@ -16,25 +16,27 @@ public class Jump {
 
         // we don't want to jump from last num anywhere so let's skip it 
 
-        for (int i = farthestJump; i < n ; i++) {
+        for (int i = farthestJump; i < n - 1 ; i++) {
             
             int currIndexfarthestJump = i + nums[i];
             System.out.println("    We can jump from " + i + " to " + currIndexfarthestJump);
 
             farthestJump = Math.max(farthestJump, currIndexfarthestJump);
-            System.out.println("       -> Max far till then is : " + farthestJump);
+            System.out.println("       -> farthest jump : " + farthestJump);
 
-            jumpCount++;
-            System.out.println("        -> current Jump Count is : " + jumpCount);
             
-            if (farthestJump >= n - 1) {
+            if (i == longestJumpSoFar) {
 
-                System.out.println("        -> " + farthestJump + " is reaching to end : " + jumpCount);
-                return jumpCount;
+                jumpCount++;
+                System.out.println("        -> Jump Count at " + i + " : " + jumpCount);
+
+                System.out.println("        -> Updating longestJumpSoFar from " + longestJumpSoFar + " to : " + currIndexfarthestJump);
+                longestJumpSoFar = currIndexfarthestJump;
+
             }
         }
 
-        return 0;
+        return jumpCount;
     }
 
     public static void main(String[] args){
