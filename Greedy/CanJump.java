@@ -6,17 +6,17 @@ public class CanJump {
         
         int maxFarJump = 0;
 
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < nums.length - 1; i++) {
             
             int currMaxFarJump = i + nums[i];
-            System.out.println("We can jump from " + i + " to " + currMaxFarJump);
+            System.out.println("    We can jump from " + i + " to " + currMaxFarJump);
 
             maxFarJump = Math.max(maxFarJump, currMaxFarJump);
-            System.out.println("  -> Max far till then is : " + maxFarJump);
+            System.out.println("       -> Max far till then is : " + maxFarJump);
             
-            if (maxFarJump == nums.length - 1) {
+            if (maxFarJump >= nums.length - 1) {
 
-                System.out.println("    -> maxFar is reaching to end " + maxFarJump);
+                System.out.println("        -> maxFar is reaching to end " + maxFarJump);
                 return true;
             }
         }
@@ -29,10 +29,13 @@ public class CanJump {
         CanJump solution = new CanJump();
 
         int[] nums1 = {2,3,1,1,4};
-        System.out.println("Result 1 : " + solution.canJump(nums1));
+        System.out.println("Result 1 : " + solution.canJump(nums1) + "\n");
 
         int[] nums2 = {3,2,1,0,4};
-        System.out.println("Result 2 : " + solution.canJump(nums2));
+        System.out.println("Result 2 : " + solution.canJump(nums2) + "\n");
+
+        int[] nums3 = {3,2,1,4,4};
+        System.out.println("Result 3 : " + solution.canJump(nums3) + "\n");
 
     }
 
