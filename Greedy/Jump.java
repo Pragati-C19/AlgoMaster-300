@@ -64,7 +64,7 @@ public class Jump {
  *      - if we jump at index 3 -> 3 + nums[3] = 3 + 1 = 4 -> means we can go to index 4 only -> this is the end of array
  *      - that means we are reaching to the end with both method
  * 
- * Approach 
+ * Approach 1
  * 
  * 1. Declare a maxFarJump -> to check how far we can go from the index
  * 2. jumpCount -> to count how many jumps we did
@@ -74,6 +74,25 @@ public class Jump {
  *      - jumpCount++;
  *      - check if (maxFarJump == arr.length)
  *          return count;
+ * 
+ * Approach 2 -> let's change a code little bit
+ * 
+ * 1. Declare a maxFarJump -> to check how far we can go from the index
+ * 2. jumpCount -> to count how many jumps we did
+ * 3. for loop la jr me start every time 0, 1, 2 kartey tr te maxFar count karel.. 
+ *      - but for problems like [3,2,1,4,4] 
+ *      - to 0 index pasun 3rd index vr janya peshya 1 index cha pn jump count gheil 2 cha pn gheil mg 3 cha gheil.. 
+ *      - so mala asa vatat ki i = maxFarJump asayla hav.. 
+ *      - jr ti jump length pekshya jast hot asel tr for loop chya baher count++ karu
+ *      - or for loop nums.length - 1 parynt ch chalau ajun better
+ *      - or we can say at if ( maxFarJump >= arr.length)
+ * 2. use for(i = maxFarJump to nums.length)
+ *      - check currMaxJump = i + nums[i]
+ *      - get maxFarJump 
+ *      - jumpCount++;
+ *      - check if (maxFarJump >= arr.length)
+ *          return count;
+ * 
  * 
  * Pseudo Code :
  * 
