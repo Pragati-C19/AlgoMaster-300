@@ -39,6 +39,9 @@ public class MinAddToMakeValid {
         String s2 = "(((";
         System.out.println("Result 2 : " + solution.minAddToMakeValid(s2) + "\n");
 
+        String s3 = "()))((";
+        System.out.println("Result 3 : " + solution.minAddToMakeValid(s3) + "\n");
+
     }
 
 }
