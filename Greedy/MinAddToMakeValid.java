@@ -92,12 +92,43 @@ public class MinAddToMakeValid {
  *          open = 3 and close = 0
  *          diff = 3 - 0 = 3
  *          return 3
+ * 
+ * -------------------------------------------------------------------------------
  *          
+ * Appraoch 2 
+ *    
+ * 1. Above approach work fine for few test cases
+ * 2. but I need to check string -> ()))((
+ * 3. I'm counting open and close is right
+ * 4. the moving count should not be all open - all close
+ * 5 I think if any open after close comes we should not cosinder it
+ * 6. like 
+ *      ch    |    open    |    close    |    moves
+ *  ----------|------------|-------------|--------------
+ *      (     |      1     |      0      |      0
+ *      )     |      1     |      1      |      0       -> this one is perfect no need to add anything
+ *      )     |      1     |      2      |      0       
+ *      )     |      1     |      3      |      0
+ *      (     |      2     |      3      |      0
+ *      (     |      3     |      3      |      0
  *      
+ *      -> maybe if close greater than open I need to make a move
  * 
+ * 7. I think I should decrease the open count if I find close after it? instead of incresing close
+ *     
+ *      ch    |    open    |    close    |    moves
+ *  ----------|------------|-------------|-------------------
+ *      (     |     1      |      0      |      0
+ *      )     |     1      |      1      |      0       -> this one is perfect no need to add anything
+ *      )     |     0      |      1      |      0       
+ *      )     |     0      |      2      |      0
+ *      (     |     1      |      2      |      0
+ *      (     |     2      |      2      |      0
  * 
+ * 8. At the end now add this open + close
+ * 9. why add now before we were substracting
+ * 10. bcoz rn we are checking how many open and close brackets we need.. not counting open and close of whole string
  * 
- * Pseudo Code :
  * 
  * 
  * 
