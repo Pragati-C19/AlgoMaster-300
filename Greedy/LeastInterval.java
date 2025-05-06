@@ -53,6 +53,12 @@ public class LeastInterval {
                 // even if state is idle and n task are remain will increase count
                 intervalCount++;
                 System.out.println("    -> current Interval Count : " + intervalCount);
+
+                // Break early if no more tasks to process (prevents overcounting idle time)
+                if (maxHeap.isEmpty() && tempFreqMap.isEmpty()) {
+                    System.out.println("    both maxHeap -> " + maxHeap + " and tempFreqMap -> " + tempFreqMap + " is Empty so breaking early..");
+                    break;
+                }
             
             }
 
