@@ -28,7 +28,7 @@ public class LeastInterval {
             // Declare a tempMap to store coolDown tasks 
             Map<Character, Integer> tempFreqMap = new HashMap<>();
 
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i <= n; i++) {
                 
                 if (!maxHeap.isEmpty()) {
                     
@@ -58,6 +58,7 @@ public class LeastInterval {
 
             // add values of tempFreMap in maxHeap
             maxHeap.addAll(tempFreqMap.entrySet());
+            System.out.println("  Value of tempFreqMap in MaxHeap : " + maxHeap);
 
         }
 
@@ -68,14 +69,17 @@ public class LeastInterval {
 
         LeastInterval solution = new LeastInterval();
 
+        // A B A B C D
         char[] tasks1 = {'A','C','A','B','D','B'};
         int n1 = 1;
         System.out.println("Result 1 : " + solution.leastInterval(tasks1, n1) + "\n");
 
+        // A B _ _ | A B _ _ | A B
         char[] tasks2 = {'A','A','A', 'B','B','B'};
         int n2 = 3;
         System.out.println("Result 2 : " + solution.leastInterval(tasks2, n2) + "\n");
 
+        // A B _ | A B _ |A B 
         char[] tasks3 = {'A','A','A','B','B','B'};
         int n3 = 2;
         System.out.println("Result 3 : " + solution.leastInterval(tasks3, n3) + "\n");
