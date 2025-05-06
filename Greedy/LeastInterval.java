@@ -4,7 +4,28 @@ public class LeastInterval {
     
     public int leastInterval(char[] tasks, int n) {
         
-        return 0;
+        int m = tasks.length;
+        int intervalCount = 0;
+
+        // Declare a Map to store tasks char and freq
+        Map<Character, Integer> freqMap = new HashMap<>();
+
+        // Declare a MaxHeap to get maximum freq task
+        PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<>((a, b) -> b.getValue() - a.getValue());
+
+        // Store values in Map
+        for (char task : tasks) {
+            freqMap.put(task, freqMap.getOrDefault(task, 0) + 1);
+        }
+        System.out.println("  FreqMap : " + freqMap);
+
+        // Store values in MaxHeap in short u can use for loop too
+        maxHeap.addAll(freqMap.entrySet());
+        System.out.println("  MaxHeap : " + maxHeap);
+
+
+
+        return intervalCount;
     }
 
     public static void main(String[] args){
