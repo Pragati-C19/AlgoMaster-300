@@ -4,6 +4,38 @@ public class CanCompleteCircuit {
     
     public int canCompleteCircuit(int[] gas, int[] cost) {
         
+        int start = 0;
+        int currIndexTankFilled = 0;
+        int totalTankFilled = 0;
+
+        for (int i = 0; i < gas.length; i++) {
+            
+            int gasNeedToGoToNextStation = gas[i] - cost[i];
+            System.out.println("Gas we need to travel from " + i + " -> " + (i+1) + " : " + gasNeedToGoToNextStation);
+
+            totalTankFilled = totalTankFilled + gasNeedToGoToNextStation;
+            System.out.println("    -> Total Gas we have in Car Tank so far : " + totalTankFilled);
+
+            currIndexTankFilled = currIndexTankFilled + gasNeedToGoToNextStation;
+            System.out.println("    -> Gas we have in Car Tank from start Index " + i + " : " + currIndexTankFilled);
+
+
+            if (currIndexTankFilled < 0) {
+                
+                start = i + 1;
+
+                System.out.println("    -> " + currIndexTankFilled + " < 0 , so start index changed to " + start);
+                currIndexTankFilled = 0;
+            }
+
+        }
+
+        if (totalTankFilled <= 0) {
+            return -1;
+        }
+
+        return start;
+        
     }
 
     public static void main(String[] args){
@@ -12,11 +44,11 @@ public class CanCompleteCircuit {
 
         int[] gas1 = {1,2,3,4,5};
         int[] cost1 = {3,4,5,1,2};
-        System.out.println("Result 1 : " + solution.canCompleteCircuit(gas1, cost1));
+        System.out.println("Result 1 : " + solution.canCompleteCircuit(gas1, cost1) + "\n");
 
         int[] gas2 = {2,3,4};
         int[] cost2 = {3,4,3};
-        System.out.println("Result 2 : " + solution.canCompleteCircuit(gas2, cost2));
+        System.out.println("Result 2 : " + solution.canCompleteCircuit(gas2, cost2) + "\n");
 
     }
 
