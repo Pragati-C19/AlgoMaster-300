@@ -2,6 +2,30 @@ import java.util.*;
 
 public class LeastInterval {
     
+    public int leastInterval(char[] tasks, int n) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args){
+
+        LeastInterval solution = new LeastInterval();
+
+        char[] tasks1 = {'A','C','A','B','D','B'};
+        int n1 = 1;
+        System.out.println("Result 1 : " + solution.leastInterval(tasks1, n1) + "\n");
+
+        char[] tasks2 = {'A','A','A', 'B','B','B'};
+        int n2 = 3;
+        System.out.println("Result 2 : " + solution.leastInterval(tasks2, n2) + "\n");
+
+        char[] tasks3 = {'A','A','A','B','B','B'};
+        int n3 = 2;
+        System.out.println("Result 3 : " + solution.leastInterval(tasks3, n3) + "\n");
+
+
+    }
+
 }
 
 
