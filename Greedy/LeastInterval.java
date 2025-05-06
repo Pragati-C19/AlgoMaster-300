@@ -86,15 +86,21 @@ public class LeastInterval {
  *      -> Store freq in map
  *          map = new HashMap
  * 
- *      -> Will add map's key and value in heap with Map.Entry<Integer, Integer>[], it will store entry 
+ *      -> Will add map's key and value in heap with Map.Entry<Charecter, Integer>, it will store entry 
  *      maxHeap = pq<>((a, b) -> Integer.(b.getValue() - a.getValue()))
  * 
  *      -> Add value in map and then heap
  * 
- *      for(i = 0 to tasks.length)
- *          - map.put(tasks[i], map.getOrDefault(tasks[i], 0) + 1)
+ *      for(char task : tasks)
+ *          - map.put(task, map.getOrDefault(task, 0) + 1)
  *          
- *      for(Map.Entry<Integer, Integer> entry : map.entrySet())
+ *      for(Map.Entry<Charecter, Integer> entry : map.entrySet())
+ *          - maxHeap.add(entry)
+ * 
+ *      or u can directly write 
+ *          - maxheap.addAll(map.entrySet())
+ * 
+ *       //!    Don't do this below thing it's write but so complicated when we can directly add entrySet
  *          - maxHeap.add(new Map.Entry<Integer, Integer>{entry.getKey(), entry.getValue()})
  *          - I don't know if this symbol will work will try it out first
  *          - but core is we need to add those values from map to maxHeap
@@ -102,26 +108,27 @@ public class LeastInterval {
  * 
  *      while(!maxHeap.isEmpty)
  *          
+ *          currMap = new HashMap
+ * 
  *          for(i = 0 to n)
  *              
- *              if(maxHeap.isEmpty)     -> idle state
- *                  intervalCount++
- *              
- *              else
+ *              if(!maxHeap.isEmpty)
  *                  maxHeapTop = maxHeap.poll()
  *                  
- *                  currMap.put(maxHeapTop.getKey(), maxHeapTop.getValue() - 1)
+ *                  currMap.put(maxHeapTop, maxHeapTop.getValue() - 1)
  * 
  *                  if(maxHeapTop.getValue() == 0)
- *                      currMap.remove(maxHeapTop.getKey())
+ *                      currMap.remove(maxHeapTop)
  * 
- *                  intervalCount++
+ *              -> Now I don't need to write intervalCount for idle state too it will increase for every tasks
+ *              
+ *              intervalCount++
  * 
  * 
  *          -> after for loop end add those values in currMap into the heap again
  * 
- *              for(Map.Entry<Integer, Integer> entry : currMap.entrySet())
- *                  - maxHeap.add(new Map.Entry<Integer, Integer>{entry.getKey(), entry.getValue()})
+ *          for(Map.Entry<Integer, Integer> entry : currMap.entrySet())
+ *               maxHeap.add(entry)
  * 
  * 
  *       -> after while loop ends
