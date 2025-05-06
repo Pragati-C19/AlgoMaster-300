@@ -30,7 +30,7 @@ public class CanCompleteCircuit {
 
         }
 
-        if (totalTankFilled <= 0) {
+        if (totalTankFilled < 0) {
             return -1;
         }
 
