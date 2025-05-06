@@ -2,6 +2,24 @@ import java.util.*;
 
 public class CanCompleteCircuit {
     
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        
+    }
+
+    public static void main(String[] args){
+
+        CanCompleteCircuit solution = new CanCompleteCircuit();
+
+        int[] gas1 = {1,2,3,4,5};
+        int[] cost1 = {3,4,5,1,2};
+        System.out.println("Result 1 : " + solution.canCompleteCircuit(gas1, cost1));
+
+        int[] gas2 = {2,3,4};
+        int[] cost2 = {3,4,3};
+        System.out.println("Result 2 : " + solution.canCompleteCircuit(gas2, cost2));
+
+    }
+
 }
 
 /*
