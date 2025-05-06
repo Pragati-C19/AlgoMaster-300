@@ -35,11 +35,29 @@ public class LeastInterval {
                     Map.Entry<Character, Integer> highFreqTask = maxHeap.poll();
                     System.out.println("    -> High Freq Task is : " + highFreqTask);
                     
-                    tempFreqMap.put(highFreqTask.getKey(), highFreqTask.getValue() - 1);
-                    System.out.println("          After decreasing freq of task added in tempFreqMap : " + tempFreqMap);
+                    // Declare variable to store char and updated freq of highFreqTask 
+                    char keyOfHighFeqTask = highFreqTask.getKey();
+                    int updatedValueOfHighFreqTask = highFreqTask.getValue() - 1;
+                    
+                    // let's add that task in tempFreq map only if it's freq is greater than 0 
+                    // we can check later if (updatedValueOfHighFreqTask == 0) map.remove but why add it and then remove na
+
+                    if (updatedValueOfHighFreqTask > 0) {
+                        
+                        tempFreqMap.put(keyOfHighFeqTask, updatedValueOfHighFreqTask);
+                        System.out.println("          After decreasing freq of task added in tempFreqMap : " + tempFreqMap);
+                    }
 
                 }
+
+                // even if state is idle and n task are remain will increase count
+                intervalCount++;
+                System.out.println("    -> current Interval Count : " + intervalCount);
+            
             }
+
+            // add values of tempFreMap in maxHeap
+            maxHeap.addAll(tempFreqMap.entrySet());
 
         }
 
