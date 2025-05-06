@@ -23,7 +23,25 @@ public class LeastInterval {
         maxHeap.addAll(freqMap.entrySet());
         System.out.println("  MaxHeap : " + maxHeap);
 
+        while (!maxHeap.isEmpty()) {
+            
+            // Declare a tempMap to store coolDown tasks 
+            Map<Character, Integer> tempFreqMap = new HashMap<>();
 
+            for (int i = 0; i < n; i++) {
+                
+                if (!maxHeap.isEmpty()) {
+                    
+                    Map.Entry<Character, Integer> highFreqTask = maxHeap.poll();
+                    System.out.println("    -> High Freq Task is : " + highFreqTask);
+                    
+                    tempFreqMap.put(highFreqTask.getKey(), highFreqTask.getValue() - 1);
+                    System.out.println("          After decreasing freq of task added in tempFreqMap : " + tempFreqMap);
+
+                }
+            }
+
+        }
 
         return intervalCount;
     }
