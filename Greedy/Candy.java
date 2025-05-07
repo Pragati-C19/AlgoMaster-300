@@ -16,40 +16,42 @@ public class Candy {
         int[] candies = new int[n];
 
         Arrays.fill(candies, 1);
-        System.out.println("   -> Candies filled with initial Value 1 : " + Arrays.toString(candies));
+        System.out.println(" Candies filled with initial Value 1 : " + Arrays.toString(candies));
 
         int prevRating = ratings[0];
         int prevChildCandies = candies[0];
         int nextRating;
         int nextChildCandies;
 
-        for (int i = 1; i < n - 1; i++) {
+        for (int i = 1; i < n ; i++) {
             
-            nextRating = ratings[i + 1];
-            nextChildCandies = candies[i + 1];
-            System.out.println("    -> Updated nextRating and nextChildCandies : " + nextRating + " , " + nextChildCandies);
-
+            System.out.println("    -> Updated prevRating and prevChildCandies : " + prevRating + " , " + prevChildCandies);
+           
             if (ratings[i] > prevRating) {
                 
                 candies[i] = prevChildCandies + 1;
-                System.out.println("    -> Rating of " + i + " is > than Rating of " + (i - 1));
+                System.out.println("      -> Rating of " + i + " is > than Rating of " + (i - 1));
                 System.out.println("        -> Candies of " + i + " : " + candies[i]);
-            }
-
-            if (ratings[i] > nextRating) {
-                
-                candies[i] = nextChildCandies + 1;
             }
 
             prevRating = ratings[i];
             prevChildCandies = candies[i];
-            System.out.println("    -> Updated prevRating and prevChildCandies : " + prevRating + " , " + prevChildCandies);
 
-            System.out.println("    -> Candies Array so Far : " + Arrays.toString(candies));
+            System.out.println("  -> Candies Array so Far : " + Arrays.toString(candies));
 
         }
 
-        System.out.println("Candies Array so Far : " + Arrays.toString(candies));
+        // This is to check elements backward.. 
+        for (int i = n - 2; i >= 0; i--) {
+            
+            if (ratings[i] > ratings[i + 1]) {
+                candies[i] = Math.max(candies[i], candies[i + 1] + 1);
+            }
+
+            System.out.println("  -> [Back] Candies Array so Far : " + Arrays.toString(candies));
+        }
+        
+        System.out.println("Candies Array : " + Arrays.toString(candies));
         
         for (int candy : candies) {
             totalCandyCount = totalCandyCount + candy;
