@@ -8,8 +8,8 @@ public class Candy {
         int totalCandyCount = 0; 
 
         // sort the array 
-        // Arrays.sort(ratings);
-        // System.out.println("Sorted Rating Array : " + Arrays.toString(ratings));
+        Arrays.sort(ratings);
+        System.out.println("Sorted Rating Array : " + Arrays.toString(ratings));
 
         int[] candies = new int[n];
 
@@ -17,20 +17,23 @@ public class Candy {
         System.out.println("   -> Candies filled with initial Value 1 : " + Arrays.toString(candies));
 
         int prevRating = ratings[0];
-        int prevChildCandies = candies[0];
+        // So I don't need to know how many candies prevChild Had.. I just want to increase 1 in my curr candie
+        // int prevChildCandies = candies[0];
 
         for (int i = 0; i < n; i++) {
             
             if (ratings[i] > prevRating) {
                 
-                candies[i] = prevChildCandies + 1;
+                candies[i] = candies[i] + 1;
                 System.out.println("    -> Rating of " + i + " is > than Rating of " + (i - 1));
                 System.out.println("        -> Candies of " + i + " : " + candies[i]);
             }
 
             prevRating = ratings[i];
-            prevChildCandies = candies[i];
+            // prevChildCandies = candies[i];
             System.out.println("    -> Updated prevRating and prevChildCandies : " + prevRating + " , " + prevChildCandies);
+
+            System.out.println("    -> Candies Array so Far : " + Arrays.toString(candies));
 
         }
 
