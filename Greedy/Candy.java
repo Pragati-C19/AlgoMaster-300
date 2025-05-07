@@ -8,8 +8,10 @@ public class Candy {
         int totalCandyCount = 0; 
 
         // sort the array 
-        Arrays.sort(ratings);
-        System.out.println("Sorted Rating Array : " + Arrays.toString(ratings));
+        // If you sort the ratings and assign candies based on that, you'll lose the index relationships 
+        // i.e., who is next to whom. This problem is not about global values, it’s about local neighbors.
+        // Arrays.sort(ratings);
+        // System.out.println("Sorted Rating Array : " + Arrays.toString(ratings));
 
         int[] candies = new int[n];
 
@@ -17,8 +19,7 @@ public class Candy {
         System.out.println("   -> Candies filled with initial Value 1 : " + Arrays.toString(candies));
 
         int prevRating = ratings[0];
-        // So I don't need to know how many candies prevChild Had.. I just want to increase 1 in my curr candie
-        // int prevChildCandies = candies[0];
+        int prevChildCandies = candies[0];
 
         for (int i = 0; i < n; i++) {
             
@@ -30,7 +31,7 @@ public class Candy {
             }
 
             prevRating = ratings[i];
-            // prevChildCandies = candies[i];
+            prevChildCandies = candies[i];
             System.out.println("    -> Updated prevRating and prevChildCandies : " + prevRating + " , " + prevChildCandies);
 
             System.out.println("    -> Candies Array so Far : " + Arrays.toString(candies));
