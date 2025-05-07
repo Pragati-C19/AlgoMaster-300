@@ -20,14 +20,25 @@ public class Candy {
 
         int prevRating = ratings[0];
         int prevChildCandies = candies[0];
+        int nextRating;
+        int nextChildCandies;
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 1; i < n - 1; i++) {
             
+            nextRating = ratings[i + 1];
+            nextChildCandies = candies[i + 1];
+            System.out.println("    -> Updated nextRating and nextChildCandies : " + nextRating + " , " + nextChildCandies);
+
             if (ratings[i] > prevRating) {
                 
-                candies[i] = candies[i] + 1;
+                candies[i] = prevChildCandies + 1;
                 System.out.println("    -> Rating of " + i + " is > than Rating of " + (i - 1));
                 System.out.println("        -> Candies of " + i + " : " + candies[i]);
+            }
+
+            if (ratings[i] > nextRating) {
+                
+                candies[i] = nextChildCandies + 1;
             }
 
             prevRating = ratings[i];
@@ -57,6 +68,9 @@ public class Candy {
         
         int[] ratings2 = {1, 2, 2};
         System.out.println("Result 2: " + solution.candy(ratings2) + "\n");
+
+        int[] ratings3 = {1,2,87,87,87,2,1};
+        System.out.println("Result 3: " + solution.candy(ratings3) + "\n");
 
     }
 
