@@ -4,7 +4,43 @@ public class Candy {
     
     public int candy(int[] ratings) {
            
-        return 0;
+        int n = ratings.length;
+        int totalCandyCount = 0; 
+
+        // sort the array 
+        // Arrays.sort(ratings);
+        // System.out.println("Sorted Rating Array : " + Arrays.toString(ratings));
+
+        int[] candies = new int[n];
+
+        Arrays.fill(candies, 1);
+        System.out.println("   -> Candies filled with initial Value 1 : " + Arrays.toString(candies));
+
+        int prevRating = ratings[0];
+        int prevChildCandies = candies[0];
+
+        for (int i = 0; i < n; i++) {
+            
+            if (ratings[i] > prevRating) {
+                
+                candies[i] = prevChildCandies + 1;
+                System.out.println("    -> Rating of " + i + " is > than Rating of " + (i - 1));
+                System.out.println("        -> Candies of " + i + " : " + candies[i]);
+            }
+
+            prevRating = ratings[i];
+            prevChildCandies = candies[i];
+            System.out.println("    -> Updated prevRating and prevChildCandies : " + prevRating + " , " + prevChildCandies);
+
+        }
+
+        System.out.println("Candies Array so Far : " + Arrays.toString(candies));
+        
+        for (int candy : candies) {
+            totalCandyCount = totalCandyCount + candy;
+        }
+
+        return totalCandyCount;
     }
 
     public static void main(String[] args){
