@@ -2,6 +2,24 @@ import java.util.*;
 
 public class Candy {
     
+    public int candy(int[] ratings) {
+           
+        return 0;
+    }
+
+    public static void main(String[] args){
+
+        Candy solution = new Candy();
+
+        int[] ratings1 = {1, 0, 2};
+        System.out.println("Result 1: " + solution.candy(ratings1) + "\n");
+
+        
+        int[] ratings2 = {1, 2, 2};
+        System.out.println("Result 2: " + solution.candy(ratings2) + "\n");
+
+    }
+
 }
 
 /*
