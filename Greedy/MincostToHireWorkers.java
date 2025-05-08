@@ -6,16 +6,17 @@ public class MincostToHireWorkers {
         
         int n = quality.length;
         int qualitySum = 0;
+        double totalCost = Double.MAX_VALUE; 
 
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b, a));
+        PriorityQueue<Double> maxHeap = new PriorityQueue<>((a, b) -> Double.compare(b, a));
 
         // Will create workerRatio now
-        int[][] workerRatio = new int[n][2];
+        double[][] workerRatio = new double[n][2];
 
         for (int i = 0; i < n; i++) {
             
-            // we need ratio with decimal values too
-            int ratio = wage[i] / quality[i];
+            // we need ratio with decimal values -> so we have multiply one of the integer with 1.0 to promote result to double
+            double ratio = (wage[i] * 1.0) / quality[i] ;
 
             workerRatio[i][0] = quality[i];
             workerRatio[i][1] = ratio;
@@ -23,12 +24,44 @@ public class MincostToHireWorkers {
 
         System.out.println(" worker array with ratio : " + Arrays.deepToString(workerRatio));
 
-        Arrays.sort(workerRatio, (a, b) -> Integer.compare(a[1], b[1]));
+        Arrays.sort(workerRatio, (a, b) -> Double.compare(a[1], b[1]));
 
         System.out.println(" Sorted worker array with ratio : " + Arrays.deepToString(workerRatio));
 
+        // let's find manager now
+        for (int managerIdx = k - 1; managerIdx < n; managerIdx++) {
+            
+            System.out.println("    Visiting workIndex : " + managerIdx);
 
-        return 0;
+            // base rate Ration 
+            double baseRatio = workerRatio[managerIdx][1];
+            System.out.println("       Base Ratio at " + managerIdx + " : " + baseRatio);
+
+            // I think I need to use for loop here
+            for (int workerIdx = 0; workerIdx <= managerIdx; workerIdx++) {
+                
+                maxHeap.add(workerRatio[workerIdx][0]);
+                System.out.println("        -> maxHeap after adding quality : " + maxHeap);
+
+                qualitySum += workerRatio[workerIdx][0];
+                System.out.println("        -> Sum of qualities till now are : " + qualitySum); 
+
+                if (maxHeap.size() > k) {
+                
+                    double top = maxHeap.poll();
+                    qualitySum -= top;
+                    System.out.println("      Updated maxHeap : " + maxHeap);
+                    System.out.println("      Updated quality sum : " + qualitySum);
+                }
+            }
+
+            double currTotalCost = baseRatio * qualitySum;
+            System.out.println("    -> curr total cost : " + currTotalCost);
+
+            totalCost = Math.min(totalCost, currTotalCost);   
+        }
+
+        return totalCost;
     }
 
     public static void main(String[] args){
