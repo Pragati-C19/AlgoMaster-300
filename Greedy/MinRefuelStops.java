@@ -2,6 +2,32 @@ import java.util.*;
 
 public class MinRefuelStops {
     
+    public int minRefuelStops(int target, int startFuel, int[][] stations) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args){
+
+        MinRefuelStops solution = new MinRefuelStops();
+
+        int target1 = 1;
+        int startFuel1 = 1;
+        int[][] stations1 = {};
+        System.out.println("Result1 -> " + solution.minRefuelStops(target1, startFuel1, stations1) + "\n");     // 0
+
+        int target2 = 100;
+        int startFuel2 = 1;
+        int[][] stations2 = {{10, 100}};
+        System.out.println("Result2 -> " + solution.minRefuelStops(target2, startFuel2, stations2) + "\n");     // -1
+
+        int target3 = 100;
+        int startFuel3 = 10;
+        int[][] stations3 = {{10, 60}, {20, 30}, {30, 30}, {60, 40}};
+        System.out.println("Result3 -> " + solution.minRefuelStops(target3, startFuel3, stations3) + "\n");     // 2
+
+    }
+
 }
 
 
@@ -11,7 +37,7 @@ public class MinRefuelStops {
  * 
  * 1. we have given target, startFuel, and stations at different positions with gas can be filled there
  * 2. mala eka start point pasun target la hit karaychy
- *      - tyastahi mala adhi startFuel dilay.. tya feul me stations[] madhe eka gas station chya position vr reach karu shakte me
+ *      - tyastahi mala adhi startFuel dilay.. tya fuel me stations[] madhe eka gas station chya position vr reach karu shakte me
  *      - tithun fuel add kel ki me next position vr jail and so on till I hit target
  * 3. ata yar kahi conditions ahet itka easily tr trace nahi honar
  *      - max fuel litter madhe ahe and it cost 1 litter to go 1 miles
@@ -26,35 +52,35 @@ public class MinRefuelStops {
  * 1. mala jr kiti miles travel kel tr baghaych asel tr it's debepend on station's position
  *      mileTravel += stations[i][1]
  * 2. fuel kami honar ahe stations paynt or target parynat jail paryant so I need
- *      feulLeft = startFeul - stations[i][1]
- * 3. ata bagh feul jr rahilach nahi to travel next position tr apan target hit kasa karnar?
- *      if(feulLeft < 0)  -> return -1
- * 4. and feul asel car madhe tr we can go to next position and like that we can travel to end
- *    so apan startFeul madhe station ch feul add karu.. why in startFeul? it's used for checking total feul in car
- *      if(feulLeft > 0)
- *          startFeul += stations[i][2]
+ *      fuelLeft = startFuel - stations[i][1]
+ * 3. ata bagh fuel jr rahilach nahi to travel next position tr apan target hit kasa karnar?
+ *      if(fuelLeft < 0)  -> return -1
+ * 4. and fuel asel car madhe tr we can go to next position and like that we can travel to end
+ *    so apan startFuel madhe station ch fuel add karu.. why in startFuel? it's used for checking total fuel in car
+ *      if(fuelLeft > 0)
+ *          startFuel += stations[i][2]
  *          milesTraval += stations[i][1]
  * 5. ithe ek gosticha vichar nahi kela me.. 
- *      example startFeul mazyakde 10 ahe tr I need to check ki stations[i][1] == 10 ahe ka te?
+ *      example startFuel mazyakde 10 ahe tr I need to check ki stations[i][1] == 10 ahe ka te?
  *          asel tr apan direct tithech jau 
- *      nasel tr will check for lesser one with high feul
+ *      nasel tr will check for lesser one with high fuel
  * 
- * 6. will use maxHeap to store stations with maxFeul at top
+ * 6. will use maxHeap to store stations with maxFuel at top
  *      
  * 
  * 
  * Pseudo Code :
  * 
  * 
- * function minRefeulStops(target, startFeul, stations){
+ * function minRefuelStops(target, startFuel, stations){
  * 
- *      -> Declare variable maxFeul to check how much distance we travelled,
- *          Initial it is equal to startFeul bcoz without refeuling we can go till that much miles
- *          - maxTravel = startFeul
+ *      -> Declare variable maxFuel to check how much distance we travelled,
+ *          Initial it is equal to startFuel bcoz without refueling we can go till that much miles
+ *          - maxTravel = startFuel
  * 
  * 
- *      -> Declare a maxHeap to store stations with mzxFeul at top
- *          If feuls are same on both stations will store min position distace at top
+ *      -> Declare a maxHeap to store stations with mzxFuel at top
+ *          If fuels are same on both stations will store min position distace at top
  *          - maxHeap = pq<>((a, b) -> b[1] - a[1], if(a[1] == b[1]) a[0] - b[0])
  * 
  *      -> We need a variable to count how many times we have refueled 
@@ -66,7 +92,7 @@ public class MinRefuelStops {
  *              
  *              - for(i = 0 to stations.length)
  *                  
- *                  - check if there any stations je feul sampnyachya agore astil so that we can refuel 
+ *                  - check if there any stations je fuel sampnyachya agore astil so that we can refuel 
  *                      asel tr te sagle heap madhe add kar apan fact tech station gheu adhi jyanchyakde jast fuel ahe
  *                      
  *                      if(stations[i][0] <= maxTravel)
