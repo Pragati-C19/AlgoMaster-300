@@ -18,14 +18,11 @@ public class MinRefuelStops {
         while (maxTravel < target) {
             
             // used while bcoz once we have visited any station I don't want to recheck it in next while(maxTravle < target) loop
-            while (stationsIndex < n) {
+            while (stationsIndex < n && stations[stationsIndex][0] <= maxTravel) {
                 
                 // Adding all Stations which are within maxTravel now
-                if (stations[stationsIndex][0] <= maxTravel) {
-                    
-                    maxHeap.add(stations[stationsIndex]);
-                    System.out.println("    -> maxHeap after adding stations at index " + stationsIndex + " : " + Arrays.deepToString(maxHeap.toArray()));
-                }
+                maxHeap.add(stations[stationsIndex]);
+                System.out.println("       - maxHeap after adding stations at index " + stationsIndex + " : " + Arrays.deepToString(maxHeap.toArray()));
 
                 stationsIndex++;
             }
