@@ -164,7 +164,7 @@ public class MincostToHireWorkers {
  * 
  * 6. Improvements in above code
  * 
- * 1. ithe me workersPay calculate kartey mg tyala wage she compare kartey tyasathi again ek for loop lavala lagtoy 
+ * ~ ithe me workersPay calculate kartey mg tyala wage she compare kartey tyasathi again ek for loop lavala lagtoy 
  *          for(worker = 0 to n)      
  *              workersPay = managerRatio * quality[worker]
  *              if(workersPay >= wage[worker]) 
@@ -181,7 +181,63 @@ public class MincostToHireWorkers {
  *          me fact tya if loop madhe workersPay madhun quality[worker] la = chya palikde nel
  *           
  *              if(managerRatio >= workersRatio)
- *                  group.add(workersRatio)
+ *                  
+ * 
+ * 7. Pseudo Code : More optimal way
+ * 
+ * function (quality, wage, k){
+ *      
+ *      n = quality.length
+ *      group = new ArrayList   -> To store all workersPay for that manager
+ *      result = 0              -> it will store min value
+ * 
+ *      maxHeap = pq<>()        -> To get min payment values at top
+ * 
+ *      -> Creating a Ratio array to store wage/quality ratio of all workers
+ *      workerRatio = int[n][3]   
+ * 
+ *      for(i = 0 to n)
+ *          ratio = wage[i] + quality[i]
+ *      
+ *          workerRatio[i][0] = wage[i]
+ *          workerRatio[i][1] = quality[i]
+ *          workerRatio[i][2] = ratio
+ * 
+ *      -> Sort this workerRatio array, to easily get min or max ratios according to our requirement
+ *      Arrays.sort(worker, (a, b) -> Integer.compare(a[2] - b[2]))
+ * 
+ *      -> array sort asel by ascending order mhnje small values at start
+ *          managerRatio mala max havay or equal havay other workersRatio pekshya
+ *          and mala k number of workers havet group madhe suppose k = 4 asel tr u think me i = 0, 1, 2 ghetla manager tr work karel?
+ *          so to optimized for loop and not taking so much values apan i = k - 1 la start karu shakto?
+ *          k is 1th-indexed 
+ * 
+ *      for(manager = k - 1 to n)
  *          
- *       
+ *          managerRatio = workerRatio[manager][2]
+ *  
+ *          for(worker = 0 to manager)      -> karan aplyala small ratio havay so apan tyatun fact check kartoy so smallest asel will add it in heap
+ *              
+ *              -> yeah mala vatal hote he lihaychi garaj nahiye but lihav lagel bcoz yeah aplyala wage of worker according to magaers pay nahi mahitye
+ *                  workersPay = managerRatio * workersRatio[worker][1]
+ * 
+ *              -> ata ithe nahiye garaj check karaychi if loop ki ratio jast ahe ka kami te.. karan apan already manager k-1 vapsun ghetoy
+ *                  group.add(workersPay)
+ *          
+ *         // ithe te group.size < k val pn lavaychi garaj nahiye karan apan manager already k - 1 pasun ghetoy so titke tr astilch
+ * 
+ *         -> add this values of group in Heap to get k minimun payments to add
+ *          maxHeap.addAll(group)
+ * 
+ *         -> ata maxHeap madhun k values pop out karun sum madhe add karat ja
+ *              for(i = 0 to k)
+ *                  top = maxHeap.poll()
+ *                  sum = sum + top
+ *              
+ *         -> result = min(result, sum)
+ * 
+ *      return result
+ * }
+ *          
+ *   
  */
