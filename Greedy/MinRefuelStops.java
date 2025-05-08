@@ -4,7 +4,48 @@ public class MinRefuelStops {
     
     public int minRefuelStops(int target, int startFuel, int[][] stations) {
         
-        return 0;
+        int n = stations.length;
+        int stationsIndex = 0;
+        int maxTravel = startFuel;
+        int refuelingCount = 0;
+
+        // Declare a maxHeap to store values of station
+        PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> {
+            if(a[1] == b[1]) return Integer.compare(a[0], b[0]);
+            return Integer.compare(b[1], a[1]);
+        });
+
+        while (maxTravel < target) {
+            
+            // used while bcoz once we have visited any station I don't want to recheck it in next while(maxTravle < target) loop
+            while (stationsIndex < n) {
+                
+                // Adding all Stations which are within maxTravel now
+                if (stations[stationsIndex][0] <= maxTravel) {
+                    
+                    maxHeap.add(stations[stationsIndex]);
+                    System.out.println("    -> maxHeap after adding stations at index " + stationsIndex + " : " + Arrays.deepToString(maxHeap.toArray()));
+                }
+
+                stationsIndex++;
+            }
+
+            if (maxHeap.isEmpty()) {
+                
+                System.out.println("    maxHeap is empty, means we can't travel more...");
+                return -1;
+            }
+
+            int[] top = maxHeap.poll();
+            System.out.println("    -> Top Popped Out station is : " + Arrays.toString(top));
+
+            maxTravel += top[1];
+            refuelingCount++;
+            System.out.println("    Refeuling Count till max Distance we travel " + maxTravel + " : " + refuelingCount);
+
+        }
+
+        return refuelingCount;
     }
 
     public static void main(String[] args){
