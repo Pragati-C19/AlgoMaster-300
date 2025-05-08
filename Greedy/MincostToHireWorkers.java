@@ -2,6 +2,27 @@ import java.util.*;
 
 public class MincostToHireWorkers {
     
+    public double mincostToHireWorkers(int[] quality, int[] wage, int k) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args){
+
+        MincostToHireWorkers solution = new MincostToHireWorkers();
+
+        int[] quality1 = {10,20,5};
+        int[] wage1 = {70,50,30};
+        int k1 = 2;
+        System.out.println("Result 1 : " + solution.mincostToHireWorkers(quality1, wage1, k1) + "\n");
+
+        int[] quality2 = {3,1,10,10,1};
+        int[] wage2 = {4,8,2,2,7};
+        int k2 = 3;
+        System.out.println("Result 1 : " + solution.mincostToHireWorkers(quality2, wage2, k2) + "\n");
+
+    }
+
 }
 
 /*
@@ -62,13 +83,13 @@ public class MincostToHireWorkers {
             workerRatio = int[n][2]   
    
             for(i = 0 to n)
-                ratio = wage[i] + quality[i]
+                ratio = wage[i] / quality[i]
             
                 workerRatio[i][0] = quality[i]
                 workerRatio[i][1] = ratio
 
         -> Sort an array in ascending so that it can fullfill managersRatio >= workersRatio
-            Arrays.sort(worker, (a, b) -> Integer.compare(a[1] - b[1])) 
+            Arrays.sort(worker, (a, b) -> Integer.compare(a[1], b[1])) 
         
         -> let's take i = k - 1 jyani < k vale sagle workers manager nahi bannar karan group form honarch nahi tyancha
 
