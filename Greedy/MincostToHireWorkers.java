@@ -5,10 +5,7 @@ public class MincostToHireWorkers {
     public double mincostToHireWorkers(int[] quality, int[] wage, int k) {
         
         int n = quality.length;
-        int qualitySum = 0;
         double totalCost = Double.MAX_VALUE; 
-
-        PriorityQueue<Double> maxHeap = new PriorityQueue<>((a, b) -> Double.compare(b, a));
 
         // Will create workerRatio now
         double[][] workerRatio = new double[n][2];
@@ -36,6 +33,10 @@ public class MincostToHireWorkers {
             // base rate Ration 
             double baseRatio = workerRatio[managerIdx][1];
             System.out.println("       Base Ratio at " + managerIdx + " : " + baseRatio);
+
+            // Reset heap and quality sum for each manager
+            PriorityQueue<Double> maxHeap = new PriorityQueue<>((a, b) -> Double.compare(b, a));
+            int qualitySum = 0;
 
             // I think I need to use for loop here
             for (int workerIdx = 0; workerIdx <= managerIdx; workerIdx++) {
