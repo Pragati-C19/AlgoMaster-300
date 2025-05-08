@@ -4,6 +4,30 @@ public class MincostToHireWorkers {
     
     public double mincostToHireWorkers(int[] quality, int[] wage, int k) {
         
+        int n = quality.length;
+        int qualitySum = 0;
+
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b, a));
+
+        // Will create workerRatio now
+        int[][] workerRatio = new int[n][2];
+
+        for (int i = 0; i < n; i++) {
+            
+            // we need ratio with decimal values too
+            int ratio = wage[i] / quality[i];
+
+            workerRatio[i][0] = quality[i];
+            workerRatio[i][1] = ratio;
+        }
+
+        System.out.println(" worker array with ratio : " + Arrays.deepToString(workerRatio));
+
+        Arrays.sort(workerRatio, (a, b) -> Integer.compare(a[1], b[1]));
+
+        System.out.println(" Sorted worker array with ratio : " + Arrays.deepToString(workerRatio));
+
+
         return 0;
     }
 
