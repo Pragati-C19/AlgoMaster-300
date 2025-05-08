@@ -8,6 +8,9 @@ public class MincostToHireWorkers {
  * 
  * 
  * //! todo: Solve this que later.. keep this in pending for now
+ * //? Took Help from below video
+ *      https://www.youtube.com/watch?v=kxR52OB_I8k&ab_channel=codestorywithMIK
+ * 
  * 
  * Intuitions :
  * 
@@ -43,32 +46,142 @@ public class MincostToHireWorkers {
  * 2. After so many GPT asking I come up with solution that
  *      Total cost = maxRatio * totalQualityOfKWorkers
  * 
- *      Let’s say 
- *  
+ *      Let’s say, 
  *          - Worker A: quality = 3, wage = 4 → ratio = 1.33
  *          - Worker B: quality = 10, wage = 2 → ratio = 0.2
  *          - Worker C: quality = 10, wage = 2 → ratio = 0.2
+ * 
+ *      Step 1: Compute max ratio among these = 1.33 (from Worker A)
+ *      Step 2: Total quality = 3 + 10 + 10 = 23
+ *      Step 3: Total cost = 1.33 × 23 = 30.666
  *  
- *  Step 1: Compute max ratio among these = 1.33 (from Worker A)
- *  Step 2: Total quality = 3 + 10 + 10 = 23
- *  Step 3: Total cost = 1.33 × 23 = 30.666
- *  Why? Because:
+ *      Why? Because:
+ *      You’re paying everyone 1.33 per unit of quality So:
+ *          - A gets 3 × 1.33 = 4 ✅ (meets their wage)
+ *          - B gets 10 × 1.33 = 13.3 ✅ (more than 2)
+ *          - C gets 10 × 1.33 = 13.3 ✅ (more than 2)
  *  
- *  You’re paying everyone 1.33 per unit of quality
+ * Think Fresh :
+ * Appraoch 1 : Brute Force 
+ * 
+ * 1. Trace Example :
+ *      quality = [10,20,5], wage = [70,50,30], k = 2
+ * 
+ *      - aplyala mahitiye wage/quality cha ratio equal karaychay group madhlya workers cha so can I write it like that?
+ *          
+ *                     wage[i]       wage[i+1]
+ *                  ------------ = --------------
+ *                   quality[i]     quality[i+1]
+ *      
+ *      - In example me jr worker 0 la 70 detey rs karan tyala titke min dene imp ahe, tr me ek base payment set karte 70 mhnun
+ *      - ata mala bakichyanch payment kadhaych asel tr me kay karel
+ *                
+ *               Worker 1                    Worker 2 
+ * 
+ *              70       x                  70       x
+ *            ------ = ------             ------ = -----
+ *              10       20                 10       5
+ *          
+ *                 x = 140                     x = 35
+ * 
+ *      - That means apan jr worker 0 sathi min wage select kel tr worker 1 sathi 140 dyave lagtil and worker 2 sathi 35
+ *      - jr pahil tr samjtay ki saglya workers che min wage tr cross hotay or equal payment bhettay tyanna
+ *      - ata fact check karyachy ahe ki kontya worker sobt Worker 0 cha group form karnar jyanchya payment chi sum minimum yeil
+ *      - that's why it is 70 + 35 = 105
+ * 
+ * 2. After tracing que I understand that we need to set base payment accordingly Worker with Highest wage
+ *      - jyach wage high ahe tyala apan manager consider karun tyachya payment chya according other team members la pay karu apan ata
+ * 
+ * 3. Apan jo ration lihila hota we can write it like below too
+ * 
+ *      - To ratio kasa asel in term of manager and team-member 
+ *         
+ *                    wage[team-member]         wage[manager]
+ *                 ----------------------- = --------------------
+ *                   quality[team-member]      quality[manager]         
+ *          
+ * 
+ *      - wage eka side la kele and qualitye eka side la, consider apan jo base Rate set karan mhntoy to apla manager ahe
+ *        
+ *                  wage[team-member]        quality[team-member]        
+ *                --------------------- = --------------------------
+ *                    wage[manager]            quality[manager]            
  *  
- *  So:
- *  
- *  A gets 3 × 1.33 = 4 ✅ (meets their wage)
- *  
- *  B gets 10 × 1.33 = 13.3 ✅ (more than 2)
- *  
- *  C gets 10 × 1.33 = 13.3 ✅ (more than 2)
- *  
- *  So everyone is happy, and total is valid.
+ *      
+ *      - ata mala unknow kay asnar ahe?.. team memeber la payment kiti karaych te right? tr me tyala one side thevte
+ *          
+ *                                       wage[manager]
+ *               wage[team-member] = --------------------- x quality[team-member]
+ *                                      quality[manager]
+ * 
+ *      - doesn't it looks like -> now u know why ratio x quality
+ *          payment = ratio[manager] * wage[team-memeber]
+ *              
+ * 4. tr ya approach madhe kay karnar apan?
+ * 
+ *      - first apan ek ratio ghenar and tyala remaining workers sobt multiple karnar
+ *      - jr ans tya workers chya wage pekshya kami asel tr we can't take that worker in our group
+ *      - and ans jr max or equal to worker's wage asel tr we can consider that worker
+ *      - check karaych apan je paid kartoy workers la tyachi sum minimum ahe ka te that other?.. asel tr return only that 
+ * 
+ * 5. Pseudo Code :
+ * 
+ * function (quality, wage, k){
+ *      
+ *      n = quality.length
+ *      group = new ArrayList   -> To store all workersPay for that manager
+ *      result = 0              -> it will store min value
+ * 
+ *      maxHeap = pq<>()        -> To get min payment values at top
+ * 
+ *      -> first ek manager set karu
+ *      for(manager = 0 to n)
+ *          ratio = wage[i] / quality[i]
+ * 
+ *          for(worker = 0 to n)
+ *              
+ *              workersPay = managerRatio * quality[worker]
+ *              
+ *              if(workersPay >= wage[worker]) 
+ *                  group.add(workersPay)
+ * 
+ *         -> jr group madhe kahich add nasel tr kay karnar? continue karu for next manager
+ *          if(group.size < k)  -> continue
+ *           
+ *         -> add this values of group in Heap to get k minimun payments to add
+ *          maxHeap.addAll(group)
+ * 
+ *         -> ata maxHeap madhun k values pop out karun sum madhe add karat ja
+ *              for(i = 0 to k)
+ *                  top = maxHeap.poll()
+ *                  sum = sum + top
+ *              
+ *         -> result = min(result, sum)
+ * 
+ *      return result
+ * }
  * 
  * 
- * Pseudo Code :
+ * 6. Improvements in above code
  * 
+ * 1. ithe me workersPay calculate kartey mg tyala wage she compare kartey tyasathi again ek for loop lavala lagtoy 
+ *          for(worker = 0 to n)      
+ *              workersPay = managerRatio * quality[worker]
+ *              if(workersPay >= wage[worker]) 
+ *                    group.add(workersPay)
  * 
+ *     - yala apan optimize karu shakto na, bagh me ratio ghetanna start la kay mhnle hote manager and team-memeber cha?
+ *          it looks like ratio[team-member] = ratio [manager]
  * 
+ *                    wage[team-member]         wage[manager]
+ *                 ----------------------- = --------------------
+ *                   quality[team-member]      quality[manager]   
+ * 
+ *     - tr me ya for loop la change karu shakte? by changing it too
+ *          me fact tya if loop madhe workersPay madhun quality[worker] la = chya palikde nel
+ *           
+ *              if(managerRatio >= workersRatio)
+ *                  group.add(workersRatio)
+ *          
+ *       
  */
