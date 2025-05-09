@@ -10,7 +10,7 @@ public class NumOfMinutes {
         
         maxTime = 0;
 
-        // Base Case :
+        // Base Case : Kepping this base case or not doesn't do any difference
         if (n == 1) {
             
             maxTime = informTime[headID];
