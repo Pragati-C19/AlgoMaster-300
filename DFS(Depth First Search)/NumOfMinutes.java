@@ -3,12 +3,33 @@ import java.util.*;
 public class NumOfMinutes {
     
     // Globally Declare Variables
-
+    int maxTime;
 
     // Driver Function
     public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
         
-        return 0;
+        maxTime = 0;
+
+        Map<Integer, List<Integer>> teamMap = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            
+            if (!teamMap.containsKey(manager[i])) {
+                teamMap.put(manager[i], new ArrayList<>());
+            }
+
+            if (manager[i] != -1) {
+
+                // Add employee under it's manager
+                teamMap.get(manager[i]).add(i);
+            }
+        }
+
+        System.out.println("Team Map Looks like : " + teamMap);
+
+
+
+        return maxTime;
     }
 
     // Helper Function : to get maxTime recursively
