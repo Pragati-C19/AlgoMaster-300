@@ -4,7 +4,61 @@ public class NumIslands {
     
     public int numIslands(char[][] grid) {
         
-        return 0;
+        // get row and col count
+        int m = grid.length;
+        int n = grid[0].length;
+
+        // Variable to track distict islands 
+        int islandsCount = 0;
+
+        // To track if block is visited or not 
+        boolean[][] visitedBlock = new boolean[m][n];
+
+        // Traverse matrix col by col
+        for (int i = 0; i < m; i++) {
+            
+            for (int j = 0; j < n; j++) {
+                
+                System.out.println("    Visiting block is (" + i + ", " + j + ") : " + grid[i][j] + " with IslandsCount : " + islandsCount);
+                
+                boolean exploredIsland = dfs(i, j, grid, visitedBlock, m, n);
+
+                if (exploredIsland) {
+                    
+                    islandsCount++;
+                    System.out.println("Island Found.. " + islandsCount + "\n");
+                }
+               
+            }
+        }
+
+        return islandsCount;
+    }
+
+    // Helper Function : To check if we have any unvisited 1's around?
+    private boolean dfs(int i, int j, char[][] grid, boolean[][] visitedBlock, int m, int n) {
+
+        // Base Case :
+        if (i < 0 || i >= m || j < 0 || j >= n || visitedBlock[i][j] || grid[i][j] == '0') {
+            System.out.println("        It's an end of row or col or block already visited or block has char '0'...");
+            return false;    
+        }
+
+        System.out.println("       -> Visiting block is (" + i + ", " + j + ") : " + grid[i][j]);
+        
+        // Now we already checked if '0' exist then return false then there are only '1' left
+        // so mark this block as visited
+        visitedBlock[i][j] = true;
+
+        // now check for it's down, right, up, left
+        dfs(i+1, j, grid, visitedBlock, m, n);
+        dfs(i, j+1, grid, visitedBlock, m, n);
+        dfs(i-1, j, grid, visitedBlock, m, n);
+        dfs(i, j-1, grid, visitedBlock, m, n);
+        
+        // will not backtrack that visitBlock to false.. bcoz we are not checking same block again
+
+        return true;
     }
 
     public static void main(String[] args){
