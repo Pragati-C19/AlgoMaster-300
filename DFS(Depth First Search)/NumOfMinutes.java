@@ -14,12 +14,12 @@ public class NumOfMinutes {
 
         for (int i = 0; i < n; i++) {
             
-            if (!teamMap.containsKey(manager[i])) {
-                teamMap.put(manager[i], new ArrayList<>());
-            }
-
             if (manager[i] != -1) {
 
+                if (!teamMap.containsKey(manager[i])) {
+                    teamMap.put(manager[i], new ArrayList<>());
+                }
+                
                 // Add employee under it's manager
                 teamMap.get(manager[i]).add(i);
             }
