@@ -2,6 +2,33 @@ import java.util.*;
 
 public class NumIslands {
     
+    public int numIslands(char[][] grid) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args){
+
+        NumIslands solution = new NumIslands();
+
+        char[][] grid1 = {
+            {'1','1','1','1','0'},
+            {'1','1','0','1','0'},
+            {'1','1','0','0','0'},
+            {'0','0','0','0','0'}
+        };
+        System.out.println("Result1 -> " + solution.numIslands(grid1) + "\n");     // 1
+
+        char[][] grid2 = {
+            {'1','1','0','0','0'},
+            {'1','1','0','0','0'},
+            {'0','0','1','0','0'},
+            {'0','0','0','1','1'}
+        };
+        System.out.println("Result2 -> " + solution.numIslands(grid2) + "\n");      // 3
+        
+    }
+
 }
 
 /*
