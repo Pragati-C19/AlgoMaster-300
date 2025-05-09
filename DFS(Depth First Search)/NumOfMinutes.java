@@ -2,6 +2,39 @@ import java.util.*;
 
 public class NumOfMinutes {
     
+    // Globally Declare Variables
+
+
+    // Driver Function
+    public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
+        
+        return 0;
+    }
+
+    // Helper Function : to get maxTime recursively
+    private void dfs(int currEmployee, int timeTakesToReceivedInfo, Map<Integer, List<Integer>> teamMap, int[] informTime) {
+
+        return;
+    }
+
+    public static void main(String[] args){
+
+        NumOfMinutes solution = new NumOfMinutes();
+
+        int[] manager1 = {-1};
+        int[] informTime1 = {0};
+        System.out.println("Result1 -> " + solution.numOfMinutes(1, 0, manager1, informTime1) + "\n");      // 0
+
+        int[] manager2 = {2,2,-1,2,2,2};
+        int[] informTime2 = {0,0,1,0,0,0};
+        System.out.println("Result2 -> " + solution.numOfMinutes(6, 2, manager2, informTime2) + "\n");      // 0
+        
+        int[] manager3 = {12,7,18,11,13,21,12,-1,6,5,14,13,14,9,20,13,11,1,1,2,3,19};
+        int[] informTime3 = {0,540,347,586,0,748,824,486,0,777,0,202,653,713,454,0,0,0,574,735,721,772};
+        System.out.println("Result3 -> " + solution.numOfMinutes(22, 7, manager3, informTime3) + "\n");      // 0
+
+    }
+
 }
 
 /*
