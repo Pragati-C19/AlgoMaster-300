@@ -6,7 +6,7 @@ public class MincostToHireWorkers {
         
         int n = quality.length;
         double totalCost = Double.MAX_VALUE; 
-        double qualitySum = 0;
+        int qualitySum = 0;
 
         PriorityQueue<Double> maxHeap = new PriorityQueue<>((a, b) -> Double.compare(b, a));
 
@@ -30,7 +30,7 @@ public class MincostToHireWorkers {
         // let's find manager now
         for (double[] worker : workerRatio) {
             
-            System.out.println("    Visiting worker : " + worker);
+            System.out.println("    Visiting worker : " + Arrays.toString(worker));
 
             // base rate Ration 
             double baseRatio = worker[1];
