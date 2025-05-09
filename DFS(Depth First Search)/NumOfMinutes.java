@@ -10,6 +10,13 @@ public class NumOfMinutes {
         
         maxTime = 0;
 
+        // Base Case :
+        if (n == 1) {
+            
+            maxTime = informTime[headID];
+            return maxTime;
+        }
+
         Map<Integer, List<Integer>> teamMap = new HashMap<>();
 
         for (int i = 0; i < n; i++) {
@@ -27,7 +34,8 @@ public class NumOfMinutes {
 
         System.out.println("Team Map Looks like : " + teamMap);
 
-
+        // Call recursion function to get maxTime all employee will received info
+        dfs(headID, 0, teamMap, informTime);
 
         return maxTime;
     }
@@ -35,6 +43,23 @@ public class NumOfMinutes {
     // Helper Function : to get maxTime recursively
     private void dfs(int currEmployee, int timeTakesToReceivedInfo, Map<Integer, List<Integer>> teamMap, int[] informTime) {
 
+        // Check MaxTime 
+        maxTime = Math.max(maxTime, timeTakesToReceivedInfo);
+
+        if (teamMap.containsKey(currEmployee)) {
+            
+            List<Integer> employeesUnderCurrEmployee = teamMap.get(currEmployee);
+            System.out.println("    -> Employees Under " + currEmployee + " : " + employeesUnderCurrEmployee);
+
+            int timeNeedsToInformSubordinates = informTime[currEmployee];
+
+            for (int employee : employeesUnderCurrEmployee) {
+                
+                dfs(employee, timeTakesToReceivedInfo + timeNeedsToInformSubordinates, teamMap, informTime);
+            }
+            
+        }
+        
         return;
     }
 
