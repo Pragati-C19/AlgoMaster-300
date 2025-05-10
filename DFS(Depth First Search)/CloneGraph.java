@@ -31,7 +31,6 @@ public class CloneGraph {
     }
 
     // Globally Declare Variables
-    Node clonedNode;
     Set<Node> visitedNodeSet;
 
     // Driver Function
@@ -40,7 +39,7 @@ public class CloneGraph {
         // assign value to global variables
         visitedNodeSet = new HashSet<>();
 
-        dfs(node);
+        Node clonedNode = dfs(node);
 
         return clonedNode;
     }
@@ -55,7 +54,7 @@ public class CloneGraph {
 
         visitedNodeSet.add(currNode);
         
-        clonedNode = new Node(currNode.val);
+        Node clonedNode = new Node(currNode.val);
         System.out.println("       -> Cloning Node: " + currNode.val);
 
         for (Node neighborNode : currNode.neighbors) {
