@@ -31,14 +31,37 @@ public class AllPathsSourceTarget {
         System.out.println("Initially Map looks like : " + indexNodeMap);
 
         // recursion call
-        dfs(0, currPath, graph, n);
+        dfs(0, currPath, indexNodeMap, graph, n);
         
         return resultPath;
 
     }
 
     // Helper Function : To get path
-    private void dfs(int currVisitingNode, List<Integer> currPath, int[][] graph, int n){
+    private void dfs(int currVisitingNode, List<Integer> currPath, Map<Integer, List<Integer>> indexNodeMap, int[][] graph, int n){
+
+        System.out.println("    -> Visiting : " + currVisitingNode);
+        
+        currPath.add(currVisitingNode);
+        System.out.println("      - Adding visiting node in curr Path : " + currPath);
+
+        if (currVisitingNode == (n - 1)) {
+
+            resultPath.add(new ArrayList<>(currPath));
+            System.out.println("    - Adding currPath in result : " + resultPath);
+        }
+
+        if (indexNodeMap.containsKey(currVisitingNode)) {
+            
+            List<Integer> visitingNodesList = indexNodeMap.get(currVisitingNode);
+            System.out.println("        - Visiting nodes of  " + currVisitingNode + " : " + visitingNodesList);
+
+            for (int node : visitingNodesList) {
+                
+                dfs(node, currPath, indexNodeMap, graph, n);
+            }
+        }
+
 
         return;
     }
