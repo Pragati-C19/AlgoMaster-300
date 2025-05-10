@@ -31,16 +31,37 @@ public class CloneGraph {
     }
 
     // Globally Declare Variables
-
+    Node clonedNode;
+    Set<Node> visitedNodeSet;
 
     // Driver Function
     public Node cloneGraph(Node node) {
         
-        return node;
+        // assign value to global variables
+        visitedNodeSet = new HashSet<>();
+
+        dfs(node);
+
+        return clonedNode;
     }
 
     // Recursion Function : to get cloned Nodes and neighbors
     private void dfs(Node currNode) {
+
+        if (visitedNodeSet.contains(currNode)) {
+            return;
+        }
+
+        visitedNodeSet.add(currNode);
+        
+        clonedNode = new Node(currNode.val);
+
+        for (Node neighborNode : currNode.neighbors) {
+            
+            Node clonedNeighborNode = dfs(neighborNode);
+
+            clonedNode.neighbors.add(clonedNeighborNode);
+        }
 
         return;
     }
@@ -146,7 +167,7 @@ public class CloneGraph {
     2. will maintain a visited list/set to avoid going in infinite loop or getting any duplicates
     3. globally declare variables
         - clonedNode
-        
+        - visitedNode  -> Set<Node> bcoz we are adding node not integer
     4. function
         - Declare a set to maintain visited Nodes
             visitedSet = new HashSet
