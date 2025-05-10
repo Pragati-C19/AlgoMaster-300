@@ -36,6 +36,10 @@ public class CloneGraph {
     // Driver Function
     public Node cloneGraph(Node node) {
         
+        if (node == null) {
+            return null;
+        }
+        
         // assign value to global variables
         visitedNodeSet = new HashSet<>();
 
