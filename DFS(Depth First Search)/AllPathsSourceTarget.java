@@ -50,9 +50,6 @@ public class AllPathsSourceTarget {
             resultPath.add(new ArrayList<>(currPath));
             System.out.println("    - Adding currPath in result : " + resultPath);
 
-            // After adding currPath in resultPath we need to backtrack it to prev Node
-            currPath.remove(currPath.size() - 1);
-
         }
 
         if (indexNodeMap.containsKey(currVisitingNode)) {
@@ -66,7 +63,9 @@ public class AllPathsSourceTarget {
             }
         }
 
-
+        // After adding currPath in resultPath we need to backtrack it to prev Node
+        currPath.remove(currPath.size() - 1);
+        
         return;
     }
 
