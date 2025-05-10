@@ -31,7 +31,7 @@ public class CloneGraph {
     }
 
     // Globally Declare Variables
-    Set<Node> visitedNodeSet;
+    Map<Node, Node> visitedNodeMap;     // it stores original Node, cloned Node
 
     // Driver Function
     public Node cloneGraph(Node node) {
@@ -41,7 +41,7 @@ public class CloneGraph {
         }
 
         // assign value to global variables
-        visitedNodeSet = new HashSet<>();
+        visitedNodeMap = new HashMap<>();
 
         Node clonedNode = dfs(node);
 
@@ -51,19 +51,19 @@ public class CloneGraph {
     // Recursion Function : to get cloned Nodes and neighbors
     private Node dfs(Node currNode) {
 
-        if (visitedNodeSet.contains(currNode)) {
+        if (visitedNodeMap.containsKey(currNode)) {
             
             System.out.println(" Current Node " + currNode.val + " already cloned. Returning existing clone.");
 
             // I think here I'm returning currNode rather than it's clone
             // Can't return vivistedNodeSet.get(currNode) I need to use map 
-            return currNode;
+            return visitedNodeMap.get(currNode);
         }
-
-        visitedNodeSet.add(currNode);
         
         Node clonedNode = new Node(currNode.val);
         System.out.println("       -> Cloning Node: " + currNode.val);
+
+        visitedNodeMap.put(currNode, clonedNode);
 
         for (Node neighborNode : currNode.neighbors) {
             
