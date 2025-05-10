@@ -3,16 +3,44 @@ import java.util.*;
 public class AllPathsSourceTarget {
     
     // Globally Declare Variable
-
+    List<List<Integer>> resultPath;
 
     // Driver Function
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
         
+        int n = graph.length;
+        List<Integer> currPath = new ArrayList<>();
+
+        // Assign value to global variable
+        resultPath = new ArrayList<>();
+        
+        Map<Integer, List<Integer>> indexNodeMap = new HashMap<>();
+
+        // I don't want last index with empty array [] in map so used n - 1 here
+        for (int i = 0; i < n - 1 ; i++) {
+            
+            if (!indexNodeMap.containsKey(i)) {
+                indexNodeMap.put(i, new ArrayList<>());
+            }
+
+            for (int j = 0; j < graph[i].length; j++) {
+                indexNodeMap.get(i).add(graph[i][j]);
+            }
+
+        }
+        System.out.println("Initially Map looks like : " + indexNodeMap);
+
+        // recursion call
+        dfs(0, currPath, graph, n);
+        
+        return resultPath;
+
     }
 
     // Helper Function : To get path
     private void dfs(int currVisitingNode, List<Integer> currPath, int[][] graph, int n){
 
+        return;
     }
 
     public static void main(String[] args){
