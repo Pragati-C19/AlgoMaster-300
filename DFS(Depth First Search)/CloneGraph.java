@@ -46,15 +46,17 @@ public class CloneGraph {
     }
 
     // Recursion Function : to get cloned Nodes and neighbors
-    private void dfs(Node currNode) {
+    private Node dfs(Node currNode) {
 
         if (visitedNodeSet.contains(currNode)) {
-            return;
+            System.out.println(" Current Node " + currNode.val + " already cloned. Returning existing clone.");
+            return currNode;
         }
 
         visitedNodeSet.add(currNode);
         
         clonedNode = new Node(currNode.val);
+        System.out.println("       -> Cloning Node: " + currNode.val);
 
         for (Node neighborNode : currNode.neighbors) {
             
@@ -63,7 +65,7 @@ public class CloneGraph {
             clonedNode.neighbors.add(clonedNeighborNode);
         }
 
-        return;
+        return currNode;
     }
 
 
