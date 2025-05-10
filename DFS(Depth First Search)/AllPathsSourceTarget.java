@@ -2,6 +2,42 @@ import java.util.*;
 
 public class AllPathsSourceTarget {
     
+    // Globally Declare Variable
+
+
+    // Driver Function
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        
+    }
+
+    // Helper Function : To get path
+    private void dfs(int currVisitingNode, List<Integer> currPath, int[][] graph, int n){
+
+    }
+
+    public static void main(String[] args){
+
+        AllPathsSourceTarget solution = new AllPathsSourceTarget();
+
+        int[][] graph1 = {
+            {1,2},
+            {3},
+            {3},
+            {}
+        };
+        System.out.println("Result 1 -> " + solution.allPathsSourceTarget(graph1) + "\n");
+
+        int[][] graph2 = {
+            {4,3,1},
+            {3,2,4},
+            {3},
+            {4},
+            {}
+        };
+        System.out.println("Result 2 -> " + solution.allPathsSourceTarget(graph2) + "\n");
+
+    }
+
 }
 
 /*
