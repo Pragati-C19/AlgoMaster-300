@@ -56,6 +56,7 @@ public class CloneGraph {
             System.out.println(" Current Node " + currNode.val + " already cloned. Returning existing clone.");
 
             // I think here I'm returning currNode rather than it's clone
+            // Can't return vivistedNodeSet.get(currNode) I need to use map 
             return currNode;
         }
 
@@ -72,7 +73,7 @@ public class CloneGraph {
         }
 
         // I think here I'm returning currNode rather than it's clone
-        return currNode;
+        return clonedNode;
     }
 
 
