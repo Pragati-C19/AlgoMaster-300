@@ -39,7 +39,7 @@ public class CloneGraph {
         if (node == null) {
             return null;
         }
-        
+
         // assign value to global variables
         visitedNodeSet = new HashSet<>();
 
@@ -52,7 +52,10 @@ public class CloneGraph {
     private Node dfs(Node currNode) {
 
         if (visitedNodeSet.contains(currNode)) {
+            
             System.out.println(" Current Node " + currNode.val + " already cloned. Returning existing clone.");
+
+            // I think here I'm returning currNode rather than it's clone
             return currNode;
         }
 
@@ -68,6 +71,7 @@ public class CloneGraph {
             clonedNode.neighbors.add(clonedNeighborNode);
         }
 
+        // I think here I'm returning currNode rather than it's clone
         return currNode;
     }
 
