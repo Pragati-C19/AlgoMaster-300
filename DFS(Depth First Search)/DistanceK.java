@@ -48,6 +48,7 @@ public class DistanceK {
     // Recursion Function : To set parent of node in map
     private void setParentNodes(TreeNode node) {
 
+        // Base Case:
         if (node == null) {
             return;
         }
@@ -72,6 +73,31 @@ public class DistanceK {
     // Recursion Function : To get nodes of K distance from target
     private void dfs(TreeNode node, int distance, Set<TreeNode> visited, int k) {
         
+        // Base Case:
+        if (node == null || visited.contains(node)) {
+            return;
+        }
+
+        // check left node
+        dfs(node.left, distance + 1, visited, k);
+
+        // check right node
+        dfs(node.right, distance + 1, visited, k);
+
+        // check parent node
+        TreeNode parentNode = parentNodeMap.get(node);
+        dfs(parentNode, distance + 1, visited, k);
+
+        // Visit node
+        visited.add(node);
+
+        if (distance == k) {
+            
+            result.add(node.val);
+
+            System.out.println("    -> result List : " + result);
+        }
+
         return;
     }
 
