@@ -5,6 +5,7 @@ import javax.swing.tree.TreeNode;
 public class DistanceK {
     
     private static class TreeNode {
+        
         int val;
         TreeNode left;
         TreeNode right;
@@ -15,16 +16,31 @@ public class DistanceK {
             this.left = left;
             this.right = right;
         }
+
+        // 🔧 Add this method for readable printing
+        @Override
+        public String toString() {
+            return String.valueOf(val);
+        }
     }
 
 
     // Declare Global Variables
     List<Integer> result;
+    Map<TreeNode, TreeNode> parentNodeMap;
 
     // Driver Function
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
      
         result = new ArrayList<>();
+        parentNodeMap = new HashMap<>();
+
+        Set<TreeNode> visited = new HashSet<>();
+
+        setParentNodes(root);
+        System.out.println("    parentNodeMap : " + parentNodeMap);
+
+        dfs(target, 0, visited, k);
 
         return result;
     }
@@ -32,12 +48,30 @@ public class DistanceK {
     // Recursion Function : To set parent of node in map
     private void setParentNodes(TreeNode node) {
 
+        if (node == null) {
+            return;
+        }
+
+        // add parent to left node
+        if (node.left != null) {
+            
+            parentNodeMap.put(node.left, node);
+            setParentNodes(node.left);
+        }
+
+        // add parent to right node
+        if (node.right != null) {
+            
+            parentNodeMap.put(node.right, node);
+            setParentNodes(node.right);
+        }
+
         return;
     }
 
     // Recursion Function : To get nodes of K distance from target
-    private void dfs(TreeNode node, int distance, int k) {
-
+    private void dfs(TreeNode node, int distance, Set<TreeNode> visited, int k) {
+        
         return;
     }
 
