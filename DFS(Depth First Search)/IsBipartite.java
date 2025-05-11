@@ -2,6 +2,40 @@ import java.util.*;
 
 public class IsBipartite {
     
+    // Driver Function 
+    public boolean isBipartite(int[][] graph) {
+        
+        return true;
+    }
+
+    // Recursion Function : Set colors to neighbors and node
+    private boolean dfs(int currNode, int currNodeColor, int[] colorsOfAllNodes, int[][] graph, int n){
+
+        return true;
+    }
+
+    public static void main(String[] arg){
+
+        IsBipartite solution = new IsBipartite();
+
+        int[][] graph1 = {
+            {1,2,3},
+            {0,2},
+            {0,1,3},
+            {0,2}
+        };
+        System.out.println("Result 1 -> " + solution.isBipartite(graph1) + "\n");
+
+        int[][] graph2 = {
+            {1,3},
+            {0,2},
+            {1,3},
+            {0,2}
+        };
+        System.out.println("Result 2 -> " + solution.isBipartite(graph2) + "\n");
+
+    }
+
 }
 
 /*
