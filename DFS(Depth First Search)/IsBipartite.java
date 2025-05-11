@@ -14,14 +14,18 @@ public class IsBipartite {
         Arrays.fill(colorsOfAllNodes, -1);
         System.out.println("Initial Color Array : " + Arrays.toString(colorsOfAllNodes));
 
-        if (colorsOfAllNodes[0] == -1) {
+        // To avoid any index with empty list of neighbor
+        // jr mazi 0'th index empty ahe tr how will it go to other index which have neighbors?
+        for (int i = 0; i < n; i++) {
             
-            if (!dfs(0, 0, colorsOfAllNodes, graph, n)) {
-                
-                System.out.println("dfs return false...");
-                return false;
+            if (colorsOfAllNodes[i] == -1) {
+            
+                if (!dfs(i, 0, colorsOfAllNodes, graph, n)) {
+                    
+                    System.out.println("dfs return false...");
+                    return false;
+                } 
             }
-           
         }
         
         return true;
