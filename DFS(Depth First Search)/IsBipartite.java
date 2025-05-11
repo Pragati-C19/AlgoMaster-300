@@ -5,6 +5,15 @@ public class IsBipartite {
     // Driver Function 
     public boolean isBipartite(int[][] graph) {
         
+        int n = graph.length;
+
+        // Declare a color array to store colors of node 
+        int[] colorsOfAllNodes = new int[n];
+
+        // Initially all nodes a unvisited so setting it as -1 
+        Arrays.fill(colorsOfAllNodes, -1);
+        System.out.println("Initial Color Array : " + Arrays.toString(colorsOfAllNodes));
+
         return true;
     }
 
