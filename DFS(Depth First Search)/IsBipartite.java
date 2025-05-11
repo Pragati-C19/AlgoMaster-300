@@ -14,11 +14,38 @@ public class IsBipartite {
         Arrays.fill(colorsOfAllNodes, -1);
         System.out.println("Initial Color Array : " + Arrays.toString(colorsOfAllNodes));
 
+        dfs(0, 0, colorsOfAllNodes, graph, n);
+
         return true;
     }
 
     // Recursion Function : Set colors to neighbors and node
     private boolean dfs(int currNode, int currNodeColor, int[] colorsOfAllNodes, int[][] graph, int n){
+
+        System.out.println("    Visiting Node is : " + currNode + ", " + currNodeColor + ", " + Arrays.toString(colorsOfAllNodes) + " ");
+
+        if (colorsOfAllNodes[currNode] == -1) {
+            
+            colorsOfAllNodes[currNode] = currNodeColor;
+        }
+
+        System.out.println("    -> Updated Color Array : " + Arrays.toString(colorsOfAllNodes));
+
+        for (int neighbor : graph[currNode]) {
+        
+            if (colorsOfAllNodes[neighbor] == -1) {
+
+                int neighborColor = 1 - currNodeColor;
+                System.out.println("        - neighbors color should be " + neighborColor);
+
+                dfs(neighbor, neighborColor, colorsOfAllNodes, graph, n);
+            }
+            else if (colorsOfAllNodes[currNode] == colorsOfAllNodes[neighbor]) {
+                
+                System.out.println("    - Color of " + currNode + " and " + neighbor + " is same..." + colorsOfAllNodes[currNode]);
+                return false;
+            }
+        }
 
         return true;
     }
