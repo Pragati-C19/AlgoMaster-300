@@ -18,6 +18,7 @@ public class IsBipartite {
             
             if (!dfs(0, 0, colorsOfAllNodes, graph, n)) {
                 
+                System.out.println("dfs return false...");
                 return false;
             }
            
@@ -41,7 +42,11 @@ public class IsBipartite {
                 int neighborColor = 1 - currNodeColor;
                 System.out.println("        - neighbors color should be " + neighborColor);
 
-                dfs(neighbor, neighborColor, colorsOfAllNodes, graph, n);
+                if (!dfs(neighbor, neighborColor, colorsOfAllNodes, graph, n)) {
+                    System.out.println("    - dfs return false...");
+                    return false;
+                }
+                
             }
             else if (colorsOfAllNodes[currNode] == colorsOfAllNodes[neighbor]) {
                 
@@ -81,6 +86,21 @@ public class IsBipartite {
         };
         System.out.println("Result 3 -> " + solution.isBipartite(graph3) + "\n");
 
+        int[][] graph4 = {
+            {},                 
+            {2, 4, 6},          
+            {1, 4, 8, 9},       
+            {7, 8},             
+            {1, 2, 8, 9},       
+            {6, 9},             
+            {1, 5, 7, 8, 9},    
+            {3, 6, 9},          
+            {2, 3, 4, 6, 9},    
+            {2, 4, 5, 6, 7, 8}  
+        };
+        
+        System.out.println("Result 4 -> " + solution.isBipartite(graph4) + "\n");
+        
     }
 
 }
