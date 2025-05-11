@@ -14,8 +14,15 @@ public class IsBipartite {
         Arrays.fill(colorsOfAllNodes, -1);
         System.out.println("Initial Color Array : " + Arrays.toString(colorsOfAllNodes));
 
-        dfs(0, 0, colorsOfAllNodes, graph, n);
-
+        if (colorsOfAllNodes[0] == -1) {
+            
+            if (!dfs(0, 0, colorsOfAllNodes, graph, n)) {
+                
+                return false;
+            }
+           
+        }
+        
         return true;
     }
 
@@ -24,11 +31,7 @@ public class IsBipartite {
 
         System.out.println("    Visiting Node is : " + currNode + ", " + currNodeColor + ", " + Arrays.toString(colorsOfAllNodes) + " ");
 
-        if (colorsOfAllNodes[currNode] == -1) {
-            
-            colorsOfAllNodes[currNode] = currNodeColor;
-        }
-
+        colorsOfAllNodes[currNode] = currNodeColor;
         System.out.println("    -> Updated Color Array : " + Arrays.toString(colorsOfAllNodes));
 
         for (int neighbor : graph[currNode]) {
