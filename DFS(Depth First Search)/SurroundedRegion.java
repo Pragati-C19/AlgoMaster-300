@@ -12,9 +12,53 @@ public class SurroundedRegion {
             System.out.println(Arrays.toString(row));
         }
 
+        // mark 'O' at edge as 'S' safe, checking row by row
+        for (int i = 0; i < m; i++) {
+            
+            // j = 0 is constant 
+            if (board[i][0] == 'O') {
+                dfs(i, 0, board, m, n);
+            }
+
+            // j = n-1 is constant
+            if (board[i][n-1] == 'O') {
+                dfs(i, n-1, board, m, n);
+            }
+        }
+
+        // mark 'O' at edge as 'S' safe, checking col by col
+        for (int j = 0; j < n; j++) {
+            
+            // j = 0 is constant 
+            if (board[0][j] == 'O') {
+                dfs(0, j, board, m, n);
+            }
+
+            // j = n-1 is constant
+            if (board[m-1][j] == 'O') {
+                dfs(m-1, j, board, m, n);
+            }
+        }
+
+        System.out.println("\n After marking Safe board looks like : ");
+        for (char[] row : board) {
+            System.out.println(Arrays.toString(row));
+        }
+
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                dfs(i, j, board, m, n);
+                
+                if (board[i][j] == 'O') {
+
+                    // If any cell has value 'O' then replace it with 'X'
+                    board[i][j] = 'X';
+                }
+                
+                if (board[i][j] == 'S') {
+                    
+                    // If any cell has value 'S' then replace it with 'O'
+                    board[i][j] = 'O';
+                }
             }
         }
 
