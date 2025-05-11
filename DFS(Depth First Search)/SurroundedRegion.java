@@ -29,6 +29,23 @@ public class SurroundedRegion {
     // Recursion Function : to replace '0' with 'X'
     private void dfs(int i, int j, char[][] board, int m, int n) {
 
+        // Base Case :
+        if (i < 0 || i >= m || j < 0 || j >= n || board[i][j] == 'X') {
+            
+            System.out.println("        It's an end of row or col or block has char 'X'...");
+            return;
+        }
+
+        System.out.println("       -> Visiting block is (" + i + ", " + j + ") : " + board[i][j]);
+
+        // if it's '0' chnage it to 'X'
+        board[i][j] = 'X';
+
+        // Check Down Left Up Right of curr block
+        dfs(i+1, j, board, m, n);
+        dfs(i, j+1, board, m, n);
+        dfs(i-1, j, board, m, n);
+        dfs(i, j-1, board, m, n);
 
         return;
     }
