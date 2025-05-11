@@ -4,11 +4,31 @@ public class SurroundedRegion {
     
     public void solve(char[][] board) {
         
+        int m = board.length;
+        int n = board[0].length;
+
+        System.out.println("\n Initially board looks like : ");
+        for (char[] row : board) {
+            System.out.println(Arrays.toString(row));
+        }
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                dfs(i, j, board, m, n);
+            }
+        }
+
+        System.out.println("\n At End board looks like : ");
+        for (char[] row : board) {
+            System.out.println(Arrays.toString(row));
+        }
+        
         return;
     }
 
     // Recursion Function : to replace '0' with 'X'
     private void dfs(int i, int j, char[][] board, int m, int n) {
+
 
         return;
     }
@@ -23,13 +43,13 @@ public class SurroundedRegion {
             {'X','X','0','X'},
             {'X','0','X','X'}
         };
-        System.out.println("Result1 -> ");     
+        System.out.println("\nResult1 -> ");     
         solution.solve(board1);
 
         char[][] board2 = {
             {'X'}
         };
-        System.out.println("Result2 -> ");      
+        System.out.println("\nResult2 -> ");      
         solution.solve(board2);
         
     }
