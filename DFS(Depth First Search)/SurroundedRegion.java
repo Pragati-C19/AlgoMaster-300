@@ -128,4 +128,32 @@ public class SurroundedRegion {
     }
 
 
+ * Improvement :
+ 
+    1. So here is a big and huge improvement
+    2. will set edge 'O' as safe 'S'
+    3. A cell (i, j) is on the border if:
+        - It is in the first or last row → i == 0 or i == m - 1
+        - It is in the first or last column → j == 0 or j == n - 1
+
+    4. apan adhi i and j = 0 and j = n - 1 vale safe karu    
+        for(i = 0 to m)
+            if(board[i][0] == 'O') dfs(i, 0, board, m, n)
+            if(board[i][n - 1] == 'O') dfs(i, n - 1, board, m, n)
+
+    5. same apan j and i = 0 and i = m - 1 sathi karu 
+        for(j = 0 to n)
+            if(board[0][j] == 'O') dfs(0, j, board, m, n)
+            if(board[m - 1][j] == 'O') dfs(m - 1, j, board, m, n)
+
+    6. Then will flip and restore
+        traverse whole matrix col by col and row by row
+
+            if we find 'O' then will chnage it to X
+            if we find 'S' then will change it to 'O' again
+            we have marked 'S' for safety so we need to return it 'O' again
+
+    7. in recursion function only one change is there
+        board[i][j] = 'S'   instead of 'O'
+
  */
