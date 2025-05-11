@@ -30,16 +30,16 @@ public class SurroundedRegion {
     private void dfs(int i, int j, char[][] board, int m, int n) {
 
         // Base Case :
-        if (i < 0 || i >= m || j < 0 || j >= n || board[i][j] == 'X') {
+        if (i < 0 || i >= m || j < 0 || j >= n || board[i][j] != 'O') {
             
-            System.out.println("        It's an end of row or col or block has char 'X'...");
+            System.out.println("        It's an end of row or col or block has char other than 'O'...");
             return;
         }
 
         System.out.println("       -> Visiting block is (" + i + ", " + j + ") : " + board[i][j]);
 
         // if it's '0' chnage it to 'X'
-        board[i][j] = 'X';
+        board[i][j] = 'S';
 
         // Check Down Left Up Right of curr block
         dfs(i+1, j, board, m, n);
@@ -56,9 +56,9 @@ public class SurroundedRegion {
 
         char[][] board1 = {
             {'X','X','X','X'},
-            {'X','0','0','X'},
-            {'X','X','0','X'},
-            {'X','0','X','X'}
+            {'X','O','O','X'},
+            {'X','X','O','X'},
+            {'X','O','X','X'}
         };
         System.out.println("\nResult1 -> ");     
         solution.solve(board1);
