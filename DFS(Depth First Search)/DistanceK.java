@@ -1,7 +1,111 @@
 import java.util.*;
 
+import javax.swing.tree.TreeNode;
+
 public class DistanceK {
-   
+    
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+
+    // Declare Global Variables
+    List<Integer> result;
+
+    // Driver Function
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+     
+        result = new ArrayList<>();
+
+        return result;
+    }
+
+    // Recursion Function : To set parent of node in map
+    private void setParentNodes(TreeNode node) {
+
+        return;
+    }
+
+    // Recursion Function : To get nodes of K distance from target
+    private void dfs(TreeNode node, int distance, int k) {
+
+        return;
+    }
+
+
+    // Helper Function : to build a tree from an array (for testing)
+    public static TreeNode buildTree(Integer[] nodes) {
+        
+        // Node is empty
+        if (nodes.length == 0 || nodes[0] == null) return null;
+        
+        TreeNode root = new TreeNode(nodes[0]);
+        Queue<TreeNode> queue = new LinkedList<>();
+        
+        queue.add(root);
+        
+        int i = 1;  // Start from second element
+
+        while (!queue.isEmpty() && i < nodes.length) {
+            TreeNode parent = queue.poll();
+            
+            // Assign left child
+            if (nodes[i] != null) {
+                parent.left = new TreeNode(nodes[i]);
+                queue.add(parent.left);
+            }
+            i++;
+            
+            // Assign right child (check if there's still an element)
+            if (i < nodes.length && nodes[i] != null) {
+                parent.right = new TreeNode(nodes[i]);
+                queue.add(parent.right);
+            }
+            i++;
+        }
+
+        return root;
+    }
+
+    // Helper Function : to find target node by value
+    public static TreeNode findNode(TreeNode root, int value) {
+        if (root == null) return null;
+        if (root.val == value) return root;
+    
+        TreeNode left = findNode(root.left, value);
+        if (left != null) return left;
+    
+        return findNode(root.right, value);
+    }
+    
+
+    public static void main(String[] args) {
+        
+        DistanceK solution = new DistanceK();
+
+        // First Example
+        Integer[] treeArray1 = {3,5,1,6,2,0,8,null,null,7,4};
+        TreeNode root1 = buildTree(treeArray1);
+        TreeNode target1 = findNode(root1, 5);  // 🔍 Find node with value 5
+        System.out.println("Result1: " + solution.distanceK(root1, target1, 2) + "\n");
+
+        // Second Example
+        Integer[] treeArray2 = {1};
+        TreeNode root2 = buildTree(treeArray2);
+        TreeNode target2 = findNode(root2, 1);  // 🔍 Find node with value 1
+        System.out.println("Result2: " + solution.distanceK(root2, target2, 3) + "\n");
+
+    }
+
 }
 
 /*
