@@ -78,16 +78,6 @@ public class DistanceK {
             return;
         }
 
-        // check left node
-        dfs(node.left, distance + 1, visited, k);
-
-        // check right node
-        dfs(node.right, distance + 1, visited, k);
-
-        // check parent node
-        TreeNode parentNode = parentNodeMap.get(node);
-        dfs(parentNode, distance + 1, visited, k);
-
         // Visit node
         visited.add(node);
 
@@ -97,6 +87,16 @@ public class DistanceK {
 
             System.out.println("    -> result List : " + result);
         }
+
+        // check left node
+        dfs(node.left, distance + 1, visited, k);
+
+        // check right node
+        dfs(node.right, distance + 1, visited, k);
+
+        // check parent node
+        TreeNode parentNode = parentNodeMap.get(node);
+        dfs(parentNode, distance + 1, visited, k);
 
         return;
     }
