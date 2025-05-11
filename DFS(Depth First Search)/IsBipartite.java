@@ -73,6 +73,14 @@ public class IsBipartite {
         };
         System.out.println("Result 2 -> " + solution.isBipartite(graph2) + "\n");
 
+        int[][] graph3 = {
+            {3},
+            {2,3},
+            {1,3},
+            {0,2,1}
+        };
+        System.out.println("Result 3 -> " + solution.isBipartite(graph3) + "\n");
+
     }
 
 }
