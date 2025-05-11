@@ -2,6 +2,37 @@ import java.util.*;
 
 public class SurroundedRegion {
     
+    public void solve(char[][] board) {
+        
+        return;
+    }
+
+    // Recursion Function : to replace '0' with 'X'
+    private void dfs(int i, int j, char[][] board, int m, int n) {
+
+        return;
+    }
+
+    public static void main(String[] args){
+
+        SurroundedRegion solution = new SurroundedRegion();
+
+        char[][] board1 = {
+            {'X','X','X','X'},
+            {'X','0','0','X'},
+            {'X','X','0','X'},
+            {'X','0','X','X'}
+        };
+        System.out.println("Result1 -> ");     
+        solution.solve(board1);
+
+        char[][] board2 = {
+            {'X'}
+        };
+        System.out.println("Result2 -> ");      
+        solution.solve(board2);
+        
+    }
 }
 
 /*
@@ -48,6 +79,8 @@ public class SurroundedRegion {
 
         -> change '0' with 'X'
         board[i][j] = 'X'
+
+        ~ need to check abt edge : if '0' is at edge then we can't replace it
 
         -> check DLUR
         dfs(i+1, j)
