@@ -24,23 +24,96 @@ public class PacificAtlantic{
         }
         
         // DEBUGGER : this are debugging sout statements
-        System.out.println("\n Intially Pacific Ocean : ");
+        System.out.println("\nIntially Pacific Ocean : ");
         for (boolean[] row : pacificOcean) {
             System.out.println(Arrays.toString(row));
         }
 
-        System.out.println("\n Intially Atlantic Ocean : ");
+        System.out.println("Intially Atlantic Ocean : ");
         for (boolean[] row : atlanticOcean) {
             System.out.println(Arrays.toString(row));
         }
+
+
+        // Call dfs col by col
+        for (int i = 0; i < m; i++) {
+            
+            // check if the cell connects to pacific ocean throw 1st col
+            dfs(i, 0, heights[i][0], pacificOcean, heights, m, n);
+
+            // check if the cell connects to atlantic ocean throw last col
+            dfs(i, n-1, heights[i][n-1], atlanticOcean, heights, m, n);
+        } 
+
+        // DEBUGGER : this are debugging sout statements
+        System.out.println("\nAfter calling DFS col by col Pacific Ocean : ");
+        for (boolean[] row : pacificOcean) {
+            System.out.println(Arrays.toString(row));
+        }
+
+        System.out.println("After calling DFS col by col Atlantic Ocean : ");
+        for (boolean[] row : atlanticOcean) {
+            System.out.println(Arrays.toString(row));
+        }
+
+        // Call dfs row by row
+        for (int j = 0; j < n; j++) {
+            
+            // check if the cell connects to pacific ocean throw 1st row
+            dfs(0, j, heights[0][j], pacificOcean, heights, m, n);
+
+            // check if the cell connects to atlantic ocean throw last row
+            dfs(m-1, j, heights[m-1][j], atlanticOcean, heights, m, n);
+        } 
+
+        // DEBUGGER : this are debugging sout statements
+        System.out.println("\nAfter calling DFS row by row Pacific Ocean : ");
+        for (boolean[] row : pacificOcean) {
+            System.out.println(Arrays.toString(row));
+        }
+
+        System.out.println("After calling DFS row by row Atlantic Ocean : ");
+        for (boolean[] row : atlanticOcean) {
+            System.out.println(Arrays.toString(row));
+        }
+
 
 
         return result;
     }
 
     // Recursion Function : to check if the cell is visted or not
-    private void dfs(int i, int j, int prevHeight, int[][] visitedCell, int[][] heights) {
+    private void dfs(int i, int j, int prevHeight, boolean[][] visitedCell, int[][] heights, int m, int n) {
 
+        // Base Case :
+        if (i < 0 || j < 0 || i >= m || j >= n) {
+            System.out.println("    -> It's an end of row and col...");
+            return;
+        }
+
+        if (visitedCell[i][j]) {
+            
+            System.out.println("    -> cell (" + i + ", " + j + ") : " + heights[i][j] + " is already visited...");
+            return;
+        }
+
+        if (heights[i][j] < prevHeight) {
+            
+            System.out.println("    -> height of (" + i + ", " + j + ") : " + heights[i][j] + " is less than prevHeight " + prevHeight);
+            return;
+        }
+
+        // if (i < 0 || j < 0 || i >= m || j >= n || visitedCell[i][j] || heights[i][j] < prevHeight) {
+        //     return;
+        // }
+
+        visitedCell[i][j] = true;
+                
+        // Call DFS for BRUL
+        dfs(i+1, j, heights[i][j], visitedCell, heights, m, n);
+        dfs(i, j+1, heights[i][j], visitedCell, heights, m, n);
+        dfs(i-1, j, heights[i][j], visitedCell, heights, m, n);
+        dfs(i, j-1, heights[i][j], visitedCell, heights, m, n);
 
         return;
     }
