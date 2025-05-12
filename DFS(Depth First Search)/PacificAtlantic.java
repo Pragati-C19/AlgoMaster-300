@@ -1,10 +1,38 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class PacificAtlantic{
 
     public List<List<Integer>> pacificAtlantic(int[][] heights) {
         
+        int m = heights.length;
+        int n = heights[0].length;
+
         List<List<Integer>> result = new ArrayList<>();
+
+        // let's create an matrix to check it's visited or not
+        boolean[][] pacificOcean = new boolean[m][n];
+        boolean[][] atlanticOcean = new boolean[m][n];
+
+        // fill those matrix with false at the start
+        for (boolean[] row : pacificOcean) {
+            Arrays.fill(row, false);
+        }
+
+        for (boolean[] row : atlanticOcean) {
+            Arrays.fill(row, false);
+        }
+        
+        // DEBUGGER : this are debugging sout statements
+        System.out.println("\n Intially Pacific Ocean : ");
+        for (boolean[] row : pacificOcean) {
+            System.out.println(Arrays.toString(row));
+        }
+
+        System.out.println("\n Intially Atlantic Ocean : ");
+        for (boolean[] row : atlanticOcean) {
+            System.out.println(Arrays.toString(row));
+        }
 
 
         return result;
@@ -12,6 +40,7 @@ public class PacificAtlantic{
 
     // Recursion Function : to check if the cell is visted or not
     private void dfs(int i, int j, int prevHeight, int[][] visitedCell, int[][] heights) {
+
 
         return;
     }
