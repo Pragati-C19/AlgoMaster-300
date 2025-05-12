@@ -78,6 +78,19 @@ public class PacificAtlantic{
         }
 
 
+        // Now we have both different matrix who can tell which cell is connected to that ocean
+        // but we need the cell which connects to both so will check it here
+
+        for (int i = 0; i < m; i++) {
+            
+            for (int j = 0; j < n; j++) {
+                
+                // Check if the cell is in both matrix?... if yes then will add it in result
+                if (pacificOcean[i][j] && atlanticOcean[i][j]) {
+                    result.add(new ArrayList<>(Arrays.asList(i, j)));
+                }
+            }
+        }
 
         return result;
     }
