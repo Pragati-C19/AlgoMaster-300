@@ -2,6 +2,57 @@ import java.util.*;
 
 public class GetEmployeeImportance {
     
+    // Definition for Employee.
+    private static class Employee {
+        public int id;
+        public int importance;
+        public List<Integer> subordinates;
+    };
+
+    // Globally Declare Variables
+
+
+    // Driver Function
+    public int getImportance(List<Employee> employees, int id) {
+        
+        return 0;
+    }
+
+    // Recursion Function : To get importance of subordinates
+    private void dfs(int currEmployeeId, int currEmployeeArrayIndex, List<Employee> employee) {
+
+        return;
+    }
+
+    // Helper Function : To create Employee objects
+    private static Employee createEmployee(int id, int importance, Integer... subs) {
+        Employee emp = new Employee();
+        emp.id = id;
+        emp.importance = importance;
+        emp.subordinates = Arrays.asList(subs);
+        return emp;
+    }
+    
+    public static void main(String[] args) {
+
+        GetEmployeeImportance solution = new GetEmployeeImportance();
+
+        // Test Case 1
+        List<Employee> employees1 = Arrays.asList(
+            createEmployee(1, 5, 2, 3),
+            createEmployee(2, 3),
+            createEmployee(3, 3)
+        );
+        System.out.println("Result 1: " + solution.getImportance(employees1, 1));
+
+        // Test Case 2
+        List<Employee> employees2 = Arrays.asList(
+            createEmployee(1, 2, 5),
+            createEmployee(5, -3)
+        );
+        System.out.println("Result 2: " + solution.getImportance(employees2, 5));
+    }
+
 }
 
 /*
