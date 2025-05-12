@@ -2,6 +2,39 @@ import java.util.*;
 
 public class PacificAtlantic{
 
+    public List<List<Integer>> pacificAtlantic(int[][] heights) {
+        
+        List<List<Integer>> result = new ArrayList<>();
+
+
+        return result;
+    }
+
+    // Recursion Function : to check if the cell is visted or not
+    private void dfs(int i, int j, int prevHeight, int[][] visitedCell, int[][] heights) {
+
+        return;
+    }
+
+    public static void main(String[] args){
+
+        PacificAtlantic solution = new PacificAtlantic();
+
+        int[][] heights1 = {
+            {1,2,2,3,5},
+            {3,2,3,4,4},
+            {2,4,5,3,1},
+            {6,7,1,4,5},
+            {5,1,1,2,4}
+        };
+        System.out.println("Result 1: " + solution.pacificAtlantic(heights1) + "\n");
+
+        int[][] heights2 = {
+            {1}
+        };
+        System.out.println("Result 2: " + solution.pacificAtlantic(heights2) + "\n");
+
+    }
 }
 
 
