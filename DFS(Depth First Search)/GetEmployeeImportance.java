@@ -28,14 +28,36 @@ public class GetEmployeeImportance {
             
             originalIndexMap.put(employees.get(i).id, i);
         }
-
         System.out.println("Index Map : " + originalIndexMap);
 
-        return 0;
+        // get original index of given Employee 
+        int employeeArrayIndex = originalIndexMap.get(id);
+
+        dfs(id, employeeArrayIndex, employees, n);
+
+        return totalImportance;
     }
 
     // Recursion Function : To get importance of subordinates
-    private void dfs(int currEmployeeId, int currEmployeeArrayIndex, List<Employee> employee) {
+    private void dfs(int currEmployeeId, int currEmployeeArrayIndex, List<Employee> employees, int n) {
+
+        // Find curr employee's imprtance
+        int currEmployeeImportance = employees.get(currEmployeeArrayIndex).importance;
+
+        // add curr employee importance in total importance
+        totalImportance += currEmployeeImportance;
+
+        List<Integer> subordinateList = employees.get(currEmployeeArrayIndex).subordinates;
+
+        if (subordinateList.size() > 0) {
+            
+            for (Integer subordinateId : subordinateList) {
+                
+                int subordinateArrayIndex = originalIndexMap.get(subordinateId);
+
+                dfs(subordinateId, subordinateArrayIndex, employees, n);
+            }
+        }
 
         return;
     }
