@@ -24,6 +24,15 @@ public class GetEmployeeImportance {
     6. if it has any subordinates will check them and add their importance 
         if not will return it's importance
     
+    Improvements :
+
+    1. Changing below lines to get ArrayIndex of the employeeId or subordinateId
+        ! EmployeeID and index is different so we need to find index first
+        for(i = 0 to employees.length)
+            
+            if(employees[i].id == id)
+                employeeArrayIndex = i
+    
  
  * Pseudo Code :
  
@@ -34,12 +43,15 @@ public class GetEmployeeImportance {
     
         totalImportance = 0
 
-        ! EmployeeID and index is different so we need to find index first
-        for(i = 0 to employees.length)
-            
-            if(employees[i].id == id)
-                employeeArrayIndex = i
-        
+        -> create a hashmap to store employee ID and it's original index so that we don't have to always use for loop to get it
+            Map<Integer, Integer> map = new HashMap<>()  
+
+        -> Add arrayIndex and id in map
+            for(i = 0 to employees.length)
+                map.put(id, i)
+
+        employeeArrayIndex = map.get(id)
+
         dfs(id, employeeArrayIndex, employees)
     
     }
@@ -60,12 +72,7 @@ public class GetEmployeeImportance {
 
                 -> for(subordinateId : suborditnatesOfCurrEmployee)
 
-                    ! EmployeeID and index is different so we need to find index first
-                    for(i = 0 to employees.length)
-                        
-                        if(employees[i].id == subordinateId)
-                            subordinateArrayIndex = i
-
+                    subordinateArrayIndex = map.get(subordinateId)
                     dfs(subordinateId, subordinateArrayIndex, employees)
 
         return
