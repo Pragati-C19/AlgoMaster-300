@@ -9,12 +9,28 @@ public class GetEmployeeImportance {
         public List<Integer> subordinates;
     };
 
-    // Globally Declare Variables
 
+    // Globally Declare Variables
+    int totalImportance;
+    Map<Integer, Integer> originalIndexMap;
 
     // Driver Function
     public int getImportance(List<Employee> employees, int id) {
         
+        int n = employees.size();
+
+        // Assign Value to global variables
+        totalImportance = 0;
+        originalIndexMap = new HashMap<>();
+
+        // Adding index id and employee unique id in map
+        for (int i = 0; i < n; i++) {
+            
+            originalIndexMap.put(employees.get(i).id, i);
+        }
+
+        System.out.println("Index Map : " + originalIndexMap);
+
         return 0;
     }
 
@@ -43,14 +59,14 @@ public class GetEmployeeImportance {
             createEmployee(2, 3),
             createEmployee(3, 3)
         );
-        System.out.println("Result 1: " + solution.getImportance(employees1, 1));
+        System.out.println("Result 1: " + solution.getImportance(employees1, 1) + "\n");
 
         // Test Case 2
         List<Employee> employees2 = Arrays.asList(
             createEmployee(1, 2, 5),
             createEmployee(5, -3)
         );
-        System.out.println("Result 2: " + solution.getImportance(employees2, 5));
+        System.out.println("Result 2: " + solution.getImportance(employees2, 5) + "\n");
     }
 
 }
