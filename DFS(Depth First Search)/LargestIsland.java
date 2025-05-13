@@ -21,8 +21,7 @@ public class LargestIsland {
       boolean[][] visitedCell = new boolean[n][n];
       
       // get sizes of all islands
-      for (int i = 0; i < n; i++) {
-         
+      for (int i = 0; i < n; i++) {    
          for (int j = 0; j < n; j++) {
             
             int currIslandSize = dfs(i, j, uniqueId, 0, visitedCell, grid, maxLargestIslandSize);
@@ -42,9 +41,11 @@ public class LargestIsland {
    // Recursion Function : To get all islands sizes
    private int dfs(int i, int j, int uniqueId, int currIslandSize, boolean[][] visitedCell, int[][] grid, int n) {
 
+      System.out.println("Visiting (" + i + ", " + j + ") , " + uniqueId + ", " + currIslandSize);
+      
       // Base Case :
       if (i > n || j > n || i < 0 || j < 0 || visitedCell[i][j] || grid[i][j] == 0) {
-         return currIslandSize;
+         return 0;
       }
 
       // Mark cell as visited
@@ -52,9 +53,11 @@ public class LargestIsland {
 
       // replace values of 1 to uniqueId
       grid[i][j] = uniqueId;
+      System.out.println(" -> grid (" + i + ", " + j + ") is changed to " + uniqueId);
 
       // Increase the size of island as we have visited this cell
       currIslandSize += 1;
+      System.out.println(" -> curr island size is " + currIslandSize);
 
       // Check BRUL : let's wrote it with the help of direction array 
       for (int[] dir : matrixDirection) {
@@ -62,7 +65,7 @@ public class LargestIsland {
          int x = i + dir[0];
          int y = j + dir[1];
 
-         dfs(x, y, uniqueId, currIslandSize, visitedCell, grid, n);
+         currIslandSize += dfs(x, y, uniqueId, currIslandSize, visitedCell, grid, n);
       }
 
       return currIslandSize;
