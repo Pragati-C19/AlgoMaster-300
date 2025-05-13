@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class LargestIsland {
-    
+
 }
 
 /*
@@ -90,9 +90,27 @@ public class LargestIsland {
             - jithe mhnt hoto except zero kahi ahe ka tithech apan ajun ek condition lau ki uniqueId should not be repeated
             - add one uniqueId once
          
+^ Improvements :
+
+   1. removing any traces of dfsForGettingUniqueId :
+         - if yes then check if it has any neighbors with unique id?
+               dfsForGettingUniqueId(i, j, visitedCellForUniqueId, uniqueIdSet, grid, n)
+         - You're performing a DFS from a zero to check neighbors and collect unique IDs.
+         - But you only want to peek at the 4-directional neighbors (BRUL), not perform a full DFS.
+         - Problem: You're going deep into neighbors instead of just checking adjacent cells.
+         - We don't nee it boz aplyala recursively check nahi karaychy full matrix
+         - aplyala bas tya zero chya as pass che BRUL havet bas
+
+   2. currIslandSize in dfsForCheckingIslandSize 
+         todo: for now let's try to code if I have any issue will change it it's not that big difference
+
 
  * Pseudo Code :
  
+
+^  -> Globally Declare direction array 
+      int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1}}
+
    function largestIsland (grid) {
    
       -> Declare variables
@@ -133,8 +151,15 @@ public class LargestIsland {
                            
                      -> Declare currLargestIslandAfterRepacing0
 
-                     -> if yes then check if it has any neighbors with unique id?
-                        dfs(i, j, visitedCellForUniqueId, uniqueIdSet, grid, n)
+                     ^ Improved :
+                        for(dir : dirs)
+                           -> je apan i+1, j+1, i-1, j-1 karat hoto te ithe using array kartoy
+                              x = i + dr[0]     -> for dir(1, 0) : x = i + 1
+                              y = j + dr[1]     -> for dir(1, 0) : y = j + 0
+
+                           -> Basic Checks kele to know edge cell ahe ka te and cell value 0 or 1 tr nahiye na our uniqueId starts from 2
+                              if(x > 0 || x < n - 1 || y > 0 || y < n - 1 || grid[x][y] > 1)
+                                 uniqueIdSet.add(grid[x][y])
 
                      -> Now the set I got let's find islandSize corrusponding to those uniqueId's and add them
                         for(Set<Integer> id : uniqueIdSet)
@@ -169,6 +194,8 @@ public class LargestIsland {
             currIslandSize += 1
 
       -> let's check BRUL 
+         I can use dirs array here too
+
             dfsForCheckingIslandSize(i+1, j)
             dfsForCheckingIslandSize(i-1, j)
             dfsForCheckingIslandSize(i, j+1)
@@ -179,26 +206,5 @@ public class LargestIsland {
    }
 
 
-   function dfsForGettingUniqueId (i, j, visited, uniqueIdSet, grid, n) {
-
-      -> Base Case :
-         if(i > n || j > n || i < 0 || j < 0 || visited[i][j] || grid[i][j] == 0 || uniqueIdSet.contains(grid[i][j]))
-            return
-
-      -> let's mark cell as visited
-      visited[i][j] = true
-
-      -> add uniqueId of the cell in uniqueIdSet
-      uniqueIdSet.add(grid[i][j])
-
-      -> let's check BRUL 
-            dfsForGettingUniqueId(i+1, j)
-            dfsForGettingUniqueId(i-1, j)
-            dfsForGettingUniqueId(i, j+1)
-            dfsForGettingUniqueId(i, j-1)
-
-      -> at the end return
-
-   }
 
  */
