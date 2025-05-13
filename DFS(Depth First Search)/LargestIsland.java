@@ -35,6 +35,35 @@ public class LargestIsland {
       }
 
 
+      // will replace one of the 0 with 1
+      for (int i = 0; i < n; i++) {
+         for (int j = 0; j < n; j++) {
+            
+            if (grid[i][j] == 0) {
+               
+               // Declare a set to store uniqueId near the cell in immediate BRUL direction
+               Set<Integer> neighboringUniqueIdSet = new HashSet<>();
+
+               // Declare a variable to add neighboring islands with replaced 0 to 1
+               // Assign initial value to 1 bcoz we are taking the cell whose 0 we are replacing
+               int currLargestIslandAfterReplacingZero = 1;
+
+               // let's take all unique id near the cell
+               for (int[] dir : matrixDirection) {
+                  
+                  int x = i + dir[0];
+                  int y = j + dir[1];
+
+                  if (x > 0 || x < n - 1 || y > 0 || y < n - 1 || grid[x][y] > 1) {
+                     
+                     neighboringUniqueIdSet.add(grid[x][y]);
+                     System.out.println("\n -> Set looks Like : " + neighboringUniqueIdSet);
+                  }
+               }
+            }
+         }
+      }
+
       return maxLargestIslandSize;
 
    }
