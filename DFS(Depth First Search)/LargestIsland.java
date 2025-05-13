@@ -24,16 +24,16 @@ public class LargestIsland {
          for (int j = 0; j < n; j++) {
             
             if (grid[i][j] == 1) {
+               
                int currIslandSize = dfs(i, j, uniqueId, grid, n);
 
                idSizeMap.put(uniqueId, currIslandSize);
-               System.out.println(" Added island size in map with uniqueId with island size : " + uniqueId + " , " + currIslandSize + " : " + idSizeMap);
-               
+
                uniqueId++;
             }
          }
       }
-
+      System.out.println(" Map of uniqueId and Island Size : " + idSizeMap);
 
       // will replace one of the 0 with 1
       for (int i = 0; i < n; i++) {
@@ -54,12 +54,20 @@ public class LargestIsland {
                   int x = i + dir[0];
                   int y = j + dir[1];
 
-                  if (x > 0 || x < n - 1 || y > 0 || y < n - 1 || grid[x][y] > 1) {
+                  if (x >= 0 && x < n && y >= 0 && y < n && grid[x][y] > 1) {
                      
                      neighboringUniqueIdSet.add(grid[x][y]);
-                     System.out.println("\n -> Set looks Like : " + neighboringUniqueIdSet);
                   }
                }
+               System.out.println(" Set of uniqueId : " + neighboringUniqueIdSet);
+
+               for (Integer id : neighboringUniqueIdSet) {
+                  
+                  currLargestIslandAfterReplacingZero += idSizeMap.get(id);
+               }
+               System.out.println(" Curr largest island after replacing zero : " + currLargestIslandAfterReplacingZero);
+
+               maxLargestIslandSize = Math.max(maxLargestIslandSize, currLargestIslandAfterReplacingZero);
             }
          }
       }
@@ -71,7 +79,7 @@ public class LargestIsland {
    // Recursion Function : To get all islands sizes
    private int dfs(int i, int j, int uniqueId, int[][] grid, int n) {
 
-      System.out.println("Visiting (" + i + ", " + j + ") , " + uniqueId);
+      // System.out.println("Visiting (" + i + ", " + j + ") , " + uniqueId);
       
       // Base Case :
       if (i >= n || j >= n || i < 0 || j < 0 || grid[i][j] != 1) {
@@ -80,11 +88,10 @@ public class LargestIsland {
 
       // replace values of 1 to uniqueId
       grid[i][j] = uniqueId;
-      System.out.println(" -> grid (" + i + ", " + j + ") is changed to " + uniqueId);
+      // System.out.println(" -> grid (" + i + ", " + j + ") is changed to " + uniqueId);
 
       // current cell counts as 1
       int currIslandSize = 1;
-      System.out.println(" -> curr island size is " + currIslandSize);
 
       // Check BRUL : let's wrote it with the help of direction array 
       for (int[] dir : matrixDirection) {
