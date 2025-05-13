@@ -18,7 +18,6 @@ public class LargestIsland {
       int n = grid.length;
       int uniqueId = 2;       // starting from 2 bcoz 0 and 1 is already been used as land and water
       int maxLargestIslandSize = 0;    // It tells us abt largestIsland after replacing 0 to 1
-      boolean[][] visitedCell = new boolean[n][n];
       
       // get sizes of all islands
       for (int i = 0; i < n; i++) {    
@@ -54,7 +53,6 @@ public class LargestIsland {
       grid[i][j] = uniqueId;
       System.out.println(" -> grid (" + i + ", " + j + ") is changed to " + uniqueId);
 
-      // Increase the size of island as we have visited this cell
       // current cell counts as 1
       int currIslandSize = 1;
       System.out.println(" -> curr island size is " + currIslandSize);
