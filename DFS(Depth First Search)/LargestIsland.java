@@ -29,9 +29,9 @@ public class LargestIsland {
 
             idSizeMap.put(uniqueId, currIslandSize);
             System.out.println(" Added island size in map with uniqueId " + uniqueId + " : " + idSizeMap);
-
-            uniqueId++;
          }
+
+         uniqueId++;
       }
 
 
