@@ -24,13 +24,15 @@ public class LargestIsland {
       for (int i = 0; i < n; i++) {    
          for (int j = 0; j < n; j++) {
             
-            int currIslandSize = dfs(i, j, uniqueId, 0, visitedCell, grid, maxLargestIslandSize);
+            if (!visitedCell[i][j] && grid[i][j] == 1) {
+               int currIslandSize = dfs(i, j, uniqueId, visitedCell, grid, n);
 
-            idSizeMap.put(uniqueId, currIslandSize);
-            System.out.println(" Added island size in map with uniqueId " + uniqueId + " : " + idSizeMap);
+               idSizeMap.put(uniqueId, currIslandSize);
+               System.out.println(" Added island size in map with uniqueId with island size : " + uniqueId + " , " + currIslandSize + " : " + idSizeMap);
+               
+               uniqueId++;
+            }
          }
-
-         uniqueId++;
       }
 
 
@@ -39,12 +41,12 @@ public class LargestIsland {
    }
 
    // Recursion Function : To get all islands sizes
-   private int dfs(int i, int j, int uniqueId, int currIslandSize, boolean[][] visitedCell, int[][] grid, int n) {
+   private int dfs(int i, int j, int uniqueId, boolean[][] visitedCell, int[][] grid, int n) {
 
-      System.out.println("Visiting (" + i + ", " + j + ") , " + uniqueId + ", " + currIslandSize);
+      System.out.println("Visiting (" + i + ", " + j + ") , " + uniqueId);
       
       // Base Case :
-      if (i > n || j > n || i < 0 || j < 0 || visitedCell[i][j] || grid[i][j] == 0) {
+      if (i >= n || j >= n || i < 0 || j < 0 || visitedCell[i][j] || grid[i][j] != 1) {
          return 0;
       }
 
@@ -56,7 +58,8 @@ public class LargestIsland {
       System.out.println(" -> grid (" + i + ", " + j + ") is changed to " + uniqueId);
 
       // Increase the size of island as we have visited this cell
-      currIslandSize += 1;
+      // current cell counts as 1
+      int currIslandSize = 1;
       System.out.println(" -> curr island size is " + currIslandSize);
 
       // Check BRUL : let's wrote it with the help of direction array 
@@ -65,7 +68,7 @@ public class LargestIsland {
          int x = i + dir[0];
          int y = j + dir[1];
 
-         currIslandSize += dfs(x, y, uniqueId, currIslandSize, visitedCell, grid, n);
+         currIslandSize += dfs(x, y, uniqueId, visitedCell, grid, n);
       }
 
       return currIslandSize;
