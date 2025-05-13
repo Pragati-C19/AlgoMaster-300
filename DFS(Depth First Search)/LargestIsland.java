@@ -72,6 +72,12 @@ public class LargestIsland {
          }
       }
 
+      // if we have matrix with all 1 then that means it's not going to follow any of the loops
+      // so our island limit will be as same as matrix size n x n
+      if (maxLargestIslandSize == 0) {
+         return (n * n);   
+      }
+
       return maxLargestIslandSize;
 
    }
