@@ -24,8 +24,8 @@ public class LargestIsland {
       for (int i = 0; i < n; i++) {    
          for (int j = 0; j < n; j++) {
             
-            if (!visitedCell[i][j] && grid[i][j] == 1) {
-               int currIslandSize = dfs(i, j, uniqueId, visitedCell, grid, n);
+            if (grid[i][j] == 1) {
+               int currIslandSize = dfs(i, j, uniqueId, grid, n);
 
                idSizeMap.put(uniqueId, currIslandSize);
                System.out.println(" Added island size in map with uniqueId with island size : " + uniqueId + " , " + currIslandSize + " : " + idSizeMap);
@@ -41,17 +41,14 @@ public class LargestIsland {
    }
 
    // Recursion Function : To get all islands sizes
-   private int dfs(int i, int j, int uniqueId, boolean[][] visitedCell, int[][] grid, int n) {
+   private int dfs(int i, int j, int uniqueId, int[][] grid, int n) {
 
       System.out.println("Visiting (" + i + ", " + j + ") , " + uniqueId);
       
       // Base Case :
-      if (i >= n || j >= n || i < 0 || j < 0 || visitedCell[i][j] || grid[i][j] != 1) {
+      if (i >= n || j >= n || i < 0 || j < 0 || grid[i][j] != 1) {
          return 0;
       }
-
-      // Mark cell as visited
-      visitedCell[i][j] = true;
 
       // replace values of 1 to uniqueId
       grid[i][j] = uniqueId;
@@ -68,7 +65,7 @@ public class LargestIsland {
          int x = i + dir[0];
          int y = j + dir[1];
 
-         currIslandSize += dfs(x, y, uniqueId, visitedCell, grid, n);
+         currIslandSize += dfs(x, y, uniqueId, grid, n);
       }
 
       return currIslandSize;
@@ -98,13 +95,15 @@ public class LargestIsland {
       };
       System.out.println("Result 3 -> " + solution.largestIsland(grid3) + "\n");
 
-      int[][] grid4 = {
-         {1, 0, 1, 1, 0},
-         {1, 0, 0, 1, 0},
-         {0, 1, 1, 0, 1},
-         {1, 0, 1, 0, 1}
-      };
-      System.out.println("Result 4 -> " + solution.largestIsland(grid4) + "\n");
+      // Ok problem is with my test case : n = grid.length = 4, But grid[0].length = 5 (i.e. 5 columns)
+      // in que it says that n x n matrix I'm creating m x n matrix in this test case
+      // int[][] grid4 = {
+      //    {1, 0, 1, 1, 0},
+      //    {1, 0, 0, 1, 0},
+      //    {0, 1, 1, 0, 1},
+      //    {1, 0, 1, 0, 1}
+      // };
+      // System.out.println("Result 4 -> " + solution.largestIsland(grid4) + "\n");
 
    }
     
