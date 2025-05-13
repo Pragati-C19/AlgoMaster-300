@@ -98,8 +98,10 @@ public class LargestIsland {
       -> Declare variables
          map<uniqueId, islandSize>
          uniqueId = 2            -> starting from 2 bcoz 0 and 1 is already been used as land and water
-         maxIslandSize = 0
-         visitedCell 
+         maxLargestIslandSize = 0       -> it tells us what is maximun island size after replacing 0 to 1
+         visitedCellForSize      -> it checks if cell is visited when we were trying to find island sizes
+         visitedCellForUniqueId  -> it checks if cell is visited when we were trying to find 
+         
       
       -> will get size of all islands and store it in map 
          also assign unique Id to that specific cells
@@ -108,11 +110,8 @@ public class LargestIsland {
             for(j = 0 to n)
                
                -> getting size of island from dfs 
-                  currIslandSize = dfsForCheckingIslandSize(i, j, uniqueId, 0, visited, grid, n)
+                  currIslandSize = dfsForCheckingIslandSize(i, j, uniqueId, 0, visitedCellForSize, grid, n)
 
-               -> getting max size
-                  maxIslandSize = max(maxIslandSize, currIslandSize)
-               
                -> adding that unique id and size in map
                   map.put(uniqueId, currIslandSize) 
                
@@ -128,8 +127,23 @@ public class LargestIsland {
                -> check if the cell has 0 
                   if(grid[i][j] == 0)
 
+                     -> Declare Set here bcoz we want to get set of id's for cell near 0
+                        UniqueId cha set ghetoy bcoz I don't want duplicate id's
+                           uniqueIdSet<Integer>  
+                           
+                     -> Declare currLargestIslandAfterRepacing0
+
                      -> if yes then check if it has any neighbors with unique id?
-                     
+                        dfs(i, j, visitedCellForUniqueId, uniqueIdSet, grid, n)
+
+                     -> Now the set I got let's find islandSize corrusponding to those uniqueId's and add them
+                        for(Set<Integer> id : uniqueIdSet)
+                           currLargestIslandAfterRepacing0 += map.get(id)
+                  
+               -> get maximun between those islands
+                  maxLargestIslandSize = max(maxLargestIslandSize, currLargestIslandAfterRepacing0)
+             
+      -> return maxLargestIslandSize
    
    }
 
@@ -162,6 +176,29 @@ public class LargestIsland {
 
       -> at the end return currIslandSize
       
+   }
+
+
+   function dfsForGettingUniqueId (i, j, visited, uniqueIdSet, grid, n) {
+
+      -> Base Case :
+         if(i > n || j > n || i < 0 || j < 0 || visited[i][j] || grid[i][j] == 0 || uniqueIdSet.contains(grid[i][j]))
+            return
+
+      -> let's mark cell as visited
+      visited[i][j] = true
+
+      -> add uniqueId of the cell in uniqueIdSet
+      uniqueIdSet.add(grid[i][j])
+
+      -> let's check BRUL 
+            dfsForGettingUniqueId(i+1, j)
+            dfsForGettingUniqueId(i-1, j)
+            dfsForGettingUniqueId(i, j+1)
+            dfsForGettingUniqueId(i, j-1)
+
+      -> at the end return
+
    }
 
  */
