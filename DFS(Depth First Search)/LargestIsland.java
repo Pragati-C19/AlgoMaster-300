@@ -1,6 +1,53 @@
 import java.util.*;
 
 public class LargestIsland {
+    
+   // Globally declare Variables
+
+
+   // Driver Function 
+   public int largestIsland(int[][] grid) {
+        
+   }
+
+   // Recursion Function : To get all islands sizes
+   private int dfs(int i, int j, int uniqueId, int currIslandSize, boolean[][] visited, int[][] grid, int n) {
+
+   }
+
+
+   public static void main(String[] args) {
+
+      LargestIsland solution = new LargestIsland();
+
+      int[][] grid1 = {
+         {1, 0},
+         {0, 1}
+      };
+      System.out.println("Result 1 -> " + solution.largestIsland(grid1) + "\n");
+
+      int[][] grid2 = {
+         {1, 1},
+         {1, 0}
+      };
+      System.out.println("Result 2 -> " + solution.largestIsland(grid2) + "\n");
+
+      int[][] grid3 = {
+         {1, 1},
+         {1, 1}
+      };
+      System.out.println("Result 3 -> " + solution.largestIsland(grid3) + "\n");
+
+      int[][] grid4 = {
+         {1, 0, 1, 1, 0},
+         {1, 0, 0, 1, 0},
+         {0, 1, 1, 0, 1},
+         {1, 0, 1, 0, 1}
+      };
+      System.out.println("Result 4 -> " + solution.largestIsland(grid4) + "\n");
+
+   }
+    
 
 }
 
