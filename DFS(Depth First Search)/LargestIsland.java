@@ -3,15 +3,69 @@ import java.util.*;
 public class LargestIsland {
     
    // Globally declare Variables
-
+   int[][] matrixDirection = {
+      {1, 0},
+      {0, 1},
+      {-1, 0},
+      {0, -1}
+   };
 
    // Driver Function 
    public int largestIsland(int[][] grid) {
         
+      // Declare Variables
+      Map<Integer, Integer> idSizeMap = new HashMap<>();
+      int n = grid.length;
+      int uniqueId = 2;       // starting from 2 bcoz 0 and 1 is already been used as land and water
+      int maxLargestIslandSize = 0;    // It tells us abt largestIsland after replacing 0 to 1
+      boolean[][] visitedCell = new boolean[n][n];
+      
+      // get sizes of all islands
+      for (int i = 0; i < n; i++) {
+         
+         for (int j = 0; j < n; j++) {
+            
+            int currIslandSize = dfs(i, j, uniqueId, 0, visitedCell, grid, maxLargestIslandSize);
+
+            idSizeMap.put(uniqueId, currIslandSize);
+            System.out.println(" Added island size in map with uniqueId " + uniqueId + " : " + idSizeMap);
+
+            uniqueId++;
+         }
+      }
+
+
+      return maxLargestIslandSize;
+
    }
 
    // Recursion Function : To get all islands sizes
-   private int dfs(int i, int j, int uniqueId, int currIslandSize, boolean[][] visited, int[][] grid, int n) {
+   private int dfs(int i, int j, int uniqueId, int currIslandSize, boolean[][] visitedCell, int[][] grid, int n) {
+
+      // Base Case :
+      if (i > n || j > n || i < 0 || j < 0 || visitedCell[i][j] || grid[i][j] == 0) {
+         return currIslandSize;
+      }
+
+      // Mark cell as visited
+      visitedCell[i][j] = true;
+
+      // replace values of 1 to uniqueId
+      grid[i][j] = uniqueId;
+
+      // Increase the size of island as we have visited this cell
+      currIslandSize += 1;
+
+      // Check BRUL : let's wrote it with the help of direction array 
+      for (int[] dir : matrixDirection) {
+         
+         int x = i + dir[0];
+         int y = j + dir[1];
+
+         dfs(x, y, uniqueId, currIslandSize, visitedCell, grid, n);
+      }
+
+      return currIslandSize;
 
    }
 
