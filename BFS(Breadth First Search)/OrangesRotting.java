@@ -10,6 +10,12 @@ public class OrangesRotting {
         int n = grid[0].length;
         int timeElapsed = 0;
         int freshOrangeCount = 0;
+        int[][] matrixDirection = {
+            {1, 0},
+            {0, 1},
+            {-1, 0},
+            {0, -1}
+        };
 
         Queue<int[]> queue = new LinkedList<>();
 
@@ -36,6 +42,40 @@ public class OrangesRotting {
                           );
         System.out.println(" Initial Fresh Orange Count : " + freshOrangeCount);
         
+
+        // Main Setup :
+        while (!queue.isEmpty()) {
+            
+            // pop out rotten orange cell we have inserted first from queue (FIFO)
+            int[] rottenOrangeCell = queue.poll();
+            
+            // here row (i) = cell[0] and col (j) = cell[1]
+
+            for (int[] dir : matrixDirection) {
+                
+                int x = rottenOrangeCell[0] + dir[0];
+                int y = rottenOrangeCell[1] + dir[1];
+
+                // if I found any fresh orange(1) will replace it with rotten orange(2)
+                if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == 1) {
+                    
+                    grid[x][y] = 2;
+                    queue.add(new int[] {x, y});
+                    freshOrangeCount--;
+                    timeElapsed++;
+
+                    System.out.println("  - Updated freshOrangeCount for (" + x + ", " + y + ") : " + freshOrangeCount);
+                    System.out.println("      - Updated Time Elapsed for (" + x + ", " + y + ") : " + timeElapsed);
+                }
+            }
+
+            System.out.println("    - Updated Queue : " + queue.stream()
+                                                    .map(Arrays::toString)
+                                                    .collect(Collectors.joining(", ", "[", "]"))
+                              );
+
+    
+        }
 
 
 
