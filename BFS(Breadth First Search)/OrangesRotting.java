@@ -49,37 +49,51 @@ public class OrangesRotting {
             // This boolean is for if we have changed the fresh orange(1) to rotten orange(2) will say true
             boolean isRottedOrangeAtThisLoop = false;
 
-            // pop out rotten orange cell we have inserted first from queue (FIFO)
-            int[] rottenOrangeCell = queue.poll();
-            
-            // here row (i) = cell[0] and col (j) = cell[1]
+            // Size of queue
+            int queueSize = queue.size();
 
-            for (int[] dir : matrixDirection) {
+            // will check all cells from queue 
+            for (int i = 0; i < queueSize; i++) {
                 
-                int x = rottenOrangeCell[0] + dir[0];
-                int y = rottenOrangeCell[1] + dir[1];
+                // pop out rotten orange cell we have inserted first from queue (FIFO)
+                int[] rottenOrangeCell = queue.poll();
+                
+                // here row (i) = cell[0] and col (j) = cell[1]
 
-                // if I found any fresh orange(1) will replace it with rotten orange(2)
-                if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == 1) {
+                for (int[] dir : matrixDirection) {
                     
-                    grid[x][y] = 2;
-                    queue.add(new int[] {x, y});
-                    freshOrangeCount--;
-                    isRottedOrangeAtThisLoop = true;
+                    int x = rottenOrangeCell[0] + dir[0];
+                    int y = rottenOrangeCell[1] + dir[1];
 
-                    System.out.println("  - Updated freshOrangeCount for (" + x + ", " + y + ") : " + freshOrangeCount);
+                    // if I found any fresh orange(1) will replace it with rotten orange(2)
+                    if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == 1) {
+                        
+                        grid[x][y] = 2;
+                        queue.add(new int[] {x, y});
+                        freshOrangeCount--;
+                        isRottedOrangeAtThisLoop = true;
+
+                        System.out.println("  - Updated freshOrangeCount for (" + x + ", " + y + ") : " + freshOrangeCount);
+                    }
                 }
+
+                // DEBUGGER : to check updated queue
+                System.out.println("    - [FOR] Updated Queue : " + queue.stream()
+                                                        .map(Arrays::toString)
+                                                        .collect(Collectors.joining(", ", "[", "]"))
+                                );
+
             }
     
             // if we have rotten the orange will do time++ for this rottenOrangeCell
             if (isRottedOrangeAtThisLoop) {
                 
                 timeElapsed++;
-                System.out.println("      - Updated Time Elapsed for " + Arrays.toString(rottenOrangeCell) + " : " + timeElapsed);
+                System.out.println("      - Updated Time Elapsed for queueSize (" + queueSize + ") : " + timeElapsed);
             }
 
             // DEBUGGER : to check updated queue
-            System.out.println("    - Updated Queue : " + queue.stream()
+            System.out.println("    - [While] Updated Queue : " + queue.stream()
                                                     .map(Arrays::toString)
                                                     .collect(Collectors.joining(", ", "[", "]"))
                               );
