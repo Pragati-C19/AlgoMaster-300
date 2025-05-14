@@ -95,19 +95,19 @@ public class OrangesRotting {
             {1, 1, 0},
             {0, 1, 1}
         };
-        System.out.println("Result 1 : " + solution.orangesRotting(grid1) + "\n");
+        System.out.println("Result 1 : " + solution.orangesRotting(grid1) + "\n");      // 4
 
         int[][] grid2 = {
             {2, 1, 1},
             {0, 1, 1},
             {1, 0, 1}
         };
-        System.out.println("Result 2 : " + solution.orangesRotting(grid2) + "\n");
+        System.out.println("Result 2 : " + solution.orangesRotting(grid2) + "\n");      // -1
 
         int[][] grid3 = {
             {0, 2}
         };
-        System.out.println("Result 3 : " + solution.orangesRotting(grid3) + "\n");
+        System.out.println("Result 3 : " + solution.orangesRotting(grid3) + "\n");      // 0
 
     }
 }
