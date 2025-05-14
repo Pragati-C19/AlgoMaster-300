@@ -78,6 +78,10 @@ public class OrangesRotting {
         }
 
 
+        // Return statement : 
+        if (freshOrangeCount == 0) {
+            return timeElapsed;
+        }
 
         return -1;
     }
