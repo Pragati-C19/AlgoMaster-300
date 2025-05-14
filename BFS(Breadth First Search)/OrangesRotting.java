@@ -1,9 +1,44 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class OrangesRotting {
     
     public int orangesRotting(int[][] grid) {
         
+        // Declare variables
+        int m = grid.length;
+        int n = grid[0].length;
+        int timeElapsed = 0;
+        int freshOrangeCount = 0;
+
+        Queue<int[]> queue = new LinkedList<>();
+
+        // Initial Setup :
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                
+                // if we find any rotten orange(2) add it in queue
+                if (grid[i][j] == 2) {
+                    queue.add(new int[] {i, j});
+                }
+
+                // if we find any fresh orange(1) increase the count by 1
+                if (grid[i][j] == 1) {
+                    freshOrangeCount++;
+                }
+            }
+        }
+
+        // To print int[] queue with sout statement we can use for loop too but I just need to do it with one liner so
+        System.out.println(" Initial Queue : " + queue.stream()
+                                                    .map(Arrays::toString)
+                                                    .collect(Collectors.joining(", ", "[", "]"))
+                          );
+        System.out.println(" Initial Fresh Orange Count : " + freshOrangeCount);
+        
+
+
+
         return -1;
     }
 
