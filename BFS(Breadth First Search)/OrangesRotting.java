@@ -46,6 +46,9 @@ public class OrangesRotting {
         // Main Setup :
         while (!queue.isEmpty()) {
             
+            // This boolean is for if we have changed the fresh orange(1) to rotten orange(2) will say true
+            boolean isRottedOrangeAtThisLoop = false;
+
             // pop out rotten orange cell we have inserted first from queue (FIFO)
             int[] rottenOrangeCell = queue.poll();
             
@@ -62,19 +65,25 @@ public class OrangesRotting {
                     grid[x][y] = 2;
                     queue.add(new int[] {x, y});
                     freshOrangeCount--;
-                    timeElapsed++;
+                    isRottedOrangeAtThisLoop = true;
 
                     System.out.println("  - Updated freshOrangeCount for (" + x + ", " + y + ") : " + freshOrangeCount);
-                    System.out.println("      - Updated Time Elapsed for (" + x + ", " + y + ") : " + timeElapsed);
                 }
             }
+    
+            // if we have rotten the orange will do time++ for this rottenOrangeCell
+            if (isRottedOrangeAtThisLoop) {
+                
+                timeElapsed++;
+                System.out.println("      - Updated Time Elapsed for " + Arrays.toString(rottenOrangeCell) + " : " + timeElapsed);
+            }
 
+            // DEBUGGER : to check updated queue
             System.out.println("    - Updated Queue : " + queue.stream()
                                                     .map(Arrays::toString)
                                                     .collect(Collectors.joining(", ", "[", "]"))
                               );
 
-    
         }
 
 
@@ -153,6 +162,17 @@ public class OrangesRotting {
     4. abt time thing.. one rotten orange can change all it's neighbors in 1 min 
         - soo will just do time++ 
 
+    Imporovememt 
+
+    1. added a boolean to check if we have rotted the orange or not
+        - boolean isRottedOrangeAtThisLoop = false;
+        - This boolean is for if we have changed the fresh orange(1) to rotten orange(2) will say true
+        - why I'm doing this? I want time++ outside of for loop 
+        - why outside of for loop? 
+            he bagh me jevha (x, y) che BRUL check kartey for all 4 side time should be 1 but in my case to increase hotoy all the time
+        - but if I just wrote it it will do it for all queues
+        - that's why in if I'll check that it's true or false and then will do time++
+        
 
 
  * Pseudo Code :
