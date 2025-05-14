@@ -2,6 +2,35 @@ import java.util.*;
 
 public class OrangesRotting {
     
+    public int orangesRotting(int[][] grid) {
+        
+        return -1;
+    }
+
+    public static void main(String[] args) {
+
+        OrangesRotting solution = new OrangesRotting();
+
+        int[][] grid1 = {
+            {2, 1, 1},
+            {1, 1, 0},
+            {0, 1, 1}
+        };
+        System.out.println("Result 1 : " + solution.orangesRotting(grid1) + "\n");
+
+        int[][] grid2 = {
+            {2, 1, 1},
+            {0, 1, 1},
+            {1, 0, 1}
+        };
+        System.out.println("Result 2 : " + solution.orangesRotting(grid2) + "\n");
+
+        int[][] grid3 = {
+            {0, 2}
+        };
+        System.out.println("Result 3 : " + solution.orangesRotting(grid3) + "\n");
+
+    }
 }
 
 /*
