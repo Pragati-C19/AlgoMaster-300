@@ -39,16 +39,16 @@ public class OpenLock {
                     char[] chars = popString.toCharArray();
 
                     // let's move up
-                    chars[j] = chars[j] + 1;
+                    chars[j] = (char) (chars[j] + 1);
                     
                     String upString = new String(chars);
                     System.out.println("    Up String : " + upString);
 
                     // let's move down
-                    chars[j] = chars[j] - 1;
+                    chars[j] = (char) (chars[j] - 1);
 
                     String downString = new String(chars);
-                    System.out.println("    Up String : " + upString);
+                    System.out.println("    Down String : " + downString);
                     
 
                 }
