@@ -20,6 +20,8 @@ public class OpenLock {
 
         while (!queue.isEmpty()) {
             
+            System.out.println("    -> Updated Queue look like for this level : " + queue);
+
             // get size of queue for level tracking
             int queueSize = queue.size();
 
@@ -51,9 +53,23 @@ public class OpenLock {
                     String downString = new String(charsOfPopString);
                     System.out.println("    Down String : " + downString);
                     
+                    // Add those valid strings in queue
+                    if (!visitedSet.contains(upString) && !deadendsSet.contains(upString)) {
+                        
+                        queue.add(upString);
+                        visitedSet.add(upString);
+                    }
+
+                    if (!visitedSet.contains(downString) && !deadendsSet.contains(downString)) {
+                        
+                        queue.add(downString);
+                        visitedSet.add(downString);
+                    }
 
                 }
             }
+
+            currTurn++;
         }
 
         // return minTurn if u get any value there other than 0 or less
