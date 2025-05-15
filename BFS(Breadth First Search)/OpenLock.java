@@ -30,7 +30,7 @@ public class OpenLock {
                 String popString = queue.poll();
 
                 // if u found target
-                if (popString == target) {
+                if (popString.equals(target)) {
                     minTurn = Math.min(minTurn, currTurn);
                     System.out.println("minTurn so far : " + minTurn);
                 }
