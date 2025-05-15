@@ -5,8 +5,7 @@ public class OpenLock {
     public int openLock(String[] deadends, String target) {
         
         // Declare Variables
-        int minTurn = Integer.MAX_VALUE;
-        int currTurn = 0;
+        int minTurn = 0;
         Set<String> visitedSet = new HashSet<>();
         
         // used Arrays.aslist here to add all values of deadends in set without using for loop
@@ -31,8 +30,9 @@ public class OpenLock {
 
                 // if u found target
                 if (popString.equals(target)) {
-                    minTurn = Math.min(minTurn, currTurn);
+                    
                     System.out.println("minTurn so far : " + minTurn);
+                    return minTurn;
                 }
 
                 // generate all 8 possible strings 
@@ -69,12 +69,7 @@ public class OpenLock {
                 }
             }
 
-            currTurn++;
-        }
-
-        // return minTurn if u get any value there other than 0 or less
-        if (minTurn > 0) {
-            return minTurn;
+            minTurn++;
         }
 
         return -1;
