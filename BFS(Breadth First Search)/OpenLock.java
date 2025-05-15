@@ -4,6 +4,62 @@ public class OpenLock {
     
     public int openLock(String[] deadends, String target) {
         
+        // Declare Variables
+        int minTurn = Integer.MAX_VALUE;
+        int currTurn = 0;
+        Set<String> visitedSet = new HashSet<>();
+        
+        // used Arrays.aslist here to add all values of deadends in set without using for loop
+        Set<String> deadendsSet = new HashSet<>(Arrays.asList(deadends));   
+
+        Queue<String> queue = new LinkedList<>();
+
+        // add initial value in queue
+        queue.add("0000");
+        visitedSet.add("0000");
+
+        while (!queue.isEmpty()) {
+            
+            // get size of queue for level tracking
+            int queueSize = queue.size();
+
+            for (int i = 0; i < queueSize; i++) {
+                
+                String popString = queue.poll();
+
+                // if u found target
+                if (popString == target) {
+                    minTurn = Math.min(minTurn, currTurn);
+                    System.out.println("minTurn so far : " + minTurn);
+                }
+
+                // generate all 8 possible strings 
+                for (int j = 0; j < 4; j++) {
+                    
+                    char[] chars = popString.toCharArray();
+
+                    // let's move up
+                    chars[j] = chars[j] + 1;
+                    
+                    String upString = new String(chars);
+                    System.out.println("    Up String : " + upString);
+
+                    // let's move down
+                    chars[j] = chars[j] - 1;
+
+                    String downString = new String(chars);
+                    System.out.println("    Up String : " + upString);
+                    
+
+                }
+            }
+        }
+
+        // return minTurn if u get any value there other than 0 or less
+        if (minTurn > 0) {
+            return minTurn;
+        }
+
         return -1;
     }
 
