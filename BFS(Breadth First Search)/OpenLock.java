@@ -38,19 +38,19 @@ public class OpenLock {
                 // generate all 8 possible strings 
                 for (int j = 0; j < 4; j++) {
                     
-                    char[] charsOfPopString = popString.toCharArray();
 
-                    char originalChar = charsOfPopString[j];
                     // let's move up
-                    charsOfPopString[j] = originalChar == '9' ? '0' : (char) (originalChar + 1);
+                    char[] upChars = popString.toCharArray();
+                    upChars[j] = upChars[j] == '9' ? '0' : (char) (upChars[j] + 1);
                     
-                    String upString = new String(charsOfPopString);
+                    String upString = new String(upChars);
                     System.out.println("    Up String : " + upString);
 
                     // let's move down
-                    charsOfPopString[j] = originalChar == '0' ? '9' : (char) (originalChar - 1);
+                    char[] downChars = popString.toCharArray();
+                    downChars[j] = downChars[j] == '0' ? '9' : (char) (downChars[j] - 1);
 
-                    String downString = new String(charsOfPopString);
+                    String downString = new String(downChars);
                     System.out.println("    Down String : " + downString);
                     
                     // Add those valid strings in queue
