@@ -13,6 +13,11 @@ public class OpenLock {
 
         Queue<String> queue = new LinkedList<>();
 
+        // if deadend contains '0000' which is a starting string then it's not possible to check any other string at all
+        if (deadendsSet.contains("0000")) {
+            return -1;
+        }
+
         // add initial value in queue
         queue.add("0000");
         visitedSet.add("0000");
@@ -90,6 +95,10 @@ public class OpenLock {
         String[] deadends3 = {"8887","8889","8878","8898","8788","8988","7888","9888"};
         String target3 = "8888";
         System.out.println("Result 3 -> " + solutions.openLock(deadends3, target3) + "\n");
+
+        String[] deadends4 = {"0000"};
+        String target4 = "8888";
+        System.out.println("Result 4 -> " + solutions.openLock(deadends4, target4) + "\n");
 
     }
 }
