@@ -2,6 +2,31 @@ import java.util.*;
 
 public class UpdateMatrix {
     
+    public int[][] updateMatrix(int[][] mat) {
+        
+        return mat;
+    }
+
+    public static void main(String[] args) {
+
+        UpdateMatrix solution = new UpdateMatrix();
+
+        int[][] grid1 = {
+            {0, 0, 0},
+            {0, 1, 0},
+            {0, 0, 0}
+        };
+        System.out.println("Result 1 : " + Arrays.deepToString(solution.updateMatrix(grid1)) + "\n");      
+
+        int[][] grid2 = {
+            {0, 0, 0},
+            {0, 1, 0},
+            {1, 1, 1}
+        };
+        System.out.println("Result 2 : " + Arrays.deepToString(solution.updateMatrix(grid2)) + "\n");      
+
+    }
+
 }
 
 /*
