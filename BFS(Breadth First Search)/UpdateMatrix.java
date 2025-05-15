@@ -1,9 +1,35 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class UpdateMatrix {
     
     public int[][] updateMatrix(int[][] mat) {
         
+        // Declare variables
+        int m = mat.length;
+        int n = mat[0].length;
+        boolean[][] visitedCell = new boolean[m][n];
+
+        // declare a queue to store unvisited cells
+        Queue<int[]> queue = new LinkedList<>();
+
+        // Initially store all 0's in the queue 
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                
+                if (mat[i][j] == 0) {
+                    visitedCell[i][j] = true;
+                    queue.add(new int[] {i, j});
+                }
+            }
+        }
+        // DEBUGGER : To print int[] queue with sout statement we can use for loop too but I just need to do it with one liner so
+        System.out.println(" Initial Queue : " + queue.stream()
+                                                    .map(Arrays::toString)
+                                                    .collect(Collectors.joining(", ", "[", "]"))
+                          );
+
+                          
         return mat;
     }
 
