@@ -9,6 +9,12 @@ public class UpdateMatrix {
         int m = mat.length;
         int n = mat[0].length;
         boolean[][] visitedCell = new boolean[m][n];
+        int[][] matrixDirection = {
+            {1, 0},
+            {0, 1},
+            {-1, 0},
+            {0, -1}
+        };
 
         // declare a queue to store unvisited cells
         Queue<int[]> queue = new LinkedList<>();
@@ -30,6 +36,38 @@ public class UpdateMatrix {
                           );
 
                           
+        // Let's replace matrix cell value with their distance from 0
+        while (!queue.isEmpty()) {
+            
+            int queueSize = queue.size();
+
+            for (int i = 0; i < queueSize; i++) {
+                
+                int[] popOutTopCell = queue.poll();
+
+                // here row (i) = cell[0] and col (j) = cell[1]
+                int row = popOutTopCell[0];
+                int col = popOutTopCell[1];
+
+                for (int[] dir : matrixDirection) {
+                    
+                    int x = row + dir[0];
+                    int y = col + dir[1];
+
+                    // if I found any fresh orange(1) will replace it with rotten orange(2)
+                    if (x >= 0 && x < m && y >= 0 && y < n && visitedCell[x][y] != true) {
+                        
+                        mat[x][y] = mat[row][col] + 1;
+                        queue.add(new int[] {x, y});
+                        
+                        visitedCell[x][y] = true;
+
+                        System.out.println("  - Updated matrix for (" + x + ", " + y + ") : " + mat[x][y]);
+                    }
+                }
+            }
+        }
+
         return mat;
     }
 
