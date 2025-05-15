@@ -2,6 +2,28 @@ import java.util.*;
 
 public class OpenLock {
     
+    public int openLock(String[] deadends, String target) {
+        
+        return -1;
+    }
+
+    public static void main(String[] args) {
+
+        OpenLock solutions = new OpenLock();
+
+        String[] deadends1 = {"0201","0101","0102","1212","2002"};
+        String target1 = "0202";
+        System.out.println("Result 1 -> " + solutions.openLock(deadends1, target1) + "\n");
+
+        String[] deadends2 = {"8888"};
+        String target2 = "0009";
+        System.out.println("Result 2 -> " + solutions.openLock(deadends2, target2) + "\n");
+
+        String[] deadends3 = {"8887","8889","8878","8898","8788","8988","7888","9888"};
+        String target3 = "8888";
+        System.out.println("Result 3 -> " + solutions.openLock(deadends3, target3) + "\n");
+
+    }
 }
 
 /*
