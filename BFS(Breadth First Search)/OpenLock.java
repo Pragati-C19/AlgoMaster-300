@@ -90,9 +90,64 @@ public class OpenLock {
 
             Indirectly this approach is not BFS approach it might be brute force
 
-            
+
  * Pseudo Code :
  
+    function openLock(String[] deadends, target) {
+    
+        -> Declare variables
+            minTurns = Max_Value
+            queue                   - to add all posible strings after moving by +1 or -1
+            visitedSet              - to check if the string is already visited
+            deadendsSet             - using it to easily check is string is in deadend or not
+            
+        -> let's add 0000 as initial string in queue 
+            and also mark it as visited to avoid going in loop
+                queue.add(0000)
+                visitedSet.add(0000)
+
+        -> now start while loop
+            while(!queue.isEmpty)
+                
+                queueSize = queue.size      - for level tracking
+
+                for(i = 0 to queueSize)
+
+                    popString = queue.poll()
+
+                    -> reached target
+                        if(target == popString)
+                            minTurn = min(minTurns, currTurns)
+
+                    -> generate all 8 possible combinations from current
+                        for(j = 0 to 4)     - why 4? it's a position
+
+                            -> let's get string in char[]
+                                char[] chars = popString.toCharArray
+
+                            -> let's move +1
+                                chars[j] = chars[j] + 1
+                                up = new String(chars)
+
+                            -> let's move down
+                                chars[j] = chars[j] - 1
+                                down = new String(chars)
+
+                            -> Add those two string in queue if condition sets
+                                if(!visitedSet.contains(up) && !deadendsSet.contains(up))
+                                    queue.add(up)
+                                    visited.add(up) 
+                                    
+                                if(!visitedSet.contains(down) && !deadendsSet.contains(down))
+                                    queue.add(down)
+                                    visited.add(down) 
+                
+                -> after processing current level let's do currTurn++
+
+        -> if(minTurn >= 0 ) return minTurn
+            else return -1 
+    
+    }
  
  
  */
