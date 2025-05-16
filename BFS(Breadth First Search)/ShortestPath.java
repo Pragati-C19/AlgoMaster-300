@@ -4,6 +4,83 @@ public class ShortestPath {
     
     public int shortestPath(int[][] grid, int k) {
      
+        // Decalre variables
+        int m = grid.length;
+        int n = grid[0].length;
+         int[][] matrixDirection = {
+            {1, 0},
+            {0, 1},
+            {-1, 0},
+            {0, -1}
+        };
+        int stepsToWalk = 0;
+
+        Queue<int[]> queue = new LinkedList<>();
+        Set<String> visitedCell = new HashSet<>();
+        
+        // Initially add first cell in queue
+        queue.add(new int[] {0, 0, k});
+
+        String initialKey = 0 + "," + 0 + "," + k;
+        visitedCell.add(initialKey);
+
+        while (!queue.isEmpty()) {
+            
+            System.out.println("    -> Updated Queue look like for steps " + stepsToWalk + " : " + queue);
+            System.out.println("    -> Updated VisitedCells look like for steps " + stepsToWalk + " : " + visitedCell);
+
+
+            int queueSize = queue.size();
+
+            for (int i = 0; i < queueSize; i++) {
+                
+                int[] popOutCell = queue.poll();
+
+                int popRow = popOutCell[0];
+                int popCol = popOutCell[1];
+                int popObstacleRemain = popOutCell[2]; 
+
+                if (popRow == m && popCol == n) {
+                    
+                    System.out.println("We have rechead the last cell of Matrix in " + stepsToWalk);
+                    return stepsToWalk;
+                }
+
+                for (int[] dir : matrixDirection) {
+                    
+                    int x = popRow + dir[0];
+                    int y = popCol + dir[1];
+                    int currObtacleRemain;
+
+                    if (0 <= x && x < m - 1 && 0 <= y && y < n - 1) {
+                        
+                        if (grid[x][y] == 1) {
+                            
+                            currObtacleRemain = popObstacleRemain + 1;
+                        }
+                        else {
+
+                            currObtacleRemain = popObstacleRemain;
+                        }
+                        // System.out.println("    Curr obstacle Remain for (" + x + ", " + y + ") : " + currObtacleRemain);
+                        
+                        String currKey = x + "," + y + "," + currObtacleRemain;
+
+                        if (currObtacleRemain >= 0 && !visitedCell.contains(currKey)) {
+                            
+                            queue.add(new int[] {x, y, currObtacleRemain});
+                            visitedCell.add(currKey);
+                        }
+
+                    }
+                }
+
+            }
+
+            stepsToWalk++;
+
+        }
+
         return -1;
     }
 
@@ -124,6 +201,16 @@ public class ShortestPath {
             - k_Remain is of pop up cell's
             - obstacleRemain is for the direction we are visiting from that cell
      
+  ^  To write visitedCell I can use few different things
+
+        1.  int[][][] visitedCell = new int[m][n][k+1]
+        2. Set<String> visitedCell = new HashSet
+            String key = x + "," + y + "," + obstaclesRemain
+            if(!visiedCell.contain(key))
+        3. Create a class name state like I did in DS Design / TimeMap que abt TimeValue
+            will use x, y, obstacleRemain
+            Set<State> visitedCell = new HashSet
+        
 
  * Pseudo Code :
 
