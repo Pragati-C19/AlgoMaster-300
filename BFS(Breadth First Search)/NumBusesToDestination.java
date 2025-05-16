@@ -4,6 +4,28 @@ public class NumBusesToDestination {
     
     public int numBusesToDestination(int[][] routes, int source, int target) {
         
+        // Declare variables
+        int n = routes.length;
+        int busCount = 0;
+        Map<Integer, List<Integer>> stopRouteMap = new HashMap<>();
+        Queue<Integer> queue = new LinkedList<>();
+        Set<Integer> visitedBusStop = new HashSet<>();
+        Set<Integer> visitedBusIndex = new HashSet<>();
+        
+        // let's add stop and which bus we can take from there in the map
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < routes[i].length; j++) {
+                
+                if (!stopRouteMap.containsKey(routes[i][j])) {
+
+                    stopRouteMap.put(routes[i][j], new ArrayList<>());
+                }
+
+                stopRouteMap.get(routes[i][j]).add(i);
+            }
+        }
+        System.out.println(" Initial stop route map : " + stopRouteMap);
+        
         return -1;
     }
 
