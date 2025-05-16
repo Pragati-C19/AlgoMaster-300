@@ -26,6 +26,35 @@ public class NumBusesToDestination {
         }
         System.out.println(" Initial stop route map : " + stopRouteMap);
         
+
+        // add initial value in queue and mark it as visited
+        queue.add(source);
+        visitedBusStop.add(source);
+
+        while (!queue.isEmpty()) {
+            
+            System.out.println("    -> Updated Queue look like for busCount " + busCount + " : " + queue);
+
+            int queueSize = queue.size();
+
+            // check level by level
+            for (int i = 0; i < queueSize; i++) {
+                
+                int popBusStop = queue.poll();
+
+                if (popBusStop == target) {
+                    
+                    System.out.println("We reach to the target and took buses : " + busCount);
+                    return busCount;
+                }
+
+                
+            }
+
+            // increase bus count
+            busCount++;
+        }
+
         return -1;
     }
 
