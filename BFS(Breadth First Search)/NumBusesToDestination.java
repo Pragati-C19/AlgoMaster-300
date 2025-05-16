@@ -103,6 +103,8 @@ public class NumBusesToDestination {
         };
         System.out.println("Result 2 : " + solution.numBusesToDestination(grid2, 15, 12) + "\n");       // -1
 
+        System.out.println("Result 1 : " + solution.numBusesToDestination(grid1, 8, 6) + "\n");         // -1
+
     }
 
 }
