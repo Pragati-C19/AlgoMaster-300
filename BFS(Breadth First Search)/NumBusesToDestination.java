@@ -33,7 +33,9 @@ public class NumBusesToDestination {
 
         while (!queue.isEmpty()) {
             
-            System.out.println("    -> Updated Queue look like for busCount " + busCount + " : " + queue);
+            System.out.println("    -> Updated Queue " + busCount + " : " + queue);
+            System.out.println("    -> Updated visited busStop " + busCount + " : " + visitedBusStop);
+            System.out.println("    -> Updated visited busIndex " + busCount + " : " + visitedBusIndex);
 
             int queueSize = queue.size();
 
@@ -44,11 +46,35 @@ public class NumBusesToDestination {
 
                 if (popBusStop == target) {
                     
-                    System.out.println("We reach to the target and took buses : " + busCount);
+                    System.out.println(" We reach to the target and took buses : " + busCount);
                     return busCount;
                 }
 
-                
+                // check which buses are available from pop out Stop
+                List<Integer> busesAvailable = stopRouteMap.get(popBusStop);
+                System.out.println("        - Buses available from " + popBusStop + " : " + busesAvailable);
+
+                for (Integer busIndex : busesAvailable) {
+                    
+                    // if we have not visited all busStop in route of busIndex 
+                    if (!visitedBusIndex.contains(busIndex)) {
+                        
+                        // check all stops we can visit from that busIndex
+                        for (int busStop = 0; busStop < routes[busIndex].length; busStop++) {
+                            
+                            // if that bus stop from bus Index is not visited then add it in queue 
+                            if (!visitedBusStop.contains(routes[busIndex][busStop])) {
+                                
+                                queue.add(routes[busIndex][busStop]);
+                                visitedBusStop.add(routes[busIndex][busStop]);
+                            }
+                        }
+
+                        // mark this busIndex as visited means we have visited all routes from this bus
+                        visitedBusIndex.add(busIndex);
+                    }
+                }
+
             }
 
             // increase bus count
