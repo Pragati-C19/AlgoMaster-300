@@ -40,7 +40,7 @@ public class ShortestPath {
                 int popCol = popOutCell[1];
                 int popObstacleRemain = popOutCell[2]; 
 
-                if (popRow == m && popCol == n) {
+                if (popRow == m - 1 && popCol == n - 1) {
                     
                     System.out.println("We have rechead the last cell of Matrix in " + stepsToWalk);
                     return stepsToWalk;
@@ -52,7 +52,7 @@ public class ShortestPath {
                     int y = popCol + dir[1];
                     int currObtacleRemain;
 
-                    if (0 <= x && x < m - 1 && 0 <= y && y < n - 1) {
+                    if (0 <= x && x < m && 0 <= y && y < n) {
                         
                         if (grid[x][y] == 1) {
                             
@@ -97,12 +97,12 @@ public class ShortestPath {
         };
         System.out.println("Result 1 : " + solution.shortestPath(grid1, 1) + "\n");
 
-        int[][] grid2 = {
-            {0, 1, 1},
-            {1, 1, 1},
-            {1, 0, 0}
-        };
-        System.out.println("Result 2 : " + solution.shortestPath(grid2, 1) + "\n");
+        // int[][] grid2 = {
+        //     {0, 1, 1},
+        //     {1, 1, 1},
+        //     {1, 0, 0}
+        // };
+        // System.out.println("Result 2 : " + solution.shortestPath(grid2, 1) + "\n");
 
     }
 }
