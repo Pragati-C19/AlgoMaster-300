@@ -2,6 +2,32 @@ import java.util.*;
 
 public class ShortestPath {
     
+    public int shortestPath(int[][] grid, int k) {
+     
+        return -1;
+    }
+
+    public static void main(String[] args) {
+
+        ShortestPath solution = new ShortestPath();
+
+        int[][] grid1 = {
+            {0, 0, 0},
+            {1, 1, 0},
+            {0, 0, 0},
+            {0, 1, 1},
+            {0, 0, 0}
+        };
+        System.out.println("Result 1 : " + solution.shortestPath(grid1, 1) + "\n");
+
+        int[][] grid2 = {
+            {0, 1, 1},
+            {1, 1, 1},
+            {1, 0, 0}
+        };
+        System.out.println("Result 2 : " + solution.shortestPath(grid2, 1) + "\n");
+
+    }
 }
 
 /*
@@ -10,7 +36,7 @@ public class ShortestPath {
             define x, y
             if(Base Case && visited != true)
 
-                todo: How to destroy obstacles and how to manage it I'm not sure
+                ? How to destroy obstacles and how to manage it I'm not sure
                 queue.add(x, y)
                 visited[x][y] = true
 
@@ -97,8 +123,7 @@ public class ShortestPath {
         - k_remain and obstacleRemain are different hun.. 
             - k_Remain is of pop up cell's
             - obstacleRemain is for the direction we are visiting from that cell
-                
-
+     
 
  * Pseudo Code :
 
