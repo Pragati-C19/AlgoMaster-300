@@ -53,25 +53,29 @@ public class NumBusesToDestination {
                 // check which buses are available from pop out Stop
                 List<Integer> busesAvailable = stopRouteMap.get(popBusStop);
                 System.out.println("        - Buses available from " + popBusStop + " : " + busesAvailable);
-
-                for (Integer busIndex : busesAvailable) {
+                System.out.println("    Size of busesAvailable : " + busesAvailable.size());
+                
+                if (busesAvailable.size() > 0) {
                     
-                    // if we have not visited all busStop in route of busIndex 
-                    if (!visitedBusIndex.contains(busIndex)) {
-                        
-                        // check all stops we can visit from that busIndex
-                        for (int busStop = 0; busStop < routes[busIndex].length; busStop++) {
+                    for (Integer busIndex : busesAvailable) {
+                    
+                        // if we have not visited all busStop in route of busIndex 
+                        if (!visitedBusIndex.contains(busIndex)) {
                             
-                            // if that bus stop from bus Index is not visited then add it in queue 
-                            if (!visitedBusStop.contains(routes[busIndex][busStop])) {
+                            // check all stops we can visit from that busIndex
+                            for (int busStop = 0; busStop < routes[busIndex].length; busStop++) {
                                 
-                                queue.add(routes[busIndex][busStop]);
-                                visitedBusStop.add(routes[busIndex][busStop]);
+                                // if that bus stop from bus Index is not visited then add it in queue 
+                                if (!visitedBusStop.contains(routes[busIndex][busStop])) {
+                                    
+                                    queue.add(routes[busIndex][busStop]);
+                                    visitedBusStop.add(routes[busIndex][busStop]);
+                                }
                             }
-                        }
 
-                        // mark this busIndex as visited means we have visited all routes from this bus
-                        visitedBusIndex.add(busIndex);
+                            // mark this busIndex as visited means we have visited all routes from this bus
+                            visitedBusIndex.add(busIndex);
+                        }
                     }
                 }
 
