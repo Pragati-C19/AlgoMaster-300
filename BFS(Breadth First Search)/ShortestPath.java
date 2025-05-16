@@ -56,7 +56,7 @@ public class ShortestPath {
                         
                         if (grid[x][y] == 1) {
                             
-                            currObtacleRemain = popObstacleRemain + 1;
+                            currObtacleRemain = popObstacleRemain - 1;
                         }
                         else {
 
@@ -245,7 +245,7 @@ public class ShortestPath {
                             x = row + dir[0]  y = col + dir[1]
 
                             if(grid[x][y] == 1)
-                                obstacleRemain = popcell[2] + 1
+                                obstacleRemain = popcell[2] - 1
                             else 
                                 obstacleRemain = popcell[2]
                         
