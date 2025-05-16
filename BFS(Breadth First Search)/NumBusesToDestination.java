@@ -113,9 +113,11 @@ public class NumBusesToDestination {
                     if(popBusStop == target)
                         return busCount
 
-                    busIndexes = map.get(popBusStop)
+                    -> checking what buses are available from this stop.
+                        busIndexes = map.get(popBusStop)
 
-                    for(index : busIndexes)
+                    -> Looping over bus routes we can take from this stop
+                        for(index : busIndexes)
                         
                         if(!visitedBusIndex(index)) {
                         
@@ -130,7 +132,7 @@ public class NumBusesToDestination {
                             -> mark this busIndex as visited
                                 visitedBusIndex.add(index)
 
-                        }
+                        } 
                        
                 -> increase busCount++
 
