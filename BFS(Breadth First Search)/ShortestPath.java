@@ -26,8 +26,8 @@ public class ShortestPath {
 
         while (!queue.isEmpty()) {
             
-            System.out.println("    -> Updated Queue look like for steps " + stepsToWalk + " : " + queue);
-            System.out.println("    -> Updated VisitedCells look like for steps " + stepsToWalk + " : " + visitedCell);
+            // System.out.println("    -> Updated Queue look like for steps " + stepsToWalk + " : " + queue);
+            // System.out.println("    -> Updated VisitedCells look like for steps " + stepsToWalk + " : " + visitedCell);
 
 
             int queueSize = queue.size();
@@ -62,7 +62,7 @@ public class ShortestPath {
 
                             currObtacleRemain = popObstacleRemain;
                         }
-                        // System.out.println("    Curr obstacle Remain for (" + x + ", " + y + ") : " + currObtacleRemain);
+                        System.out.println("    Curr obstacle Remain for (" + x + ", " + y + ") : " + currObtacleRemain);
                         
                         String currKey = x + "," + y + "," + currObtacleRemain;
 
@@ -97,12 +97,12 @@ public class ShortestPath {
         };
         System.out.println("Result 1 : " + solution.shortestPath(grid1, 1) + "\n");
 
-        // int[][] grid2 = {
-        //     {0, 1, 1},
-        //     {1, 1, 1},
-        //     {1, 0, 0}
-        // };
-        // System.out.println("Result 2 : " + solution.shortestPath(grid2, 1) + "\n");
+        int[][] grid2 = {
+            {0, 1, 1},
+            {1, 1, 1},
+            {1, 0, 0}
+        };
+        System.out.println("Result 2 : " + solution.shortestPath(grid2, 1) + "\n");
 
     }
 }
