@@ -2,6 +2,32 @@ import java.util.*;
 
 public class NumBusesToDestination {
     
+    public int numBusesToDestination(int[][] routes, int source, int target) {
+        
+        return -1;
+    }
+
+    public static void main(String[] args) {
+
+        NumBusesToDestination solution = new NumBusesToDestination();
+
+        int[][] grid1 = {
+            {1, 2, 7},
+            {3, 6, 7}
+        };
+        System.out.println("Result 1 : " + solution.numBusesToDestination(grid1, 1, 6) + "\n");         // 2
+
+        int[][] grid2 = {
+            {7, 12},
+            {4, 5, 15},
+            {6},
+            {15, 19},
+            {9, 12, 13}
+        };
+        System.out.println("Result 2 : " + solution.numBusesToDestination(grid2, 15, 12) + "\n");       // -1
+
+    }
+
 }
 
 /*
