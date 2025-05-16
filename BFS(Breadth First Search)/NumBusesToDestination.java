@@ -33,9 +33,9 @@ public class NumBusesToDestination {
 
         while (!queue.isEmpty()) {
             
-            System.out.println("    -> Updated Queue " + busCount + " : " + queue);
-            System.out.println("    -> Updated visited busStop " + busCount + " : " + visitedBusStop);
-            System.out.println("    -> Updated visited busIndex " + busCount + " : " + visitedBusIndex);
+            System.out.println("     Queue            " + busCount + " : " + queue);
+            System.out.println("     Visited busStop  " + busCount + " : " + visitedBusStop);
+            System.out.println("     Visited busIndex " + busCount + " : " + visitedBusIndex);
 
             int queueSize = queue.size();
 
@@ -51,10 +51,10 @@ public class NumBusesToDestination {
                 }
 
                 // check which buses are available from pop out Stop
-                List<Integer> busesAvailable = stopRouteMap.get(popBusStop);
+                List<Integer> busesAvailable = stopRouteMap.getOrDefault(popBusStop, new ArrayList<>());
                 System.out.println("        - Buses available from " + popBusStop + " : " + busesAvailable);
-                System.out.println("    Size of busesAvailable : " + busesAvailable.size());
-                
+                System.out.println("        - Size of busesAvailable : " + busesAvailable.size());
+
                 if (busesAvailable.size() > 0) {
                     
                     for (Integer busIndex : busesAvailable) {
