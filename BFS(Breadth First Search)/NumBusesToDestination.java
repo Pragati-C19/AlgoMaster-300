@@ -80,7 +80,62 @@ public class NumBusesToDestination {
  * Pseudo Code :
  
  
+    function numBusesToDestination (routes, source, target) {
+    
+        -> Declare variables
+            n = routes.length
+            queue               -> to store busStops
+            visitedBusStop      -> it will check if that bus stop is visited or not
+            visitedBusIndex     -> it will check if any bus is visited?.. means whole route of that bus ia already visited?
+            map                 -> it will store busStop -> busIndex
+            busCount = 0        -> it will check how many buses we have changed
 
+        -> add key and value in map
+            for(i = 0 to n)
+                for(j = 0 to routes[i].length)
+                    if(!map.contains(routes[i][j]))
+                        map.put(routes[i][j], new ArrayList)
+                    
+                    map.get(routes[i][j]).add(i)
 
- 
+        -> Initially add bus stop in queue 
+            queue.add(source)
+            visitedBusStop.add(source)
+            
+        -> check for others routes now
+            while(!queue.isEmpty)
+                queueSize = queue.size
+
+                for(i = 0 to queueSize)
+                    
+                    popBusStop = queue.poll
+
+                    if(popBusStop == target)
+                        return busCount
+
+                    busIndexes = map.get(popBusStop)
+
+                    for(index : busIndexes)
+                        
+                        if(!visitedBusIndex(index)) {
+                        
+                            -> check all stops of that BusIndex
+                                for(j = 0 to routes[index].length)
+
+                                    -> if that bus stop from bus Index is not visited then add it in queue 
+                                    if(!visitedBusStop(routes[index][j]))
+                                        queue.add(routes[index][j])
+                                        visitedBusStop.add(routes[index][j])
+                            
+                            -> mark this busIndex as visited
+                                visitedBusIndex.add(index)
+
+                        }
+                       
+                -> increase busCount++
+
+        return -1;
+    
+    }
+
  */
