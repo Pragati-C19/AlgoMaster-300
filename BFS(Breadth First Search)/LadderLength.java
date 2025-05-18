@@ -8,7 +8,9 @@ public class LadderLength {
         // Declare variables
         Queue<String> queue = new LinkedList<>();
         Set<String> visitedSet = new HashSet<>();
-        int wordCount = 0;
+        
+        // count is starting with 1 bcoz we want that beginWord in counting
+        int wordCount = 1;                          
 
         // add initial value in queue
         queue.add(beginWord);
@@ -40,7 +42,7 @@ public class LadderLength {
                     // by doing this it's not checking word diff and adding more time or memeory here
                     if (visitedSet.contains(wordList.get(str))) {
 
-                        System.out.println("     ~ Word is already visited");
+                        System.out.println("      ~ Word is already visited...");
                         continue;
                     }
 
@@ -57,7 +59,7 @@ public class LadderLength {
                     // by doing this we are breaking the for loop early
                     if (wordDiff > 1) {
                         
-                        System.out.println("     ~ Word diff is greater than 1");
+                        System.out.println("      ~ Word diff > 1");
                         break;
                     }
                 }
