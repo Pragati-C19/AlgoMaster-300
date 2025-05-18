@@ -2,6 +2,27 @@ import java.util.*;
 
 public class LadderLength {
     
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+     
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        LadderLength solution = new LadderLength();
+
+        String beginWord1 = "hit";
+        String endWord1 = "cog";
+        List<String> wordList1 = Arrays.asList("hot", "dot", "dog", "lot", "log", "cog");
+        System.out.println("Result 1 -> " + solution.ladderLength(beginWord1, endWord1, wordList1) + "\n");
+
+        String beginWord2 = "hit";
+        String endWord2 = "cog";
+        List<String> wordList2 = Arrays.asList("hot", "dot", "dog", "lot", "log");
+        System.out.println("Result 2 -> " + solution.ladderLength(beginWord2, endWord2, wordList2) + "\n");
+        
+    }
+
 }
 
 /*
