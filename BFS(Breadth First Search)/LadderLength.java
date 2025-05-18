@@ -37,6 +37,13 @@ public class LadderLength {
                 // compare with other words in a wordList
                 for (int str = 0; str < wordList.size(); str++) {
                     
+                    // by doing this it's not checking word diff and adding more time or memeory here
+                    if (visitedSet.contains(wordList.get(str))) {
+
+                        System.out.println("     ~ Word is already visited");
+                        continue;
+                    }
+
                     int wordDiff = stringDifference(popString, wordList.get(str));
 
                     // if the difference is 1 means we can add that word in queue
@@ -45,6 +52,13 @@ public class LadderLength {
                         queue.add(wordList.get(str));
                         visitedSet.add(wordList.get(str));
                         System.out.println("    Added word in queue and marked it as visited");
+                    }
+
+                    // by doing this we are breaking the for loop early
+                    if (wordDiff > 1) {
+                        
+                        System.out.println("     ~ Word diff is greater than 1");
+                        break;
                     }
                 }
                 
