@@ -5,7 +5,32 @@ public class LadderLength {
     // Driver Function
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
      
-        stringDifference(beginWord, endWord);
+        // Declare variables
+        Queue<String> queue = new LinkedList<>();
+        Set<String> visitedSet = new HashSet<>();
+        int wordCount = 0;
+
+        // add initial value in queue
+        queue.add(beginWord);
+        visitedSet.add(beginWord);
+        System.out.println("Initially queue : " + queue + " and visitedSet : " + visitedSet);
+
+        // let's dive into while loop
+        while (!queue.isEmpty()) {
+         
+            System.out.println("     queue : " + queue + " and visitedSet : " + visitedSet);
+
+            int queueSize = queue.size();
+
+            // start for loop for level order
+            for (int i = 0; i < queueSize; i++) {
+                
+                
+            }
+            
+            // increase the count
+            wordCount++;
+        }
 
         return 0;
     }
