@@ -103,6 +103,11 @@ public class LadderLength {
         List<String> wordList2 = Arrays.asList("hot", "dot", "dog", "lot", "log");
         System.out.println("Result 2 -> " + solution.ladderLength(beginWord2, endWord2, wordList2) + "\n");
         
+        String beginWord3 = "hot";
+        String endWord3 = "dog";
+        List<String> wordList3 = Arrays.asList("hot","dog","dot");
+        System.out.println("Result 3 -> " + solution.ladderLength(beginWord3, endWord3, wordList3) + "\n");
+        
     }
 
 }
