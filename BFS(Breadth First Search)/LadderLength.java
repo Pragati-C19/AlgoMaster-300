@@ -17,11 +17,11 @@ public class LadderLength {
 
         for (int i = 0; i < str1.length(); i++) {
             
-            if (str1[i] != str2[i]) {
+            if (str1.charAt(i) != str2.charAt(i)) {
                 diff++;
             }
         }
-        System.out.println("    Difference of String ( " + str1 + ", " + str2 + ") : " + diff);
+        System.out.println("    Difference of String (" + str1 + ", " + str2 + ") : " + diff);
         return diff;
     }
 
