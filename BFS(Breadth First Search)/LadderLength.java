@@ -57,11 +57,11 @@ public class LadderLength {
                     }
 
                     // by doing this we are breaking the for loop early
-                    if (wordDiff > 1) {
+                    // if (wordDiff > 1) {
                         
-                        System.out.println("      ~ Word diff > 1");
-                        break;
-                    }
+                    //     System.out.println("      ~ Word diff > 1");
+                    //     break;
+                    // }
                 }
                 
             }
