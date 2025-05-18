@@ -39,6 +39,13 @@ public class LadderLength {
                     
                     int wordDiff = stringDifference(popString, wordList.get(str));
 
+                    // if the difference is 1 means we can add that word in queue
+                    if (wordDiff == 1 && !visitedSet.contains(wordList.get(str))) {
+                        
+                        queue.add(wordList.get(str));
+                        visitedSet.add(wordList.get(str));
+                        System.out.println("    Added word in queue and marked it as visited");
+                    }
                 }
                 
             }
@@ -61,7 +68,7 @@ public class LadderLength {
                 diff++;
             }
         }
-        System.out.println("     Difference of String (" + str1 + ", " + str2 + ") : " + diff);
+        System.out.println("      - Difference of String (" + str1 + ", " + str2 + ") : " + diff);
         return diff;
     }
 
