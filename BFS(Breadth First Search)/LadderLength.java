@@ -18,13 +18,28 @@ public class LadderLength {
         // let's dive into while loop
         while (!queue.isEmpty()) {
          
-            System.out.println("     queue : " + queue + " and visitedSet : " + visitedSet);
+            System.out.println("    queue : " + queue + " and visitedSet : " + visitedSet);
 
             int queueSize = queue.size();
 
             // start for loop for level order
             for (int i = 0; i < queueSize; i++) {
                 
+                String popString = queue.poll();
+
+                // if that popString equals to endWord we found our target return count
+                if (popString.equals(endWord)) {
+
+                    System.out.println(" We reach to the endWord with count : " + wordCount);
+                    return wordCount;
+                }
+
+                // compare with other words in a wordList
+                for (int str = 0; str < wordList.size(); str++) {
+                    
+                    int wordDiff = stringDifference(popString, wordList.get(str));
+
+                }
                 
             }
             
@@ -46,7 +61,7 @@ public class LadderLength {
                 diff++;
             }
         }
-        System.out.println("    Difference of String (" + str1 + ", " + str2 + ") : " + diff);
+        System.out.println("     Difference of String (" + str1 + ", " + str2 + ") : " + diff);
         return diff;
     }
 
