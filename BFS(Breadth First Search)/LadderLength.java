@@ -2,10 +2,29 @@ import java.util.*;
 
 public class LadderLength {
     
+    // Driver Function
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
      
+        stringDifference(beginWord, endWord);
+
         return 0;
     }
+
+    // Helper Function : to get string difference
+    private int stringDifference(String str1, String str2) {
+
+        int diff = 0;
+
+        for (int i = 0; i < str1.length(); i++) {
+            
+            if (str1[i] != str2[i]) {
+                diff++;
+            }
+        }
+        System.out.println("    Difference of String ( " + str1 + ", " + str2 + ") : " + diff);
+        return diff;
+    }
+
 
     public static void main(String[] args) {
 
