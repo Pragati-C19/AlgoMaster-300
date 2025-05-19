@@ -36,6 +36,13 @@ public class FindOrder {
 
         // Result array to add all values from stack here
         int[] result = new int[stack.size()];
+        int index = 0;
+
+        while (!stack.empty()) {
+            
+            result[index] = stack.pop();
+            index++;
+        }
 
         return result;
     }
