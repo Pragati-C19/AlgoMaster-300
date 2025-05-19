@@ -1,7 +1,38 @@
 import java.util.*;
 
 public class FindOrder {
-    
+ 
+    // Globally Declare variables
+
+
+    // Driver Function 
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        
+    }
+
+    // Recursion Function : To check if node and it's neighbors are visited or not
+    private void dfs(int currCourse, int[] visitingState) {
+        
+    }
+
+    public static void main(String[] args) {
+
+        FindOrder solution = new FindOrder();
+
+        int[][] prerequisites1 = {
+            {1, 0}
+        };
+        System.out.println("Result 1 : " + solution.canFinish(2, prerequisites1) + "\n");
+
+        int[][] prerequisites2 = {
+            {1, 0},
+            {2, 0},
+            {3, 1},
+            {3, 2}
+        };
+        System.out.println("Result 2 : " + solution.canFinish(2, prerequisites2) + "\n");
+
+    }
 }
 
 /*
