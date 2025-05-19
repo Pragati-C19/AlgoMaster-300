@@ -103,6 +103,12 @@ public class FindOrder {
         };
         System.out.println("Result 2 : " + Arrays.toString(solution.findOrder(4, prerequisites2)) + "\n");
 
+        int[][] prerequisites3 = {
+            {0, 1},
+            {1, 0}
+        };
+        System.out.println("Result 3 : " + Arrays.toString(solution.findOrder(2, prerequisites3)) + "\n");      // []
+
     }
 }
 
