@@ -3,16 +3,41 @@ import java.util.*;
 public class FindOrder {
  
     // Globally Declare variables
-
+    Map<Integer, List<Integer>> graphMap;
+    Stack<Integer> stack;
 
     // Driver Function 
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         
+        // declare variable
+        int n = prerequisites.length;
+        int[] visitingState = new int[numCourses];
+        graphMap = new HashMap<>();
+        stack = new Stack<>();
+
+        // add dependencies in map
+        for (int i = 0; i < n; i++) {
+            
+            if (!graphMap.containsKey(prerequisites[i][1])) {
+                graphMap.put(prerequisites[i][1], new ArrayList<>());
+            }
+
+            graphMap.get(prerequisites[i][1]).add(prerequisites[i][0]);
+        }
+        System.out.println("Graph Map : " + graphMap);
+
+        
+
+        // Result array to add all values from stack here
+        int[] result = new int[stack.size()];
+
+        return result;
     }
 
     // Recursion Function : To check if node and it's neighbors are visited or not
     private void dfs(int currCourse, int[] visitingState) {
-        
+
+        return;
     }
 
     public static void main(String[] args) {
@@ -22,7 +47,7 @@ public class FindOrder {
         int[][] prerequisites1 = {
             {1, 0}
         };
-        System.out.println("Result 1 : " + solution.canFinish(2, prerequisites1) + "\n");
+        System.out.println("Result 1 : " + Arrays.toString(solution.findOrder(2, prerequisites1)) + "\n");
 
         int[][] prerequisites2 = {
             {1, 0},
@@ -30,7 +55,7 @@ public class FindOrder {
             {3, 1},
             {3, 2}
         };
-        System.out.println("Result 2 : " + solution.canFinish(2, prerequisites2) + "\n");
+        System.out.println("Result 2 : " + Arrays.toString(solution.findOrder(4, prerequisites2)) + "\n");
 
     }
 }
