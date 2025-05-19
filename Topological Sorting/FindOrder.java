@@ -26,6 +26,12 @@ public class FindOrder {
         }
         System.out.println("Graph Map : " + graphMap);
 
+        // call DFS for all courses now 
+        for (int course = 0; course < numCourses; course++) {
+            
+            dfs(course, visitingState);
+        }
+        System.out.println("Stack : " + stack);
         
 
         // Result array to add all values from stack here
@@ -36,6 +42,39 @@ public class FindOrder {
 
     // Recursion Function : To check if node and it's neighbors are visited or not
     private void dfs(int currCourse, int[] visitingState) {
+
+        // Base Case :
+        if (visitingState[currCourse] == 1) {
+            
+            System.out.println("    Cycle Detected...");
+            return;
+        }
+
+        if (visitingState[currCourse] == 2) {
+            
+            System.out.println("    Course (" + currCourse + ") already visited...");
+            return;
+        }
+
+        // if node is unvisited mark it as visiting
+        visitingState[currCourse] = 1;
+
+        // check it's neighbors
+        List<Integer> neighborsOfCurrNodes = graphMap.get(currCourse);
+        
+        if (neighborsOfCurrNodes != null) {
+            
+            for (int neighbor : neighborsOfCurrNodes) {
+            
+                dfs(neighbor, visitingState);  
+            } 
+        }
+
+        // mark currNode as visited now as we have checked all it's neighbors
+        visitingState[currCourse] = 2;
+
+        // as we have checked all neighbors of currNode add it in stack
+        stack.push(currCourse);
 
         return;
     }
