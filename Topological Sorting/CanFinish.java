@@ -1,14 +1,72 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class CanFinish {
     
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         
+        // declare variable
+        int n = prerequisites.length;
+        int[] visitingState = new int[numCourses];
+        Map<Integer, List<Integer>> graphMap = new HashMap<>();
+
+        // add dependencies in map
+        for (int i = 0; i < n; i++) {
+            
+            if (!graphMap.containsKey(prerequisites[i][1])) {
+                graphMap.put(prerequisites[i][1], new ArrayList<>());
+            }
+
+            graphMap.get(prerequisites[i][1]).add(prerequisites[i][0]);
+        }
+        System.out.println("Graph Map : " + graphMap);
+
+        // let's call dfs for each courses
+        for (int course = 0; course < numCourses; course++) {
+            
+            if (!dfs(course, visitingState, graphMap)) {
+                return false;
+            }
+        }
+
         return true;
     }
 
     // Recursion Function : To check if node and it's neighbors are visited or not
-    private boolean dfs(int currNode, int[] visitingState, Map<Integer, List<Integer>> graphMap) {
+    private boolean dfs(int currCourse, int[] visitingState, Map<Integer, List<Integer>> graphMap) {
+
+        // Base Case :
+        if (visitingState[currCourse] == 1) {
+            
+            System.out.println("    Cycle Detected...");
+            return false;
+        }
+
+        if (visitingState[currCourse] == 2) {
+            
+            System.out.println("    Course (" + currCourse + ") already visited...");
+            return true;
+        }
+
+        // if node is unvisited mark it as visiting
+        visitingState[currCourse] = 1;
+
+        // check it's neighbors
+        List<Integer> neighborsOfCurrNodes = graphMap.get(currCourse);
+        
+        if (neighborsOfCurrNodes != null) {
+            
+            for (int neighbor : neighborsOfCurrNodes) {
+            
+                if (!dfs(neighbor, visitingState, graphMap)) {
+                    
+                    return false;
+                }
+            } 
+        }
+
+        // mark currNode as visited now as we have checked all it's neighbors
+        visitingState[currCourse] = 2;
 
         return true;
     }
