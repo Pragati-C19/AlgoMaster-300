@@ -14,10 +14,8 @@ public class FindOrder {
         int[] visitingState = new int[numCourses];
         graphMap = new HashMap<>();
         stack = new Stack<>();
-        int[] result = new int[numCourses];
-        int index = 0;
 
-
+        
         // add dependencies in map
         for (int i = 0; i < n; i++) {
             
@@ -29,18 +27,22 @@ public class FindOrder {
         }
         System.out.println("Graph Map : " + graphMap);
 
+
         // call DFS for all courses now 
         for (int course = 0; course < numCourses; course++) {
             
             if (!dfs(course, visitingState)) {
                     
-                return result;
+                return new int[0];
             }
         }
         System.out.println("Stack : " + stack);
         
 
         // Result array to add all values from stack here
+        int[] result = new int[numCourses];
+        int index = 0;
+
         while (!stack.empty()) {
             
             result[index] = stack.pop();
