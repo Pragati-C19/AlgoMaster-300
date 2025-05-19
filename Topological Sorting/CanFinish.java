@@ -2,6 +2,33 @@ import java.util.*;
 
 public class CanFinish {
     
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        
+        return true;
+    }
+
+    // Recursion Function : To check if node and it's neighbors are visited or not
+    private boolean dfs(int currNode, int[] visitingState, Map<Integer, List<Integer>> graphMap) {
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+        CanFinish solution = new CanFinish();
+
+        int[][] prerequisites1 = {
+            {1, 0}
+        };
+        System.out.println("Result 1 : " + solution.canFinish(2, prerequisites1) + "\n");
+
+        int[][] prerequisites2 = {
+            {1, 0},
+            {0, 1}
+        };
+        System.out.println("Result 1 : " + solution.canFinish(2, prerequisites2) + "\n");
+
+    }
 }
 
 /*
