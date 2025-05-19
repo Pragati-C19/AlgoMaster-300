@@ -14,6 +14,9 @@ public class FindOrder {
         int[] visitingState = new int[numCourses];
         graphMap = new HashMap<>();
         stack = new Stack<>();
+        int[] result = new int[numCourses];
+        int index = 0;
+
 
         // add dependencies in map
         for (int i = 0; i < n; i++) {
@@ -29,15 +32,15 @@ public class FindOrder {
         // call DFS for all courses now 
         for (int course = 0; course < numCourses; course++) {
             
-            dfs(course, visitingState);
+            if (!dfs(course, visitingState)) {
+                    
+                return result;
+            }
         }
         System.out.println("Stack : " + stack);
         
 
         // Result array to add all values from stack here
-        int[] result = new int[stack.size()];
-        int index = 0;
-
         while (!stack.empty()) {
             
             result[index] = stack.pop();
@@ -48,19 +51,19 @@ public class FindOrder {
     }
 
     // Recursion Function : To check if node and it's neighbors are visited or not
-    private void dfs(int currCourse, int[] visitingState) {
+    private boolean dfs(int currCourse, int[] visitingState) {
 
         // Base Case :
         if (visitingState[currCourse] == 1) {
             
             System.out.println("    Cycle Detected...");
-            return;
+            return false;
         }
 
         if (visitingState[currCourse] == 2) {
             
             System.out.println("    Course (" + currCourse + ") already visited...");
-            return;
+            return false;
         }
 
         // if node is unvisited mark it as visiting
@@ -73,7 +76,11 @@ public class FindOrder {
             
             for (int neighbor : neighborsOfCurrNodes) {
             
-                dfs(neighbor, visitingState);  
+                if (!dfs(neighbor, visitingState)) {
+                    
+                    return false;
+                }
+                
             } 
         }
 
@@ -83,7 +90,7 @@ public class FindOrder {
         // as we have checked all neighbors of currNode add it in stack
         stack.push(currCourse);
 
-        return;
+        return true;
     }
 
     public static void main(String[] args) {
