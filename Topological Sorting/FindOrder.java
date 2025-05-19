@@ -65,7 +65,7 @@ public class FindOrder {
         if (visitingState[currCourse] == 2) {
             
             System.out.println("    Course (" + currCourse + ") already visited...");
-            return false;
+            return true;
         }
 
         // if node is unvisited mark it as visiting
