@@ -2,6 +2,46 @@ import java.util.*;
 
 public class FindMinHeightTrees {
     
+    // Gloablly declare variables
+
+
+    // Driver Function 
+    public List<Integer> findMinHeightTrees(int n, int[][] edges) {
+        
+        List<Integer> result = new ArrayList<>();
+
+        
+        return result;
+    }
+
+    // Recursion Function : to get height of curr level
+    private int dfs (int currNode, int[] visitingState, int parentNode, int currHeight) {
+        
+        return currHeight;
+    }
+
+    
+    public static void main(String[] args) {
+
+        FindMinHeightTrees solution = new FindMinHeightTrees();
+
+        int[][] edges1 = {
+            {1, 0},
+            {1, 2},
+            {1, 3}
+        };
+        System.out.println("Result 1 : " + solution.findMinHeightTrees(4, edges1) + "\n");
+
+        int[][] edges2 = {
+            {3, 0},
+            {3, 1},
+            {3, 2},
+            {3, 4},
+            {5, 4}
+        };
+        System.out.println("Result 2 : " + solution.findMinHeightTrees(6, edges2) + "\n");
+
+    }
 }
 
 /*
@@ -187,7 +227,7 @@ public class FindMinHeightTrees {
 
                 -> to manage cycle detection for this problem 
                     if(neighbor == parentNode) continue
-                    
+
                 dfs(neighbor, visitingState, currNode, currHeight + 1)
 
         -> mark currNode as visited now as we check it's neighbors so
