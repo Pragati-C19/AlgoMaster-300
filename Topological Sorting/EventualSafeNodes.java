@@ -3,13 +3,29 @@ import java.util.*;
 public class EventualSafeNodes {
     
     // Globally Declare variables
-
+    Map<Integer, List<Integer>> graphMap;
 
     // Driver Function 
     public List<Integer> eventualSafeNodes(int[][] graph) {
         
+        // Declare Variables
+        int n = graph.length;
+        int[] visitingState = new int[n];
+        graphMap = new HashMap<>();
         List<Integer> result = new ArrayList<>();
 
+        // Add dependencies in map
+        for (int i = 0; i < n; i++) {
+            
+            if (!graphMap.containsKey(i)) {
+                graphMap.put(i, new ArrayList<>());
+            }
+
+            for (int j = 0; j < graph[i].length; j++) {
+                graphMap.get(i).add(graph[i][j]);
+            }
+        }
+        System.out.println("Graph Map : " + graphMap);
 
         return result;
     }
