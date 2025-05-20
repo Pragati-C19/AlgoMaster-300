@@ -66,6 +66,8 @@ public class FindMinHeightTrees {
         // mark as visiting
         visitingState[currNode] = 1;
 
+        int longestHeightForCurrNode = currHeight;
+
         // check neighbors
         List<Integer> neighborsOfCurrNodes = graphMap.get(currNode);
 
@@ -81,7 +83,11 @@ public class FindMinHeightTrees {
                     continue;
                 }
 
-                dfs(neighbor, visitingState, currNode, currHeight + 1);
+
+                int childHeight = dfs(neighbor, visitingState, currNode, currHeight + 1);
+
+                longestHeightForCurrNode = Math.max(longestHeightForCurrNode, childHeight);
+                
             }
         }
 
@@ -89,7 +95,7 @@ public class FindMinHeightTrees {
         visitingState[currNode] = 2;
 
         // return curren height of the node
-        return currHeight;
+        return longestHeightForCurrNode;
     }
 
     
@@ -224,7 +230,10 @@ public class FindMinHeightTrees {
     - jr me root as 0 mhnle and jevha te 3 la check karayla jail tevha mhnelch ki ohh u need to visit 0 first cycle detected
     - tyamul to avoid this.. apan rk kam karu currNode, visitingState sobt apan parentNode pn deu
     - will check if neighbor == parentNode then continue
-
+    
+    
+    - by doing dfs(neighbor, visitingState, currNode, currHeight + 1)
+        you're only returning the height at the moment of calling, not the deepest height from all child branches. 
 
  
  * Pseudo Code :
