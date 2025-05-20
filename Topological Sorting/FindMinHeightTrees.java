@@ -38,9 +38,24 @@ public class FindMinHeightTrees {
 
 
         // call dfs
-        int currHeight = dfs(0, visitingState, 0, 1);
-        System.out.println("CurrHeight for node " + 0 + " : " + currHeight);
+        for (int rootNode = 0; rootNode < n; rootNode++) {
+            
+            // get currHeight of node
+            int currHeight = dfs(rootNode, visitingState, rootNode, 1);
+            System.out.println("CurrHeight for node " + rootNode + " : " + currHeight);
 
+            // add that height and node in heigthNodeMap 
+            if (!heightNodeMap.containsKey(currHeight)) {
+                heightNodeMap.put(currHeight, new ArrayList<>());
+            }
+            heightNodeMap.get(currHeight).add(rootNode);
+            System.out.println("HeigthNode Map : " + heightNodeMap);
+
+            // update minHeight value
+            minHeight = Math.min(minHeight, currHeight);
+
+        }
+    
 
         return result;
     }
@@ -48,18 +63,18 @@ public class FindMinHeightTrees {
     // Recursion Function : to get height of curr level
     private int dfs (int currNode, int[] visitingState, int parentNode, int currHeight) {
         
-        System.out.println(" - Visiting : " + parentNode + " -> " + currNode + ", " + currHeight);
+        System.out.println("    - Visiting : currNode " + currNode + " <- " + parentNode + " with currHeight : " + currHeight);
         
         // Base Case :
          if (visitingState[currNode] == 1) {
             
-            System.out.println("    Cycle Detected At " + currNode + "...");
+            System.out.println("        Cycle Detected At " + currNode + "...");
             return 0;
         }
 
         if (visitingState[currNode] == 2) {
             
-            System.out.println("    Node (" + currNode + ") already visited...");
+            System.out.println("        Node (" + currNode + ") already visited...");
             return currHeight;
         }
 
@@ -79,7 +94,7 @@ public class FindMinHeightTrees {
                 // so to avoid this type of cycle detection will avoid to check neighbor or currnode which equals to parentNode
                 if (neighbor == parentNode) {
 
-                    System.out.println("    Neighbor (" + neighbor + ") equals to parentNode (" + parentNode + ")");
+                    System.out.println("        Neighbor (" + neighbor + ") equals to parentNode (" + parentNode + ")");
                     continue;
                 }
 
