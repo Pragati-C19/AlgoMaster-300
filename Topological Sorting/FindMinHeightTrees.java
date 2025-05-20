@@ -83,24 +83,27 @@ public class FindMinHeightTrees {
 
             }
 
-            // if there are multiple nodes we need to go further to the center so add it's neighbors in queue
-            for (int i = 0; i < queueSize; i++) {
+            if (queueSize > 2) {
                 
-                int leafNodePop = queue.poll();
-
-                // as leafNode if it has any neighbors?
-                List<Integer> neighborsOfCurrLeafNodes = graphMap.get(leafNodePop);
-
-                if (neighborsOfCurrLeafNodes != null) {
+                // if there are multiple nodes we need to go further to the center so add it's neighbors in queue
+                for (int i = 0; i < queueSize; i++) {
                     
-                    for (int neighbor : neighborsOfCurrLeafNodes) {
+                    int leafNodePop = queue.poll();
+
+                    // as leafNode if it has any neighbors?
+                    List<Integer> neighborsOfCurrLeafNodes = graphMap.get(leafNodePop);
+
+                    if (neighborsOfCurrLeafNodes != null) {
                         
-                        if (!visitedNode[neighbor]) {
+                        for (int neighbor : neighborsOfCurrLeafNodes) {
                             
-                            queue.add(neighbor);
-                            visitedNode[neighbor] = true;
-                            System.out.println("  -> Neighbor of Leaf Node " + leafNodePop + " is added in : " + queue);
-                        } 
+                            if (!visitedNode[neighbor]) {
+                                
+                                queue.add(neighbor);
+                                visitedNode[neighbor] = true;
+                                System.out.println("  -> Neighbor of Leaf Node " + leafNodePop + " is added in : " + queue);
+                            } 
+                        }
                     }
                 }
             }
