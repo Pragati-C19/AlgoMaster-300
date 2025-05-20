@@ -12,11 +12,13 @@ public class FindMinHeightTrees {
         int m = edges.length;
         graphMap = new HashMap<>();
         int minHeight = Integer.MAX_VALUE;
-        Map<Integer, List<Integer>> heightNodeMap = new HashMap<>();
+        // Map<Integer, List<Integer>> heightNodeMap = new HashMap<>();
         List<Integer> result = new ArrayList<>();
 
         // Declare queue as we are using BFS now to store leaf Nodes
         Queue<Integer> queue = new LinkedList<>();
+        boolean[] visitedNode = new boolean[n];
+
 
         // add dependancies in graphMap
         for (int i = 0; i < m; i++) {
@@ -42,15 +44,68 @@ public class FindMinHeightTrees {
         // Initially add all leaf node in queue
         for (Map.Entry<Integer, List<Integer>> entry : graphMap.entrySet()) {
             
+            int node = entry.getKey();
             List<Integer> listOfNodes = entry.getValue();
             System.out.println("        listOfNodes : " + listOfNodes);
 
             if (listOfNodes.size() == 1) {
                 
-                queue.add(entry.getKey());
-                System.out.println("  -> Leaf Node " + entry.getKey() + " is added in : " + queue);
+                queue.add(node);
+                visitedNode[node] = true;
+                System.out.println("  -> Leaf Node " + node + " is added in : " + queue);
             }
         } 
+
+
+        // start while loop for level order
+        while (!queue.isEmpty()) {
+            
+            // get level size
+            int queueSize = queue.size();
+            
+            // there are only 1 (when n is odd) or 2 (when n is even) nodes with minHeight so will pop it and add it in result
+            if (queueSize == 2) {
+
+                int firstMinHeightNode = queue.poll();
+                int secondMinHeightNode = queue.poll();
+
+                result.add(firstMinHeightNode);
+                result.add(secondMinHeightNode);
+                System.out.println("    queueSize is 2 so nodes added in result : " + result);
+            }
+
+            if (queueSize == 1) {
+
+                int minHeightNode = queue.poll();
+                
+                result.add(minHeightNode);
+                System.out.println("    queueSize is 1 so nodes added in result : " + result);
+
+            }
+
+            // if there are multiple nodes we need to go further to the center so add it's neighbors in queue
+            for (int i = 0; i < queueSize; i++) {
+                
+                int leafNodePop = queue.poll();
+
+                // as leafNode if it has any neighbors?
+                List<Integer> neighborsOfCurrLeafNodes = graphMap.get(leafNodePop);
+
+                if (neighborsOfCurrLeafNodes != null) {
+                    
+                    for (int neighbor : neighborsOfCurrLeafNodes) {
+                        
+                        if (!visitedNode[neighbor]) {
+                            
+                            queue.add(neighbor);
+                            visitedNode[neighbor] = true;
+                            System.out.println("  -> Neighbor of Leaf Node " + leafNodePop + " is added in : " + queue);
+                        } 
+                    }
+                }
+            }
+        }
+
 
         // call dfs
         // for (int rootNode = 0; rootNode < n; rootNode++) {
@@ -76,7 +131,7 @@ public class FindMinHeightTrees {
     
         // return minHeight nodes now
         // I was going to use new variable and for loop but suddenly thought both are List<Integer> let's just return .get
-        result = heightNodeMap.get(0);
+        // result = heightNodeMap.get(0);
 
         return result;
     }
