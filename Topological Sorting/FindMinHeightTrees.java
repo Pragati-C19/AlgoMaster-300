@@ -10,7 +10,6 @@ public class FindMinHeightTrees {
         
         // Declare variables
         int m = edges.length;
-        int[] visitingState = new int[n];
         graphMap = new HashMap<>();
         int minHeight = Integer.MAX_VALUE;
         Map<Integer, List<Integer>> heightNodeMap = new HashMap<>();
@@ -40,6 +39,9 @@ public class FindMinHeightTrees {
         // call dfs
         for (int rootNode = 0; rootNode < n; rootNode++) {
             
+            // we need to reset visitingState as 0 for every new rootNode
+            int[] visitingState = new int[n];
+
             // get currHeight of node
             int currHeight = dfs(rootNode, visitingState, rootNode, 1);
             System.out.println("CurrHeight for node " + rootNode + " : " + currHeight);
@@ -56,6 +58,7 @@ public class FindMinHeightTrees {
 
         }
     
+        
 
         return result;
     }
