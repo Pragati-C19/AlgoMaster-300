@@ -27,12 +27,47 @@ public class EventualSafeNodes {
         }
         System.out.println("Graph Map : " + graphMap);
 
+        dfs(1, visitingState);
+
         return result;
     }
 
     // Recursion Function : to check if any cycle detected
     private boolean dfs(int currNode, int[] visitingState) {
 
+        // Base Case :
+         if (visitingState[currNode] == 1) {
+            
+            System.out.println("    Cycle Detected At " + currNode + "...");
+            return false;
+        }
+
+        if (visitingState[currNode] == 2) {
+            
+            System.out.println("    Node (" + currNode + ") already visited...");
+            return true;
+        }
+
+        // mark as visiting
+        visitingState[currNode] = 1;
+
+        // check neighbors
+        List<Integer> neighborsOfCurrNodes = graphMap.get(currNode);
+
+        if (neighborsOfCurrNodes != null) {
+            
+            for (int neighbor : neighborsOfCurrNodes) {
+                
+                if (!dfs(neighbor, visitingState)) {
+                    return false;
+                }
+            }
+        }
+
+        // Mark currNode as visited
+        visitingState[currNode] = 2;
+
+        // will node add currNode in stack for this que directly return true
         return true;
     }
 
