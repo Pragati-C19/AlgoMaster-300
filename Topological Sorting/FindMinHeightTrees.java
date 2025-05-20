@@ -70,19 +70,6 @@ public class FindMinHeightTrees {
         
         System.out.println("    - Visiting : currNode " + currNode + " <- " + parentNode + " with currHeight : " + currHeight);
         
-        // Base Case :
-         if (visitingState[currNode] == 1) {
-            
-            System.out.println("        Cycle Detected At " + currNode + "...");
-            return 0;
-        }
-
-        if (visitingState[currNode] == 2) {
-            
-            System.out.println("        Node (" + currNode + ") already visited...");
-            return currHeight;
-        }
-
         // mark as visiting
         visitingState[currNode] = 1;
 
