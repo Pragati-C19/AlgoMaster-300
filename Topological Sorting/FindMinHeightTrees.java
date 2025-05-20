@@ -20,6 +20,12 @@ public class FindMinHeightTrees {
         boolean[] visitedNode = new boolean[n];
 
 
+        // Base Case :
+        if (n == 1) {
+            result.add(0);
+            return result;
+        }
+        
         // add dependancies in graphMap
         for (int i = 0; i < m; i++) {
             
