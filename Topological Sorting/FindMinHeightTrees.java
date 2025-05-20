@@ -3,14 +3,41 @@ import java.util.*;
 public class FindMinHeightTrees {
     
     // Gloablly declare variables
-
+    Map<Integer, List<Integer>> graphMap;
 
     // Driver Function 
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
         
+        // Declare variables
+        int m = edges.length;
+        int[] visitingState = new int[n];
+        graphMap = new HashMap<>();
+        int minHeight = Integer.MAX_VALUE;
+        Map<Integer, List<Integer>> heightNodeMap = new HashMap<>();
         List<Integer> result = new ArrayList<>();
 
-        
+        // add dependancies in graphMap
+        for (int i = 0; i < m; i++) {
+            
+            // check if 0'th index of edges[i] is in map or not
+            if (!graphMap.containsKey(edges[i][0])) {
+                graphMap.put(edges[i][0], new ArrayList<>());
+            }
+
+            // check if 1'st index of edges[i] is in map or not
+            if (!graphMap.containsKey(edges[i][1])) {
+                graphMap.put(edges[i][1], new ArrayList<>());
+            }
+
+            // add dependency on each other
+            graphMap.get(edges[i][0]).add(edges[i][1]);
+            graphMap.get(edges[i][1]).add(edges[i][0]);
+
+        }
+        System.out.println("Graph Map : " + graphMap);
+
+
+
         return result;
     }
 
