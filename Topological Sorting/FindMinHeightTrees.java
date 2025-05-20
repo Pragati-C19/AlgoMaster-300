@@ -90,7 +90,10 @@ public class FindMinHeightTrees {
 
 
         // add remaining values in queue at the end in result
-        
+        while (!queue.isEmpty()) {
+
+            result.add(queue.poll());
+        }
 
 
         // call dfs
