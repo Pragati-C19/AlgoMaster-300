@@ -27,7 +27,14 @@ public class EventualSafeNodes {
         }
         System.out.println("Graph Map : " + graphMap);
 
-        dfs(1, visitingState);
+        // Call dfs
+        for (int node = 0; node < n; node++) {
+         
+            if (dfs(node, visitingState)) {
+                result.add(node);
+                System.out.println("Node " + node + " added in result");
+            }
+        }
 
         return result;
     }
