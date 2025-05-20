@@ -2,6 +2,50 @@ import java.util.*;
 
 public class EventualSafeNodes {
     
+    // Globally Declare variables
+
+
+    // Driver Function 
+    public List<Integer> eventualSafeNodes(int[][] graph) {
+        
+        List<Integer> result = new ArrayList<>();
+
+
+        return result;
+    }
+
+    // Recursion Function : to check if any cycle detected
+    private boolean dfs(int currNode, int[] visitingState) {
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+        EventualSafeNodes solution = new EventualSafeNodes();
+
+        int[][] graph1 = {
+            {1, 2},
+            {2, 3},
+            {5},
+            {0},
+            {5},
+            {},
+            {}
+        };
+        System.out.println("Result 1 : " + solution.eventualSafeNodes(graph1) + "\n");
+
+        int[][] graph2 = {
+            {1, 2, 3, 4},
+            {1, 2},
+            {3, 4},
+            {0, 4},
+            {}
+        };
+        System.out.println("Result 2 : " + solution.eventualSafeNodes(graph2) + "\n");
+
+    }
+
 }
 
 /*
