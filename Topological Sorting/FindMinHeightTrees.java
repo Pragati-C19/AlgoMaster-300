@@ -52,7 +52,6 @@ public class FindMinHeightTrees {
                 
                 queue.add(node);
                 visitedNode[node] = true;
-                n--;
                 System.out.println("  -> Leaf Node " + node + " is added in : " + queue);
             }
         } 
@@ -102,13 +101,14 @@ public class FindMinHeightTrees {
                                 
                                 queue.add(neighbor);
                                 visitedNode[neighbor] = true;
-                                n--;
                                 System.out.println("  -> Neighbor of Leaf Node " + leafNodePop + " is added in : " + queue);
                             } 
                         }
                     }
                 }
             }
+
+            n--;
         }   
 
 
