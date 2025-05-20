@@ -15,6 +15,9 @@ public class FindMinHeightTrees {
         Map<Integer, List<Integer>> heightNodeMap = new HashMap<>();
         List<Integer> result = new ArrayList<>();
 
+        // Declare queue as we are using BFS now to store leaf Nodes
+        Queue<Integer> queue = new LinkedList<>();
+
         // add dependancies in graphMap
         for (int i = 0; i < m; i++) {
             
@@ -36,36 +39,45 @@ public class FindMinHeightTrees {
         System.out.println("Graph Map : " + graphMap);
 
 
+        // Initially add all leaf node in queue
+        for (Map.Entry<Integer, List<Integer>> entry : graphMap.entrySet()) {
+            
+            List<Integer> listOfNodes = entry.getValue();
+            System.out.println("    listOfNodes : " + listOfNodes);
+        } 
+
         // call dfs
-        for (int rootNode = 0; rootNode < n; rootNode++) {
+        // for (int rootNode = 0; rootNode < n; rootNode++) {
             
-            // we need to reset visitingState as 0 for every new rootNode
-            int[] visitingState = new int[n];
+               // we need to reset visitingState as 0 for every new rootNode
+        //     int[] visitingState = new int[n];
             
-            // get currHeight of node
-            int currHeight = dfs(rootNode, visitingState, rootNode, 1);
-            System.out.println("CurrHeight for node " + rootNode + " : " + currHeight);
+               // get currHeight of node
+        //     int currHeight = dfs(rootNode, visitingState, rootNode, 1);
+        //     System.out.println("CurrHeight for node " + rootNode + " : " + currHeight);
 
-            // add that height and node in heigthNodeMap 
-            if (!heightNodeMap.containsKey(currHeight)) {
-                heightNodeMap.put(currHeight, new ArrayList<>());
-            }
-            heightNodeMap.get(currHeight).add(rootNode);
-            System.out.println("HeigthNode Map : " + heightNodeMap);
+               // add that height and node in heigthNodeMap 
+        //     if (!heightNodeMap.containsKey(currHeight)) {
+        //         heightNodeMap.put(currHeight, new ArrayList<>());
+        //     }
+        //     heightNodeMap.get(currHeight).add(rootNode);
+        //     System.out.println("HeigthNode Map : " + heightNodeMap);
 
-            // update minHeight value
-            minHeight = Math.min(minHeight, currHeight);
+               // update minHeight value
+        //     minHeight = Math.min(minHeight, currHeight);
 
-        }
+        // }
     
         // return minHeight nodes now
         // I was going to use new variable and for loop but suddenly thought both are List<Integer> let's just return .get
-        result = heightNodeMap.get(minHeight);
+        result = heightNodeMap.get(0);
 
         return result;
     }
 
-    // Recursion Function : to get height of curr level
+
+
+    //~ NOT USING Recursion Function : to get height of curr level
     private int dfs (int currNode, int[] visitingState, int parentNode, int currHeight) {
         
         System.out.println("    - Visiting : currNode " + currNode + " <- " + parentNode + " with currHeight : " + currHeight);
@@ -130,6 +142,53 @@ public class FindMinHeightTrees {
 }
 
 /*
+
+ * Improvements : 
+        - This Type of Problems are solved by Topological Trim
+        - Took help for optimal solution - Got TLE so 
+            https://www.youtube.com/watch?v=ZXANlaEuYvQ&ab_channel=codestorywithMIK
+        - Brute force is same as mine..
+        - apan leaf node la root mhnun gheu? nahi bcoz it's an end of tree.. jithun height check keli tr maxHeight ch yeil 
+        - common sense jr mala minHeight haviye tr me centre vala ekhada root baghte jo aplost equidistance asel saglyanpasun
+        - leaf node la gheun minHeight tree bannarch nahi
+        - after we trace examples like shown in video - we saw that there are only 1 or 2 roots with minHeights
+            minHeight root 1 -> if n is odd
+            minHeight root 2 -> if n is even
+            like in example :
+                0 -> 1 -> 2 -> 3 -> 4                   n is odd
+                    skip leaf nodes [0, 4]
+                    so height of root 2 is minimum than other
+
+                0 -> 1 -> 2 -> 3 -> 4 -> 5              n is even
+                    skip leaf nodes [0, 4]
+                    so height of root [2, 3] is minimum than other
+        - so now we know 2 major things 
+            we need center nodes as root
+            ans can be of at most 2 roots.. roots count will not exceed 2 
+        
+        - let's visualize example :  n = 6, edges = [[3,0],[3,1],[3,2],[3,4],[5,4]]
+            
+            n is even   so our minHeight nodes will be 2
+            let's draw a tree
+
+                            0
+                            |
+                    1 ----- 3 ----- 2
+                            |
+                            4
+                            |
+                            5
+            
+            - so first will remove all leaf nodes we are going level by level
+            - so consider like initially we have added all leaf node in queue 
+            - now pop out top of queue
+            - ans that popNode who is ur neighbor ?
+                like if we as 0, 1, 2 who is there neighbor they wee say 3
+                add that 3 in queue
+                then ask 5 who is their naighbor it will say 4
+                add that 4 in queue
+            - if queueSize = 1 or 2 we'll return nums in queue [3, 4]
+
  * Intuitions :
  
     1. we have given a tree which is an undirected graph mean two vertices are connected by exactly one path
