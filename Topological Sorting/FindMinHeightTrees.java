@@ -58,58 +58,39 @@ public class FindMinHeightTrees {
 
 
         // start while loop for level order
-        while (!queue.isEmpty()) {
+        while (n > 2) {
             
             // get level size
             int queueSize = queue.size();
-            
-            // there are only 1 (when n is odd) or 2 (when n is even) nodes with minHeight so will pop it and add it in result
-            if (n == 2) {
 
-                int firstMinHeightNode = queue.poll();
-                int secondMinHeightNode = queue.poll();
-
-                result.add(firstMinHeightNode);
-                result.add(secondMinHeightNode);
-                System.out.println("    queueSize is 2 so nodes added in result : " + result);
-            }
-
-            if (n == 1) {
-
-                int minHeightNode = queue.poll();
+            // if there are multiple nodes we need to go further to the center so add it's neighbors in queue
+            for (int i = 0; i < queueSize; i++) {
                 
-                result.add(minHeightNode);
-                System.out.println("    queueSize is 1 so nodes added in result : " + result);
-
-            }
-
-            if (n > 2) {
-                
-                // if there are multiple nodes we need to go further to the center so add it's neighbors in queue
-                for (int i = 0; i < queueSize; i++) {
+                int leafNodePop = queue.poll();
+                // as leafNode if it has any neighbors?
+                List<Integer> neighborsOfCurrLeafNodes = graphMap.get(leafNodePop);
+                if (neighborsOfCurrLeafNodes != null) {
                     
-                    int leafNodePop = queue.poll();
-
-                    // as leafNode if it has any neighbors?
-                    List<Integer> neighborsOfCurrLeafNodes = graphMap.get(leafNodePop);
-
-                    if (neighborsOfCurrLeafNodes != null) {
+                    for (int neighbor : neighborsOfCurrLeafNodes) {
                         
-                        for (int neighbor : neighborsOfCurrLeafNodes) {
+                        if (!visitedNode[neighbor]) {
                             
-                            if (!visitedNode[neighbor]) {
-                                
-                                queue.add(neighbor);
-                                visitedNode[neighbor] = true;
-                                System.out.println("  -> Neighbor of Leaf Node " + leafNodePop + " is added in : " + queue);
-                            } 
-                        }
+                            queue.add(neighbor);
+                            visitedNode[neighbor] = true;
+                            System.out.println("  -> Neighbor of Leaf Node " + leafNodePop + " is added in : " + queue);
+                        } 
                     }
                 }
             }
 
+            // decrease value of n bcoz we are kinda removing leafNodes
             n -= queueSize;
+           
         }   
+
+
+        // add remaining values in queue at the end in result
+        
 
 
         // call dfs
