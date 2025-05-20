@@ -41,7 +41,7 @@ public class FindMinHeightTrees {
             
             // we need to reset visitingState as 0 for every new rootNode
             int[] visitingState = new int[n];
-
+            
             // get currHeight of node
             int currHeight = dfs(rootNode, visitingState, rootNode, 1);
             System.out.println("CurrHeight for node " + rootNode + " : " + currHeight);
@@ -58,7 +58,9 @@ public class FindMinHeightTrees {
 
         }
     
-        
+        // return minHeight nodes now
+        // I was going to use new variable and for loop but suddenly thought both are List<Integer> let's just return .get
+        result = heightNodeMap.get(minHeight);
 
         return result;
     }
