@@ -37,6 +37,10 @@ public class FindMinHeightTrees {
         System.out.println("Graph Map : " + graphMap);
 
 
+        // call dfs
+        int currHeight = dfs(0, visitingState, 0, 1);
+        System.out.println("CurrHeight for node " + 0 + " : " + currHeight);
+
 
         return result;
     }
@@ -44,6 +48,47 @@ public class FindMinHeightTrees {
     // Recursion Function : to get height of curr level
     private int dfs (int currNode, int[] visitingState, int parentNode, int currHeight) {
         
+        System.out.println(" - Visiting : " + parentNode + " -> " + currNode + ", " + currHeight);
+        
+        // Base Case :
+         if (visitingState[currNode] == 1) {
+            
+            System.out.println("    Cycle Detected At " + currNode + "...");
+            return 0;
+        }
+
+        if (visitingState[currNode] == 2) {
+            
+            System.out.println("    Node (" + currNode + ") already visited...");
+            return currHeight;
+        }
+
+        // mark as visiting
+        visitingState[currNode] = 1;
+
+        // check neighbors
+        List<Integer> neighborsOfCurrNodes = graphMap.get(currNode);
+
+        if (neighborsOfCurrNodes != null) {
+            
+            for (int neighbor : neighborsOfCurrNodes) {
+                
+                // [3, 0] if we say our root node is 0 then we need to check it's neighbor 3 and for 3 to mark as visited we need to check 0 
+                // so to avoid this type of cycle detection will avoid to check neighbor or currnode which equals to parentNode
+                if (neighbor == parentNode) {
+
+                    System.out.println("    Neighbor (" + neighbor + ") equals to parentNode (" + parentNode + ")");
+                    continue;
+                }
+
+                dfs(neighbor, visitingState, currNode, currHeight + 1);
+            }
+        }
+
+        // Mark currNode as visited
+        visitingState[currNode] = 2;
+
+        // return curren height of the node
         return currHeight;
     }
 
