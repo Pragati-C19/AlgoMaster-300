@@ -43,7 +43,13 @@ public class FindMinHeightTrees {
         for (Map.Entry<Integer, List<Integer>> entry : graphMap.entrySet()) {
             
             List<Integer> listOfNodes = entry.getValue();
-            System.out.println("    listOfNodes : " + listOfNodes);
+            System.out.println("        listOfNodes : " + listOfNodes);
+
+            if (listOfNodes.size() == 1) {
+                
+                queue.add(entry.getKey());
+                System.out.println("  -> Leaf Node " + entry.getKey() + " is added in : " + queue);
+            }
         } 
 
         // call dfs
