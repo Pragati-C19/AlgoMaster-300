@@ -25,7 +25,7 @@ public class FindMinHeightTrees {
             result.add(0);
             return result;
         }
-        
+
         // add dependancies in graphMap
         for (int i = 0; i < m; i++) {
             
@@ -73,20 +73,19 @@ public class FindMinHeightTrees {
             for (int i = 0; i < queueSize; i++) {
                 
                 int leafNodePop = queue.poll();
-                // as leafNode if it has any neighbors?
-                List<Integer> neighborsOfCurrLeafNodes = graphMap.get(leafNodePop);
-                if (neighborsOfCurrLeafNodes != null) {
-                    
-                    for (int neighbor : neighborsOfCurrLeafNodes) {
-                        
-                        if (!visitedNode[neighbor]) {
-                            
-                            queue.add(neighbor);
-                            visitedNode[neighbor] = true;
-                            System.out.println("  -> Neighbor of Leaf Node " + leafNodePop + " is added in : " + queue);
-                        } 
-                    }
+                
+                int neighbor = graphMap.get(leafNodePop).get(0);  // only one neighbor since it's a leaf
+
+                // Remove the leaf from its neighbor’s list
+                graphMap.get(neighbor).remove((Integer) leafNodePop);
+
+                // If neighbor became a leaf now, add to queue
+                if (graphMap.get(neighbor).size() == 1) {
+                    queue.offer(neighbor);
                 }
+
+                // Optional: clear the leaf’s list
+                graphMap.get(leafNodePop).clear();
             }
 
             // decrease value of n bcoz we are kinda removing leafNodes
