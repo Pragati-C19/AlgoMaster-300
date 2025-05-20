@@ -52,6 +52,7 @@ public class FindMinHeightTrees {
                 
                 queue.add(node);
                 visitedNode[node] = true;
+                n--;
                 System.out.println("  -> Leaf Node " + node + " is added in : " + queue);
             }
         } 
@@ -64,7 +65,7 @@ public class FindMinHeightTrees {
             int queueSize = queue.size();
             
             // there are only 1 (when n is odd) or 2 (when n is even) nodes with minHeight so will pop it and add it in result
-            if (queueSize == 2) {
+            if (n == 2) {
 
                 int firstMinHeightNode = queue.poll();
                 int secondMinHeightNode = queue.poll();
@@ -74,7 +75,7 @@ public class FindMinHeightTrees {
                 System.out.println("    queueSize is 2 so nodes added in result : " + result);
             }
 
-            if (queueSize == 1) {
+            if (n == 1) {
 
                 int minHeightNode = queue.poll();
                 
@@ -83,7 +84,7 @@ public class FindMinHeightTrees {
 
             }
 
-            if (queueSize > 2) {
+            if (n > 2) {
                 
                 // if there are multiple nodes we need to go further to the center so add it's neighbors in queue
                 for (int i = 0; i < queueSize; i++) {
@@ -101,6 +102,7 @@ public class FindMinHeightTrees {
                                 
                                 queue.add(neighbor);
                                 visitedNode[neighbor] = true;
+                                n--;
                                 System.out.println("  -> Neighbor of Leaf Node " + leafNodePop + " is added in : " + queue);
                             } 
                         }
@@ -252,6 +254,10 @@ public class FindMinHeightTrees {
                 then ask 5 who is their naighbor it will say 4
                 add that 4 in queue
             - if queueSize = 1 or 2 we'll return nums in queue [3, 4]
+        - ithe queueSize 1 or 2 nahi haviye aplyala aplyala last remaining nodes 1 or 3 rahile pahije asa havay
+            means n = 6 ahe tr tyachi value 1 or 2 zali pahije
+            so like initially if I added leafNode in queue mark it as visited and do n--
+
 
  * Intuitions :
  
