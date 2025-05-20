@@ -108,7 +108,7 @@ public class FindMinHeightTrees {
                 }
             }
 
-            n--;
+            n -= queueSize;
         }   
 
 
