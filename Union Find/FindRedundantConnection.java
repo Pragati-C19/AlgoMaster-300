@@ -11,7 +11,6 @@ public class FindRedundantConnection {
         
         // Declare variables
         int n = edges.length;
-        Set<Integer> visitedNode = new HashSet<>();
         removableEdge = new int[2];
         graphMap = new HashMap<>();
 
@@ -20,6 +19,8 @@ public class FindRedundantConnection {
             
             int node1 = edge[0];
             int node2 = edge[1];
+
+            Set<Integer> visitedNode = new HashSet<>();
 
             // If both nodes exist in graphMap and there's already a path between them → cycle
             if (graphMap.containsKey(node1) && graphMap.containsKey(node2) && dfs(node1, node2, visitedNode, node1, node2)) {
