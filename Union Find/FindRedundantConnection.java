@@ -4,11 +4,34 @@ public class FindRedundantConnection {
     
     // Globally Declare variable
     int[] removableEdge;
+    Map<Integer, List<Integer>> graphMap;
 
     // Driver Function
     public int[] findRedundantConnection(int[][] edges) {
         
+        // Declare variables
+        int n = edges.length;
         removableEdge = new int[2];
+        graphMap = new HashMap<>();
+
+        // add dependencies in map
+        for (int[] edge : edges) {
+            
+            // add in the edge[0]'s list
+            if (!graphMap.containsKey(edge[0])) {
+                graphMap.put(edge[0], new ArrayList<>());
+            }
+
+            graphMap.get(edge[0]).add(edge[1]);
+
+            // add in the edge[1]'s list
+            if (!graphMap.containsKey(edge[1])) {
+                graphMap.put(edge[1], new ArrayList<>());
+            }
+
+            graphMap.get(edge[1]).add(edge[0]);
+        }
+        System.out.println("Graph Map : " + graphMap);
 
         return removableEdge;
     }
