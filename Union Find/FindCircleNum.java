@@ -5,11 +5,38 @@ public class FindCircleNum {
     // Driver Function
     public int findCircleNum(int[][] isConnected) {
         
-        return 0;
+        // Declare variables
+        int n = isConnected.length;
+        boolean[] visitedCity = new boolean[n];
+        int provincesGroup = 0;
+
+        for (int city = 0; city < n; city++) {
+            
+            // will only check row here as col are neighbors so will check it in dfs
+
+            if (!visitedCity[city]) {
+            
+                dfs(city, visitedCity, n);
+
+                // each new DFS call means a new group/province
+                provincesGroup++;
+            }
+           
+        }
+
+        return provincesGroup;
     }
 
     // Recursion Function : to get connected cities
     private void dfs (int currCity, boolean[] visitedCity, int n) {
+
+        visitedCity[currCity] = true;
+
+        // check it's neighbors
+        for (int neighborCity = 0; neighborCity < n; neighborCity++) {
+            
+            dfs(neighborCity, visitedCity, n);
+        }
 
         return;
     }
@@ -99,6 +126,22 @@ public class FindCircleNum {
                 for(neighbor : n)
 
                 - call dfs for naighbor
+
+    3. what does below code means
+        
+        for each city {
+            if city is not visited {
+                dfs(city);          // visit all cities in the current province
+                provincesGroup++;   // one new group found
+            }
+        }
+
+        Every time you enter this if (!visited[i]) block, it means:
+            - City i has not been visited yet.
+            - So you're starting a new DFS from city i, to find all cities connected directly or indirectly to it.
+            - Once DFS completes, you’ve found one full group (also called a connected component or province).
+            - So now you increase the group count by one → provincesGroup++.
+
 
  
  * Pseudo Code :
