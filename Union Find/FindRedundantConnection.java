@@ -171,6 +171,34 @@ public class FindRedundantConnection {
         I don't want to detect wrong cycle 
         I want cycle other than parent so that I can break it
  
+    ^ Changes the approach : DFS but with more optimal solution
+
+        1. we'll add edge one by one in graphMap
+        2. but before adding it will check if the edg[0] and edge[1] exist in graphmap already?
+        3. and also check if it has any path ?
+            -> if yes then adding (u, v) would create a cycle 
+            -> if no add the edge in graphMap
+        4. DFS function :
+            - Is there already a path from curr to target?
+                if(currNode == targetNode) 
+                    if yes return true
+
+                let's visiualize it
+                    suppose we already have visited [1, 2, 3]
+                    now we are about to add: [1, 3]
+                    asking Can I already go from 1 to 3 using existing edges?
+                    DFS explores:
+                        From 1 → goes to 2
+                        From 2 → goes to 3
+                        Found 3!
+                        So during DFS, when we're at curr = 3 and target = 3
+                        which means cycle detected
+            
+            - check neighbors
+                if(!visited && dfs(neighbor, targetNode, visited) = true)
+                    return true
+                    
+
  * Pseudo Code :
  
     -> Declare global variable
