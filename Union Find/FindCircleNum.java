@@ -2,6 +2,37 @@ import java.util.*;
 
 public class FindCircleNum {
     
+    // Driver Function
+    public int findCircleNum(int[][] isConnected) {
+        
+        return 0;
+    }
+
+    // Recursion Function : to get connected cities
+    private void dfs (int currCity, boolean[] visitedCity, int n) {
+
+        return;
+    }
+
+    public static void main (String[] args) {
+
+        FindCircleNum solution = new FindCircleNum();
+
+        int[][] isConnected1 = {
+            {1, 1, 0},
+            {1, 1, 0},
+            {0, 0, 1}
+        };
+        System.out.println("Result 1 -> " + solution.findCircleNum(isConnected1) + "\n");
+
+        int[][] isConnected2 = {
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1}
+        };
+        System.out.println("Result 2 -> " + solution.findCircleNum(isConnected2) + "\n");
+
+    }
 }
 
 /*
