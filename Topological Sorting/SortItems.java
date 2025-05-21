@@ -112,9 +112,73 @@ public class SortItems {
         
 
 
-     * Pseudo Code :
+ * Pseudo Code :
  
- 
+    function sortItems (n, m, group, beforeItems) {
+    
+        -> Declare variables
+            groupItemMap                -> to store in which group which item exist
+            groupGraph                  -> to store dependencies of group
+            itemsGraph                  -> to store dependencies of items
+            visitingState
+
+
+        -> start for loop for all items and add dependencies in it
+            for (item = 0 to n) 
+
+                -> add items in group
+                    if(groups[item] == -1)
+                        
+                        - just change value in array 
+                            groups[item] = m
+                        
+                        - increase m by 1 bcoz currently m is 2 that means grp 0, 1 and I have added 2 for one of the items 
+                            so now I need to increase it to 3 for next items who has no group
+                            m++
+
+                    if(groupItemsMap.contains(groups[items]))
+                        groupItemsMap.put(groups[item], new Array)
+
+                    groupItemsMap.get(groups[item]).add(item)
+
+
+                -> now add dependencies of items let's not create another for loop
+                
+                    for(j = 0 to beforeItems[item].length)
+
+                        if(!itemsGraph.contains(beforeItems[item][j]))
+                            itemsGraph.put(beforeItems[item][j], arrayList)
+                        
+                        itemsGraph.get(beforeItems[item][j]).add(item)
+
+                
+        -> now add dependencies of group 
+            why we didin't do it in before loop bcoz there might be chances that in groupItemsMap currently that item or group is not stored
+            
+            for (item = 0 to n) 
+                
+                for(j = 0 to beforeItems[item].length)
+
+                    -> ithe mala javay group[Nodeitem] != group[Neighboritem]   6 -> 1 then group(6) != group(1)
+                        if they belong to different groups, add edge from group[neighbor] → group[i]
+
+                        if(groupsItemsMap.get)
+                    ! I'm complicating this problem further more.. Let's stop here will solve it after few days..
+        
+
+
+
+    
+                    
+
+    
+    }
+
+    dfs (currItem, visitingState) {
+    
+    
+    
+    }
  
  
  *
