@@ -11,7 +11,7 @@ public class FindRedundantConnection {
         
         // Declare variables
         int n = edges.length;
-        int[] visitingState = new int[n];
+        int[] visitingState = new int[n + 1];   // node numbers go up to n, not n-1, so this causes ArrayIndexOutOfBoundsException
         removableEdge = new int[2];
         graphMap = new HashMap<>();
 
@@ -36,9 +36,12 @@ public class FindRedundantConnection {
 
 
         // call dfs for all nodes
-        for (int node = 1; node < n; node++) {
+        for (int node = 1; node <= n; node++) {
             
-            dfs(node, node, visitingState);
+            if (visitingState[node] == 0) {
+                dfs(node, node, visitingState);
+            }
+            
         }
 
         return removableEdge;
@@ -51,7 +54,7 @@ public class FindRedundantConnection {
             
             removableEdge[0] = currNode;
             removableEdge[1] = parentNode;
-            System.out.println("    Cycle Detetcted so adding nodes in removable edge " + removableEdge);
+            System.out.println("    Cycle Detetcted so adding nodes in removable edge " + Arrays.toString(removableEdge));
             
             return;
         }
@@ -70,6 +73,9 @@ public class FindRedundantConnection {
 
         for (int neighbor : neighborOfCurrNode) {
             
+            if (neighbor == parentNode) {
+                continue;
+            }
             dfs(neighbor, currNode, visitingState);
         }
 
