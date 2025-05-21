@@ -2,6 +2,44 @@ import java.util.*;
 
 public class FindRedundantConnection {
     
+    // Globally Declare variable
+    int[] removableEdge;
+
+    // Driver Function
+    public int[] findRedundantConnection(int[][] edges) {
+        
+        removableEdge = new int[2];
+
+        return removableEdge;
+    }
+
+    // Recursion Function : to check cycle detection
+    private void dfs (int currNode, int parentNode, int[] visitingState) {
+
+        return;
+    }
+
+
+    public static void main (String[] args) {
+
+        FindRedundantConnection solution =  new FindRedundantConnection();
+
+        int[][] edges1 = {
+            {1, 2},
+            {1, 3},
+            {2, 3}
+        };
+        System.out.println("Result 1 : " + Arrays.toString(solution.findRedundantConnection(edges1)) + "\n");
+
+        int[][] edges2 = {
+            {1, 2},
+            {2, 3},
+            {3, 4},
+            {1, 4},
+            {1, 5}
+        };
+        System.out.println("Result 2 : " + Arrays.toString(solution.findRedundantConnection(edges2)) + "\n");
+    }
 }
 
 /*
