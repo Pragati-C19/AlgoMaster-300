@@ -11,78 +11,62 @@ public class FindRedundantConnection {
         
         // Declare variables
         int n = edges.length;
-        int[] visitingState = new int[n + 1];   // node numbers go up to n, not n-1, so this causes ArrayIndexOutOfBoundsException
+        Set<Integer> visitedNode = new HashSet<>();
         removableEdge = new int[2];
         graphMap = new HashMap<>();
 
         // add dependencies in map
         for (int[] edge : edges) {
             
-            // add in the edge[0]'s list
-            if (!graphMap.containsKey(edge[0])) {
-                graphMap.put(edge[0], new ArrayList<>());
+            int node1 = edge[0];
+            int node2 = edge[1];
+
+            // If both nodes exist in graphMap and there's already a path between them → cycle
+            if (graphMap.containsKey(node1) && graphMap.containsKey(node2) && dfs(node1, node2, visitedNode, node1, node2)) {
+                
+                removableEdge = edge;
             }
 
-            graphMap.get(edge[0]).add(edge[1]);
-
-            // add in the edge[1]'s list
-            if (!graphMap.containsKey(edge[1])) {
-                graphMap.put(edge[1], new ArrayList<>());
+            // Otherwise, add the edge to the graph
+            if (!graphMap.containsKey(node1)) {
+                graphMap.put(node1, new ArrayList<>());
             }
+            graphMap.get(node1).add(node2);
 
-            graphMap.get(edge[1]).add(edge[0]);
+            if (!graphMap.containsKey(node2)) {
+                graphMap.put(node2, new ArrayList<>());
+            }
+            graphMap.get(node2).add(node1);
         }
         System.out.println("Graph Map : " + graphMap);
 
-
-        // call dfs for all nodes
-        for (int node = 1; node <= n; node++) {
-            
-            if (visitingState[node] == 0) {
-                dfs(node, node, visitingState);
-            }
-            
-        }
 
         return removableEdge;
     }
 
     // Recursion Function : to check cycle detection
-    private void dfs (int currNode, int parentNode, int[] visitingState) {
+    private boolean dfs (int currNode, int targetNode, Set<Integer> visitedNode, int fromNode, int toNode) {
 
-        if (visitingState[currNode] == 1) {
+        if (currNode == targetNode) {
             
-            removableEdge[0] = currNode;
-            removableEdge[1] = parentNode;
-            System.out.println("    Cycle Detetcted so adding nodes in removable edge " + Arrays.toString(removableEdge));
-            
-            return;
-        }
-
-        if (visitingState[currNode] == 2) {
-            
-            System.out.println("    Node (" + currNode + ") is already visited..");
-            return;
+            System.out.println("    There is a path from " + fromNode + " to " + toNode + "...");
+            return true;
         }
 
         // Mark as visiting
-        visitingState[currNode] = 1;
+        visitedNode.add(currNode);
 
         // Check neighbors
         List<Integer> neighborOfCurrNode = graphMap.get(currNode);
 
         for (int neighbor : neighborOfCurrNode) {
             
-            if (neighbor == parentNode) {
-                continue;
+            if (!visitedNode.contains(neighbor) && dfs(neighbor, targetNode, visitedNode, fromNode, toNode)) {
+                return true;
             }
-            dfs(neighbor, currNode, visitingState);
         }
 
-        // Mark as visited
-        visitingState[currNode] = 2;
-
-        return;
+        return false;
     }
 
 
