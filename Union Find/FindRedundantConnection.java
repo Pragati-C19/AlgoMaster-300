@@ -11,6 +11,7 @@ public class FindRedundantConnection {
         
         // Declare variables
         int n = edges.length;
+        int[] visitingState = new int[n];
         removableEdge = new int[2];
         graphMap = new HashMap<>();
 
@@ -33,11 +34,47 @@ public class FindRedundantConnection {
         }
         System.out.println("Graph Map : " + graphMap);
 
+
+        // call dfs for all nodes
+        for (int node = 1; node < n; node++) {
+            
+            dfs(node, node, visitingState);
+        }
+
         return removableEdge;
     }
 
     // Recursion Function : to check cycle detection
     private void dfs (int currNode, int parentNode, int[] visitingState) {
+
+        if (visitingState[currNode] == 1) {
+            
+            removableEdge[0] = currNode;
+            removableEdge[1] = parentNode;
+            System.out.println("    Cycle Detetcted so adding nodes in removable edge " + removableEdge);
+            
+            return;
+        }
+
+        if (visitingState[currNode] == 2) {
+            
+            System.out.println("    Node (" + currNode + ") is already visited..");
+            return;
+        }
+
+        // Mark as visiting
+        visitingState[currNode] = 1;
+
+        // Check neighbors
+        List<Integer> neighborOfCurrNode = graphMap.get(currNode);
+
+        for (int neighbor : neighborOfCurrNode) {
+            
+            dfs(neighbor, currNode, visitingState);
+        }
+
+        // Mark as visited
+        visitingState[currNode] = 2;
 
         return;
     }
