@@ -16,7 +16,7 @@ public class FindCircleNum {
 
             if (!visitedCity[city]) {
             
-                dfs(city, visitedCity, n);
+                dfs(city, visitedCity, isConnected, n);
 
                 // each new DFS call means a new group/province
                 provincesGroup++;
@@ -28,14 +28,17 @@ public class FindCircleNum {
     }
 
     // Recursion Function : to get connected cities
-    private void dfs (int currCity, boolean[] visitedCity, int n) {
+    private void dfs (int currCity, boolean[] visitedCity, int[][] isConnected, int n) {
 
         visitedCity[currCity] = true;
 
         // check it's neighbors
         for (int neighborCity = 0; neighborCity < n; neighborCity++) {
             
-            dfs(neighborCity, visitedCity, n);
+            if (isConnected[currCity][neighborCity] == 1 && !visitedCity[neighborCity]) {
+                
+                dfs(neighborCity, visitedCity, isConnected, n);
+            }
         }
 
         return;
