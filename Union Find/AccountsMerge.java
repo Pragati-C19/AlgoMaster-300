@@ -116,13 +116,21 @@ public class AccountsMerge {
         // Decalre Variables 
         int n = accounts.size();
         Map<String, Integer> mailGroupMap = new HashMap<>();
-        List<List<String>> combinedMail = new ArrayList<>();
         List<List<String>> result = new ArrayList<>();
 
         // Declare DSU variable
         DSU dsu = new DSU(n);
 
-        System.out.println("    Input Array : " + accounts);
+        // Declare a combinedMail 
+        List<List<String>> combinedMail = new ArrayList<>();
+
+        // fill combinedMail with empty list at start
+        for (int i = 0; i < n; i++) {
+            
+            combinedMail.add(new ArrayList<>());
+        }
+
+        System.out.println("    -> Input Array : " + accounts);
 
         // add key and value in map
         for (int i = 0; i < n; i++) {
@@ -149,7 +157,7 @@ public class AccountsMerge {
                 }
             }
         }
-        System.out.println("    MailGroupMap : " + mailGroupMap);
+        System.out.println("    -> MailGroupMap : " + mailGroupMap);
 
 
         // Now we have disjoint sets we need to combined accts of same person
@@ -165,7 +173,7 @@ public class AccountsMerge {
             combinedMail.get(ultimateParent).add(mail);
 
         }
-        System.out.println("    Combined Mail Array " + combinedMail);
+        System.out.println("    -> Combined Mail Array " + combinedMail);
 
         return result;
     }
