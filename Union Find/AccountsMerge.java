@@ -31,12 +31,12 @@ public class AccountsMerge {
         // Find the ultimate leader of the group for an element
         public int findParent (int currElement) {
 
-            if (currElement = parent[currElement]) {
+            if (currElement == parent[currElement]) {
                 return currElement; // if it's its own parent, it's the leader
             }
 
             // find the leader and update it (path compression)
-            parent[currElement] = findParent(parent[node]);
+            parent[currElement] = findParent(parent[currElement]);
             
             return parent[currElement];
 
@@ -113,6 +113,44 @@ public class AccountsMerge {
     // Driver Function :
     public List<List<String>> accountsMerge(List<List<String>> accounts) {
         
+        // Decalre Variables 
+        int n = accounts.size();
+        Map<String, Integer> mailGroupMap = new HashMap<>();
+        List<String> combinedMail = new ArrayList<>();
+        List<List<String>> result = new ArrayList<>();
+
+        // Declare DSU variable
+        DSU dsu = new DSU(n);
+
+        // add key and value in map
+        for (int i = 0; i < n; i++) {
+
+            // skipping 0'th index of acct[i]
+            for (int j = 1; j < accounts.get(i).size(); j++) {
+                
+                // get mail
+                String currMail = accounts.get(i).get(j);
+
+                if (!mailGroupMap.containsKey(currMail)) {
+
+                    // Debug: New mail, assign it to group i
+                    System.out.println("    - Mail \"" + currMail + "\" seen first time, map it to group " + i);
+
+                    mailGroupMap.put(currMail, i);
+                }
+                else {
+
+                    // Debug: Mail already seen, merging sets
+                    System.out.println("    ~ Mail \"" + currMail + "\" already seen, union group " + i + " with group " + mailGroupMap.get(currMail));
+                    
+                    dsu.unionBySize(i, mailGroupMap.get(currMail));
+                }
+            }
+        }
+        System.out.println("MailGroupMap : " + mailGroupMap);
+
+
+        return result;
     }
 
     
