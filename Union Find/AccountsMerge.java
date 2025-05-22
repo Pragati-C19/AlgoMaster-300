@@ -121,7 +121,7 @@ public class AccountsMerge {
         // Declare DSU variable
         DSU dsu = new DSU(n);
 
-        // Declare a combinedMail 
+        // Declare a combinedMail and result list
         List<List<String>> combinedMail = new ArrayList<>();
 
         // fill combinedMail with empty list at start
@@ -188,9 +188,18 @@ public class AccountsMerge {
 
             // Sort List<String> : as per que we need sorted list of mails 
             Collections.sort(combinedMail.get(i));
-
             System.out.println("        - Sorted list of mails at index (" + i + ") : " + combinedMail.get(i));
             
+            // as per que we need name at 0'th index
+            result.add(accounts.get(i).get(0));
+            System.out.println("    Result after adding 0'th index : " + result);
+
+
+            // now add mails in it
+            // for (int j = 0; j < combinedMail.get(i).size(); j++) {
+                
+            //     result.add(combinedMail.get(i).get(j));
+            // }
 
         }
 
