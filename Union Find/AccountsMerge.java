@@ -190,17 +190,17 @@ public class AccountsMerge {
             Collections.sort(combinedMail.get(i));
             System.out.println("        - Sorted list of mails at index (" + i + ") : " + combinedMail.get(i));
             
+            // Create a new currResult list: name + mails
+            List<String> currResult = new ArrayList<>();
+            
             // as per que we need name at 0'th index
-            result.add(accounts.get(i).get(0));
-            System.out.println("    Result after adding 0'th index : " + result);
+            currResult.add(accounts.get(i).get(0)); // Add name
 
+            currResult.addAll(combinedMail.get(i)); // Add all mails
 
-            // now add mails in it
-            // for (int j = 0; j < combinedMail.get(i).size(); j++) {
-                
-            //     result.add(combinedMail.get(i).get(j));
-            // }
-
+            // Now add that currResult to final result
+            result.add(currResult);
+            System.out.println("        - Final Result at index (" + i + ")         : " + result);
         }
 
 
