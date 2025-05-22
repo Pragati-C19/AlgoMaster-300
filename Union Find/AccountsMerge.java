@@ -116,11 +116,13 @@ public class AccountsMerge {
         // Decalre Variables 
         int n = accounts.size();
         Map<String, Integer> mailGroupMap = new HashMap<>();
-        List<String> combinedMail = new ArrayList<>();
+        List<List<String>> combinedMail = new ArrayList<>();
         List<List<String>> result = new ArrayList<>();
 
         // Declare DSU variable
         DSU dsu = new DSU(n);
+
+        System.out.println("    Input Array : " + accounts);
 
         // add key and value in map
         for (int i = 0; i < n; i++) {
@@ -134,21 +136,36 @@ public class AccountsMerge {
                 if (!mailGroupMap.containsKey(currMail)) {
 
                     // Debug: New mail, assign it to group i
-                    System.out.println("    - Mail \"" + currMail + "\" seen first time, map it to group " + i);
+                    // System.out.println("    - Mail \"" + currMail + "\" seen first time, map it to group " + i);
 
                     mailGroupMap.put(currMail, i);
                 }
                 else {
 
                     // Debug: Mail already seen, merging sets
-                    System.out.println("    ~ Mail \"" + currMail + "\" already seen, union group " + i + " with group " + mailGroupMap.get(currMail));
+                    // System.out.println("    ~ Mail \"" + currMail + "\" already seen, union group " + i + " with group " + mailGroupMap.get(currMail));
                     
                     dsu.unionBySize(i, mailGroupMap.get(currMail));
                 }
             }
         }
-        System.out.println("MailGroupMap : " + mailGroupMap);
+        System.out.println("    MailGroupMap : " + mailGroupMap);
 
+
+        // Now we have disjoint sets we need to combined accts of same person
+        for (Map.Entry<String, Integer> entry : mailGroupMap.entrySet()) {
+            
+            String mail = entry.getKey();
+            int immediateParent = entry.getValue();
+
+            // find it's ultimate parent
+            int ultimateParent = dsu.findParent(immediateParent);
+
+            // add this mail in it's ultimate parent's group
+            combinedMail.get(ultimateParent).add(mail);
+
+        }
+        System.out.println("    Combined Mail Array " + combinedMail);
 
         return result;
     }
