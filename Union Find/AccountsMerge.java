@@ -1,5 +1,44 @@
+import java.util.*;
+
 public class AccountsMerge {
     
+    // Disjoint Set Union Class
+    private static class DSU {
+
+    }
+
+    // Driver Function :
+    public List<List<String>> accountsMerge(List<List<String>> accounts) {
+        
+    }
+
+    
+    public static void main (String[] arg) {
+
+        AccountsMerge solution = new AccountsMerge();
+
+        List<List<String>> accounts1 = new ArrayList<>();
+
+        accounts1.add(Arrays.asList("John", "johnsmith@mail.com", "john_newyork@mail.com"));
+        accounts1.add(Arrays.asList("John", "johnsmith@mail.com", "john00@mail.com"));
+        accounts1.add(Arrays.asList("Mary", "mary@mail.com"));
+        accounts1.add(Arrays.asList("John", "johnnybravo@mail.com"));
+
+        System.out.println("Result 1 : " + solution.accountsMerge(accounts1) + "\n");
+
+
+        List<List<String>> accounts2 = new ArrayList<>();
+
+        accounts2.add(Arrays.asList("Gabe","Gabe0@m.co","Gabe3@m.co","Gabe1@m.co"));
+        accounts2.add(Arrays.asList("Kevin","Kevin3@m.co","Kevin5@m.co","Kevin0@m.co"));
+        accounts2.add(Arrays.asList("Ethan","Ethan5@m.co","Ethan4@m.co","Ethan0@m.co"));
+        accounts2.add(Arrays.asList("Hanzo","Hanzo3@m.co","Hanzo1@m.co","Hanzo0@m.co"));
+        accounts2.add(Arrays.asList("Fern","Fern5@m.co","Fern1@m.co","Fern0@m.co"));
+
+        System.out.println("Result 2 : " + solution.accountsMerge(accounts2) + "\n");
+
+    }
+
 }
 
 
@@ -115,7 +154,7 @@ public class AccountsMerge {
 
                         result.get(i).add(combinedMail.get(j))
 
-                        
+
         - at the end return result
 
 
