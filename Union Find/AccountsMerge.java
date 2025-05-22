@@ -130,7 +130,7 @@ public class AccountsMerge {
             combinedMail.add(new ArrayList<>());
         }
 
-        System.out.println("    -> Input Array : " + accounts);
+        System.out.println("Input Array : " + accounts);
 
         // add key and value in map
         for (int i = 0; i < n; i++) {
@@ -157,7 +157,7 @@ public class AccountsMerge {
                 }
             }
         }
-        System.out.println("    -> MailGroupMap : " + mailGroupMap);
+        System.out.println("MailGroupMap : " + mailGroupMap);
 
 
         // Now we have disjoint sets we need to combined accts of same person
@@ -173,7 +173,27 @@ public class AccountsMerge {
             combinedMail.get(ultimateParent).add(mail);
 
         }
-        System.out.println("    -> Combined Mail Array " + combinedMail);
+        System.out.println("Combined Mail Array : " + combinedMail);
+
+
+        // Now add those mails and name in result List
+        for (int i = 0; i < n; i++) {
+            
+            // if combinedMain[i] is empty then will continue to next index
+            if (combinedMail.get(i).size() == 0) {
+
+                System.out.println("        Group (" + i + ") is Empty");
+                continue;
+            }
+
+            // Sort List<String> : as per que we need sorted list of mails 
+            Collections.sort(combinedMail.get(i));
+
+            System.out.println("        - Sorted list of mails at index (" + i + ") : " + combinedMail.get(i));
+            
+
+        }
+
 
         return result;
     }
