@@ -2,6 +2,32 @@ import java.util.*;
 
 public class MinCostConnectPoints {
     
+    public int minCostConnectPoints(int[][] points) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        MinCostConnectPoints solution = new MinCostConnectPoints();
+
+        int[][] points1 = {
+            {0, 0},
+            {2, 2},
+            {3, 10},
+            {5, 2},
+            {7, 0}
+        };
+        System.out.println("Result 1 -> " + solution.minCostConnectPoints(points1) + "\n");         // 20
+
+        int[][] points2 = {
+            {3, 12},
+            {-2, 5},
+            {-4, 1}
+        };
+        System.out.println("Result 2 -> " + solution.minCostConnectPoints(points2) + "\n");         // 18
+
+    }
 }
 
 /*
