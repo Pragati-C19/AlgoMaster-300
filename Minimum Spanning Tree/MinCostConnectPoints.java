@@ -158,6 +158,49 @@ public class MinCostConnectPoints {
             then again while loop start zala me top pop kela and same process repeats
 
 
+    2. 
+
+    public int minCostConnectPoints(int[][] points) {
+
+        int n = points.length;
+        List<int[]> edges = new ArrayList<>();
+
+        -> Step 1: Create all possible edges with their distance
+            for (int i = 0; i < n; i++) {
+                for (int j = i + 1; j < n; j++) {
+                    int cost = Math.abs(points[i][0] - points[j][0]) + Math.abs(points[i][1] - points[j][1]);
+                    edges.add(new int[]{i, j, cost});  // {pointIndex1, pointIndex2, distance}
+                }
+            }
+
+        -> Step 2: Sort edges by distance
+            edges.sort((a, b) -> Integer.compare(a[2], b[2]));
+
+        -> Step 3: Initialize DSU
+            DSU dsu = new DSU(n);
+            int totalCost = 0;
+            int edgesUsed = 0;
+
+        -> Step 4: Process edges (Kruskal's main loop)
+            for (int[] edge : edges) {
+                int pointIndex1 = edge[0];
+                int pointIndex2 = edge[1];
+                int cost = edge[2];
+
+                -> Only add edge if it connects two different components
+                    if (dsu.findParent(pointIndex1) != dsu.findParent(pointIndex2)) {
+                        dsu.unionBySize(pointIndex1, pointIndex2);  // use your DSU function as requested
+                        totalCost += cost;
+                        edgesUsed++;
+
+                        -> Optimization: Stop once we have n-1 edges in MST
+                            if (edgesUsed == n - 1) break;
+                    }
+            }
+
+        return totalCost;
+    }
+
 
 
  */
