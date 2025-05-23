@@ -4,7 +4,51 @@ public class MinCostConnectPoints {
     
     public int minCostConnectPoints(int[][] points) {
         
-        return 0;
+        // Declare variables
+        int n = points.length;
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a[1], b[1]));
+        boolean[] visitedPointIndex = new boolean[n];
+        int totalCost = 0;
+
+        // add initial point {pointIndex, dist} in minHeap
+        minHeap.add(new int[]{0, 0});
+
+        while (!minHeap.isEmpty()) {
+            
+            int[] popElement = minHeap.poll();
+
+            int pointIndex = popElement[0];
+            int cost = popElement[1];
+            System.out.println("    Currently checking {" + pointIndex + ", " + cost + "} ");
+
+            if (!visitedPointIndex[pointIndex]) {
+                
+                // mark as visited
+                visitedPointIndex[pointIndex] = true;
+
+                // add cost in totalCost
+                totalCost += cost;
+                
+                // check that pointIndex's neighboring indexes
+                // it's coordinates so we can connect to any point randomly so taking 0 to n
+                for (int neighborOfPoint = 0; neighborOfPoint < n; neighborOfPoint++) {
+                    
+                    // check manhattan distance
+                    int distWithNeighborPoint = Math.abs(points[pointIndex][0] - points[neighborOfPoint][0]) 
+                            + Math.abs(points[pointIndex][1] - points[neighborOfPoint][1]);
+
+                    System.out.println("    distance of " + pointIndex + " with " + neighborOfPoint + " : " + distWithNeighborPoint);
+
+                    // add this in minHeap
+                    minHeap.add(new int[]{neighborOfPoint, distWithNeighborPoint});
+                }
+
+                System.out.println("MinHeap : " + Arrays.deepToString(minHeap.toArray()));
+            }
+
+        }
+
+        return totalCost;
     }
 
     public static void main(String[] args) {
