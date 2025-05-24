@@ -1,5 +1,44 @@
+import java.util.*;
+
 public class FindCheapestPrice {
     
+    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+        
+        return -1;
+    }
+
+    public static void main(String[] args) {
+
+        FindCheapestPrice solution = new FindCheapestPrice();
+
+        int[][] flights1 = {
+            {0, 1, 100},
+            {1, 2, 100},
+            {2, 0, 100},
+            {1, 3, 600},
+            {2, 3, 200}
+        };
+        int n1 = 4, src1 = 0, dst1 = 3, k1 = 1;
+        System.out.println("Result 1 -> " + solution.findCheapestPrice(n1, flights1, src1, dst1, k1) + "\n");   // 700
+
+        int[][] flights2 = {
+            {0, 1, 100},
+            {1, 2, 100},
+            {0, 2, 500}
+        };
+        int n2 = 3, src2 = 0, dst2 = 2, k2 = 1;
+        System.out.println("Result 2 -> " + solution.findCheapestPrice(n2, flights2, src2, dst2, k2) + "\n");   // 200
+
+        int[][] flights3 = {
+            {0, 1, 100},
+            {1, 2, 100},
+            {0, 2, 500}
+        };
+        int n3 = 3, src3 = 0, dst3 = 2, k3 = 0;
+        System.out.println("Result 3 -> " + solution.findCheapestPrice(n3, flights3, src3, dst3, k3) + "\n");   // 500
+
+    }
+
 }
 
 /*
