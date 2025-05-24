@@ -28,13 +28,66 @@ public class NetworkDelayTime {
         minHeap.add(new int[]{0, k}); // start from node k, with time 0
 
         // fill -1 initially in minTimeToReachNode bcoz we didin't know how much min time it needs to reach at any node
-        Arrays.fill(minTimeToReachNode, -1);
+        // we need min time so adding -1 will not help it's the minimun num so changed it to max
+        Arrays.fill(minTimeToReachNode, Integer.MAX_VALUE);
         
         // mark time for k node as 0 bcoz we are starting from it 
         minTimeToReachNode[k] = 0;
 
         System.out.println("Initial minHeap : " + Arrays.deepToString(minHeap.toArray()) + " and min Time it takes to reach at nodes : " + Arrays.toString(minTimeToReachNode));
     
+
+        // start while loop to pop nodes from minHeap one by one
+        while (!minHeap.isEmpty()) {
+            
+            int[] popTop = minHeap.poll();
+
+            int currNode = popTop[1];
+            int currNodeTakenTime = popTop[0];
+
+            System.out.println(" Pop Out Elements : " + Arrays.toString(popTop));
+
+            if (visited[currNode]) {
+                continue;
+            }
+            
+            if (visited[currNode] != true) {
+                
+                // mark as visited 
+                visited[currNode] = true;
+
+                // check neighbors
+                if (graphMap.containsKey(currNode)) {
+                    
+                    List<int[]> neighborsWithTimeList = graphMap.get(currNode);
+
+                    for (int[] neighbor : neighborsWithTimeList) {
+                        
+                        int neighborNode = neighbor[0];
+                        int neighborTakenTime = neighbor[1];
+
+                        // calculate time it will be if we choose this neighbor (from currNode to neighboring node)
+                        int timeToGetHere = currNodeTakenTime + neighborTakenTime;
+
+                        System.out.println("    Shortest Path for " + neighborNode + " : " + timeToGetHere);
+
+                        // if we found shortest path 
+                        if (visited[neighborNode] != true && timeToGetHere < minTimeToReachNode[neighborNode]) {
+                            
+                            // update minTime for neighbor node
+                            minTimeToReachNode[neighborNode] = timeToGetHere;
+
+                            // Add this node in minHeap
+                            minHeap.add(new int[] {timeToGetHere, neighborNode});
+                        }
+
+                        System.out.println("    - Updated minHeap : " + Arrays.deepToString(minHeap.toArray()));
+                        System.out.println("    - Updated minTime : " + Arrays.toString(minTimeToReachNode));
+
+                    }
+                }
+            }
+        }
 
         return totalReachingTime;
        
