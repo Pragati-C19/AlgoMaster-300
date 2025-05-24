@@ -1,7 +1,37 @@
-package Shortest Path;
+import java.util.*;
 
 public class NetworkDelayTime {
     
+    public int networkDelayTime(int[][] times, int n, int k) {
+        
+        return -1;
+    }
+
+    public static void main(String[] args) {
+
+        NetworkDelayTime solution = new NetworkDelayTime();
+
+        int[][] times1 = {
+            {2, 1, 1},
+            {2, 3, 1},
+            {3, 4, 1}
+        };
+        int n1 = 4, k1 = 2;
+        System.out.println("Result 1 -> " + solution.networkDelayTime(times1, n1, k1) + "\n"); // 2
+
+        int[][] times2 = {
+            {1, 2, 1}
+        };
+        int n2 = 2, k2 = 1;
+        System.out.println("Result 2 -> " + solution.networkDelayTime(times2, n2, k2) + "\n"); // 1
+
+        int[][] times3 = {
+            {1, 2, 1}
+        };
+        int n3 = 2, k3 = 2;
+        System.out.println("Result 3 -> " + solution.networkDelayTime(times3, n3, k3) + "\n"); // -1
+    }
+
 }
 
 /*
