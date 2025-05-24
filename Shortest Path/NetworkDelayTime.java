@@ -4,7 +4,40 @@ public class NetworkDelayTime {
     
     public int networkDelayTime(int[][] times, int n, int k) {
         
-        return -1;
+        // Declare variables
+        Map<Integer, List<int[]>> graphMap = new HashMap<>();
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
+        boolean[] visited = new boolean[n + 1];
+        int[] minTimeToReachNode = new int[n + 1];         // nodes are 1-indexed
+        int totalReachingTime = 0;
+
+        // add dependencies in graph 
+        for (int[] edge : times) {
+            
+            if (!graphMap.containsKey(edge[0])) {
+                
+                graphMap.put(edge[0], new ArrayList<>());
+            }
+
+            graphMap.get(edge[0]).add(new int[] {edge[1], edge[2]});
+        }
+        System.out.println("GraphMap : ");
+        graphMap.forEach((u, v) -> System.out.println("     " + u + " -> " + v.stream().map(Arrays::toString).toList()));
+    
+        // add initial values in MinHeap {timeSoFar, node}
+        minHeap.add(new int[]{0, k}); // start from node k, with time 0
+
+        // fill -1 initially in minTimeToReachNode bcoz we didin't know how much min time it needs to reach at any node
+        Arrays.fill(minTimeToReachNode, -1);
+        
+        // mark time for k node as 0 bcoz we are starting from it 
+        minTimeToReachNode[k] = 0;
+
+        System.out.println("Initial minHeap : " + Arrays.deepToString(minHeap.toArray()) + " and min Time it takes to reach at nodes : " + Arrays.toString(minTimeToReachNode));
+    
+
+        return totalReachingTime;
+       
     }
 
     public static void main(String[] args) {
