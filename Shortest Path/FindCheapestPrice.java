@@ -4,6 +4,72 @@ public class FindCheapestPrice {
     
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
         
+        // Declare variables
+        Map<Integer, List<int[]>> graphMap = new HashMap<>();
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
+        Map<Integer, Integer> visitedCity = new HashMap<>();
+
+        // Add dependencies in map
+        for (int[] flight : flights) {
+            
+            int fromCity = flight[0];
+            int toCity = flight[1];
+            int cost = flight[2];
+
+            if (!graphMap.containsKey(fromCity)) {
+                
+                graphMap.put(fromCity, new ArrayList<>());
+            }
+
+            graphMap.get(fromCity).add(new int[]{toCity, cost});
+        }
+        System.out.println("GraphMap : ");
+        graphMap.forEach((u, v) -> System.out.println("     " + u + " -> " + v.stream().map(Arrays::toString).toList()));
+
+
+        // add initial values in MinHeap
+        minHeap.add(new int[]{0, src, 0});
+
+        // start while loop
+        while (!minHeap.isEmpty()) {
+         
+            int[] popMinHeap = minHeap.poll();
+
+            int costSoFar = popMinHeap[0];
+            int currCity = popMinHeap[1];
+            int stopsUsed = popMinHeap[2];
+
+            System.out.println(" Pop Out Elements : " + Arrays.toString(popMinHeap));
+
+            // if destination city reached return the cost
+            if (currCity == dst) {
+                
+                System.out.println("Reach the Destination in : " + costSoFar);
+                return costSoFar;
+            }
+
+            // if we used more than k stops we need to skip that city now
+            if (stopsUsed > k) {
+
+                System.out.println("Stops visited are greated than k : " + stopsUsed);
+                continue;
+            }
+
+            // if city is not visited OR this path used fewer stops
+            if (!visitedCity.containsKey(currCity) || visitedCity.get(currCity) > stopsUsed) {
+
+                // mark as visited
+                visitedCity.put(currCity, stopsUsed);
+
+
+
+            }
+
+            System.out.println("    - VisitedCity Map after " + currCity + " : " + visitedCity);
+            System.out.println("    - Updated minHeap : " + Arrays.deepToString(minHeap.toArray()));
+
+        }
+        
         return -1;
     }
 
