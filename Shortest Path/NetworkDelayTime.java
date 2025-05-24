@@ -89,6 +89,19 @@ public class NetworkDelayTime {
             }
         }
 
+
+        // get total time to reach at all nodes
+        for (int i = 1; i <= n; i++) {
+            
+            if (minTimeToReachNode[i] == Integer.MAX_VALUE) {
+                
+                System.out.println("We are not able to reach " + i + " node...");
+                return -1;
+            }
+
+            totalReachingTime = Math.max(totalReachingTime, minTimeToReachNode[i]);
+        }
+
         return totalReachingTime;
        
     }
