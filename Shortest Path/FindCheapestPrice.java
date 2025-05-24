@@ -51,7 +51,7 @@ public class FindCheapestPrice {
             // if we used more than k stops we need to skip that city now
             if (stopsUsed > k) {
 
-                System.out.println("Stops visited are greated than k : " + stopsUsed);
+                System.out.println("    ~ Stops visited are greated than k : " + stopsUsed);
                 continue;
             }
 
@@ -61,7 +61,17 @@ public class FindCheapestPrice {
                 // mark as visited
                 visitedCity.put(currCity, stopsUsed);
 
+                // check neighbors
+                for (int[] neighbor : graphMap.get(currCity)) {
+                    
+                    int nextCity = neighbor[0];
+                    int costToNextCity = neighbor[1];
 
+                    int newCost = costSoFar + costToNextCity;
+                    int newStops = stopsUsed + 1;
+
+                    minHeap.add(new int[]{newCost, nextCity, newStops});
+                }
 
             }
 
