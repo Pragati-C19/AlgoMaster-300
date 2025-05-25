@@ -90,6 +90,12 @@ public class SwimInWater {
         };
         System.out.println("Result 2 -> " + solution.swimInWater(grid2) + "\n");   // Output: 16
 
+        int[][] grid3 = {
+            {3, 2},
+            {0, 1}
+        };
+        System.out.println("Result 3 -> " + solution.swimInWater(grid3) + "\n");   // Output: 3
+
     }
 
 }
