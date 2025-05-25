@@ -4,6 +4,71 @@ public class SwimInWater {
     
     public int swimInWater(int[][] grid) {
         
+        // Declare Variables
+        int m = grid.length;
+        int n = grid[0].length;
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a[2], b[2]));
+        int[][] bestTimeTaken = new int[m][n];
+        int[][] matrixDirection = {
+            {1, 0},
+            {0, 1},
+            {-1, 0},
+            {0, -1}
+        };
+        boolean[][] visitedCell = new boolean[m][n];
+
+
+        // Add Initial Value
+        minHeap.add(new int[]{0, 0, 0});
+
+        // let's start while loop
+        while (!minHeap.isEmpty()) {
+            
+            int[] popMinHeap = minHeap.poll();
+
+            int currRow = popMinHeap[0];
+            int currCol = popMinHeap[1];
+            int currTimeTaken = popMinHeap[2];
+
+            int currCellElevation = grid[currRow][currCol];
+
+            if (currRow == (m - 1) && currCol == (n - 1)) {
+                
+                System.out.println("We have reach to the end of Matrix... ");
+                return currTimeTaken;
+            }
+
+            // Mark this cell as visited
+            visitedCell[currRow][currCol] = true;
+
+            // Check neighbors
+            for (int[] dirs : matrixDirection) {
+                
+                int x = dirs[0] + currRow;
+                int y = dirs[1] + currCol;
+
+                if (x >= 0 && y >= 0 && x < m && y < n && !visitedCell[x][y]) {
+                    
+                    // check height of this neighbor cell
+                    int neighborCellElevation = grid[x][y];
+
+                    // get abs difference between currCell and BRUL Cell
+                    int diff = currCellElevation - neighborCellElevation;
+                    System.out.println("        - abs diff of elevations between (" + currRow + ", " + currCol + ") and (" + x + ", " + y + ") : " + Math.abs(diff));
+                    
+                    // now check maximum effort in this path and add it in minHeap
+                    int timeTakenSoFar = currTimeTaken + Math.abs(diff);
+                    System.out.println("        - TimeTakenSoFar at (" + x + ", " + y + ") : " + timeTakenSoFar);
+
+                    minHeap.add(new int[]{x, y, timeTakenSoFar});
+                }
+            }
+
+            System.out.println("    - Updated minHeap : " + Arrays.deepToString(minHeap.toArray()));
+            System.out.println("    - Updated bestTimeTaken : " + Arrays.deepToString(bestTimeTaken));
+
+        }
+
         return 0;
     }
 
