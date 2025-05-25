@@ -24,7 +24,41 @@ public class MinimumEffortPath {
         System.out.println("Initially minHeap : " + Arrays.deepToString(minHeap.toArray()));
         System.out.println("Initially bestEfforts : " + Arrays.deepToString(bestEfforts));
 
-        
+
+        // Start while loop till minHeap get's empty
+        while (!minHeap.isEmpty()) {
+            
+            int[] popMinHeap = minHeap.poll();
+
+            int currRow = popMinHeap[0];
+            int currCol = popMinHeap[1];
+            int currEffort = popMinHeap[2];
+
+            int currCellHeight = heights[currRow][currCol];
+
+            System.out.println("    Visiting cell : " + Arrays.toString(popMinHeap) + " with height " + currCellHeight);
+
+            if (currRow == (m - 1) && currCol == (n - 1)) {
+                
+                System.out.println("We have reach to the end of Matrix... ");
+                return currEffort;
+            }
+
+            // check BRUL directions
+            for (int[] dirs : matrixDirection) {
+                
+                int x = dirs[0] + currRow;
+                int y = dirs[1] + currCol;
+
+                // check height of this neighbor cell
+                int neighborCellHeight = heights[x][y];
+
+                // get abs difference between currCell and BRUL Cell
+                int diff = currCellHeight - neighborCellHeight;
+
+                System.out.println("        - abs diff of heights between (" + currRow + ", " + currCol + ") and (" + x + ", " + y + ") : " + Math.abs(diff));
+            }
+        }
 
         return 0;
     }
