@@ -19,8 +19,8 @@ public class MinimumEffortPath {
 
 
         // Initially add values in minHeap {row, col, effortsSoFar}
-        minHeap.add(new int[]{0, 0, heights[0][0]});
-        bestEfforts[0][0] = heights[0][0];
+        minHeap.add(new int[]{0, 0, 0});
+        // bestEfforts[0][0] = heights[0][0];
 
         System.out.println("Initially minHeap : " + Arrays.deepToString(minHeap.toArray()));
         System.out.println("Initially bestEfforts : " + Arrays.deepToString(bestEfforts));
