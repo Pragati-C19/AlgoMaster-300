@@ -2,11 +2,28 @@ import java.util.*;
 
 public class MaxProbability {
     
+    // we need int and double value in map and heap 
+    private static class IntDoublePair{
+
+        int node;
+        double probability;
+
+        IntDoublePair(int node, double probability){
+            this.node = node;
+            this.probability = probability;
+        }
+
+        @Override
+        public String toString() {
+            return "[" + node + ", " + probability + "]";
+        }
+    } 
+
     public double maxProbability(int n, int[][] edges, double[] succProb, int start_node, int end_node) {
         
         // Declare variables
-        Map<Integer, List<double[]>> graphMap = new HashMap<>();
-        PriorityQueue<double[]> maxHeap = new PriorityQueue<>((a, b) -> Double.compare(b[0], a[0]));
+        Map<Integer, List<IntDoublePair>> graphMap = new HashMap<>();
+        PriorityQueue<IntDoublePair> maxHeap = new PriorityQueue<>((a, b) -> Double.compare(b.probability, a.probability));
         double[] bestProb = new double[n];
     
         // Add edges in map
@@ -19,18 +36,18 @@ public class MaxProbability {
             if (!graphMap.containsKey(edge1)) {
                 graphMap.put(edge1, new ArrayList<>());
             }
-            graphMap.get(edge1).add(new double[]{edge2, succProb[i]});
+            graphMap.get(edge1).add(new IntDoublePair(edge2, succProb[i]));
 
             if (!graphMap.containsKey(edge2)) {
                 graphMap.put(edge2, new ArrayList<>());
             }
-            graphMap.get(edge2).add(new double[]{edge1, succProb[i]});
+            graphMap.get(edge2).add(new IntDoublePair(edge1, succProb[i]));
 
         }
-        System.out.println("GraphMap : ");
-        graphMap.forEach((u, v) -> System.out.println("     " + u + " -> " + v.stream().map(Arrays::toString).toList()));
-    
+        System.out.println("GraphMap : " + graphMap);
+        
 
+        
 
         return 0.0;
     }
