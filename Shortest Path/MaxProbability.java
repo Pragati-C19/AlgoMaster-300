@@ -4,6 +4,34 @@ public class MaxProbability {
     
     public double maxProbability(int n, int[][] edges, double[] succProb, int start_node, int end_node) {
         
+        // Declare variables
+        Map<Integer, List<double[]>> graphMap = new HashMap<>();
+        PriorityQueue<double[]> maxHeap = new PriorityQueue<>((a, b) -> Double.compare(b[0], a[0]));
+        double[] bestProb = new double[n];
+    
+        // Add edges in map
+        // doing i = 0 to n gives me index out of bound error
+        for (int i = 0; i < edges.length; i++) {
+            
+            int edge1 = edges[i][0];
+            int edge2 = edges[i][1];
+
+            if (!graphMap.containsKey(edge1)) {
+                graphMap.put(edge1, new ArrayList<>());
+            }
+            graphMap.get(edge1).add(new double[]{edge2, succProb[i]});
+
+            if (!graphMap.containsKey(edge2)) {
+                graphMap.put(edge2, new ArrayList<>());
+            }
+            graphMap.get(edge2).add(new double[]{edge1, succProb[i]});
+
+        }
+        System.out.println("GraphMap : ");
+        graphMap.forEach((u, v) -> System.out.println("     " + u + " -> " + v.stream().map(Arrays::toString).toList()));
+    
+
+
         return 0.0;
     }
 
