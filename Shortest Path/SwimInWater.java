@@ -58,12 +58,8 @@ public class SwimInWater {
                     // check height of this neighbor cell
                     int neighborCellElevation = grid[x][y];
 
-                    // get abs difference between currCell and BRUL Cell
-                    int diff = currCellElevation - neighborCellElevation;
-                    System.out.println("        - abs diff of elevations between (" + currRow + ", " + currCol + ") and (" + x + ", " + y + ") : " + Math.abs(diff));
-                    
                     // now check maximum effort in this path and add it in minHeap
-                    int timeTakenSoFar = currTimeTaken + Math.abs(diff);
+                    int timeTakenSoFar = Math.max(currTimeTaken, neighborCellElevation);
                     System.out.println("        - TimeTakenSoFar at (" + x + ", " + y + ") : " + timeTakenSoFar);
 
                     minHeap.add(new int[]{x, y, timeTakenSoFar});
@@ -102,6 +98,18 @@ public class SwimInWater {
 }
 
 /*
+
+ * Improvements :
+    
+    1. we don't want difference.. we just want to see what is max, cell value or currTime
+        timeNeededSoFar = grid[neighborRow][neighborCol] - grid[currRow][currCol]
+    2. why? 
+        apal logic asa ahe ki 
+            time jr tya cell value itka nasel tr titka karaycha and add karaycha heap madhe
+            time jr tya cell value pekshya motha asel tr we don't need to change time
+        ata he logic mhnje taking max between (currTime, neighborCell) ch ahe na?
+
+ 
  * Intuitions :
  
     1. We have given an matrix grid with size n x n
