@@ -61,10 +61,18 @@ public class MinimumEffortPath {
 
                     System.out.println("        - abs diff of heights between (" + currRow + ", " + currCol + ") and (" + x + ", " + y + ") : " + Math.abs(diff));
                     
-                    
+                    // now check maximum effort in this path and add it in minHeap
+                    int effortSoFar = Math.max(currEffort, Math.abs(diff));
+
+                    System.out.println("        - abs diff of heights between (" + currRow + ", " + currCol + ") and (" + x + ", " + y + ") : " + Math.abs(diff));
+
+                    minHeap.add(new int[]{x, y, effortSoFar});
                 }
-                
             }
+
+            System.out.println("    - Updated minHeap : " + Arrays.deepToString(minHeap.toArray()));
+            System.out.println("    - Updated bestEfforts : " + Arrays.deepToString(bestEfforts));
+
         }
 
         return 0;
