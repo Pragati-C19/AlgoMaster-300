@@ -7,7 +7,6 @@ public class SwimInWater {
         // Declare Variables
         int n = grid.length;
         PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a[2], b[2]));
-        int[][] bestTimeTaken = new int[n][n];
         int[][] matrixDirection = {
             {1, 0},
             {0, 1},
@@ -67,8 +66,6 @@ public class SwimInWater {
             }
 
             System.out.println("    - Updated minHeap : " + Arrays.deepToString(minHeap.toArray()));
-            System.out.println("    - Updated bestTimeTaken : " + Arrays.deepToString(bestTimeTaken));
-
         }
 
         return 0;
