@@ -4,6 +4,28 @@ public class MinimumEffortPath {
     
     public int minimumEffortPath(int[][] heights) {
         
+        // Declare Variables
+        int m = heights.length;
+        int n = heights[0].length;
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a[2], b[2]));
+        int[][] bestEfforts = new int[m][n];
+        int[][] matrixDirection = {
+            {1, 0},
+            {0, 1},
+            {-1, 0},
+            {0, -1}
+        };
+
+
+        // Initially add values in minHeap {row, col, effortsSoFar}
+        minHeap.add(new int[]{0, 0, heights[0][0]});
+        bestEfforts[0][0] = heights[0][0];
+
+        System.out.println("Initially minHeap : " + Arrays.deepToString(minHeap.toArray()));
+        System.out.println("Initially bestEfforts : " + Arrays.deepToString(bestEfforts));
+
+        
+
         return 0;
     }
 
