@@ -41,38 +41,47 @@ public class MaxProbability {
             1 -> [0, 0.5], [2, 0.5]
             2 -> [0, 0.2], [1, 0.5]
 
-        - will start 0 means adding {0, 0} in maxHeap { currNode, Probability }
-        - will need a visited array to store if we have visited that currNode or not
-        - start a while loop till heap get's empty
-        - pop Out {0, 0}
-            totalProbability = 0
-
-            check neighbor 1
-                it's not viisted add in maxHeap
-            check neighbor 2
-                it's not visited add in maxHeap
-
-            maxHeap = { [1, 0.5], [2, 0.2] }
-            
-        - pop out {1, 0.5}
-            totalProbability = 0 + 0.5
-
-            check neighbor 0
-                visited
-            check neighbor 2
-                it's not visited add in maxHeap
-
-            maxHeap = { [2, 0.5], [2, 0.2] }    -> max prob at top
-
-        - pop out {2, 0.5}
-            totalProbabitlity = 0.5 + 0.5
-
-            check neighbor 0
-                visited
-            check neighbor 1 
-                visited
+        - will start 0 means adding {0, 1} in maxHeap { currNode, Probability }
+            why probability as 1? bcoz we are multiplying 
         
-        - ans = totalProbability
+        - we don't need a visited array here will check best probability found so far for that node
+            initially add bestProb[start] = 1
+        
+        - bestProb = [1, 0, 0]
+
+        - start a while loop till heap get's empty
+
+            1. currNode = 0, currProb = 1
+
+                - neighbor 1
+                    neighborProb = 1.0 * 0.5 = 0.5
+                    0.5 > bestProb[1] = 0.0     -> update and add to heap
+                    bestProb = [1, 0.5, 0]
+                    maxHeap = { [1, 0.5] }
+
+                - neighbor 2
+                    neighborProb = 1.0 * 0.2 = 0.2
+                    0.2 > bestProb[1] = 0.0     -> update and add to heap
+                    bestProb = [1, 0.5, 0.2]
+                    maxHeap = { [1, 0.5], [2, 0.2] }
+                
+            - currNode = 1, currProb = 0.5
+                
+                - neighbor 0
+                    newProb = 0.5 * 0.5 = 0.25
+                    0.25 < bestProb[0] = 1.0    -> skip
+
+                - neighbor 2
+                    neighborProb = 0.5 * 0.5 = 0.25
+                    0.25 > bestProb[2] = 0.2    -> update and add to heap
+                    bestProb = [1, 0.5, 0.25]
+                    maxHeap = { [2, 0.25], [2, 0.2] }
+
+            - currNode = 2, currProb = 0.25
+                it's our destination return currProb
+
+            
+        - else return 0
             
 
 
