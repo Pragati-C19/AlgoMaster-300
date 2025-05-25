@@ -50,13 +50,20 @@ public class MinimumEffortPath {
                 int x = dirs[0] + currRow;
                 int y = dirs[1] + currCol;
 
-                // check height of this neighbor cell
-                int neighborCellHeight = heights[x][y];
+                // Wrote a base case 
+                if (x >= 0 && y >= 0 && x < m && y < n ) {
+                    
+                    // check height of this neighbor cell
+                    int neighborCellHeight = heights[x][y];
 
-                // get abs difference between currCell and BRUL Cell
-                int diff = currCellHeight - neighborCellHeight;
+                    // get abs difference between currCell and BRUL Cell
+                    int diff = currCellHeight - neighborCellHeight;
 
-                System.out.println("        - abs diff of heights between (" + currRow + ", " + currCol + ") and (" + x + ", " + y + ") : " + Math.abs(diff));
+                    System.out.println("        - abs diff of heights between (" + currRow + ", " + currCol + ") and (" + x + ", " + y + ") : " + Math.abs(diff));
+                    
+                    
+                }
+                
             }
         }
 
