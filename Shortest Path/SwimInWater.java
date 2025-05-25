@@ -5,17 +5,16 @@ public class SwimInWater {
     public int swimInWater(int[][] grid) {
         
         // Declare Variables
-        int m = grid.length;
-        int n = grid[0].length;
+        int n = grid.length;
         PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a[2], b[2]));
-        int[][] bestTimeTaken = new int[m][n];
+        int[][] bestTimeTaken = new int[n][n];
         int[][] matrixDirection = {
             {1, 0},
             {0, 1},
             {-1, 0},
             {0, -1}
         };
-        boolean[][] visitedCell = new boolean[m][n];
+        boolean[][] visitedCell = new boolean[n][n];
 
 
         // Add Initial Value
@@ -32,10 +31,17 @@ public class SwimInWater {
 
             int currCellElevation = grid[currRow][currCol];
 
-            if (currRow == (m - 1) && currCol == (n - 1)) {
+            if (currRow == (n - 1) && currCol == (n - 1)) {
                 
                 System.out.println("We have reach to the end of Matrix... ");
                 return currTimeTaken;
+            }
+
+            // if cell is alredy visited will skip it
+            if (visitedCell[currRow][currCol]) {
+
+                System.out.println("    Cell is already visited so skipping..");
+                continue;
             }
 
             // Mark this cell as visited
@@ -47,7 +53,7 @@ public class SwimInWater {
                 int x = dirs[0] + currRow;
                 int y = dirs[1] + currCol;
 
-                if (x >= 0 && y >= 0 && x < m && y < n && !visitedCell[x][y]) {
+                if (x >= 0 && y >= 0 && x < n && y < n && !visitedCell[x][y]) {
                     
                     // check height of this neighbor cell
                     int neighborCellElevation = grid[x][y];
