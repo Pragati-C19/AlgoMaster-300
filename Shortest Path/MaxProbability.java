@@ -1,5 +1,43 @@
+import java.util.*;
+
 public class MaxProbability {
     
+    public double maxProbability(int n, int[][] edges, double[] succProb, int start_node, int end_node) {
+        
+        return 0.0;
+    }
+
+    public static void main(String[] args) {
+
+        MaxProbability solution = new MaxProbability();
+
+        int[][] edges1 = {
+            {0, 1},
+            {1, 2},
+            {0, 2}
+        };
+        double[] succProb1 = {0.5, 0.5, 0.2};
+        int n1 = 3, start1 = 0, end1 = 2;
+        System.out.println("Result 1 -> " + solution.maxProbability(n1, edges1, succProb1, start1, end1) + "\n");
+
+        int[][] edges2 = {
+            {0, 1},
+            {1, 2},
+            {0, 2}
+        };
+        double[] succProb2 = {0.5, 0.5, 0.3};
+        int n2 = 3, start2 = 0, end2 = 2;
+        System.out.println("Result 2 -> " + solution.maxProbability(n2, edges2, succProb2, start2, end2) + "\n");
+
+        int[][] edges3 = {
+            {0, 1}
+        };
+        double[] succProb3 = {0.5};
+        int n3 = 3, start3 = 0, end3 = 2;
+        System.out.println("Result 3 -> " + solution.maxProbability(n3, edges3, succProb3, start3, end3) + "\n");
+    
+    }
+
 }
 
 /*
