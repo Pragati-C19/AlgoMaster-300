@@ -15,6 +15,7 @@ public class MinimumEffortPath {
             {-1, 0},
             {0, -1}
         };
+        boolean[][] visitedCell = new boolean[m][n];
 
 
         // Initially add values in minHeap {row, col, effortsSoFar}
@@ -44,6 +45,9 @@ public class MinimumEffortPath {
                 return currEffort;
             }
 
+            // Mark this cell as visited 
+            visitedCell[currRow][currCol] = true;
+
             // check BRUL directions
             for (int[] dirs : matrixDirection) {
                 
@@ -51,7 +55,7 @@ public class MinimumEffortPath {
                 int y = dirs[1] + currCol;
 
                 // Wrote a base case 
-                if (x >= 0 && y >= 0 && x < m && y < n ) {
+                if (x >= 0 && y >= 0 && x < m && y < n && !visitedCell[x][y]) {
                     
                     // check height of this neighbor cell
                     int neighborCellHeight = heights[x][y];
