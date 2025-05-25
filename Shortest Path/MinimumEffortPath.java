@@ -2,6 +2,40 @@ import java.util.*;
 
 public class MinimumEffortPath {
     
+    public int minimumEffortPath(int[][] heights) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        
+        MinimumEffortPath solution = new MinimumEffortPath();
+
+        int[][] heights1 = {
+            {1, 2, 2},
+            {3, 8, 2},
+            {5, 3, 5}
+        };
+        System.out.println("Result 1 -> " + solution.minimumEffortPath(heights1) + "\n");   // Output: 2
+
+        int[][] heights2 = {
+            {1, 2, 3},
+            {3, 8, 4},
+            {5, 3, 5}
+        };
+        System.out.println("Result 2 -> " + solution.minimumEffortPath(heights2) + "\n");   // Output: 1
+
+        int[][] heights3 = {
+            {1, 2, 1, 1, 1},
+            {1, 2, 1, 2, 1},
+            {1, 2, 1, 2, 1},
+            {1, 2, 1, 2, 1},
+            {1, 1, 1, 2, 1}
+        };
+        System.out.println("Result 3 -> " + solution.minimumEffortPath(heights3) + "\n");   // Output: 0
+    
+    }
+
 }
 
 /*
