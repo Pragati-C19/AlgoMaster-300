@@ -47,7 +47,51 @@ public class MaxProbability {
         System.out.println("GraphMap : " + graphMap);
         
 
+        // Initially add values in maxHeap
+        maxHeap.add(new IntDoublePair(start_node, 1.0));
+
+        bestProb[start_node] = 1.0;
         
+        // start while loop
+        while (!maxHeap.isEmpty()) {
+            
+            IntDoublePair popMaxHeap = maxHeap.poll();
+
+            int currNode = popMaxHeap.node;
+            double currProb = popMaxHeap.probability;
+
+            if (currNode == end_node) {
+                
+                System.out.println("We have reach the end node... ");
+                return currProb;
+            }
+
+            if (graphMap.containsKey(currNode)) {
+                
+                // Check Neighbors
+                for (IntDoublePair neighbor : graphMap.get(currNode)) {
+                    
+                    int neighborNode = neighbor.node;
+                    double neighborProb = neighbor.probability;
+
+                    double totalProbSoFar = neighborProb * currProb;
+
+                    if (totalProbSoFar > bestProb[neighborNode]) {
+                        
+                        System.out.println("    - " + neighborNode + "'s curr probability (" + totalProbSoFar + ") is greater than " + bestProb[neighborNode]);
+
+                        // added in heap and updated bestProb
+                        bestProb[neighborNode] = totalProbSoFar;
+                        maxHeap.add(new IntDoublePair(neighborNode, totalProbSoFar));
+                    }
+                }
+
+                System.out.println("    - Updated maxHeap : " + maxHeap);
+                System.out.println("    - Updated bestProb : " + Arrays.toString(bestProb));
+
+            }
+
+        }
 
         return 0.0;
     }
