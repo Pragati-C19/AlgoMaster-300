@@ -16,8 +16,8 @@ public class SwimInWater {
         boolean[][] visitedCell = new boolean[n][n];
 
 
-        // Add Initial Value
-        minHeap.add(new int[]{0, 0, 0});
+        // Add Initial Value : starting from top left corner so timeUsedSoFar is grid[0][0] as not every cell has value zero value on that cell
+        minHeap.add(new int[]{0, 0, grid[0][0]});
 
         // let's start while loop
         while (!minHeap.isEmpty()) {
@@ -105,13 +105,17 @@ public class SwimInWater {
  * Improvements :
     
     1. we don't want difference.. we just want to see what is max, cell value or currTime
-        timeNeededSoFar = grid[neighborRow][neighborCol] - grid[currRow][currCol]
-    2. why? 
-        apal logic asa ahe ki 
-            time jr tya cell value itka nasel tr titka karaycha and add karaycha heap madhe
-            time jr tya cell value pekshya motha asel tr we don't need to change time
-        ata he logic mhnje taking max between (currTime, neighborCell) ch ahe na?
-
+        - timeNeededSoFar = grid[neighborRow][neighborCol] - grid[currRow][currCol]
+        - why? 
+            apal logic asa ahe ki 
+                time jr tya cell value itka nasel tr titka karaycha and add karaycha heap madhe
+                time jr tya cell value pekshya motha asel tr we don't need to change time
+            ata he logic mhnje taking max between (currTime, neighborCell) ch ahe na?
+    2. Add Initial Value 
+        - minHeap.add(new int[]{0, 0, 0});
+        - me timeTakenSoFar 0 lihilay ithe
+        - but first cell vr jayla pn tya cell vr jo elevation asel titka time jau dyava lagel na
+        - tyamul it should be grid[0][0]
  
  * Intuitions :
  
