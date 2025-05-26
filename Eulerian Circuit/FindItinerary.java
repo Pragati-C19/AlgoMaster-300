@@ -10,8 +10,8 @@ public class FindItinerary {
         
         // Declare variables
         result = new ArrayList<>();
-        Set<String> visitingDesSet = new HashSet<>();       // to check if we are visiting this destination currently
-        Set<String> visitedDesSet = new HashSet<>();        // to check if the destination is visited or not
+        // Set<String> visitingDesSet = new HashSet<>();       // to check if we are visiting this destination currently
+        // Set<String> visitedDesSet = new HashSet<>();        // to check if the destination is visited or not
         graphMap = new HashMap<>();
 
         // Add dependencies in lexical order 
@@ -31,43 +31,48 @@ public class FindItinerary {
         System.out.println("GraphMap : " + graphMap);
 
 
-        dfs("JFK", visitingDesSet, visitedDesSet);
+        dfs("JFK");
         
         
         return result;
     }
 
     // Recursion Function :
-    private void dfs (String currDes, Set<String> visitingDesSet, Set<String> visitedDesSet) {
+    private void dfs (String currDes) {
 
-        // Base Case :
-        if (visitingDesSet.contains(currDes)) {
+        // // Base Case :
+        // if (visitingDesSet.contains(currDes)) {
             
-            System.out.println("    Cycle detetcted at destination " + currDes + "...");
-            return;
-        }
+        //     System.out.println("    Cycle detetcted at destination " + currDes + "...");
+        //     return;
+        // }
 
-        if (visitedDesSet.contains(currDes)) {
+        // if (visitedDesSet.contains(currDes)) {
             
-            System.out.println("    " + currDes + " is already visited...");
-            return;
-        }
+        //     System.out.println("    " + currDes + " is already visited...");
+        //     return;
+        // }
 
-        // Mark destination as visiting
-        visitingDesSet.add(currDes);
+        // // Mark destination as visiting
+        // visitingDesSet.add(currDes);
 
         // check neighbors
         if (graphMap.containsKey(currDes)) {
             
-            for (String neighborDes : graphMap.get(currDes)) {
-            
-                dfs(neighborDes, visitingDesSet, visitedDesSet);
+            List<String> neighborsList = graphMap.get(currDes);
+
+            // While neighbors still exist
+            while (!neighborsList.isEmpty()) {
+                
+                // Remove the first (smallest lex) destination
+                String neighbor = neighborsList.remove(0);
+                dfs(neighbor);
             }
         }
         
-        // Remove currDes from visitingSet and add it in visited Set
-        visitingDesSet.remove(currDes);
-        visitedDesSet.add(currDes);
+        // // Remove currDes from visitingSet and add it in visited Set
+        // visitingDesSet.remove(currDes);
+        // visitedDesSet.add(currDes);
 
         result.add(currDes);
 
@@ -132,7 +137,24 @@ public class FindItinerary {
             - at least one destination will be missing
             - also the problem is we have strings as input then how can we crease visitingArray as it has index as int?
             - Solution ? add 2 visiting Sets instead of 1 array
-
+        2. Removed visitingState fully
+            - seems like mala navhti garaj tyachi
+            - why ? I'm currently unsure fully.. I just know it bcoz gpt say so
+            - need to chake abt this more
+        3. Instead of List<String> in map we can use minHeap 
+            - We don't need to sort List<String> always when we add destination in map
+            - and minHepa will automatically set destination in lexical order
+            - also we want to remove that neighbor once we have visited
+                why? bcoz que says we can visit one edge only one time
+                so once it's visited we are removing that neighbor from parent Destination 
+                example if I have graphMap like
+                    JFK -> ATL, SFO
+                    SFO -> ATL
+                    ATL -> JFK, SFO
+                    
+                    - ata bagh me JFK madhe ATL check karayla geli.. tr ATL madhe first ch JFO ahe
+                        so there is a chance that te parat JFK -> ATL path vr jail even if we have visited it before
+                    - tyamul ekda path visit kela ki apan remove karun taktoy to neighbor
  
  * Pseudo Code :
  
