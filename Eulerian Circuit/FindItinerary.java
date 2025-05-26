@@ -13,7 +13,22 @@ public class FindItinerary {
         Set<String> visitedDesSet = new HashSet<>();        // to check if the destination is visited or not
         graphMap = new HashMap<>();
 
-        //
+        // Add dependencies in lexical order 
+        for (List<String> flight : tickets) {
+            
+            String from = flight.get(0);
+            String to = flight.get(1);
+
+            if (!graphMap.containsKey(from)) {
+                graphMap.put(from, new ArrayList<>());
+            }
+            graphMap.get(from).add(to);
+
+            // We need a lexical order so adding strings in list in lexical sorted order 
+            Collections.sort(graphMap.get(from));
+        }
+        System.out.println("GraphMap : " + graphMap);
+
 
         return result;
     }
