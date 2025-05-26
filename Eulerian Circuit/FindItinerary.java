@@ -9,10 +9,8 @@ public class FindItinerary {
     public List<String> findItinerary(List<List<String>> tickets) {
         
         // Declare variables
-        result = new ArrayList<>();
-        // Set<String> visitingDesSet = new HashSet<>();       // to check if we are visiting this destination currently
-        // Set<String> visitedDesSet = new HashSet<>();        // to check if the destination is visited or not
         graphMap = new HashMap<>();
+        result = new ArrayList<>();
 
         // Add dependencies in lexical order 
         for (List<String> flight : tickets) {
@@ -31,30 +29,14 @@ public class FindItinerary {
         System.out.println("GraphMap : " + graphMap);
 
 
+        // we will always start from JFK
         dfs("JFK");
         
-        
-        return result;
+        return result.reversed();
     }
 
     // Recursion Function :
     private void dfs (String currDes) {
-
-        // // Base Case :
-        // if (visitingDesSet.contains(currDes)) {
-            
-        //     System.out.println("    Cycle detetcted at destination " + currDes + "...");
-        //     return;
-        // }
-
-        // if (visitedDesSet.contains(currDes)) {
-            
-        //     System.out.println("    " + currDes + " is already visited...");
-        //     return;
-        // }
-
-        // // Mark destination as visiting
-        // visitingDesSet.add(currDes);
 
         // check neighbors
         if (graphMap.containsKey(currDes)) {
@@ -66,14 +48,13 @@ public class FindItinerary {
                 
                 // Remove the first (smallest lex) destination
                 String neighbor = neighborsList.remove(0);
+
+                System.out.println("    - Updated GraphMap : " + graphMap);
+
                 dfs(neighbor);
             }
         }
         
-        // // Remove currDes from visitingSet and add it in visited Set
-        // visitingDesSet.remove(currDes);
-        // visitedDesSet.add(currDes);
-
         result.add(currDes);
 
         return;
