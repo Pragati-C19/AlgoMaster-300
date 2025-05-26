@@ -2,9 +2,18 @@ import java.util.*;
 
 public class FindItinerary {
     
+    // Gloablly Declare variables 
+    Map<String, List<String>> graphMap;
+
     public List<String> findItinerary(List<List<String>> tickets) {
         
+        // Declare variables
         List<String> result = new ArrayList<>();
+        Set<String> visitingDesSet = new HashSet<>();       // to check if we are visiting this destination currently
+        Set<String> visitedDesSet = new HashSet<>();        // to check if the destination is visited or not
+        graphMap = new HashMap<>();
+
+        //
 
         return result;
     }
@@ -59,6 +68,15 @@ public class FindItinerary {
         return currResult
     3. FinalResult = above dfs call
  
+    ^ Improvements :
+
+        1. Adding visitingState as array will have a problem 
+            - bcoz we don't know what is the lenth?
+            - even if I try to count it with map I'll still not get right length
+            - at least one destination will be missing
+            - also the problem is we have strings as input then how can we crease visitingArray as it has index as int?
+            - Solution ? add 2 visiting Sets instead of 1 array
+
  
  * Pseudo Code :
  
