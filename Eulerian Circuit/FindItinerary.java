@@ -2,6 +2,34 @@ import java.util.*;
 
 public class FindItinerary {
     
+    public List<String> findItinerary(List<List<String>> tickets) {
+        
+        List<String> result = new ArrayList<>();
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+    
+        FindItinerary solution = new FindItinerary();
+
+        List<List<String>> tickets1 = new ArrayList<>();
+        tickets1.add(Arrays.asList("MUC", "LHR"));
+        tickets1.add(Arrays.asList("JFK", "MUC"));
+        tickets1.add(Arrays.asList("SFO", "SJC"));
+        tickets1.add(Arrays.asList("LHR", "SFO"));
+        System.out.println("Result 1 -> " + solution.findItinerary(tickets1) + "\n");  // Output: ["JFK","MUC","LHR","SFO","SJC"]
+
+        List<List<String>> tickets2 = new ArrayList<>();
+        tickets2.add(Arrays.asList("JFK", "SFO"));
+        tickets2.add(Arrays.asList("JFK", "ATL"));
+        tickets2.add(Arrays.asList("SFO", "ATL"));
+        tickets2.add(Arrays.asList("ATL", "JFK"));
+        tickets2.add(Arrays.asList("ATL", "SFO"));
+        System.out.println("Result 2 -> " + solution.findItinerary(tickets2) + "\n");  // Output: ["JFK","ATL","JFK","SFO","ATL","SFO"]
+    
+    }
+
 }
 
 /*
