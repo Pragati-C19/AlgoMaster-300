@@ -4,11 +4,12 @@ public class FindItinerary {
     
     // Gloablly Declare variables 
     Map<String, List<String>> graphMap;
+    List<String> result;
 
     public List<String> findItinerary(List<List<String>> tickets) {
         
         // Declare variables
-        List<String> result = new ArrayList<>();
+        result = new ArrayList<>();
         Set<String> visitingDesSet = new HashSet<>();       // to check if we are visiting this destination currently
         Set<String> visitedDesSet = new HashSet<>();        // to check if the destination is visited or not
         graphMap = new HashMap<>();
@@ -30,7 +31,47 @@ public class FindItinerary {
         System.out.println("GraphMap : " + graphMap);
 
 
+        dfs("JFK", visitingDesSet, visitedDesSet);
+        
+        
         return result;
+    }
+
+    // Recursion Function :
+    private void dfs (String currDes, Set<String> visitingDesSet, Set<String> visitedDesSet) {
+
+        // Base Case :
+        if (visitingDesSet.contains(currDes)) {
+            
+            System.out.println("    Cycle detetcted at destination " + currDes + "...");
+            return;
+        }
+
+        if (visitedDesSet.contains(currDes)) {
+            
+            System.out.println("    " + currDes + " is already visited...");
+            return;
+        }
+
+        // Mark destination as visiting
+        visitingDesSet.add(currDes);
+
+        // check neighbors
+        if (graphMap.containsKey(currDes)) {
+            
+            for (String neighborDes : graphMap.get(currDes)) {
+            
+                dfs(neighborDes, visitingDesSet, visitedDesSet);
+            }
+        }
+        
+        // Remove currDes from visitingSet and add it in visited Set
+        visitingDesSet.remove(currDes);
+        visitedDesSet.add(currDes);
+
+        result.add(currDes);
+
+        return;
     }
 
     public static void main(String[] args) {
