@@ -9,32 +9,36 @@ public class Rob2 {
         
         // if we rob house 0 to n - 2
         int robHouseZero = dp(nums, 0, n - 2);
+        System.out.println(" Max value for range [0, n-2] : " + robHouseZero);
 
         // if we rob house 1 to n - 1
         int robHouseOne = dp(nums, 1, n - 1);
+        System.out.println(" Max value for range [1, n-1] : " + robHouseOne);
 
         // Take max between them
         int maxBetweenTwoRanges = Math.max(robHouseZero, robHouseOne);
 
         return maxBetweenTwoRanges;
-        
+
     }
 
     // Helper Function : to check maximum robbed money on days 
-    private int dp(int[] shrinkNums, int start, int end) {
+    private int dp(int[] nums, int start, int end) {
 
         // Declare variables
-        int n = shrinkNums.length;
-        int[] dp = new int[n + 1];
+        // int n = nums.length;
+        int[] dp = new int[end + 1];
 
         // Assign initial values
-        dp[0] = shrinkNums[0];
-        dp[1] = Math.max(shrinkNums[0], shrinkNums[1]);
+        dp[0] = nums[start];
+        dp[1] = Math.max(nums[start], nums[start + 1]);
+
+        System.out.println("    - Initial DP : " + Arrays.toString(dp));
 
         // let's check other houses
-        for (int i = 2; i < n; i++) {
+        for (int i = start + 2; i <= end; i++) {
             
-            int moneyRobToday = shrinkNums[i] + dp[i - 2];
+            int moneyRobToday = nums[i] + dp[i - 2];
             System.out.println("    - How much money we get by robbing " + i + " today : " + moneyRobToday);
             
             dp[i] = Math.max(dp[i - 1], moneyRobToday);
@@ -42,7 +46,7 @@ public class Rob2 {
 
         }
 
-        return dp[n-1];
+        return dp[end - 1];
     }
 
     public static void main(String[] args) {
