@@ -6,19 +6,21 @@ public class MinCostClimbingStairs {
         
         // Declare variables
         int n = cost.length;
-        int[] dp = new int[n];
+        int[] dp = new int[n + 1];
 
         // assign initial values
-        dp[0] = cost[0];
-        dp[1] = cost[1];
+        dp[0] = 0;      // No cost to start before step 0
+        dp[1] = 0;      // we can also start at step 1 for free
 
         // check other index
         for (int i = 2; i < n; i++) {
             
             // get min cost between prev steps steps
             int minCostForPrevSteps = Math.min( dp[i - 1], dp[i - 2] );
+            System.out.println("    - Minimum Cost of prev index : " + minCostForPrevSteps);
 
             dp[i] = cost[i] + minCostForPrevSteps;
+            System.out.println("  DEBUGGER : cost[i] and dp[i] : " + cost[i] + ", " + dp[i]);
 
             System.out.println("    - After cheking " + i + " step DP array looks like : " + Arrays.toString(dp));
         }
