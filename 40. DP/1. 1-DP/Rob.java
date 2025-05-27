@@ -1,29 +1,27 @@
+import java.util.Arrays;
+
 public class Rob {
     
     public int rob(int[] nums) {
         
         // Declare variables
         int n = nums.length;
-        int evenSum = 0;
-        int oddSum = 0;
+        int[] dp = new int[n + 1];
 
-        for (int i = 0; i < n; i++) {
+        // assign starting values
+        dp[0] = nums[0];
+        dp[1] = nums[1];
+        dp[2] = nums[2] + nums[0];
+
+        for (int i = 3; i < n; i++) {
             
-            if (i % 2 == 1) {
-                
-                oddSum += nums[i];
-                System.out.println("    - Odd Index " + i + " so Odd sum : " + oddSum);
-            }
-            else {
-                
-                evenSum += nums[i];
-                System.out.println("    - Even Index " + i + " so Even sum : " + evenSum);
-            }
+            dp[i] = nums[i] + Math.max(dp[i - 2], dp[i - 3]);
+            
+            System.out.println("    - After cheking " + i + " step DP array looks like : " + Arrays.toString(dp));
+
         }
 
-        int maxMoneyRobbed = Math.max(evenSum, oddSum);
-
-        return maxMoneyRobbed;
+        return dp[n];
     }
 
     public static void main(String[] args) {
@@ -62,11 +60,40 @@ public class Rob {
             if (i % 2 == 1) means index is odd and will add it's num in oddSum
             if (i % 2 == 0) means index is even and will add it's num in evenSum
         - at the end will take max between them and return it
- 
+    2. Let's try DP now
+        - declare dp to store total amount of max money we get if we rob that house
+        - I think we have to take 
+            nums[i] + max( dp[i - 2], dp[i - 3] )  
  
  * Pseudo Code :
  
+    1. Brute Force :
 
+        public int rob(int[] nums) {
+        
+            -> Declare variables
+                int n = nums.length;
+                int evenSum = 0;
+                int oddSum = 0;
+
+            for (int i = 0; i < n; i++) {
+                
+                if (i % 2 == 1) {
+                    
+                    oddSum += nums[i];
+                    System.out.println("    - Odd Index " + i + " so Odd sum : " + oddSum);
+                }
+                else {
+                    
+                    evenSum += nums[i];
+                    System.out.println("    - Even Index " + i + " so Even sum : " + evenSum);
+                }
+            }
+
+            int maxMoneyRobbed = Math.max(evenSum, oddSum);
+
+            return maxMoneyRobbed;
+        }
 
 
  */
