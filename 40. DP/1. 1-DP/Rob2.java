@@ -2,6 +2,26 @@ import java.util.*;
 
 public class Rob2 {
     
+    public int rob(int[] nums) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        Rob2 solution = new Rob2();
+
+        int[] nums1 = {2,3,2};
+        System.out.println("Result 1 -> " + solution.rob(nums1) + "\n");    // 3
+
+        int[] nums2 = {1,2,3,1};
+        System.out.println("Result 2 -> " + solution.rob(nums2) + "\n");    // 4
+        
+        int[] nums3 = {1,2,3};
+        System.out.println("Result 3 -> " + solution.rob(nums3) + "\n");    // 3
+
+    }
+
 }
 
 /*
