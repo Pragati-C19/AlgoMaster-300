@@ -48,6 +48,9 @@ public class Rob {
         int[] nums4 = {0};
         System.out.println("Result 4 -> " + solution.rob(nums4) + "\n");    // 0
 
+        int[] nums5 = {0, 0};
+        System.out.println("Result 5 -> " + solution.rob(nums5) + "\n");    // 0
+
     }
 
 }
