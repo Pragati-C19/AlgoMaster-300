@@ -4,6 +4,26 @@ public class MinCostClimbingStairs {
     
     public int minCostClimbingStairs(int[] cost) {
         
+        // Declare variables
+        int n = cost.length;
+        int[] dp = new int[n];
+
+        // assign initial values
+        dp[0] = cost[0];
+        dp[1] = cost[1];
+
+        // check other index
+        for (int i = 2; i < n; i++) {
+            
+            // get min cost between prev steps steps
+            int minCostForPrevSteps = Math.min( dp[i - 1], dp[i - 2] );
+
+            dp[i] = cost[i] + minCostForPrevSteps;
+
+            System.out.println("    - After cheking " + i + " step DP array looks like : " + Arrays.toString(dp));
+        }
+
+        return dp[n];
     }
 
     public static void main(String[] args) {
