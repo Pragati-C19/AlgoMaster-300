@@ -1,5 +1,22 @@
 public class Rob {
     
+    public int rob(int[] nums) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        Rob solution = new Rob();
+
+        int[] nums1 = {1,2,3,1};
+        System.out.println("Result 1 -> " + solution.rob(nums1) + "\n");    // 4
+
+        int[] nums2 = {2,7,9,3,1};
+        System.out.println("Result 2 -> " + solution.rob(nums2) + "\n");    // 12
+        
+    }
+
 }
 
 /*
