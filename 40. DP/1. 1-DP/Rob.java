@@ -2,7 +2,28 @@ public class Rob {
     
     public int rob(int[] nums) {
         
-        return 0;
+        // Declare variables
+        int n = nums.length;
+        int evenSum = 0;
+        int oddSum = 0;
+
+        for (int i = 0; i < n; i++) {
+            
+            if (i % 2 == 1) {
+                
+                oddSum += nums[i];
+                System.out.println("    - Odd Index " + i + " so Odd sum : " + oddSum);
+            }
+            else {
+                
+                evenSum += nums[i];
+                System.out.println("    - Even Index " + i + " so Even sum : " + evenSum);
+            }
+        }
+
+        int maxMoneyRobbed = Math.max(evenSum, oddSum);
+
+        return maxMoneyRobbed;
     }
 
     public static void main(String[] args) {
