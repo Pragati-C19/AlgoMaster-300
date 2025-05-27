@@ -13,28 +13,19 @@ public class Rob {
             return nums[0];
         }
         
-        if (n == 2) {
-            
-            return Math.max(nums[0], nums[1]);
-        }
-
         // assign starting values
         dp[0] = nums[0];
-        dp[1] = nums[1];
-        dp[2] = nums[2] + nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
 
-        for (int i = 3; i < n; i++) {
+        for (int i = 2; i < n; i++) {
             
-            dp[i] = nums[i] + Math.max(dp[i - 2], dp[i - 3]);
+            dp[i] = Math.max(dp[i - 1], nums[i] + dp[i - 2]);
             
             System.out.println("    - After cheking " + i + " step DP array looks like : " + Arrays.toString(dp));
 
         }
 
-        // let's take max from last two amount in dp
-        int maxMoneyRobbed = Math.max(dp[n - 1], dp[n - 2]);
-
-        return maxMoneyRobbed;
+        return dp[n - 1];
     }
 
     public static void main(String[] args) {
