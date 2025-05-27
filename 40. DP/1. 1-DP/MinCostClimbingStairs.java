@@ -15,16 +15,23 @@ public class MinCostClimbingStairs {
         // check other index
         for (int i = 2; i < n; i++) {
             
-            // get min cost between prev steps steps
-            int minCostForPrevSteps = Math.min( dp[i - 1], dp[i - 2] );
-            System.out.println("    - Minimum Cost of prev index : " + minCostForPrevSteps);
+            // Option 1: Reach step i from step (i - 1)
+            // We'll pay the total cost to reach step (i - 1), which is dp[i - 1],
+            // and then pay cost[i - 1] to step on it before jumping to step i.
+            int costFromOneStepBefore = dp[i - 1] + cost[i - 1];
 
-            dp[i] = cost[i] + minCostForPrevSteps;
-            
+            // Option 2: Reach step i from step (i - 2)
+            // We'll pay the total cost to reach step (i - 2), which is dp[i - 2],
+            // and then pay cost[i - 2] to step on it before jumping to step i.
+            int costFromTwoStepsBefore = dp[i - 2] + cost[i - 2];
+
+            // Choose the minimum of both options — the cheapest way to reach step i
+            dp[i] = Math.min(costFromOneStepBefore, costFromTwoStepsBefore);
+
             System.out.println("    - After cheking " + i + " step DP array looks like : " + Arrays.toString(dp));
         }
 
-        return Math.min(dp[n - 2], dp[n - 1]);
+        return dp[n - 1];
     }
 
     public static void main(String[] args) {
