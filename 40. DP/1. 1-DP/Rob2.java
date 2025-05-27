@@ -65,6 +65,9 @@ public class Rob2 {
         int[] nums3 = {1,2,3};
         System.out.println("Result 3 -> " + solution.rob(nums3) + "\n");    // 3
 
+        int[] nums4 = {0};
+        System.out.println("Result 4 -> " + solution.rob(nums4) + "\n");    // 0
+
     }
 
 }
