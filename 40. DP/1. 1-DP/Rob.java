@@ -13,6 +13,11 @@ public class Rob {
             return nums[0];
         }
         
+        if (n == 2) {
+            
+            return Math.max(nums[0], nums[1]);
+        }
+
         // assign starting values
         dp[0] = nums[0];
         dp[1] = nums[1];
