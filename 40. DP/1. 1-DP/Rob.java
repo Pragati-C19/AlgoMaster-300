@@ -36,6 +36,9 @@ public class Rob {
         int[] nums2 = {2,7,9,3,1};
         System.out.println("Result 2 -> " + solution.rob(nums2) + "\n");    // 12
         
+        int[] nums3 = {2,1,1,2};
+        System.out.println("Result 3 -> " + solution.rob(nums3) + "\n");    // 4
+
     }
 
 }
