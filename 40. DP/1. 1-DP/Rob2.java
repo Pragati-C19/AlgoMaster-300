@@ -26,8 +26,11 @@ public class Rob2 {
     private int dp(int[] nums, int start, int end) {
 
         // Declare variables
-        // int n = nums.length;
-        int[] dp = new int[end + 1];
+        // Finding length of shrink or subarrays or ranged start to end array
+        int n = end - start;
+        System.out.println("  Length will be -> " + end + " - " + start + " = " + n);
+
+        int[] dp = new int[n + 1];
 
         // Assign initial values
         dp[0] = nums[start];
@@ -36,7 +39,7 @@ public class Rob2 {
         System.out.println("    - Initial DP : " + Arrays.toString(dp));
 
         // let's check other houses
-        for (int i = start + 2; i <= end; i++) {
+        for (int i = start + 2; i <= n; i++) {
             
             int moneyRobToday = nums[i] + dp[i - 2];
             System.out.println("    - How much money we get by robbing " + i + " today : " + moneyRobToday);
@@ -46,7 +49,7 @@ public class Rob2 {
 
         }
 
-        return dp[end - 1];
+        return dp[n];
     }
 
     public static void main(String[] args) {
