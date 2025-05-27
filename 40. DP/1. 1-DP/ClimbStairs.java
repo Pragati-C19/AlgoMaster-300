@@ -1,10 +1,28 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class ClimbStairs {
     
     public int climbStairs(int n) {
      
-        return 0;
+        // Declare a DP array to store how many ways to reach to that step
+        // 1 <= n <= 45
+        int[] dp = new int[n + 1];
+
+        // assign starting value to first 2 indexes
+        // why 1? bcoz both will have only 1 way to reach
+        dp[0] = 1;
+        dp[1] = 1;
+
+        // check other steps now
+        for (int i = 2; i <= n; i++) {
+            
+            dp[i] = dp[i - 1] + dp[i - 2];
+
+            System.out.println("    - After cheking " + i + " step DP array looks like : " + Arrays.toString(dp));
+        }
+
+        return dp[n];
     }
 
     public static void main(String[] args) {
