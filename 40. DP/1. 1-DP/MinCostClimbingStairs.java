@@ -9,11 +9,11 @@ public class MinCostClimbingStairs {
         int[] dp = new int[n + 1];
 
         // assign initial values
-        dp[0] = cost[0];      // No cost to start before step 0
-        dp[1] = cost[1];      // we can also start at step 1 for free
+        dp[0] = 0;      // No cost to start before step 0
+        dp[1] = 0;      // we can also start at step 1 for free
 
         // check other index
-        for (int i = 2; i < n; i++) {
+        for (int i = 2; i <= n; i++) {
             
             // Option 1: Reach step i from step (i - 1)
             // We'll pay the total cost to reach step (i - 1), which is dp[i - 1],
@@ -31,7 +31,7 @@ public class MinCostClimbingStairs {
             System.out.println("    - After cheking " + i + " step DP array looks like : " + Arrays.toString(dp));
         }
 
-        return dp[n - 1];
+        return dp[n];
     }
 
     public static void main(String[] args) {
