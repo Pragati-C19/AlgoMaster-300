@@ -8,6 +8,11 @@ public class Rob {
         int n = nums.length;
         int[] dp = new int[n + 1];
 
+        if (n == 1) {
+            
+            return nums[0];
+        }
+        
         // assign starting values
         dp[0] = nums[0];
         dp[1] = nums[1];
