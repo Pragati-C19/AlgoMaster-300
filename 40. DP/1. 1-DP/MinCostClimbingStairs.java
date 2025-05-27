@@ -2,6 +2,21 @@ import java.util.*;
 
 public class MinCostClimbingStairs {
     
+    public int minCostClimbingStairs(int[] cost) {
+        
+    }
+
+    public static void main(String[] args) {
+
+        MinCostClimbingStairs solution = new MinCostClimbingStairs();
+
+        int[] cost1 = {10,15,20};
+        System.out.println("Result 1 -> " + solution.minCostClimbingStairs(cost1) + "\n");
+
+        int[] cost2 = {1,100,1,1,1,100,1,1,100,1};
+        System.out.println("Result 2 -> " + solution.minCostClimbingStairs(cost2) + "\n");
+        
+    }
 }
 
 /*
