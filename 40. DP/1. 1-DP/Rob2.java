@@ -7,6 +7,12 @@ public class Rob2 {
         // Declare variables
         int n = nums.length;
         
+        // Base Case :
+        if (n == 1) {
+            
+            return nums[0];
+        }
+        
         // if we rob house 0 to n - 2
         int robHouseZero = dp(nums, 0, n - 2);
         System.out.println(" Max value for range [0, n-2] : " + robHouseZero);
