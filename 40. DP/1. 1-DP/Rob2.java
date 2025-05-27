@@ -52,7 +52,9 @@ public class Rob2 {
         // let's check other houses
         for (int i = 2; i <= n; i++) {
             
-            int moneyRobToday = nums[i] + dp[i - 2];
+            // used nums[start + i] not nums[i] karan te jr use kel me tr to nehmi shrink nums nahi tr actual nums cha i gheil
+            // aplyala havay start value nantr jo i yeil to ghetla pahije tyani mhnun 
+            int moneyRobToday = nums[start + i] + dp[i - 2];
             System.out.println("    - How much money we get by robbing " + i + " today : " + moneyRobToday);
             
             dp[i] = Math.max(dp[i - 1], moneyRobToday);
