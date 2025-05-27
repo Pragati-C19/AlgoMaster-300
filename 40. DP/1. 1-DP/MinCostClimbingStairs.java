@@ -9,8 +9,8 @@ public class MinCostClimbingStairs {
         int[] dp = new int[n + 1];
 
         // assign initial values
-        dp[0] = 0;      // No cost to start before step 0
-        dp[1] = 0;      // we can also start at step 1 for free
+        dp[0] = cost[0];      // No cost to start before step 0
+        dp[1] = cost[1];      // we can also start at step 1 for free
 
         // check other index
         for (int i = 2; i < n; i++) {
@@ -20,12 +20,11 @@ public class MinCostClimbingStairs {
             System.out.println("    - Minimum Cost of prev index : " + minCostForPrevSteps);
 
             dp[i] = cost[i] + minCostForPrevSteps;
-            System.out.println("  DEBUGGER : cost[i] and dp[i] : " + cost[i] + ", " + dp[i]);
-
+            
             System.out.println("    - After cheking " + i + " step DP array looks like : " + Arrays.toString(dp));
         }
 
-        return dp[n - 1];
+        return Math.min(dp[n - 2], dp[n - 1]);
     }
 
     public static void main(String[] args) {
@@ -63,6 +62,24 @@ public class MinCostClimbingStairs {
         - and tyat mala curr index chi cost add karavi lagel
         - yeah I'm shock too maz dok asa kasa challa te but it's the right approach
  
+    ^ Improvement :
+
+        Trace Example:
+            If cost length = 4, then:
+
+                      cost[0], cost[1], cost[2], cost[3]  
+                         ^        ^        ^        ^                 
+                         |        |        |        |   
+                       step0    step1    step2    step3     <-- top is here (after step3)
+
+            
+            You can reach the top by:
+                - ending on step 3 (then jump)
+                - ending on step 2 (then jump)
+
+            So the best path is:
+                min(dp[2], dp[3])
+
  
  * Pseudo Code :
  
