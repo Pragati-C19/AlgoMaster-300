@@ -13,6 +13,11 @@ public class Rob2 {
             return nums[0];
         }
 
+        if (n == 2) {
+            
+            return Math.max(nums[0], nums[1]);
+        }
+
         // if we rob house 0 to n - 2
         int robHouseZero = dp(nums, 0, n - 2);
         System.out.println(" Max value for range [0, n-2] : " + robHouseZero);
