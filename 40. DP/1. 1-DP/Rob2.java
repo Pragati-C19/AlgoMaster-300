@@ -50,7 +50,7 @@ public class Rob2 {
         System.out.println("    - Initial DP : " + Arrays.toString(dp));
 
         // let's check other houses
-        for (int i = start + 2; i <= n; i++) {
+        for (int i = 2; i <= n; i++) {
             
             int moneyRobToday = nums[i] + dp[i - 2];
             System.out.println("    - How much money we get by robbing " + i + " today : " + moneyRobToday);
