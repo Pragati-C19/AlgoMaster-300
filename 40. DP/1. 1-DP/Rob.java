@@ -21,7 +21,10 @@ public class Rob {
 
         }
 
-        return dp[n];
+        // let's take max from last two amount in dp
+        int maxMoneyRobbed = Math.max(dp[n - 1], dp[n - 2]);
+
+        return maxMoneyRobbed;
     }
 
     public static void main(String[] args) {
