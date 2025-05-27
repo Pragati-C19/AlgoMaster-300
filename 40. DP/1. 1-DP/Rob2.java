@@ -31,6 +31,31 @@ public class Rob2 {
         return dp[n-1];
     }
 
+    // Helper Function : to check maximum robbed money on days 
+    private int dp(int[] shrinkNums, int start, int end) {
+
+        // Declare variables
+        int n = shrinkNums.length;
+        int[] dp = new int[n + 1];
+
+        // Assign initial values
+        dp[0] = shrinkNums[0];
+        dp[1] = Math.max(shrinkNums[0], shrinkNums[1]);
+
+        // let's check other houses
+        for (int i = 2; i < n; i++) {
+            
+            int moneyRobToday = shrinkNums[i] + dp[i - 2];
+            System.out.println("    - How much money we get by robbing " + i + " today : " + moneyRobToday);
+            
+            dp[i] = Math.max(dp[i - 1], moneyRobToday);
+            System.out.println("    - After cheking " + i + " step DP array looks like : " + Arrays.toString(dp));
+
+        }
+
+        return dp[n-1];
+    }
+
     public static void main(String[] args) {
 
         Rob2 solution = new Rob2();
@@ -88,7 +113,7 @@ public class Rob2 {
         - house[1] to house[n-1] once
         - then take max between this two
  
-        
+
  * Pseudo Code :
  
     1. First approach with if else
