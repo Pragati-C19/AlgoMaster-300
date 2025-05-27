@@ -20,10 +20,15 @@ public class Rob2 {
             
             dp[i] = Math.max(dp[i - 1], moneyRobToday);
             System.out.println("    - After cheking " + i + " step DP array looks like : " + Arrays.toString(dp));
-                        
+
         }
 
-        return 0;
+        if (dp[0] > dp[1]) {
+
+            return dp[n-2];
+        }
+
+        return dp[n-1];
     }
 
     public static void main(String[] args) {
