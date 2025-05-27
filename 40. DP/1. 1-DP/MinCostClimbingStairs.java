@@ -23,7 +23,7 @@ public class MinCostClimbingStairs {
             System.out.println("    - After cheking " + i + " step DP array looks like : " + Arrays.toString(dp));
         }
 
-        return dp[n];
+        return dp[n - 1];
     }
 
     public static void main(String[] args) {
