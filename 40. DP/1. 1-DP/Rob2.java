@@ -83,11 +83,44 @@ public class Rob2 {
         - then he check karu
             if(dp[0] > dp[1]) -> then will return dp[n - 2]
             if(dp[1] > dp[0]) -> then will return dp[n - 1]
+    8. I think we should separately check for both ranges
+        - house[0] to house[n-2] once
+        - house[1] to house[n-1] once
+        - then take max between this two
  
- 
+        
  * Pseudo Code :
  
+    1. First approach with if else
 
+        public int rob(int[] nums) {
+        
+            -> Declare variables
+                int n = nums.length;
+                int[] dp = new int[n + 1];
+
+            -> Assign initial values
+                dp[0] = nums[0];
+                dp[1] = Math.max(nums[0], nums[1]);
+
+            -> let's check other houses
+                for (int i = 2; i < n; i++) {
+                    
+                    int moneyRobToday = nums[i] + dp[i - 2];
+                    System.out.println("    - How much money we get by robbing " + i + " today : " + moneyRobToday);
+                    
+                    dp[i] = Math.max(dp[i - 1], moneyRobToday);
+                    System.out.println("    - After cheking " + i + " step DP array looks like : " + Arrays.toString(dp));
+
+                }
+
+            if (dp[0] > dp[1]) {
+
+                return dp[n-2];
+            }
+
+            return dp[n-1];
+        }
 
 
  */
