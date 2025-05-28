@@ -7,14 +7,14 @@ public class CanPartition {
         // Declare Variables
         int n = nums.length;
         int totalSum = 0;
-        int s1Sum = 0;      // 1st Subarray 
-        int s2Sum = 0;      // 2nd Subarray 
+
 
         // Check Total sum 
         for(int num : nums) {
             totalSum += num;
         }
         System.out.println(" Total Sum of all nums in Array : " + totalSum);
+
 
         // Base Case :
         if(totalSum % 2 != 0) {
@@ -23,12 +23,28 @@ public class CanPartition {
             return false;
         }
 
+
         // nums in both subarray should have sum as halfOfTotal
         int halfOfTotal = totalSum / 2;
         System.out.println(" Half of Total Sum : " + halfOfTotal);
 
+        // Declare DP with length halfOfTotal
+        boolean[] dp = new boolean[halfOfTotal + 1];
 
-        return decideWhichNumWant(nums, halfOfTotal, 0, n);
+        // assign default value for 0'th index as Sum 0 is always possible (empty subset)
+        dp[0] = true;
+
+        // check all nums in an array and see if we find sum equals dp's index 
+        for (int num : nums) {
+            for (int i = halfOfTotal; i >= num; i--) {
+                
+                dp[i] = dp[i] || dp[i - num];
+    
+                System.out.println("    - After cheking " + i + " step DP array looks like : " + Arrays.toString(dp));
+            }
+        }
+
+        return dp[halfOfTotal];
     }
 
 
@@ -46,8 +62,8 @@ public class CanPartition {
         System.out.println("Result 3 -> " + solution.canPartition(nums3) + "\n");    // false
 
         // s1 = {3,6,8,16,20} s2 = {3,16,16,18}
-        int[] nums4 = {3,3,6,8,16,16,16,18,20};
-        System.out.println("Result 4 -> " + solution.canPartition(nums4) + "\n");    // true
+        // int[] nums4 = {3,3,6,8,16,16,16,18,20};
+        // System.out.println("Result 4 -> " + solution.canPartition(nums4) + "\n");    // true
 
         // int[] nums5 = {0, 0};
         // System.out.println("Result 5 -> " + solution.canPartition(nums5) + "\n");    // 0
