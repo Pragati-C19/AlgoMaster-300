@@ -31,37 +31,6 @@ public class CanPartition {
         return decideWhichNumWant(nums, halfOfTotal, 0, n);
     }
 
-    // Helper Function :
-    private boolean decideWhichNumWant (int[] nums, int halfOfTotal, int index, int n) {
-
-        if (halfOfTotal == 0) {
-            
-            System.out.println("    halfOfTotal comes to 0.. means we got our one set");
-            return true;
-        }
-
-        if (index >= n ) {
-            
-            System.out.println("    Base Case : if startIndex has more than length of nums means we don't have value in array now..");
-            return false;
-        }
-
-        boolean take = false;
-        boolean notTaking;
-
-        if (nums[index] <= halfOfTotal) {
-            
-            System.out.println("    - if " + nums[index] + " <= " + halfOfTotal + " that means we can add it in a s1 set..");
-
-            take = decideWhichNumWant(nums, halfOfTotal - nums[index], index + 1, n);
-        }
-
-        notTaking = decideWhichNumWant(nums, halfOfTotal, index + 1, n);
-        
-        System.out.println("    - take and notTaking : " + take + ", " + notTaking);
-
-        return take || notTaking;
-    }
 
     public static void main(String[] args) {
 
@@ -123,7 +92,57 @@ public class CanPartition {
                 will add in s2Sum
         - at the end of for loop check if s1Sum == s2Sum ? if yes then return true else false
  
- 
+    ^ Improvement :
+
+        1. Let's Use Subset Sum DP 
+        2. Before we were trying to use Brute Force and memozation but now change the pattern
+        3. What was our goal ?
+            - Find the total sum of all numbers.
+            - If the sum is odd, we cannot split into two equal parts.
+            - If the sum is even, check if there is a subset whose sum = totalSum / 2.
+        4. so will calculate the totalSum as we did before
+        5. Set Base case as if sum is odd return false : we can't divide sum / 2 and as per que we need two subArrays
+        6. What is the targeted sum we want to have for both subArr? 
+            it's halfOfTotal : why? we already discussed it
+        7. Now Main part of the game 
+            - declare a dp array with length [halfOfTotal + 1]
+                why ? apan check dp madhe store kartoy ki subset chi sum equal to index ahe ka mhnun 
+            - dp[i] : "Can we get a subset with sum = i?"
+            - dp[0] = true      -> base case: sum of 0 is always possible (empty subset)
+            - then let's start an nested for loop
+                for(num : nums)
+                    for(i = halfOfTotal to num)
+
+                why? We go backward from halfOfTotal to num to prevent using the same element twice in this iteration.
+
+            - We have Two Choices:
+                Don't take num  -> dp[j] remains as is
+                Take num        -> check if dp[j - num] was true before -> now dp[j] becomes true
+        8. at the end return dp[halfOfTotal]
+
+    ^ Dry Run :
+
+        nums = [1, 5, 11, 5]    total = 22 -> target = 11
+
+        - we want to check if subset adds upto 11 
+
+        - initial value in dp after adding dp[0] = true
+            
+            dp = [  true, false, false, false, false, false, false, false, false, false, false, false   ]
+                      0     1      2      3      4      5      6      7      8      9      10     11
+
+        - Checking num = 1
+            we can now make sum 1 using 1
+
+            dp[1] = dp[1] || dp[1 - 1]      ->  false || true -> true
+
+        - Checking num = 5
+            we can now make sum 5 using 5
+
+            dp[5] = dp[5] || dp[5 - 5]      ->  false || true   -> true
+            dp[6] = dp[6] || dp[6 - 5]      ->  false || dp[1]  -> true   -> dp[6] = true
+
+
  
  * Pseudo Code :
  
@@ -180,5 +199,67 @@ public class CanPartition {
             return false;
         }
 
+    2. Memoization :
+
+        public boolean canPartition(int[] nums) {
+        
+            // Declare Variables
+            int n = nums.length;
+            int totalSum = 0;
+            int s1Sum = 0;      // 1st Subarray 
+            int s2Sum = 0;      // 2nd Subarray 
+
+            // Check Total sum 
+            for(int num : nums) {
+                totalSum += num;
+            }
+            System.out.println(" Total Sum of all nums in Array : " + totalSum);
+
+            // Base Case :
+            if(totalSum % 2 != 0) {
+
+                System.out.println("    Total sum (" + totalSum + ") of all nums in array is not divisible by 2...");
+                return false;
+            }
+
+            // nums in both subarray should have sum as halfOfTotal
+            int halfOfTotal = totalSum / 2;
+            System.out.println(" Half of Total Sum : " + halfOfTotal);
+
+
+            return decideWhichNumWant(nums, halfOfTotal, 0, n);
+        }
+
+        // Helper Function :
+        private boolean decideWhichNumWant (int[] nums, int halfOfTotal, int index, int n) {
+
+            if (halfOfTotal == 0) {
+                
+                System.out.println("    halfOfTotal comes to 0.. means we got our one set");
+                return true;
+            }
+
+            if (index >= n ) {
+                
+                System.out.println("    Base Case : if startIndex has more than length of nums means we don't have value in array now..");
+                return false;
+            }
+
+            boolean take = false;
+            boolean notTaking;
+
+            if (nums[index] <= halfOfTotal) {
+                
+                System.out.println("    - if " + nums[index] + " <= " + halfOfTotal + " that means we can add it in a s1 set..");
+
+                take = decideWhichNumWant(nums, halfOfTotal - nums[index], index + 1, n);
+            }
+
+            notTaking = decideWhichNumWant(nums, halfOfTotal, index + 1, n);
+            
+            System.out.println("    - take and notTaking : " + take + ", " + notTaking);
+
+            return take || notTaking;
+        }
 
  */
