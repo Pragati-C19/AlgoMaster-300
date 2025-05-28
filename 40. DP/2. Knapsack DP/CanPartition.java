@@ -4,15 +4,26 @@ public class CanPartition {
 
     public boolean canPartition(int[] nums) {
         
+        // Declare Variables
+        int n = nums.length;
         int totalSum = 0;
+        int s1Sum = 0;      // 1st Subarray 
+        int s2Sum = 0;      // 2nd Subarray 
 
+        // Check Total sum 
         for(int num : nums) {
-
             totalSum += num;
         }
+        System.out.println(" Total Sum of all nums in Array : " + totalSum);
 
-        if(totalSum % 2 == 0)
-            return true;
+        // Base Case :
+        if(totalSum % 2 != 0) {
+
+            System.out.println("    Total sum (" + totalSum + ") of all nums in array is not divisible by 2...");
+            return false;
+        }
+
+           
 
         return false;
     }
