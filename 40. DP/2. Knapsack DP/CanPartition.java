@@ -1,5 +1,46 @@
+import java.util.*;
+
 public class CanPartition {
-    
+
+    public boolean canPartition(int[] nums) {
+        
+        int totalSum = 0;
+
+        for(int num : nums) {
+
+            totalSum += num;
+        }
+
+        if(totalSum % 2 == 0)
+            return true;
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+
+        CanPartition solution = new CanPartition();
+
+        int[] nums1 = {1, 5, 11, 5};
+        System.out.println("Result 1 -> " + solution.canPartition(nums1) + "\n");    // true
+
+        int[] nums2 = {1,2,3,5};
+        System.out.println("Result 2 -> " + solution.canPartition(nums2) + "\n");    // false
+        
+        int[] nums3 = {1,2,5};
+        System.out.println("Result 3 -> " + solution.canPartition(nums3) + "\n");    // false
+
+        // int[] nums4 = {0};
+        // System.out.println("Result 4 -> " + solution.canPartition(nums4) + "\n");    // 0
+
+        // int[] nums5 = {0, 0};
+        // System.out.println("Result 5 -> " + solution.canPartition(nums5) + "\n");    // 0
+
+        // int[] nums6 = {1,2,1,1};
+        // System.out.println("Result 6 -> " + solution.canPartition(nums6) + "\n");    // 3
+
+    }
+
 }
 
 /*
