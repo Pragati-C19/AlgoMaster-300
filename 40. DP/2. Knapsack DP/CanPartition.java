@@ -27,29 +27,40 @@ public class CanPartition {
         int halfOfTotal = totalSum / 2;
         System.out.println(" Half of Total Sum : " + halfOfTotal);
 
-        // dividing nums in 2 arrays
-        for (int num : nums) {
-            
-            if ((s1Sum + num) <= halfOfTotal) {
-                
-                s1Sum += num;
-                System.out.println("    - (s1Sum + num) < halfOfTotal so added that num in s1Sum : " + s1Sum);
-            }
-            else {
 
-                s2Sum += num;
-                System.out.println("    - (s1Sum + num) > halfOfTotal so added that num in s2Sum : " + s2Sum);
-            }
-        }
+        return decideWhichNumWant(nums, halfOfTotal, 0, n);
+    }
 
-        // if both sum equal return true
-        if (s1Sum == s2Sum) {
+    // Helper Function :
+    private boolean decideWhichNumWant (int[] nums, int halfOfTotal, int index, int n) {
+
+        if (halfOfTotal == 0) {
             
-            System.out.println(" Both subset sum are equal... ");
+            System.out.println("    halfOfTotal comes to 0.. means we got our one set");
             return true;
         }
 
-        return false;
+        if (index >= n ) {
+            
+            System.out.println("    Base Case : if startIndex has more than length of nums means we don't have value in array now..");
+            return false;
+        }
+
+        boolean take = false;
+        boolean notTaking;
+
+        if (nums[index] <= halfOfTotal) {
+            
+            System.out.println("    - if " + nums[index] + " <= " + halfOfTotal + " that means we can add it in a s1 set..");
+
+            take = decideWhichNumWant(nums, halfOfTotal - nums[index], index + 1, n);
+        }
+
+        notTaking = decideWhichNumWant(nums, halfOfTotal, index + 1, n);
+        
+        System.out.println("    - take and notTaking : " + take + ", " + notTaking);
+
+        return take || notTaking;
     }
 
     public static void main(String[] args) {
@@ -117,6 +128,57 @@ public class CanPartition {
  * Pseudo Code :
  
 
+    1. Brute Force :
+
+        public boolean canPartition(int[] nums) {
+        
+            // Declare Variables
+            int n = nums.length;
+            int totalSum = 0;
+            int s1Sum = 0;      // 1st Subarray 
+            int s2Sum = 0;      // 2nd Subarray 
+
+            // Check Total sum 
+            for(int num : nums) {
+                totalSum += num;
+            }
+            System.out.println(" Total Sum of all nums in Array : " + totalSum);
+
+            // Base Case :
+            if(totalSum % 2 != 0) {
+
+                System.out.println("    Total sum (" + totalSum + ") of all nums in array is not divisible by 2...");
+                return false;
+            }
+
+            // nums in both subarray should have sum as halfOfTotal
+            int halfOfTotal = totalSum / 2;
+            System.out.println(" Half of Total Sum : " + halfOfTotal);
+
+            // dividing nums in 2 arrays
+            for (int num : nums) {
+                
+                if ((s1Sum + num) <= halfOfTotal) {
+                    
+                    s1Sum += num;
+                    System.out.println("    - (s1Sum + num) < halfOfTotal so added that num in s1Sum : " + s1Sum);
+                }
+                else {
+
+                    s2Sum += num;
+                    System.out.println("    - (s1Sum + num) > halfOfTotal so added that num in s2Sum : " + s2Sum);
+                }
+            }
+
+            // if both sum equal return true
+            if (s1Sum == s2Sum) {
+                
+                System.out.println(" Both subset sum are equal... ");
+                return true;
+            }
+
+            return false;
+        }
 
 
  */
