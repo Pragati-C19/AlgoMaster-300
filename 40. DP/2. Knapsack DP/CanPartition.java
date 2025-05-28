@@ -23,7 +23,24 @@ public class CanPartition {
             return false;
         }
 
-           
+        // nums in both subarray should have sum as halfOfTotal
+        int halfOfTotal = totalSum / 2;
+        System.out.println(" Half of Total Sum : " + halfOfTotal);
+
+        // dividing nums in 2 arrays
+        for (int num : nums) {
+            
+            if (s1Sum < halfOfTotal) {
+                
+                s1Sum += num;
+                System.out.println("    - s1Sum < halfOfTotal so added that num in s1Sum : " + s1Sum);
+            }
+            else {
+
+                s2Sum += num;
+                System.out.println("    - s1Sum > halfOfTotal so added that num in s2Sum : " + s2Sum);
+            }
+        }
 
         return false;
     }
