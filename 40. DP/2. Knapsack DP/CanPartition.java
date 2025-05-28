@@ -30,15 +30,15 @@ public class CanPartition {
         // dividing nums in 2 arrays
         for (int num : nums) {
             
-            if (s1Sum < halfOfTotal) {
+            if ((s1Sum + num) <= halfOfTotal) {
                 
                 s1Sum += num;
-                System.out.println("    - s1Sum < halfOfTotal so added that num in s1Sum : " + s1Sum);
+                System.out.println("    - (s1Sum + num) < halfOfTotal so added that num in s1Sum : " + s1Sum);
             }
             else {
 
                 s2Sum += num;
-                System.out.println("    - s1Sum > halfOfTotal so added that num in s2Sum : " + s2Sum);
+                System.out.println("    - (s1Sum + num) > halfOfTotal so added that num in s2Sum : " + s2Sum);
             }
         }
 
