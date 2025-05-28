@@ -42,6 +42,13 @@ public class CanPartition {
             }
         }
 
+        // if both sum equal return true
+        if (s1Sum == s2Sum) {
+            
+            System.out.println(" Both subset sum are equal... ");
+            return true;
+        }
+
         return false;
     }
 
