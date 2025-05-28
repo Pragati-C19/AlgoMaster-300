@@ -65,8 +65,9 @@ public class CanPartition {
         int[] nums3 = {1,2,5};
         System.out.println("Result 3 -> " + solution.canPartition(nums3) + "\n");    // false
 
-        // int[] nums4 = {0};
-        // System.out.println("Result 4 -> " + solution.canPartition(nums4) + "\n");    // 0
+        // s1 = {3,6,8,16,20} s2 = {3,16,16,18}
+        int[] nums4 = {3,3,6,8,16,16,16,18,20};
+        System.out.println("Result 4 -> " + solution.canPartition(nums4) + "\n");    // true
 
         // int[] nums5 = {0, 0};
         // System.out.println("Result 5 -> " + solution.canPartition(nums5) + "\n");    // 0
