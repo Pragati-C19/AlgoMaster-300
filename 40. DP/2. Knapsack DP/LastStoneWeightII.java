@@ -22,7 +22,10 @@ public class LastStoneWeightII {
 
             // Get first two elements
             int y = stonesList.remove(0);   // largest element
-            int x = stonesList.remove(1);   // second largest element
+            System.out.println("    - value of y : " + y);
+
+            int x = stonesList.remove(0);   // second largest element
+            System.out.println("    - value of x : " + x);
 
             // If both x and y are not equal then add y - x
             if (x != y) {
