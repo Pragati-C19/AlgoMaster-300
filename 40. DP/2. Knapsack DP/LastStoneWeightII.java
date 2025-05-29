@@ -36,6 +36,14 @@ public class LastStoneWeightII {
             System.out.println("    - After cheking " + stone + " step DP array looks like : " + Arrays.toString(dp));
         }
 
+        // will check for loop from end and check if any true index is there 
+        // if yes then return total - double of that index
+        for (int i = halfOfTotal; i >= 0; i--) {
+            if (dp[i]) {
+                return totalSum - 2 * i;
+            }
+        }
+
         return 0;
     }
 
