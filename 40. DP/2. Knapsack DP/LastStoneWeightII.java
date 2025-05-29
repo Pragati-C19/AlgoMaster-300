@@ -4,7 +4,42 @@ public class LastStoneWeightII {
     
     public int lastStoneWeightII(int[] stones) {
         
-        
+        // Convert this int[] into List<Integer>
+        List<Integer> stonesList = new ArrayList<>();
+
+        for (int stone : stones) {
+            stonesList.add(stone);
+        }
+        System.out.println("Starting List : " + stonesList);
+
+
+        // let's start while loop until only one stone is left
+        while (stonesList.size() > 1) {
+            
+            // sort the stonesList in descending order
+            Collections.sort(stonesList, Collections.reverseOrder());
+            System.out.println("    - Sorted List : " + stonesList);
+
+            // Get first two elements
+            int y = stonesList.remove(0);   // largest element
+            int x = stonesList.remove(1);   // second largest element
+
+            // If both x and y are not equal then add y - x
+            if (x != y) {
+                
+                stonesList.add(y - x);
+            }
+
+            // else it will destroy both nums 
+            System.out.println("    - updated stone List : " + stonesList);
+            
+        }
+
+        if (stonesList.size() == 1) {
+            
+            return stonesList.get(0);
+        }
+
         return 0;
     }
 
