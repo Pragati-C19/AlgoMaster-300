@@ -2,6 +2,36 @@ import java.util.*;
 
 public class LastStoneWeightII {
     
+    public int lastStoneWeightII(int[] stones) {
+        
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        LastStoneWeightII solution = new LastStoneWeightII();
+
+        int[] nums1 = {2,7,4,1,8,1};
+        System.out.println("Result 1 -> " + solution.lastStoneWeightII(nums1) + "\n");    // true
+
+        int[] nums2 = {31,26,33,21,40};
+        System.out.println("Result 2 -> " + solution.lastStoneWeightII(nums2) + "\n");    // false
+        
+        // int[] nums3 = {1,2,5};
+        // System.out.println("Result 3 -> " + solution.lastStoneWeightII(nums3) + "\n");    // false
+
+        // s1 = {3,6,8,16,20} s2 = {3,16,16,18}
+        // int[] nums4 = {3,3,6,8,16,16,16,18,20};
+        // System.out.println("Result 4 -> " + solution.canPartition(nums4) + "\n");    // true
+
+        // int[] nums5 = {0, 0};
+        // System.out.println("Result 5 -> " + solution.canPartition(nums5) + "\n");    // 0
+
+        // int[] nums6 = {1,2,1,1};
+        // System.out.println("Result 6 -> " + solution.canPartition(nums6) + "\n");    // 3
+
+    }
 }
 
 /*
