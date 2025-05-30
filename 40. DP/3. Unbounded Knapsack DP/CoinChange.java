@@ -5,13 +5,19 @@ public class CoinChange {
     // Driver Function 
     public int coinChange(int[] coins, int amount) {
         
-        int totalSum = 0;
+        // Declare a dp with length equals to amount and add initial values as Max_Value
+        int[] dp = new int[amount + 1];
+        
+        Arrays.fill(dp, Integer.MAX_VALUE);
 
-        for(int coin : coins) {
-            totalSum += coin;
-        }
+        // amount 0 will be with zero coins so 
+        dp[0] = 0;
 
-        return totalSum - amount;
+        System.out.println("Initial DP Array : " + Arrays.toString(dp));
+
+
+
+        return -1;
     }
 
     public static void main(String[] args) {
