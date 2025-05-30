@@ -35,6 +35,9 @@ public class CoinChange {
         }
 
         // return dp[amount] if we have any count else return -1
+        if (dp[amount] == Integer.MAX_VALUE) {
+            return -1;
+        }
         
         return dp[amount];
     }
