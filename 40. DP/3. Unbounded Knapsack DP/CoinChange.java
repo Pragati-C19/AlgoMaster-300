@@ -1,5 +1,44 @@
+import java.util.*;
+
 public class CoinChange {
     
+    // Driver Function 
+    public int coinChange(int[] coins, int amount) {
+        
+        int totalSum = 0;
+
+        for(int coin : coins) {
+            totalSum += coin;
+        }
+
+        return totalSum - amount;
+    }
+
+    public static void main(String[] args) {
+
+        CoinChange solution = new CoinChange();
+
+        int[] coins1 = {1,2,5};
+        System.out.println("Result 1 -> " + solution.coinChange(coins1, 11) + "\n");    // 3
+
+        int[] coins2 = {2};
+        System.out.println("Result 2 -> " + solution.coinChange(coins2, 3) + "\n");    // -1
+        
+        int[] coins3 = {1};
+        System.out.println("Result 3 -> " + solution.coinChange(coins3, 0) + "\n");    // 0
+
+        // s1 = {3,6,8,16,20} s2 = {3,16,16,18}
+        // int[] coins4 = {3,3,6,8,16,16,16,18,20};
+        // System.out.println("Result 4 -> " + solution.coinChange(coins4) + "\n");    // true
+
+        // int[] coins5 = {0, 0};
+        // System.out.println("Result 5 -> " + solution.coinChange(coins5) + "\n");    // 0
+
+        // int[] coins6 = {1,2,1,1};
+        // System.out.println("Result 6 -> " + solution.coinChange(coins6) + "\n");    // 3
+
+    }
+
 }
 
 /*
