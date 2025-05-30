@@ -15,6 +15,24 @@ public class CoinChange {
 
         System.out.println("Initial DP Array : " + Arrays.toString(dp));
 
+        // let's check if we can make other amounts with given coins
+        for (int currAmt = 1; currAmt <= amount; currAmt++) {
+            for (int coin : coins) {
+                
+                // check if coin is less than currAmt -> we can't reach that currAmt with coin bigger than it 
+                if (coin <= currAmt) {
+                    
+                    // if we use this coin then the coins count will be as below
+                    int minCoinsIfUsedThisCoin = 1 + dp[currAmt - coin];
+                    System.out.println("        coin = " + coin + "  -> 1 + dp[" + currAmt + " - " + coin + "] = " + minCoinsIfUsedThisCoin); 
+
+                    // if more than 1 coin can able to make currAmt we need min number of coins 
+                    dp[currAmt] = Math.min(dp[currAmt], minCoinsIfUsedThisCoin);
+                }
+            }
+
+            System.out.println("    - Updated DP Array : " + Arrays.toString(dp));
+        }
 
 
         return -1;
