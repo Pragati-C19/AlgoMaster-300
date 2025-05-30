@@ -20,7 +20,7 @@ public class CoinChange {
             for (int coin : coins) {
                 
                 // check if coin is less than currAmt -> we can't reach that currAmt with coin bigger than it 
-                if (coin <= currAmt) {
+                if (coin <= currAmt && dp[currAmt - coin] != Integer.MAX_VALUE) {
                     
                     // if we use this coin then the coins count will be as below
                     int minCoinsIfUsedThisCoin = 1 + dp[currAmt - coin];
@@ -34,8 +34,9 @@ public class CoinChange {
             System.out.println("    - Updated DP Array : " + Arrays.toString(dp));
         }
 
-
-        return -1;
+        // return dp[amount] if we have any count else return -1
+        
+        return dp[amount];
     }
 
     public static void main(String[] args) {
@@ -66,6 +67,21 @@ public class CoinChange {
 }
 
 /*
+
+ ^ Improvement :
+
+    1. We are getting dp[3] for 2nd test case as coin = 2  -> 1 + dp[3 - 2] = -2147483648
+    2. why ? bcoz we are adding 1 in maxValue and it as 2147483647 is the max value and nothing is greater than that it automatically converts it into -2147483648
+    3. To fix it will I have two things in mind :
+        - wrote in if not only abt maxValue but abt -2147483648          
+            but jr jast coins asel and again -2147483648 madhe + 1zala tr?
+            mala exact number nahi mahit like Max_Value asa mahitiye to 
+        - to avoid above problem
+            apan if add karu ki 
+            dp[amt - coin] != Integer.Max_Value asel trch apan pudhe dp[amt] madhe add karnyavr focus karu
+            
+            
+    
  * Intuitions :
     
     1. we have given integer array coins representing coins of diff denominations 
