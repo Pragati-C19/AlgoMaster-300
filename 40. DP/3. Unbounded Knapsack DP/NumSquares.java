@@ -4,7 +4,31 @@ public class NumSquares {
     
     public int numSquares(int n) {
         
-        return 0;
+        // Declare a dp 
+        int[] dp = new int[n];
+
+        // we need to get minimum numsquares to add so will have n 
+        // so adding maxValue at start
+        Arrays.fill(dp, Integer.MAX_VALUE);
+
+        // Will initiallize first values
+        dp[0] = 0;
+        dp[1] = 1;
+
+        // check other values
+        for (int i = 2; i <= n; i++) {
+            for (int j = 1; j*j <= n ; j++) {
+                
+                int square = j*j;
+                int waysUsingThisSquare  = 1 + dp[i - square];
+
+                dp[i] = Math.min(dp[i], waysUsingThisSquare);
+            }
+
+            System.out.println("    - Updated DP Array : " + Arrays.toString(dp));
+        }
+
+        return dp[n];
     }
 
     public static void main(String[] args) {
