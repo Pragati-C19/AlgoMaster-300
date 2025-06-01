@@ -2,6 +2,23 @@ import java.util.*;
 
 public class NumSquares {
     
+    public int numSquares(int n) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        NumSquares solution = new NumSquares();
+       
+        System.out.println("Result 1 -> " + solution.numSquares(12) + "\n");    // 3
+    
+        System.out.println("Result 2 -> " + solution.numSquares(13) + "\n");    // 2
+   
+        System.out.println("Result 3 -> " + solution.numSquares(6) + "\n");     // 6
+
+    }
+
 }
 
 /*
