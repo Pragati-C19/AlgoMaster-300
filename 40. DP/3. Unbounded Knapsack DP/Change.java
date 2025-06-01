@@ -2,6 +2,35 @@ import java.util.*;
 
 public class Change {
     
+    public int change(int amount, int[] coins) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        Change solution = new Change();
+
+        int[] coins1 = {1,2,5};
+        System.out.println("Result 1 -> " + solution.change(5, coins1) + "\n");    // 3
+
+        int[] coins2 = {2};
+        System.out.println("Result 2 -> " + solution.change(3, coins2) + "\n");    // -1
+        
+        int[] coins3 = {10};
+        System.out.println("Result 3 -> " + solution.change(10, coins3) + "\n");    // 0
+
+        // int[] coins4 = {3,3,6,8,16,16,16,18,20};
+        // System.out.println("Result 4 -> " + solution.change(coins4) + "\n");    // true
+
+        // int[] coins5 = {0, 0};
+        // System.out.println("Result 5 -> " + solution.change(coins5) + "\n");    // 0
+
+        // int[] coins6 = {1,2,1,1};
+        // System.out.println("Result 6 -> " + solution.change(coins6) + "\n");    // 3
+
+    }
+
 }
 
 /*
