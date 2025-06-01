@@ -5,7 +5,7 @@ public class NumSquares {
     public int numSquares(int n) {
         
         // Declare a dp 
-        int[] dp = new int[n];
+        int[] dp = new int[n + 1];
 
         // we need to get minimum numsquares to add so will have n 
         // so adding maxValue at start
@@ -17,7 +17,7 @@ public class NumSquares {
 
         // check other values
         for (int i = 2; i <= n; i++) {
-            for (int j = 1; j*j <= n ; j++) {
+            for (int j = 1; j*j <= i ; j++) {
                 
                 int square = j*j;
                 int waysUsingThisSquare  = 1 + dp[i - square];
