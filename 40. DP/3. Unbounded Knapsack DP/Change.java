@@ -27,7 +27,7 @@ public class Change {
             System.out.println("    - Updated DP Array : " + Arrays.toString(dp));
         }
 
-        return 0;
+        return dp[amount];
     }
 
     public static void main(String[] args) {
