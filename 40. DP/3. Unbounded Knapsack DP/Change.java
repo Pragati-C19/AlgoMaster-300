@@ -3,6 +3,15 @@ import java.util.*;
 public class Change {
     
     public int change(int amount, int[] coins) {
+       
+        // Declare a dp with length equals to amount and add initial values as Max_Value
+        int[] dp = new int[amount + 1];
+
+        // amount 0 will be with 1 way only
+        dp[0] = 1;
+
+        System.out.println("Initial DP Array : " + Arrays.toString(dp));
+
         
         return 0;
     }
