@@ -12,7 +12,21 @@ public class Change {
 
         System.out.println("Initial DP Array : " + Arrays.toString(dp));
 
-        
+        // let's check if we can make other amounts with given coins
+        for (int currCoin : coins) {
+            for (int amt = currCoin; amt <= amount; amt++) {
+                
+                // to get to this amt we can use curr currCoin 
+                int waysToMakePrevAmt = dp[amt - currCoin];
+                System.out.println("        amt = " + amt + "  ->    dp[" + amt + " - " + currCoin + "] = " + waysToMakePrevAmt); 
+                
+                // if more than 1 currCoin can able to make amt we need min number of currCoins 
+                dp[amt] += waysToMakePrevAmt;
+            }
+
+            System.out.println("    - Updated DP Array : " + Arrays.toString(dp));
+        }
+
         return 0;
     }
 
