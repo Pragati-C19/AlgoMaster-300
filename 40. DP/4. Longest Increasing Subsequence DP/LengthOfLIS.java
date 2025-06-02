@@ -7,7 +7,7 @@ public class LengthOfLIS {
         // Declare variables
         int n = nums.length;
         int maxLength = 0;
-        int[] dp = new int[n + 1];
+        int[] dp = new int[n];
 
         // Initially will store 1 for all index bcoz we can count that num it self
         Arrays.fill(dp, 1);
@@ -31,10 +31,13 @@ public class LengthOfLIS {
                 }
             }
 
+            // get maxLength from whole dp array
+            maxLength = Math.max(maxLength, dp[currIndex]);
+
             System.out.println("    - Updated DP Array : " + Arrays.toString(dp));
         }
         
-        return ;
+        return maxLength;
     }
 
     public static void main(String[] args) {
