@@ -37,13 +37,13 @@ public class LengthOfLIS {
                         // After replacing one I don't want to replace any other nums so 
                         break;
                     }
+                }
 
-                    // now will not always add num > result.get(i) in array will just add nums which are not replaced 
-                    if (!replaced) {
-                        
-                        result.add(num);
-                        System.out.println("    - Given num(" + num + ") is > i'th index(" + i + ") so we have added num : " + result);
-                    }
+                // now will not always add num > result.get(i) in array will just add nums which are not replaced 
+                if (!replaced) {
+                    
+                    result.add(num);
+                    System.out.println("    - Given num(" + num + ") is > all index in result so we have added num : " + result);
                 }
 
                 System.out.println("Current Result Array: " + result);
