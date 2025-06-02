@@ -35,6 +35,11 @@ public class FindNumberOfLIS {
                         // is both length are same we need to add updated count[curr] + count[prev]
                         dpCount[currIndex] += dpCount[prevIndex];
                     }
+                    else if (lengthIfTakenCurrNum > dpLength[currIndex]) {
+                        
+                        // we need to reset dpCount[currIndex] when we find a new longer subsequence
+                        dpCount[currIndex] = dpCount[prevIndex];
+                    }
             
                     dpLength[currIndex] = Math.max(dpLength[currIndex], lengthIfTakenCurrNum);
 
@@ -72,8 +77,8 @@ public class FindNumberOfLIS {
         int[] nums2 = {2,2,2,2,2};
         System.out.println("Result 2 -> " + solution.findNumberOfLIS(nums2) + "\n");    // 5
         
-        // int[] nums3 = {7,7,7,7,7,7,7};
-        // System.out.println("Result 3 -> " + solution.findNumberOfLIS(nums3) + "\n");    // 1
+        int[] nums3 = {100,90,80,70,60,50,60,70,80,90,100};
+        System.out.println("Result 3 -> " + solution.findNumberOfLIS(nums3) + "\n");    // 1
 
         // int[] nums4 = {1,3,6,7,9,4,10,5,6};
         // System.out.println("Result 4 -> " + solution.findNumberOfLIS(nums4) + "\n");    // 6
