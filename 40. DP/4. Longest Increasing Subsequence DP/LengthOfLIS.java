@@ -123,8 +123,26 @@ public class LengthOfLIS {
         - bcoz checking if currAddingNum > or < arrNums takes soo much time
     2. Think abt how will u use dp here?
         - what will be the length of dp?
+            it will be nums.length
         - what will we store in dp?
+            will store length of longest increasing subsequence till that index
+        - at start will store 1 for each index because the minimum length ending at any element is 1 – the element itself
+        - For each element at index i, we check all previous indices j < i and if nums[j] < nums[i], we can try to extend the LIS ending at j to i
 
+            | Index | Num |  dp[] state after this index                    |
+            | ----- | --- | ----------------------------------------------- |
+            | 0     | 10  |  [1]                                            |
+            | 1     | 9   |  [1, 1]                                         |
+            | 2     | 2   |  [1, 1, 1]                                      |
+            | 3     | 5   |  [1, 1, 1, 2]               ->   5 > 2          |
+            | 4     | 3   |  [1, 1, 1, 2, 2]            ->   3 > 2          |
+            | 5     | 7   |  [1, 1, 1, 2, 2, 3]         ->   7 > 5, 3, 2    |
+            | 6     | 101 |  [1, 1, 1, 2, 2, 3, 4]      -> 101 > 7,5,3,2    |
+            | 7     | 18  |  [1, 1, 1, 2, 2, 3, 4, 4]   ->  18 > 7,5,3,2    |
+
+
+    3. Don't know how but brute Force worked
+        - I didn't do much just code one by one using above logic
 
 
  
