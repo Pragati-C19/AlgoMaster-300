@@ -23,9 +23,9 @@ public class FindNumberOfLIS {
                 // check if prevIndex num is < than currIndex if yes then think abt taking this currIndex or not
                 if (nums[prevIndex] < nums[currIndex]) {
                     
-                    int takeThisNumInSubsequence = 1 + dp[prevIndex];
+                    // int takeThisNumInSubsequence = 1 + dp[prevIndex];
 
-                    dp[currIndex] = Math.max(dp[currIndex], takeThisNumInSubsequence);
+                    dp[currIndex] += dp[prevIndex];
                 }
             }
 
@@ -39,7 +39,7 @@ public class FindNumberOfLIS {
         // ki kiti ways ahet mazya parynt yayche ? so me just quick fix kartey with dp[i] == maxLength aivaji -1 karun
         for (int i = 0; i < n; i++) {
             
-            if (dp[i] == (maxLength - 1)) {
+            if (dp[i] == maxLength) {
                 
                 countOfMaxLength++;
             }
@@ -118,5 +118,17 @@ public class FindNumberOfLIS {
     7. and yes ithe me jo adhi bruteForce lihila hota prev que madhe tasa work nahi karnar karan maybe.. 
         - maybe karel pn maxLength count maintain kelyavr will think of that too later
 
+    ^ Let's change the approach or thinking
+
+        1. Problems
+            - tithe maxlength valyacha count hava hota but 
+                [1, 3, 4, 7] and [1, 3, 5, 7]
+                yat tr apan 4 la replace kel 5 sobt and then 7 add karat hoto tevha apan mhnlo ki jo replace karat hote tyat pn takaychy mala 7
+                and mala whole count de ata kay zala to
+        
+        2. maybe dp madhe yaveles longest Subsequnce till currIndex cha count nahi add karaychay
+            - add karaychay tr kiti subsequnce create alyat currIndex parynt
+
+        
 
  */
