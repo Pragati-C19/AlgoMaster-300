@@ -34,7 +34,7 @@ public class LengthOfLIS {
             System.out.println("    - Updated DP Array : " + Arrays.toString(dp));
         }
         
-        return dp[n - 1];
+        return ;
     }
 
     public static void main(String[] args) {
@@ -50,8 +50,8 @@ public class LengthOfLIS {
         int[] nums3 = {7,7,7,7,7,7,7};
         System.out.println("Result 3 -> " + solution.lengthOfLIS(nums3) + "\n");    // 1
 
-        // int[] nums4 = {3,3,6,8,16,16,16,18,20};
-        // System.out.println("Result 4 -> " + solution.lengthOfLIS(nums4) + "\n");    // true
+        int[] nums4 = {1,3,6,7,9,4,10,5,6};
+        System.out.println("Result 4 -> " + solution.lengthOfLIS(nums4) + "\n");    // 6
 
         // int[] nums5 = {0, 0};
         // System.out.println("Result 5 -> " + solution.lengthOfLIS(nums5) + "\n");    // 0
@@ -130,6 +130,9 @@ public class LengthOfLIS {
             - jar asel, tar tya element varun apan subsequence la extend karu shakto
                 mhanje dp[prevIndex] madhe je subsequence aahe, tyat nums[currIndex] add karu
             - ani baghu ki max subsequence length miltey ka
+    
+        - ohk mala vatal hot ki dp[n] last value ch max asel but tasa nahiye.. 
+            max value madhech kontya pn index la asu shakte look at the example I send
 
     3. Don't know how but brute Force worked
         - I didn't do much just code one by one using above logic
