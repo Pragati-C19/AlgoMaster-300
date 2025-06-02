@@ -4,6 +4,20 @@ public class FindNumberOfLIS {
     
     public int findNumberOfLIS(int[] nums) {
         
+        // Declare variables
+        int n = nums.length;
+        int maxLength = 1;          // initial length of any num will be 1
+        int countOfMaxLength = 0;   // it will tell how many maxLength subsequence we got
+        int[] dp = new int[n];
+
+
+        // Initially fill sp with 1 
+        Arrays.fill(dp, 1);
+        System.out.println(" Initial DP : " + Arrays.toString(dp) + " of length : " + n);
+
+        
+        
+
         return 0;
     }
 
