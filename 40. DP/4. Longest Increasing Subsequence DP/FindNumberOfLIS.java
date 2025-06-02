@@ -29,13 +29,17 @@ public class FindNumberOfLIS {
                     
                     int lengthIfTakenCurrNum = 1 + dpLength[prevIndex];
                 
+                    // need this before updating dpLenth of currIndex bcoz I need prev value of dpLength of currIndex
+                    if (lengthIfTakenCurrNum == dpLength[currIndex]) {
+                        
+                        // is both length are same we need to add updated count[curr] + count[prev]
+                        dpCount[currIndex] += dpCount[prevIndex];
+                    }
+
                     dpLength[currIndex] = Math.max(dpLength[currIndex], lengthIfTakenCurrNum);
 
-                    
                 }
             }
-
-            //maxLength = Math.max(maxLength, dpLength[currIndex]);
 
             System.out.println("    - Updated dpLength Array : " + Arrays.toString(dpLength));
             System.out.println("      Updated dpCount Array  : " + Arrays.toString(dpCount));
