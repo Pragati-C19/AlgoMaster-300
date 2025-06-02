@@ -7,7 +7,32 @@ public class LengthOfLIS {
         // Declare variables
         int n = nums.length;
         int maxLength = 0;
-        
+        int[] dp = new int[n];
+
+        // Initially will store 1 for all index bcoz we can count that num it self
+        Arrays.fill(dp, 1);
+        System.out.println(" Initial DP : " + Arrays.toString(dp));
+
+        // so let's check all nums and see the longest length so far till that num
+        for (int currIndex = 1; currIndex < n; currIndex++) {
+            
+            // We want to check all previous index values (nums[prevIndex])
+            // to see which ones are smaller than the current number (nums[currIndex])
+            // If we find such a number, it means we can extend its increasing subsequence
+            // by adding the current number after it.
+
+            for (int prevIndex = 0; prevIndex < currIndex; prevIndex++) {
+             
+                if (nums[prevIndex] < nums[currIndex]) {
+                    
+                    int takeThisNumInSubsequence = 1 + dp[prevIndex];
+                    
+                    dp[currIndex] = Math.max(dp[currIndex], takeThisNumInSubsequence);
+                }
+            }
+
+            System.out.println("    - Updated DP Array : " + Arrays.toString(dp));
+        }
         
         return maxLength;
     }
@@ -98,6 +123,13 @@ public class LengthOfLIS {
             | 6     | 101 |  [1, 1, 1, 2, 2, 3, 4]      -> 101 > 7,5,3,2    |
             | 7     | 18  |  [1, 1, 1, 2, 2, 3, 4, 4]   ->  18 > 7,5,3,2    |
 
+
+        - what does the nested for loop do?
+            - Sagle magcha elements (0 to currIndex-1) check karto 
+            - Baghto ki konta element nums[currIndex] peksha chhota aahe ka?
+            - jar asel, tar tya element varun apan subsequence la extend karu shakto
+                mhanje dp[prevIndex] madhe je subsequence aahe, tyat nums[currIndex] add karu
+            - ani baghu ki max subsequence length miltey ka
 
     3. Don't know how but brute Force worked
         - I didn't do much just code one by one using above logic
