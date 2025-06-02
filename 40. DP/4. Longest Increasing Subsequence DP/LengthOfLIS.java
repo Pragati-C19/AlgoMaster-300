@@ -51,7 +51,7 @@ public class LengthOfLIS {
 
         }
 
-        return 0;
+        return result.size();
     }
 
     public static void main(String[] args) {
