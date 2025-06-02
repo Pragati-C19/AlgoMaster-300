@@ -134,53 +134,82 @@ public class FindNumberOfLIS {
             - karan mala fact last maxLength cha count nahi tr saglya nums chya subsequence cha count lihil ahe
             - me jo sadhya dp use kartey fact to fact store kartoy longest subsequence 
             - to he nahi mhnt ahe ki currIndex parynt kiti longest subSequence alyat mhnun
-            
-        4. Trace Example :
+
+        4. Think Fully fresh again
+
+            - will initialize two dp's
+                dpLength : jo sangel konta longest LIS ahe till currIndex
+                dpCount  : jo sangel aplyakde kiti ways ahet longest LIS bhetnyache (dpLength[i])
+
+            - Initially donhi dp's madhe 1 fill karu
+                why ?
+                    karan starting la each num is a subsequnce of itself
+                dpLength = [1, 1, 1, 1, 1]
+                dpCount  = [1, 1, 1, 1, 1]
+
+            - Now check the trace Example
+                lengthIfTakenCurrIndex jr equal asel adhi add kelellya dp[currIndex] pekshya 
+                    tr apan dp[curr] = dp[curr] + dp[prev] kartoy
+                    else apan dp[curr] = dp[prev] kartoy
+
+                
+                
+        5. Trace Example :
 
             nums = [1,3,5,4,7]
 
-            - let's initialize dpForMaxLIS
+            - let's initialize Both Dp's
                 
-                index:  0   1   2   3   4     
-                value: [1,  1,  1,  1,  1]
+                index       :   0   1   2   3   4     
+                dpLength    :   [1,  1,  1,  1,  1]
+                dpCount     :   [1,  1,  1,  1,  1]
 
             - currIndex = 1
-                prevIndex = 0   -> nums[0] < nums[1] = (1 < 3)   -> 1 + dp[0] = 2
+                prevIndex = 0   -> nums[0] < nums[1] = (1 < 3)   -> 1 + dpLength[0] = 2
+                dpCount[1] = dpCount[0] = 1
                 
-                dpForMaxLIS = [1, 2, 3, 1, 1]
+                dpLength = [1, 2, 1, 1, 1]
+                dpCount = [1, 1, 1, 1, 1]
                 
             - currIndex = 2
-                prevIndex = 0   -> nums[0] < nums[2] = (1 < 5)   -> 1 + dp[0] = 2
-                prevIndex = 1   -> nums[1] < nums[2] = (3 < 5)   -> 1 + dp[1] = 3
+                prevIndex = 0   -> nums[0] < nums[2] = (1 < 5)   -> 1 + dpLength[0] = 2
+                dpCount[2] = dpCount[0] = 1
+
+                prevIndex = 1   -> nums[1] < nums[2] = (3 < 5)   -> 1 + dpLength[1] = 3
+                dpCount[2] = dpCount[1] = 1
                 
-                dpForMaxLIS = [1, 2, 3, 1, 1]
-
-                ata ithe mala count pn maintain karav lagel for each currIndex ki kiti different ways possible hoto mhnun?
-                jr pahil tr ithe 2 ways possible ahet jyatun apan max subsequence vala dp madhe add kartoy 
-
-                so dpForAllWaysOfLIS = [0, 1, 2, 0, 0]
-
-                I think dpForAllWaysOfLIS chi starting 1 asel saglyanchi
-                karan subsequence can be num it self too 
-
-                so dpForAllWaysOfLIS = [1, 2, 3, 1, 1]    -> initial 1 + prevIndex 0, 1
+                dpLength = [1, 2, 3, 1, 1]
+                dpCount = [1, 1, 1, 1, 1]    
 
             - currIndex = 3
-                prevIndex = 0   -> nums[0] < nums[3] = (1 < 4)   -> 1 + dp[0] = 2
-                prevIndex = 1   -> nums[1] < nums[3] = (3 < 4)   -> 1 + dp[1] = 3
+                prevIndex = 0   -> nums[0] < nums[3] = (1 < 4)   -> 1 + dpLength[0] = 2
+                dpCount[3] = dpCount[0] = 1
+
+                prevIndex = 1   -> nums[1] < nums[3] = (3 < 4)   -> 1 + dpLength[1] = 3
+                dpCount[3] = dpCount[1] = 1
+
                 prevIndex = 2   -> nums[2] > nums[3] = (5 > 4)   -> Skipp this one bcoz prevIndex num is greater then currIndex num
                 
-                dpForMaxLIS = [1, 2, 3, 3, 1]
-                dpForAllWaysOfLIS = [1, 2, 3, 3, 1]       -> initial 1 + prevIndex 0, 1
+                dpLength = [1, 2, 3, 3, 1]
+                dpCount = [1, 1, 1, 1, 1]      
                 
             - currIndex = 4
-                prevIndex = 0   -> nums[0] < nums[4] = (1 < 7)   -> 1 + dp[0] = 2
-                prevIndex = 1   -> nums[1] < nums[4] = (3 < 7)   -> 1 + dp[1] = 3
-                prevIndex = 2   -> nums[2] < nums[4] = (5 < 7)   -> 1 + dp[2] = 4
-                prevIndex = 3   -> nums[3] < nums[4] = (4 < 7)   -> 1 + dp[3] = 4
+                prevIndex = 0   -> nums[0] < nums[4] = (1 < 7)   -> 1 + dpLength[0] = 2
+                dpCount[4] = dpCount[0] = 1
+
+                prevIndex = 1   -> nums[1] < nums[4] = (3 < 7)   -> 1 + dpLength[1] = 3
+                dpCount[4] = dpCount[1] = 1
+
+                prevIndex = 2   -> nums[2] < nums[4] = (5 < 7)   -> 1 + dpLength[2] = 4
+                dpCount[4] = dpCount[2] = 1
+
+                prevIndex = 3   -> nums[3] < nums[4] = (4 < 7)   -> 1 + dpLength[3] = 4
+
+                length is same as prevIndex 2 so
+                dpCount[4] = dpCount[4] + dpCount[3] = 1 + 1 = 2
                 
-                dpForMaxLIS = [1, 2, 3, 3, 4]
-                dpForAllWaysOfLIS = [1, 2, 3, 3, 4]       -> initial 1 + prevIndex 0, 1
+                dpLength = [1, 2, 3, 3, 4]
+                dpCount = [1, 1, 1, 1, 2]       
 
 
             
