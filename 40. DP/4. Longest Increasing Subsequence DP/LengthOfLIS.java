@@ -6,7 +6,7 @@ public class LengthOfLIS {
 
         // Declare variables
         int n = nums.length;
-        int maxLength = 0;
+        int maxLength = 1;
         int[] dp = new int[n];
 
         // Initially will store 1 for all index bcoz we can count that num it self
