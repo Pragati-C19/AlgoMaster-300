@@ -19,22 +19,34 @@ public class LengthOfLIS {
             }
             else {
                 
-                // We need to add if num < num in result
+                // Declare a variable replaced to know if we replaced the num or not 
+                boolean replaced = false;
+
+                // If result array is not empty 
                 for (int i = 0; i < result.size(); i++) {
-                    if (result.get(i) < num) {
-                        
-                        result.add(num);
-                        System.out.println("    - Given num(" + num + ") is > i'th index(" + i + ") : " + result);
-                    }
-                    else if (result.get(i) >= num) {
+                    
+                    // Focus on Replace only 
+                    if (result.get(i) >= num) {
                         
                         result.set(i, num);     // Replacing that i'th index with currNum using set 
                         System.out.println("    - Given num(" + num + ") is <= i'th index(" + i + ") so replacing the i'th index num : " + result);
 
+                        // To avoid getting same values will say we have replaced this index
+                        replaced = true;
+
                         // After replacing one I don't want to replace any other nums so 
                         break;
                     }
+
+                    // now will not always add num > result.get(i) in array will just add nums which are not replaced 
+                    if (!replaced) {
+                        
+                        result.add(num);
+                        System.out.println("    - Given num(" + num + ") is > i'th index(" + i + ") so we have added num : " + result);
+                    }
                 }
+
+                System.out.println("Current Result Array: " + result);
             }
 
         }
