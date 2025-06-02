@@ -6,8 +6,8 @@ public class FindNumberOfLIS {
         
         // Declare variables
         int n = nums.length;
-        // int maxLength = 1;          // initial length of any num will be 1
-        // int countOfMaxLength = 0;   // it will tell how many maxLength subsequence we got
+        int maxLength = 1;
+        int countOfMaxLength = 0;
         int[] dpLength = new int[n];
         int[] dpCount = new int[n];
 
@@ -35,18 +35,31 @@ public class FindNumberOfLIS {
                         // is both length are same we need to add updated count[curr] + count[prev]
                         dpCount[currIndex] += dpCount[prevIndex];
                     }
-
+            
                     dpLength[currIndex] = Math.max(dpLength[currIndex], lengthIfTakenCurrNum);
 
                 }
             }
 
-            System.out.println("    - Updated dpLength Array : " + Arrays.toString(dpLength));
+            // get maxLength from whole dp array
+            maxLength = Math.max(maxLength, dpLength[currIndex]);
+
+            System.out.println("    - Updated dpLength Array : " + Arrays.toString(dpLength) + "  |  with maxLength : " + maxLength);
             System.out.println("      Updated dpCount Array  : " + Arrays.toString(dpCount));
         }
         
 
-        return 0;
+        // Ohk I forgot the last part : we need count of all index with maxLength
+        // Adhi me fact last index cha lihit hote 
+        for (int i = 0; i < n; i++) {
+            
+            if (dpLength[i] == maxLength) {
+                
+                countOfMaxLength += dpCount[i];
+            }
+        }
+
+        return countOfMaxLength;
     }
 
     public static void main(String[] args) {
