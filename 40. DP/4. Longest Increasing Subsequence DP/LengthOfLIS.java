@@ -2,6 +2,35 @@ import java.util.*;
 
 public class LengthOfLIS {
     
+    public int lengthOfLIS(int[] nums) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        LengthOfLIS solution = new LengthOfLIS();
+
+        int[] nums1 = {10,9,2,5,3,7,101,18};
+        System.out.println("Result 1 -> " + solution.lengthOfLIS(nums1) + "\n");    // 4
+
+        int[] nums2 = {0,1,0,3,2,3};
+        System.out.println("Result 2 -> " + solution.lengthOfLIS(nums2) + "\n");    // 4
+        
+        int[] nums3 = {7,7,7,7,7,7,7};
+        System.out.println("Result 3 -> " + solution.lengthOfLIS(nums3) + "\n");    // 1
+
+        // int[] nums4 = {3,3,6,8,16,16,16,18,20};
+        // System.out.println("Result 4 -> " + solution.lengthOfLIS(nums4) + "\n");    // true
+
+        // int[] nums5 = {0, 0};
+        // System.out.println("Result 5 -> " + solution.lengthOfLIS(nums5) + "\n");    // 0
+
+        // int[] nums6 = {1,2,1,1};
+        // System.out.println("Result 6 -> " + solution.lengthOfLIS(nums6) + "\n");    // 3
+
+    }
+
 }
 
 /*
@@ -48,7 +77,7 @@ public class LengthOfLIS {
     2. Think abt how will u use dp here?
         - what will be the length of dp?
         - what will we store in dp?
-        
+
 
 
  
