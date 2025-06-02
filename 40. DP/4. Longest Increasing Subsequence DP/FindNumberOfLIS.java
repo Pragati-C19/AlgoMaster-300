@@ -2,6 +2,35 @@ import java.util.*;
 
 public class FindNumberOfLIS {
     
+    public int findNumberOfLIS(int[] nums) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        FindNumberOfLIS solution = new FindNumberOfLIS();
+
+        int[] nums1 = {1,3,5,4,7};
+        System.out.println("Result 1 -> " + solution.findNumberOfLIS(nums1) + "\n");    // 2
+
+        int[] nums2 = {2,2,2,2,2};
+        System.out.println("Result 2 -> " + solution.findNumberOfLIS(nums2) + "\n");    // 5
+        
+        // int[] nums3 = {7,7,7,7,7,7,7};
+        // System.out.println("Result 3 -> " + solution.findNumberOfLIS(nums3) + "\n");    // 1
+
+        // int[] nums4 = {1,3,6,7,9,4,10,5,6};
+        // System.out.println("Result 4 -> " + solution.findNumberOfLIS(nums4) + "\n");    // 6
+
+        // int[] nums5 = {0};
+        // System.out.println("Result 5 -> " + solution.findNumberOfLIS(nums5) + "\n");    // 1
+
+        // int[] nums6 = {1,2,1,1};
+        // System.out.println("Result 6 -> " + solution.findNumberOfLIS(nums6) + "\n");    // 3
+
+    }
+
 }
 
 /*
