@@ -4,54 +4,12 @@ public class LengthOfLIS {
     
     public int lengthOfLIS(int[] nums) {
 
+        // Declare variables
         int n = nums.length;
+        int maxLength = 0;
         
-        // let's declare array List as we don't know exact size yet in which will say if we are taking this nums or not 
-        List<Integer> result = new ArrayList<>();        
-
-        for (int num : nums) {
-            
-            // If result array is empty we can add the num directly
-            if (result.isEmpty()) {
-                
-                result.add(num);
-                System.out.println("    - Result array is empty to ditectly added " + num + " : " + result);
-            }
-            else {
-                
-                // Declare a variable replaced to know if we replaced the num or not 
-                boolean replaced = false;
-
-                // If result array is not empty 
-                for (int i = 0; i < result.size(); i++) {
-                    
-                    // Focus on Replace only 
-                    if (result.get(i) >= num) {
-                        
-                        result.set(i, num);     // Replacing that i'th index with currNum using set 
-                        System.out.println("    - Given num(" + num + ") is <= i'th index(" + i + ") so replacing the i'th index num : " + result);
-
-                        // To avoid getting same values will say we have replaced this index
-                        replaced = true;
-
-                        // After replacing one I don't want to replace any other nums so 
-                        break;
-                    }
-                }
-
-                // now will not always add num > result.get(i) in array will just add nums which are not replaced 
-                if (!replaced) {
-                    
-                    result.add(num);
-                    System.out.println("    - Given num(" + num + ") is > all index in result so we have added num : " + result);
-                }
-
-                System.out.println("Current Result Array: " + result);
-            }
-
-        }
-
-        return result.size();
+        
+        return maxLength;
     }
 
     public static void main(String[] args) {
@@ -149,7 +107,59 @@ public class LengthOfLIS {
  * Pseudo Code :
  
 
+    1. Brute Force :
 
+        public int lengthOfLIS(int[] nums) {
+
+        int n = nums.length;
+        
+        -> let's declare array List as we don't know exact size yet in which will say if we are taking this nums or not 
+        List<Integer> result = new ArrayList<>();        
+
+        for (int num : nums) {
+            
+            -> If result array is empty we can add the num directly
+            if (result.isEmpty()) {
+                
+                result.add(num);
+                System.out.println("    - Result array is empty to ditectly added " + num + " : " + result);
+            }
+            else {
+                
+                -> Declare a variable replaced to know if we replaced the num or not 
+                boolean replaced = false;
+
+                -> If result array is not empty 
+                for (int i = 0; i < result.size(); i++) {
+                    
+                    -> Focus on Replace only 
+                    if (result.get(i) >= num) {
+                        
+                        result.set(i, num);     // Replacing that i'th index with currNum using set 
+                        System.out.println("    - Given num(" + num + ") is <= i'th index(" + i + ") so replacing the i'th index num : " + result);
+
+                        -> To avoid getting same values will say we have replaced this index
+                        replaced = true;
+
+                        -> After replacing one I don't want to replace any other nums so 
+                        break;
+                    }
+                }
+
+                -> now will not always add num > result.get(i) in array will just add nums which are not replaced 
+                if (!replaced) {
+                    
+                    result.add(num);
+                    System.out.println("    - Given num(" + num + ") is > all index in result so we have added num : " + result);
+                }
+
+                System.out.println("Current Result Array: " + result);
+            }
+
+        }
+
+        return result.size();
+    }
 
 
  */
