@@ -3,7 +3,34 @@ import java.util.*;
 public class LengthOfLIS {
     
     public int lengthOfLIS(int[] nums) {
+
+        int n = nums.length;
         
+        // let's declare array List as we don't know exact size yet in which will say if we are taking this nums or not 
+        List<Integer> result = new ArrayList<>();        
+
+        for (int num : nums) {
+            
+            // If result array is empty we can add the num directly
+            if (result.isEmpty()) {
+                
+                result.add(num);
+                System.out.println("    - Result array is empty to ditectly added " + num + " : " + result);
+            }
+            else {
+                
+                // We need to add if num < num in result
+                for (int i = 0; i < result.size(); i++) {
+                    if (result.get(i) > num) {
+                        
+                        result.add(num);
+                        System.out.println("    - Given num(" + num + ") is < i'th index(" + i + ") : " + result);
+                    }
+                }
+            }
+
+        }
+
         return 0;
     }
 
