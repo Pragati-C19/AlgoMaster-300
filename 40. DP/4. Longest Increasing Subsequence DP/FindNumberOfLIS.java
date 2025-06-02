@@ -35,7 +35,17 @@ public class FindNumberOfLIS {
         }
         
 
-        return 0;
+        // in que I saw [1, 3, 4, 7] and [1, 3, 5, 7] means maybe adhiche nums te check kartay right.. just last num chya tithe mhntoy 
+        // ki kiti ways ahet mazya parynt yayche ? so me just quick fix kartey with dp[i] == maxLength aivaji -1 karun
+        for (int i = 0; i < n; i++) {
+            
+            if (dp[i] == (maxLength - 1)) {
+                
+                countOfMaxLength++;
+            }
+        }
+
+        return countOfMaxLength;
     }
 
     public static void main(String[] args) {
