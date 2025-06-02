@@ -56,8 +56,8 @@ public class LengthOfLIS {
         int[] nums4 = {1,3,6,7,9,4,10,5,6};
         System.out.println("Result 4 -> " + solution.lengthOfLIS(nums4) + "\n");    // 6
 
-        // int[] nums5 = {0, 0};
-        // System.out.println("Result 5 -> " + solution.lengthOfLIS(nums5) + "\n");    // 0
+        int[] nums5 = {0};
+        System.out.println("Result 5 -> " + solution.lengthOfLIS(nums5) + "\n");    // 1
 
         // int[] nums6 = {1,2,1,1};
         // System.out.println("Result 6 -> " + solution.lengthOfLIS(nums6) + "\n");    // 3
@@ -140,7 +140,10 @@ public class LengthOfLIS {
     3. Don't know how but brute Force worked
         - I didn't do much just code one by one using above logic
 
-
+    4. if length of num is 1 we need to return 1 not zero
+        - same logic we use for filling whole dp by 1 applyis here too..
+        - subsequence of any num indivisually itself is 1 
+        - so maxLength should be initially as 1 not 0 
  
  * Pseudo Code :
  
