@@ -21,10 +21,18 @@ public class LengthOfLIS {
                 
                 // We need to add if num < num in result
                 for (int i = 0; i < result.size(); i++) {
-                    if (result.get(i) > num) {
+                    if (result.get(i) < num) {
                         
                         result.add(num);
-                        System.out.println("    - Given num(" + num + ") is < i'th index(" + i + ") : " + result);
+                        System.out.println("    - Given num(" + num + ") is > i'th index(" + i + ") : " + result);
+                    }
+                    else if (result.get(i) >= num) {
+                        
+                        result.set(i, num);     // Replacing that i'th index with currNum using set 
+                        System.out.println("    - Given num(" + num + ") is <= i'th index(" + i + ") so replacing the i'th index num : " + result);
+
+                        // After replacing one I don't want to replace any other nums so 
+                        break;
                     }
                 }
             }
