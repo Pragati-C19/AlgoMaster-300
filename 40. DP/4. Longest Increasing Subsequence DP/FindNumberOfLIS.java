@@ -13,9 +13,26 @@ public class FindNumberOfLIS {
 
         // Initially fill sp with 1 
         Arrays.fill(dp, 1);
-        System.out.println(" Initial DP : " + Arrays.toString(dp) + " of length : " + n);
+        System.out.println(" Initial DP : " + Arrays.toString(dp) + "  |  with length : " + n);
 
-        
+
+        // Compare if prevIndex num and currIndex num
+        for (int currIndex = 1; currIndex < n; currIndex++) {
+            for (int prevIndex = 0; prevIndex < currIndex; prevIndex++) {
+                
+                // check if prevIndex num is < than currIndex if yes then think abt taking this currIndex or not
+                if (nums[prevIndex] < nums[currIndex]) {
+                    
+                    int takeThisNumInSubsequence = 1 + dp[prevIndex];
+
+                    dp[currIndex] = Math.max(dp[currIndex], takeThisNumInSubsequence);
+                }
+            }
+
+            maxLength = Math.max(maxLength, dp[currIndex]);
+
+            System.out.println("    - Updated DP Array : " + Arrays.toString(dp) + "  |  with maxLength : " + maxLength);
+        }
         
 
         return 0;
