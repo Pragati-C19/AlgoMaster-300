@@ -6,14 +6,18 @@ public class FindNumberOfLIS {
         
         // Declare variables
         int n = nums.length;
-        int maxLength = 1;          // initial length of any num will be 1
-        int countOfMaxLength = 0;   // it will tell how many maxLength subsequence we got
-        int[] dp = new int[n];
+        // int maxLength = 1;          // initial length of any num will be 1
+        // int countOfMaxLength = 0;   // it will tell how many maxLength subsequence we got
+        int[] dpLength = new int[n];
+        int[] dpCount = new int[n];
 
 
         // Initially fill sp with 1 
-        Arrays.fill(dp, 1);
-        System.out.println(" Initial DP : " + Arrays.toString(dp) + "  |  with length : " + n);
+        Arrays.fill(dpLength, 1);
+        Arrays.fill(dpCount, 1);
+
+        System.out.println(" Initial dpLength : " + Arrays.toString(dpLength));
+        System.out.println(" Initial dpCount  : " + Arrays.toString(dpCount));
 
 
         // Compare if prevIndex num and currIndex num
@@ -23,29 +27,22 @@ public class FindNumberOfLIS {
                 // check if prevIndex num is < than currIndex if yes then think abt taking this currIndex or not
                 if (nums[prevIndex] < nums[currIndex]) {
                     
-                    int takeThisNumInSubsequence = 1 + dp[prevIndex];
+                    int lengthIfTakenCurrNum = 1 + dpLength[prevIndex];
+                
+                    dpLength[currIndex] = Math.max(dpLength[currIndex], lengthIfTakenCurrNum);
 
-                    dp[currIndex] = Math.max(dp[currIndex], takeThisNumInSubsequence);
+                    
                 }
             }
 
-            maxLength = Math.max(maxLength, dp[currIndex]);
+            //maxLength = Math.max(maxLength, dpLength[currIndex]);
 
-            System.out.println("    - Updated DP Array : " + Arrays.toString(dp) + "  |  with maxLength : " + maxLength);
+            System.out.println("    - Updated dpLength Array : " + Arrays.toString(dpLength));
+            System.out.println("      Updated dpCount Array  : " + Arrays.toString(dpCount));
         }
         
 
-        // in que I saw [1, 3, 4, 7] and [1, 3, 5, 7] means maybe adhiche nums te check kartay right.. just last num chya tithe mhntoy 
-        // ki kiti ways ahet mazya parynt yayche ? so me just quick fix kartey with dp[i] == maxLength aivaji -1 karun
-        for (int i = 0; i < n; i++) {
-            
-            if (dp[i] == maxLength) {
-                
-                countOfMaxLength++;
-            }
-        }
-
-        return countOfMaxLength;
+        return 0;
     }
 
     public static void main(String[] args) {
