@@ -7,17 +7,17 @@ public class UniquePathsWithObstacles {
         // Declare Variables
         int m = obstacleGrid.length;
         int n = obstacleGrid[0].length;
-        int[][] dp = new int[m][n];
+        int[][] dp = new int[m + 1][n + 1];
 
         // will assign 1 to starting cell[0,0] as to reach there we have only 1 way
         dp[0][0] = 1;
 
         // Check first Row i = 0 and j = varies
-        for (int j = 0; j < n; j++) {
+        for (int j = 1; j < n; j++) {
             
             if (obstacleGrid[0][j] == 1) {
                 
-                // If we found obstacle mark that cell [i,j] as 0
+                // If we found obstacle mark that cell [0,j] as 0
                 dp[0][j] = 0;
                 System.out.println("    - We found obstacle mark that cell [0," + j + "] as 0... ");
             }
@@ -30,33 +30,43 @@ public class UniquePathsWithObstacles {
             }
         }
 
-        // Check other cells now
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+
+        // Check first Col i = varies and j = 0
+        for (int i = 1; i < m; i++) {
+            
+            if (obstacleGrid[i][0] == 1) {
                 
-                if (i == 0 && j == 0) {
+                // If we found obstacle mark that cell [i,0] as 0
+                dp[i][0] = 0;
+                System.out.println("    - We found obstacle mark that cell [" + i + ",0] as 0... ");
+            }
+
+            if (obstacleGrid[i][0] == 0) {
+                
+                // left(j-1) kadun mala kahich yenar nahiye so apan fact top(i-1) valech check karu
+                dp[i][0] = dp[i-1][0];
+                System.out.println("    - To reach cell [" + i + ",0] we have paths : " + dp[i-1][0]);
+            }
+        }
+
+
+        // Check other cells now
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                
+                if (obstacleGrid[i][j] == 1) {
                     
-                    // it's first cell skipp it
-                    continue;
+                    // If we found obstacle mark that cell [i,j] as 0
+                    dp[i][j] = 0;
+                    System.out.println("    - We found obstacle mark that cell [" + i + "," + j + "] as 0... ");
                 }
 
-                if (i >= 0 && i < m && j >= 0 && j < n) {
+                if (obstacleGrid[i][j] == 0) {
                     
-                    if (obstacleGrid[i][j] == 1) {
-                        
-                        // If we found obstacle mark that cell [i,j] as 0
-                        dp[i][j] = 0;
-                        System.out.println("    - We found obstacle mark that cell [" + i + "," + j + "] as 0... ");
-                    }
-
-                    if (obstacleGrid[i][j] == 0) {
-                        
-                        // If there is no obstacle add top and left dp 
-                        int sumOfTopNLeft = dp[i-1][j] + dp[i][j-1];
-
-                        dp[i][j] = sumOfTopNLeft;
-                        System.out.println("    - To reach cell [" + i + "," + j + "] we have paths : " + sumOfTopNLeft);
-                    }
+                    // If there is no obstacle add top and left dp 
+                    int sumOfTopNLeft = dp[i-1][j] + dp[i][j-1];
+                    dp[i][j] = sumOfTopNLeft;
+                    System.out.println("    - To reach cell [" + i + "," + j + "] we have paths : " + sumOfTopNLeft);
                 }
                 
                 System.out.println("    - Updated DP Array : " + Arrays.deepToString(dp));
