@@ -40,7 +40,7 @@ public class MaxEnvelopes {
                     dp[currIndex] = Math.max(dp[currIndex], ifWeTakeThisEnvelope);
                     System.out.println("        - prevIndexWeight(" + prevIndexWeight + ") < currWeight(" + currWeight + ") && prevIndexHeight(" + prevIndexHeight + ") < currHeight(" + currHeight + ") so updated dp of " + currIndex);
                 }
-            }
+            } 
 
             // get maxLength from whole dp array
             maxLength = Math.max(maxLength, dp[currIndex]);
