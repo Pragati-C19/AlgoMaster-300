@@ -4,6 +4,49 @@ public class UniquePathsWithObstacles {
     
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
            
+        // Declare Variables
+        int m = obstacleGrid.length;
+        int n = obstacleGrid[0].length;
+        int[][] dp = new int[m][n];
+
+        // will assign 1 to starting cell[0,0] as to reach there we have only 1 way
+        dp[0][0] = 1;
+
+        // Check other cells now
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                
+                if (i == 0 && j == 0) {
+                    
+                    // it's first cell skipp it
+                    continue;
+                }
+
+                if (i >= 0 && i < m && j >= 0 && j < n) {
+                    
+                    if (obstacleGrid[i][j] == 1) {
+                        
+                        // If we found obstacle mark that cell [i,j] as 0
+                        dp[i][j] = 0;
+
+                        System.out.println("    - We found obstacle mark that cell [" + i + "," + j + "] as 0... ");
+                    }
+
+                    if (obstacleGrid[i][j] == 0) {
+                        
+                        // If there is no obstacle add top and left dp 
+                        int sumOfTopNLeft = dp[i-1][j] + dp[i][j-1];
+
+                        dp[i][j] = sumOfTopNLeft;
+
+                        System.out.println("    - To reach cell [" + i + "," + j + "] we have paths : " + sumOfTopNLeft);
+                    }
+                }
+                
+                System.out.println("    - Updated DP Array : " + Arrays.deepToString(dp));
+            }
+        }
+        
         return 0;
     }
 
