@@ -96,6 +96,11 @@ public class UniquePathsWithObstacles {
         };
         System.out.println("Result 2 -> " + solution.uniquePathsWithObstacles(obstacleGrid2) + "\n");    // 1
         
+        int[][] obstacleGrid3 = {
+            {1}
+        };
+        System.out.println("Result 3 -> " + solution.uniquePathsWithObstacles(obstacleGrid3) + "\n");    // 0
+
     }
 
 }
