@@ -2,6 +2,30 @@ import java.util.*;
 
 public class UniquePathsWithObstacles {
     
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+           
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        UniquePathsWithObstacles solution = new UniquePathsWithObstacles();
+
+        int[][] obstacleGrid1 = {
+            {0,0,0},
+            {0,1,0},
+            {0,0,0}
+        };
+        System.out.println("Result 1 -> " + solution.uniquePathsWithObstacles(obstacleGrid1) + "\n");    // 2
+
+        int[][] obstacleGrid2 = {
+            {0,1},
+            {0,0}
+        };
+        System.out.println("Result 2 -> " + solution.uniquePathsWithObstacles(obstacleGrid2) + "\n");    // 1
+        
+    }
+
 }
 
 /*
