@@ -22,6 +22,28 @@ public class MaxEnvelopes {
         System.out.println(" Initial DP : " + Arrays.toString(dp));
 
 
+        // Check all index one by one and see if we can fit any envolope in it
+        for (int currIndex = 0; currIndex < n; currIndex++) {
+            
+            int currWeight = envelopes[currIndex][0];
+            int currHeight = envelopes[currIndex][1];
+
+            for (int prevIndex = 0; prevIndex < currIndex; prevIndex++) {
+                
+                int prevIndexWeight = envelopes[prevIndex][0];
+                int prevIndexHeight = envelopes[prevIndex][1];
+
+                if (prevIndexWeight < currWeight && prevIndexHeight < currHeight) {
+                    
+                    int ifWeTakeThisEnvelope = 1 + dp[prevIndex];
+
+                    dp[currIndex] = Math.max(dp[currIndex], ifWeTakeThisEnvelope);
+                    System.out.println("        - prevIndexWeight(" + prevIndexWeight + ") < currWeight(" + currWeight + ") && prevIndexHeight(" + prevIndexHeight + ") < currHeight(" + currHeight + ") so updated dp of " + currIndex);
+                }
+            }
+
+            System.out.println("    - Updated DP Array : " + Arrays.toString(dp));
+        }
 
         return maxLength;
     }
