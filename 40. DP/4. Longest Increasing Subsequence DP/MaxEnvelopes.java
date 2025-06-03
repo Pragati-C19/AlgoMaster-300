@@ -5,7 +5,25 @@ public class MaxEnvelopes {
     
     public int maxEnvelopes(int[][] envelopes) {
         
-        return 0;
+        // Declare Variables
+        int n = envelopes.length;
+        int maxLength = 1;
+        int[] dp = new int[n];
+
+        // Sort envelopes array
+        Arrays.sort(envelopes, (a, b) -> {
+            if (a[0] == b[0]) return Integer.compare(a[1], b[1]);
+            return Integer.compare(a[0], b[0]);
+        });
+        System.out.println(" Sorted Envelopes : " + Arrays.deepToString(envelopes));
+
+        // Initally fill dp with value 1 bcoz every envelope itself is a Russian Doll length equals 1
+        Arrays.fill(dp, 1);
+        System.out.println(" Initial DP : " + Arrays.toString(dp));
+
+
+
+        return maxLength;
     }
 
     public static void main(String[] args) {
