@@ -12,8 +12,8 @@ public class MaxEnvelopes {
 
         // Sort envelopes array
         Arrays.sort(envelopes, (a, b) -> {
-            if (a[0] == b[0]) return Integer.compare(a[1], b[1]);
-            return Integer.compare(a[0], b[0]);
+            if (a[0] == b[0]) return Integer.compare(b[1], a[1]);   // sort height in DESC
+            return Integer.compare(a[0], b[0]);                     // Sort width in ASC 
         });
         System.out.println(" Sorted Envelopes : " + Arrays.deepToString(envelopes));
 
@@ -28,7 +28,7 @@ public class MaxEnvelopes {
             int currWeight = envelopes[currIndex][0];
             int currHeight = envelopes[currIndex][1];
 
-            for (int prevIndex = 0; prevIndex < currIndex; prevIndex++) {
+            for (int prevIndex = currIndex - 1; prevIndex >= 0; prevIndex--) {
                 
                 int prevIndexWeight = envelopes[prevIndex][0];
                 int prevIndexHeight = envelopes[prevIndex][1];
@@ -39,6 +39,9 @@ public class MaxEnvelopes {
 
                     dp[currIndex] = Math.max(dp[currIndex], ifWeTakeThisEnvelope);
                     System.out.println("        - prevIndexWeight(" + prevIndexWeight + ") < currWeight(" + currWeight + ") && prevIndexHeight(" + prevIndexHeight + ") < currHeight(" + currHeight + ") so updated dp of " + currIndex);
+                }
+                else if (prevIndexHeight >= currHeight) {
+                    break; // if height fails and list is sorted by height desc when width is same
                 }
             } 
 
@@ -87,6 +90,27 @@ public class MaxEnvelopes {
 }
 
 /*
+
+ ! Check this que again
+    use with height like below
+
+    -> Extract heights
+        int[] heights = new int[envelopes.length];
+        for (int i = 0; i < envelopes.length; i++) {
+            heights[i] = envelopes[i][1];
+        }
+
+    -> Apply LIS on heights using binary search
+        List<Integer> lis = new ArrayList<>();
+        for (int h : heights) {
+            int idx = Collections.binarySearch(lis, h);
+            if (idx < 0) idx = -idx - 1;
+            if (idx == lis.size()) lis.add(h);
+            else lis.set(idx, h);
+        }
+
+        return lis.size();
+
  * Intuitions :
  
     1. We have given 2D array of integers envelops 
@@ -163,4 +187,56 @@ public class MaxEnvelopes {
         if yes then will updated the dp[currIndex]
         
  
+    Basic Logic I used : 
+
+    public int maxEnvelopes(int[][] envelopes) {
+        
+        -> Declare Variables
+        int n = envelopes.length;
+        int maxLength = 1;
+        int[] dp = new int[n];
+
+        -> Sort envelopes array
+        Arrays.sort(envelopes, (a, b) -> {
+            if (a[0] == b[0]) return Integer.compare(a[1], b[1]);
+            return Integer.compare(a[0], b[0]);
+        });
+        System.out.println(" Sorted Envelopes : " + Arrays.deepToString(envelopes));
+
+        -> Initally fill dp with value 1 bcoz every envelope itself is a Russian Doll length equals 1
+        Arrays.fill(dp, 1);
+        System.out.println(" Initial DP : " + Arrays.toString(dp));
+
+
+        -> Check all index one by one and see if we can fit any envolope in it
+        for (int currIndex = 0; currIndex < n; currIndex++) {
+            
+            int currWeight = envelopes[currIndex][0];
+            int currHeight = envelopes[currIndex][1];
+
+            for (int prevIndex = 0; prevIndex < currIndex; prevIndex++) {
+                
+                int prevIndexWeight = envelopes[prevIndex][0];
+                int prevIndexHeight = envelopes[prevIndex][1];
+
+                if (prevIndexWeight < currWeight && prevIndexHeight < currHeight) {
+                    
+                    int ifWeTakeThisEnvelope = 1 + dp[prevIndex];
+
+                    dp[currIndex] = Math.max(dp[currIndex], ifWeTakeThisEnvelope);
+                    System.out.println("        - prevIndexWeight(" + prevIndexWeight + ") < currWeight(" + currWeight + ") && prevIndexHeight(" + prevIndexHeight + ") < currHeight(" + currHeight + ") so updated dp of " + currIndex);
+                }
+            } 
+
+            -> get maxLength from whole dp array
+            maxLength = Math.max(maxLength, dp[currIndex]);
+
+            System.out.println("    - Updated DP Array : " + Arrays.toString(dp) + "  |  with maxLength : " + maxLength);
+        }
+
+        return maxLength;
+    }
+
+
+
  */
