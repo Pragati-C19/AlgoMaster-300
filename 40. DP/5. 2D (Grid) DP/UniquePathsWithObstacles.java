@@ -9,7 +9,15 @@ public class UniquePathsWithObstacles {
         int n = obstacleGrid[0].length;
         int[][] dp = new int[m][n];
 
-        // will assign 1 to starting cell[0,0] as to reach there we have only 1 way
+        // If first cell [0,0] itself has obstacles, means we can't go anywhere from it
+        // so apla robot kahich nahi karu shakt directly return 0
+        if (obstacleGrid[0][0] == 1) {
+            
+            System.out.println("    First cell [0,0] has obstacle...");
+            return 0;
+        }
+
+        // will assign 1 to starting cell[0,0] if grid[0][0] has no obstacle, so to reach there we have only 1 way
         dp[0][0] = 1;
 
         // Check first Row i = 0 and j = varies
