@@ -42,7 +42,10 @@ public class MaxEnvelopes {
                 }
             }
 
-            System.out.println("    - Updated DP Array : " + Arrays.toString(dp));
+            // get maxLength from whole dp array
+            maxLength = Math.max(maxLength, dp[currIndex]);
+
+            System.out.println("    - Updated DP Array : " + Arrays.toString(dp) + "  |  with maxLength : " + maxLength);
         }
 
         return maxLength;
