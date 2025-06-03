@@ -3,6 +3,44 @@ import java.util.*;
 
 public class MaxEnvelopes {
     
+    public int maxEnvelopes(int[][] envelopes) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        MaxEnvelopes solution = new MaxEnvelopes();
+
+        int[][] envelopes1 = {
+            {5,4},
+            {6,4},
+            {6,7},
+            {2,3}
+        };
+        System.out.println("Result 1 -> " + solution.maxEnvelopes(envelopes1) + "\n");    // 4
+
+        int[][] envelopes2 = {
+            {1,1},
+            {1,1},
+            {1,1}
+        };
+        System.out.println("Result 2 -> " + solution.maxEnvelopes(envelopes2) + "\n");    // 4
+        
+        // int[][] envelopes3 = {7,7,7,7,7,7,7};
+        // System.out.println("Result 3 -> " + solution.maxEnvelopes(envelopes3) + "\n");    // 1
+
+        // int[][] envelopes4 = {1,3,6,7,9,4,10,5,6};
+        // System.out.println("Result 4 -> " + solution.maxEnvelopes(envelopes4) + "\n");    // 6
+
+        // int[][] envelopes5 = {0};
+        // System.out.println("Result 5 -> " + solution.maxEnvelopes(envelopes5) + "\n");    // 1
+
+        // int[][] envelopes6 = {1,2,1,1};
+        // System.out.println("Result 6 -> " + solution.maxEnvelopes(envelopes6) + "\n");    // 3
+
+    }
+
 }
 
 /*
