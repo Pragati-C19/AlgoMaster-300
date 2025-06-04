@@ -264,4 +264,94 @@ public class MinimumTotal {
     }
 
 
+    1st Apprroach wrote :
+
+    public int minimumTotal(List<List<Integer>> triangle) {
+        
+        -> Declare variables
+        int m = triangle.size();
+        List<List<Integer>> dp = new ArrayList<>();
+
+
+        -> ohk me mhntey dp.get(0) but me tr index dilich nahi,
+        -> jasa int[][] madhe dp declare kela ki automatic 0 value set hote tasa mala ithe karav lagel
+        for (int row = 0; row < m; row++) {
+            
+            -> adding empty list in dp[row]
+            dp.add(new ArrayList<>());
+
+            for (int col = 0; col < triangle.get(row).size(); col++) {
+                
+                -> apan ithech set karu initial value for cell (0,0), adhi zero then again change karaych nako itka 2 veles work 
+                if (row == 0 && col == 0) {
+                    
+                    int gridCell00 = triangle.get(0).get(0);
+                    dp.get(row).add(gridCell00);
+                }
+                else if (row > 0 && col == 0) {
+                    
+                    -> Check first Col of each row i = varies and j = 0
+                    int valueFromTop = dp.get(row - 1).get(0);
+                    int currGridValue = triangle.get(row).get(0);
+
+                    int sumOfAbove = valueFromTop + currGridValue;
+
+                    dp.get(row).add(sumOfAbove);
+                }
+                else {
+
+                    dp.get(row).add(0);
+                }
+            }
+        }
+        System.out.println(" [Initial && 1st col] DP Array : " + dp);
+
+
+        -> Let's Check remaining cells
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < triangle.get(i).size(); j++) {
+                
+                System.out.println("checking " + i + ", " + j);
+
+                int valueFromTop;
+
+                -> do j-1 only for last num of row, why? check improvement comment below
+                if (j == triangle.get(i).size() - 1) {
+                    
+                    valueFromTop = dp.get(i-1).get(j-1);
+                }
+                else {
+
+                    valueFromTop = dp.get(i-1).get(j);
+                }
+
+                System.out.println("    - valueFromTop : " + valueFromTop);
+
+                int currGridValue = triangle.get(i).get(j);
+                System.out.println("    - currGridValue : " + currGridValue);
+
+                int sumFromTop = valueFromTop + currGridValue;
+                System.out.println("    - sumFromTop : " + sumFromTop);
+                int prevIndexDP = dp.get(i).get(j-1);
+                System.out.println("    - prevIndexDP : " + prevIndexDP);
+
+                int minBetweenAbove = Math.min(sumFromTop, prevIndexDP);
+                System.out.println("    - minSum : " + minBetweenAbove);
+
+                dp.get(i).set(j, minBetweenAbove);
+            }
+        }
+        System.out.println(" [Remain Cells] DP Array : " + dp);
+
+
+        -> I need the value of from last row's last num from dp 
+        -> so first getting it's size and then will get num by get(size - 1)
+        int lastRowSize = dp.get(m-1).size();
+        System.out.println("Testing how to return dp[m-1][n-1] : size - " + (lastRowSize - 1) + ", value : " + dp.get(m - 1).get(lastRowSize - 1));
+
+        return dp.get(m-1).get(lastRowSize - 1);
+    }
+
+
+
  */
