@@ -2,6 +2,31 @@ import java.util.*;
 
 public class MinimumTotal {
     
+    public int minimumTotal(List<List<Integer>> triangle) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        MinimumTotal solution = new MinimumTotal();
+
+        List<List<Integer>> triangle1 = Arrays.asList(
+            Arrays.asList(2),
+            Arrays.asList(3, 4),
+            Arrays.asList(6, 5, 7),
+            Arrays.asList(4, 1, 8, 3)
+        );
+        System.out.println("Result 1 -> " + solution.minimumTotal(triangle1) + "\n"); // 11
+
+        
+        List<List<Integer>> triangle2 = Arrays.asList(
+            Arrays.asList(-10)
+        );
+        System.out.println("Result 2 -> " + solution.minimumTotal(triangle2) + "\n"); // -10
+
+    }
+
 }
 
 /*
