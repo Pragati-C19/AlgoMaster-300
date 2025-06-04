@@ -74,10 +74,10 @@ public class MinimumTotal {
                 System.out.println("    - sumFromTop : " + sumFromTop);
                 
                 //todo: Need to change this
-                int prevIndexDP = dp.get(i).get(j-1);
-                System.out.println("    - prevIndexDP : " + prevIndexDP);
+                // int prevIndexDP = dp.get(i).get(j-1);
+                // System.out.println("    - prevIndexDP : " + prevIndexDP);
 
-                int minBetweenAbove = Math.min(sumFromTop, prevIndexDP);
+                int minBetweenAbove = Math.min(sumFromTop, dp.get(i).get(j));
                 System.out.println("    - minSum : " + minBetweenAbove);
 
                 dp.get(i).set(j, minBetweenAbove);
