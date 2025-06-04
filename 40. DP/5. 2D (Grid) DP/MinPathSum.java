@@ -4,6 +4,37 @@ public class MinPathSum {
     
     public int minPathSum(int[][] grid) {
         
+        // Declare Variables
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] dp = new int[m][n];
+
+
+        // Initially set dp for cell[0,0] as grid[0][0] why? check comments
+        dp[0][0] = grid[0][0];
+
+
+        // Check first Row i = 0 and j = varies
+        System.out.println("Filling first row:");
+        for (int j = 1; j < n; j++) {
+            
+            // Debugger :
+            System.out.println(" currcol : " + j);
+            System.out.println("  - dp[0][" + (j - 1) + "]       : " + dp[0][j - 1]);
+            System.out.println("  - grid[0][" + j + "]     : " + grid[0][j]);
+
+            dp[0][j] = dp[0][j-1] + grid[0][j];
+           
+            System.out.println("  - dp[0][" + j + "]       : " + dp[0][j]);
+        }
+        System.out.println("  Current dp[0][j] : " + Arrays.toString(dp[0]));
+        System.out.println("-----------------------------");
+        
+
+        
+
+
+
         return 0;
     }
 
