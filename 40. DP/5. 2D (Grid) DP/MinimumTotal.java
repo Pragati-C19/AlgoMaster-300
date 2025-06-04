@@ -50,37 +50,37 @@ public class MinimumTotal {
                 
                 System.out.println("checking " + i + ", " + j);
 
-                int valueFromTop;
-
-                // do j-1 only for last num of row, why? check improvement comment below
-                if (j == triangle.get(i).size() - 1) {
-                    
-                    valueFromTop = dp.get(i-1).get(j-1);
-                }
-                else {
-
-                    valueFromTop = dp.get(i-1).get(j);
-                }
-
-                // value From top is correct
-                System.out.println("    - valueFromTop : " + valueFromTop);
+                int sumFromLeftTop = Integer.MAX_VALUE;     // it tells prev index of curr's top
+                int sumFromTop = Integer.MAX_VALUE;         // it tells prev index of curr
 
                 // curr Grid ghen is correct 
                 int currGridValue = triangle.get(i).get(j);
                 System.out.println("    - currGridValue : " + currGridValue);
 
-                // tyanchi sum karan is correct
-                int sumFromTop = valueFromTop + currGridValue;
-                System.out.println("    - sumFromTop : " + sumFromTop);
+            
+                // do j-1 only for last num of row, why? check improvement comment below
+                if ((j-1) >= 0) {
+                    
+                    int valueFromLeftTop = dp.get(i-1).get(j-1);
+                    sumFromLeftTop = valueFromLeftTop + currGridValue;
+
+                    System.out.println("    - sumFromLeftTop : " + sumFromLeftTop);
+                }
                 
-                //todo: Need to change this
-                // int prevIndexDP = dp.get(i).get(j-1);
-                // System.out.println("    - prevIndexDP : " + prevIndexDP);
+                if (j < dp.get(i-1).size()) {
+       
+                    int valueFromTop = dp.get(i-1).get(j);
+                    sumFromTop = valueFromTop + currGridValue;
+                    
+                    System.out.println("    - sumFromTop : " + sumFromTop);
+                }
 
-                int minBetweenAbove = Math.min(sumFromTop, dp.get(i).get(j));
-                System.out.println("    - minSum : " + minBetweenAbove);
+                // let's take min from this adj sum values
+                int minOfAdjSum = Math.min(sumFromLeftTop, sumFromTop);
 
-                dp.get(i).set(j, minBetweenAbove);
+                System.out.println("    - minOfAdjSum : " + minOfAdjSum);
+
+                dp.get(i).set(j, minOfAdjSum);
             }
         }
         System.out.println(" [Remain Cells] DP Array : " + dp);
