@@ -52,6 +52,8 @@ public class MinPathSum {
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
                 
+                System.out.println(" checking grid[" + i + "," + j + "] : " + grid[i][j]);
+                
                 int sumFromTop = dp[i-1][j] + grid[i][j];
                 int sumFromLeft = dp[0][j-1] + grid[i][j];
 
