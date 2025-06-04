@@ -8,10 +8,27 @@ public class MinimumTotal {
         int m = triangle.size();
         List<List<Integer>> dp = new ArrayList<>();
 
+        
+        // ohk me mhntey dp.get(0) but me tr index dilich nahi, jasa int[][] madhe dp declare kela ki automatic 0 value set hote tasa mala ithe karav lagel
+        for (int row = 0; row < m; row++) {
+
+            dp.add(new ArrayList<>());
+
+            for (int col = 0; col < triangle.get(row).size(); col++) {
+                
+                dp.get(row).add(0);
+            }
+        }
+        System.out.println(" [Initial] DP Array : " + dp);
+
+
         // Initially set dp for cell[0,0] as grid[0][0] why? check comments
-        dp.get(0).set(0, triangle.get(0).get(0));
+        int gridCell00 = triangle.get(0).get(0);
+        dp.get(0).set(0, gridCell00);
 
         System.out.println(" [First Cell] DP Array : " + dp);
+
+
 
         return 0;
     }
