@@ -106,6 +106,16 @@ public class MinimumTotal {
         );
         System.out.println("Result 2 -> " + solution.minimumTotal(triangle2) + "\n"); // -10
 
+
+        // test case wants to take path as -1 -> 3-1 = 2 -> last row by this [3,1,-1] so ans is -1
+        // currently my code works as      -1 -> 2-1 = 1 -> last row by this [2,0,-2] 
+        List<List<Integer>> triangle3 = Arrays.asList(
+            Arrays.asList(-1),
+            Arrays.asList(2, 3),
+            Arrays.asList(1, -1, -3)
+        );
+        System.out.println("Result 3 -> " + solution.minimumTotal(triangle3) + "\n"); // -1
+
     }
 
 }
