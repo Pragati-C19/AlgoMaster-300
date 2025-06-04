@@ -28,7 +28,7 @@ public class MinPathSum {
             System.out.println("  - dp[0][" + j + "]         : " + dp[0][j]);
         }
         System.out.println("  [1st Row] DP Array : " + Arrays.deepToString(dp));
-        System.out.println("-----------------------------");
+        System.out.println("-----------------------------\n");
         
 
         // Check first Col i = varies and j = 0
@@ -45,10 +45,24 @@ public class MinPathSum {
             System.out.println("  - dp[" + i + "][0]         : " + dp[i][0]);
         }
         System.out.println("  [1st Col] DP Array : " + Arrays.deepToString(dp));
-        System.out.println("-----------------------------");
+        System.out.println("-----------------------------\n");
         
 
+        // Check other remaining cells
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                
+                int sumFromTop = dp[i-1][j] + grid[i][j];
+                int sumFromLeft = dp[0][j-1] + grid[i][j];
 
+                dp[i][j] = Math.min(sumFromTop, sumFromLeft);
+
+                System.out.println("    We are taking min for cell [" + i + "," + j + "] between " + sumFromTop + ", " + sumFromLeft + " : " + dp[i][j]);
+            }
+
+            System.out.println("  [Remain Cells] DP Array : " + Arrays.deepToString(dp));
+        }
+        
 
         return 0;
     }
