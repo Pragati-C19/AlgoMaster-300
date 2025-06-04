@@ -52,21 +52,21 @@ public class MinPathSum {
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
                 
-                System.out.println(" checking grid[" + i + "," + j + "] : " + grid[i][j]);
+                // System.out.println(" checking grid[" + i + "," + j + "] : " + grid[i][j]);
 
                 int sumFromTop = dp[i-1][j] + grid[i][j];
                 int sumFromLeft = dp[i][j-1] + grid[i][j];
 
                 dp[i][j] = Math.min(sumFromTop, sumFromLeft);
 
-                System.out.println("    We are taking min for cell [" + i + "," + j + "] between " + sumFromTop + ", " + sumFromLeft + " : " + dp[i][j]);
+                // System.out.println("    We are taking min for cell [" + i + "," + j + "] between " + sumFromTop + ", " + sumFromLeft + " : " + dp[i][j]);
             }
 
             System.out.println("  [Remain Cells] DP Array : " + Arrays.deepToString(dp));
         }
         
 
-        return 0;
+        return dp[m-1][n-1];
     }
 
     public static void main(String[] args) {
