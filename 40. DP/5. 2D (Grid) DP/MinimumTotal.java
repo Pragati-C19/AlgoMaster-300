@@ -9,7 +9,8 @@ public class MinimumTotal {
         List<List<Integer>> dp = new ArrayList<>();
 
 
-        // ohk me mhntey dp.get(0) but me tr index dilich nahi, jasa int[][] madhe dp declare kela ki automatic 0 value set hote tasa mala ithe karav lagel
+        // ohk me mhntey dp.get(0) but me tr index dilich nahi,
+        // jasa int[][] madhe dp declare kela ki automatic 0 value set hote tasa mala ithe karav lagel
         for (int row = 0; row < m; row++) {
             
             // adding empty list in dp[row]
@@ -40,6 +41,24 @@ public class MinimumTotal {
             }
         }
         System.out.println(" [Initial && 1st col] DP Array : " + dp);
+
+
+        // Let's Check remaining cells
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < triangle.get(i).size(); j++) {
+                
+                int valueFromTop = dp.get(i-1).get(j);
+                int currGridValue = triangle.get(i).get(j);
+
+                int sumFromTop = valueFromTop + currGridValue;
+                int prevIndexDP = dp.get(i).get(j-1);
+
+                int minBetweenAbove = Math.min(sumFromTop, prevIndexDP);
+
+                dp.get(i).set(j, prevIndexDP);
+            }
+        }
+        System.out.println(" [Remain Cells] DP Array : " + dp);
 
 
         return 0;
