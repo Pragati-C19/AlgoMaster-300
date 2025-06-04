@@ -4,6 +4,15 @@ public class MinimumTotal {
     
     public int minimumTotal(List<List<Integer>> triangle) {
         
+        // Declare variables
+        int m = triangle.size();
+        List<List<Integer>> dp = new ArrayList<>();
+
+        // Initially set dp for cell[0,0] as grid[0][0] why? check comments
+        dp.get(0).set(0, triangle.get(0).get(0));
+
+        System.out.println(" [First Cell] DP Array : " + dp);
+
         return 0;
     }
 
@@ -19,7 +28,7 @@ public class MinimumTotal {
         );
         System.out.println("Result 1 -> " + solution.minimumTotal(triangle1) + "\n"); // 11
 
-        
+
         List<List<Integer>> triangle2 = Arrays.asList(
             Arrays.asList(-10)
         );
