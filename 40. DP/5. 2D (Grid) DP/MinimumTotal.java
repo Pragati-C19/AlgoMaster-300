@@ -86,12 +86,10 @@ public class MinimumTotal {
         System.out.println(" [Remain Cells] DP Array : " + dp);
 
 
-        // I need the value of from last row's last num from dp 
-        // so first getting it's size and then will get num by get(size - 1)
-        int lastRowSize = dp.get(m-1).size();
-        System.out.println("Testing how to return dp[m-1][n-1] : size - " + (lastRowSize - 1) + ", value : " + dp.get(m - 1).get(lastRowSize - 1));
+        // need to return min from last row : used in build function to get min from a List<Integer>
+        System.out.println(" [Testing] how to return min(lastRow) : " + Collections.min(dp.get(m-1)));
 
-        return dp.get(m-1).get(lastRowSize - 1);
+        return Collections.min(dp.get(m-1));
     }
 
     public static void main(String[] args) {
