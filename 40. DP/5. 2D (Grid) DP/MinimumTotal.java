@@ -23,21 +23,23 @@ public class MinimumTotal {
                     int gridCell00 = triangle.get(0).get(0);
                     dp.get(row).add(gridCell00);
                 }
+                else if (row > 0 && col == 0) {
+                    
+                    // Check first Col of each row i = varies and j = 0
+                    int valueFromTop = dp.get(row - 1).get(0);
+                    int currGridValue = triangle.get(row).get(0);
+
+                    int sumOfAbove = valueFromTop + currGridValue;
+
+                    dp.get(row).add(sumOfAbove);
+                }
                 else {
 
                     dp.get(row).add(0);
                 }
             }
         }
-        System.out.println(" [Initial] DP Array : " + dp);
-
-
-        // Initially set dp for cell[0,0] as grid[0][0] why? check comments
-        int gridCell00 = triangle.get(0).get(0);
-        dp.get(0).set(0, gridCell00);
-
-        System.out.println(" [First Cell] DP Array : " + dp);
-
+        System.out.println(" [Initial && 1st col] DP Array : " + dp);
 
 
         return 0;
