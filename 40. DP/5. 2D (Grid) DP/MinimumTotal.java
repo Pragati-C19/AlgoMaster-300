@@ -49,10 +49,20 @@ public class MinimumTotal {
                 
                 System.out.println("checking " + i + ", " + j);
 
-                // see ithe problem ahe.. i-1 = 0 and j = 1 but asa kontach dp cell nahiye [0,1] vali
-                // tyamul let's try to do j-1 ?
-                int valueFromTop = dp.get(i-1).get(j-1);
+                int valueFromTop;
+
+                // do j-1 only for last num of row, why? check improvement comment below
+                if (j == triangle.get(i).size() - 1) {
+                    
+                    valueFromTop = dp.get(i-1).get(j-1);
+                }
+                else {
+
+                    valueFromTop = dp.get(i-1).get(j);
+                }
+
                 System.out.println("    - valueFromTop : " + valueFromTop);
+
                 int currGridValue = triangle.get(i).get(j);
                 System.out.println("    - currGridValue : " + currGridValue);
 
@@ -183,6 +193,25 @@ public class MinimumTotal {
 
         -> cell [3,1] chya tithe issue ahe karan ithech 10 + 1 = 11 have hote but jevha check kartoy tevha j-1 mul V chi value (2,0) hotoy 
 
+        -> Solve bug with 
+            if (j == triangle.get(i).size() - 1) {      
+                valueFromTop = dp.get(i-1).get(j-1);
+            }
+            else {
+                valueFromTop = dp.get(i-1).get(j);
+            }
+
+        - what does it do exacly ?
+            - ha problem fact [1,1] chya tithe nahi tr every last col of row la asel..
+            - pratek row chi size prev pekshya ek ni jast ahe tyamul he nehmich hoil 
+            - see ithe problem ahe.. i-1 = 0 and j = 1 but asa kontach dp cell nahiye [0,1] vali 
+            - tyamul let's try to get prev row madhla last (i-1, j-1) ?
+                means jr me row = 2 vr ahe ani maza last num of this row is at j = 2 
+                tr prev row cha last num nehmi ek ni kami mhnjech j-1 = 2-1 = 1 : (1,1) vr asel 
+                tyamul row chya last num la top value ghyaychi asel tr fact i-1 nahi tr j-1 pn karav lagel
+            - why? karan prev row chi size ek ni kami ahe so apan prev row cha end as in (i-1,j-1) ghetoy
+
+    
 
  * Pseudo Code :
 
