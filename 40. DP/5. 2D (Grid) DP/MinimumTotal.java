@@ -59,9 +59,10 @@ public class MinimumTotal {
                 int sumFromTop = valueFromTop + currGridValue;
                 System.out.println("    - sumFromTop : " + sumFromTop);
                 int prevIndexDP = dp.get(i).get(j-1);
-                System.out.println("    - prevIndecDP : " + prevIndexDP);
+                System.out.println("    - prevIndexDP : " + prevIndexDP);
 
                 int minBetweenAbove = Math.min(sumFromTop, prevIndexDP);
+                System.out.println("    - minSum : " + minBetweenAbove);
 
                 dp.get(i).set(j, minBetweenAbove);
             }
@@ -167,6 +168,20 @@ public class MinimumTotal {
 
                     then dp[1][1] = min(6, 5) = 5
 
+    ^ Improvements :
+
+        currCode gives ans as
+
+        |  i  |  j  |  valueFromTop (i-1, j-1) |  currGridValue  |  sumFromTop (V+C)  |  prevIndexDP (i, j-1) |  minSum = min(S, P) |
+        | --- | --- | ------------------------ | --------------- | ------------------ | --------------------- | ------------------- |
+        |  1  |  1  |         2 (0,0)          |        4        |      6 (2+4)       |        5 (1,0)        |   min(6,5) = 5      |
+        |  2  |  1  |         5 (1,0)          |        5        |      10 (5+5)      |        11 (2,0)       |   min(10,11) = 10   |
+        |  2  |  2  |         5 (1,1)          |        7        |      12 (5+7)      |        10 (2,1)       |   min(12,10) = 10   |
+        |  3  |  1  |         11 (2,0)         |        1        |      12 (11+1)     |        15 (3,0)       |   min(12,15) = 12   | 
+        |  3  |  2  |         10 (2,1)         |        8        |      18 (10+8)     |        12 (3,1)       |   min(18,12) = 12   |
+        |  3  |  3  |         10 (2,2)         |        3        |      13 (10+3)     |        12 (3,2)       |   min(13,12) = 12   |
+
+        -> cell [3,1] chya tithe issue ahe karan ithech 10 + 1 = 11 have hote but jevha check kartoy tevha j-1 mul V chi value (2,0) hotoy 
 
 
  * Pseudo Code :
