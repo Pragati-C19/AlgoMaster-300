@@ -36,7 +36,8 @@ public class MinimumTotal {
                 }
                 else {
 
-                    dp.get(row).add(0);
+                    // will add maxValue bcoz I want to add min sum we get by adding all nums of prev 
+                    dp.get(row).add(Integer.MAX_VALUE);
                 }
             }
         }
@@ -61,13 +62,18 @@ public class MinimumTotal {
                     valueFromTop = dp.get(i-1).get(j);
                 }
 
+                // value From top is correct
                 System.out.println("    - valueFromTop : " + valueFromTop);
 
+                // curr Grid ghen is correct 
                 int currGridValue = triangle.get(i).get(j);
                 System.out.println("    - currGridValue : " + currGridValue);
 
+                // tyanchi sum karan is correct
                 int sumFromTop = valueFromTop + currGridValue;
                 System.out.println("    - sumFromTop : " + sumFromTop);
+                
+                //todo: Need to change this
                 int prevIndexDP = dp.get(i).get(j-1);
                 System.out.println("    - prevIndexDP : " + prevIndexDP);
 
