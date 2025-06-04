@@ -47,15 +47,23 @@ public class MinimumTotal {
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < triangle.get(i).size(); j++) {
                 
-                int valueFromTop = dp.get(i-1).get(j);
+                System.out.println("checking " + i + ", " + j);
+
+                // see ithe problem ahe.. i-1 = 0 and j = 1 but asa kontach dp cell nahiye [0,1] vali
+                // tyamul let's try to do j-1 ?
+                int valueFromTop = dp.get(i-1).get(j-1);
+                System.out.println("    - valueFromTop : " + valueFromTop);
                 int currGridValue = triangle.get(i).get(j);
+                System.out.println("    - currGridValue : " + currGridValue);
 
                 int sumFromTop = valueFromTop + currGridValue;
+                System.out.println("    - sumFromTop : " + sumFromTop);
                 int prevIndexDP = dp.get(i).get(j-1);
+                System.out.println("    - prevIndecDP : " + prevIndexDP);
 
                 int minBetweenAbove = Math.min(sumFromTop, prevIndexDP);
 
-                dp.get(i).set(j, prevIndexDP);
+                dp.get(i).set(j, minBetweenAbove);
             }
         }
         System.out.println(" [Remain Cells] DP Array : " + dp);
