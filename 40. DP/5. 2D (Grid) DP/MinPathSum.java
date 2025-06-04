@@ -20,17 +20,32 @@ public class MinPathSum {
             
             // Debugger :
             System.out.println(" currcol : " + j);
-            System.out.println("  - dp[0][" + (j - 1) + "]       : " + dp[0][j - 1]);
-            System.out.println("  - grid[0][" + j + "]     : " + grid[0][j]);
+            System.out.println("  - dp[0][" + (j - 1) + "]         : " + dp[0][j - 1]);
+            System.out.println("  - grid[0][" + j + "]       : " + grid[0][j]);
 
             dp[0][j] = dp[0][j-1] + grid[0][j];
            
-            System.out.println("  - dp[0][" + j + "]       : " + dp[0][j]);
+            System.out.println("  - dp[0][" + j + "]         : " + dp[0][j]);
         }
-        System.out.println("  Current dp[0][j] : " + Arrays.toString(dp[0]));
+        System.out.println("  [1st Row] DP Array : " + Arrays.deepToString(dp));
         System.out.println("-----------------------------");
         
 
+        // Check first Col i = varies and j = 0
+        System.out.println("Filling first col:");
+        for (int i = 1; i < m; i++) {
+            
+            // Debugger :
+            System.out.println(" currrow : " + i);
+            System.out.println("  - dp[" + (i - 1) + "][0]         : " + dp[i-1][0]);
+            System.out.println("  - grid[" + i + "][0]       : " + grid[i][0]);
+
+            dp[i][0] = dp[i-1][0] + grid[i][0];
+           
+            System.out.println("  - dp[" + i + "][0]         : " + dp[i][0]);
+        }
+        System.out.println("  [1st Col] DP Array : " + Arrays.deepToString(dp));
+        System.out.println("-----------------------------");
         
 
 
