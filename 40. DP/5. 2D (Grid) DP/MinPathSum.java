@@ -2,6 +2,35 @@ import java.util.*;
 
 public class MinPathSum {
     
+    public int minPathSum(int[][] grid) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        MinPathSum solution = new MinPathSum();
+
+        int[][] grid1 = {
+            {1,3,1},
+            {1,5,1},
+            {4,2,1}
+        };
+        System.out.println("Result 1 -> " + solution.minPathSum(grid1) + "\n");    // 7
+
+        int[][] grid2 = {
+            {1,2,3},
+            {4,5,6}
+        };
+        System.out.println("Result 2 -> " + solution.minPathSum(grid2) + "\n");    // 12
+        
+        // int[][] grid3 = {
+        //     {1}
+        // };
+        // System.out.println("Result 3 -> " + solution.minPathSum(grid3) + "\n");    // 0
+
+    }
+
 }
 
 /*
