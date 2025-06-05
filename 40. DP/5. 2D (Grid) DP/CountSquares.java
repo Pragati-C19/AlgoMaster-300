@@ -2,6 +2,36 @@ import java.util.*;
 
 public class CountSquares {
     
+    public int countSquares(int[][] matrix) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        CountSquares solution = new CountSquares();
+
+        int[][] matrix1 = {
+            {0,1,1,1},
+            {1,1,1,1},
+            {0,1,1,1}
+        };
+        System.out.println("Result 1 -> " + solution.countSquares(matrix1) + "\n");    // 7
+
+        int[][] matrix2 = {
+            {1,0,1},
+            {1,1,0},
+            {1,1,0}
+        };
+        System.out.println("Result 2 -> " + solution.countSquares(matrix2) + "\n");    // 12
+        
+        // int[][] matrix3 = {
+        //     {1}
+        // };
+        // System.out.println("Result 3 -> " + solution.countSquares(matrix3) + "\n");    // 0
+
+    }
+
 }
 
 /*
