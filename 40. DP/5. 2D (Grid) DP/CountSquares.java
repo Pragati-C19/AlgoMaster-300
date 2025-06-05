@@ -45,6 +45,14 @@ public class CountSquares {
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
                 
+                // If we see matrix[i][j] = 0 then we don't have to change dp's value there 
+                // bcoz mala submatrices of 1s havet 0s nahi
+                if (matrix[i][j] == 0) {
+                    
+                    System.out.println("    - cell value is 0 so skip...");
+                    continue;
+                }
+
                 // There's row above         -> dp[i-1][j] is valid
                 // There's diagonal top-left -> dp[i-1][j-1] is valid
                 // There's col left side     -> dp[i][j-1] is valid
@@ -83,14 +91,14 @@ public class CountSquares {
             {1,1,1,1},
             {0,1,1,1}
         };
-        System.out.println("Result 1 -> " + solution.countSquares(matrix1) + "\n");    // 7
+        System.out.println("Result 1 -> " + solution.countSquares(matrix1) + "\n");    // 15
 
         int[][] matrix2 = {
             {1,0,1},
             {1,1,0},
             {1,1,0}
         };
-        System.out.println("Result 2 -> " + solution.countSquares(matrix2) + "\n");    // 12
+        System.out.println("Result 2 -> " + solution.countSquares(matrix2) + "\n");    // 7
         
         // int[][] matrix3 = {
         //     {1}
