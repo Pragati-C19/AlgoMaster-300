@@ -8,11 +8,12 @@ public class CountSquares {
         int m = matrix.length;
         int n = matrix[0].length;
         int[][] dp = new int[m][n];
+        int sumOfSubmatrices = 0;
 
 
         // Check first Row i = 0 and j = varies
         System.out.println("Filling first row:");
-        for (int j = 1; j < n; j++) {
+        for (int j = 0; j < n; j++) {
             
             // for first row we don't have top values like [i-1,j] or [i-1,j-1], 
             // There's no row above         -> dp[i-1][j] is invalid
@@ -28,7 +29,7 @@ public class CountSquares {
 
         // Check first Col i = varies and j = 0
         System.out.println("Filling first col:");
-        for (int i = 1; i < m; i++) {
+        for (int i = 0; i < m; i++) {
             
             // for first col we don't have left side value [i,j-1], 
             // There's no left side   -> dp[i][j-1] is invalid
@@ -61,7 +62,16 @@ public class CountSquares {
             System.out.println("  [Remain Cells] DP Array : " + Arrays.deepToString(dp));
         }
         
-        return 0;
+
+        // Let's do sum of all nums in dp
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                
+                sumOfSubmatrices += dp[i][j];
+            }
+        }
+
+        return sumOfSubmatrices;
     }
 
     public static void main(String[] args) {
