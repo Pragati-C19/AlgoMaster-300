@@ -15,14 +15,29 @@ public class CountSquares {
         for (int j = 1; j < n; j++) {
             
             // for first row we don't have top values like [i-1,j] or [i-1,j-1], 
-            // There’s no row above         -> dp[i-1][j] is invalid
-            // There’s no diagonal top-left -> dp[i-1][j-1] is invalid
+            // There's no row above         -> dp[i-1][j] is invalid
+            // There's no diagonal top-left -> dp[i-1][j-1] is invalid
             // So we can’t form any square larger than 1x1 here.
 
             dp[0][j] = matrix[0][j];
 
         }
         System.out.println("  [1st Row] DP Array : " + Arrays.deepToString(dp));
+        System.out.println("-----------------------------\n");
+        
+
+        // Check first Col i = varies and j = 0
+        System.out.println("Filling first col:");
+        for (int i = 1; i < m; i++) {
+            
+            // for first col we don't have left side value [i,j-1], 
+            // There's no left side   -> dp[i][j-1] is invalid
+            // So we can't form any square larger than 1x1 here.
+
+            dp[i][0] = matrix[i][0];
+
+        }
+        System.out.println("  [1st Col] DP Array : " + Arrays.deepToString(dp));
         System.out.println("-----------------------------\n");
         
         
