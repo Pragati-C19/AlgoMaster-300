@@ -40,6 +40,26 @@ public class CountSquares {
         System.out.println("  [1st Col] DP Array : " + Arrays.deepToString(dp));
         System.out.println("-----------------------------\n");
         
+
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                
+                // There's row above         -> dp[i-1][j] is valid
+                // There's diagonal top-left -> dp[i-1][j-1] is valid
+                // There's col left side     -> dp[i][j-1] is valid
+                // So we can form square but will take min between them 
+
+                int top = dp[i-1][j];
+                int topLeft = dp[i-1][j-1];
+                int left = dp[i][j-1];
+
+                int minOfTopValues = Math.min(top, topLeft);
+
+                dp[i][j] = 1 + Math.min(minOfTopValues, left);
+            }
+
+            System.out.println("  [Remain Cells] DP Array : " + Arrays.deepToString(dp));
+        }
         
         return 0;
     }
