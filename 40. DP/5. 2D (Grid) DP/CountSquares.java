@@ -4,6 +4,28 @@ public class CountSquares {
     
     public int countSquares(int[][] matrix) {
         
+        // Declare variables 
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int[][] dp = new int[m][n];
+
+
+        // Check first Row i = 0 and j = varies
+        System.out.println("Filling first row:");
+        for (int j = 1; j < n; j++) {
+            
+            // for first row we don't have top values like [i-1,j] or [i-1,j-1], 
+            // There’s no row above         -> dp[i-1][j] is invalid
+            // There’s no diagonal top-left -> dp[i-1][j-1] is invalid
+            // So we can’t form any square larger than 1x1 here.
+
+            dp[0][j] = matrix[0][j];
+
+        }
+        System.out.println("  [1st Row] DP Array : " + Arrays.deepToString(dp));
+        System.out.println("-----------------------------\n");
+        
+        
         return 0;
     }
 
