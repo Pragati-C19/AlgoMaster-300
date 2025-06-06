@@ -15,6 +15,9 @@ public class MaxPoints {
         for (int j = 0; j < n; j++) {
             dp[j] = points[0][j];
         }
+        System.out.println("[1st Row] DP Array : " + Arrays.toString(dp));
+
+
 
         // Traverse remaining rows starting from 1 (second row)
         for (int i = 1; i < m; i++) {
@@ -27,24 +30,34 @@ public class MaxPoints {
             for (int j = 1; j < n; j++) {
                 // We reduce 1 for each step rightward
                 left[j] = Math.max(left[j - 1] - 1, dp[j]);
+                System.out.printf("     Left[%d] = max(Left[%d]-1=%d, dp[%d]=%d) = %d\n", j, j - 1, left[j - 1] - 1, j, dp[j], left[j]);
             }
+            System.out.println("\n  Row " + i + " Left Pass  : " + Arrays.toString(left));
 
             // Fill right sweep: tracks max(dp[k] - (k - j)) from right side
             right[n - 1] = dp[n - 1];
             for (int j = n - 2; j >= 0; j--) {
                 // We reduce 1 for each step leftward
                 right[j] = Math.max(right[j + 1] - 1, dp[j]);
+
+                System.out.printf("     Right[%d] = max(Right[%d]-1=%d, dp[%d]=%d) = %d\n", j, j + 1, right[j + 1] - 1, j, dp[j], right[j]);
             }
+            System.out.println("  Row " + i + " Right Pass : " + Arrays.toString(right));
 
             // Update new dp values for current row
             for (int j = 0; j < n; j++) {
                 // Take max of left[j] and right[j] to avoid O(n^2)
                 // Then add current cell value to it
-                newDp[j] = points[i][j] + Math.max(left[j], right[j]);
+                long bestFromPrevRow = Math.max(left[j], right[j]);
+                newDp[j] = points[i][j] + bestFromPrevRow;
+
+                System.out.printf("     dp[%d][%d] = max(left[%d]=%d, right[%d]=%d) + points[%d][%d]=%d -> %d\n",i, j, j, left[j], j, right[j], i, j, points[i][j], newDp[j]);
             }
 
             // Replace dp with newDp for next iteration
             dp = newDp;
+            System.out.println("[Updated] DP Array : " + Arrays.toString(dp));
+
         }
 
         // Return the max value from the last dp row
@@ -52,6 +65,9 @@ public class MaxPoints {
         for (long val : dp) {
             result = Math.max(result, val);
         }
+
+        System.out.println("\nFinal DP: " + Arrays.toString(dp));
+        System.out.println("Result (max points): " + result);
 
         return result;
     }
@@ -87,7 +103,7 @@ public class MaxPoints {
 
  ^ Took Help of GPT and solved it.. 
 
- 
+
  * Intuitions :
  
     1. we have given a mxn points called points (0-indexed)
