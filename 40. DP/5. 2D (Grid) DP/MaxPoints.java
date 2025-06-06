@@ -7,23 +7,51 @@ public class MaxPoints {
         // Declare Variables
         int m = points.length;
         int n = points[0].length;
-        int[][] dp = new int[m][n];
-        int result = 0;
-        
-        for (int i = 0; i < m; i++) {
+       
+        // dp array stores the maximum points that can be collected up to previous row
+        long[] dp = new long[n];
 
-            int maxNum = Integer.MIN_VALUE;
-
-            for (int j = 0; j < n; j++) {
-                
-                System.out.println("    - Checking cell [" + i + "," + j + "] where maxNum : " + maxNum + ", point : " + points[i][j]);
-                maxNum = Math.max(maxNum, points[i][j]);
-            }
-
-            result += maxNum;
-            System.out.println("    - result : " + result);
+        // Base case: First row has no movement cost, so just use points directly
+        for (int j = 0; j < n; j++) {
+            dp[j] = points[0][j];
         }
 
+        // Traverse remaining rows starting from 1 (second row)
+        for (int i = 1; i < m; i++) {
+            long[] left = new long[n];  // Stores best score from left-to-right sweep
+            long[] right = new long[n]; // Stores best score from right-to-left sweep
+            long[] newDp = new long[n]; // Temporary dp array for current row
+
+            // Fill left sweep: tracks max(dp[k] - (j - k)) from left side
+            left[0] = dp[0];
+            for (int j = 1; j < n; j++) {
+                // We reduce 1 for each step rightward
+                left[j] = Math.max(left[j - 1] - 1, dp[j]);
+            }
+
+            // Fill right sweep: tracks max(dp[k] - (k - j)) from right side
+            right[n - 1] = dp[n - 1];
+            for (int j = n - 2; j >= 0; j--) {
+                // We reduce 1 for each step leftward
+                right[j] = Math.max(right[j + 1] - 1, dp[j]);
+            }
+
+            // Update new dp values for current row
+            for (int j = 0; j < n; j++) {
+                // Take max of left[j] and right[j] to avoid O(n^2)
+                // Then add current cell value to it
+                newDp[j] = points[i][j] + Math.max(left[j], right[j]);
+            }
+
+            // Replace dp with newDp for next iteration
+            dp = newDp;
+        }
+
+        // Return the max value from the last dp row
+        long result = 0;
+        for (long val : dp) {
+            result = Math.max(result, val);
+        }
 
         return result;
     }
@@ -56,6 +84,10 @@ public class MaxPoints {
 }
 
 /*
+
+ ^ Took Help of GPT and solved it.. 
+
+ 
  * Intuitions :
  
     1. we have given a mxn points called points (0-indexed)
