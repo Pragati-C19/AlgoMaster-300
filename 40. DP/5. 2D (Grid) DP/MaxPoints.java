@@ -4,7 +4,28 @@ public class MaxPoints {
     
     public long maxPoints(int[][] points) {
         
-        return 0;
+        // Declare Variables
+        int m = points.length;
+        int n = points[0].length;
+        int[][] dp = new int[m][n];
+        int result = 0;
+        
+        for (int i = 0; i < m; i++) {
+
+            int maxNum = Integer.MIN_VALUE;
+
+            for (int j = 0; j < n; j++) {
+                
+                System.out.println("    - Checking cell [" + i + "," + j + "] where maxNum : " + maxNum + ", point : " + points[i][j]);
+                maxNum = Math.max(maxNum, points[i][j]);
+            }
+
+            result += maxNum;
+            System.out.println("    - result : " + result);
+        }
+
+
+        return result;
     }
 
     public static void main(String[] args) {
