@@ -7,6 +7,9 @@ public class MaxCoins {
         // Declare variables 
         int n = nums.length;
 
+        // Declare dp to store maxCoins of start & end dp[start][end] 
+        int[][] dp = new int[n + 2][n + 2];     // added +2 for start and end of 1 
+
 
         // In que we have given there is 1 before nums[0] and after nums[n] so let's add it in array 
         // in java we can't do push front push back so let's create new List<Integer>
@@ -28,13 +31,13 @@ public class MaxCoins {
         // Call a recursion function for start = 1 and end = n
         // why start = 1 bcoz apan list madhe 0'th index vr 1 taklay jo aplyala burst nahi karaychay.. 
         // why end = n bcoz apan list madhe n+1'th index vr 1 taklay jo aplyala burst nahi karaychay.. 
-        recursivelyBurstBalloons(1, n, extendedNums);
+        recursivelyBurstBalloons(1, n, extendedNums, dp);
 
         return 0;
     }
 
     // Helper Function : get max coins by start and end
-    private int recursivelyBurstBalloons (int start, int end, List<Integer> extendedNums) {
+    private int recursivelyBurstBalloons (int start, int end, List<Integer> extendedNums, int[][] dp) {
 
         // Base Case :
         if (start > end) {
@@ -43,8 +46,16 @@ public class MaxCoins {
             return 0;
         }
 
+        if (dp[start][end] != 0) {
+            
+            // we don't need to check value everytime just store it in dp and return it if needed 
+            return dp[start][end];
+        }
+
+
         // Declare variables 
         int maxCoins = 0;    // it stores maximum coins we can get by bursting the balloon
+
 
         // let's check all index from start to end
         // and as per que find coins at that index by nums[i - 1] * nums[i] * nums[i + 1]
@@ -56,11 +67,11 @@ public class MaxCoins {
             
             // Maximum coins from recursively bursting balloons to the left of index 'i'
             // This is the subproblem [start, i - 1]
-            int maxCoinsFromLeftPartition  = recursivelyBurstBalloons(start, i - 1, extendedNums);
+            int maxCoinsFromLeftPartition  = recursivelyBurstBalloons(start, i - 1, extendedNums, dp);
             
             // Maximum coins from recursively bursting balloons to the right of index 'i'
             // This is the subproblem [i + 1, end]
-            int maxCoinsFromRightPartition  = recursivelyBurstBalloons(i + 1, end, extendedNums);
+            int maxCoinsFromRightPartition  = recursivelyBurstBalloons(i + 1, end, extendedNums, dp);
 
 
             int currCoins = coinsEarnedByBurstingIth + maxCoinsFromLeftPartition + maxCoinsFromRightPartition;
@@ -86,6 +97,10 @@ public class MaxCoins {
             System.out.println("   Max Coins so far : " + maxCoins);
 
         }
+
+        // store maxCoin value in dp
+        dp[start][end] = maxCoins;
+        System.out.println("   DP Array for [" + start + ", " + end + "] : " + Arrays.deepToString(dp) + "\n");
 
         // Return max Coins at the end 
         return maxCoins;
