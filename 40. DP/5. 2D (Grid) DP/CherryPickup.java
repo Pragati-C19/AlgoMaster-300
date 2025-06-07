@@ -72,11 +72,11 @@ public class CherryPickup {
                 if (grid[i][j] == -1) {
                     
                     System.out.println("    will skip grid[i][j] if they are -1 bcoz it's thorn...");
-                    continue;
+                    break;
                 }
 
                 // Top left ch karu apan add karat karat 
-                // dp[i][j] = dp[i-1][j] + dp[i][j+1] + dp[i+1][j] + dp[i][j-1]
+                dp[i][j] = dp[i-1][j] + dp[i][j-1] + grid[i][j];
 
             }
 
