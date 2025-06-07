@@ -1,6 +1,23 @@
 import java.util.*;
 
 public class MaxCoins {
+    
+    public int maxCoins(int[] nums) {
+        
+        return 0;
+    }
+
+    public static void main (String[] args) {
+
+        MaxCoins solution = new MaxCoins();
+
+        int[] nums1 = {3,1,5,8};
+        System.out.println("Result 1 -> " + solution.maxCoins(nums1) + "\n");  // 167
+    
+        int[] nums2 = {1,5};
+        System.out.println("Result 2 -> " + solution.maxCoins(nums2) + "\n");  // 10
+    
+    }
 
 }
 
