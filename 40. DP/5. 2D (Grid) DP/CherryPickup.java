@@ -2,6 +2,36 @@ import java.util.*;
 
 public class CherryPickup {
     
+    public int cherryPickup(int[][] grid) {
+     
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        CherryPickup solution = new CherryPickup();
+
+        int[][] grid1 = {
+            {0,1,-1},
+            {1,0,-1},
+            {1,1,1}
+        };
+        System.out.println("Result 1 -> " + solution.cherryPickup(grid1) + "\n");    // 5
+
+        int[][] grid2 = {
+            {1,1,-1},
+            {1,-1,1},
+            {-1,1,1}
+        };
+        System.out.println("Result 2 -> " + solution.cherryPickup(grid2) + "\n");    // 0
+        
+        // int[][] grid3 = {
+        //     {1}
+        // };
+        // System.out.println("Result 3 -> " + solution.cherryPickup(grid3) + "\n");    // 0
+
+    }
+
 }
 
 
@@ -59,7 +89,7 @@ public class CherryPickup {
             if(Base Case : x >= 0 && y >= 0 && x < n && y < n)
  
                 dp[i][j] = dp[i-1][j] + dp[i][j+1] + dp[i+1][j] + dp[i][j-1]
-                
+
  
  * Pseudo Code :
  
