@@ -31,9 +31,9 @@ public class MaxCoins {
         // Call a recursion function for start = 1 and end = n
         // why start = 1 bcoz apan list madhe 0'th index vr 1 taklay jo aplyala burst nahi karaychay.. 
         // why end = n bcoz apan list madhe n+1'th index vr 1 taklay jo aplyala burst nahi karaychay.. 
-        recursivelyBurstBalloons(1, n, extendedNums, dp);
+        int maxCoins = recursivelyBurstBalloons(1, n, extendedNums, dp);
 
-        return 0;
+        return maxCoins;
     }
 
     // Helper Function : get max coins by start and end
