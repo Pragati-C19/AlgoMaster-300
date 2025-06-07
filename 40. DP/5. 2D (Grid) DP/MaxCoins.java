@@ -26,10 +26,20 @@ public class MaxCoins {
         System.out.println("Extended List : " + extendedNums);
 
 
-        // 
-        
+        // Call a binary search function for start = 1 and end = n
+        // why start = 1 bcoz apan list madhe 0'th index vr 1 taklay jo aplyala burst nahi karaychay.. 
+        // why end = n bcoz apan list madhe n+1'th index vr 1 taklay jo aplyala burst nahi karaychay.. 
+        binarySearchDP(1, n, extendedNums);
+
         return 0;
     }
+
+    // Helper Function : get max coins by start and end
+    private int binarySearchDP (int start, int end, List<Integer> extendedNums) {
+
+        return 0;
+    }
+
 
     public static void main (String[] args) {
 
