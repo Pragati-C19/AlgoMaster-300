@@ -44,7 +44,7 @@ public class MaxCoins {
         }
 
         // Declare variables 
-        int maxCoins = Integer.MIN_VALUE;    // it stores maximum coins we can get by bursting the balloon
+        int maxCoins = 0;    // it stores maximum coins we can get by bursting the balloon
 
         // let's check all index from start to end
         // and as per que find coins at that index by nums[i - 1] * nums[i] * nums[i + 1]
