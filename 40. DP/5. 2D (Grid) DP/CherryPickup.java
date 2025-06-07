@@ -44,6 +44,21 @@ public class CherryPickup {
                     System.out.println("    will skip grid[i][j] if they are -1 bcoz it's thorn...");
                     continue;
                 }
+                else {
+
+                    // if there is a space of cherry we need to add it in our sum 
+                    for (int[] dirs : matrixDirection) {
+                        
+                        int x = dirs[0] + i;
+                        int y = dirs[1] + j;
+
+                        if (x >= 0 && y >= 0 && x < n && y < n) {
+                            
+                            dp[i][j] += dp[x][y];
+                        }
+                    }
+                }
+
 
             }
 
