@@ -6,7 +6,6 @@ public class MaxCoins {
         
         // Declare variables 
         int n = nums.length;
-        int[][] dp = new int[n][n];
 
 
         // In que we have given there is 1 before nums[0] and after nums[n] so let's add it in array 
@@ -45,7 +44,7 @@ public class MaxCoins {
         }
 
         // Declare variables 
-        int maxCoins = Integer.MAX_VALUE;    // it stores maximum coins we can get by bursting the balloon
+        int maxCoins = Integer.MIN_VALUE;    // it stores maximum coins we can get by bursting the balloon
 
         // let's check all index from start to end
         // and as per que find coins at that index by nums[i - 1] * nums[i] * nums[i + 1]
