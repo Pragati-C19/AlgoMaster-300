@@ -13,14 +13,14 @@ public class MaxCoins {
         List<Integer> extendedNums = new ArrayList<>();
 
         // Add 1 at the begininng
-        extendedNums.addFirst(1);
+        extendedNums.add(1);
 
         for (int num : nums) {
             extendedNums.add(num);
         }
 
         // Add 1 at the end
-        extendedNums.addLast(1);
+        extendedNums.add(1);
 
         System.out.println("Extended List : " + extendedNums);
 
@@ -39,7 +39,7 @@ public class MaxCoins {
         // Base Case :
         if (start > end) {
             
-            System.out.println("  - Start (" + start + ") is greater than end (" + end + ").. so return 0");
+            // System.out.println("  - Start (" + start + ") is greater than end (" + end + ").. so return 0");
             return 0;
         }
 
@@ -73,7 +73,7 @@ public class MaxCoins {
             );
 
             System.out.printf(
-                "           - CoinsEarnedByBurstingIth: [%d]*[%d]*[%d] = %d | LeftDP[%d,%d]=%d | RightDP[%d,%d]=%d | CurrTotal = %d\n",
+                "\n           - CoinsEarnedByBurstingIth: [%d]*[%d]*[%d] = %d | LeftDP[%d,%d]=%d | RightDP[%d,%d]=%d | CurrTotal = %d\n",
                 extendedNums.get(i - 1), extendedNums.get(i), extendedNums.get(i + 1), coinsEarnedByBurstingIth,
                 start, i - 1, maxCoinsFromLeftPartition,
                 i + 1, end, maxCoinsFromRightPartition,
@@ -83,7 +83,7 @@ public class MaxCoins {
 
             // Get maximum of all i's
             maxCoins = Math.max(maxCoins, currCoins);
-            System.out.println("    - Max Coins so far : " + maxCoins);
+            System.out.println("   Max Coins so far : " + maxCoins);
 
         }
 
