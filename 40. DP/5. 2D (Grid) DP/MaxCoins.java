@@ -26,16 +26,59 @@ public class MaxCoins {
         System.out.println("Extended List : " + extendedNums);
 
 
-        // Call a binary search function for start = 1 and end = n
+        // Call a recursion function for start = 1 and end = n
         // why start = 1 bcoz apan list madhe 0'th index vr 1 taklay jo aplyala burst nahi karaychay.. 
         // why end = n bcoz apan list madhe n+1'th index vr 1 taklay jo aplyala burst nahi karaychay.. 
-        binarySearchDP(1, n, extendedNums);
+        recursivelyBurstBalloons(1, n, extendedNums);
 
         return 0;
     }
 
     // Helper Function : get max coins by start and end
-    private int binarySearchDP (int start, int end, List<Integer> extendedNums) {
+    private int recursivelyBurstBalloons (int start, int end, List<Integer> extendedNums) {
+
+        // Base Case :
+        if (start > end) {
+            
+            System.out.println("  - Start (" + start + ") is greater than end (" + end + ").. so return 0");
+            return 0;
+        }
+
+        // Declare variables 
+        int maxCoin = Integer.MAX_VALUE;    // it stores maximum coins we can get by bursting the balloon
+
+        // let's check all index from start to end
+        // and as per que find coins at that index by nums[i - 1] * nums[i] * nums[i + 1]
+        for (int i = start; i < end; i++) {
+            
+            // Coins earned by bursting the current balloon at index 'i'
+            // assuming balloons at i-1 and i+1 are still unburst
+            int coinsEarnedByBurstingIth = extendedNums.get(i-1) * extendedNums.get(i) * extendedNums.get(i+1);
+            
+            // Maximum coins from recursively bursting balloons to the left of index 'i'
+            // This is the subproblem [start, i - 1]
+            int maxCoinsFromLeftPartition  = recursivelyBurstBalloons(start, end - 1, extendedNums);
+            
+            // Maximum coins from recursively bursting balloons to the right of index 'i'
+            // This is the subproblem [i + 1, end]
+            int maxCoinsFromRightPartition  = recursivelyBurstBalloons(end + 1, end, extendedNums);
+
+
+            int currCoins = coinsEarnedByBurstingIth + maxCoinsFromLeftPartition + maxCoinsFromRightPartition;
+
+
+            // Debugger :
+            System.out.printf(
+                "       i=%d | Burst[%d]=%d -> CoinsEarnedByBurstingIth: [%d]*[%d]*[%d] = %d | LeftDP[%d,%d]=%d | RightDP[%d,%d]=%d | CurrTotal = %d\n",
+                i,
+                i, extendedNums.get(i),
+                extendedNums.get(i - 1), extendedNums.get(i), extendedNums.get(i + 1), coinsEarnedByBurstingIth,
+                start, i - 1, maxCoinsFromLeftPartition,
+                i + 1, end, maxCoinsFromRightPartition,
+                currCoins
+            );
+
+        }
 
         return 0;
     }
