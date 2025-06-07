@@ -25,40 +25,58 @@ public class CherryPickup {
 
         // else set dp of first cell same as grid 
         dp[0][0] = grid[0][0];
-        System.out.println(" Initial DP Array : " + Arrays.deepToString(dp));
+        System.out.println("Initial DP Array : " + Arrays.deepToString(dp));
+
+
+        // Check first Row i = 0 and j = varies
+        System.out.println("Filling first row:");
+        for (int j = 1; j < n; j++) {
+            
+            // if cell has -1 means it has obstacle we want to avoid it
+            if (grid[0][j] == -1) {
+                    
+                System.out.println("    will skip grid[i][j] if they are -1 bcoz it's thorn...");
+                continue;
+            }
+            
+            // we don't have any top so will add dp value of left + curr grid in curr cells dp
+            dp[0][j] = dp[0][j-1] + grid[0][j];
+
+        }
+        System.out.println("  [1st Row] DP Array : " + Arrays.deepToString(dp));
+        
+
+        // Check first Col i = varies and j = 0
+        System.out.println("Filling first col:");
+        for (int i = 1; i < n; i++) {
+    
+            // if cell has -1 means it has obstacle we want to avoid it
+            if (grid[i][0] == -1) {
+                    
+                System.out.println("    will skip grid[i][j] if they are -1 bcoz it's thorn...");
+                continue;
+            }
+
+            // we don't have any top so will add dp value of left + curr grid in curr cells dp
+            dp[i][0] = dp[i-1][0] + grid[i][0];
+
+        }
+        System.out.println("  [1st Col] DP Array : " + Arrays.deepToString(dp));
 
 
         // check other cells
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < n; j++) {
              
-                if (i == 0 && j == 0) {
-                    
-                    System.out.println("    will skip i=0 and j=0 bcoz we have already set the value...");
-                    continue;
-                }
-
                 // if cell has -1 means it has obstacle we want to avoid it
                 if (grid[i][j] == -1) {
                     
                     System.out.println("    will skip grid[i][j] if they are -1 bcoz it's thorn...");
                     continue;
                 }
-                else {
 
-                    // if there is a space of cherry we need to add it in our sum 
-                    for (int[] dirs : matrixDirection) {
-                        
-                        int x = dirs[0] + i;
-                        int y = dirs[1] + j;
-
-                        if (x >= 0 && y >= 0 && x < n && y < n) {
-                            
-                            dp[i][j] += dp[x][y];
-                        }
-                    }
-                }
-
+                // Top left ch karu apan add karat karat 
+                // dp[i][j] = dp[i-1][j] + dp[i][j+1] + dp[i+1][j] + dp[i][j-1]
 
             }
 
