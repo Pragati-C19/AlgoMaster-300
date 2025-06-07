@@ -4,6 +4,30 @@ public class MaxCoins {
     
     public int maxCoins(int[] nums) {
         
+        // Declare variables 
+        int n = nums.length;
+        int[][] dp = new int[n][n];
+
+
+        // In que we have given there is 1 before nums[0] and after nums[n] so let's add it in array 
+        // in java we can't do push front push back so let's create new List<Integer>
+        List<Integer> extendedNums = new ArrayList<>();
+
+        // Add 1 at the begininng
+        extendedNums.addFirst(1);
+
+        for (int num : nums) {
+            extendedNums.add(num);
+        }
+
+        // Add 1 at the end
+        extendedNums.addLast(1);
+
+        System.out.println("Extended List : " + extendedNums);
+
+
+        // 
+        
         return 0;
     }
 
