@@ -45,7 +45,7 @@ public class MaxCoins {
         }
 
         // Declare variables 
-        int maxCoin = Integer.MAX_VALUE;    // it stores maximum coins we can get by bursting the balloon
+        int maxCoins = Integer.MAX_VALUE;    // it stores maximum coins we can get by bursting the balloon
 
         // let's check all index from start to end
         // and as per que find coins at that index by nums[i - 1] * nums[i] * nums[i + 1]
@@ -66,21 +66,30 @@ public class MaxCoins {
 
             int currCoins = coinsEarnedByBurstingIth + maxCoinsFromLeftPartition + maxCoinsFromRightPartition;
 
-
             // Debugger :
             System.out.printf(
-                "       i=%d | Burst[%d]=%d -> CoinsEarnedByBurstingIth: [%d]*[%d]*[%d] = %d | LeftDP[%d,%d]=%d | RightDP[%d,%d]=%d | CurrTotal = %d\n",
+                "       i=%d | Burst[%d]=%d ->",
                 i,
-                i, extendedNums.get(i),
+                i, extendedNums.get(i)
+            );
+
+            System.out.printf(
+                "           - CoinsEarnedByBurstingIth: [%d]*[%d]*[%d] = %d | LeftDP[%d,%d]=%d | RightDP[%d,%d]=%d | CurrTotal = %d\n",
                 extendedNums.get(i - 1), extendedNums.get(i), extendedNums.get(i + 1), coinsEarnedByBurstingIth,
-                start, i - 1, maxCoinsFromLeftPartition,
-                i + 1, end, maxCoinsFromRightPartition,
+                start, end - 1, maxCoinsFromLeftPartition,
+                end + 1, end, maxCoinsFromRightPartition,
                 currCoins
             );
 
+
+            // Get maximum of all i's
+            maxCoins = Math.max(maxCoins, currCoins);
+            System.out.println("    - Max Coins so far : " + maxCoins);
+
         }
 
-        return 0;
+        // Return max Coins at the end 
+        return maxCoins;
     }
 
 
