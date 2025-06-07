@@ -103,7 +103,7 @@ public class MaxCoins {
         System.out.println("   DP Array for [" + start + ", " + end + "] : " + Arrays.deepToString(dp) + "\n");
 
         // Return max Coins at the end 
-        return maxCoins;
+        return dp[start][end];
     }
 
 
