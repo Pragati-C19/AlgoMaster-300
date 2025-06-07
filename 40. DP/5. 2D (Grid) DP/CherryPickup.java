@@ -4,6 +4,31 @@ public class CherryPickup {
     
     public int cherryPickup(int[][] grid) {
      
+        // Declare variables
+        int n = grid.length;
+        int[][] dp = new int[n][n];
+        int cherryCount = 0;
+        int[][] matrixDirection = {
+            {1, 0},
+            {0, 1},
+            {-1, 0},
+            {0, -1}
+        };
+
+
+        // If there is an thorn at first cell [0,0] return 0
+        if (grid[0][0] == -1) {
+            
+            System.out.println(" Thorn at first cell...");
+            return 0;
+        }
+
+        // else set dp of first cell same as grid 
+        dp[0][0] = grid[0][0];
+        System.out.println(" Initial DP Array : " + Arrays.deepToString(dp));
+
+        
+
         return 0;
     }
 
