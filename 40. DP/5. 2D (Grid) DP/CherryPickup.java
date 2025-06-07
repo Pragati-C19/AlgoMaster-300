@@ -27,7 +27,28 @@ public class CherryPickup {
         dp[0][0] = grid[0][0];
         System.out.println(" Initial DP Array : " + Arrays.deepToString(dp));
 
-        
+
+        // check other cells
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+             
+                if (i == 0 && j == 0) {
+                    
+                    System.out.println("    will skip i=0 and j=0 bcoz we have already set the value...");
+                    continue;
+                }
+
+                // if cell has -1 means it has obstacle we want to avoid it
+                if (grid[i][j] == -1) {
+                    
+                    System.out.println("    will skip grid[i][j] if they are -1 bcoz it's thorn...");
+                    continue;
+                }
+
+            }
+
+            System.out.println(" - Updated DP Array : " + Arrays.deepToString(dp));
+        }
 
         return 0;
     }
