@@ -99,6 +99,43 @@ public class CherryPickup {
     // Recursion Function : to get cherry Count at each cell
     private int dfs (int row1, int col1, int row2, int col2, int[][] grid, int n) {
 
+        // Base Case :
+        if (row1 < 0 || row1 >= n || col1 < 0 || col1 >= n || row2 < 0 || row2 >= n || col2 < 0 || col2 >= n || grid[row1][col1] == -1 || grid[row2][col2] == -1) {
+
+            return 0;
+        }
+
+        // If we reach to the end return cell count
+        if (row1 == n - 1 && col1 == n - 1) {
+            
+            System.out.println("    We have reach to the end of cell so return : " + grid[row1][col1]);
+            return grid[row1][col1];
+        }
+
+        // If both persons are on same cell will count cherry 1 time only
+        if (row1 == row2 && col1 == col2) {
+            
+            cherryCount += grid[row1][col1];
+            System.out.println("    - both person on same cell [" + row1 + "," + col1 + "] so cherryCount : " + cherryCount);
+        }
+        else {
+
+            // If both persons are on diff cells we need to add both cherries
+            cherryCount += grid[row1][col1] + grid[row2][col2];
+            System.out.println("    - both person on diff cells P1: [" + row1 + "," + col1 + "] and P2: [" + row2 + "," + col2 + "] so cherryCount : " + cherryCount);
+        }
+
+
+        // now check all 4 positions : see I said positions not directions 
+        // here both person goes to right or bottom we need to check will do this with recursion
+
+        int bothToRight = dfs(row1, col1 + 1, row2, col2 + 1, grid, n);
+        int bothToBottom = dfs(row1 + 1, col1, row2 + 1, col2, grid, n);
+        int firstRightSecondBottom = dfs(row1, col1 + 1, row2 + 1, col2, grid, n);
+        int secondRightFirstBottom = dfs(row1, col1 + 1, row2 + 1, col2, grid, n);
+
+        System.out.println("    - bothToRight : " + bothToRight + " | bothToBottom : " + bothToBottom + " | firstRightSecondBottom : " + firstRightSecondBottom + " | secondRightFirstBottom : " + secondRightFirstBottom);
+
         return cherryCount = 1;
     }
 
