@@ -7,7 +7,7 @@ public class CherryPickup {
      
         // Declare variables
         int n = grid.length;
-        int[][][] dp = new int[n][n][n];       // To store cherryCount after checking [r1,c1] and [r2,c2] : change to 3D-DP
+        Integer[][][] dp = new Integer[n][n][n];       // To store cherryCount after checking [r1,c1] and [r2,c2] : change to 3D-DP
 
 
         // If there is an thorn at first cell [0,0] return 0
@@ -34,7 +34,7 @@ public class CherryPickup {
     }
 
     // Recursion Function : to get cherry Count at each cell
-    private int dfs (int row1, int col1, int row2, int[][] grid, int n, int[][][] dp) {
+    private int dfs (int row1, int col1, int row2, int[][] grid, int n, Integer[][][] dp) {
 
         int col2 = row1 + col1 - row2;
 
@@ -47,7 +47,7 @@ public class CherryPickup {
 
 
         // If we have already check this cell will directly take it from dp
-        if (dp[row1][col1][row2] != 0) {
+        if (dp[row1][col1][row2] != null) {
             
             return dp[row1][col1][row2];
         }
@@ -266,6 +266,10 @@ public class CherryPickup {
 
             Now only 3 parameters needed -> 3D DP!
 
+    - doing Integer[][] dp instead of int[][] dp worked
+        1. We were saying != 0 but == ) is the valid case we need to take it 
+        2. so any other way to check cell is empty? we have Integer type 
+        3. that's why used it and submited the code
 
  
  * Pseudo Code :
