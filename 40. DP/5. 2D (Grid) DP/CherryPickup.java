@@ -169,10 +169,127 @@ public class CherryPickup {
  
                 dp[i][j] = dp[i-1][j] + dp[i][j+1] + dp[i+1][j] + dp[i][j-1]
 
+    ^ Let's think fresh :
+
+    - Took help from below video 
+        https://www.youtube.com/watch?v=ZV0sUzfA7Eg&ab_channel=Pepcoding
+        
+    - First Approach : DFS 
+        1. We need two person.. who can go through two different routes 
+        2. doghanche positions kashe astil ata?.. 
+            - aplyala right and bottom jaychy tr 
+            - both right, both bottom, 1st right 2nd bottom, 1st bottom 2nd right
+            - ya type ni te firtil
+        3. ata apan donhi persons kontya possitions vr ahet te baghu 
+            - jr te dogh ekach cell vr asel means row1 = row2 and col1 = col2 asel
+                so apan ekdach cherry pick karu tithe cherry asel tr 
+                cherryCount += grid[r1][c1]
+            - jr dogh vegveglya cells vr asel and tyanchya cell vr cherry astil tr
+                doghanchi addition add karun de cherryCount madhe
+                cherryCount += grid[r1][c1] + grid[r2][c2]
+        4. ata he zal fact ekach [r1,c1] and [r2,c2] ch what abt other ?
+            - tyamul apan ithe dfs or recursion lavnar ahe
+            - will check all 4 positions we mention earlier in recursion 
+            - and last la apan tya 4 positions madhun max kadhun gheu
+            - jo max apan cherryCount madhe add karun tyala return karu
+        5. ata dfs lihitoy tr base case baddal lihav lagel rigth?
+            - so Base case same asel me adhi pn lihileli ahe ti
+                if (r1 < 0 || r1 >= m || c1 < 0 || c1 >= n || r2 < 0 || r2 >= m || c2 < 0 || c2 >= n || grid[r1][c1] == -1 || grid[r2][c2] == -1)
+            - I know it's long but it's nothing 
+                we have check if both persons are not out of bound ? and if they have -1 as in thorn?
+                if yes then will return 0
+        6. when we reach to end cell will need to return the value 
+            if (r1 == m - 1 && c1 == n - 1)
+                return grid[r1][c1]
+        
+
+
  
  * Pseudo Code :
  
+    public int cherryPickup(int[][] grid) {
+     
+        -> Declare variables
+        int n = grid.length;
+        int[][] dp = new int[n][n];
+        int cherryCount = 0;
+        int[][] matrixDirection = {
+            {1, 0},
+            {0, 1},
+            {-1, 0},
+            {0, -1}
+        };
 
+
+        -> If there is an thorn at first cell [0,0] return 0
+        if (grid[0][0] == -1) {
+            
+            System.out.println(" Thorn at first cell...");
+            return 0;
+        }
+
+        -> else set dp of first cell same as grid 
+        dp[0][0] = grid[0][0];
+        System.out.println("Initial DP Array : " + Arrays.deepToString(dp));
+
+
+        -> Check first Row i = 0 and j = varies
+        System.out.println("Filling first row:");
+        for (int j = 1; j < n; j++) {
+            
+            -> if cell has -1 means it has obstacle we want to avoid it
+            if (grid[0][j] == -1) {
+                    
+                System.out.println("    will skip grid[i][j] if they are -1 bcoz it's thorn...");
+                continue;
+            }
+            
+            -> we don't have any top so will add dp value of left + curr grid in curr cells dp
+            dp[0][j] = dp[0][j-1] + grid[0][j];
+
+        }
+        System.out.println("  [1st Row] DP Array : " + Arrays.deepToString(dp));
+        
+
+        -> Check first Col i = varies and j = 0
+        System.out.println("Filling first col:");
+        for (int i = 1; i < n; i++) {
+    
+            -> if cell has -1 means it has obstacle we want to avoid it
+            if (grid[i][0] == -1) {
+                    
+                System.out.println("    will skip grid[i][j] if they are -1 bcoz it's thorn...");
+                continue;
+            }
+
+            -> we don't have any top so will add dp value of left + curr grid in curr cells dp
+            dp[i][0] = dp[i-1][0] + grid[i][0];
+
+        }
+        System.out.println("  [1st Col] DP Array : " + Arrays.deepToString(dp));
+
+
+        -> check other cells
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < n; j++) {
+             
+                -> if cell has -1 means it has obstacle we want to avoid it
+                if (grid[i][j] == -1) {
+                    
+                    System.out.println("    will skip grid[i][j] if they are -1 bcoz it's thorn...");
+                    break;
+                }
+
+                -> Top left ch karu apan add karat karat 
+                dp[i][j] = dp[i-1][j] + dp[i][j-1] + grid[i][j];
+
+            }
+
+            System.out.println(" - Updated DP Array : " + Arrays.deepToString(dp));
+        }
+
+        return 0;
+    }
 
 
  */
