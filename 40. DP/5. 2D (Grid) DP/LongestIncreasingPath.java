@@ -11,10 +11,19 @@ public class LongestIncreasingPath {
         {0, -1}
     };
 
+    // Driver Function
     public int longestIncreasingPath(int[][] matrix) {
         
+
         return 0;
     }
+
+    // Recursion Function : to check maxPath till currCell
+    private int dfs(int i, int j, int[][] matrix) {
+
+        return 0;
+    }
+
 
     public static void main(String[] args) {
 
