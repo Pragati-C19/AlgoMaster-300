@@ -112,16 +112,20 @@ public class CherryPickup {
             return grid[row1][col1];
         }
 
+
+        // Declare a currCherry Count : to track cherris of curr cells of both person
+        int currCherryCount = 0;
+
         // If both persons are on same cell will count cherry 1 time only
         if (row1 == row2 && col1 == col2) {
             
-            cherryCount += grid[row1][col1];
+            currCherryCount += grid[row1][col1];
             System.out.println("    - both person on same cell [" + row1 + "," + col1 + "] so cherryCount : " + cherryCount);
         }
         else {
 
             // If both persons are on diff cells we need to add both cherries
-            cherryCount += grid[row1][col1] + grid[row2][col2];
+            currCherryCount += grid[row1][col1] + grid[row2][col2];
             System.out.println("    - both person on diff cells P1: [" + row1 + "," + col1 + "] and P2: [" + row2 + "," + col2 + "] so cherryCount : " + cherryCount);
         }
 
@@ -143,9 +147,10 @@ public class CherryPickup {
         int max2 = Math.max(firstRightSecondBottom, secondRightFirstBottom);
 
         // Now add max between above two max in cherry Count
-        cherryCount += Math.max(max1, max2);
+        currCherryCount += Math.max(max1, max2);
+        System.out.println("  CurrCherry Count is : " + currCherryCount);
         
-        return cherryCount;
+        return currCherryCount;
     }
 
     public static void main(String[] args) {
