@@ -15,8 +15,8 @@ public class CherryPickup {
      
         // Declare variables
         int n = grid.length;
-        int[][] dp = new int[n][n];
-        int cherryCount = 0;
+        int[][][][] dp = new int[n][n][n][n];       // To store cherryCount after checking [r1,c1] and [r2,c2]
+        int cherryCount = 0;    
         
 
         // If there is an thorn at first cell [0,0] return 0
@@ -28,7 +28,7 @@ public class CherryPickup {
 
 
         // Both persons starting from cell[0,0]
-        cherryCount = dfs(0, 0, 0, 0, grid, n);
+        cherryCount = dfs(0, 0, 0, 0, grid, n, dp);
 
         // Here cherryCount == Integer.MinValue didn't work
         // why ? bcoz value of currCherryCount is changing we just need to check if it's not negative if it is will return 0
@@ -38,73 +38,12 @@ public class CherryPickup {
             return 0;
         }
 
-        // // else set dp of first cell same as grid 
-        // dp[0][0] = grid[0][0];
-        // System.out.println("Initial DP Array : " + Arrays.deepToString(dp));
-
-
-        // // // Check first Row i = 0 and j = varies
-        // System.out.println("Filling first row:");
-        // for (int j = 1; j < n; j++) {
-            
-        //     // if cell has -1 means it has obstacle we want to avoid it
-        //     if (grid[0][j] == -1) {
-                    
-        //         System.out.println("    will skip grid[i][j] if they are -1 bcoz it's thorn...");
-        //         continue;
-        //     }
-            
-        //     // we don't have any top so will add dp value of left + curr grid in curr cells dp
-        //     dp[0][j] = dp[0][j-1] + grid[0][j];
-
-        // }
-        // System.out.println("  [1st Row] DP Array : " + Arrays.deepToString(dp));
-        
-
-        // // Check first Col i = varies and j = 0
-        // System.out.println("Filling first col:");
-        // for (int i = 1; i < n; i++) {
-    
-        //     // if cell has -1 means it has obstacle we want to avoid it
-        //     if (grid[i][0] == -1) {
-                    
-        //         System.out.println("    will skip grid[i][j] if they are -1 bcoz it's thorn...");
-        //         continue;
-        //     }
-
-        //     // we don't have any top so will add dp value of left + curr grid in curr cells dp
-        //     dp[i][0] = dp[i-1][0] + grid[i][0];
-
-        // }
-        // System.out.println("  [1st Col] DP Array : " + Arrays.deepToString(dp));
-
-
-        // // check other cells
-        // for (int i = 1; i < n; i++) {
-        //     for (int j = 1; j < n; j++) {
-             
-        //         // if cell has -1 means it has obstacle we want to avoid it
-        //         if (grid[i][j] == -1) {
-                    
-        //             System.out.println("    will skip grid[i][j] if they are -1 bcoz it's thorn...");
-        //             break;
-        //         }
-
-        //         // Top left ch karu apan add karat karat 
-        //         dp[i][j] = dp[i-1][j] + dp[i][j-1] + grid[i][j];
-
-        //     }
-
-        //     System.out.println(" - Updated DP Array : " + Arrays.deepToString(dp));
-        // }
-
-
 
         return cherryCount;
     }
 
     // Recursion Function : to get cherry Count at each cell
-    private int dfs (int row1, int col1, int row2, int col2, int[][] grid, int n) {
+    private int dfs (int row1, int col1, int row2, int col2, int[][] grid, int n, int[][][][] dp) {
 
         // Base Case :
         if (row1 < 0 || row1 >= n || col1 < 0 || col1 >= n || row2 < 0 || row2 >= n || col2 < 0 || col2 >= n || grid[row1][col1] == -1 || grid[row2][col2] == -1) {
@@ -112,6 +51,14 @@ public class CherryPickup {
             // Why Integer.MinValue ? check in comments
             return Integer.MIN_VALUE;
         }
+
+
+        // If we have already check this cell will directly take it from dp
+        if (dp[row1][col1][row2][col2] != 0) {
+            
+            return dp[row1][col1][row2][col2];
+        }
+
 
         // If we reach to the end return cell count
         if (row1 == n - 1 && col1 == n - 1) {
@@ -141,10 +88,10 @@ public class CherryPickup {
         // now check all 4 positions : see I said positions not directions 
         // here both person goes to right or bottom we need to check will do this with recursion
 
-        int bothToRight = dfs(row1, col1 + 1, row2, col2 + 1, grid, n);
-        int bothToBottom = dfs(row1 + 1, col1, row2 + 1, col2, grid, n);
-        int firstRightSecondBottom = dfs(row1, col1 + 1, row2 + 1, col2, grid, n);
-        int secondRightFirstBottom = dfs(row1 + 1, col1, row2, col2 + 1, grid, n);
+        int bothToRight = dfs(row1, col1 + 1, row2, col2 + 1, grid, n, dp);
+        int bothToBottom = dfs(row1 + 1, col1, row2 + 1, col2, grid, n, dp);
+        int firstRightSecondBottom = dfs(row1, col1 + 1, row2 + 1, col2, grid, n, dp);
+        int secondRightFirstBottom = dfs(row1 + 1, col1, row2, col2 + 1, grid, n, dp);
 
         System.out.println("    - bothToRight : " + bothToRight + " | bothToBottom : " + bothToBottom + " | firstRightSecondBottom : " + firstRightSecondBottom + " | secondRightFirstBottom : " + secondRightFirstBottom);
 
@@ -157,6 +104,10 @@ public class CherryPickup {
         // Now add max between above two max in cherry Count
         currCherryCount += Math.max(max1, max2);
         System.out.println("  CurrCherry Count is : " + currCherryCount);
+
+        
+        // Add currCherry count in dp
+        dp[row1][col1][row2][col2] = currCherryCount;
 
         return currCherryCount;
     }
@@ -296,7 +247,7 @@ public class CherryPickup {
 
     - Got TLE for the code so let's use DP now
         1. Apan dp fact both persons mule jo currCherryCount alay tyala store karaylach gheu
-         
+
  
  * Pseudo Code :
  
