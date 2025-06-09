@@ -136,7 +136,7 @@ public class CherryPickup {
         int bothToRight = dfs(row1, col1 + 1, row2, col2 + 1, grid, n);
         int bothToBottom = dfs(row1 + 1, col1, row2 + 1, col2, grid, n);
         int firstRightSecondBottom = dfs(row1, col1 + 1, row2 + 1, col2, grid, n);
-        int secondRightFirstBottom = dfs(row1, col1 + 1, row2 + 1, col2, grid, n);
+        int secondRightFirstBottom = dfs(row1 + 1, col1, row2, col2 + 1, grid, n);
 
         System.out.println("    - bothToRight : " + bothToRight + " | bothToBottom : " + bothToBottom + " | firstRightSecondBottom : " + firstRightSecondBottom + " | secondRightFirstBottom : " + secondRightFirstBottom);
 
@@ -149,7 +149,7 @@ public class CherryPickup {
         // Now add max between above two max in cherry Count
         currCherryCount += Math.max(max1, max2);
         System.out.println("  CurrCherry Count is : " + currCherryCount);
-        
+
         return currCherryCount;
     }
 
