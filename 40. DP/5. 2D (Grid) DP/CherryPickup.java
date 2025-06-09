@@ -2,22 +2,13 @@ import java.util.*;
 
 public class CherryPickup {
     
-    // Gloablly Declare Variables 
-    int[][] matrixDirection = {
-            {1, 0},
-            {0, 1},
-            {-1, 0},
-            {0, -1}
-    };
-
     // Driver Function
     public int cherryPickup(int[][] grid) {
      
         // Declare variables
         int n = grid.length;
-        int[][][][] dp = new int[n][n][n][n];       // To store cherryCount after checking [r1,c1] and [r2,c2]
-        int cherryCount = 0;    
-        
+        int[][][] dp = new int[n][n][n];       // To store cherryCount after checking [r1,c1] and [r2,c2] : change to 3D-DP
+
 
         // If there is an thorn at first cell [0,0] return 0
         if (grid[0][0] == -1) {
@@ -28,7 +19,7 @@ public class CherryPickup {
 
 
         // Both persons starting from cell[0,0]
-        cherryCount = dfs(0, 0, 0, 0, grid, n, dp);
+        int cherryCount = dfs(0, 0, 0, grid, n, dp);
 
         // Here cherryCount == Integer.MinValue didn't work
         // why ? bcoz value of currCherryCount is changing we just need to check if it's not negative if it is will return 0
@@ -43,9 +34,11 @@ public class CherryPickup {
     }
 
     // Recursion Function : to get cherry Count at each cell
-    private int dfs (int row1, int col1, int row2, int col2, int[][] grid, int n, int[][][][] dp) {
+    private int dfs (int row1, int col1, int row2, int[][] grid, int n, int[][][] dp) {
 
-        // Base Case :
+        int col2 = row1 + col1 - row2;
+
+        // Base Case : Boundary or thorn check
         if (row1 < 0 || row1 >= n || col1 < 0 || col1 >= n || row2 < 0 || row2 >= n || col2 < 0 || col2 >= n || grid[row1][col1] == -1 || grid[row2][col2] == -1) {
 
             // Why Integer.MinValue ? check in comments
@@ -54,9 +47,9 @@ public class CherryPickup {
 
 
         // If we have already check this cell will directly take it from dp
-        if (dp[row1][col1][row2][col2] != 0) {
+        if (dp[row1][col1][row2] != 0) {
             
-            return dp[row1][col1][row2][col2];
+            return dp[row1][col1][row2];
         }
 
 
@@ -88,10 +81,10 @@ public class CherryPickup {
         // now check all 4 positions : see I said positions not directions 
         // here both person goes to right or bottom we need to check will do this with recursion
 
-        int bothToRight = dfs(row1, col1 + 1, row2, col2 + 1, grid, n, dp);
-        int bothToBottom = dfs(row1 + 1, col1, row2 + 1, col2, grid, n, dp);
-        int firstRightSecondBottom = dfs(row1, col1 + 1, row2 + 1, col2, grid, n, dp);
-        int secondRightFirstBottom = dfs(row1 + 1, col1, row2, col2 + 1, grid, n, dp);
+        int bothToRight = dfs(row1, col1 + 1, row2, grid, n, dp);
+        int bothToBottom = dfs(row1 + 1, col1, row2 + 1, grid, n, dp);
+        int firstRightSecondBottom = dfs(row1, col1 + 1, row2 + 1, grid, n, dp);
+        int secondRightFirstBottom = dfs(row1 + 1, col1, row2, grid, n, dp);
 
         System.out.println("    - bothToRight : " + bothToRight + " | bothToBottom : " + bothToBottom + " | firstRightSecondBottom : " + firstRightSecondBottom + " | secondRightFirstBottom : " + secondRightFirstBottom);
 
@@ -107,7 +100,7 @@ public class CherryPickup {
 
         
         // Add currCherry count in dp
-        dp[row1][col1][row2][col2] = currCherryCount;
+        dp[row1][col1][row2] = currCherryCount;
 
         return currCherryCount;
     }
