@@ -3,7 +3,6 @@ import java.util.*;
 public class CherryPickup {
     
     // Gloablly Declare Variables 
-    int cherryCount;
     int[][] matrixDirection = {
             {1, 0},
             {0, 1},
@@ -17,7 +16,7 @@ public class CherryPickup {
         // Declare variables
         int n = grid.length;
         int[][] dp = new int[n][n];
-        cherryCount = 0;
+        int cherryCount = 0;
         
 
         // If there is an thorn at first cell [0,0] return 0
@@ -29,7 +28,15 @@ public class CherryPickup {
 
 
         // Both persons starting from cell[0,0]
-        dfs(0, 0, 0, 0, grid, n);
+        cherryCount = dfs(0, 0, 0, 0, grid, n);
+
+        // Here cherryCount == Integer.MinValue didn't work
+        // why ? bcoz value of currCherryCount is changing we just need to check if it's not negative if it is will return 0
+        if (cherryCount < 0) {
+            
+            // We havn't reach to end 
+            return 0;
+        }
 
         // // else set dp of first cell same as grid 
         // dp[0][0] = grid[0][0];
@@ -121,13 +128,13 @@ public class CherryPickup {
         if (row1 == row2 && col1 == col2) {
             
             currCherryCount += grid[row1][col1];
-            System.out.println("    - both person on same cell [" + row1 + "," + col1 + "] so cherryCount : " + cherryCount);
+            System.out.println("    - both person on same cell [" + row1 + "," + col1 + "] so currCherryCount : " + currCherryCount);
         }
         else {
 
             // If both persons are on diff cells we need to add both cherries
             currCherryCount += grid[row1][col1] + grid[row2][col2];
-            System.out.println("    - both person on diff cells P1: [" + row1 + "," + col1 + "] and P2: [" + row2 + "," + col2 + "] so cherryCount : " + cherryCount);
+            System.out.println("    - both person on diff cells P1: [" + row1 + "," + col1 + "] and P2: [" + row2 + "," + col2 + "] so currCherryCount : " + currCherryCount);
         }
 
 
