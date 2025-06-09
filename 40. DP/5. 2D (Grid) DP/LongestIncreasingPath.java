@@ -18,12 +18,20 @@ public class LongestIncreasingPath {
         1 -> 2 -> 3 -> 4 -> 5
         not 1 -> 1 -> 2 -> 3 -> 3 -> 4 -> 5
         there should not be same nums in one path
-        if we get same letter we have to start again
+        if we get same num we have to start again
+        we must only move to stricly increasing order (next > curr)
 
     2. from every cell we need to check 
         if neighbors have curr+1 value?
             if yes then go to that cell and explore that path
         
+    3. After tracking example I think we need to use DFS here
+        - start from every cell in matrix 
+        - for every cell will che it's BRUL 
+        - if neighbor has smallest value recur on it..
+        - will store count of each cell in dp
+
+    4. we don't want to consider equal or larger values
     
 
     ^ Trace Example :
@@ -76,6 +84,57 @@ public class LongestIncreasingPath {
  
  * Pseudo Code :
  
+    Globally Declare variable 
+        - matrixDirection : to check all BRUL directions
+        - dp
+
+    function longestIncreasingPath (matrix) {
+    
+        -> Declare variables
+            - m, n
+            - dp        -> To store maxPath Count till currCell
+            - maxPath   -> it will tell max of currCellPath or prev one 
+
+        -> start checking cell one by one
+            for(i = 0 to m)
+                for(j = 0 to n)
+
+                    maxPath = max(maxPath, dfs(i, j, matrix))
+
+        -> return maxPath
+    }
+
+    dfs (i, j, matrix) {
+    
+        -> If we already have value for this cell in dp return it
+            if dp[i][j] != 0
+                return dp[i][j]
+
+        -> declare currPath = 1 
+            why? bcoz we are including curr cell in it 
+            it will give path of currCell
+
+        -> check neighbors
+            for(dirs : matrixDirection) 
+
+                x = dirs[0] + i
+                y = dirs[1] + j
+
+                -> check if neighbor is in bound and smaller that curr value?
+                    if( Base Case && matrix[i][j] > matrix[x][y]) 
+
+                        -> call recursion and added curr cell in it 
+                            pathLenFromNeighbor = 1 + dfs(x, y, matrix)
+
+                        currPath = max(currPath, pathLenFromNeighbor)
+
+        -> store value in dp 
+            dp[i][j] = currPath
+
+        -> return currPath
+
+    
+    }
 
 
  */
