@@ -26,7 +26,7 @@ public class LongestIncreasingPath {
             for (int j = 0; j < n; j++) {
                 
                 // call recursion and see prev values or curr one is max
-                maxPath = Math.max(maxPath, dfs(i, j, matrix));
+                maxPath = Math.max(maxPath, dfs(i, j, matrix, m, n));
             }
         }
         System.out.println(" Finally DP : " + Arrays.deepToString(dp));
@@ -38,9 +38,37 @@ public class LongestIncreasingPath {
     }
 
     // Recursion Function : to check maxPath till currCell
-    private int dfs(int i, int j, int[][] matrix) {
+    private int dfs(int i, int j, int[][] matrix, int m, int n) {
 
-        return 0;
+        // If we already have value store in dp for currCell return it
+        if (dp[i][j] != 0) {
+            
+            System.out.println("      Value is already store in dp : " + dp[i][j]);
+            return dp[i][j];
+        }
+
+        // Declare a variable to track currPaths
+        int currCellPath = 1;   // including currCell
+
+        // Now check this curr Cell's neighbors BRUL
+        for (int[] dirs : matrixDirection) {
+            
+            int x = dirs[0] + i;
+            int y = dirs[1] + j;
+
+            // add conditions 
+            if (x >= 0 && y >= 0 && x < m && y < n && matrix[i][j] > matrix[x][y]) {
+                
+                // Call recursion on neighbor
+                int pathLenFromNeighbor = 1 + dfs(x, y, matrix, m, n);
+                System.out.println("    -> path Count for [" + x + "," + y + "]");
+
+                currCellPath = Math.max(currCellPath, pathLenFromNeighbor);
+            }
+        }
+
+
+        return currCellPath;
     }
 
 
