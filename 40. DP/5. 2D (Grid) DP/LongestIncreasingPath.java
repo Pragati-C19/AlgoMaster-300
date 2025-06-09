@@ -43,7 +43,7 @@ public class LongestIncreasingPath {
         // If we already have value store in dp for currCell return it
         if (dp[i][j] != 0) {
             
-            System.out.println("      Value is already store in dp : " + dp[i][j]);
+            System.out.println("    Value is already store in dp : " + dp[i][j]);
             return dp[i][j];
         }
 
@@ -61,12 +61,17 @@ public class LongestIncreasingPath {
                 
                 // Call recursion on neighbor
                 int pathLenFromNeighbor = 1 + dfs(x, y, matrix, m, n);
-                System.out.println("    -> path Count for [" + x + "," + y + "]");
+                System.out.println("         - Path Count for [" + x + "," + y + "] : " + pathLenFromNeighbor);
 
                 currCellPath = Math.max(currCellPath, pathLenFromNeighbor);
+                System.out.println("         - currMaxPath Count for [" + i + "," + j + "] : " + currCellPath);
+
             }
         }
 
+        // Store currCellPath in dp 
+        dp[i][j] = currCellPath;
+        System.out.println("    Updated DP : " + Arrays.deepToString(dp));
 
         return currCellPath;
     }
