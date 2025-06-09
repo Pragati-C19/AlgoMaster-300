@@ -102,7 +102,8 @@ public class CherryPickup {
         // Base Case :
         if (row1 < 0 || row1 >= n || col1 < 0 || col1 >= n || row2 < 0 || row2 >= n || col2 < 0 || col2 >= n || grid[row1][col1] == -1 || grid[row2][col2] == -1) {
 
-            return 0;
+            // Why Integer.MinValue ? check in comments
+            return Integer.MIN_VALUE;
         }
 
         // If we reach to the end return cell count
@@ -269,7 +270,22 @@ public class CherryPickup {
             if (r1 == m - 1 && c1 == n - 1)
                 return grid[r1][c1]
         
+        7. Why Return Integer.MIN_VALUE Matters
+            - Let's break this part clearly:
+                cherries += Math.max(Math.max(f1, f2), Math.max(f3, f4));
 
+                Suppose 3 of your paths are invalid, and return 0 (instead of negative value).
+                And only 1 path is valid and returns 3 cherries.
+                    max(0, 0, 0, 3) → 3 ✔️ Good.
+
+                Now suppose all 4 paths are invalid, and return 0:
+                    max(0, 0, 0, 0) → 0 ❌
+                Looks like a valid path with no cherries.
+                So it thinks it's okay to go forward, 
+                but it isn't — this path should be skipped altogether.
+                
+            - That’s why Integer.MIN_VALUE is used. So that:
+                max(-∞, -∞, -∞, -∞) → -∞ → rejected
 
  
  * Pseudo Code :
