@@ -136,7 +136,16 @@ public class CherryPickup {
 
         System.out.println("    - bothToRight : " + bothToRight + " | bothToBottom : " + bothToBottom + " | firstRightSecondBottom : " + firstRightSecondBottom + " | secondRightFirstBottom : " + secondRightFirstBottom);
 
-        return cherryCount = 1;
+        // let's take maximum of bothToBottom and bothToRight
+        int max1 = Math.max(bothToRight, bothToBottom);
+
+        // let's take maximum of firstRightSecondBottom and secondRightFirstBottom
+        int max2 = Math.max(firstRightSecondBottom, secondRightFirstBottom);
+
+        // Now add max between above two max in cherry Count
+        cherryCount += Math.max(max1, max2);
+        
+        return cherryCount;
     }
 
     public static void main(String[] args) {
