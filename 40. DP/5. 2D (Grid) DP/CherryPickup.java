@@ -248,6 +248,32 @@ public class CherryPickup {
     - Got TLE for the code so let's use DP now
         1. Apan dp fact both persons mule jo currCherryCount alay tyala store karaylach gheu
 
+    - Got TLE again
+        1. This is bcoz of dp[r1][c1][r2][c2] need a more optimal solution
+        2. In this problem:
+            You have two people (or paths) going from (0,0) to (n-1,n-1) through a grid.
+            You want to simulate both people moving at the same time, picking up cherries without overlapping.
+            
+            Let:
+                r1, c1 be person 1’s position.
+                r2, c2 be person 2’s position.
+
+            Now notice this:
+                If both start at (0,0) and take k total steps, then:
+
+                    r1 + c1 = k and r2 + c2 = k  ->  So,
+                    r1 + c1 == r2 + c2 always.
+
+            That's why we can replace one coordinate using the others! 
+
+        3. If r1 + c1 != r2 + c2, it means they’re not on the same step, which is not allowed — we simulate them moving together.            
+        4. So instead of 4 parameters (r1, c1, r2, c2), we can eliminate one:
+            If we know r1, c1, and r2 — then:
+                r1 + c1 == r2 + c2  ->  c2 = r1 + c1 - r2
+
+            Now only 3 parameters needed -> 3D DP!
+
+
  
  * Pseudo Code :
  
