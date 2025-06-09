@@ -14,8 +14,27 @@ public class LongestIncreasingPath {
     // Driver Function
     public int longestIncreasingPath(int[][] matrix) {
         
+        // Declare variables
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int maxPath = 0;
+        dp = new int[m][n];
 
-        return 0;
+
+        // Start Checking all cells one by one
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                
+                // call recursion and see prev values or curr one is max
+                maxPath = Math.max(maxPath, dfs(i, j, matrix));
+            }
+        }
+        System.out.println(" Finally DP : " + Arrays.deepToString(dp));
+        System.out.println(" Finally MaxPath : " + maxPath);
+        
+
+        // Return maxPath
+        return maxPath;
     }
 
     // Recursion Function : to check maxPath till currCell
