@@ -2,6 +2,45 @@ import java.util.*;
 
 public class LongestIncreasingPath {
     
+    // Gloabally Declare variables 
+    int[][] dp;
+    int[][] matrixDirection = {
+        {1, 0},
+        {0, 1},
+        {-1, 0},
+        {0, -1}
+    };
+
+    public int longestIncreasingPath(int[][] matrix) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        LongestIncreasingPath solution = new LongestIncreasingPath();
+
+        int[][] matrix1 = {
+            {9,9,4},
+            {6,6,8},
+            {2,1,1}
+        };
+        System.out.println("Result 1 -> " + solution.longestIncreasingPath(matrix1) + "\n");    // 4
+
+        int[][] matrix2 = {
+            {3,4,5},
+            {3,2,6},
+            {2,2,1}
+        };
+        System.out.println("Result 2 -> " + solution.longestIncreasingPath(matrix2) + "\n");    // 4
+        
+        int[][] matrix3 = {
+            {1}
+        };
+        System.out.println("Result 3 -> " + solution.longestIncreasingPath(matrix3) + "\n");    // 1
+
+    }
+
 }
 
 /*
