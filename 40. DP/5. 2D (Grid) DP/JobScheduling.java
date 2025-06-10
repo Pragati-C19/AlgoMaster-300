@@ -39,30 +39,58 @@ public class JobScheduling {
             // Initialize with max of previous profit or current job's profit
             dp[currJob] = Math.max(dp[currJob - 1], jobsArray[currJob][2]);
 
-            for (int prevJob = 0; prevJob < currJob; prevJob++) {
+            // Find the last non-overlapping job using binary search
+            int prevJob = binarySearch(jobsArray, currJob);
+
+            // If a non-overlapping job was found, update dp[curr]
+            if (prevJob != -1) {
                 
-                // to debug : stated variable name for starttime and endtime
-                int prevStartTime = jobsArray[prevJob][0];
-                int prevEndTime = jobsArray[prevJob][1];
-
-                // If jobs are overlapping skip it
-                if (prevEndTime > currStartTime) {
-                    
-                    System.out.println("    Jobs are overlapping | dp Array : " + Arrays.toString(dp));
-                    continue;
-                }
-
-                // else will store profit in dp
                 int currProfit = dp[prevJob] + jobsArray[currJob][2];
 
                 // we are checking  multiple prev so we might need to get max
                 dp[currJob] = Math.max(dp[currJob], currProfit);
-
-                System.out.println("    Updated DP Array : " + Arrays.toString(dp));
             }
+            else {
+                System.out.println("    No non-overlapping job found (prev : -1)");
+            }
+
+            System.out.println("  Updated DP Array : " + Arrays.toString(dp));
         }
 
         return dp[n-1];
+    }
+
+    // Helper Function : To get non-overlapping jobs
+    private int binarySearch(int[][] jobsArray, int currJob) {
+
+        int left = 0;
+        int right = currJob - 1;
+        int prevJob = -1;
+
+        // Will perform binary search to find the highest index prev < curr
+        while (left <= right) {
+            
+            int mid = left + (right - left) / 2;
+
+            // If job at mid ends before or at curr's start time, it's non-overlapping
+            if (jobsArray[mid][1] <= jobsArray[currJob][0]) {
+                
+                // Update prev to current mid as a potential candidate
+                prevJob = mid;
+
+                // Search right half for a later non-overlapping job (higher index)
+                left = mid + 1;
+            }
+            else {
+
+                // Job at mid overlaps (end time > curr's start time)
+                // Search left half for non-overlapping jobs
+                right = mid - 1;
+            }
+        }
+
+        System.out.println("      - [Binary search] prevJob : " + prevJob);
+        return prevJob;
     }
 
     public static void main (String[] agrs) {
@@ -89,6 +117,11 @@ public class JobScheduling {
 }
 
 /*
+
+ ^ Improvement :
+    1. let's use Binary search let's not check every prev num will just check non overlaping one between previous
+
+
  * Intuitions :
  
     1. we have n number of jobs 
@@ -167,5 +200,70 @@ public class JobScheduling {
     
     }
 
+
+    Approach 1 code :
+
+    public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
+     
+        -> Declare variable
+        int n = startTime.length;
+        int[][] jobsArray = new int[n][3];
+        int[] dp = new int[n];
+
+        -> add values in jobsArray
+        for (int i = 0; i < n; i++) {
+            
+            jobsArray[i][0] = startTime[i];
+            jobsArray[i][1] = endTime[i];
+            jobsArray[i][2] = profit[i];
+        }
+
+        -> Sort the array by endTime
+        Arrays.sort(jobsArray, (a,b) -> {
+            if (a[1] == b[1]) return Integer.compare(a[0], b[0]);   // Start Time
+            return Integer.compare(a[1], b[1]);                     // End Time
+        });
+        System.out.println("Sorted Jobs Array : " + Arrays.deepToString(jobsArray));
+
+
+        -> Add initial value to dp with profit for first day 
+        dp[0] = jobsArray[0][2];
+
+        
+        -> Check other jobs now
+        for (int currJob = 1; currJob < n; currJob++) {
+
+            -> to debug : stated variable name for starttime and endtime
+            int currStartTime = jobsArray[currJob][0];
+            int currEndTime = jobsArray[currJob][1];
+
+            -> Initialize with max of previous profit or current job's profit
+            dp[currJob] = Math.max(dp[currJob - 1], jobsArray[currJob][2]);
+
+            for (int prevJob = 0; prevJob < currJob; prevJob++) {
+                
+                -> to debug : stated variable name for starttime and endtime
+                int prevStartTime = jobsArray[prevJob][0];
+                int prevEndTime = jobsArray[prevJob][1];
+
+                -> If jobs are overlapping skip it
+                if (prevEndTime > currStartTime) {
+                    
+                    System.out.println("    Jobs are overlapping | dp Array : " + Arrays.toString(dp));
+                    continue;
+                }
+
+                -> else will store profit in dp
+                int currProfit = dp[prevJob] + jobsArray[currJob][2];
+
+                -> we are checking  multiple prev so we might need to get max
+                dp[currJob] = Math.max(dp[currJob], currProfit);
+
+                System.out.println("    Updated DP Array : " + Arrays.toString(dp));
+            }
+        }
+
+        return dp[n-1];
+    }
 
  */
