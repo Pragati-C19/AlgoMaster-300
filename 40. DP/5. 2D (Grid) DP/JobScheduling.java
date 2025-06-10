@@ -2,6 +2,32 @@ import java.util.*;
 
 public class JobScheduling {
     
+    public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
+     
+        return 0;
+    }
+
+    public static void main (String[] agrs) {
+
+        JobScheduling solution = new JobScheduling();
+
+        int[] startTime1 = {1,2,3,3};
+        int[] endTime1 = {3,4,5,6};
+        int[] profit1 = {50,10,40,70};
+        System.out.println("Result 1 -> " + solution.jobScheduling(startTime1, endTime1, profit1) + "\n");
+
+        int[] startTime2 = {1,2,3,4,6};
+        int[] endTime2 = {3,5,10,6,9};
+        int[] profit2 = {20,20,100,70,60};
+        System.out.println("Result 2 -> " + solution.jobScheduling(startTime2, endTime2, profit2) + "\n");
+        
+        int[] startTime3 = {1,1,1};
+        int[] endTime3 = {2,3,4};
+        int[] profit3 = {5,6,4};
+        System.out.println("Result 3 -> " + solution.jobScheduling(startTime3, endTime3, profit3) + "\n");
+        
+    } 
+
 }
 
 /*
@@ -41,7 +67,7 @@ public class JobScheduling {
                 combinedArray[i][1] = endTime[i]
                 combinedArray[i][2] = profit[i]
 
-        -> Sort combinedArray by start time
+        -> Sort combinedArray by end time
 
         -> Initially add dp[0] = combin[0]
             why ? bcoz initially we take 1st job and then it's pofit will equal to 0'th index job's profit
