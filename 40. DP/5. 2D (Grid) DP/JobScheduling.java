@@ -4,6 +4,29 @@ public class JobScheduling {
     
     public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
      
+        // Declare variable
+        int n = startTime.length;
+        int[][] jobsArray = new int[n][3];
+        int[] dp = new int[n];
+
+        // add values in jobsArray
+        for (int i = 0; i < n; i++) {
+            
+            jobsArray[i][0] = startTime[i];
+            jobsArray[i][1] = endTime[i];
+            jobsArray[i][2] = profit[i];
+        }
+
+        // Sort the array by endTime
+        Arrays.sort(jobsArray, (a,b) -> {
+            if (a[1] == b[1]) return Integer.compare(a[0], b[0]);   // Start Time
+            return Integer.compare(a[1], b[1]);                     // End Time
+        });
+        System.out.println("Sorted Jobs Array : " + Arrays.deepToString(jobsArray));
+
+
+        
+
         return 0;
     }
 
