@@ -25,7 +25,32 @@ public class JobScheduling {
         System.out.println("Sorted Jobs Array : " + Arrays.deepToString(jobsArray));
 
 
+        // Add initial value to dp with profit for first day 
+        dp[0] = jobsArray[0][2];
+
         
+        // Check other jobs now
+        for (int currJob = 1; currJob < n; currJob++) {
+            for (int prevJob = 0; prevJob < currJob; prevJob++) {
+                
+                // If jobs are overlapping skip it
+                if (jobsArray[prevJob][1] >= jobsArray[currJob][0]) {
+                    
+                    System.out.println("    Jobs are overlapping...");
+                    continue;
+                }
+
+                // else will store profit in dp
+                int currProfit = dp[prevJob] + jobsArray[currJob][2];
+
+                // we are checking  multiple prev so we might need to get max
+                dp[currJob] = Math.max(dp[currJob], currProfit);
+
+                System.out.println("    Updated DP Array : " + Arrays.toString(dp));
+            }
+        }
+
+
 
         return 0;
     }
