@@ -66,8 +66,10 @@ public class JobScheduling {
         }
 
 
+        // Get maximum from dp 
+        Arrays.sort(dp);
 
-        return 0;
+        return dp[n-1];
     }
 
     public static void main (String[] agrs) {
