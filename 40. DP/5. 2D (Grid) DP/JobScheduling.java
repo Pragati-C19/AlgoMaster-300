@@ -36,6 +36,9 @@ public class JobScheduling {
             int currStartTime = jobsArray[currJob][0];
             int currEndTime = jobsArray[currJob][1];
 
+            // Initialize with max of previous profit or current job's profit
+            dp[currJob] = Math.max(dp[currJob - 1], jobsArray[currJob][2]);
+
             for (int prevJob = 0; prevJob < currJob; prevJob++) {
                 
                 // to debug : stated variable name for starttime and endtime
@@ -44,12 +47,6 @@ public class JobScheduling {
 
                 // If jobs are overlapping skip it
                 if (prevEndTime > currStartTime) {
-                    
-                    // just added a if here to set currJobs profit 
-                    if (dp[currJob] == 0) {
-
-                        dp[currJob] = jobsArray[currJob][2];
-                    }
                     
                     System.out.println("    Jobs are overlapping | dp Array : " + Arrays.toString(dp));
                     continue;
@@ -64,10 +61,6 @@ public class JobScheduling {
                 System.out.println("    Updated DP Array : " + Arrays.toString(dp));
             }
         }
-
-
-        // Get maximum from dp 
-        Arrays.sort(dp);
 
         return dp[n-1];
     }
