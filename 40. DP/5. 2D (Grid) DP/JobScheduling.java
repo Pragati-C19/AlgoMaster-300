@@ -31,12 +31,27 @@ public class JobScheduling {
         
         // Check other jobs now
         for (int currJob = 1; currJob < n; currJob++) {
+
+            // to debug : stated variable name for starttime and endtime
+            int currStartTime = jobsArray[currJob][0];
+            int currEndTime = jobsArray[currJob][1];
+
             for (int prevJob = 0; prevJob < currJob; prevJob++) {
                 
+                // to debug : stated variable name for starttime and endtime
+                int prevStartTime = jobsArray[prevJob][0];
+                int prevEndTime = jobsArray[prevJob][1];
+
                 // If jobs are overlapping skip it
-                if (jobsArray[prevJob][1] >= jobsArray[currJob][0]) {
+                if (prevEndTime > currStartTime) {
                     
-                    System.out.println("    Jobs are overlapping...");
+                    // just added a if here to set currJobs profit 
+                    if (dp[currJob] == 0) {
+
+                        dp[currJob] = jobsArray[currJob][2];
+                    }
+                    
+                    System.out.println("    Jobs are overlapping | dp Array : " + Arrays.toString(dp));
                     continue;
                 }
 
