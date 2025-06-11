@@ -2,6 +2,53 @@ import java.util.*;
 
 public class LongestCommonSubsequence {
     
+    public int longestCommonSubsequence(String text1, String text2) {
+        
+        int m = text1.length();
+        int n = text2.length();
+        int count = 0;
+
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                
+                char ch1 = text1.charAt(i);
+                char ch2 = text2.charAt(j);
+
+                System.out.println(" ch1 : " + ch1 + ", ch2 : " + ch2);
+
+                if(ch1 == ch2) {
+
+                    count++;
+                    System.out.println("    - ch1 : " + ch1 + ", ch2 : " + ch2 + " are common.. " + count);
+                }
+            }
+        }
+
+        return count;
+    }
+
+    public static void main (String[] args) {
+
+        LongestCommonSubsequence solution = new LongestCommonSubsequence();
+
+        String text11 = "abcde";
+        String text21 = "ace";
+        System.out.println("Result1 -> " + solution.longestCommonSubsequence(text11, text21) + "\n");    // 3
+
+        String text12 = "abc";
+        String text22 = "abc";
+        System.out.println("Result2 -> " + solution.longestCommonSubsequence(text12, text22) + "\n");    // 3
+
+        String text13 = "abc";
+        String text23 = "def";
+        System.out.println("Result3 -> " + solution.longestCommonSubsequence(text13, text23) + "\n");    // 0
+
+        String text14 = "ezupkr";
+        String text24 = "ubmrapg";
+        System.out.println("Result4 -> " + solution.longestCommonSubsequence(text14, text24) + "\n");    // 2
+
+    }
+
 }
 
 /*
