@@ -46,13 +46,25 @@ public class LongestCommonSubsequence {
                 char ch1 = text1.charAt(currChar - 1);
                 char ch2 = text2.charAt(prevChar - 1);
 
-                System.out.println("   ch1 : " + ch1 + ", ch2 : " + ch2);
+                // System.out.println("   ch1 : " + ch1 + ", ch2 : " + ch2);
 
                 // if both chars are common add it in subsequence list
                 if(ch1 == ch2) {
 
                     dp[currChar][prevChar] = 1 + dp[currChar - 1][prevChar - 1];
-                    System.out.println("    - ch1 : " + ch1 + ", ch2 : " + ch2 + " are common " + dp[currChar][prevChar]);
+                    System.out.println("    - ch1 : " + ch1 + ", ch2 : " + ch2 + " are Common " + dp[currChar][prevChar]);
+                }
+                else {
+
+                    // if both char don't match will drop one char from text1 or text2
+                    // to see which one gives longest subsequence will be drop 1 char from both and then jyacha max asel apan to gheu  
+
+                    int charDropFromText1 = dp[currChar-1][prevChar];
+                    int charDropFromText2 = dp[currChar][prevChar-1];
+
+                    dp[currChar][prevChar] = Math.max(charDropFromText1, charDropFromText2);
+
+                    System.out.println("    - ch1 : " + ch1 + ", ch2 : " + ch2 + " are Different " + dp[currChar][prevChar]);
                 }
             }
 
@@ -167,8 +179,19 @@ public class LongestCommonSubsequence {
                 currLength = currChar + prevLength
                 dp[i][j] = 1 + dp[i-1][j-1]
 
-            
-    
+            if char don't match 
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+
+                What it means:
+                    If current characters don't match, we have two options:
+                        - Skip the current character in text1   ->  dp[i-1][j]
+                        - Skip the current character in text2   ->  dp[i][j-1]
+
+                Take the maximum of these two options because you want the best LCS possible.
+                Think of it like:
+                    If these characters don't match, I have to drop one of them. Let me try both options and pick the better LCS
+
+
  
  * Pseudo Code :
  
