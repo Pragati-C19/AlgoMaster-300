@@ -31,18 +31,17 @@ public class MinDistance {
         
 
         // let's check each letter of both words
-        // I can't skip 0 bcoz I need it to comapre 
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
 
                 int char1 = word1.charAt(i - 1);
                 int char2 = word2.charAt(j - 1);
 
-                // if both letters are same will skip
+                // If the current characters in both words match, 
+                // no operation is needed — carry over the previous result
                 if (char1 == char2) {
                     
-                    dp[i][j] = dp[i - 1][j - 1];  // Characters match
-
+                    dp[i][j] = dp[i - 1][j - 1]; 
                     System.out.println("      - Both are same words so skipping...");
                 }
                 else {
@@ -61,8 +60,6 @@ public class MinDistance {
 
             System.out.println("      Updated DP Array : " + Arrays.deepToString(dp));
         }
-        
-
 
         return dp[m][n];
     }
