@@ -12,9 +12,13 @@ public class MinDistance {
 
 
         // let's check each letter of both words
+        // I can't skip 0 bcoz I need it to comapre 
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
-                
+
+                int char1 = word1.charAt(i);
+                int char2 = word2.charAt(j);
+
                 // if i is out of bound
                 if (i == m-1) {
 
@@ -27,7 +31,7 @@ public class MinDistance {
                 }
 
                 // if j is out of bound
-                if (j == n-1) {
+                else if (j == n-1) {
                     
                     // Number of deletions = length of remaining target = word1.length - i
                     operationsCount = m - i;
@@ -37,6 +41,14 @@ public class MinDistance {
                     return operationsCount;
                 }
 
+                // if both letters are same will skip
+                if (char1 == char2) {
+                    
+                    System.out.println("    - Both are same words so skipping" + Arrays.deepToString(dp));
+                    continue;
+                }
+
+            
 
             }
         }
@@ -197,6 +209,64 @@ public class MinDistance {
  
  * Pseudo Code :
 
+    1. Used int[][] dp
+        but checking as top-bottom not bottom-up so getting wrong ans
+
+    public int minDistance(String word1, String word2) {
+        
+        // Declare variables
+        int m = word1.length();
+        int n = word2.length();
+        int[][] dp = new int[m][n];     // Dp will store min value we get if we did operation
+        int operationsCount = 0;        // it will store operation count till end
+
+
+        // let's check each letter of both words
+        // I can't skip 0 bcoz I need it to comapre 
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+
+                int char1 = word1.charAt(i);
+                int char2 = word2.charAt(j);
+
+                // if i is out of bound
+                if (i == m-1) {
+
+                    // Number of insertions = length of remaining target = word2.length - j
+                    operationsCount = n - j;
+                    System.out.println("    We have reach to the end of word1 so inserting all remaining letters from word2 : " + operationsCount);
+
+                    // as we have reach to the end we need to return count
+                    return operationsCount;
+                }
+
+                // if j is out of bound
+                else if (j == n-1) {
+                    
+                    // Number of deletions = length of remaining target = word1.length - i
+                    operationsCount = m - i;
+                    System.out.println("    We have reach to the end of word2 so deleting all remaining letters from word1 : " + operationsCount);
+
+                    // as we have reach to the end we need to return count
+                    return operationsCount;
+                }
+
+                // if both letters are same will skip
+                if (char1 == char2) {
+                    
+                    System.out.println("    - Both are same words so skipping" + Arrays.deepToString(dp));
+                    continue;
+                }
+
+            
+
+            }
+        }
+        
+
+
+        return 0;
+    }
 
 
 
