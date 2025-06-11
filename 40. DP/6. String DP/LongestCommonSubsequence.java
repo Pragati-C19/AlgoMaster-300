@@ -40,8 +40,8 @@ public class LongestCommonSubsequence {
 
 
         // Check remaining words 
-        for(int currChar = 1; currChar < m; currChar++) {
-            for(int prevChar = 1; prevChar < n; prevChar++) {
+        for(int currChar = 1; currChar <= m; currChar++) {
+            for(int prevChar = 1; prevChar <= n; prevChar++) {
                 
                 char ch1 = text1.charAt(currChar - 1);
                 char ch2 = text2.charAt(prevChar - 1);
