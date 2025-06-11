@@ -4,6 +4,45 @@ public class MinDistance {
     
     public int minDistance(String word1, String word2) {
         
+        // Declare variables
+        int m = word1.length();
+        int n = word2.length();
+        int[][] dp = new int[m][n];     // Dp will store min value we get if we did operation
+        int operationsCount = 0;        // it will store operation count till end
+
+
+        // let's check each letter of both words
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                
+                // if i is out of bound
+                if (i == m-1) {
+
+                    // Number of insertions = length of remaining target = word2.length - j
+                    operationsCount = n - j;
+                    System.out.println("    We have reach to the end of word1 so inserting all remaining letters from word2 : " + operationsCount);
+
+                    // as we have reach to the end we need to return count
+                    return operationsCount;
+                }
+
+                // if j is out of bound
+                if (j == n-1) {
+                    
+                    // Number of deletions = length of remaining target = word1.length - i
+                    operationsCount = m - i;
+                    System.out.println("    We have reach to the end of word2 so deleting all remaining letters from word1 : " + operationsCount);
+
+                    // as we have reach to the end we need to return count
+                    return operationsCount;
+                }
+
+
+            }
+        }
+        
+
+
         return 0;
     }
 
@@ -142,6 +181,18 @@ public class MinDistance {
 
                     dp[i][j] = 1 + minOfOperation
 
+        4. Issues in my thinking
+            - me for loop lihite tr ahe but i+1 and j+1 kela tr out of Bound hoil
+                same i-1 and j-1 kel tr zero pekshya kami nahi gheta yenar
+                so for loop will start at i = 1 and j = 1
+
+            - for i out of bound thing 
+                maza i+1 tevhach out of bound hoil jevha i = m hoil ani mazyakde ajun ahet word2 madhe letter right
+                    so tasa asel tr me kay karte je pn letters rahilele astil word2 madhle te insert karel
+
+            - for j out of bound thing 
+                maza j+1 tevhach out of bound hoil jevha j = n hoil ani mazyakde ajun ahet word1 madhe letter right
+                    so tasa asel tr me kay karte je pn letters rahilele astil word1 madhle te delete karel
 
  
  * Pseudo Code :
