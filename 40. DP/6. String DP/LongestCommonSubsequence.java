@@ -7,36 +7,6 @@ public class LongestCommonSubsequence {
         int m = text1.length();
         int n = text2.length();
         int[][] dp = new int[m + 1][n + 1];     // it stores length of longest common subsequnce till the currChar
-        int count = 0;
-
-        // Fill first row
-        // think of it like i = index[text1] = 0 
-        // means ekach text1 ch first letter we need to check with other letter of text2 
-        // if it's not common just keep 0 
-        for (int j = 0; j < n; j++) {
-            
-            if(text1.charAt(0) == text2.charAt(j)) {
-
-                dp[0][j] = 1;
-                System.out.println("    - ch1 : " + text1.charAt(0) + ", ch2 : " + text2.charAt(j) + " are common.. ");
-            }
-        
-        }
-
-        // Fill first column
-        // think of it like j = index[word2] = 0 
-        // means ekach text2 ch first letter we need to check with other letter of text1 
-        // if it's not common just keep 0 
-        for (int i = 0; i < m; i++) {
-            
-            if(text1.charAt(i) == text2.charAt(0)) {
-
-                dp[i][0] = 1;
-                System.out.println("    - ch1 : " + text1.charAt(i) + ", ch2 : " + text2.charAt(0) + " are common.. ");
-            }
-        
-        }
-        System.out.println(" Initial DP Array : " + Arrays.deepToString(dp));
 
 
         // Check remaining words 
@@ -71,7 +41,7 @@ public class LongestCommonSubsequence {
             System.out.println("      Updated DP Array : " + Arrays.deepToString(dp));
         }
 
-        return count;
+        return dp[m][n];
     }
 
     public static void main (String[] args) {
@@ -190,6 +160,20 @@ public class LongestCommonSubsequence {
                 Take the maximum of these two options because you want the best LCS possible.
                 Think of it like:
                     If these characters don't match, I have to drop one of them. Let me try both options and pick the better LCS
+
+
+    ^ Important things
+
+        rememembr : for string dp matrix looks like below
+
+               | ''     a           c                               | ''  a   c                                                                                                                  
+            ---|---------------------------                      ---|-------------                                                                                                               
+               |                                                    |                                                                                                     
+            '' | 0      0           0                            '' | 0   0   0                                                                                                       
+            a  | 0      1       (0,1) = 1                        a  | 0   1   1                                                                                                           
+            b  | 0  (1,0) = 1   (1,1) = 1                        b  | 0   1   1                                                                                                           
+            c  | 0  (1,0) = 1   (1+1) = 2                        c  | 0   1   2                                                                                                           
+               |                                                    |                                                                                  
 
 
  
