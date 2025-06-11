@@ -2,6 +2,24 @@ import java.util.*;
 
 public class MinDistance {
     
+    public int minDistance(String word1, String word2) {
+        
+        return 0;
+    }
+
+    public static void main (String[] args) {
+
+        MinDistance solution = new MinDistance();
+
+        String word11 = "horse";
+        String word21 = "ros";
+        System.out.println("Result1 -> " + solution.minDistance(word11, word21) + "\n");    // 3
+
+        String word12 = "intention";
+        String word22 = "execution";
+        System.out.println("Result2 -> " + solution.minDistance(word12, word22) + "\n");    // 5
+
+    }
 }
 
 
