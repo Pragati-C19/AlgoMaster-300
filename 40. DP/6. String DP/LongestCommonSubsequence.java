@@ -9,10 +9,39 @@ public class LongestCommonSubsequence {
         int[][] dp = new int[m + 1][n + 1];     // it stores length of longest common subsequnce till the currChar
         int count = 0;
 
-        
+        // Fill first row
+        // think of it like i = index[text1] = 0 
+        // means ekach text1 ch first letter we need to check with other letter of text2 
+        // if it's not common just keep 0 
+        for (int j = 0; j < n; j++) {
+            
+            if(text1.charAt(0) == text2.charAt(j)) {
 
-        for(int currChar = 0; currChar <= m; currChar++) {
-            for(int prevChar = 0; prevChar <= currChar; prevChar++) {
+                dp[0][j] = 1;
+                System.out.println("    - ch1 : " + text1.charAt(0) + ", ch2 : " + text2.charAt(j) + " are common.. ");
+            }
+        
+        }
+
+        // Fill first column
+        // think of it like j = index[word2] = 0 
+        // means ekach text2 ch first letter we need to check with other letter of text1 
+        // if it's not common just keep 0 
+        for (int i = 0; i < m; i++) {
+            
+            if(text1.charAt(i) == text2.charAt(0)) {
+
+                dp[i][0] = 1;
+                System.out.println("    - ch1 : " + text1.charAt(i) + ", ch2 : " + text2.charAt(0) + " are common.. ");
+            }
+        
+        }
+        System.out.println("    Initial DP Array : " + Arrays.deepToString(dp));
+
+
+        // Check remaining words 
+        for(int currChar = 1; currChar < m; currChar++) {
+            for(int prevChar = 1; prevChar < n; prevChar++) {
                 
                 char ch1 = text1.charAt(currChar);
                 char ch2 = text2.charAt(prevChar);
