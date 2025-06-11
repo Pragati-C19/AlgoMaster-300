@@ -32,45 +32,24 @@ public class MinDistance {
 
         // let's check each letter of both words
         // I can't skip 0 bcoz I need it to comapre 
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) {
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
 
-                int char1 = word1.charAt(i);
-                int char2 = word2.charAt(j);
-
-                // if i is out of bound
-                if (i == m-1) {
-
-                    // Number of insertions = length of remaining target = word2.length - j
-                    operationsCount = n - j;
-                    System.out.println("    We have reach to the end of word1 so inserting all remaining letters from word2 : " + operationsCount);
-
-                    // as we have reach to the end we need to return count
-                    return operationsCount;
-                }
-
-                // if j is out of bound
-                else if (j == n-1) {
-                    
-                    // Number of deletions = length of remaining target = word1.length - i
-                    operationsCount = m - i;
-                    System.out.println("    We have reach to the end of word2 so deleting all remaining letters from word1 : " + operationsCount);
-
-                    // as we have reach to the end we need to return count
-                    return operationsCount;
-                }
+                int char1 = word1.charAt(i - 1);
+                int char2 = word2.charAt(j - 1);
 
                 // if both letters are same will skip
                 if (char1 == char2) {
                     
-                    System.out.println("    - Both are same words so skipping" + Arrays.deepToString(dp));
-                    continue;
+                    dp[i][j] = dp[i - 1][j - 1];  // Characters match
+
+                    System.out.println("      - Both are same words so skipping...");
                 }
                 else {
 
-                    int insertOperation = dp[i][j+1];
-                    int replaceOperation = dp[i+1][j+1];
-                    int deleteOperation = dp[i+1][j];
+                    int insertOperation = dp[i][j-1];
+                    int replaceOperation = dp[i-1][j-1];
+                    int deleteOperation = dp[i-1][j];
 
                     int min1 = Math.min(replaceOperation, deleteOperation);
 
@@ -80,13 +59,12 @@ public class MinDistance {
                 }
             }
 
-            System.out.println("    Updated DP Array : " + Arrays.deepToString(dp));
-
+            System.out.println("      Updated DP Array : " + Arrays.deepToString(dp));
         }
         
 
 
-        return 0;
+        return dp[m][n];
     }
 
     public static void main (String[] args) {
