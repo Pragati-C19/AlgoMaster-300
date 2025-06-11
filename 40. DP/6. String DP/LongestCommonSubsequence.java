@@ -36,24 +36,27 @@ public class LongestCommonSubsequence {
             }
         
         }
-        System.out.println("    Initial DP Array : " + Arrays.deepToString(dp));
+        System.out.println(" Initial DP Array : " + Arrays.deepToString(dp));
 
 
         // Check remaining words 
         for(int currChar = 1; currChar < m; currChar++) {
             for(int prevChar = 1; prevChar < n; prevChar++) {
                 
-                char ch1 = text1.charAt(currChar);
-                char ch2 = text2.charAt(prevChar);
+                char ch1 = text1.charAt(currChar - 1);
+                char ch2 = text2.charAt(prevChar - 1);
 
-                System.out.println(" ch1 : " + ch1 + ", ch2 : " + ch2);
+                System.out.println("   ch1 : " + ch1 + ", ch2 : " + ch2);
 
+                // if both chars are common add it in subsequence list
                 if(ch1 == ch2) {
 
-                    count++;
-                    System.out.println("    - ch1 : " + ch1 + ", ch2 : " + ch2 + " are common.. " + count);
+                    dp[currChar][prevChar] = 1 + dp[currChar - 1][prevChar - 1];
+                    System.out.println("    - ch1 : " + ch1 + ", ch2 : " + ch2 + " are common " + dp[currChar][prevChar]);
                 }
             }
+
+            System.out.println("      Updated DP Array : " + Arrays.deepToString(dp));
         }
 
         return count;
