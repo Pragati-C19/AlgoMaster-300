@@ -7,9 +7,28 @@ public class MinDistance {
         // Declare variables
         int m = word1.length();
         int n = word2.length();
-        int[][] dp = new int[m][n];     // Dp will store min value we get if we did operation
+        int[][] dp = new int[m + 1][n + 1];     // Dp will store min value we get if we did operation
         int operationsCount = 0;        // it will store operation count till end
 
+
+        // Fill first row
+        // think of it like i = index[word1] = 0 
+        // jevha word1 madhe kahich nasel will insert all remaining letters of word2 in it
+        for (int j = 0; j <= n; j++) {
+            
+            dp[0][j] = j;  // Insert all characters
+        }
+
+        // Fill first column
+        // think of it like j = index[word2] = 0 
+        // jevha word2 madhe kahich nasel will delete all remaining letters of word1 
+        for (int i = 0; i <= m; i++) {
+            
+            dp[i][0] = i;  // Delete all characters 
+        }
+
+        System.out.println("    Initial DP Array : " + Arrays.deepToString(dp));
+        
 
         // let's check each letter of both words
         // I can't skip 0 bcoz I need it to comapre 
@@ -47,10 +66,22 @@ public class MinDistance {
                     System.out.println("    - Both are same words so skipping" + Arrays.deepToString(dp));
                     continue;
                 }
+                else {
 
-            
+                    int insertOperation = dp[i][j+1];
+                    int replaceOperation = dp[i+1][j+1];
+                    int deleteOperation = dp[i+1][j];
 
+                    int min1 = Math.min(replaceOperation, deleteOperation);
+
+                    int minOfOperation = Math.min(insertOperation, min1);
+
+                    dp[i][j] = 1 + minOfOperation;
+                }
             }
+
+            System.out.println("    Updated DP Array : " + Arrays.deepToString(dp));
+
         }
         
 
