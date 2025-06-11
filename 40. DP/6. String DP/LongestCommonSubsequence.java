@@ -6,13 +6,16 @@ public class LongestCommonSubsequence {
         
         int m = text1.length();
         int n = text2.length();
+        int[][] dp = new int[m + 1][n + 1];     // it stores length of longest common subsequnce till the currChar
         int count = 0;
 
-        for(int i = 0; i < m; i++) {
-            for(int j = 0; j < n; j++) {
+        
+
+        for(int currChar = 0; currChar <= m; currChar++) {
+            for(int prevChar = 0; prevChar <= currChar; prevChar++) {
                 
-                char ch1 = text1.charAt(i);
-                char ch2 = text2.charAt(j);
+                char ch1 = text1.charAt(currChar);
+                char ch2 = text2.charAt(prevChar);
 
                 System.out.println(" ch1 : " + ch1 + ", ch2 : " + ch2);
 
