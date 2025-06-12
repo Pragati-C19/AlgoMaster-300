@@ -35,7 +35,7 @@ public class NumDecodings {
 
 
             // Check single digit, it should be between 1 to 9, if it's 0 will skip this if
-            if (unitPlaceChar != 0) {
+            if (unitPlaceChar != '0') {
                 
                 dp[i] += dp[i-1];
                 System.out.println("    - unitPlacedChar(" + unitPlaceChar + ") is valid so adding this way in dp[" + i + "] : " + dp[i]); 
@@ -102,7 +102,13 @@ public class NumDecodings {
             - which is 22 
 
     - Ans for s4 = "10" should be 1 but my code gives 2 let's check why ?
-    
+        - when I check my debugging statement I found this 
+            unitPlacedChar(0) is valid so adding this way in dp[2] : 1
+        - it should not check 0 na it's invalid then why checking now ?
+            ohhhh I was checkign single digit not equal to 0 as int not char 
+            so it should be '0' not only 0
+
+
 
  * Intuitions :
  
