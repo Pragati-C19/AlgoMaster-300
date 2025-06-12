@@ -74,6 +74,9 @@ public class NumDecodings {
         String s3 = "06";
         System.out.println("Result3 -> " + solution.numDecodings(s3) + "\n");  // 0
 
+        String s4 = "10";
+        System.out.println("Result4 -> " + solution.numDecodings(s4) + "\n");  // 1
+
     }
 
 }
@@ -97,6 +100,9 @@ public class NumDecodings {
         2. int twoDigitChar = Integer.parseInt(s.substring(i - 2, i));
             - it will directly gives u substring in int format 
             - which is 22 
+
+    - Ans for s4 = "10" should be 1 but my code gives 2 let's check why ?
+    
 
  * Intuitions :
  
