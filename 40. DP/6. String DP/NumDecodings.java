@@ -2,6 +2,26 @@ import java.util.*;
 
 public class NumDecodings {
     
+    public int numDecodings(String s) {
+        
+        return 0;
+    }
+
+    public static void main (String[] args) {
+
+        NumDecodings solution = new NumDecodings();
+
+        String s1 = "12";
+        System.out.println("Result1 -> " + solution.numDecodings(s1) + "\n");  // 4
+
+        String s2 = "226";
+        System.out.println("Result2 -> " + solution.numDecodings(s2) + "\n");  // 2
+
+        String s3 = "06";
+        System.out.println("Result3 -> " + solution.numDecodings(s3) + "\n");  // 0
+
+    }
+
 }
 
 /*
