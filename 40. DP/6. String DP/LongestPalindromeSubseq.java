@@ -21,7 +21,16 @@ public class LongestPalindromeSubseq {
                     dp[i][j] = 1 + dp[i-1][j-1];
                     System.out.println("    - ch1 : " + ch1 + ", ch2 : " + ch2 + " are Common | dp[" + i + "," + j + "]: " + dp[i][j]);
                 }
+                else {
 
+                    // If both char's are different will skip one char from string 
+                    int skipCharFromString1 = dp[i-1][j];
+                    int skipCharFromString2 = dp[i][j-1];
+
+                    dp[i][j] = Math.max(skipCharFromString1, skipCharFromString2);
+                    System.out.println("    - ch1 : " + ch1 + ", ch2 : " + ch2 + " are Different | dp[" + i + "," + j + "]: " + dp[i][j]);
+                    
+                }
             }
 
             System.out.println("   Updated DP Array : " + Arrays.deepToString(dp));
