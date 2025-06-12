@@ -43,7 +43,7 @@ public class NumDecodings {
 
             // Check two digit char
             // we are taking int bcoz apan 10 <= x <= 26 nahi karu shaknar string or char asel tr
-            int twoDigitChar = tenthPlaceChar + unitPlaceChar;
+            int twoDigitChar = Integer.parseInt(s.substring(i - 2, i));
             System.out.println("    [Testing] twoDigitChar : " + twoDigitChar);
 
         }
@@ -76,6 +76,18 @@ public class NumDecodings {
     - int twoDigitChar = tenthPlaceChar + unitPlaceChar;  gives ans 100 for "226" test case 
         char '2' = 50 (in ASCII)
         So '2' + '2' = 50 + 50 = 100
+
+    - to fix this we have two ways
+        1. int twoDigitChar = (tenthPlaceChar - '0') * 10 + (unitPlaceChar - '0');
+            - unitPlaceChar  = '2' = 50 (in ASCII)
+            - tenthPlaceChar = '2' = 50 (in ASCII)
+            - twoDigitChar = (50 - 48) * 10 + (50 - 48)
+                                   (2 * 10) + 2 
+                           = 22
+
+        2. int twoDigitChar = Integer.parseInt(s.substring(i - 2, i));
+            - it will directly gives u substring in int format 
+            - which is 22 
 
  * Intuitions :
  
