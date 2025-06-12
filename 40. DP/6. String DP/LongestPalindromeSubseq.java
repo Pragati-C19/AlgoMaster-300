@@ -8,12 +8,16 @@ public class LongestPalindromeSubseq {
         int n = s.length();
         int[][] dp = new int[n][n];
 
+        // Used StringBuilder for creating reverse string 
+        // I was not able to use s.reverse directly without stringBuilder
+        String reverseString = new StringBuilder(s).reverse().toString();
+
         // Check subsequence till currIndex
         for (int i = 1; i < n; i++) {
-            for (int j = n-1; j >= i; j--) {
+            for (int j = 1; j < n; j++) {
                 
                 char ch1 = s.charAt(i - 1);
-                char ch2 = s.charAt(j - 1);
+                char ch2 = reverseString.charAt(j - 1);
 
                 // If both char's are common will add it in subseqence
                 if (ch1 == ch2) {
