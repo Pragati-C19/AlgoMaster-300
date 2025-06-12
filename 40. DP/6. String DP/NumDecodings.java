@@ -21,10 +21,10 @@ public class NumDecodings {
 
         System.out.println("  Initial DP Array : " + Arrays.toString(dp));
 
-        
 
 
-        return 0;
+
+        return dp[n - 1];
     }
 
     public static void main (String[] args) {
