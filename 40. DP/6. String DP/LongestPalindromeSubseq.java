@@ -2,6 +2,23 @@ import java.util.*;
 
 public class LongestPalindromeSubseq {
     
+    public int longestPalindromeSubseq(String s) {
+        
+        return 0;
+    }
+
+    public static void main (String[] args) {
+
+        LongestPalindromeSubseq solution = new LongestPalindromeSubseq();
+
+        String s1 = "bbbab";
+        System.out.println("Result1 -> " + solution.longestPalindromeSubseq(s1) + "\n");  // 4
+
+        String s2 = "cbbd";
+        System.out.println("Result2 -> " + solution.longestPalindromeSubseq(s2) + "\n");  // 2
+
+    }
+
 }
 
 /*
