@@ -4,6 +4,29 @@ public class LongestPalindromeSubseq {
     
     public int longestPalindromeSubseq(String s) {
         
+        // Declare variables
+        int n = s.length();
+        int[][] dp = new int[n][n];
+
+        // Check subsequence till currIndex
+        for (int i = 1; i < n; i++) {
+            for (int j = n-1; j >= i; j--) {
+                
+                char ch1 = s.charAt(i - 1);
+                char ch2 = s.charAt(j - 1);
+
+                // If both char's are common will add it in subseqence
+                if (ch1 == ch2) {
+                    
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                    System.out.println("    - ch1 : " + ch1 + ", ch2 : " + ch2 + " are Common | dp[" + i + "," + j + "]: " + dp[i][j]);
+                }
+
+            }
+
+            System.out.println("   Updated DP Array : " + Arrays.deepToString(dp));
+        }
+
         return 0;
     }
 
