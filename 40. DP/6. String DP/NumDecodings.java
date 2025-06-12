@@ -41,6 +41,10 @@ public class NumDecodings {
                 System.out.println("    - unitPlacedChar(" + unitPlaceChar + ") is valid so adding this way in dp[" + i + "] : " + dp[i]); 
             }
 
+            // Check two digit char
+            // we are taking int bcoz apan 10 <= x <= 26 nahi karu shaknar string or char asel tr
+            int twoDigitChar = tenthPlaceChar + unitPlaceChar;
+            System.out.println("    [Testing] twoDigitChar : " + twoDigitChar);
 
         }
 
@@ -66,6 +70,13 @@ public class NumDecodings {
 }
 
 /*
+
+ ^ Imptovements :
+
+    - int twoDigitChar = tenthPlaceChar + unitPlaceChar;  gives ans 100 for "226" test case 
+        char '2' = 50 (in ASCII)
+        So '2' + '2' = 50 + 50 = 100
+
  * Intuitions :
  
     1. We have given a string with secrete msg encoded with numbers
