@@ -6,7 +6,7 @@ public class NumDecodings {
         
         // Declare variables
         int n = s.length();
-        int[] dp = new int[n];      // Strore ways to decode any string till currindex
+        int[] dp = new int[n + 1];      // Strore ways to decode any string till currindex
 
         // Base Case : if first index of string is 0 not valid msg, if n = 0 there is nothing to decode
         if (n == 0 || s.charAt(0) == '0') {
@@ -23,7 +23,7 @@ public class NumDecodings {
 
 
         // Let's check remaining index from dp 
-        for (int i = 2; i < n; i++) {
+        for (int i = 2; i <= n; i++) {
             
             // get unit place digit and tenth place char
             // apan unit place and tenth place ghetoy fact mhnje kay ? aplyakde alphabates fact 1 to 26 ahet so 
@@ -58,7 +58,7 @@ public class NumDecodings {
         }
 
 
-        return dp[n - 1];
+        return dp[n];
     }
 
     public static void main (String[] args) {
