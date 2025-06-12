@@ -4,6 +4,18 @@ public class NumDecodings {
     
     public int numDecodings(String s) {
         
+        // Declare variables
+        int n = s.length();
+        int[] dp = new int[n];      // Strore ways to decode any string till currindex
+
+        // Base Case : if first index of string is 0 not valid msg, if n = 0 there is nothing to decode
+        if (n == 0 || s.charAt(0) == '0') {
+            
+            System.out.println(" String length is 0 or first char of string is 0... ");
+            return 0;
+        }
+        
+
         return 0;
     }
 
