@@ -22,6 +22,18 @@ public class NumDecodings {
         System.out.println("  Initial DP Array : " + Arrays.toString(dp));
 
 
+        // Let's check remaining index from dp 
+        for (int i = 2; i < n; i++) {
+            
+            // get unit place digit and tenth place char
+            // we are using bottom up approach so out tenth place char is prev of unit placed
+            char unitPlaceChar = s.charAt(i - 1);
+            char tenthPlaceChar = s.charAt(i - 2);
+
+            System.out.println("    - tenthPlaceChar : " + tenthPlaceChar + ", unitPlaceChar : " + unitPlaceChar);
+
+
+        }
 
 
         return dp[n - 1];
