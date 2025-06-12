@@ -6,15 +6,15 @@ public class LongestPalindromeSubseq {
         
         // Declare variables
         int n = s.length();
-        int[][] dp = new int[n][n];
+        int[][] dp = new int[n+1][n+1];
 
         // Used StringBuilder for creating reverse string 
         // I was not able to use s.reverse directly without stringBuilder
         String reverseString = new StringBuilder(s).reverse().toString();
 
         // Check subsequence till currIndex
-        for (int i = 1; i < n; i++) {
-            for (int j = 1; j < n; j++) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
                 
                 char ch1 = s.charAt(i - 1);
                 char ch2 = reverseString.charAt(j - 1);
