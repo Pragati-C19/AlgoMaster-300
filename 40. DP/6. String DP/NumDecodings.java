@@ -15,6 +15,14 @@ public class NumDecodings {
             return 0;
         }
         
+        // add initial values in dp
+        dp[0] = 1;      // string is empty 
+        dp[1] = 1;      // first char is not zero
+
+        System.out.println("  Initial DP Array : " + Arrays.toString(dp));
+
+        
+
 
         return 0;
     }
