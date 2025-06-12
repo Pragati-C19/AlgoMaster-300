@@ -26,11 +26,20 @@ public class NumDecodings {
         for (int i = 2; i < n; i++) {
             
             // get unit place digit and tenth place char
+            // apan unit place and tenth place ghetoy fact mhnje kay ? aplyakde alphabates fact 1 to 26 ahet so 
             // we are using bottom up approach so out tenth place char is prev of unit placed
             char unitPlaceChar = s.charAt(i - 1);
             char tenthPlaceChar = s.charAt(i - 2);
 
             System.out.println("    - tenthPlaceChar : " + tenthPlaceChar + ", unitPlaceChar : " + unitPlaceChar);
+
+
+            // Check single digit, it should be between 1 to 9, if it's 0 will skip this if
+            if (unitPlaceChar != 0) {
+                
+                dp[i] += dp[i-1];
+                System.out.println("    - unitPlacedChar(" + unitPlaceChar + ") is valid so adding this way in dp[" + i + "] : " + dp[i]); 
+            }
 
 
         }
