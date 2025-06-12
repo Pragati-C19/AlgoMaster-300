@@ -46,6 +46,15 @@ public class NumDecodings {
             int twoDigitChar = Integer.parseInt(s.substring(i - 2, i));
             System.out.println("    [Testing] twoDigitChar : " + twoDigitChar);
 
+            // now check condition for twoDigitChar
+            if (twoDigitChar >= 10 && twoDigitChar <= 26) {
+                
+                dp[i] += dp[i-2];
+                System.out.println("    - twoDigitChar(" + twoDigitChar + ") is valid so adding this way in dp[" + i + "] : " + dp[i]); 
+            }
+
+            System.out.println("  Updated DP Array : " + Arrays.toString(dp));
+
         }
 
 
@@ -57,10 +66,10 @@ public class NumDecodings {
         NumDecodings solution = new NumDecodings();
 
         String s1 = "12";
-        System.out.println("Result1 -> " + solution.numDecodings(s1) + "\n");  // 4
+        System.out.println("Result1 -> " + solution.numDecodings(s1) + "\n");  // 2
 
         String s2 = "226";
-        System.out.println("Result2 -> " + solution.numDecodings(s2) + "\n");  // 2
+        System.out.println("Result2 -> " + solution.numDecodings(s2) + "\n");  // 3
 
         String s3 = "06";
         System.out.println("Result3 -> " + solution.numDecodings(s3) + "\n");  // 0
