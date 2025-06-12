@@ -40,7 +40,7 @@ public class LongestPalindromeSubseq {
             System.out.println("   Updated DP Array : " + Arrays.deepToString(dp));
         }
 
-        return 0;
+        return dp[n][n];
     }
 
     public static void main (String[] args) {
