@@ -2,6 +2,32 @@ import java.util.*;
 
 public class IsInterleave {
     
+    public boolean isInterleave(String s1, String s2, String s3) {
+        
+        return true;
+    }
+
+    public static void main (String[] args) {
+
+        IsInterleave solution = new IsInterleave();
+
+        String s11 = "aabcc";
+        String s21 = "dbbca";
+        String s31 = "aadbbcbcac";
+        System.out.println("Result1 -> " + solution.isInterleave(s11, s21, s31) + "\n");  // true
+
+        String s12 = "aabcc";
+        String s22 = "dbbca";
+        String s32 = "aadbbbaccc";
+        System.out.println("Result2 -> " + solution.isInterleave(s12, s22, s32) + "\n");  // true
+
+        String s13 = "";
+        String s23 = "";
+        String s33 = "";
+        System.out.println("Result3 -> " + solution.isInterleave(s13, s23, s33) + "\n");  // true
+        
+    }
+
 }
 
 /*
@@ -27,7 +53,7 @@ public class IsInterleave {
 
     2. then apan tya substring la check karu s1 madhe ahe ka or s2 madhe ahe ka te
     3. took help from gpt and wrote this code
-    
+
  
  * Pseudo Code :
  
