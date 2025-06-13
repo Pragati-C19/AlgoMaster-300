@@ -4,6 +4,14 @@ public class WordBreak {
     
     public boolean wordBreak(String s, List<String> wordDict) {
         
+        // Declare variables
+        int n = s.length();
+        boolean[] dp = new boolean[n + 1];
+
+        // Initially add true for dp[0] bcoz it's empty string
+        dp[0] = true;
+        System.out.println(" Initial DP Arrays : " + Arrays.toString(dp));
+
         return true;
     }
 
