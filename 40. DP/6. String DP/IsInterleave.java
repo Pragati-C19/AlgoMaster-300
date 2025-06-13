@@ -4,6 +4,27 @@ public class IsInterleave {
     
     public boolean isInterleave(String s1, String s2, String s3) {
         
+        // Declare variables
+        int m = s1.length();
+        int n = s2.length();
+        int o = s3.length();
+        boolean[][] dp = new boolean[m + 1][n + 1];
+
+
+        // Base Case :
+        if (m + n != o) {
+            
+            System.out.println(" sum of lengths of s1(" + m + ") and s2(" + n + ") are not equal to length of s3(" + o + ")");
+            return false;
+        }
+
+
+        // Assign initial value in dp : Empty strings s1 and s2 can form empty s3
+        dp[0][0] = true;
+        System.out.println(" Initial DP Arrays : " + Arrays.deepToString(dp));
+
+
+
         return true;
     }
 
