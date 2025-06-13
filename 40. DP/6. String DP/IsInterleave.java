@@ -47,7 +47,7 @@ public class IsInterleave {
                 
                 // will take either char from s1 or char from s2
                 boolean charFromS1 = dp[i-1][j] && s1.charAt(i-1) == s3.charAt(i+j-1);
-                boolean charFromS2 = dp[i][j-1] && s2.charAt(i-1) == s3.charAt(i+j-1);
+                boolean charFromS2 = dp[i][j-1] && s2.charAt(j-1) == s3.charAt(i+j-1);
 
                 dp[i][j] = charFromS1 || charFromS2;
 
