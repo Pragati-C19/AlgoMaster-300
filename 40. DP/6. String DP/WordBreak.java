@@ -12,6 +12,26 @@ public class WordBreak {
         dp[0] = true;
         System.out.println(" Initial DP Arrays : " + Arrays.toString(dp));
 
+        // Check if we can split string
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                
+                // get substring from (j, i)
+                String substring = s.substring(j, i);
+                System.out.println("    - substring[" + j + "," + i + "] = " + substring);
+
+                // Check if we can split the string from 0 to j into dict word
+                // and check if that substring is in wordDict or not
+                if (dp[j] && wordDict.contains(substring)) {
+                    
+                    dp[i] = true;
+                    System.out.println("        dp["+ j + "] = " + dp[j] + " and the substring is in wordDict so storing true for dp[" + i + "]");
+                }
+            }
+
+            System.out.println(" Updated DP Arrays : " + Arrays.toString(dp) + "\n");
+        }
+
         return true;
     }
 
