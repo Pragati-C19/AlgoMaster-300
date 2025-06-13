@@ -13,7 +13,7 @@ public class WordBreak {
         System.out.println(" Initial DP Arrays : " + Arrays.toString(dp));
 
         // Check if we can split string
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             for (int j = 0; j < i; j++) {
                 
                 // get substring from (j, i)
@@ -32,7 +32,7 @@ public class WordBreak {
             System.out.println(" Updated DP Arrays : " + Arrays.toString(dp) + "\n");
         }
 
-        return true;
+        return dp[n];
     }
 
     public static void main (String[] args) {
