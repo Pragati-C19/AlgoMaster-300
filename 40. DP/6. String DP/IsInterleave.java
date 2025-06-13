@@ -41,8 +41,20 @@ public class IsInterleave {
         System.out.println("    - first col | DP Arrays : " + Arrays.deepToString(dp));
 
 
+        // check remaning chars
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                
+                // will take either char from s1 or char from s2
+                boolean charFromS1 = dp[i-1][j] && s1.charAt(i-1) == s3.charAt(i+j-1);
+                boolean charFromS2 = dp[i][j-1] && s2.charAt(i-1) == s3.charAt(i+j-1);
 
-        return true;
+                dp[i][j] = charFromS1 || charFromS2;
+
+            }
+        }
+
+        return dp[m][n];
     }
 
     public static void main (String[] args) {
@@ -57,7 +69,7 @@ public class IsInterleave {
         String s12 = "aabcc";
         String s22 = "dbbca";
         String s32 = "aadbbbaccc";
-        System.out.println("Result2 -> " + solution.isInterleave(s12, s22, s32) + "\n");  // true
+        System.out.println("Result2 -> " + solution.isInterleave(s12, s22, s32) + "\n");  // false
 
         String s13 = "";
         String s23 = "";
