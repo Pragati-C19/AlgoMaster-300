@@ -21,7 +21,24 @@ public class IsInterleave {
 
         // Assign initial value in dp : Empty strings s1 and s2 can form empty s3
         dp[0][0] = true;
-        System.out.println(" Initial DP Arrays : " + Arrays.deepToString(dp));
+        // System.out.println(" Initial DP Arrays : " + Arrays.deepToString(dp));
+
+
+        // fill first Row 
+        // only chars from s2
+        for (int j = 1; j < n; j++) {
+            
+            dp[0][j] = dp[0][j-1] && s2.charAt(j-1) == s3.charAt(j-1);
+        }
+        System.out.println("    - first row | DP Arrays : " + Arrays.deepToString(dp));
+
+        // fill first Col 
+        // only chars from s1
+        for (int i = 1; i < m; i++) {
+            
+            dp[i][0] = dp[i-1][0] && s2.charAt(i-1) == s3.charAt(i-1);
+        }
+        System.out.println("    - first col | DP Arrays : " + Arrays.deepToString(dp));
 
 
 
