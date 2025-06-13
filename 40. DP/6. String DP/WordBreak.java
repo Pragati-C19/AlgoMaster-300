@@ -2,6 +2,32 @@ import java.util.*;
 
 public class WordBreak {
     
+    public boolean wordBreak(String s, List<String> wordDict) {
+        
+        return true;
+    }
+
+    public static void main (String[] args) {
+
+        WordBreak solution = new WordBreak();
+
+        String s1 = "leetcode";
+        List<String> wordDict1 = Arrays.asList("leet","code");
+        System.out.println("Result1 -> " + solution.wordBreak(s1, wordDict1) + "\n");  // 2
+
+        String s2 = "applepenapple";
+        List<String> wordDict2 = Arrays.asList("apple","pen");
+        System.out.println("Result2 -> " + solution.wordBreak(s2, wordDict2) + "\n");  // 3
+
+        String s3 = "catsandog";
+        List<String> wordDict3 = Arrays.asList("cats", "dog", "sand", "and", "cat");
+        System.out.println("Result3 -> " + solution.wordBreak(s3, wordDict3) + "\n");  // 0
+
+        // String s4 = "10";
+        // System.out.println("Result4 -> " + solution.wordBreak(s4) + "\n");  // 1
+
+    }
+
 }
 
 /*
