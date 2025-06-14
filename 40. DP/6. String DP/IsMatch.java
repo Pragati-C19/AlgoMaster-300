@@ -24,7 +24,33 @@ public class IsMatch {
         System.out.println(" Initial DP Array : " + Arrays.deepToString(dp));
 
 
+        // Check other remaining Chars in s and p strings 
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                
+                // assinging value of strings
+                char sChar = s.charAt(i - 1);
+                char pChar = p.charAt(j - 1);
 
+                // check if curr char of p is equal or '?'
+                if ((sChar == pChar) || (pChar == '?')) {
+                    
+                    dp[i][j] = dp[i-1][j-1];
+                }
+                else if (pChar == '*') {
+                    
+                    // check if curr char of p is equal to '*'
+                    dp[i][j] = dp[i][j-1] || dp[i-1][j];
+                }
+                else {
+
+                    // if all above not happening add false in dp
+                    dp[i][j] = true;
+                }
+            }
+
+            System.out.println(" Updated DP Array : " + Arrays.deepToString(dp));
+        }
 
 
         return true;
