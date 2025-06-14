@@ -13,7 +13,7 @@ public class IsMatch {
         dp[0][0] = true;
 
         // we need to fill first row as in where s is empty and p varies
-        for (int j = 1; j < n; j++) {
+        for (int j = 1; j <= n; j++) {
             
             // check if p has * or not if yes then add true
             if (p.charAt(j-1) == '*') {
