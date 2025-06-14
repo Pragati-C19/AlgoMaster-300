@@ -52,8 +52,7 @@ public class IsMatch {
             System.out.println(" Updated DP Array : " + Arrays.deepToString(dp));
         }
 
-
-        return true;
+        return dp[m][n];
     }
 
     public static void main (String[] args) {
