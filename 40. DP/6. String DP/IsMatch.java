@@ -45,7 +45,7 @@ public class IsMatch {
                 else {
 
                     // if all above not happening add false in dp
-                    dp[i][j] = true;
+                    dp[i][j] = false;
                 }
             }
 
