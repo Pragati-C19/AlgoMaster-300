@@ -4,6 +4,29 @@ public class IsMatch {
     
     public boolean isMatch(String s, String p) {
         
+        // Declare variables
+        int m = s.length();
+        int n = p.length();
+        boolean[][] dp = new boolean[m+1][n+1];
+
+        // let's add initial value of dp
+        dp[0][0] = true;
+
+        // we need to fill first row as in where s is empty and p varies
+        for (int j = 1; j < n; j++) {
+            
+            // check if p has * or not if yes then add true
+            if (p.charAt(j-1) == '*') {
+                
+                dp[0][j] = dp[0][j-1];
+            }
+        }
+        System.out.println(" Initial DP Array : " + Arrays.deepToString(dp));
+
+
+
+
+
         return true;
     }
 
