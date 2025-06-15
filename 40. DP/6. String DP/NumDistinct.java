@@ -4,6 +4,24 @@ public class NumDistinct {
     
     public int numDistinct(String s, String t) {
         
+        // Declare variables
+        int m = s.length();
+        int n = t.length();
+        int[][] dp = new int[m+1][n+1];
+
+
+        // Add initial value in dp
+        dp[0][0] = 1;    // both string are empty so there is 1 way to match them
+        
+        // Check t is empty we can create t from s with only 1 way
+        for (int i = 1; i <= m; i++) {
+            
+            dp[i][0] = 1;
+        } 
+        System.out.println(" Initial DP Array : " + Arrays.deepToString(dp));
+
+
+
         return 0;
     }
 
