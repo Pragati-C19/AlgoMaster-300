@@ -34,13 +34,13 @@ public class NumDistinct {
 
                 // if both chars are equal
                 // we have two choices either include ( dp[i-1][j-1] ) curr char or exclude ( dp[i-1][j] )
-                // let's just try to take max of both
+                // we need to add both
                 if (sChar == tChar) {
                     
-                    int include = 1 + dp[i-1][j-1];
+                    int include = dp[i-1][j-1];
                     int exclude = dp[i-1][j];
 
-                    dp[i][j] = Math.max(include, exclude);
+                    dp[i][j] = include + exclude;
                     System.out.println("    Value of include : " + include + ", exclude : " + exclude + " so will take max of it : " + dp[i][j]);
 
                 }
