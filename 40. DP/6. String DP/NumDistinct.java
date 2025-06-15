@@ -1,8 +1,27 @@
 import java.util.*;
 
-public class IsMatch {
+public class NumDistinct {
     
     public int numDistinct(String s, String t) {
+        
+        return 0;
+    }
+
+    public static void main (String[] args) {
+
+        NumDistinct solution = new NumDistinct();
+
+        String s1 = "rabbbit";
+        String t1 = "rabbit";
+        System.out.println("Result1 -> " + solution.numDistinct(s1,t1) + "\n");  // 3
+
+        String s2 = "babgbag";
+        String t2 = "bag";
+        System.out.println("Result2 -> " + solution.numDistinct(s2,t2) + "\n");  // 5
+
+        // String s3 = "cb";
+        // String t3 = "?a";
+        // System.out.println("Result3 -> " + solution.numDistinct(s3,t3) + "\n");  // false
         
     }
 
