@@ -20,6 +20,33 @@ public class NumDistinct {
         } 
         System.out.println(" Initial DP Array : " + Arrays.deepToString(dp));
 
+        // Will not check for s is empty and t is not 
+        // bcoz we need to remove chars from s to create t.. so will keep it as it is to 0
+
+
+        // Check remaining chars
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                
+                // assign variable to get chars of both string at currIndex
+                int sChar = s.charAt(i-1);
+                int tChar = t.charAt(j-1);
+
+                // if both chars are equal
+                // we have two choices either include ( dp[i-1][j-1] ) curr char or exclude ( dp[i-1][j] )
+                // let's just try to take max of both
+                if (sChar == tChar) {
+                    
+                    int include = 1 + dp[i-1][j-1];
+                    int exclude = dp[i-1][j];
+
+                    dp[i][j] = Math.max(include, exclude);
+                    System.out.println("    Value of include : " + include + ", exclude : " + exclude + " so will take max of it : " + dp[i][j]);
+
+                }
+
+            }
+        }
 
 
         return 0;
