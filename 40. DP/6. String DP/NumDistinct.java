@@ -56,7 +56,7 @@ public class NumDistinct {
         }
 
 
-        return 0;
+        return dp[m][n];
     }
 
     public static void main (String[] args) {
