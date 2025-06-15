@@ -44,8 +44,15 @@ public class NumDistinct {
                     System.out.println("    Value of include : " + include + ", exclude : " + exclude + " so will take max of it : " + dp[i][j]);
 
                 }
+                else {
+
+                    // If char don't match, skip char from s
+                    dp[i][j] = dp[i-1][j];
+                }
 
             }
+
+            System.out.println(" Updated DP Array : " + Arrays.deepToString(dp));
         }
 
 
