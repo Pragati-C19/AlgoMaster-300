@@ -7,8 +7,37 @@ public class MinCut {
         
         // Declare variables
         int n = s.length();
+        int[] dp = new int[n];
 
-        isPalindrome(s, 0, n-1);
+        // Check all chars and see if we can cut it or not?
+        for (int i = 0; i < n; i++) {
+            
+            // check if currSubString from 0 to i is palindrome or not 
+            if (isPalindrome(s, 0, i)) {
+                
+                dp[i] = 0;
+                System.out.println("    - s[0," + i + "] isPalindrome so dp[" + i + "] = 0");
+            }
+            else {
+
+                // if we didn't find palindrome of 0 to i 
+                // we need to check other starting points than 0 
+                for (int j = 1; j < i; j++) {
+                    
+                    if (isPalindrome(s, j, i)) {
+                     
+                        int minCutIfCutHere = dp[j - 1] + 1;  
+
+                        // let's take minimum of all of cuts
+                        dp[i] = Math.min(dp[i], minCutIfCutHere);
+                        
+                        System.out.println("    - i = " + i + ", j = " + j + " -> minCut if we cut here : " + minCutIfCutHere);
+                    }  
+                }
+            }
+
+            System.out.println(" Updated DP Array : " + Arrays.toString(dp));
+        }
 
         return 0;
     }
