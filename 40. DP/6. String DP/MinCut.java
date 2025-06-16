@@ -9,6 +9,9 @@ public class MinCut {
         int n = s.length();
         int[] dp = new int[n];
 
+        // fill dp array with max value
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        
         // Check all chars and see if we can cut it or not?
         for (int i = 0; i < n; i++) {
             
@@ -41,7 +44,7 @@ public class MinCut {
             System.out.println(" Updated DP Array : " + Arrays.toString(dp));
         }
 
-        return 0;
+        return dp[n-1];
     }
 
     // Helper Function : to check if string is palindrome or not
