@@ -2,6 +2,34 @@ import java.util.*;
 
 public class MinCut {
     
+    // Driver Function 
+    public int minCut(String s) {
+        
+        return 0;
+    }
+
+    // Helper Function : to check if string is palindrome or not
+    private boolean isPalindrome (String subString, int start, int end) {
+
+        return true;
+    }
+    
+
+    public static void main (String[] args) {
+
+        MinCut solution = new MinCut();
+
+        String s1 = "aab";
+        System.out.println("Result1 -> " + solution.minCut(s1) + "\n");  // 1
+
+        String s2 = "a";
+        System.out.println("Result2 -> " + solution.minCut(s2) + "\n");  // 0
+
+        String s3 = "ab";
+        System.out.println("Result3 -> " + solution.minCut(s3) + "\n");  // 1
+        
+    }
+
 }
 
 /*
