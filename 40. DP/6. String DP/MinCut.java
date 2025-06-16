@@ -22,7 +22,7 @@ public class MinCut {
 
                 // if we didn't find palindrome of 0 to i 
                 // we need to check other starting points than 0 
-                for (int j = 1; j < i; j++) {
+                for (int j = 1; j <= i; j++) {
                     
                     if (isPalindrome(s, j, i)) {
                      
