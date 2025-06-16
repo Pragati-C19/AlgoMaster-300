@@ -5,15 +5,40 @@ public class MinCut {
     // Driver Function 
     public int minCut(String s) {
         
+        // Declare variables
+        int n = s.length();
+
+        isPalindrome(s, 0, n-1);
+
         return 0;
     }
 
     // Helper Function : to check if string is palindrome or not
     private boolean isPalindrome (String subString, int start, int end) {
 
+        // will keep loop till end > start
+        while (end > start) {
+            
+            // get char of start and end of the substring
+            char startChar = subString.charAt(start);
+            char endChar = subString.charAt(end);
+
+            // if both chars are not equal then return false
+            if (startChar != endChar) {
+                
+                System.out.println("    - startChar(" + startChar + ") and endChar(" + endChar + ") are not same...");
+                return false;
+            }
+
+            // if both chars are same will increase start and decrease end
+            start++;
+            end--;
+
+        }
+
         return true;
     }
-    
+
 
     public static void main (String[] args) {
 
