@@ -32,7 +32,9 @@ public class MinCut {
                         dp[i] = Math.min(dp[i], minCutIfCutHere);
                         
                         System.out.println("    - i = " + i + ", j = " + j + " -> minCut if we cut here : " + minCutIfCutHere);
-                    }  
+                    } 
+                    
+                    System.out.println("    - Updated DP Array : " + Arrays.toString(dp));                   
                 }
             }
 
