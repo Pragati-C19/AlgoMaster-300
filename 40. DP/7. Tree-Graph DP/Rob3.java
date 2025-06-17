@@ -40,7 +40,32 @@ public class Rob3 {
    // Helper Function : to get values of nodes should be rob and non rob
    private int[] dfs(TreeNode currNode) {
        
-      return new int[]{0,0};
+      // Base Case :
+      if (currNode == null) {
+         
+         System.out.println(" - CurrNode is null so returning [0,0]");
+         return new int[]{0,0};
+      }
+
+
+      // get result from left side
+      int[] left = dfs(currNode.left);
+
+      // get result from right side
+      int[] right = dfs(currNode.right);
+
+      System.out.println("    - Left Child : " + Arrays.toString(left) + " | Right Child : " + Arrays.toString(right));
+
+      // Visitng Node now
+      // if we rob currNode we should be adding nonRob values of left and right 
+      int rob = currNode.val + left[0] + right[0];
+
+      // if we didn't rob currNode we should be adding max between both left and right's rob and notRobt values
+      int notRob = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+
+      System.out.println("    - For Node(" + currNode.val + ") [notRob, rob] are [" + notRob + ", " + rob + "]");
+
+      return new int[]{notRob, rob};
    }
 
 
@@ -88,12 +113,12 @@ public class Rob3 {
       // First Example
       Integer[] treeArray1 = {3,2,3,null,3,null,1};
       TreeNode root1 = buildTree(treeArray1);
-      System.out.println("Result1 -> " + solution.rob(root1) + "\n");
+      System.out.println("Result1 -> " + solution.rob(root1) + "\n");   // 7
 
       // Second Example
       Integer[] treeArray2 = {3,4,5,1,3,null,1};
       TreeNode root2 = buildTree(treeArray2);
-      System.out.println("Result2 -> " + solution.rob(root2) + "\n");
+      System.out.println("Result2 -> " + solution.rob(root2) + "\n");   // 9
       
    }
 
