@@ -24,7 +24,17 @@ public class Rob3 {
    // Driver Function
    public int rob(TreeNode root) {
         
-      return 0;
+      // Declare variable
+      // It will store notRob = 0 and rob = 1 in result
+      int[] result = new int[2];
+
+      // call dfs function and get rob and notRob values for root
+      result = dfs(root);
+
+      // Max money between them 
+      int maxMoney = Math.max(result[0], result[1]);
+
+      return maxMoney;
    }
 
    // Helper Function : to get values of nodes should be rob and non rob
