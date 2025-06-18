@@ -2,6 +2,36 @@ import java.util.*;
 
 public class CountPaths {
     
+    public int countPaths(int n, int[][] roads) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        CountPaths solution = new CountPaths();
+
+        int[][] roads1 = {
+            {0,6,7},
+            {0,1,2},
+            {1,2,3},
+            {1,3,3},
+            {6,3,3},
+            {3,5,1},
+            {6,5,1},
+            {2,5,1},
+            {0,4,5},
+            {4,6,2}
+        };
+        System.out.println("Result1 -> " + solution.countPaths(7, roads1) + "\n");
+
+        int[][] roads2 = {
+            {1,0,10}
+        };
+        System.out.println("Result2 -> " + solution.countPaths(2, roads2) + "\n");
+
+    }
+
 }
 
 /*
@@ -233,7 +263,7 @@ public class CountPaths {
                     - if totalTime == minTime
                         update only ways
 
-                        
+
         -> At the end return ways[n-1]
     
     }
