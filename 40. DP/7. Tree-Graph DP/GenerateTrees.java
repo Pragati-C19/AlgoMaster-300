@@ -29,6 +29,8 @@ public class GenerateTrees {
         // Declare variables 
         List<TreeNode> resultTreesList = new ArrayList<>();
 
+        resultTreesList = buildBSTTree(1, n);
+
         return resultTreesList;
     }
 
