@@ -44,7 +44,7 @@ public class GenerateTrees {
         if (start > end) {
             
             currTreesList.add(null);
-            System.out.println("    we can't generate more subtrees not as (" + start + " > " + end + ") so will return currTreesList : " + currTreesList);
+            // System.out.println("    we can't generate more subtrees not as (" + start + " > " + end + ") so will return currTreesList : " + currTreesList);
         }
 
 
@@ -55,8 +55,20 @@ public class GenerateTrees {
             List<TreeNode> leftSideSubTree = buildBSTTree(start, i-1);
             List<TreeNode> rightSideSubTree = buildBSTTree(i+1, end);
 
-            System.out.println("    - LeftSideSubTree : " + leftSideSubTree);
-            System.out.println("    - RightSideSubTree : " + rightSideSubTree);
+
+            // Debugger Sout
+            System.out.print("    - LeftSideSubTree : [");
+            for (TreeNode node : leftSideSubTree) {
+                System.out.print(printTreeAsArrayFormat(node));
+            }
+            System.out.println("]");
+
+            System.out.print("    - RightSideSubTree : [");
+            for (TreeNode node : rightSideSubTree) {
+                System.out.print(printTreeAsArrayFormat(node));
+            }
+            System.out.println("]");
+
 
             // will check all nodes one by one and create BST 
             for (TreeNode leftNode : leftSideSubTree) {
@@ -78,26 +90,54 @@ public class GenerateTrees {
     }
 
 
-    // Function to print the tree
-    public void printTree(TreeNode root){
-        
-        if(root == null) return;
-        System.out.println(root.val + " ");
-
-        printTree(root.left);
-        printTree(root.right);
-    }
+    // Helper Function : To Print Binary Tree 
+    public static List<String> printTreeAsArrayFormat(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+    
+        queue.add(root);
+    
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+    
+            if (node == null) {
+                result.add("null");
+            } else {
+                result.add(String.valueOf(node.val));
+                queue.add(node.left);
+                queue.add(node.right);
+            }
+        }
+    
+        // Trim trailing "null"s (Leetcode does this)
+        int i = result.size() - 1;
+        while (i >= 0 && result.get(i).equals("null")) {
+            result.remove(i--);
+        }
+    
+        return result;
+    }    
 
     public static void main(String[] args){
         
         GenerateTrees solution = new GenerateTrees();
 
         // First Example
-        System.out.println("Result1 -> " + solution.generateTrees(3) + "\n");   // [[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]
+        List<TreeNode> result1 = solution.generateTrees(3);
+        System.out.print("Result1 -> ");
+        for (TreeNode root : result1) {
+            System.out.print(printTreeAsArrayFormat(root) + ", ");
+        }
+        System.out.println("\n");
 
         // Second Example
-        System.out.println("Result2 -> " + solution.generateTrees(1) + "\n");   // [[1]]
-        
+        List<TreeNode> result2 = solution.generateTrees(1);
+        System.out.print("Result2 -> ");
+        for (TreeNode root : result2) {
+            System.out.print(printTreeAsArrayFormat(root) + " ");
+        }
+        System.out.println("\n");
+
     }
 
 }
