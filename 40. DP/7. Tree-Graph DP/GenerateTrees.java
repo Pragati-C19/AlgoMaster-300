@@ -47,7 +47,20 @@ public class GenerateTrees {
             System.out.println("    we can't generate more subtrees not as (" + start + " > " + end + ") so will return currTreesList : " + currTreesList);
         }
 
+
+        // will check all index from start to end
+        for (int i = start; i <= end; i++) {
         
+            // will check subtrees of both sides 
+            List<TreeNode> leftSideSubTree = buildBSTTree(start, i-1);
+            List<TreeNode> rightSideSubTree = buildBSTTree(i+1, end);
+
+            System.out.println("    - LeftSideSubTree : " + leftSideSubTree);
+            System.out.println("    - RightSideSubTree : " + rightSideSubTree);
+
+            
+        }
+
         return currTreesList;
     }
 
