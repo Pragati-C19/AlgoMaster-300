@@ -85,7 +85,7 @@ public class CountPaths {
                 }
 
                 // if we get totalTime = minTime
-                if (totalTimeFromZero == minTimeDP[neighborNode]) {
+                else if (totalTimeFromZero == minTimeDP[neighborNode]) {
                     
                     waysDP[neighborNode] += waysDP[currNode];
                 }
