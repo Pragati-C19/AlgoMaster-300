@@ -1,9 +1,58 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CountPaths {
     
     public int countPaths(int n, int[][] roads) {
         
+        // Declare variables
+        int[] waysDP = new int[n];
+        int[] minTimeDP = new int[n];
+        Map<Integer, List<int[]>> adjList = new HashMap<>();
+        
+        // Create a adjList
+        for (int[] road : roads) {
+            
+            int startPoint = road[0];
+            int endPoint = road[1];
+            int time = road[2];
+
+            if (!adjList.containsKey(startPoint)) {
+                
+                adjList.put(startPoint, new ArrayList<>());
+            }
+            adjList.get(startPoint).add(new int[]{endPoint, time});
+
+
+            if (!adjList.containsKey(endPoint)) {
+                
+                adjList.put(endPoint, new ArrayList<>());
+            }
+            adjList.get(endPoint).add(new int[]{startPoint, time});
+
+        }
+
+        // Create a MinHeap
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a,b) -> Integer.compare(a[1], b[1]));
+        
+        // Assign initial int[] in minHeap
+        minHeap.add(new int[]{0,0});
+
+        // Assign initial values in both dp
+        Arrays.fill(minTimeDP, Integer.MAX_VALUE);
+        minTimeDP[0] = 0;
+        waysDP[0] = 1;
+
+        System.out.println(" AdjList Map : ");
+        adjList.forEach((k, v) -> System.out.println("     " + k + " -> " + v.stream().map(Arrays::toString).collect(Collectors.toList())));
+        System.out.println(" MinTimeDP : " + Arrays.toString(minTimeDP));
+        System.out.println(" WaysDP : " + Arrays.toString(waysDP));
+        System.out.println(" minHeap : ");
+        minHeap.forEach(arr -> System.out.println("     " + Arrays.toString(arr)));
+       
+
+
+
         return 0;
     }
 
