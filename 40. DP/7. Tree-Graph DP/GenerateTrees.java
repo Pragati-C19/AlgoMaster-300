@@ -1,7 +1,69 @@
 import java.util.*;
 
+import javax.swing.tree.TreeNode;
+
 public class GenerateTrees {
     
+    // Definition for a binary tree node.
+    public static class TreeNode {
+        
+        int val;
+        TreeNode left;
+        TreeNode right;
+        
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+
+    }
+
+    // Driver Function
+    public List<TreeNode> generateTrees(int n) {
+        
+        // Declare variables 
+        List<TreeNode> resultTreesList = new ArrayList<>();
+
+        return resultTreesList;
+    }
+
+    // Helper Function : to get all BST 
+    private List<TreeNode> buildBSTTree(int start, int end) {
+
+        // Declare variables 
+        List<TreeNode> currTreesList = new ArrayList<>();
+
+        return currTreesList;
+    }
+
+
+    // Function to print the tree
+    public void printTree(TreeNode root){
+        
+        if(root == null) return;
+        System.out.println(root.val + " ");
+
+        printTree(root.left);
+        printTree(root.right);
+    }
+
+    public static void main(String[] args){
+        
+        GenerateTrees solution = new GenerateTrees();
+
+        // First Example
+        System.out.println("Result1 -> " + solution.generateTrees(3) + "\n");   // [[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]
+
+        // Second Example
+        System.out.println("Result2 -> " + solution.generateTrees(1) + "\n");   // [[1]]
+        
+    }
+
 }
 
 /*
