@@ -58,7 +58,20 @@ public class GenerateTrees {
             System.out.println("    - LeftSideSubTree : " + leftSideSubTree);
             System.out.println("    - RightSideSubTree : " + rightSideSubTree);
 
-            
+            // will check all nodes one by one and create BST 
+            for (TreeNode leftNode : leftSideSubTree) {
+                for (TreeNode rightNode : rightSideSubTree) {
+                    
+                    // create new tree with root i 
+                    TreeNode root = new TreeNode(i);
+
+                    root.left = leftNode;
+                    root.right = rightNode;
+
+                    // add this root in list
+                    currTreesList.add(root);
+                }
+            }
         }
 
         return currTreesList;
