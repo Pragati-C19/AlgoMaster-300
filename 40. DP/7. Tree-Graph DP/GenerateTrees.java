@@ -40,6 +40,14 @@ public class GenerateTrees {
         // Declare variables 
         List<TreeNode> currTreesList = new ArrayList<>();
 
+        // Base Case : if start > end means we are not able to generate any subtree now
+        if (start > end) {
+            
+            currTreesList.add(null);
+            System.out.println("    we can't generate more subtrees not as (" + start + " > " + end + ") so will return currTreesList : " + currTreesList);
+        }
+
+        
         return currTreesList;
     }
 
