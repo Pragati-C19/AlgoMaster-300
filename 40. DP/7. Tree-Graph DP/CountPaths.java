@@ -6,8 +6,9 @@ public class CountPaths {
     public int countPaths(int n, int[][] roads) {
         
         // Declare variables
-        int[] waysDP = new int[n];
-        int[] minTimeDP = new int[n];
+        long MOD = 1_000_000_007;
+        long[] waysDP = new long[n];
+        long[] minTimeDP = new long[n];
         Map<Integer, List<int[]>> adjList = new HashMap<>();
         
         // Create a adjList
@@ -33,13 +34,13 @@ public class CountPaths {
         }
 
         // Create a MinHeap
-        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a,b) -> Integer.compare(a[1], b[1]));
+        PriorityQueue<long[]> minHeap = new PriorityQueue<>((a,b) -> Long.compare(a[1], b[1]));
         
         // Assign initial int[] in minHeap
-        minHeap.add(new int[]{0,0});
+        minHeap.add(new long[]{0,0});
 
         // Assign initial values in both dp
-        Arrays.fill(minTimeDP, Integer.MAX_VALUE);
+        Arrays.fill(minTimeDP, Long.MAX_VALUE);
         minTimeDP[0] = 0;
         waysDP[0] = 1;
 
@@ -56,9 +57,9 @@ public class CountPaths {
         // Will start while loop
         while (!minHeap.isEmpty()) {
 
-            int[] top = minHeap.poll();
-            int currNode = top[0];
-            int currTime = top[1];
+            long[] top = minHeap.poll();
+            int currNode = (int) top[0];
+            long currTime = top[1];
 
             // will skip this currNode if we see currTime is greater than already found minTime
             if (currTime > minTimeDP[currNode]) {
@@ -71,9 +72,9 @@ public class CountPaths {
             for (int[] neighbor : adjList.getOrDefault(currNode, new ArrayList<>())) {
                 
                 int neighborNode = neighbor[0];
-                int timeToNeighbor = neighbor[1];
+                long timeToNeighbor = neighbor[1];
 
-                int totalTimeFromZero = currTime + timeToNeighbor;
+                long totalTimeFromZero = currTime + timeToNeighbor;
 
                 // if we get totalTime < minTime
                 if (totalTimeFromZero < minTimeDP[neighborNode]) {
@@ -81,13 +82,13 @@ public class CountPaths {
                     minTimeDP[neighborNode] = totalTimeFromZero;
                     waysDP[neighborNode] = waysDP[currNode];
 
-                    minHeap.add(new int[]{neighborNode, totalTimeFromZero});
+                    minHeap.add(new long[]{neighborNode, totalTimeFromZero});
                 }
 
                 // if we get totalTime = minTime
                 else if (totalTimeFromZero == minTimeDP[neighborNode]) {
                     
-                    waysDP[neighborNode] += waysDP[currNode];
+                    waysDP[neighborNode] = (waysDP[neighborNode] + waysDP[currNode]) % MOD;
                 }
             }
 
@@ -99,7 +100,7 @@ public class CountPaths {
         }
 
 
-        return waysDP[n-1];
+        return (int)(waysDP[n - 1] % MOD);
     }
 
     public static void main(String[] args) {
@@ -167,6 +168,26 @@ public class CountPaths {
 
     5. will use minHeap to get minTime 
         - yat apan [node, time] store karu
+
+
+    ^ Improvements :
+
+        - Why Use % MOD?
+            Most such problems say:
+                "Since the answer can be very large, return the answer modulo 10⁹ + 7."
+            
+            This means the expected answer is:
+                return ways[n - 1] % 1_000_000_007;
+
+        - Why 1_000_000_007?
+            It's a large prime number, which makes it safe for mod arithmetic (especially in number theory, DP, combinatorics).
+            It fits in 32-bit integer range.
+            Commonly used in programming contests and Leetcode for consistency.
+
+        - Without Modulo — What Happens?
+            Overflow happens: If you keep adding large numbers into an int or even long, you'll exceed the variable's max value.
+            You return wrong answers (like in your case: 1936494453 instead of expected 936494446).
+
 
 
     ^ Dry Run :
