@@ -43,6 +43,8 @@ public class CountPaths {
         minTimeDP[0] = 0;
         waysDP[0] = 1;
 
+
+        // Debugger Souts
         System.out.println(" AdjList Map : ");
         adjList.forEach((k, v) -> System.out.println("     " + k + " -> " + v.stream().map(Arrays::toString).collect(Collectors.toList())));
         System.out.println(" MinTimeDP : " + Arrays.toString(minTimeDP));
@@ -51,9 +53,53 @@ public class CountPaths {
         minHeap.forEach(arr -> System.out.println("     " + Arrays.toString(arr)));
        
 
+        // Will start while loop
+        while (!minHeap.isEmpty()) {
+
+            int[] top = minHeap.poll();
+            int currNode = top[0];
+            int currTime = top[1];
+
+            // will skip this currNode if we see currTime is greater than already found minTime
+            if (currTime > minTimeDP[currNode]) {
+                
+                System.out.println("    - currTime(" + currTime + ") > minTime(" + minTimeDP[currNode] + ") so will skip this currNode(" + currNode + ")");
+                continue;
+            }
+
+            // else check all neighbors of currNode
+            for (int[] neighbor : adjList.getOrDefault(currNode, new ArrayList<>())) {
+                
+                int neighborNode = neighbor[0];
+                int timeToNeighbor = neighbor[1];
+
+                int totalTimeFromZero = currTime + timeToNeighbor;
+
+                // if we get totalTime < minTime
+                if (totalTimeFromZero < minTimeDP[neighborNode]) {
+                    
+                    minTimeDP[neighborNode] = totalTimeFromZero;
+                    waysDP[neighborNode] = waysDP[currNode];
+
+                    minHeap.add(new int[]{neighborNode, totalTimeFromZero});
+                }
+
+                // if we get totalTime = minTime
+                if (totalTimeFromZero == minTimeDP[neighborNode]) {
+                    
+                    waysDP[neighborNode] += waysDP[currNode];
+                }
+            }
+
+            System.out.println("  - Updated MinTimeDP : " + Arrays.toString(minTimeDP));
+            System.out.println("  - Updated WaysDP : " + Arrays.toString(waysDP));
+            System.out.println("  - Updated minHeap : ");
+            minHeap.forEach(arr -> System.out.println("     " + Arrays.toString(arr)));
+       
+        }
 
 
-        return 0;
+        return waysDP[n-1];
     }
 
     public static void main(String[] args) {
