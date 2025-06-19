@@ -78,6 +78,14 @@ public class MinCameraCover {
             return hasCamera;
         }
 
+        // if either of child has camera means our currNode is monitored too, so no need to add camera here
+        if (leftChildState == hasCamera || rightChildState == hasCamera) {
+            
+            System.out.println("    - Either of child has camera so we don't need to add camera at currNode so cameraCount : " + cameraCount);
+
+            return monitored;
+        } 
+
         System.out.println("    - Children monitored, but Node " + currNode.val + " is not monitored.");
         return notMonitored;
     }
