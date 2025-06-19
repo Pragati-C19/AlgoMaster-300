@@ -69,6 +69,15 @@ public class MinCameraCover {
         System.out.println("    Right Child State: " + rightChildState);
 
 
+        // if either of child is not monitored we need to add camer at currNode
+        if (leftChildState == notMonitored || rightChildState == notMonitored) {
+            
+            cameraCount++;
+            System.out.println("    - Either of child is not monitored so will increased cameraCount to " + cameraCount);
+
+            return hasCamera;
+        }
+
         System.out.println("    - Children monitored, but Node " + currNode.val + " is not monitored.");
         return notMonitored;
     }
