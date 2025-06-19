@@ -25,18 +25,32 @@ public class MinCameraCover {
 
 
     // Globally Declare Variables
-
+    int cameraCount;
+    int notMonitored = 0;
+    int hasCamera = 1;
+    int monitored = 2;
 
     // Driver Function
     public int minCameraCover(TreeNode root) {
         
-        return 0;
+        cameraCount = 0;
+
+        // Call dfs and check if root is monitored or not
+        if (dfs(root) == notMonitored) {
+            
+            cameraCount++;
+            System.out.println(" Root node is not monitored, placing camera at root(" + root + ")");
+            
+        }
+
+        // return camera count
+        return cameraCount;
     }
 
     // Helper Function
     private int dfs(TreeNode currNode) {
 
-        return 0;
+        return notMonitored;
     }
 
 
