@@ -39,7 +39,7 @@ public class MinCameraCover {
         if (dfs(root) == notMonitored) {
             
             cameraCount++;
-            System.out.println(" Root node is not monitored, placing camera at root(" + root + ")");
+            System.out.println(" Root node is not monitored, placing camera at root(" + root.val + ")");
             
         }
 
@@ -53,11 +53,23 @@ public class MinCameraCover {
         // Base Case : if currNode is null
         if (currNode == null) {
             
-            System.out.println("    - currNode(" + currNode.val + ") is null..");
+            System.out.println("    - currNode is null..");
             return monitored;
         }
 
-        System.out.println("    -> Children monitored, but Node " + currNode.val + " is not monitored.");
+
+        // Check left child
+        int leftChildState = dfs(currNode.left);
+
+        // Check left child
+        int rightChildState = dfs(currNode.right);
+
+        System.out.println(" Visiting Node: " + currNode.val);
+        System.out.println("    Left Child State: " + leftChildState);
+        System.out.println("    Right Child State: " + rightChildState);
+
+
+        System.out.println("    - Children monitored, but Node " + currNode.val + " is not monitored.");
         return notMonitored;
     }
 
