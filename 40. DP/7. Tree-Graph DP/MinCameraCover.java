@@ -50,6 +50,14 @@ public class MinCameraCover {
     // Helper Function
     private int dfs(TreeNode currNode) {
 
+        // Base Case : if currNode is null
+        if (currNode == null) {
+            
+            System.out.println("    - currNode(" + currNode.val + ") is null..");
+            return monitored;
+        }
+
+        System.out.println("    -> Children monitored, but Node " + currNode.val + " is not monitored.");
         return notMonitored;
     }
 
