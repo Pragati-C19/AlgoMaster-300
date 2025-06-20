@@ -56,21 +56,35 @@ public class SumOfDistancesInTree {
     }
 
     // Helper Function : dfs function to get distance
-    private int postOrderDFS(int currNode, int parentNode) {
+    private void postOrderDFS(int currNode, int parentNode) {
 
-        // declare currDistance 
-        int currDist = 1;
+        // count nodes : count itself so wrote 1
+        count[currNode] = 1;
 
-        // Check neighbors
+        // Check neighbors or childs
         for (int neighbor : adjList.get(currNode)) {
             
             if (neighbor != parentNode) {
                 
-                currDist += postOrderDFS(neighbor, currNode);
+                // call recursion
+                postOrderDFS(neighbor, currNode);
+
+                // add child subtree size 
+                count[currNode] += count[neighbor];
+                
+                // add total distance from this child subtree
+                ans[currNode] += ans[neighbor] + count[neighbor];
+
             }
         }
 
-        return currDist;
+
+        // Debugger Souts
+        System.out.println("    [postOrderDFS : " + currNode + "] Ans DP Array   : " + Arrays.toString(ans));
+        System.out.println("    [postOrderDFS : " + currNode + "] Count DP Array : " + Arrays.toString(count));
+
+
+        return;
     }
 
     // Helper Function : dfs function to get distance
