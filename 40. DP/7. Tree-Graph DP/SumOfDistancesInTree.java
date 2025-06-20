@@ -16,6 +16,7 @@ public class SumOfDistancesInTree {
 
         // Decalre variables
         adjList = new HashMap<>();
+        int[] ans = new int[n];
 
         // Add values in map
         // Create a adjList
@@ -41,12 +42,19 @@ public class SumOfDistancesInTree {
 
         // Debugger Souts
         System.out.println(" AdjList Map : " + adjList);
+
+        for (int i = 0; i < n; i++) {
+            
+            boolean[] visited = new boolean[n];
+
+            ans[i] = dfs(i, -1, 0, visited);
+        }
         
         return new int[]{0};
     }
 
     // Helper Function : dfs function to get distance
-    private int dfs(int currNode, int parentNode, int distSoFar) {
+    private int dfs(int currNode, int parentNode, int distSoFar, boolean[] visited) {
 
         return 0;
     }
