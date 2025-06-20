@@ -50,13 +50,32 @@ public class SumOfDistancesInTree {
             ans[i] = dfs(i, -1, 0, visited);
         }
         
-        return new int[]{0};
+        return ans;
     }
 
     // Helper Function : dfs function to get distance
     private int dfs(int currNode, int parentNode, int distSoFar, boolean[] visited) {
 
-        return 0;
+        // Base Case :
+        if (visited[currNode]) {
+            
+            System.out.println(" - currNode is already visited..");
+            return 0;
+        }
+
+        // declare currDistance 
+        int currDist = distSoFar;
+
+        // Check neighbors
+        for (int neighbor : adjList.get(currNode)) {
+            
+            if (neighbor != parentNode) {
+                
+                currDist += dfs(neighbor, currNode, distSoFar + 1, visited);
+            }
+        }
+
+        return currDist;
     }
 
 
