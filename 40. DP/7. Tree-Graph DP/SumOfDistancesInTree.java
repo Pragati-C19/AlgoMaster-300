@@ -3,10 +3,38 @@ import java.util.*;
 public class SumOfDistancesInTree {
     
     // Globally Declare Variables
-
+    Map<Integer, List<Integer>> adjList;
 
     // Driver Function
     public int[] sumOfDistancesInTree(int n, int[][] edges) {
+        
+        // Decalre variables
+        adjList = new HashMap<>();
+
+        // Add values in map
+        // Create a adjList
+        for (int[] edge : edges) {
+            
+            int startPoint = edge[0];
+            int endPoint = edge[1];
+
+            if (!adjList.containsKey(startPoint)) {
+                
+                adjList.put(startPoint, new ArrayList<>());
+            }
+            adjList.get(startPoint).add(endPoint);
+
+
+            if (!adjList.containsKey(endPoint)) {
+                
+                adjList.put(endPoint, new ArrayList<>());
+            }
+            adjList.get(endPoint).add(startPoint);
+
+        }
+
+        // Debugger Souts
+        System.out.println(" AdjList Map : " + adjList);
         
         return new int[]{0};
     }
