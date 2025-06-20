@@ -55,7 +55,7 @@ public class SumOfDistancesInTree {
         return ans;
     }
 
-    // Helper Function : dfs function to get distance
+    // Recursion Function : Post-order traversal to compute subtree sizes and initial distance sums
     private void postOrderDFS(int currNode, int parentNode) {
 
         // count nodes : count itself so wrote 1
@@ -87,22 +87,30 @@ public class SumOfDistancesInTree {
         return;
     }
 
-    // Helper Function : dfs function to get distance
-    private int preOrderDFS(int currNode, int parentNode) {
+    // Recursion Function : Pre-order traversal to propagate results using parent info
+    private void preOrderDFS(int currNode, int parentNode) {
 
-        // declare currDistance 
-        int currDist = 1;
-
-        // Check neighbors
+        // Check neighbors or childs
         for (int neighbor : adjList.get(currNode)) {
             
             if (neighbor != parentNode) {
                 
-                currDist += preOrderDFS(neighbor, currNode);
+                // Key formula: move root from parent → child
+                ans[neighbor] = ans[currNode] - count[neighbor] + (count.length - count[neighbor]);
+
+                // call recursion
+                preOrderDFS(neighbor, currNode);
+
             }
         }
 
-        return currDist;
+
+        // Debugger Souts
+        System.out.println("    [preOrderDFS : " + currNode + "] Ans DP Array   : " + Arrays.toString(ans));
+        System.out.println("    [preOrderDFS : " + currNode + "] Count DP Array : " + Arrays.toString(count));
+
+
+        return;
     }
 
 
