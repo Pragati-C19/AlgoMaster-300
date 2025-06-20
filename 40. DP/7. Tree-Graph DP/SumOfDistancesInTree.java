@@ -8,6 +8,12 @@ public class SumOfDistancesInTree {
     // Driver Function
     public int[] sumOfDistancesInTree(int n, int[][] edges) {
         
+        // Base Case :
+        if (n == 1) {
+            
+            return new int[]{0};
+        }
+
         // Decalre variables
         adjList = new HashMap<>();
 
