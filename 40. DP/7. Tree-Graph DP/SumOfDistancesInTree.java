@@ -4,6 +4,8 @@ public class SumOfDistancesInTree {
     
     // Globally Declare Variables
     Map<Integer, List<Integer>> adjList;
+    int[] ans;
+    int[] count;
 
     // Driver Function
     public int[] sumOfDistancesInTree(int n, int[][] edges) {
@@ -16,7 +18,8 @@ public class SumOfDistancesInTree {
 
         // Decalre variables
         adjList = new HashMap<>();
-        int[] ans = new int[n];
+        ans = new int[n];
+        count = new int[n];
 
         // Add values in map
         // Create a adjList
@@ -41,40 +44,47 @@ public class SumOfDistancesInTree {
         }
 
         // Debugger Souts
-        System.out.println(" AdjList Map : " + adjList);
+        System.out.println(" AdjList Map    : " + adjList);
+        System.out.println(" Ans DP Array   : " + Arrays.toString(ans));
+        System.out.println(" Count DP Array : " + Arrays.toString(count));
 
-        for (int i = 0; i < n; i++) {
-            
-            boolean[] visited = new boolean[n];
-
-            ans[i] = dfs(i, -1, 0, visited);
-        }
+        // Call both DFS now
+        postOrderDFS(0, -1);
+        preOrderDFS(0, -1);
         
         return ans;
     }
 
     // Helper Function : dfs function to get distance
-    private int dfs(int currNode, int parentNode, int distSoFar, boolean[] visited) {
-
-        // Base Case :
-        if (visited[currNode]) {
-            
-            System.out.println(" - currNode is already visited..");
-            return 0;
-        }
-
-        // Mark currNode as visited 
-        visited[currNode] = true;
+    private int postOrderDFS(int currNode, int parentNode) {
 
         // declare currDistance 
-        int currDist = distSoFar;
+        int currDist = 1;
 
         // Check neighbors
         for (int neighbor : adjList.get(currNode)) {
             
             if (neighbor != parentNode) {
                 
-                currDist += dfs(neighbor, currNode, distSoFar + 1, visited);
+                currDist += postOrderDFS(neighbor, currNode);
+            }
+        }
+
+        return currDist;
+    }
+
+    // Helper Function : dfs function to get distance
+    private int preOrderDFS(int currNode, int parentNode) {
+
+        // declare currDistance 
+        int currDist = 1;
+
+        // Check neighbors
+        for (int neighbor : adjList.get(currNode)) {
+            
+            if (neighbor != parentNode) {
+                
+                currDist += preOrderDFS(neighbor, currNode);
             }
         }
 
@@ -196,7 +206,7 @@ public class SumOfDistancesInTree {
                 
                 - all above has no childs 
                 - for dfs(2) and dfs(0) we need to check all childs at count[child] and res[child]
-                
+
  
  * Pseudo Code:
  
