@@ -2,7 +2,47 @@ import java.util.*;
 
 public class SumOfDistancesInTree {
     
-    
+    // Globally Declare Variables
+
+
+    // Driver Function
+    public int[] sumOfDistancesInTree(int n, int[][] edges) {
+        
+        return new int[]{0};
+    }
+
+    // Helper Function : dfs function to get distance
+    private int dfs(int currNode, int parentNode, int distSoFar) {
+
+        return 0;
+    }
+
+
+    public static void main(String[] args) {
+
+        SumOfDistancesInTree solution = new SumOfDistancesInTree();
+
+        int[][] edges1 = {
+            {0,1},
+            {0,2},
+            {2,3},
+            {2,4},
+            {2,5}
+        };
+        System.out.println("Result1 -> " + Arrays.toString(solution.sumOfDistancesInTree(6, edges1)) + "\n");  // [8,12,6,10,10,10]
+
+        int[][] edges2 = {
+            {1,0}
+        };
+        System.out.println("Result2 -> " + Arrays.toString(solution.sumOfDistancesInTree(2, edges2)) + "\n");  // [1,1]
+
+        int[][] edges3 = {
+            {}
+        };
+        System.out.println("Result3 -> " + Arrays.toString(solution.sumOfDistancesInTree(1, edges3)) + "\n");  // [0]
+
+    }
+
 }
 
 /*
