@@ -25,7 +25,7 @@ public class MinSessions {
         // Base Case : if all task are done return 0
         if (mask == (1 << n) - 1) {
             
-            System.out.println("  All tasks are done.. ");
+            System.out.println("    All tasks are done for mask: " + mask);
             return 0;
         }
 
@@ -52,13 +52,13 @@ public class MinSessions {
             // If currTask is already completed will skip it
             if ((mask & (1 << currTask)) != 0) {
                 
-                System.out.println("  Task " + currTask + " is already completed");
+                System.out.println("    - Task " + currTask + " is already completed");
                 continue;
             }
 
             // If not then mark currTask as completed
             int newMask = mask | (1 << currTask);
-            System.out.println("    - newMask now is " + newMask);
+            System.out.println("    Changed currMask(" + mask + ") for task(" + currTask + ") to newMask : " + newMask);
 
 
             // Now we need to check if currTask fits in currSession
@@ -79,7 +79,8 @@ public class MinSessions {
 
                 int newTimeLeft = sessionTime - tasks[currTask];
 
-                int sessions = dfs(newMask, newTimeLeft, tasks, sessionTime);
+                // Adding +1 to count the new session we just started
+                int sessions = 1 + dfs(newMask, newTimeLeft, tasks, sessionTime);
                 System.out.println("    [New Session Created] checked : " + newMask + ", " + newTimeLeft + " and got sessions : " + sessions);
 
                 // take min Session so far
@@ -108,7 +109,7 @@ public class MinSessions {
         int[] tasks2 = {3,1,3,1,1};
         System.out.println("Result2 -> " + solution.minSessions(tasks2, 8) + "\n");   // 2
         
-        // Third Example
+        // // Third Example
         int[] tasks3 = {1,2,3,4,5};
         System.out.println("Result3 -> " + solution.minSessions(tasks3, 15) + "\n");   // 1
         
