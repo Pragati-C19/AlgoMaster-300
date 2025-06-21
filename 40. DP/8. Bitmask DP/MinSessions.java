@@ -68,8 +68,20 @@ public class MinSessions {
                 int newTimeLeft = timeLeft - tasks[currTask];
 
                 int sessions = dfs(newMask, newTimeLeft, tasks, sessionTime);
-                System.out.println("    checked : " + newMask + ", " + newTimeLeft + " and got sessions : " + sessions);
-                
+                System.out.println("    [Task Fits In CurrSession] checked : " + newMask + ", " + newTimeLeft + " and got sessions : " + sessions);
+
+                // take min Session so far
+                currMinSessions = Math.min(currMinSessions, sessions);
+            }
+            else {
+
+                // Task doesn't fit in currSession, so start new session
+
+                int newTimeLeft = sessionTime - tasks[currTask];
+
+                int sessions = dfs(newMask, newTimeLeft, tasks, sessionTime);
+                System.out.println("    [New Session Created] checked : " + newMask + ", " + newTimeLeft + " and got sessions : " + sessions);
+
                 // take min Session so far
                 currMinSessions = Math.min(currMinSessions, sessions);
             }
