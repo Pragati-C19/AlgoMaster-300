@@ -30,7 +30,7 @@ public class MinSessions {
         }
 
         // Create key to add in map
-        String key = mask + "," + timeLeft;
+        String key = "[" + mask + "," + timeLeft + "]";
 
         // Check if Map has that key, is yes then return it's value
         if (visitedMap.containsKey(key)) {
@@ -41,7 +41,17 @@ public class MinSessions {
             return value;
         }
 
-        return 0;
+        // Declare variable to check curr Minimum Sessions
+        // To check how many min sessions we took to to complete all tasks 
+        int currMinSessions = Integer.MAX_VALUE;
+
+        
+
+        // Mark this key and value as visited
+        visitedMap.put(key, currMinSessions);
+        System.out.println(" VisitedMap : " + visitedMap);
+
+        return currMinSessions;
     }
 
     public static void main(String[] args){
