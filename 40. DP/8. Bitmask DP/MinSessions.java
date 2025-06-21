@@ -2,6 +2,39 @@ import java.util.*;
 
 public class MinSessions {
     
+    // Globally Declare variables
+
+    
+    // Driver Function 
+    public int minSessions(int[] tasks, int sessionTime) {
+        
+        return 0;
+    }
+
+    // Recursion Function : to check if all tasks are done or not
+    private int dfs (int mask, int timeLeft, int[] tasks, int sessionTime) {
+
+        return 0;
+    }
+
+    public static void main(String[] args){
+      
+        MinSessions solution = new MinSessions();
+
+        // First Example
+        int[] tasks1 = {1,2,3};
+        System.out.println("Result1 -> " + solution.minSessions(tasks1, 3) + "\n");   // 2
+
+        // Second Example
+        int[] tasks2 = {3,1,3,1,1};
+        System.out.println("Result2 -> " + solution.minSessions(tasks2, 8) + "\n");   // 2
+        
+        // Third Example
+        int[] tasks3 = {1,2,3,4,5};
+        System.out.println("Result3 -> " + solution.minSessions(tasks3, 15) + "\n");   // 1
+        
+    }
+
 }
 
 /*
