@@ -29,6 +29,17 @@ public class MinSessions {
             return 0;
         }
 
+        // Create key to add in map
+        String key = mask + "," + timeLeft;
+
+        // Check if Map has that key, is yes then return it's value
+        if (visitedMap.containsKey(key)) {
+            
+            int value = visitedMap.get(key);
+            System.out.println("    - Map contains Key : " + key + " so returing it's value : " + value);
+
+            return value;
+        }
 
         return 0;
     }
