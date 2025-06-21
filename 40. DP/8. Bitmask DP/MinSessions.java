@@ -45,6 +45,23 @@ public class MinSessions {
         // To check how many min sessions we took to to complete all tasks 
         int currMinSessions = Integer.MAX_VALUE;
 
+
+        // Will try adding each unfinished task in session
+        for (int currTask = 0; currTask < n; currTask++) {
+            
+            // If currTask is already completed will skip it
+            if ((mask & (1 << currTask)) != 0) {
+                
+                System.out.println("  Task " + currTask + " is already completed");
+                continue;
+            }
+
+            // If not then mark currTask as completed
+            int newMask = mask | (1 << currTask);
+            System.out.println("    - newMask now is " + newMask);
+
+
+        }
         
 
         // Mark this key and value as visited
