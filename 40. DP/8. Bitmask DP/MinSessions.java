@@ -3,12 +3,20 @@ import java.util.*;
 public class MinSessions {
     
     // Globally Declare variables
-
-    
+    int n;
+    Map<String, Integer> visitedMap;   
+ 
     // Driver Function 
     public int minSessions(int[] tasks, int sessionTime) {
         
-        return 0;
+        // Declare variables 
+        n = tasks.length;
+        visitedMap = new HashMap<>();    // Map: key = mask + "," + timeLeft -> value = min sessions
+
+        // let's call dfs for initial state no tasks done (mask = 0), and 0 time left
+        int result = dfs(0, 0, tasks, sessionTime);
+
+        return result;
     }
 
     // Recursion Function : to check if all tasks are done or not
