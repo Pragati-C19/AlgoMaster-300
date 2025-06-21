@@ -22,6 +22,14 @@ public class MinSessions {
     // Recursion Function : to check if all tasks are done or not
     private int dfs (int mask, int timeLeft, int[] tasks, int sessionTime) {
 
+        // Base Case : if all task are done return 0
+        if (mask == (1 << n) - 1) {
+            
+            System.out.println("  All tasks are done.. ");
+            return 0;
+        }
+
+
         return 0;
     }
 
@@ -74,6 +82,35 @@ public class MinSessions {
             tr will add task in that session
         - if not then apan new session start karu
     
+    6. what does mask == (1 << n) - 1 this means ?
+        - n is number of tasks
+        - mask is a bitmask of length n
+        - if n = 3 then will check if each task is done or not 
+            which is mask = 111 in decimal = 7
+            so 
+                (1 << n) - 1
+                    = (1 << 3) - 1
+                    = 8 - 1
+                    = 7         -> binary: 111
+
+        - you will say why (1 << 3) now
+            << shifts the bits to the left
+                which is the same as multiplying the number by 2 each time you shift.
+
+            so 1 << 1 means 
+                1 in binary = 0001
+                Shift left by 1  ->  0010 (which is 2 in decimal)
+                So 1 << 1 = 2
+
+            | Expression | Binary | Decimal |
+            | ---------- | ------ | ------- |
+            |   1 << 0   |  0001  |    1    |
+            |   1 << 1   |  0010  |    2    |
+            |   1 << 2   |  0100  |    4    |
+            |   1 << 3   |  1000  |    8    |
+
+
+
     ^ Dry Run
 
                task = [1, 2, 3]
