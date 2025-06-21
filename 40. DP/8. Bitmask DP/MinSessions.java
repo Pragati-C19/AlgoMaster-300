@@ -61,6 +61,19 @@ public class MinSessions {
             System.out.println("    - newMask now is " + newMask);
 
 
+            // Now we need to check if currTask fits in currSession
+            if (tasks[currTask] <= timeLeft) {
+                
+                // Task fits in curr Session
+                int newTimeLeft = timeLeft - tasks[currTask];
+
+                int sessions = dfs(newMask, newTimeLeft, tasks, sessionTime);
+                System.out.println("    checked : " + newMask + ", " + newTimeLeft + " and got sessions : " + sessions);
+                
+                // take min Session so far
+                currMinSessions = Math.min(currMinSessions, sessions);
+            }
+
         }
         
 
