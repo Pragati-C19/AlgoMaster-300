@@ -45,6 +45,22 @@ public class DistributeCookies {
         }
 
 
+        // If not then let's try to assign cookiesBags to childs
+        for (int childIndex = 0; childIndex < k; childIndex++) {
+            
+            // Give currBag to this child
+            dp[childIndex] += cookies[currBagIndex];
+
+            // call dfs to assign next bag to another any other child
+            dfs(currBagIndex + 1, dp, cookies, n, k);
+
+            // Backtrack : once we get unfairness for one way of distributions we need to backtrack everything
+            dp[childIndex] -= cookies[currBagIndex];
+        
+        }
+
+        System.out.println("    DP and minUnfairness of currBagIndex(" + currBagIndex + ") : " + Arrays.toString(dp) + " | " + minUnfairness);
+
         return;
     }
 
