@@ -3,12 +3,20 @@ import java.util.*;
 public class DistributeCookies {
     
     // Globally Declare variables
-
+    int minUnfairness;
 
     // Driver Function 
     public int distributeCookies(int[] cookies, int k) {
         
-        return 0;
+        // Declare variables 
+        int n = cookies.length;
+        int[] dp = new int[k];
+        minUnfairness = Integer.MAX_VALUE;
+
+        // Call DFS Function for strting 0'th cookie bag
+        dfs(0, dp, cookies, n, k);
+        
+        return minUnfairness;
     }
 
     // Recursion Function : to assign cookie bags to each child
@@ -17,6 +25,7 @@ public class DistributeCookies {
         return;
     }
 
+    
     public static void main(String[] args){
       
         DistributeCookies solution = new DistributeCookies();
