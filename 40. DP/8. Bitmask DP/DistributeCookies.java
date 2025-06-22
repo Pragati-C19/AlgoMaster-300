@@ -2,6 +2,39 @@ import java.util.*;
 
 public class DistributeCookies {
     
+    // Globally Declare variables
+
+
+    // Driver Function 
+    public int distributeCookies(int[] cookies, int k) {
+        
+        return 0;
+    }
+
+    // Recursion Function : to assign cookie bags to each child
+    private void dfs(int currBagIndex, int[] dp, int[] cookies, int n, int k) {
+
+        return;
+    }
+
+    public static void main(String[] args){
+      
+        DistributeCookies solution = new DistributeCookies();
+
+        // First Example
+        int[] cookies1 = {8,15,10,20,8};
+        System.out.println("Result1 -> " + solution.distributeCookies(cookies1, 2) + "\n");   // 31
+
+        // Second Example
+        int[] cookies2 = {6,1,3,2,2,4,1,2};
+        System.out.println("Result2 -> " + solution.distributeCookies(cookies2, 3) + "\n");   // 7
+        
+        // Third Example
+        // int[] cookies3 = {1,2,3,4,5};
+        // System.out.println("Result3 -> " + solution.distributeCookies(cookies3, 15) + "\n");   // 1
+        
+    }
+
 }
 
 /*
