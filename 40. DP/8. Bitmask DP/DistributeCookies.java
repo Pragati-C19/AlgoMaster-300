@@ -22,10 +22,33 @@ public class DistributeCookies {
     // Recursion Function : to assign cookie bags to each child
     private void dfs(int currBagIndex, int[] dp, int[] cookies, int n, int k) {
 
+        // Base Case : if all cookie bags are assinged
+        if (currBagIndex == n) {
+            
+            // Declare a variables to check maxCookies to any child
+            int maxCookies = 0;
+
+            // Check the max cookies any child got (currUnfairness)
+            for (int cookiesGiven : dp) {
+                
+                maxCookies = Math.max(maxCookies, cookiesGiven);
+            }
+
+            // Update minUnfairness
+            minUnfairness = Math.min(minUnfairness, maxCookies);
+
+            System.out.println("    - All Cookie Bags are assigned : ");
+            System.out.println("        maxCookies    : " + maxCookies);
+            System.out.println("        minUnfairness : " + minUnfairness);
+
+            return;
+        }
+
+
         return;
     }
 
-    
+
     public static void main(String[] args){
       
         DistributeCookies solution = new DistributeCookies();
