@@ -86,6 +86,14 @@ public class DistributeCookies {
 }
 
 /*
+
+    ^ Improvements :
+
+        1. I thought this brute force will not work it will give TLE 
+            but all 38 test case are passed..
+        2. Still will check optimal solution through bitMask too will do it later
+
+        
  * Intuitions :
  
     1. We have given an array cookies
