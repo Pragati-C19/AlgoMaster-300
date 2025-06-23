@@ -62,6 +62,16 @@ public class ShortestPathLength {
 
 
                 // else will check all neighbors 
+                for (int neighbor : graph[currNode]) {
+                    
+                    // get nextMask
+                    int neighborMask = 1 << neighbor;
+
+                    int nextMask = currMask | neighborMask;
+                    System.out.println("    - neighborMask : " + neighborMask + " | nextMask : " + nextMask);
+
+                    
+                }
 
             }
 
