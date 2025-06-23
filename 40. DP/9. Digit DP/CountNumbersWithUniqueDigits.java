@@ -68,6 +68,12 @@ public class CountNumbersWithUniqueDigits {
 }
 
 /*
+    ^ Improvement :
+        1. After solving que I think we don't need dp, as u can see me use pn nahi kel te 
+            so let's change it and try to submit
+        2. current dp one was submited and passed 
+
+
  * Intuitions :
  
     1. we have given integer n 
