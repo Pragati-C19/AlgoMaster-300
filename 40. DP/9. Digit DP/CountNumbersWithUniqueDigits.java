@@ -4,12 +4,19 @@ public class CountNumbersWithUniqueDigits {
     
     public int countNumbersWithUniqueDigits(int n) {
         
+        // Base Case : if n = 0 there is only one x between 0<= x < , so returning 1
+        if (n == 0) {
+            
+            return 1;
+        }
+
         // Declare variables
         int[] dp = new int[n + 1];
 
         // Base Case :
         dp[0] = 1;
         dp[1] = 10;
+
 
         // Add initial value to total unique numbers
         // will take only dp[1] bcoz 0 to 9 are coverd we don't need write dp[0]
