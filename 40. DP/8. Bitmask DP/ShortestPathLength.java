@@ -131,6 +131,64 @@ public class ShortestPathLength {
  * Pseudo Code :
  
 
+    function shortestPathLength (int[][] graph) {
+    
+        -> Declare variables
+            n = length of graph         - it will give nodes value
+            visited[node][mask]         - it will tell if that node and mask is visited or not if it's true means visited
+            queue                       - it will store (currNode, currMask) 
+            pathlength = 0              - it gives pathLength 
 
+        -> will not create adjList map this time bcoz we already has a graph array 
+
+        -> initially we need to add all nodes and it's mask 
+            for(i = 0 to n)
+
+                - get bitmask with only ith node set 
+                    as in if i=1 -> mask = 0010
+                             i=2 -> mask = 0100
+                             i=3 -> mask = 1000 and so on
+
+                    mask = 1 << i
+
+                - add that node i and mask in queue
+                - also mark them as visited
+
+        
+        -> Now start the loop till queue is not empty
+            while(!queue.isEmpty)
+
+                - get size of queue
+                - start for loop till that size so will pop all values at curr level
+                    for(i = 0 to queueSize)
+
+                        - pop top of que
+                        - declare variables as currNode and currMask 
+                        
+                        - if all nodes are visited means mask = 1111 
+                            then return path directly
+                            1 << n means pow(2, n) - bit madhe nehmi 2^n chya basis vr value aste tymul he pow(2,n) aivaji 1 << n lihitat
+
+                            if(mask == (1 << n) - 1)
+
+                        - else will check all neighbors
+                            for(neighbor : graph[neighbor]) 
+
+                                - next mask kay asel ? 
+                                    currMask cha OR kr neighbor mask sobt 
+                                    as in if currMask = 0001 and i=1 (neighborMask = 0010)
+                                          then nextMask = 0001 | 0010 = 0011                                                              
+
+                                    nextMask  = currMask | (1 << neighbor)
+
+                                - check if neighbor and nextMask is visited or not
+                                    if yes then continue
+                                    if not then mark it as visited and add it in queue
+                
+                - Now do pathLength++
+
+        -> at the end return -1 as we didin't reach to an end
+
+    }
 
  */
