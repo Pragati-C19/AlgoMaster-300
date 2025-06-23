@@ -12,7 +12,8 @@ public class CountNumbersWithUniqueDigits {
         dp[1] = 10;
 
         // Add initial value to total unique numbers
-        int totalUniqueNumbers = dp[0] + dp[1];
+        // will take only dp[1] bcoz 0 to 9 are coverd we don't need write dp[0]
+        int totalUniqueNumbers = dp[1];
 
         // calculate total unique numbers of digitLength > 1
         for (int digitLength = 2; digitLength <= n; digitLength++) {
@@ -27,6 +28,8 @@ public class CountNumbersWithUniqueDigits {
             // for next digit if we have more than 2 digits like greater than 100, 1000 like that
             for (int i = 1; i < digitLength; i++) {
                 
+                // System.out.println("    Digit Position " + (i + 1) + ": \n      firstDigit = " + firstDigit + " * " + remainingChoices);
+
                 // Multiply with the number of digits left to pick from
                 firstDigit *= remainingChoices;
 
@@ -39,6 +42,7 @@ public class CountNumbersWithUniqueDigits {
 
             // add that count in total
             totalUniqueNumbers += firstDigit;
+
 
         }
 
