@@ -4,8 +4,45 @@ public class CountNumbersWithUniqueDigits {
     
     public int countNumbersWithUniqueDigits(int n) {
         
+        // Declare variables
+        int[] dp = new int[n + 1];
 
-        return 0;
+        // Base Case :
+        dp[0] = 1;
+        dp[1] = 10;
+
+        // Add initial value to total unique numbers
+        int totalUniqueNumbers = dp[0] + dp[1];
+
+        // calculate total unique numbers of digitLength > 1
+        for (int digitLength = 2; digitLength <= n; digitLength++) {
+            
+            // first digit has 9 options :  [1-9] cannot be 0
+            int firstDigit = 9;
+
+            // for remaining (digitLength - 1) digits, we choose from remaining unique digits
+            // remaining choices for second digit are except first but we have 0 
+            int remainingChoices = 9;
+
+            // for next digit if we have more than 2 digits like greater than 100, 1000 like that
+            for (int i = 1; i < digitLength; i++) {
+                
+                // Multiply with the number of digits left to pick from
+                firstDigit *= remainingChoices;
+
+                // Reduce remaining digits for next position
+                remainingChoices--;
+            }
+
+            // Save tha count in dp
+            dp[digitLength] = firstDigit;
+
+            // add that count in total
+            totalUniqueNumbers += firstDigit;
+
+        }
+
+        return totalUniqueNumbers;
     }
 
     public static void main(String[] args) {
@@ -169,7 +206,7 @@ public class CountNumbersWithUniqueDigits {
                 totalUniqueNumbers += currCount
 
         -> at the end return totalUniqueNumbers
-        
+
     }
 
  */
