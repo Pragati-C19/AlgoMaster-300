@@ -3,7 +3,34 @@ import java.util.*;
 public class ShortestPathLength {
     
     public int shortestPathLength(int[][] graph) {
+
+        // Declare variables 
+        int n = graph.length;
+        boolean[][] visitedState = new boolean[n][(1 << n) + 1];
+        Queue<int[]> queue = new LinkedList<>();
+        int pathLength = 0;
+
         
+        // Initially add all nodes and it's mask value 
+        for (int i = 0; i < n; i++) {
+            
+            // get bitmask with only ith node set
+            int mask = 1 << i;
+
+            // Add node and mask in queue and mark them as visited
+            queue.add(new int[]{i, mask});
+
+            visitedState[i][mask] = true;
+        }
+
+        System.out.println("  Initial Queue : ");
+        for (int[] item : queue) {
+            System.out.println("    Node: " + item[0] + ", Mask: " + String.format("%" + n + "s", Integer.toBinaryString(item[1])).replace(' ', '0'));
+        }
+        System.out.println("  VisitedState : " + Arrays.deepToString(visitedState));
+
+        
+
         // If we can't reach to the end return -1
         return -1;
     }
