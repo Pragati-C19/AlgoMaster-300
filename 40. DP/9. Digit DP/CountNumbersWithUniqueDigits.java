@@ -2,6 +2,20 @@ import java.util.*;
 
 public class CountNumbersWithUniqueDigits {
     
+    public int countNumbersWithUniqueDigits(int n) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        CountNumbersWithUniqueDigits solution = new CountNumbersWithUniqueDigits();
+
+        System.out.println(" Result 1 -> " + solution.countNumbersWithUniqueDigits(2) + "\n");    // 91
+        System.out.println(" Result 2 -> " + solution.countNumbersWithUniqueDigits(0) + "\n");    // 1
+
+    }
+
 }
 
 /*
