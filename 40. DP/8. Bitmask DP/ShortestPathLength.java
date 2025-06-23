@@ -70,9 +70,13 @@ public class ShortestPathLength {
                     int nextMask = currMask | neighborMask;
                     System.out.println("    - neighborMask : " + neighborMask + " | nextMask : " + nextMask);
 
+                    // check if neighbor and nextMask is visited or not
+                    if (!visitedState[neighbor][nextMask]) {
                     
+                        visitedState[neighbor][nextMask] = true;
+                        queue.add(new int[]{neighbor, nextMask});
+                    }
                 }
-
             }
 
             // increase pathlength
