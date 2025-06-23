@@ -4,6 +4,7 @@ public class CountNumbersWithUniqueDigits {
     
     public int countNumbersWithUniqueDigits(int n) {
         
+
         return 0;
     }
 
@@ -93,6 +94,8 @@ public class CountNumbersWithUniqueDigits {
  
  * Pseudo Code :
  
+    1. Brute Force :
+
     function countNumbersWithUniqueDigits(int n) {
     
         -> countOfUniqueNumbers will store our final ans
@@ -127,5 +130,46 @@ public class CountNumbersWithUniqueDigits {
 
     }
 
+
+    2. DP 
+
+    function countNumbersWithUniqueDigits(int n) {
+    
+        -> Declare a dp with n + 1 length
+
+        -> Base Case :
+            dp[0] = 1       - Only one number with 0 digits: the number 0
+            dp[1] = 10      - 0 to 9 (all single-digit numbers are unique)
+    
+        -> add initial value of total Unique numbers
+            totalUniqueNumbers = dp[0] + dp[1]
+
+        -> calculate digitLength from 2 to n
+
+            - first digit has 9 options :  [1-9] cannot be 0
+                currCount = 9
+
+            - for remaining (digitLength - 1) digits, we choose from remaining unique digits
+                remaining choices for second digit are except first but we have 0 
+                remainingChoices = 9    
+
+            - for next digit if we have more than 2 digits like greater than 100, 1000 like that
+                for(i = 1 to length)
+
+                    - Multiply with the number of digits left to pick from
+                        currCount *= remainingChoices
+
+                    - Reduce remaining digits for next position
+                        remainingChoices--
+
+            - save that count in dp array for clarity or reuse
+                dp[length] = currCount
+
+            - add that count in out total
+                totalUniqueNumbers += currCount
+
+        -> at the end return totalUniqueNumbers
+        
+    }
 
  */
