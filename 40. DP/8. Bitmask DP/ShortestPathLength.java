@@ -2,6 +2,34 @@ import java.util.*;
 
 public class ShortestPathLength {
     
+    public int shortestPathLength(int[][] graph) {
+        
+        // If we can't reach to the end return -1
+        return -1;
+    }
+
+    public static void main (String[] args) {
+
+        ShortestPathLength solution = new ShortestPathLength();
+
+        int[][] graph1 = {
+            {1,2,3},
+            {0},
+            {0},
+            {0}
+        };
+        System.out.println("Result 1 -> " + solution.shortestPathLength(graph1) + "\n");    // 4
+
+        int[][] graph2 = {
+            {1},
+            {0,2,4},
+            {1,3,4},
+            {2},
+            {1,2}
+        };
+        System.out.println("Result 2 -> " + solution.shortestPathLength(graph2) + "\n");    // 4
+
+    }
 }
 
 /*
