@@ -30,6 +30,44 @@ public class ShortestPathLength {
         System.out.println("  VisitedState : " + Arrays.deepToString(visitedState));
 
         
+        // Now start the loop till queue is not empty
+        while (!queue.isEmpty()) {
+            
+            // let's get size of queue
+            int queueSize = queue.size();
+            
+            System.out.println("Queue at pathLength " + pathLength + ":");
+            for (int[] item : queue) {
+                System.out.println("  Node: " + item[0] + ", Mask: " + String.format("%" + n + "s", Integer.toBinaryString(item[1])).replace(' ', '0'));
+            }
+
+
+            // will pop out all values from queue
+            for (int i = 0; i < queueSize; i++) {
+                
+                // pop out top
+                int[] top = queue.poll();
+
+                // declare currNode and currMask
+                int currNode = top[0];
+                int currMask = top[1];
+
+
+                // if all nodes are visited means mask = 111..1 the return path directly
+                if (currMask == (1 << n) - 1) {
+                    
+                    System.out.println("   we have visited all nodes...");
+                    return pathLength;
+                }
+
+
+                // else will check all neighbors 
+
+            }
+
+            // increase pathlength
+            pathLength++;
+        }
 
         // If we can't reach to the end return -1
         return -1;
