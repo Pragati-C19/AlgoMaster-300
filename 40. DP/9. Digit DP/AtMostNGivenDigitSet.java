@@ -3,15 +3,17 @@ import java.util.*;
 public class AtMostNGivenDigitSet {
     
     // Globally Declare Variables
-
+    String nString;
+    int nLength;
+    int m;
 
     // Driver Function
     public int atMostNGivenDigitSet(String[] digits, int n) {
         
         // Declare variables
-        String nString = String.valueOf(n);
-        int nLength = nString.length();
-        int m = digits.length;
+        nString = String.valueOf(n);
+        nLength = nString.length();
+        m = digits.length;
         int totalCount = 0;
 
         // Phase 1 : Count numbers with less digits than n
@@ -24,12 +26,14 @@ public class AtMostNGivenDigitSet {
             // add it in totalCount 
             totalCount += countForCurrLength;
         }
-        System.out.println(" Total Count till nLength - 1 : " + totalCount);
+        System.out.println(" Total Count till (nLength - 1) : " + totalCount);
 
 
-
-
-        return 0;
+        // Let's call recursion and add it in totalCount
+        totalCount += dfs(0, digits);
+        
+        
+        return totalCount;
     }
 
     // Recursion Function : to count valid numbers matching n digit-by-digit
