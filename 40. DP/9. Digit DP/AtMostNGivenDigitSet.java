@@ -74,11 +74,26 @@ public class AtMostNGivenDigitSet {
 
                 System.out.println("    - '" + digitChar + "' < '" + digitOfN + "' -> add " + combinations + " in currCount");
             
-            }   
+            }  
+            else if (digitChar == digitOfN) {
+                
+                // check if d == digitOfN ? if Yes then call recursion
+                System.out.println("    - '" + digitChar + "' == '" + digitOfN + "' -> call recursion");
+
+                // Call recursion for next positionIndex and add it in count
+                currCount += dfs(positionIndex + 1, digits);
+            } 
+            else {
+
+                // If none of the above condition valids break it
+                System.out.println("    - '" + digitChar + "' > '" + digitOfN + "' -> break for loop");
+
+                break;
+            }
 
         } 
 
-        return 0;
+        return currCount;
     } 
 
 
