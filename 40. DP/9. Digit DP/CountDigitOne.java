@@ -5,39 +5,32 @@ public class CountDigitOne {
     public int countDigitOne(int n) {
         
         // Declare variables 
-        int countOfDigitOnes = 0;
+        int totalCountOfDigitOne = 0;   // Final answer: total number of times digit 1 appears
+        int positionPlace = 1;          // positionPlace represents current digit place (1 for units, 10 for tens, etc.)
         
-        
-        // Let's check all numbers from 1 to n
-        for (int i = 1; i <= n; i++) {
+        while (n / positionPlace > 0) {
             
-            // Assign a temp variable num store i in it
-            int num = i;
+            // let's declare a variable name for n / positionPlace
+            // Means all digits from left up to the current position
+            int digitsTillCurrentPlace = n / positionPlace;
+            
+            // Divide number into left, current, and right parts
+            int leftPart = digitsTillCurrentPlace / 10;
+            int currDigit = digitsTillCurrentPlace % 10;
+            int rightPart = n % positionPlace;
 
-            // Will keep our while loop till we don't have any digit to check
-            while (num > 0) {
-                
-                // Get it's digit 
-                int digit = num % 10;
+            // DEBUGGER :
+            System.out.println("  Checking PositionPlace: " + positionPlace);
+            System.out.println("      digitsTillCurrentPlace : " + digitsTillCurrentPlace);
+            System.out.println("      leftPart : " + leftPart + ", currDigit : " + currDigit + ", rightPart : " + rightPart);
 
-                // If digit has 1 then increase the count
-                if (digit == 1) {
-                    
-                    countOfDigitOnes++;
 
-                    System.out.println("    - We Found 1 at digit of num : " + i + " | now count : " + countOfDigitOnes);
-                }
-
-                // Move to next digit 
-                // reduce value of num in another words
-                num = num / 10;
-
-            }
+            // Move to next higher digit place
+            positionPlace = positionPlace * 10;
 
         }
 
-
-        return countOfDigitOnes;
+        return totalCountOfDigitOne;
     }
 
     public static void main(String[] args) {
@@ -192,7 +185,45 @@ public class CountDigitOne {
  
  * Pseudo Code :
  
+    1. Brute Force :
 
+    public int countDigitOne(int n) {
+        
+        -> Declare variables 
+        int countOfDigitOnes = 0;
+        
+        
+        -> Let's check all numbers from 1 to n
+        for (int i = 1; i <= n; i++) {
+            
+            -> Assign a temp variable num store i in it
+            int num = i;
+
+            -> Will keep our while loop till we don't have any digit to check
+            while (num > 0) {
+                
+                -> Get it's digit 
+                int digit = num % 10;
+
+                -> If digit has 1 then increase the count
+                if (digit == 1) {
+                    
+                    countOfDigitOnes++;
+
+                    System.out.println("    - We Found 1 at digit of num : " + i + " | now count : " + countOfDigitOnes);
+                }
+
+                -> Move to next digit 
+                -> reduce value of num in another words
+                num = num / 10;
+
+            }
+
+        }
+
+
+        return countOfDigitOnes;
+    }
 
 
  */
