@@ -4,7 +4,40 @@ public class CountDigitOne {
     
     public int countDigitOne(int n) {
         
-        return 0;
+        // Declare variables 
+        int countOfDigitOnes = 0;
+        
+        
+        // Let's check all numbers from 1 to n
+        for (int i = 1; i <= n; i++) {
+            
+            // Assign a temp variable num store i in it
+            int num = i;
+
+            // Will keep our while loop till we don't have any digit to check
+            while (num > 0) {
+                
+                // Get it's digit 
+                int digit = num % 10;
+
+                // If digit has 1 then increase the count
+                if (digit == 1) {
+                    
+                    countOfDigitOnes++;
+
+                    System.out.println("    - We Found 1 at digit of num : " + i + " | now count : " + countOfDigitOnes);
+                }
+
+                // Move to next digit 
+                // reduce value of num in another words
+                num = num / 10;
+
+            }
+
+        }
+
+
+        return countOfDigitOnes;
     }
 
     public static void main(String[] args) {
