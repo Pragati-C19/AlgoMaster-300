@@ -41,14 +41,44 @@ public class AtMostNGivenDigitSet {
     6. after checking one postion je ans yetay apan tyat unitPlace varcha count multiple kartoy
     7. and te alyavr aplyala saglya values add karavya lagtil
         total = unitPlaceDigit + tensPlaceDigit + hundredsPlaceDigit
-        
+
     8. ithe challenge ahe kiti places ahet aplyakde te check karan and combined pattern shodhan 
- 
+    9. So apan n.length - 1 parynt che numbers me bolle tya logic ni kadhu shakte
+        - peoblem tevha hoil jevha n.length asel
+        - example me 100 check karnar ahe tr yat tbh mala hundreds(n.length) place check karaychi garaj nahiye still to count houn jail
+            or me jr 234 check karat asel tyat mala husdred place lagtey but mala sagle nums nakoy with hundreds place
+        - tyamul mala n.length al ki pratek veles check karav lagel ki number less than ahe ki nahi 
+        - ata kr vichar kaskay karnar ahe without using for(i = 0 to n)
+    10. 
+
  
  
  * Pseudo Code :
  
+    1st Approach :
+        - Problem with this approach I didn't check if the number is <= 100 or not7
 
+        function atMostNGivenDIgitSet(digits, n) {
+        
+            -> Declare variables
+                m = digits.length
+                totalCountOfNumbers = 0
+                unitPlaceDigits = m  
+                positionPlace = 1   
+                digitCountForCurrPlace = unitPlaceDigits    
+
+            -> will check position one by one 
+                while(n / positionPlace) 
+
+                - get digitcount for this place
+                    digitCountForCurrPlace = digitCountForCurrPlace * m
+
+                - adding this digitCount in total
+                    totalCountOfNumbers += digitCountForCurrPlace
+
+            -> return totalCountOfNumbers
+        
+        }
 
 
  */
