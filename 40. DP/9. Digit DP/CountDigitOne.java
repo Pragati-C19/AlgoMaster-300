@@ -25,6 +25,25 @@ public class CountDigitOne {
             System.out.println("      leftPart : " + leftPart + ", currDigit : " + currDigit + ", rightPart : " + rightPart);
 
 
+            // Let's Apply Logic based on value of currDigit and get count at the specific position
+            if (currDigit == 0) {
+                
+                totalCountOfDigitOne += leftPart * positionPlace;
+                System.out.println("        - currDigit == 0   ->   count = " + leftPart + " * " + positionPlace + " = " + totalCountOfDigitOne);
+            }
+            else if (currDigit == 1) {
+                
+                totalCountOfDigitOne += (leftPart * positionPlace) + (rightPart + 1);
+                System.out.println("        - currDigit == 1   ->   count = (" + leftPart + " * " + positionPlace + ") + (" + rightPart + " + 1) = " + totalCountOfDigitOne);
+            }
+            else if (currDigit >= 2) {
+                
+                totalCountOfDigitOne += (leftPart * positionPlace) + positionPlace;
+                System.out.println("        - currDigit >= 2   ->   count = (" + leftPart + " * " + positionPlace + ") + " + positionPlace + " = " + totalCountOfDigitOne);
+            }
+
+            System.out.println("    Total count so far: " + totalCountOfDigitOne + "\n");
+
             // Move to next higher digit place
             positionPlace = positionPlace * 10;
 
