@@ -48,9 +48,35 @@ public class AtMostNGivenDigitSet {
 
         // assign currdigit and currcount
         int currCount = 0;
-        int currDigit = nString.charAt(positionIndex);
-        System.out.println(" Visiting Position " + positionIndex + ", n digit: " + currDigit);
+        int digitOfN = nString.charAt(positionIndex);
+        System.out.println(" Visiting Position " + positionIndex + ", n digit: " + digitOfN);
 
+
+        // Let's check each digit from digits array
+        for (String digit : digits) {
+            
+            // Get char from that string digit 
+            // we have used 0 bcoz ithe ekach char ahe 0th index vr so
+            char digitChar = digit.charAt(0);
+
+            // Check conditions 
+            if (digitChar < digitOfN) {
+                
+                // check if d < digitOfN ? if Yes updated count, if not then check next condition 
+                // get remaining Places except positionIndex
+                int remainingPlaces = nLength - positionIndex - 1;
+
+                // get all combinations at those places
+                int combinations = (int) Math.pow(m, remainingPlaces);
+
+                // Add that combination in count
+                currCount += combinations;
+
+                System.out.println("    - '" + digitChar + "' < '" + digitOfN + "' -> add " + combinations + " in currCount");
+            
+            }   
+
+        } 
 
         return 0;
     } 
