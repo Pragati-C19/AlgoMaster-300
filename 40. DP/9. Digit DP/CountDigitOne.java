@@ -92,17 +92,102 @@ public class CountDigitOne {
         - and at teh end return count
 
     3. There is a problem with brute force of getting TLE
+    4. let's use DP 
+        - instead of checking all numbers will just count how many 1s appear at each digit place (units, tens..)
+        - example n = 234 then we want count of 1s from 1 to 234
+            
+            will analize each digit seperately
+                hundreds    tens    units
+                    2         3       4
 
+            will calculate how many 1s appear in each position from 1 to 234
+
+    5. Break Down of DP approach 
+        - Let's loop each digit from left to right (units, tens, hundreds)
+            for(i = 0 to digit.length)
+        - If we are at positionPlace = 10^i
+            it can be 10^0 means units, 10^1 means tens, 10^2 means hundreds
+        - then will slips n into 3 parts
+            leftPart -> digits to the left of currDigit
+            currDigit  -> the digit at currPosition which is positionPlace
+            rightPart  -> digits to the right of currDigit
+        - For example : n = 234
+            positionPlace = 10
+                 leftPart = 2 (hundreds place digit) 
+                currDigit = 3 (tens place digit)
+                rightPart = 4 (units place digit)
+
+        - Now we apply logic 
+            if currDigit = 0
+                1s can only come from full cycles of left part 
+                count = leftPart * positionPlace 
+            
+            if currDigit = 1
+                count = (leftPart * positionPlace) + (rightPart + 1)
+
+            if currDigit >= 2
+                count = (leftPart * positionPlace) + positionPlace
+
+        
 
     ^ Dry Run :
 
-        n = 13
+    -> Example 1 :
+            n = 13
 
-        TotalNumbers  = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
-        digitOneCount =     1    +    10    +    11    +    12    +    13     
-                      = (1 time) + (1 time) + (2 time) + (1 time) + (1 time)  
-                      = 6
+            TotalNumbers  = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+            digitOneCount =     1    +    10    +    11    +    12    +    13     
+                          = (1 time) + (1 time) + (2 time) + (1 time) + (1 time)  
+                          = 6
  
+    -> Example 2 :
+
+            n = 140
+
+                - Position = 1 (unit Place)
+                    positionPlace = 1
+                         leftPart = 14 (took all numbers before currDigit)   
+                        currDigit = 0 
+                        rightPart = 0 (nothing after unit Place)
+
+                    currDigit == 0 so
+                        count = leftPart * positionPlace 
+                              = 14 * 1
+                              = 14
+
+                    so 14 numbers from 0 to 140 have 1 in the units place 
+
+                - Position = 10 (tens Place)
+                    positionPlace = 10
+                         leftPart = 1 (took all numbers before currDigit)   
+                        currDigit = 4 
+                        rightPart = 0 (took all numbers after currDigit)
+
+                    currDigit >= 2 so 
+                        count = (leftPart * positionPlace) + positionPlace
+                              = (1 * 10) + 10
+                              = 20
+
+                    so 20 numbers from 0 to 140 have 1 in the tens place
+
+                - Position = 100 (hundreds Place) 
+                    positionPlace = 100
+                         leftPart = 0 (nothing before hundreds Place) 
+                        currDigit = 1 
+                        rightPart = 40 (took all numbers after currDigit)
+
+                    currDigit == 1 so 
+                        count = (leftPart * positionPlace) + (rightPart + 1)
+                              = (0 * 100) + (40 + 1)
+                              = 41
+
+                    so 41 numbers from 0 to 140 have 1 in the hundreds place
+
+                - Total count is 
+                    totalCount = count[position1] + count[position10] + count[position100]
+                               = 14 + 20 + 41
+                               = 75
+
  
  
  * Pseudo Code :
