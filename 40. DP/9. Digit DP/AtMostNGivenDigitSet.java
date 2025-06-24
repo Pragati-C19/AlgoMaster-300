@@ -2,10 +2,42 @@ import java.util.*;
 
 public class AtMostNGivenDigitSet {
     
+    // Globally Declare Variables
+
+
+    // Driver Function
     public int atMostNGivenDigitSet(String[] digits, int n) {
         
+        // Declare variables
+        String nString = String.valueOf(n);
+        int nLength = nString.length();
+        int m = digits.length;
+        int totalCount = 0;
+
+        // Phase 1 : Count numbers with less digits than n
+        for (int i = 1; i < nLength; i++) {
+            
+            // if we didin't use (int) before pow it gives error as lossy conversion from double to int 
+            int countForCurrLength = (int) Math.pow(m, i);
+            System.out.println("    - Length " + i + " -> " + countForCurrLength + " numbers");
+
+            // add it in totalCount 
+            totalCount += countForCurrLength;
+        }
+        System.out.println(" Total Count till nLength - 1 : " + totalCount);
+
+
+
+
         return 0;
     }
+
+    // Recursion Function : to count valid numbers matching n digit-by-digit
+    private int dfs(int positionIndex, String[] digits) {
+
+        return 0;
+    } 
+
 
     public static void main(String[] args) {
 
