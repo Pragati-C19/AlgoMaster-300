@@ -2,7 +2,20 @@ import java.util.*;
 
 public class CountDigitOne {
     
-    
+    public int countDigitOne(int n) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        CountDigitOne solution = new CountDigitOne();
+
+        System.out.println(" Result 1 -> " + solution.countDigitOne(13) + "\n");    // 6
+        System.out.println(" Result 2 -> " + solution.countDigitOne(0) + "\n" );    // 0
+
+    }
+
 }
 
 /*
