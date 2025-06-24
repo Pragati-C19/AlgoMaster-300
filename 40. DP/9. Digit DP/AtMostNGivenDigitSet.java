@@ -48,7 +48,11 @@ public class AtMostNGivenDigitSet {
 
         // assign currdigit and currcount
         int currCount = 0;
-        int digitOfN = nString.charAt(positionIndex);
+
+        // ohk here was the issue.. it says '1' == 49 bcoz for (char)'1' = 49 is ASCII value
+        // let's change int to char
+        char digitOfN = nString.charAt(positionIndex);
+
         System.out.println(" Visiting Position " + positionIndex + ", n digit: " + digitOfN);
 
 
@@ -113,7 +117,7 @@ public class AtMostNGivenDigitSet {
 
         // Third Example :
         String[] digits3 = {"7"};
-        int n3 = 1000000000;
+        int n3 = 8;
         System.out.println(" Result 3 -> " + solution.atMostNGivenDigitSet(digits3, n3) + "\n");    // 1
 
     }
