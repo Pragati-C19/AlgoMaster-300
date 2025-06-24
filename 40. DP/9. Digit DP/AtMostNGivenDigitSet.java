@@ -26,18 +26,31 @@ public class AtMostNGivenDigitSet {
             // add it in totalCount 
             totalCount += countForCurrLength;
         }
-        System.out.println(" Total Count till (nLength - 1) : " + totalCount);
+        System.out.println(" Total Count till (nLength - 1) : " + totalCount + "\n");
 
 
         // Let's call recursion and add it in totalCount
         totalCount += dfs(0, digits);
         
-        
+
         return totalCount;
     }
 
     // Recursion Function : to count valid numbers matching n digit-by-digit
     private int dfs(int positionIndex, String[] digits) {
+
+        // Base Case : if all digits are match return 1 
+        if (positionIndex == nLength) {
+            
+            System.out.println(" Matched full number...");
+            return 1;
+        }
+
+        // assign currdigit and currcount
+        int currCount = 0;
+        int currDigit = nString.charAt(positionIndex);
+        System.out.println(" Visiting Position " + positionIndex + ", n digit: " + currDigit);
+
 
         return 0;
     } 
