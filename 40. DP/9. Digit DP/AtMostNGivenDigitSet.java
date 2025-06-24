@@ -2,6 +2,32 @@ import java.util.*;
 
 public class AtMostNGivenDigitSet {
     
+    public int atMostNGivenDigitSet(String[] digits, int n) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        AtMostNGivenDigitSet solution = new AtMostNGivenDigitSet();
+
+        // First Example :
+        String[] digits1 = {"1", "3", "5", "7"};
+        int n1 = 100;
+        System.out.println(" Result 1 -> " + solution.atMostNGivenDigitSet(digits1, n1) + "\n");    // 20
+
+        // Second Example :
+        String[] digits2 = {"1", "4", "9"};
+        int n2 = 1000000000;
+        System.out.println(" Result 2 -> " + solution.atMostNGivenDigitSet(digits2, n2) + "\n");    // 29523
+
+        // Third Example :
+        String[] digits3 = {"7"};
+        int n3 = 1000000000;
+        System.out.println(" Result 3 -> " + solution.atMostNGivenDigitSet(digits3, n3) + "\n");    // 1
+
+    }
+
 }
 
 /*
