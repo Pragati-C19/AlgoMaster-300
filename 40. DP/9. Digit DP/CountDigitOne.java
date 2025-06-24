@@ -46,6 +46,7 @@ public class CountDigitOne {
 
         System.out.println(" Result 1 -> " + solution.countDigitOne(13) + "\n");    // 6
         System.out.println(" Result 2 -> " + solution.countDigitOne(0) + "\n" );    // 0
+        System.out.println(" Result 3 -> " + solution.countDigitOne(824883294) + "\n" );    // Getting TLE for this
 
     }
 
