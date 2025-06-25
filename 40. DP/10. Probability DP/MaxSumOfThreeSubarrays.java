@@ -39,6 +39,23 @@ public class MaxSumOfThreeSubarrays {
                     int sum3 = prefixSum[h + k] - prefixSum[h];
                     System.out.println("\t\t    - index h = " + h + " ->  sum3 = prefixSum[" + (h + k) + "] (" + prefixSum[h + k] + ") - prefixSum[" + h + "] (" + prefixSum[h] + ") = " + sum3);
 
+
+                    // Let's get curr Total
+                    int currTotal = sum1 + sum2 + sum3;
+                    System.out.println("    - Total sum of three subarrays = " + currTotal);
+
+                    // Check if currTotal is greater than maxTotal so far if yes then update 
+                    if (currTotal > maxTotalSum) {
+                        
+                        maxTotalSum = currTotal;
+
+                        resultArray[0] = i;
+                        resultArray[1] = j;
+                        resultArray[2] = h;
+
+                        System.out.println("\tNew max found! maxTotalSum = " + maxTotalSum);
+                        System.out.println("\tUpdated resultArray: " + Arrays.toString(resultArray));
+                    }
                 }
             }
         }
