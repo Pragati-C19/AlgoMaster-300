@@ -75,6 +75,19 @@ public class MaxSumOfThreeSubarrays {
         System.out.println(" bestRight Array : " + Arrays.toString(bestRight));
 
         
+        // Phase 4: CHeck every middle window j now
+        for (int j = k; j <= m - k - 1 ; j++) {
+            
+            // Check best left and best right of that j index and store it as i and h
+            int i = bestLeft[j - k];
+            int h = bestRight[j + k];
+
+            // Get total of all i, j, k
+            int currTotal = windowsSum[i] + windowsSum[j] + windowsSum[h];
+
+            System.out.println("    - currTotal = windowsSum[" + i + "] (" + windowsSum[i] + ") + " + "windowsSum[" + j + "] (" + windowsSum[j] + ") + " + "windowsSum[" + h + "] (" + windowsSum[h] + ") = " + currTotal);
+
+        }
 
 
         // // Phase 2 : Try all valid combinations of three non-overlapping subarrays
