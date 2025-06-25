@@ -64,8 +64,9 @@ public class MaxSumOfThreeSubarrays {
             
             // check if curr windowsSum greater than all index till now 
             // if yes will update bestIndex and add it in our bestLeft array
-            
-            if (windowsSum[i] > windowsSum[bestIndexRight]) {
+            // why we used >= here :
+            //      We want to ensure lexicographically smallest index in result if there are multiple same-maximum sums.
+            if (windowsSum[i] >= windowsSum[bestIndexRight]) {
                 
                 bestIndexRight = i;
             }
