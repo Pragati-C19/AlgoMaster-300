@@ -2,6 +2,26 @@ import java.util.*;
 
 public class MaxSumOfThreeSubarrays {
     
+    public int[] maxSumOfThreeSubarrays(int[] nums, int k) {
+        
+        // Declare variables
+        int[] resultArray = new int[3];
+
+        return resultArray;
+    }
+
+    public static void main(String[] args){
+
+        MaxSumOfThreeSubarrays solution = new MaxSumOfThreeSubarrays();
+
+        int[] nums1 = {1,2,1,2,6,7,5,1};
+        System.out.println(" Result 1 -> " + Arrays.toString(solution.maxSumOfThreeSubarrays(nums1, 2)) + "\n");    // [0,3,5]
+
+        int[] nums2 = {1,2,1,2,1,2,1,2,1};
+        System.out.println(" Result 2 -> " + Arrays.toString(solution.maxSumOfThreeSubarrays(nums2, 2)) + "\n");    // [0,2,4]
+
+    }
+
 }
 
 /*
@@ -43,7 +63,7 @@ public class MaxSumOfThreeSubarrays {
  
 
     1. Brute Force :
-        
+
 
 
 
