@@ -17,9 +17,31 @@ public class MaxSumOfThreeSubarrays {
             prefixSum[i + 1] = prefixSum[i] + nums[i];
             System.out.println("    - prefixSum[" + (i + 1) + "] = prefixSum[" + i + "] (" + prefixSum[i] + ") + nums[" + i + "] (" + nums[i] + ") = " + prefixSum[i + 1] );
         }
-        System.out.println(" Prefix Sum Array : " + Arrays.toString(prefixSum));
+        System.out.println(" Prefix Sum Array : " + Arrays.toString(prefixSum) + "\n");
 
 
+        // Phase 2 : Try all valid combinations of three non-overlapping subarrays
+        for (int i = 0; i <= n - 3*k; i++) {
+           
+            // Get First SubArray Starting at i
+            int sum1 = prefixSum[i + k] - prefixSum[i];
+            System.out.println("    - index i = " + i + " ->  sum1 = prefixSum[" + (i + k) + "] (" + prefixSum[i + k] + ") - prefixSum[" + i + "] (" + prefixSum[i] + ") = " + sum1);
+ 
+            for (int j = i + k; j <= n - 2*k; j++) {
+
+                // Get second SubArray Starting at j
+                int sum2 = prefixSum[j + k] - prefixSum[j];
+                System.out.println("\t    - index j = " + j + " ->  sum2 = prefixSum[" + (j + k) + "] (" + prefixSum[j + k] + ") - prefixSum[" + j + "] (" + prefixSum[j] + ") = " + sum2);
+
+                for (int h = j + k; h <= n - k; h++) {
+                    
+                    // Get second SubArray Starting at h
+                    int sum3 = prefixSum[h + k] - prefixSum[h];
+                    System.out.println("\t\t    - index h = " + h + " ->  sum3 = prefixSum[" + (h + k) + "] (" + prefixSum[h + k] + ") - prefixSum[" + h + "] (" + prefixSum[h] + ") = " + sum3);
+
+                }
+            }
+        }
 
 
         return resultArray;
