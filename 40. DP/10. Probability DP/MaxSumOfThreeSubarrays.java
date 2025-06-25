@@ -33,7 +33,24 @@ public class MaxSumOfThreeSubarrays {
                 windowsSum[i - k + 1] = currSum;
             }
         }
-        System.out.println(" Windows Sum Array : " + Arrays.toString(windowsSum) + "\n");
+        System.out.println(" Windows Sum Array : " + Arrays.toString(windowsSum));
+
+
+        // Phase 2: Build bestLeft[i] - best index from 0 to i
+        for (int i = 0; i < windowsSum.length; i++) {
+            
+            // check if curr windowsSum greater than all index till now 
+            // if yes will update bestIndex and add it in our bestLeft array
+            // also here bestIndex = 0 initially, bcoz we are checking left to right 
+
+            if (windowsSum[i] > windowsSum[bestIndex]) {
+                
+                bestIndex = i;
+            }
+
+            bestLeft[i] = bestIndex;
+        }
+        System.out.println(" bestLeft Array : " + Arrays.toString(bestLeft));
 
     
 
