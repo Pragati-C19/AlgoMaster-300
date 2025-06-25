@@ -9,13 +9,14 @@ public class MaxSumOfThreeSubarrays {
         int maxTotalSum = 0;
         int[] resultArray = new int[3];
         int[] windowsSum = new int[n - k + 1];  // windowSum[i] = sum of nums[i..i+k-1]
-        int currSum = 0;                        // used for windowsSum[]
-        int[] bestRight = new int[windowsSum.length];
-        int[] bestLeft = new int[windowsSum.length];
-        int bestIndex = 0;
+        int m = windowsSum.length;
+        int[] bestRight = new int[m];
+        int[] bestLeft = new int[m];
 
 
         // Phase 1: Build windowSum[] using sliding window
+        int currSum = 0;                        
+
         for (int i = 0; i < n; i++) {
             
             // add current element into window
@@ -37,22 +38,26 @@ public class MaxSumOfThreeSubarrays {
 
 
         // Phase 2: Build bestLeft[i] - best index from 0 to i
-        for (int i = 0; i < windowsSum.length; i++) {
+        // This time will check from right to left so bestIndex of left will be
+        int bestIndexLeft = 0;
+
+        for (int i = 0; i < m; i++) {
             
             // check if curr windowsSum greater than all index till now 
             // if yes will update bestIndex and add it in our bestLeft array
-            // also here bestIndex = 0 initially, bcoz we are checking left to right 
-
-            if (windowsSum[i] > windowsSum[bestIndex]) {
+            
+            if (windowsSum[i] > windowsSum[bestIndexLeft]) {
                 
-                bestIndex = i;
+                bestIndexLeft = i;
             }
 
-            bestLeft[i] = bestIndex;
+            bestLeft[i] = bestIndexLeft;
         }
         System.out.println(" bestLeft Array : " + Arrays.toString(bestLeft));
 
     
+        
+
 
         // // Phase 2 : Try all valid combinations of three non-overlapping subarrays
         // for (int i = 0; i <= n - 3*k; i++) {
