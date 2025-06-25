@@ -8,57 +8,74 @@ public class MaxSumOfThreeSubarrays {
         int n = nums.length;
         int maxTotalSum = 0;
         int[] resultArray = new int[3];
+        int[] windowsSum = new int[n - k + 1];  // windowSum[i] = sum of nums[i..i+k-1]
+        int currSum = 0;                        // used for windowsSum[]
+        int[] bestRight = new int[windowsSum.length];
+        int[] bestLeft = new int[windowsSum.length];
+        int bestIndex = 0;
 
-        // Phase 1 : let's precompute prefix sum for quick subarray sum lookup
-        // prefixSum[i] = sum of nums[0] to nums[i - 1]
-        int[] prefixSum = new int[n + 1];
 
+        // Phase 1: Build windowSum[] using sliding window
         for (int i = 0; i < n; i++) {
-            prefixSum[i + 1] = prefixSum[i] + nums[i];
-            System.out.println("    - prefixSum[" + (i + 1) + "] = prefixSum[" + i + "] (" + prefixSum[i] + ") + nums[" + i + "] (" + nums[i] + ") = " + prefixSum[i + 1] );
-        }
-        System.out.println(" Prefix Sum Array : " + Arrays.toString(prefixSum) + "\n");
+            
+            // add current element into window
+            currSum += nums[i];
 
+            if (i >= k) {
 
-        // Phase 2 : Try all valid combinations of three non-overlapping subarrays
-        for (int i = 0; i <= n - 3*k; i++) {
-           
-            // Get First SubArray Starting at i
-            int sum1 = prefixSum[i + k] - prefixSum[i];
-            System.out.println("    - index i = " + i + " ->  sum1 = prefixSum[" + (i + k) + "] (" + prefixSum[i + k] + ") - prefixSum[" + i + "] (" + prefixSum[i] + ") = " + sum1);
- 
-            for (int j = i + k; j <= n - 2*k; j++) {
+                // remove the left most element that falls out of the window (to maintain size k)
+                currSum -= nums[i - k];
+            }
 
-                // Get second SubArray Starting at j
-                int sum2 = prefixSum[j + k] - prefixSum[j];
-                System.out.println("\t    - index j = " + j + " ->  sum2 = prefixSum[" + (j + k) + "] (" + prefixSum[j + k] + ") - prefixSum[" + j + "] (" + prefixSum[j] + ") = " + sum2);
+            if (i >= k - 1) {
 
-                for (int h = j + k; h <= n - k; h++) {
-                    
-                    // Get second SubArray Starting at h
-                    int sum3 = prefixSum[h + k] - prefixSum[h];
-                    System.out.println("\t\t    - index h = " + h + " ->  sum3 = prefixSum[" + (h + k) + "] (" + prefixSum[h + k] + ") - prefixSum[" + h + "] (" + prefixSum[h] + ") = " + sum3);
-
-
-                    // Let's get curr Total
-                    int currTotal = sum1 + sum2 + sum3;
-                    System.out.println("    - Total sum of three subarrays = " + currTotal);
-
-                    // Check if currTotal is greater than maxTotal so far if yes then update 
-                    if (currTotal > maxTotalSum) {
-                        
-                        maxTotalSum = currTotal;
-
-                        resultArray[0] = i;
-                        resultArray[1] = j;
-                        resultArray[2] = h;
-
-                        System.out.println("\tNew max found! maxTotalSum = " + maxTotalSum);
-                        System.out.println("\tUpdated resultArray: " + Arrays.toString(resultArray));
-                    }
-                }
+                // store sum starting at index (i - k + 1)
+                windowsSum[i - k + 1] = currSum;
             }
         }
+        System.out.println(" Windows Sum Array : " + Arrays.toString(windowsSum) + "\n");
+
+    
+
+        // // Phase 2 : Try all valid combinations of three non-overlapping subarrays
+        // for (int i = 0; i <= n - 3*k; i++) {
+           
+        //     // Get First SubArray Starting at i
+        //     int sum1 = prefixSum[i + k] - prefixSum[i];
+        //     System.out.println("    - index i = " + i + " ->  sum1 = prefixSum[" + (i + k) + "] (" + prefixSum[i + k] + ") - prefixSum[" + i + "] (" + prefixSum[i] + ") = " + sum1);
+ 
+        //     for (int j = i + k; j <= n - 2*k; j++) {
+
+        //         // Get second SubArray Starting at j
+        //         int sum2 = prefixSum[j + k] - prefixSum[j];
+        //         System.out.println("\t    - index j = " + j + " ->  sum2 = prefixSum[" + (j + k) + "] (" + prefixSum[j + k] + ") - prefixSum[" + j + "] (" + prefixSum[j] + ") = " + sum2);
+
+        //         for (int h = j + k; h <= n - k; h++) {
+                    
+        //             // Get second SubArray Starting at h
+        //             int sum3 = prefixSum[h + k] - prefixSum[h];
+        //             System.out.println("\t\t    - index h = " + h + " ->  sum3 = prefixSum[" + (h + k) + "] (" + prefixSum[h + k] + ") - prefixSum[" + h + "] (" + prefixSum[h] + ") = " + sum3);
+
+
+        //             // Let's get curr Total
+        //             int currTotal = sum1 + sum2 + sum3;
+        //             System.out.println("    - Total sum of three subarrays = " + currTotal);
+
+        //             // Check if currTotal is greater than maxTotal so far if yes then update 
+        //             if (currTotal > maxTotalSum) {
+                        
+        //                 maxTotalSum = currTotal;
+
+        //                 resultArray[0] = i;
+        //                 resultArray[1] = j;
+        //                 resultArray[2] = h;
+
+        //                 System.out.println("\tNew max found! maxTotalSum = " + maxTotalSum);
+        //                 System.out.println("\tUpdated resultArray: " + Arrays.toString(resultArray));
+        //             }
+        //         }
+        //     }
+        // }
 
 
         return resultArray;
