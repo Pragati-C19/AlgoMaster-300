@@ -5,7 +5,22 @@ public class MaxSumOfThreeSubarrays {
     public int[] maxSumOfThreeSubarrays(int[] nums, int k) {
         
         // Declare variables
+        int n = nums.length;
+        int maxTotalSum = 0;
         int[] resultArray = new int[3];
+
+        // Phase 1 : let's precompute prefix sum for quick subarray sum lookup
+        // prefixSum[i] = sum of nums[0] to nums[i - 1]
+        int[] prefixSum = new int[n + 1];
+
+        for (int i = 0; i < n; i++) {
+            prefixSum[i + 1] = prefixSum[i] + nums[i];
+            System.out.println("    - prefixSum[" + (i + 1) + "] = prefixSum[" + i + "] (" + prefixSum[i] + ") + nums[" + i + "] (" + nums[i] + ") = " + prefixSum[i + 1] );
+        }
+        System.out.println(" Prefix Sum Array : " + Arrays.toString(prefixSum));
+
+
+
 
         return resultArray;
     }
