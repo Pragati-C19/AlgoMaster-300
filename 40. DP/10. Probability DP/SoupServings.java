@@ -22,6 +22,29 @@ public class SoupServings {
     // Recursion Function : to get probability when (A, B) are
     private double probabilityWhen(int A, int B) {
 
+        // Let's check event base cases 
+        if (A <= 0 && B <= 0) {
+            
+            // Event2 : soup A and B both become empty at same time (A <= 0 && B <= 0)
+            System.out.println("    - Event 2 so return 0.5 ");
+
+            return 0.5;
+        }
+        else if (A <= 0) {
+            
+            // Event1 : soup A becomes empty first (A <= 0)
+            System.out.println("    - Event 1 so return 1 ");
+
+            return 1;
+        }
+        else if (B <= 0) {
+            
+            // Event3 : soup B becomes empty first (B <= 0)
+            System.out.println("    - Event 3 so return 0 ");
+
+            return 0;
+        }
+
         return 0;
     }
 
