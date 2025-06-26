@@ -28,21 +28,21 @@ public class SoupServings {
         if (A <= 0 && B <= 0) {
             
             // Event2 : soup A and B both become empty at same time (A <= 0 && B <= 0)
-            System.out.println("    - Event 2 so return 0.5 ");
+            System.out.println("\tEvent 2 so return 0.5 ");
 
             return 0.5;
         }
         else if (A <= 0) {
             
             // Event1 : soup A becomes empty first (A <= 0)
-            System.out.println("    - Event 1 so return 1 ");
+            System.out.println("\tEvent 1 so return 1 ");
 
             return 1;
         }
         else if (B <= 0) {
             
             // Event3 : soup B becomes empty first (B <= 0)
-            System.out.println("    - Event 3 so return 0 ");
+            System.out.println("\tEvent 3 so return 0 ");
 
             return 0;
         }
@@ -64,10 +64,15 @@ public class SoupServings {
 
             currProbability += probabilityWhen(A - serveA, B - serveB);
 
-            System.out.println("    - currProb (" + currProbability + ") = probabiltiyWhen(" + (A - serveA) + ", " + (B - serveB) + ")");
+            System.out.println("\t    - currProb (" + currProbability + ") = probabiltiyWhen(" + (A - serveA) + ", " + (B - serveB) + ")");
         }
 
-        return 0;
+
+        // get total Probability so far
+        double totalProbability = currProbability * operationProbability;
+        System.out.println("\tTotalProb (" + totalProbability + ") = currProb (" + currProbability + ") * (" + operationProbability + ")");
+
+        return totalProbability;
     }
 
     public static void main(String[] args) {
