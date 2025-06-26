@@ -2,6 +2,31 @@ import java.util.*;
 
 public class SoupServings {
     
+    // Globally Declare variables
+
+
+    // Driver Function 
+    public double soupServings(int n) {
+        
+        return 0;
+    }
+
+    // Recursion Function : to get probability when (A, B) are
+    private double probabilityWhen(int A, int B) {
+
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        SoupServings solution = new SoupServings();
+
+        System.out.println(" Result 1 -> " + solution.soupServings(50) + "\n");    // 0.625000
+        System.out.println(" Result 2 -> " + solution.soupServings(0) + "\n" );    // 0.71875
+        // System.out.println(" Result 3 -> " + solution.soupServings(824883294) + "\n" );    // Getting TLE for this
+
+    }
+
 }
 
 /*
