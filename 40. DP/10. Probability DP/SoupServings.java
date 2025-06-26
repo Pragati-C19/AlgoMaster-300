@@ -84,6 +84,9 @@ public class SoupServings {
         double totalProbability = currProbability * operationProbability;
         System.out.println("\tTotalProb (" + totalProbability + ") = currProb (" + currProbability + ") * (" + operationProbability + ")");
 
+        // Mark curr A and B as visited
+        visited[A][B] = true;
+        
         // Add this total in DP
         dp[A][B] = totalProbability;
         System.out.println("    - Updated BP array : " + Arrays.deepToString(dp));
