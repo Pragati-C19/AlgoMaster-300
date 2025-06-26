@@ -81,7 +81,7 @@ public class SoupServings {
 
         System.out.println(" Result 1 -> " + solution.soupServings(50) + "\n");       // 0.625000
         System.out.println(" Result 2 -> " + solution.soupServings(100) + "\n" );    // 0.71875
-        // System.out.println(" Result 3 -> " + solution.soupServings(824883294) + "\n" );    // Getting TLE for this
+        System.out.println(" Result 3 -> " + solution.soupServings(850) + "\n" );    // Getting TLE for this
 
     }
 
