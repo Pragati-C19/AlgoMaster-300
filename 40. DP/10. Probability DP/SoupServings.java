@@ -22,6 +22,8 @@ public class SoupServings {
     // Recursion Function : to get probability when (A, B) are
     private double probabilityWhen(int A, int B) {
 
+        System.out.println(" Visiting A and B as : (" + A + ", " + B + ")");
+        
         // Let's check event base cases 
         if (A <= 0 && B <= 0) {
             
@@ -45,6 +47,26 @@ public class SoupServings {
             return 0;
         }
 
+        
+        // declare a currProbability variable
+        double currProbability = 0;
+
+        // let's do all operations on curr quanitiy of soup A and B
+        for (int[] operation : operations) {
+            
+            // pratek operations chya veles serving kiti havyat tyachi value ghe
+            int serveA = operation[0];
+            int serveB = operation[1];
+
+            // let's substract serveA from A and serveB from B
+            // and call recursion for it 
+            // add that recursions value in currProbability
+
+            currProbability += probabilityWhen(A - serveA, B - serveB);
+
+            System.out.println("    - currProb (" + currProbability + ") = probabiltiyWhen(" + (A - serveA) + ", " + (B - serveB) + ")");
+        }
+
         return 0;
     }
 
@@ -52,8 +74,8 @@ public class SoupServings {
 
         SoupServings solution = new SoupServings();
 
-        System.out.println(" Result 1 -> " + solution.soupServings(50) + "\n");    // 0.625000
-        System.out.println(" Result 2 -> " + solution.soupServings(0) + "\n" );    // 0.71875
+        System.out.println(" Result 1 -> " + solution.soupServings(50) + "\n");       // 0.625000
+        System.out.println(" Result 2 -> " + solution.soupServings(100) + "\n" );    // 0.71875
         // System.out.println(" Result 3 -> " + solution.soupServings(824883294) + "\n" );    // Getting TLE for this
 
     }
