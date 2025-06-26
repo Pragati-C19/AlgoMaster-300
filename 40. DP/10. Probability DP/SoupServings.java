@@ -3,12 +3,20 @@ import java.util.*;
 public class SoupServings {
     
     // Globally Declare variables
-
+    int[][] operations = {
+        {100, 0},
+        {75, 25},
+        {50, 50},
+        {25, 75}
+    };
+    double operationProbability = 0.25;     // given in que
 
     // Driver Function 
     public double soupServings(int n) {
         
-        return 0;
+        double totalProbability = probabilityWhen(n, n);
+
+        return totalProbability;
     }
 
     // Recursion Function : to get probability when (A, B) are
