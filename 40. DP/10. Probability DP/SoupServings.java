@@ -16,6 +16,10 @@ public class SoupServings {
     // Driver Function 
     public double soupServings(int n) {
         
+        // If n is larger then chances of B getting empty will be less than A 
+        // for more explaination check improvement comment
+        if (n >= 4800) return 1.0;
+
         dp = new double[n + 1][n + 1];
         visited = new boolean[n + 1][n + 1];
 
@@ -86,7 +90,7 @@ public class SoupServings {
 
         // Mark curr A and B as visited
         visited[A][B] = true;
-        
+
         // Add this total in DP
         dp[A][B] = totalProbability;
         System.out.println("    - Updated BP array : " + Arrays.deepToString(dp));
@@ -99,8 +103,9 @@ public class SoupServings {
         SoupServings solution = new SoupServings();
 
         System.out.println(" Result 1 -> " + solution.soupServings(50) + "\n");       // 0.625000
-        System.out.println(" Result 2 -> " + solution.soupServings(100) + "\n" );    // 0.71875
+        // System.out.println(" Result 2 -> " + solution.soupServings(100) + "\n" );    // 0.71875
         // System.out.println(" Result 3 -> " + solution.soupServings(850) + "\n" );    // Getting TLE for this
+        System.out.println(" Result 4 -> " + solution.soupServings(660295675) + "\n" );    // Getting MLE for this
 
     }
 
@@ -180,6 +185,19 @@ public class SoupServings {
             Event3 : soup B becomes empty first (B <= 0)
             will return 0 at that time
             karan mala tevhachi probability pahijech nahi 
+
+    ^ Improvements :
+
+        - In que there is a note
+            Note that we do not have an operation where all 100 ml's of soup B are used first.
+        - mhnje B kadhun eka veli 100 gheun nahi sampnar ahe but A 100 ml ekach veli samptil
+        - yani asa distay ki jasa n chi value mothi asel tasa apan A sahaj kami karu shakto in less time
+            so mostly tevha B > 0 ch asel and pratek veles mala A <= 0 lavkr bhetel so 
+        - mhnjech A <= 0 chi probability almost equals to 1 hoil
+        - why ? 
+            n chi value jashi jashi mothi hoil B cha first empty vhyayche chances kami hot jatil 
+            and A che chances vadhtil and it will be closed to 1
+            
 
     ^ Dry Run
 
