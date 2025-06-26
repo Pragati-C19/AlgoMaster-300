@@ -10,10 +10,15 @@ public class SoupServings {
         {25, 75}
     };
     double operationProbability = 0.25;     // given in que
+    double[][] dp;          // it will store totalProbability at [A][B]
+    boolean[][] visited;    // It will tell if curr A and B ml's are visited or not 
 
     // Driver Function 
     public double soupServings(int n) {
         
+        dp = new double[n + 1][n + 1];
+        visited = new boolean[n + 1][n + 1];
+
         double totalProbability = probabilityWhen(n, n);
 
         return totalProbability;
@@ -47,6 +52,13 @@ public class SoupServings {
             return 0;
         }
 
+
+        // Check if this A and B are visted? 
+        if (visited[A][B]) {
+            
+            System.out.println("\tA(" + A + ") and B(" + B + ") are visited so returned dp[A][B] : " + dp[A][B]);
+            return dp[A][B];
+        }
         
         // declare a currProbability variable
         double currProbability = 0;
@@ -72,7 +84,11 @@ public class SoupServings {
         double totalProbability = currProbability * operationProbability;
         System.out.println("\tTotalProb (" + totalProbability + ") = currProb (" + currProbability + ") * (" + operationProbability + ")");
 
-        return totalProbability;
+        // Add this total in DP
+        dp[A][B] = totalProbability;
+        System.out.println("    - Updated BP array : " + Arrays.deepToString(dp));
+
+        return dp[A][B];
     }
 
     public static void main(String[] args) {
@@ -81,7 +97,7 @@ public class SoupServings {
 
         System.out.println(" Result 1 -> " + solution.soupServings(50) + "\n");       // 0.625000
         System.out.println(" Result 2 -> " + solution.soupServings(100) + "\n" );    // 0.71875
-        System.out.println(" Result 3 -> " + solution.soupServings(850) + "\n" );    // Getting TLE for this
+        // System.out.println(" Result 3 -> " + solution.soupServings(850) + "\n" );    // Getting TLE for this
 
     }
 
