@@ -17,7 +17,7 @@ public class New21Game {
         System.out.println(" windowsSum : " + windowsSum);
 
         // Phase 1: Check all scores from 1 to n and add their probability in dp
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             
             // Probability to reach score i is avg of windowsSum and maxPts 
             dp[i] = windowsSum / maxPts;
