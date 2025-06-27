@@ -16,6 +16,23 @@ public class New21Game {
         System.out.println(" DP Array : " + Arrays.toString(dp));
         System.out.println(" windowsSum : " + windowsSum);
 
+        // Phase 1 : Check all scores from 1 to n and add their probability in dp
+        for (int i = 1; i < n; i++) {
+            
+            // Probability to reach score i is avg of windowsSum and maxPts 
+            dp[i] = windowsSum / maxPts;
+
+            System.out.println("  - i = " + i + " : ");
+            System.out.println("      dp[" + i + "]     = " + dp[i]);
+            System.out.println("      windowsSum = " + dp[i]);
+            System.out.println("      result     = " + dp[i] + "\n");
+        }
+
+        System.out.println(" Updated DP Array : " + Arrays.toString(dp));
+
+
+        
+        // at the end return result value
         return result;
     }
 
