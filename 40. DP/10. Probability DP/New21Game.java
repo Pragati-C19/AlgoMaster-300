@@ -9,6 +9,13 @@ public class New21Game {
         double windowsSum = 0;      
         double result = 0;
 
+        // Base case shortcut: if k is 0 (she never draws), or max possible score is always ≤ n
+        if (k == 0 || n >= k + maxPts) {
+            
+            System.out.println("    Base case hit: Returning 1.0");
+            return 1.0;
+        }
+
         // intialize starting values for dp and windowsSum
         dp[0] = 1;
         windowsSum = dp[0];
@@ -55,7 +62,6 @@ public class New21Game {
         }
 
         System.out.println(" Updated DP Array : " + Arrays.toString(dp));
-
 
         
         // at the end return result value
