@@ -4,7 +4,19 @@ public class New21Game {
     
     public double new21Game(int n, int k, int maxPts) {
         
-        return 0;
+        // Declare variables
+        double[] dp = new double[n + 1];
+        double windowsSum = 0;      
+        double result = 0;
+
+        // intialize starting values for dp and windowsSum
+        dp[0] = 1;
+        windowsSum = dp[0];
+
+        System.out.println(" DP Array : " + Arrays.toString(dp));
+        System.out.println(" windowsSum : " + windowsSum);
+
+        return result;
     }
 
     public static void main(String[] args) {
