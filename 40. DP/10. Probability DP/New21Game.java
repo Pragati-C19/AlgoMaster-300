@@ -52,7 +52,6 @@ public class New21Game {
             System.out.println("      windowsSum = " + windowsSum);
             System.out.println("      result     = " + result + "\n");
 
-           
         }
 
         System.out.println(" Updated DP Array : " + Arrays.toString(dp));
