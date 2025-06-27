@@ -66,10 +66,10 @@ public class New21Game {
 
         New21Game solution = new New21Game();
 
-        System.out.println(" Result 1 -> " + solution.new21Game(10, 1, 10) + "\n");       // 1.0
-        System.out.println(" Result 2 -> " + solution.new21Game(6, 1, 10) + "\n" );    // 0.6
-        System.out.println(" Result 3 -> " + solution.new21Game(21, 17, 10) + "\n" );  // 0.73278
-        // System.out.println(" Result 4 -> " + solution.new21Game(660295675) + "\n" );    // Getting MLE for this
+        System.out.println(" Result 1 -> " + solution.new21Game(10, 1, 10) + "\n");     // 1.0
+        System.out.println(" Result 2 -> " + solution.new21Game(6, 1, 10) + "\n" );     // 0.6
+        System.out.println(" Result 3 -> " + solution.new21Game(21, 17, 10) + "\n" );   // 0.73278
+        System.out.println(" Result 4 -> " + solution.new21Game(0, 0, 1) + "\n" );      // 1.0
 
     }
 
