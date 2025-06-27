@@ -26,7 +26,7 @@ public class New21Game {
             // Phase 2: if we draw (score < k), add dp[i] in windowsSum
             if (i < k) {
                 
-                System.out.println("    - i < k so added dp[i] in windowsSum... ");
+                System.out.println("   i < k so added dp[" + i + "] in windowsSum... ");
                 windowsSum += dp[i];
             }
 
@@ -34,15 +34,23 @@ public class New21Game {
             // Phase 3: If we draw (score >= k), will add dp[i] in result
             if (i >= k) {
                 
-                System.out.println("    - i >= k so added dp[i] in result... ");
+                System.out.println("   i >= k so added dp[" + i + "] in result... ");
                 result += dp[i];
+            }
+
+
+            // Phase 4: Slide window, remove dp[i - maxPts] if it goes out of range
+            if ((i - maxPts) >= 0) {
+                
+                System.out.println("  (i - maxPts) >= 0 so substract dp[" + (i - maxPts) + "] from windowsSum... ");
+                windowsSum -= dp[i - maxPts];
             }
 
             // Debugger :
             System.out.println("  - i = " + i + " : ");
             System.out.println("      dp[" + i + "]     = " + dp[i]);
-            System.out.println("      windowsSum = " + dp[i]);
-            System.out.println("      result     = " + dp[i] + "\n");
+            System.out.println("      windowsSum = " + windowsSum);
+            System.out.println("      result     = " + result + "\n");
 
            
         }
