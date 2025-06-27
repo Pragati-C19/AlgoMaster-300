@@ -22,10 +22,21 @@ public class New21Game {
             // Probability to reach score i is avg of windowsSum and maxPts 
             dp[i] = windowsSum / maxPts;
 
+            
+            // Phase 2 : if we draw (score < k), add dp[i] in windowsSum
+            if (i < k) {
+                
+                System.out.println("    - i < k so added dp[i] in windowsSum");
+                windowsSum += dp[i];
+            }
+
+            // Debugger :
             System.out.println("  - i = " + i + " : ");
             System.out.println("      dp[" + i + "]     = " + dp[i]);
             System.out.println("      windowsSum = " + dp[i]);
             System.out.println("      result     = " + dp[i] + "\n");
+
+           
         }
 
         System.out.println(" Updated DP Array : " + Arrays.toString(dp));
