@@ -62,6 +62,24 @@ public class KnightProbability {
         double currProbability = 0;
 
 
+        // Check all 8 directions 
+        for (int[] dir : matrixDirection) {
+            
+            int x = i + dir[0];
+            int y = j + dir[1];
+
+            // Call recursion and get probability for directions
+            // did k - 1 bcoz our moves are decreasing with every direction
+            currProbability += dfs(x, y, k - 1, n);
+        }
+
+        // Add that currProbability in DP 
+        dp[i][j][k] = currProbability;
+
+        // mark this cell as visited
+        visitedCell[i][j][k] = true;
+
+        System.out.println("    - Probability for cell [" + i + "," + j + "] : " + currProbability);
         return currProbability;
     }
 
