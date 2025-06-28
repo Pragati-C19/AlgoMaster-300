@@ -34,7 +34,35 @@ public class KnightProbability {
     // Recursion Function : to get probability for knights moves
     private double dfs(int i, int j, int k, int n) {
 
-        return 0;
+        // Base Case : if cell is out of board return 0
+        if (i < 0 || i >= n || j < 0 || j >= n) {
+            
+            System.out.println("  cell [" + i + "," + j + "] is out of board and " + k + " moves remain");
+            return 0;
+        }
+
+
+        // if that cell is not out of board check if k == 0 or not
+        if (k == 0) {
+            
+            System.out.println("    - reached cell [" + i + "," + j + "] and k == 0");
+            return 1;
+        }
+
+
+        // Check if we have visited (i, j, k) ?
+        if (visitedCell[i][j][k]) {
+            
+            System.out.println("    - cell [" + i + "," + j + "] is visited");
+            return dp[i][j][k];
+        }
+
+
+        // Declare a variable curr probability
+        double currProbability = 0;
+
+
+        return currProbability;
     }
 
 
