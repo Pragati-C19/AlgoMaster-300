@@ -2,6 +2,31 @@ import java.util.*;
 
 public class KnightProbability {
     
+    // Global Variables
+
+
+    // Driver Function 
+    public double knightProbability(int n, int k, int row, int column) {
+        
+        return 0;
+    }
+
+    // Recursion Function : to get probability for knights moves
+    private double dfs(int i, int j, int k, int n) {
+
+        return 0;
+    }
+
+
+    public static void main(String[] args) {
+
+        KnightProbability solution = new KnightProbability();
+
+        System.out.println(" Result 1 -> " + solution.knightProbability(3, 2, 0, 0) + "\n");      // 0.06250
+        System.out.println(" Result 2 -> " + solution.knightProbability(1, 0, 0, 0) + "\n" );     // 1.0
+        
+    }
+
 }
 
 /*
@@ -110,7 +135,7 @@ public class KnightProbability {
                 currProbability += dfs(x, y, k-1, n)
 
         -> Add that currProbability in dp
-        
+
         -> return currProbability
     
     }
