@@ -3,12 +3,32 @@ import java.util.*;
 public class KnightProbability {
     
     // Global Variables
-
+    double[][][] dp;
+    boolean[][][] visitedCell;
+    int[][] matrixDirection = {
+        {-1, -2},
+        {-2, -1},
+        {-1, 2},
+        {-2, 1},
+        {1, -2},
+        {2, -1},
+        {1, 2},
+        {2, 1}
+    };  
 
     // Driver Function 
     public double knightProbability(int n, int k, int row, int column) {
         
-        return 0;
+        // Declare variables
+        dp = new double[n][n][k + 1];   // matrix is 0-indexed so wrote n, n only
+        visitedCell = new boolean[n][n][k + 1] ;
+        double finalProbability = 0;
+        
+        // Call dfs Function
+        finalProbability = dfs(row, column, k, n);
+
+        // Return final result
+        return finalProbability;
     }
 
     // Recursion Function : to get probability for knights moves
