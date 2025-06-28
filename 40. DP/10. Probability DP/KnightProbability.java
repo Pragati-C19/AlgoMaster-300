@@ -159,6 +159,21 @@ public class KnightProbability {
         
     5. I think it's simple logic now.. will use dfs to check all directions
 
+
+    ^ Improvement :
+
+    1. currProbabilty that value is wrong 
+        instead of 
+            currProbability += dfs(x, y, k - 1, n);
+        we need to change to    
+            currProbability += dfs(x, y, k - 1, n) / 8.0;
+
+    2. why? 
+        - We are returning count of path not probability 
+        - each 8 directions has equal probability 1/8
+        - so to get probability we need to multiply pathCount with 1/8 or divide pathCount by 8
+        - otherwise will only get count of all valid paths  
+
  
  * Pseudo Code :
  
