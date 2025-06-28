@@ -175,6 +175,8 @@ public class KnightProbability {
             currProbability += dfs(x, y, k - 1, n) / 8.0;
 
     2. why? 
+        - que stated that 
+            Each time the knight is to move, it chooses ONE of EIGHT possible moves uniformly at random
         - We are returning count of path not probability 
         - each 8 directions has equal probability 1/8
         - so to get probability we need to multiply pathCount with 1/8 or divide pathCount by 8
