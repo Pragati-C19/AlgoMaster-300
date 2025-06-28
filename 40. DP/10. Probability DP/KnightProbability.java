@@ -70,7 +70,13 @@ public class KnightProbability {
 
             // Call recursion and get probability for directions
             // did k - 1 bcoz our moves are decreasing with every direction
-            currProbability += dfs(x, y, k - 1, n);
+            double neighborProbability = dfs(x, y, k - 1, n);
+
+            // Each move has 1/8 chance
+            double moveChances = neighborProbability / 8.0;
+
+            // add that move chances to currProbability
+            currProbability += moveChances;
         }
 
         // Add that currProbability in DP 
