@@ -4,6 +4,22 @@ public class MaxProfit {
     
     public int maxProfit(int[] prices) {
         
+        // Declare variables
+        int n = prices.length;      // number of stocks
+        int[] holdDP = new int[n];  // it will give max profit if we hold stock of day i
+        int[] soldDP = new int[n];  // it will give max profit if we sold stock of day i
+        int[] restDP = new int[n];  // it will give max profit if we rest on day i
+
+
+        // Initial values for DP
+        holdDP[0] = -prices[0];     // if we buy stock on day 0, we need to spend prices[0] money
+        soldDP[0] = 0;              // we cannot sell at day 0, bcoz as per que before selling we need to buy
+        restDP[0] = 0;              // means we are not getting money nor lossing money
+
+        System.out.println("    hold : " + Arrays.toString(holdDP));
+        System.out.println("    sold : " + Arrays.toString(soldDP));
+        System.out.println("    rest : " + Arrays.toString(restDP));
+
         return 0;
     }
 
