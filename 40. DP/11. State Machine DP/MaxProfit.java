@@ -32,13 +32,20 @@ public class MaxProfit {
 
             // check if we take rest today what will be the profit
             restDP[i] = Math.max( restDP[i-1], soldDP[i-1] );
-            
+
         }
 
         System.out.println("    - updated hold : " + Arrays.toString(holdDP));
         System.out.println("    - updated sold : " + Arrays.toString(soldDP));
         System.out.println("    - updated rest : " + Arrays.toString(restDP));
 
+
+        // let's take max of sold and rest
+        // why not hold[n-1] ? bcoz with hold we havn't got any profit, we are spending money there
+        int maxProfitWeGet = Math.max(soldDP[n-1], restDP[n-1]);
+        
+        System.out.println(" MaxProfit : " + maxProfitWeGet);
+        
         return 0;
     }
 
