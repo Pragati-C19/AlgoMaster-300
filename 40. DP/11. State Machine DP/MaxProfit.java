@@ -5,7 +5,7 @@ public class MaxProfit {
     public int maxProfit(int[] prices) {
         
         // Declare variables
-        int n = prices.length;      // number of stocks
+        int n = prices.length;      // number of days
         int[] holdDP = new int[n];  // it will give max profit if we hold stock of day i
         int[] soldDP = new int[n];  // it will give max profit if we sold stock of day i
         int[] restDP = new int[n];  // it will give max profit if we rest on day i
@@ -16,9 +16,23 @@ public class MaxProfit {
         soldDP[0] = 0;              // we cannot sell at day 0, bcoz as per que before selling we need to buy
         restDP[0] = 0;              // means we are not getting money nor lossing money
 
-        System.out.println("    hold : " + Arrays.toString(holdDP));
-        System.out.println("    sold : " + Arrays.toString(soldDP));
-        System.out.println("    rest : " + Arrays.toString(restDP));
+        System.out.println("  hold : " + Arrays.toString(holdDP));
+        System.out.println("  sold : " + Arrays.toString(soldDP));
+        System.out.println("  rest : " + Arrays.toString(restDP));
+
+
+        // Check other days now
+        for (int i = 1; i < n; i++) {
+            
+            // check if we hold today what will be the maxProfit
+            holdDP[i] = Math.max( holdDP[i-1], restDP[i-1] - prices[i] );
+
+
+        }
+
+        System.out.println("    - updated hold : " + Arrays.toString(holdDP));
+        System.out.println("    - updated sold : " + Arrays.toString(soldDP));
+        System.out.println("    - updated rest : " + Arrays.toString(restDP));
 
         return 0;
     }
