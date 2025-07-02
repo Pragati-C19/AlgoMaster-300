@@ -2,6 +2,22 @@ import java.util.*;
 
 public class MaxProfit {
     
+    public int maxProfit(int[] prices) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args){
+
+        MaxProfit solution = new MaxProfit();
+
+        int[] prices1 = {1,2,3,0,2};
+        System.out.println(" Result1 -> " + solution.maxProfit(prices1) + "\n");    // 3
+
+        int[] prices2 = {1};
+        System.out.println(" Result2 -> " + solution.maxProfit(prices2) + "\n");    // 0
+    
+    }
 }
 
 /* 
