@@ -27,7 +27,10 @@ public class MaxProfit {
             // check if we hold today what will be the maxProfit
             holdDP[i] = Math.max( holdDP[i-1], restDP[i-1] - prices[i] );
 
+            // check if we sold today what will be the maxProfit
+            soldDP[i] = holdDP[i-1] + prices[i];
 
+            
         }
 
         System.out.println("    - updated hold : " + Arrays.toString(holdDP));
