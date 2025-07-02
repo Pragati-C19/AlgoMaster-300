@@ -46,7 +46,7 @@ public class MaxProfit {
         
         System.out.println(" MaxProfit : " + maxProfitWeGet);
         
-        return 0;
+        return maxProfitWeGet;
     }
 
     public static void main(String[] args){
