@@ -30,6 +30,8 @@ public class MaxProfit {
             // check if we sold today what will be the maxProfit
             soldDP[i] = holdDP[i-1] + prices[i];
 
+            // check if we take rest today what will be the profit
+            restDP[i] = Math.max( restDP[i-1], soldDP[i-1] );
             
         }
 
