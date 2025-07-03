@@ -20,14 +20,14 @@ public class MaxProfit2 {
                         int buy = dp[day + 1][0][trans] - prices[day];
                         int skip = dp[day + 1][1][trans];
 
-                        dp[day][1][trans] = Math.max(buy, skip); 
+                        dp[day][canBuy][trans] = Math.max(buy, skip); 
                     }
                     else {
 
                         int sell = dp[day + 1][1][trans - 1] - prices[day];
                         int skip = dp[day + 1][0][trans];
 
-                        dp[day][0][trans] = Math.max(sell, skip); 
+                        dp[day][canBuy][trans] = Math.max(sell, skip); 
                     }
 
                     System.out.println("    - Updated dp[" + day + "," + canBuy + "," + trans + "] : " + dp[day][canBuy][trans]);
