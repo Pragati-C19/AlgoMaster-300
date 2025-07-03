@@ -9,7 +9,26 @@ public class MaxProfit2 {
         int[][][] dp = new int[n + 1][2][3];
 
 
-        
+        // Check all days from last to first
+        for (int day = n-1; day >= 0; day--) {
+            for (int canBuy = 0; canBuy <= 1; canBuy++) {
+                for (int trans = 1; trans <= 2; trans++) {
+                    
+                    // Check if we can buy today?
+                    if (canBuy == 1) {
+                        
+                        int buy = dp[day + 1][0][trans] - prices[day];
+                        int skip = dp[day + 1][1][trans];
+
+                        dp[day][1][trans] = Math.max(buy, skip); 
+                    }
+
+                }
+            }
+
+            System.out.println("    - Updated DP : " + Arrays.deepToString(dp[day]));
+        } 
+
 
         // return starting day 0, canBuy, and transactionLeft as 2
         return dp[0][1][2];
