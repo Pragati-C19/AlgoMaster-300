@@ -22,6 +22,13 @@ public class MaxProfit2 {
 
                         dp[day][1][trans] = Math.max(buy, skip); 
                     }
+                    else {
+
+                        int sell = dp[day + 1][1][trans - 1] - prices[day];
+                        int skip = dp[day + 1][0][trans];
+
+                        dp[day][0][trans] = Math.max(sell, skip); 
+                    }
 
                 }
             }
