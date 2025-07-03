@@ -2,6 +2,26 @@ import java.util.*;
 
 public class MaxProfit2 {
     
+    public int maxProfit2(int[] prices) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args){
+
+        MaxProfit2 solution = new MaxProfit2();
+
+        int[] prices1 = {3,3,5,0,0,3,1,4};
+        System.out.println(" Result1 -> " + solution.maxProfit2(prices1) + "\n");    // 6
+
+        int[] prices2 = {1,2,3,4,5};
+        System.out.println(" Result2 -> " + solution.maxProfit2(prices2) + "\n");    // 4
+    
+        int[] prices3 = {7,6,4,3,1};
+        System.out.println(" Result3 -> " + solution.maxProfit2(prices3) + "\n");    // 0
+    
+    }
+
 }
 
 /*
