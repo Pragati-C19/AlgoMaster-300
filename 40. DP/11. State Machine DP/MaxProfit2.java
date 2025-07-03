@@ -4,7 +4,15 @@ public class MaxProfit2 {
     
     public int maxProfit2(int[] prices) {
         
-        return 0;
+        // Declare variables
+        int n = prices.length;
+        int[][][] dp = new int[n + 1][2][3];
+
+
+        
+
+        // return starting day 0, canBuy, and transactionLeft as 2
+        return dp[0][1][2];
     }
 
     public static void main(String[] args){
