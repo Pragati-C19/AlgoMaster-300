@@ -30,10 +30,10 @@ public class MaxProfit2 {
                         dp[day][0][trans] = Math.max(sell, skip); 
                     }
 
+                    System.out.println("    - Updated dp[" + day + "," + canBuy + "," + trans + "] : " + dp[day][canBuy][trans]);
+
                 }
             }
-
-            System.out.println("    - Updated DP : " + Arrays.deepToString(dp[day]));
         } 
 
 
