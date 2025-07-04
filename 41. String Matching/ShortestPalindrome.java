@@ -7,6 +7,7 @@ public class ShortestPalindrome {
         
         // Declare variables
         int n = s.length();
+        String newS = s;
 
         // Base Case : if s is already a palindrome return s
         if (isPalindrome(s)) {
@@ -14,6 +15,19 @@ public class ShortestPalindrome {
             System.out.println(" String s is already palindrome no need to change anything.. ");
             return s;
         }
+
+        // Try adding chars in front of s to get palindrome
+        for (int i = 1; i < n; i++) {
+            
+            // char at i
+            char currChar = s.charAt(i);
+
+            // Add that currChar in front of s
+            newS = currChar + newS;
+            
+            System.out.println("    - i = " + i + "\n       currChar : " + currChar + " | new String : " + newS);
+        }
+
 
         // if we didin't get any palindrome return empty string
         return "";
