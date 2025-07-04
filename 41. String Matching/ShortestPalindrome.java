@@ -7,7 +7,6 @@ public class ShortestPalindrome {
         
         // Declare variables
         int n = s.length();
-        String newS = "";
         String prefix = "";
 
         // Base Case : if s is already a palindrome return s
@@ -27,7 +26,7 @@ public class ShortestPalindrome {
             prefix = prefix + currChar;
 
             // Add that currChar in front of s
-            newS = prefix + s;
+            String newS = prefix + s;
             
             System.out.println("    - i = " + i + "\n       currChar : " + currChar + " | prefix : " + prefix + " | new String : " + newS);
 
