@@ -140,6 +140,28 @@ public class ShortestPalindrome {
         prefix = will be starting string before we add currChar
         currChar = will be char at index i
         s = is a given string
+
+    4. Getting TLE why?
+        - we're creating new strings repeatedly inside the loop:
+            prefix + s                          ->  O(n)
+            new StringBuilder(...).reverse()    ->  O(n)
+            .equals(...)                        ->  O(n)
+        - These string operations are inside a loop that runs O(n) times  
+            O(n²) string creations and reversals
+
+        - we're growing the prefix inefficiently:
+            prefix = prefix + currChar makes a new string every time
+            Java strings are immutable — this becomes costly in large inputs
+
+    5. How to improve without changing the core idea
+        - fix isPalindrome function 
+            use left, right, while loop instead of creating new reverse string 
+        - if it didn't fix the problem 
+            change type of prefix to stringbuilder 
+            and append currChar in it 
+            will not use concatenation
+        
+
         
  
  * Pseudo Code :
