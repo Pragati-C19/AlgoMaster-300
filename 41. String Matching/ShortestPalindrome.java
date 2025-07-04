@@ -48,19 +48,32 @@ public class ShortestPalindrome {
     // Helper Function : check if string is palindrome or not
     private boolean isPalindrome(String currString) {
 
-        // Reverse the curr string
-        String reversed = new StringBuilder(currString).reverse().toString();
+        int start = 0;
+        int end = currString.length() - 1;
 
-        System.out.println("       CurrString : " + currString + " | Reversed : " + reversed);
-        
-        if(currString.equals(reversed)){
+        // will keep loop till end > start
+        while (end > start) {
             
-            System.out.println("       currString : " + currString + " is palindrome \n");
-            return true;
+            // get char of start and end of the currString
+            char startChar = currString.charAt(start);
+            char endChar = currString.charAt(end);
+
+            // if both chars are not equal then return false
+            if (startChar != endChar) {
+                
+                System.out.println("       currString : " + currString + " is palindrome \n");
+                return false;
+            }
+
+            // if both chars are same will increase start and decrease end
+            start++;
+            end--;
+
         }
 
-        System.out.println("       currString : " + currString + " is not palindrome \n");
-        return false;
+    
+        System.out.println("       currString : " + currString + " is palindrome \n");
+        return true;
     }
 
 
