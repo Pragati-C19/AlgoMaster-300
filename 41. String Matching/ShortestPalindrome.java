@@ -7,7 +7,8 @@ public class ShortestPalindrome {
         
         // Declare variables
         int n = s.length();
-        String newS = s;
+        String newS = "";
+        String prefix = "";
 
         // Base Case : if s is already a palindrome return s
         if (isPalindrome(s)) {
@@ -17,15 +18,18 @@ public class ShortestPalindrome {
         }
 
         // Try adding chars in front of s to get palindrome
-        for (int i = 1; i < n; i++) {
+        for (int i = n - 1; i >= 0; i--) {
             
             // char at i
             char currChar = s.charAt(i);
 
+            // prefix we have added so far
+            prefix = prefix + currChar;
+
             // Add that currChar in front of s
-            newS = currChar + newS;
+            newS = prefix + s;
             
-            System.out.println("    - i = " + i + "\n       currChar : " + currChar + " | new String : " + newS);
+            System.out.println("    - i = " + i + "\n       currChar : " + currChar + " | prefix : " + prefix + " | new String : " + newS);
 
             // Now check if it's palindrome, if yes return the string
             if (isPalindrome(newS)) {
@@ -132,7 +136,11 @@ public class ShortestPalindrome {
         next i = 3 karnar asel tr to mala third place vr karava lagel add
         
     3. asa kahitri logic bagh jyani he work hoil
-        
+        newS = prefix + currChar + s
+        where 
+        prefix = will be starting string before we add currChar
+        currChar = will be char at index i
+        s = is a given string
         
  
  * Pseudo Code :
