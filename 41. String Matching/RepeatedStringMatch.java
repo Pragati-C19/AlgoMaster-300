@@ -8,7 +8,7 @@ public class RepeatedStringMatch {
         String repatedAString = a;
         int repatingCount = 1;      // as we have added a in repatedString 
 
-        while (true) {
+        while (repatedAString.length() < b.length() + 2 * a.length()) {
             
             // check if b is a substring of repeatedAString
             if (repatedAString.contains(b)) {
@@ -36,7 +36,7 @@ public class RepeatedStringMatch {
 
         String a2 = "a";
         String b2 = "aa";
-        System.out.println("Result2 -> " + solution.repeatedStringMatch(a2, b2) + "\n");    // 3
+        System.out.println("Result2 -> " + solution.repeatedStringMatch(a2, b2) + "\n");    // 2
 
     }
 
