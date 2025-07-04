@@ -7,7 +7,7 @@ public class ShortestPalindrome {
         
         // Declare variables
         int n = s.length();
-        String prefix = "";
+        StringBuilder prefix = new StringBuilder();
 
         // Base Case : if s is already a palindrome return s
         if (isPalindrome(s)) {
@@ -22,8 +22,8 @@ public class ShortestPalindrome {
             // char at i
             char currChar = s.charAt(i);
 
-            // prefix we have added so far
-            prefix = prefix + currChar;
+            // add currChar in prefix
+            prefix.append(currChar);
 
             // Add that currChar in front of s
             String newS = prefix + s;
@@ -208,5 +208,39 @@ public class ShortestPalindrome {
 
     }
 
+
+    1. Brute Force 2 :
+
+    function shortestPalindrome (String s) {
+    
+        -> Declare variables 
+            n = length of s
+            prefix = ""     or      prefix = new StringBuilder()
+
+        -> Base Case :
+            if given string is palindrome return that string
+            
+            if ( isPalindrome(s) )
+                return s
+
+        -> Try adding chars in front of s to get palindrome
+            for(i = 1 to n)
+
+                - get charAt(i)
+                    currChar = charAt(i)
+
+                - add currChar to prefix 
+                    prefix = prefix + currChar      or
+                    prefix.append(currChar)
+
+                - add it in front of s
+                    newS = prefix + s
+
+                - check if newS is palindrome or not
+                    if yes return newS
+        
+        -> If we didin't found anything return "" empty string
+
+    }
 
  */
