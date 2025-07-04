@@ -66,10 +66,29 @@ public class RepeatedStringMatch {
         - add kela ki check karaych if we can contains b?
             if yes then return count
         - otherwise count++
+    3. while loop madhe ka rahun jatoy apan? 
+        - a fact add hot jatoy infinite times 
+        - jr b nahi bhetla tr he asach while loop chalat rahil
+        - to reak it aplyala length chi limit lavavi lagel
+        - ki ya length paryntch apan check karu nantr directly return -1 karu
+        - why? 
+            karan bagh me "abc" 2 veles repeat kela or 3 veles kela it will look like this
+                "abcabc" and "abcabcabc"
+            ata jo pn b asel to yapaikich kahitri asel na?.. 
+            pratek thoda time nantr a string repeat hotey mhnje jr 1-2 repeatations nantr pn b nahi bhetat ahe
+            mhnje it's not a substring of a..
+            mg kitihi veles repeate kel tri
+        - still will check till 
+            repeatedA.length() < b.length() + 2 * a.length() 
+
  
  * Pseudo Code :
 
     1. Brute Force :
+
+        -  It gives me error : unreachable statement return -1; 
+            means we are stuck in while loop
+        - think of how to improve while loop where should I break it
 
     function repeatedStringMatch (String a, String b) {
     
@@ -96,5 +115,32 @@ public class RepeatedStringMatch {
 
     }
 
+
+
+    2. Brute Force 2 :
+
+    function repeatedStringMatch (String a, String b) {
+    
+        -> Declare variables
+            repatedAString = a
+            int count = 1
+
+        -> start while loop till repeatedAString length is less than b + 2 * a
+
+            while(repeatedA.length() < b.length() + 2 * a.length()) 
+
+                - check if repatedAString contains b?
+                    if yes then return count
+
+                - otherwise 
+                    will add a in repatedAString
+                    and count++
+
+
+
+        -> if we didin't get matching strings 
+            return -1 
+
+    }
 
  */
