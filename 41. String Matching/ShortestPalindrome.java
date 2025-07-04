@@ -5,14 +5,25 @@ public class ShortestPalindrome {
     // Driver Function
     public String shortestPalindrome(String s) {
         
+        isPalindrome("cabac");
+
         // if we didin't get any palindrome return empty string
         return "";
     }
 
     // Helper Function : check if string is palindrome or not
-    private boolean isPalindrome(String partitionSubstring) {
+    private boolean isPalindrome(String currString) {
 
-        return true;
+        // Reverse the curr string
+        String reversed = new StringBuilder(currString).reverse().toString();
+
+        System.out.println("    [isPalindrome] CurrString : " + currString + " | Reversed : " + reversed + "\n");
+        
+        if(currString.equals(reversed)){
+            return true;
+        }
+
+        return false;
     }
 
 
