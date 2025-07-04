@@ -4,6 +4,23 @@ public class RepeatedStringMatch {
     
     public int repeatedStringMatch(String a, String b) {
         
+        // Declare variables 
+        String repatedAString = a;
+        int repatingCount = 1;      // as we have added a in repatedString 
+
+        while (true) {
+            
+            // check if b is a substring of repeatedAString
+            if (repatedAString.contains(b)) {
+                
+                System.out.println("  " + b + " is a substring of " + repatedAString + " so count : " + repatingCount);
+                return repatingCount;
+            }
+
+            repatedAString += a;
+            repatingCount++;
+
+        }
 
         // it's not possible for b to be a substring of a after repating it, so
         return -1;
