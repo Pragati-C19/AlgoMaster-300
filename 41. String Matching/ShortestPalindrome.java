@@ -2,6 +2,32 @@ import java.util.*;
 
 public class ShortestPalindrome {
     
+    // Driver Function
+    public String shortestPalindrome(String s) {
+        
+        // if we didin't get any palindrome return empty string
+        return "";
+    }
+
+    // Helper Function : check if string is palindrome or not
+    private boolean isPalindrome(String partitionSubstring) {
+
+        return true;
+    }
+
+
+    public static void main(String[] args) {
+
+        ShortestPalindrome solution = new ShortestPalindrome();
+
+        String s1 = "aacecaaa";
+        System.out.println("Result1 -> " + solution.shortestPalindrome(s1) + "\n");    // aaacecaaa
+
+        String s2 = "abcd";
+        System.out.println("Result2 -> " + solution.shortestPalindrome(s2) + "\n");    // dcbabcd
+
+    }
+
 }
 
 /*
