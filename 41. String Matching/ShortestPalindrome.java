@@ -26,6 +26,15 @@ public class ShortestPalindrome {
             newS = currChar + newS;
             
             System.out.println("    - i = " + i + "\n       currChar : " + currChar + " | new String : " + newS);
+
+            // Now check if it's palindrome, if yes return the string
+            if (isPalindrome(newS)) {
+            
+                System.out.println(" String '" + newS + "' is palindrome break here.. ");
+
+                return newS;
+            }
+
         }
 
 
@@ -39,12 +48,15 @@ public class ShortestPalindrome {
         // Reverse the curr string
         String reversed = new StringBuilder(currString).reverse().toString();
 
-        System.out.println("    [isPalindrome] CurrString : " + currString + " | Reversed : " + reversed + "\n");
+        System.out.println("       CurrString : " + currString + " | Reversed : " + reversed);
         
         if(currString.equals(reversed)){
+            
+            System.out.println("       currString : " + currString + " is palindrome \n");
             return true;
         }
 
+        System.out.println("       currString : " + currString + " is not palindrome \n");
         return false;
     }
 
