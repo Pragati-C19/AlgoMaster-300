@@ -5,7 +5,15 @@ public class ShortestPalindrome {
     // Driver Function
     public String shortestPalindrome(String s) {
         
-        isPalindrome("cabac");
+        // Declare variables
+        int n = s.length();
+
+        // Base Case : if s is already a palindrome return s
+        if (isPalindrome(s)) {
+            
+            System.out.println(" String s is already palindrome no need to change anything.. ");
+            return s;
+        }
 
         // if we didin't get any palindrome return empty string
         return "";
