@@ -71,6 +71,9 @@ public class ShortestPalindrome {
         String s2 = "abcd";
         System.out.println("Result2 -> " + solution.shortestPalindrome(s2) + "\n");    // dcbabcd
 
+        String s3 = "abbacd";
+        System.out.println("Result3 -> " + solution.shortestPalindrome(s3) + "\n");    // dcabbacd
+
     }
 
 }
@@ -104,8 +107,33 @@ public class ShortestPalindrome {
     3. Also Base Case : if out input is palindrome let's return it
         - bcoz me jevha pn add karel char tevha curr string pekshya jastch length banel
         - and we need shortest palindrome so apan toch return karu 
-        
+    
 
+    ^ Improvement :
+
+    1. one test case is wrong
+        s = "abbacd" 
+        expected output = "dcabbacd"
+        my output = "dcabbabbacd"
+
+        - ithe na first round madhe last char add kela in front
+            i = 5
+                - currChar  : d  
+                - newString : dabbacd
+                - not a palindrome
+
+            i = 4 
+                - currChar  : c
+                - newString : dcabbacd
+                - it's a palindrome
+    
+    2. me add kartanna fact i = 5 front madhe add kela
+        jevha i = 4 add kela tevha to second place vr kelela
+        next i = 3 karnar asel tr to mala third place vr karava lagel add
+        
+    3. asa kahitri logic bagh jyani he work hoil
+        
+        
  
  * Pseudo Code :
  
