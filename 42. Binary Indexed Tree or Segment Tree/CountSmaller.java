@@ -2,6 +2,47 @@ import java.util.*;
 
 public class CountSmaller {
     
+    // Driver Function 
+    public List<Integer> countSmaller(int[] nums) {
+        
+        // Declare variables
+        int n = nums.length;
+        List<Integer> result = new ArrayList<>();
+
+        // Loop through each element in the array
+        for (int i = 0; i < n; i++) {
+            int count = 0;
+
+            // Check all elements to the right of i
+            for (int j = i + 1; j < n; j++) {
+                if (nums[j] < nums[i]) {
+                    count++;
+                }
+            }
+
+            // Add count to result
+            result.add(count);
+        }
+
+        return result;
+    }
+
+
+    public static void main(String[] args) {
+    
+        CountSmaller solution = new CountSmaller();
+
+        int[] nums1 = {5,2,6,1};
+        System.out.println(" Result 1 -> " + solution.countSmaller(nums1) + "\n");  // [2,1,1,0]
+
+        int[] nums2 = {-1};
+        System.out.println(" Result 2 -> " + solution.countSmaller(nums2) + "\n");  // [0]
+
+        int[] nums3 = {-1, -1};
+        System.out.println(" Result 3 -> " + solution.countSmaller(nums3) + "\n");  // [0,0]
+
+    }
+
 }
 
 /*
@@ -41,7 +82,7 @@ public class CountSmaller {
         -> Loop through each element in the array
             for (int i = 0; i < n; i++) {
                 int count = 0;
-    
+
             -> Check all elements to the right of i
                 for (int j = i + 1; j < n; j++) {
                     if (nums[j] < nums[i]) {
@@ -52,7 +93,7 @@ public class CountSmaller {
             -> Add count to result
                 result.add(count);
         }   
-    
+
         return result
     
     }
