@@ -78,6 +78,8 @@ public class NumArray {
 
         let's try to use directly on leetcode
  
+    3. I tried to understnad the optimized way of segment tree but I don't undertsnad the logic behind it
+        it all feels confusing will check later again
  
  * Pseudo Code :
  
