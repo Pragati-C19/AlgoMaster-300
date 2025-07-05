@@ -25,12 +25,37 @@ public class CountSmaller {
         - mala asa kahitri havay jyani mala fact ekdach check karava lagel num
         - and will wrote there konapekshya chota ahe te
 
-  
+    3. I did try to submit brute force approach
+        but 62/66 test cases are passed..
+        63rd gives me TLE
  
  
  * Pseudo Code :
  
+    1. Brute Force :
 
+    public List<Integer> countSmaller(int[] nums) {
+        int n = nums.length;
+        List<Integer> result = new ArrayList<>();
+
+        -> Loop through each element in the array
+            for (int i = 0; i < n; i++) {
+                int count = 0;
+    
+            -> Check all elements to the right of i
+                for (int j = i + 1; j < n; j++) {
+                    if (nums[j] < nums[i]) {
+                        count++;
+                }
+            }
+
+            -> Add count to result
+                result.add(count);
+        }   
+    
+        return result
+    
+    }
 
 
 
