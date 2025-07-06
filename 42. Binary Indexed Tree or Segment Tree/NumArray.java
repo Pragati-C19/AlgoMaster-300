@@ -104,6 +104,7 @@ public class NumArray {
         segmentTree[nodeIndex] = segmentTree[leftIndex] + segmentTree[rightIndex];
 
         System.out.println("    - [updatedSegmentTree] Segment Tree at node(" + nodeIndex + ") : " + Arrays.toString(segmentTree));
+        System.out.println("    - [updatedSegmentTree] Nums Array : " + Arrays.toString(numsArray));
         return;
     }
 
@@ -113,15 +114,19 @@ public class NumArray {
     public static void main(String[] args) {
         
         // Initialize the array
-        NumArray solution = new NumArray(new int[]{3, 1, 2, 7, 1});
+        System.out.println(" Initialize Object : ");
+        NumArray solution = new NumArray(new int[]{1, 3, 5});
         
         // First query
+        System.out.println("\n Iteration 1 : ");
         System.out.println(solution.sumRange(0, 2)); // Output: 9
         
         // Second query
+        System.out.println("\n Iteration 2 : ");
         solution.update(1, 2);  // Now the array becomes [1, 2, 5]
         
         // Third query
+        System.out.println("\n Iteration 3 : ");
         System.out.println(solution.sumRange(0, 2)); // Output: 8
     }
 
