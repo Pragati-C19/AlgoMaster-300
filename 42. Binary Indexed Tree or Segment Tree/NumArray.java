@@ -23,6 +23,9 @@ public class NumArray {
     // Driver Function : to update value 
     public void update(int index, int val) {
 
+        // call recursion to update values at index
+        updatedSegmentTree(0, 0, n-1, index, val);
+
         return;
     }
 
@@ -66,6 +69,41 @@ public class NumArray {
     // Recursion Function : to updated value in segmentTree 
     private void updatedSegmentTree (int nodeIndex, int start, int end, int index, int val) {
 
+        // Base Case : if we hit leaf node
+        if (start == end) {
+            
+            numsArray[index] = val;
+            segmentTree[nodeIndex] = val;
+            
+            System.out.println("    - [updatedSegmentTree] We Hit leafNode : " + start);
+            return;
+        }
+
+
+        // Find Mid
+        int mid = (start + end) / 2;
+
+        // get leftIndex and rightIndex of currNode
+        int leftIndex = 2 * nodeIndex + 1;
+        int rightIndex = 2 * nodeIndex + 2;
+
+        // Check if index is at left side or right side of root
+        if (index <= mid) {
+            
+            // Call recursion and get values of right subtree
+            updatedSegmentTree(leftIndex, start, mid, index, val);
+        }
+        else {
+
+            // Call recursion and get values of right subtree
+            updatedSegmentTree(rightIndex, mid + 1, end, index, val);
+        }
+        
+
+        // Add both left and right side values and store it in segmentTree
+        segmentTree[nodeIndex] = segmentTree[leftIndex] + segmentTree[rightIndex];
+
+        System.out.println("    - [updatedSegmentTree] Segment Tree at node(" + nodeIndex + ") : " + Arrays.toString(segmentTree));
         return;
     }
 
