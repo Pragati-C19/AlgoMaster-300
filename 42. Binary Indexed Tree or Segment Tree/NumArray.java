@@ -3,34 +3,45 @@ import java.util.*;
 public class NumArray {
    
     // Globally Declare variable
-    private int[] numsArray;
+    int[] numsArray;
+    int n;
+    int[] segmentTree;
 
+    // Driver Function : to Initialize Object 
     public NumArray(int[] nums) {
 
         // Assign value here
         numsArray = nums;
+        n = nums.length;
+        segmentTree = new int[2*n];
+
     }
 
+    // Driver Function : to update value 
     public void update(int index, int val) {
 
-        // update value of index 
-        numsArray[index] = val;
+        return;
     }
 
+    // Driver Function : to get sum for range (left, right)
     public int sumRange(int left, int right) {
 
-        // initialize sum as 0
-        int sum = 0;
-
-        // check all nums in range [left, right]
-        for (int i = left; i <= right; i++) {
-
-            // add that num in the sum
-            sum += numsArray[i];
-        }
-        
-        return sum;
+        return 0;
     }
+
+    // Recursion Function : to build segmentTree 
+    private void buildSegmentTree (int nodeIndex, int start, int end) {
+
+        return;
+    }
+
+    // Recursion Function : to updated value in segmentTree 
+    private void updatedSegmentTree (int nodeIndex, int start, int end, int index, int val) {
+
+        return;
+    }
+
+    
 
 
     public static void main(String[] args) {
