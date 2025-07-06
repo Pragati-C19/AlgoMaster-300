@@ -31,8 +31,10 @@ public class NumArray {
 
     // Driver Function : to get sum for range (left, right)
     public int sumRange(int left, int right) {
+        
+        int sum = querySegmentTree(0, 0, n-1, left, right);
 
-        return 0;
+        return sum;
     }
 
     // Recursion Function : to build segmentTree 
@@ -108,7 +110,40 @@ public class NumArray {
         return;
     }
 
-    
+    // Recursion Function : get sum between give range 
+    private int querySegmentTree (int nodeIndex, int start, int end, int left, int right) {
+
+        // Base Case : if start and end are out of bound
+        if (left > end || right < start) {
+            
+            System.out.println("    - [querySegmentTree] [start(" + start + "), end(" + end + ")] are not overlapping with [left(" + left + "), right(" + right + ")]");
+            return 0;
+        }
+
+        // Base Case : if we start and end are within range 
+        if (left <= start && right >= end) {
+            
+            System.out.println("    - [querySegmentTree] [start(" + start + "), end(" + end + ")] are overlapping with [left(" + left + "), right(" + right + ")] so return segTree[" + nodeIndex + "] : " + segmentTree[nodeIndex]);
+            return segmentTree[nodeIndex];
+        }
+
+        // Find Mid
+        int mid = (start + end) / 2;
+
+        // get leftIndex and rightIndex of currNode
+        int leftIndex = 2 * nodeIndex + 1;
+        int rightIndex = 2 * nodeIndex + 2;
+
+        // Call recursion and get values of right and left subtree
+        int leftSum = querySegmentTree(leftIndex, start, mid, left, right);
+        int rightSum = querySegmentTree(rightIndex, mid + 1, end, left, right);
+
+        // Add both left and right sum
+        int currSum = leftSum + rightSum;
+
+        System.out.println("    - [querySegmentTree] currSum at node(" + nodeIndex + ") : " + currSum);
+        return currSum;
+    }    
 
 
     public static void main(String[] args) {
