@@ -13,7 +13,7 @@ public class NumArray {
         // Assign value here
         numsArray = nums;
         n = nums.length;
-        segmentTree = new int[2*n];
+        segmentTree = new int[4*n];
 
         // build segmentTree
         buildSegmentTree(0, 0, n-1);
