@@ -15,6 +15,9 @@ public class NumArray {
         n = nums.length;
         segmentTree = new int[2*n];
 
+        // build segmentTree
+        buildSegmentTree(0, 0, n-1);
+
     }
 
     // Driver Function : to update value 
@@ -32,6 +35,31 @@ public class NumArray {
     // Recursion Function : to build segmentTree 
     private void buildSegmentTree (int nodeIndex, int start, int end) {
 
+        // Base Case : if we hit leaf node
+        if (start == end) {
+            
+            segmentTree[nodeIndex] = numsArray[start];
+            
+            System.out.println("    - [buildSegmentTree] We Hit leafNode : " + start);
+            return;
+        }
+
+
+        // Find Mid
+        int mid = (start + end) / 2;
+
+        // get leftIndex and rightIndex of currNode
+        int leftIndex = 2 * nodeIndex + 1;
+        int rightIndex = 2 * nodeIndex + 2;
+
+        // Call recursion and get values of right and left subtree
+        buildSegmentTree(leftIndex, start, mid);
+        buildSegmentTree(rightIndex, mid + 1, end);
+
+        // Add both left and right side values and store it in segmentTree
+        segmentTree[nodeIndex] = segmentTree[leftIndex] + segmentTree[rightIndex];
+
+        System.out.println("    - [buildSegmentTree] Segment Tree at node(" + nodeIndex + ") : " + Arrays.toString(segmentTree));
         return;
     }
 
@@ -47,7 +75,7 @@ public class NumArray {
     public static void main(String[] args) {
         
         // Initialize the array
-        NumArray solution = new NumArray(new int[]{1, 3, 5});
+        NumArray solution = new NumArray(new int[]{3, 1, 2, 7, 1});
         
         // First query
         System.out.println(solution.sumRange(0, 2)); // Output: 9
