@@ -80,6 +80,89 @@ public class NumArray {
  
     3. I tried to understnad the optimized way of segment tree but I don't undertsnad the logic behind it
         it all feels confusing will check later again
+
+
+    ^ Let's Check Optimal solution :
+
+    1. buildSegementTree 
+        - Base Case :
+			Jevha start and end same yeil will stop 
+        - Find mid 
+		- Get left and right index for array
+		- Call recursion and get value for leftsubtree and rightsubtree
+		- We are doing range sum problems as example to understand the Segment Tree currently so, 
+			we need sum 
+			and for that will add value at leftSubTree + rightSubTree
+			in terms of segmentTreeArray 
+				segTree[i] = segTree[leftIndex] + segTree[rightIndex]
+				
+		- Then will store it in segmentTree
+    
+        buildSegmentTree (index, start, end) {
+        
+            if(start == end) 
+                segTree[nodeIndex] = numsArray[start]
+
+            mid = (left + right) / 2
+		
+            leftIndex = 2 * index + 1
+            rightIndex = 2 * index + 2
+            
+		    buildSegmentTree(leftIndex, start, mid)
+		    buildSegmentTree(rightIndex, mid + 1, end)
+		
+		    segTree[i] = segTree[leftIndex] + segTree[rightIndex]
+
+        }
+
+
+    2. Update Query :
+
+        - Base Case 
+			If start == end 
+				- aplyala apla index bhetla asel so we need to update that value in nums
+					numsArray[index] = val
+					
+				- and aplyala segmentTree madhe pn value update karavi lagel
+					segTree[nodeIndex] = val
+						
+		- Find Mid
+		- Get left and right index for array
+			leftSide = 2* nodeIndex + 1
+			rightSide = 2* nodeIndex + 2
+			
+		- Check if index <= mid
+			Yes : call recursion on left side
+				 dfs (leftIndex, start, mid, index, val)
+			No  : call recursion on right side
+				 dfs (rightIndex, mid+1, end, index, val)
+				
+		- Now update value of root 
+			segTree[i] = segTree[leftIndex] + segTree[rightIndex]
+				
+				
+		updatedSegmentTree (nodeIndex, start, end, index, val) {
+		    
+		    if(start == end) 
+			    numsArray[index] = val
+			    segTree[nodeIndex] = val
+
+			mid = (start + end) / 2
+		
+		    leftIndex = 2 * nodeIndex + 1
+		    rightIndex = 2 * nodeIndex + 2
+		    
+			if(index <= mid) 
+			    updatedSegmentTree (leftIndex, start, mid, index, val)
+
+			else 
+			    updatedSegmentTree (rightIndex, mid + 1, end, index, val)
+		
+		    segTree[nodeIndex] = segTree[leftIndex] + segTree[rightIndex]
+		    
+		}
+
+
  
  * Pseudo Code :
  
