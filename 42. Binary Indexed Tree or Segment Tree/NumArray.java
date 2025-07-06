@@ -244,6 +244,54 @@ public class NumArray {
 		    
 		}
 
+    3. querySegmentTree :
+        - in que we hvae given a range and need to find sum between those index only
+        - so me direct buildSegment function tr nahi use karu shakat
+        - karan tyat whole (0, n-1) paryant chya range madhlya nums chi value ahe
+        - will maybe optimized it with checking if we already visited that range or not
+            if yes then return that 
+
+        but for nw let's write whole new recursion function :
+            - Base Case :
+                jr curr start and end are out of bound, given range pekshya
+                    then will return 0
+
+                jr start and end range chya madhe or equal ahet
+                    then will return segTree[nodeIndex]
+                    - Why left <= start && end <= right?
+                        It means:
+                            Your query box ([left, right]) is BIGGER than the segment box ([start, end]).
+                        Example:
+                            You want [2,5] (query).
+                            The segment box is [3,4].
+                            Since [3,4] fits entirely inside [2,5], you use its pre-written sum (12).
+
+            - Find Mid
+            - Get left and right index for array
+			- call recursion function to get leftSubTreeSum and rightSubTreeSum
+            - add them 
+            - return that sum
+
+
+        querySegmentTree (index, start, end, left, right) {
+        
+            if(left > end || right < left) 
+                return 0
+
+            if(left <= start && right >= end)
+                return segment[nodeIndex]
+
+            mid = (left + right) / 2
+		
+            leftIndex = 2 * index + 1
+            rightIndex = 2 * index + 2
+            
+		    leftSum = querySegmentTree(leftIndex, start, mid, left, right)
+		    rightSum = querySegmentTree(rightIndex, mid + 1, end, left, right)
+		
+		    currSum = leftSum + rightSum
+
+        }
 
  
  * Pseudo Code :
