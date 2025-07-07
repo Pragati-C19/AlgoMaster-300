@@ -2,6 +2,21 @@ import java.util.*;
 
 public class Reverse {
     
+    public int reverse(int x) {
+        
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        Reverse solution = new Reverse();
+
+        System.out.println(" Result1 -> " + solution.reverse(123) + "\n");     // 321
+        System.out.println(" Result2 -> " + solution.reverse(-123) + "\n");    // -321
+        System.out.println(" Result3 -> " + solution.reverse(120) + "\n");     // 21
+
+    }
+
 }
 
 /*
