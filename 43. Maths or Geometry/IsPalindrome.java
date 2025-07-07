@@ -12,9 +12,31 @@ public class IsPalindrome {
 
         System.out.println("    - Converted string for x : " + xString);
 
-        
+        // Start while loop till start > end
+        while (end > start) {
+            
+            // variable to know the chars 
+            char startChar = xString.charAt(start);
+            char endChar = xString.charAt(end);
 
+            System.out.println("    - start(" + startChar + ") and end(" + endChar + ") char");
+
+            // check if start and end char are different?
+            if (startChar != endChar) {
+                
+                System.out.println(" String is not Palindrome");
+                return false;
+            }
+
+            // Decrease end and increase start
+            start++;
+            end--;
+
+        }
+
+        System.out.println(" String is Palindrome");
         return true;
+
     }
 
     public static void main(String[] args) {
