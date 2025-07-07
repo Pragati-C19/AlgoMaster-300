@@ -4,6 +4,16 @@ public class IsPalindrome {
     
     public boolean isPalindrome(int x) {
         
+        // Declare variables
+        String xString = String.valueOf(x);
+        int n = xString.length();
+        int start = 0;
+        int end = n-1;
+
+        System.out.println("    - Converted string for x : " + xString);
+
+        
+
         return true;
     }
 
