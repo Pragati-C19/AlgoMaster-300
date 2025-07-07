@@ -18,13 +18,13 @@ public class Reverse {
             x = x / 10;
 
             // Check if reverseX is in range or not
-            if (reverseX < Integer.MIN_VALUE || reverseX > Integer.MAX_VALUE) {
+            if (reverseX < Integer.MIN_VALUE / 10  || reverseX > Integer.MAX_VALUE / 10) {
                 
                 System.out.println(" revserX is out of bound so return 0..");
                 return 0;
             }
 
-            
+
             // add digit in reverse 
             reverseX = reverseX * 10 + digit;
 
@@ -81,6 +81,35 @@ public class Reverse {
         - reverse > Ingeter.Max_Value
     4. donhi paiki ek jari true ahes tr will return 0
 
+    5. Why / 10 in if condition works ?
+    
+        -> When we're at this point in code:
+            if (reverseX < Integer.MIN_VALUE || reverseX > Integer.MAX_VALUE)
+        
+            - This is checking:
+                "Is reverseX itself already out of int bounds?"
+
+                But reverseX is still safe here — it hasn't overflowed yet, 
+                    because we haven't done * 10 + digit yet.
+
+                So this check is basically useless at this stage — 
+                    because reverseX is still safely inside int range.
+
+        
+            - But what we really want to ask is:
+                "Will reverseX * 10 + digit overflow?"
+
+        -> And we can't check it after updating revserX bcoz it will already corrupt 
+            reverseX and we can't do anything 
+            
+        -> that’s why we use:
+            if (reverseX < MIN / 10 || reverseX > MAX / 10)
+
+            Because:
+                reverseX * 10   -> will exceed bounds if reverseX is already near the limit
+
+        -> So we're checking:   
+            "Is reverseX so big that multiplying it by 10 will cause overflow?"
 
 
     ^ Dry Run :
