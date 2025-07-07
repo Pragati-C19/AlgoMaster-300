@@ -36,6 +36,7 @@ public class Reverse {
         System.out.println(" Result1 -> " + solution.reverse(123) + "\n");     // 321
         System.out.println(" Result2 -> " + solution.reverse(-123) + "\n");    // -321
         System.out.println(" Result3 -> " + solution.reverse(120) + "\n");     // 21
+        System.out.println(" Result4 -> " + solution.reverse(1534236469) + "\n");     // 0
 
     }
 
