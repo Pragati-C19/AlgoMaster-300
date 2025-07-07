@@ -2,6 +2,21 @@ import java.util.*;
 
 public class IsPalindrome {
     
+    public boolean isPalindrome(int x) {
+        
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+        IsPalindrome solution = new IsPalindrome();
+
+        System.out.println(" Result1 -> " + solution.isPalindrome(121) + "\n");     // true
+        System.out.println(" Result2 -> " + solution.isPalindrome(-121) + "\n");    // false
+        System.out.println(" Result3 -> " + solution.isPalindrome(10) + "\n");      // false
+
+    }
+
 }
 
 /*
@@ -32,7 +47,7 @@ public class IsPalindrome {
         - used any one of above more safe and optimal is first one
 
 
-        
+
  
  * Pseudo Code :
  
