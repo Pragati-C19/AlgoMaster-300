@@ -4,7 +4,29 @@ public class Reverse {
     
     public int reverse(int x) {
         
-        return 0;
+        // Declare variable
+        int reverseX = 0;
+
+        while (x != 0) {
+            
+            System.out.println(" -> x (" + x + ") != 0 : ");
+
+            // get last digit from x
+            int digit = x % 10;
+
+            // Update x by removing that last digit
+            x = x / 10;
+
+            // add digit in reverse 
+            reverseX = reverseX * 10 + digit;
+
+            System.out.println("      digit      = " + digit);
+            System.out.println("      updated x  = " + x);
+            System.out.println("      reverse    = " + reverseX);
+
+        }
+
+        return reverseX;
     }
 
     public static void main(String[] args) {
