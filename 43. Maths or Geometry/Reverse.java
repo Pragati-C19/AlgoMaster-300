@@ -9,7 +9,7 @@ public class Reverse {
 
         while (x != 0) {
             
-            System.out.println(" -> x (" + x + ") != 0 : ");
+            System.out.println("  - x (" + x + ") != 0 : ");
 
             // get last digit from x
             int digit = x % 10;
@@ -17,6 +17,14 @@ public class Reverse {
             // Update x by removing that last digit
             x = x / 10;
 
+            // Check if reverseX is in range or not
+            if (reverseX < Integer.MIN_VALUE || reverseX > Integer.MAX_VALUE) {
+                
+                System.out.println(" revserX is out of bound so return 0..");
+                return 0;
+            }
+
+            
             // add digit in reverse 
             reverseX = reverseX * 10 + digit;
 
@@ -73,7 +81,7 @@ public class Reverse {
         - reverse > Ingeter.Max_Value
     4. donhi paiki ek jari true ahes tr will return 0
 
-    
+
 
     ^ Dry Run :
 
