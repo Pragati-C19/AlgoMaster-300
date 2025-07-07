@@ -63,6 +63,17 @@ public class Reverse {
     5. update x by removing that digit 
     6. then add that digit in reveserd int
 
+    ^ Improvement :
+
+    1. Me je 32 bit range baddal tension ghet hote it's nothing but
+        Integer.Max_Value and Ingeter.Min_Value thing
+    2. so ata mala fact ek if condition lavavi lagel
+    3. ji check karel below two conditions :
+        - reverse < Ingeter.Min_Value
+        - reverse > Ingeter.Max_Value
+    4. donhi paiki ek jari true ahes tr will return 0
+
+    
 
     ^ Dry Run :
 
