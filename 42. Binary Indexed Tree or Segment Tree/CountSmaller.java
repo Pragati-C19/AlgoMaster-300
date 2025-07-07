@@ -70,6 +70,30 @@ public class CountSmaller {
         but 62/66 test cases are passed..
         63rd gives me TLE
  
+
+
+    ^ Improvement 
+
+    1. What I think 
+        - apan attaparynt buildSegmentTree madhe mid find karun then left right check karun value add karat hoto segTree[curr] amdhe
+        - this que says mala curr chya right side la jitke nums ahet tyatun min count havay
+            so ranges will be :
+                [0, n]
+                [1, n]
+                [2, n]
+                till [n, n]
+                
+        - maza segmentTree madhe ata range hi asel and tyat me count store karel 
+        - buildSegementTreeMin :
+            - Base Case :
+                if start == end asel tr apan numsArray chya currElement vr ahe 
+                aplyala tevha 0 return karava lagel karan sadhya mincount tr 0 ch ahe na 
+
+            - declare a count variable 
+            - check karu ki currIndex vrcha 
+
+~ I tried to work on this problem but not able to solve nor I understood the method 
+
  
  * Pseudo Code :
  
