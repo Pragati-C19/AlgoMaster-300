@@ -28,9 +28,18 @@ public class ValidSquare {
             // if already added increase the freq of it
             freqMap.put(dist, freqMap.getOrDefault(dist, 0) + 1);
         }
-        
+
         System.out.println(" FreqMap : " + freqMap);
 
+
+        // If we found freq as 4 and 2 will return true
+        if (freqMap.containsValue(4) && freqMap.containsValue(2)) {
+            
+            System.out.println("    - It's a valid square.. ");
+            return true;
+        }
+
+        System.out.println("    - It's NOT a valid square.. ");
         return false;
     }
 
