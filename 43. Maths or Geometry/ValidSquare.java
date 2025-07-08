@@ -83,6 +83,12 @@ public class ValidSquare {
         int[] p43 = {0, -1};
         System.out.println("Result3 -> " + solution.validSquare(p13, p23, p33, p43) + "\n");    // true
 
+        int[] p14 = {0,0};
+        int[] p24 = {1,1};
+        int[] p34 = {0,0};
+        int[] p44 = {1,1};
+        System.out.println(" Result4 -> " + solution.validSquare(p14, p24, p34, p44) + "\n");   // false
+
     }
 
 }
