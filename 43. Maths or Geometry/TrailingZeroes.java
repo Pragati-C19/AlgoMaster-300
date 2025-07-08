@@ -5,13 +5,32 @@ public class TrailingZeroes {
     // Driver Function
     public int trailingZeroes(int n) {
      
+        // call helper function to get n!
+        int nFactorial = factorials(n);
+        System.out.println(" Factorial(n!) = " + nFactorial);
+
         return 0;
     }
 
     // Helper Function : to get factotials
     private int factorials(int n) {
 
-        return 0;
+        // Declare a DP
+        int[] dp = new int[n + 1];
+
+        // add initial values in dp
+        dp[0] = 1;      // why? check comments
+
+        // check other i's 
+        for (int i = 1; i <= n; i++) {
+            
+            // Use standard formula to get factorial
+            dp[i] = i * dp[i-1];
+
+        }
+        System.out.println("    - DP Array : " + Arrays.toString(dp));
+
+        return dp[n];
     }
 
     public static void main(String[] args) {
