@@ -24,6 +24,14 @@ public class ValidSquare {
 
         for (int dist : distanceCombination) {
             
+            // if dist is zero means both points are same 
+            // and we can't create square with that it will be a line
+            if (dist == 0) {
+                
+                System.out.println("    - Dist is 0, means both points are equal, It's NOT a valid square..");
+                return false;
+            }
+            
             // add this dist in map
             // if already added increase the freq of it
             freqMap.put(dist, freqMap.getOrDefault(dist, 0) + 1);
