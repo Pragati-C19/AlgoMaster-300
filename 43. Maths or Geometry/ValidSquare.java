@@ -5,13 +5,26 @@ public class ValidSquare {
     // Driver Funcion
     public boolean validSquare(int[] p1, int[] p2, int[] p3, int[] p4) {
         
+        distanceSquare(p1, p2);
+
         return false;
     }
 
     // Helper Function : to get distance square for points
     private int distanceSquare(int[] a, int[] b) {
 
-        return 0;
+        // Distance formula :   d(AB) = (x1 - x2)^2 + (y1 - y2)^2
+
+        // let's declare variable name for (x1 - x2) and (y1 - y2)
+        int dx = a[0] - b[0];
+        int dy = a[1] - b[1];
+
+        // take square of it 
+        int distAB = (dx * dx) + (dy * dy);
+
+        System.out.println("    - Distance of point A" + Arrays.toString(a) + " and B" + Arrays.toString(b) + " : " + distAB);
+        
+        return distAB;
     }
 
 
