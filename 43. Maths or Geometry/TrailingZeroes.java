@@ -8,54 +8,29 @@ public class TrailingZeroes {
         // Declare variables
         int zeroesCount = 0;
 
-        // call helper function to get n!
-        long nFactorial = factorials(n);
-        System.out.println(" Factorial(n!) = " + nFactorial);
-
         // Start while loop till nFactorial will be equals to 0
-        while (nFactorial != 0) {
+        while (n != 0) {
             
-            // get last digit of the num
-            long digit = nFactorial % 10;
+            System.out.println("  - n (" + n + ") != 0 : ");
 
-            // update num
-            nFactorial = nFactorial / 10;
+            // get curr 5s, by dividing n by 5
+            int curr5s = n / 5;
 
-            // Check if curr last digit is not equal to zero or not
-            if (digit != 0) {
-                
-                System.out.println(" currDigit(" + digit + ") is not equal to zero...");
-                return zeroesCount;
-            }
+            // update value of n after division 
+            n = n / 5;
 
-            // else will increase the count 
-            zeroesCount++;
+            // add that value of 5s in count
+            zeroesCount += curr5s;
+
+            System.out.println("      curr5s        = " + curr5s);
+            System.out.println("      updated n     = " + n);
+            System.out.println("      zeroesCount   = " + zeroesCount);
 
         }
 
         return zeroesCount;
     }
 
-    // Helper Function : to get factotials
-    private long factorials(int n) {
-
-        // Declare a DP
-        long[] dp = new long[n + 1];
-
-        // add initial values in dp
-        dp[0] = 1;      // why? check comments
-
-        // check other i's 
-        for (int i = 1; i <= n; i++) {
-            
-            // Use standard formula to get factorial
-            dp[i] = i * dp[i-1];
-
-        }
-        System.out.println("    - DP Array : " + Arrays.toString(dp));
-
-        return dp[n];
-    }
 
     public static void main(String[] args) {
 
@@ -64,7 +39,7 @@ public class TrailingZeroes {
         System.out.println(" Result1 -> " + solution.trailingZeroes(3) + "\n");      // 0
         System.out.println(" Result2 -> " + solution.trailingZeroes(5) + "\n");      // 1
         System.out.println(" Result3 -> " + solution.trailingZeroes(0) + "\n");      // 0
-        System.out.println(" Result4 -> " + solution.trailingZeroes(20) + "\n");     // 0
+        System.out.println(" Result4 -> " + solution.trailingZeroes(20) + "\n");     // 4
         System.out.println(" Result5 -> " + solution.trailingZeroes(00000) + "\n");      // 0
         
         System.out.println(" Result6 -> " + solution.trailingZeroes(13) + "\n");     // 2
