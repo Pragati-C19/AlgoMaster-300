@@ -9,14 +9,14 @@ public class TrailingZeroes {
         int zeroesCount = 0;
 
         // call helper function to get n!
-        int nFactorial = factorials(n);
+        long nFactorial = factorials(n);
         System.out.println(" Factorial(n!) = " + nFactorial);
 
         // Start while loop till nFactorial will be equals to 0
         while (nFactorial != 0) {
             
             // get last digit of the num
-            int digit = nFactorial % 10;
+            long digit = nFactorial % 10;
 
             // update num
             nFactorial = nFactorial / 10;
@@ -37,10 +37,10 @@ public class TrailingZeroes {
     }
 
     // Helper Function : to get factotials
-    private int factorials(int n) {
+    private long factorials(int n) {
 
         // Declare a DP
-        int[] dp = new int[n + 1];
+        long[] dp = new long[n + 1];
 
         // add initial values in dp
         dp[0] = 1;      // why? check comments
@@ -64,7 +64,7 @@ public class TrailingZeroes {
         System.out.println(" Result1 -> " + solution.trailingZeroes(3) + "\n");      // 0
         System.out.println(" Result2 -> " + solution.trailingZeroes(5) + "\n");      // 1
         System.out.println(" Result3 -> " + solution.trailingZeroes(0) + "\n");      // 0
-        System.out.println(" Result4 -> " + solution.trailingZeroes(16) + "\n");     // 0
+        System.out.println(" Result4 -> " + solution.trailingZeroes(20) + "\n");     // 0
         System.out.println(" Result5 -> " + solution.trailingZeroes(00000) + "\n");      // 0
         
         System.out.println(" Result6 -> " + solution.trailingZeroes(13) + "\n");     // 2
@@ -117,6 +117,13 @@ public class TrailingZeroes {
             13! = 6,227,020,800 
             my ans is 1932053504
         
+        - to make it work firts thought in my mind is change int to long 
+            and it worked till n = 16
+            let me check other random n values  
+            and it works only till n = 20
+
+        - need to think more optimal solution
+
 
  * Pseudo Code :
  
