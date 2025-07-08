@@ -2,6 +2,28 @@ import java.util.*;
 
 public class TrailingZeroes {
     
+    // Driver Function
+    public int trailingZeroes(int n) {
+     
+        return 0;
+    }
+
+    // Helper Function : to get factotials
+    private int factorials(int n) {
+
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        TrailingZeroes solution = new TrailingZeroes();
+
+        System.out.println(" Result1 -> " + solution.trailingZeroes(3) + "\n");     // 0
+        System.out.println(" Result2 -> " + solution.trailingZeroes(5) + "\n");     // 1
+        System.out.println(" Result3 -> " + solution.trailingZeroes(0) + "\n");     // 0
+        
+    }
+
 }
 
 /*
@@ -83,7 +105,7 @@ public class TrailingZeroes {
 
 
         -> at the end return dp[n]
-        
+
     }
 
  
