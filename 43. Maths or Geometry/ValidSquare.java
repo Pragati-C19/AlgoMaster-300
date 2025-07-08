@@ -19,6 +19,18 @@ public class ValidSquare {
         System.out.println(" distanceCombination : " + Arrays.toString(distanceCombination));
         
 
+        // Declare a freqMap and check freq of distance in distanceCombination
+        Map<Integer, Integer> freqMap = new HashMap<>();
+
+        for (int dist : distanceCombination) {
+            
+            // add this dist in map
+            // if already added increase the freq of it
+            freqMap.put(dist, freqMap.getOrDefault(dist, 0) + 1);
+        }
+        
+        System.out.println(" FreqMap : " + freqMap);
+
         return false;
     }
 
