@@ -5,11 +5,35 @@ public class TrailingZeroes {
     // Driver Function
     public int trailingZeroes(int n) {
      
+        // Declare variables
+        int zeroesCount = 0;
+
         // call helper function to get n!
         int nFactorial = factorials(n);
         System.out.println(" Factorial(n!) = " + nFactorial);
 
-        return 0;
+        // Start while loop till nFactorial will be equals to 0
+        while (nFactorial != 0) {
+            
+            // get last digit of the num
+            int digit = nFactorial % 10;
+
+            // update num
+            nFactorial = nFactorial / 10;
+
+            // Check if curr last digit is not equal to zero or not
+            if (digit != 0) {
+                
+                System.out.println(" currDigit(" + digit + ") is not equal to zero...");
+                return zeroesCount;
+            }
+
+            // else will increase the count 
+            zeroesCount++;
+            
+        }
+
+        return zeroesCount;
     }
 
     // Helper Function : to get factotials
