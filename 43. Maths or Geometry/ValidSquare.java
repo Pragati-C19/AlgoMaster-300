@@ -5,7 +5,19 @@ public class ValidSquare {
     // Driver Funcion
     public boolean validSquare(int[] p1, int[] p2, int[] p3, int[] p4) {
         
-        distanceSquare(p1, p2);
+        // call helper function to get distance between all two pair of points
+        // and store it in int[] array
+        int[] distanceCombination = {
+            distanceSquare(p1, p2),
+            distanceSquare(p1, p3),
+            distanceSquare(p1, p4),
+            distanceSquare(p2, p3),
+            distanceSquare(p2, p4),
+            distanceSquare(p3, p4)
+        };
+
+        System.out.println(" distanceCombination : " + Arrays.toString(distanceCombination));
+        
 
         return false;
     }
