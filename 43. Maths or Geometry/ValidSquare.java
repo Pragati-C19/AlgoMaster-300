@@ -2,6 +2,43 @@ import java.util.*;
 
 public class ValidSquare {
     
+    // Driver Funcion
+    public boolean validSquare(int[] p1, int[] p2, int[] p3, int[] p4) {
+        
+        return false;
+    }
+
+    // Helper Function : to get distance square for points
+    private int distanceSquare(int[] a, int[] b) {
+
+        return 0;
+    }
+
+
+    public static void main(String[] args) {
+
+        ValidSquare solution = new ValidSquare();
+
+        int[] p11 = {0,0};
+        int[] p21 = {1,1};
+        int[] p31 = {1,0};
+        int[] p41 = {0,1};
+        System.out.println(" Result1 -> " + solution.validSquare(p11, p21, p31, p41) + "\n");   // true
+
+        int[] p12 = {0, 0};
+        int[] p22 = {1, 1};
+        int[] p32 = {1, 0};
+        int[] p42 = {0, 12};
+        System.out.println("Result2 -> " + solution.validSquare(p12, p22, p32, p42) + "\n");    // false
+
+        int[] p13 = {1, 0};
+        int[] p23 = {-1, 0};
+        int[] p33 = {0, 1};
+        int[] p43 = {0, -1};
+        System.out.println("Result3 -> " + solution.validSquare(p13, p23, p33, p43) + "\n");    // true
+
+    }
+
 }
 
 /*
