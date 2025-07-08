@@ -30,7 +30,7 @@ public class TrailingZeroes {
 
             // else will increase the count 
             zeroesCount++;
-            
+
         }
 
         return zeroesCount;
@@ -61,9 +61,11 @@ public class TrailingZeroes {
 
         TrailingZeroes solution = new TrailingZeroes();
 
-        System.out.println(" Result1 -> " + solution.trailingZeroes(3) + "\n");     // 0
-        System.out.println(" Result2 -> " + solution.trailingZeroes(5) + "\n");     // 1
-        System.out.println(" Result3 -> " + solution.trailingZeroes(0) + "\n");     // 0
+        System.out.println(" Result1 -> " + solution.trailingZeroes(3) + "\n");      // 0
+        System.out.println(" Result2 -> " + solution.trailingZeroes(5) + "\n");      // 1
+        System.out.println(" Result3 -> " + solution.trailingZeroes(0) + "\n");      // 0
+        System.out.println(" Result4 -> " + solution.trailingZeroes(16) + "\n");     // 0
+        System.out.println(" Result5 -> " + solution.trailingZeroes(00000) + "\n");      // 0
         
     }
 
@@ -100,7 +102,16 @@ public class TrailingZeroes {
         jr n-1 digit 0 asel tr will count it and move to next
             n-2 digit 0 nasel tr will directly return count so far
 
- 
+    ^ Improvement :
+        - I tried checking different nums
+        - but after 16 jo pn n ahe tyachi value Max_Value ahe tyamul ans asa ahe
+            [-288522240, -898433024, 109641728, -2102132736, -1195114496, -522715136, 862453760, -775946240, 2076180480]
+        - from 0 to 16 factorials are
+            [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600, 1932053504, 1278945280, 2004310016, 2004189184]
+
+        - now I'm confused how will I handle n > 16 
+        
+
  * Pseudo Code :
  
     function trailingZeroes (int n) {
