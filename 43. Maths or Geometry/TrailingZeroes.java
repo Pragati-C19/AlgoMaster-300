@@ -68,6 +68,7 @@ public class TrailingZeroes {
         System.out.println(" Result5 -> " + solution.trailingZeroes(00000) + "\n");      // 0
         
         System.out.println(" Result6 -> " + solution.trailingZeroes(13) + "\n");     // 2
+        System.out.println(" Result7 -> " + solution.trailingZeroes(30) + "\n");     // 7
 
     }
 
@@ -123,6 +124,74 @@ public class TrailingZeroes {
             and it works only till n = 20
 
         - need to think more optimal solution
+
+
+    ^ Optimal Way :
+
+        - What causes Trailing Zero?
+            if n! madhe 10 che multiples astil tr mala ans madhe ending la 0 bhetel right?
+            like 10, 20, 100, 1000 asel tr mala titke zeroes bhettal end la
+
+        - so will check “How many times does 10 appear as a factor in n!?”
+            but 10 tr directly ekach veli yeil if n >= 10 asel tr
+            so 10 kashyachya multiples ni yeil ajun? what are 10's factors
+                10 = 2 * 5
+
+        - tr ata apla que change zala to “How many times does (2 * 5) appear as a factor in n!?”
+            ata he shodhan pn hard ahe thod karan there are
+                Lots of 2s  : from 2, 4, 6, 8, 10, 12, …
+                Fewer 5s    : from 5, 10, 15, 20, 25, 30, …
+
+        - We have more 2s than 5s
+            So the number of 10s (i.e., trailing zeros) is limited by the number of 5s
+
+            example : 10! = 3628800
+
+                10! = 10 * 9 * 8 * 7 * 6 * 5 * 4 * 3 * 2 * 1
+
+                let's count how many (2 * 5) we can make
+                    Factors of 2 : 2, 4, 6, 8, 10   -> many 2s
+                    Factors of 5 : 5, 10            -> Two 5s
+
+                so only 2 pairs of (2*5) we can make
+                only two 10s will become
+                so Two trailing zeros
+
+        - tyamul each time will get n / 5
+            will check if curr num is divisible by 5? asel tr their is possiblitiy to get (2*5) pair
+            and will have 10 in factor so trailing zeros too
+            
+        - n/5 ch je pn ans asel will add it in count 
+            example : 
+                n = 35
+
+                - First call : (25 != 0)
+
+                    curr5s = n/5 = 25/5 = 5
+                    updateN = n/5 = 25/5 = 5
+
+                    zeroesCount = zeroesCount + curr5s = 0 + 5 = 5
+
+                - Second call : (5 != 0)
+
+                    curr5s = n/5 = 5/5 = 1
+                    updateN = n/5 = 5/5 = 1
+
+                    zeroesCount = zeroesCount + curr5s = 5 + 1 = 6
+
+                - Third call : (1 != 0)
+
+                    curr5s = n/5 = 1/5 = 0
+                    updateN = n/5 = 1/5 = 0
+
+                    zeroesCount = zeroesCount + curr5s = 6 + 0 = 6
+
+
+        - curr5s and updateN will be same 
+            why ?
+                bcoz apan n la divide kartoy 5 ni and n la chota chota kartoy 
+
+
 
 
  * Pseudo Code :
