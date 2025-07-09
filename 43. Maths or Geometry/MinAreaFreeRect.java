@@ -5,6 +5,49 @@ public class MinAreaFreeRect {
     // Driver Function
     public double minAreaFreeRect(int[][] points) {
         
+        // Declare variables
+        int n = points.length;
+        Map<String, List<int[]>> diagonalsMap = new HashMap<>();
+        double minArea = Double.MAX_VALUE;
+
+
+        // Phase1 : Store all point pairs as possible diagonals
+        for (int i = 0; i < n; i++) {
+
+            int[] p1 = points[i];
+
+            for (int j = i + 1; j < n; j++) {
+                
+                int[] p2 = points[j];
+
+                // Midpoint key(x1 + x2, y1 + y2) to avoid float division
+                int midX = p1[0] + p2[0];
+                int midY = p1[1] + p2[1];
+
+                // Squared length of diagonal
+                int distSq = distanceSquare(p1, p2);
+
+                // Build key as string: "midX,midY,distSq"
+                String key = midX + ", " + midY + ", " + distSq;
+
+                // Add that key and value in map
+                if (!diagonalsMap.containsKey(key)) {
+                
+                    diagonalsMap.put(key, new ArrayList<>());
+                }
+
+                diagonalsMap.get(key).add(p1);
+            }
+
+            for (Map.Entry<String, List<int[]>> entry : diagonalsMap.entrySet()) {
+                System.out.println("Key: " + entry.getKey());
+                for (int[] p : entry.getValue()) {
+                    System.out.println("  Point: " + Arrays.toString(p));
+                }
+            }
+
+        }
+
         return 0;
     }
 
