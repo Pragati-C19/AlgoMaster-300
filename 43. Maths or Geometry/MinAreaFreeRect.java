@@ -2,6 +2,49 @@ import java.util.*;
 
 public class MinAreaFreeRect {
     
+    public double minAreaFreeRect(int[][] points) {
+        
+        return 0;
+    }
+
+    // Helper Function : to get distance square for points
+    private int distanceSquare(int[] a, int[] b) {
+
+        return 0;
+    }
+
+    public static void main(String[] args) {
+
+        MinAreaFreeRect solution = new MinAreaFreeRect();
+
+        int[][] points1 = {
+            {1,2},
+            {2,1},
+            {1,0},
+            {0,1}
+        };
+        System.out.println(" Result1 -> " + solution.minAreaFreeRect(points1) + "\n");   // 2.00000
+
+        int[][] points2 = {
+            {0,1},
+            {2,1},
+            {1,1},
+            {1,0},
+            {2,0}
+        };
+        System.out.println(" Result2 -> " + solution.minAreaFreeRect(points2) + "\n");    // 1.00000
+
+        int[][] points3 = {
+            {0,3},
+            {1,2},
+            {3,1},
+            {1,3},
+            {2,1}
+        };
+        System.out.println(" Result3 -> " + solution.minAreaFreeRect(points3) + "\n");    // 0
+
+    }
+
 }
 
 /*
