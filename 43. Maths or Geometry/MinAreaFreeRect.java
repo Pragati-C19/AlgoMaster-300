@@ -100,7 +100,16 @@ public class MinAreaFreeRect {
             }
         }
 
-        return 0;
+
+        // if out minArea is still Double.Max_Value 
+        // means we can't create rectangle
+        if (minArea == Double.MAX_VALUE) {
+            
+            System.out.println(" This point don't form rectangle");
+            return 0;
+        }
+
+        return minArea;
     }
 
     // Helper Function : to get distance square for points
