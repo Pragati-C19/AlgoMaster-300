@@ -2,6 +2,7 @@ import java.util.*;
 
 public class MinAreaFreeRect {
     
+    // Driver Function
     public double minAreaFreeRect(int[][] points) {
         
         return 0;
@@ -10,7 +11,18 @@ public class MinAreaFreeRect {
     // Helper Function : to get distance square for points
     private int distanceSquare(int[] a, int[] b) {
 
-        return 0;
+        // Distance formula :   d(AB) = (x1 - x2)^2 + (y1 - y2)^2
+
+        // let's declare variable name for (x1 - x2) and (y1 - y2)
+        int dx = a[0] - b[0];
+        int dy = a[1] - b[1];
+
+        // take square of it 
+        int distAB = (dx * dx) + (dy * dy);
+
+        System.out.println("    - Distance of point A" + Arrays.toString(a) + " and B" + Arrays.toString(b) + " : " + distAB);
+        
+        return distAB;
     }
 
     public static void main(String[] args) {
