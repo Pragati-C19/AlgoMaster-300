@@ -118,7 +118,34 @@ public class MinAreaFreeRect {
     // Helper Function : Check if angle is 90 degree using dot product, return area if so
     private double getArea(int[] a, int[] b, int[] p) {
 
-        return 0;
+        // Get dx and dy values for vectors 
+        
+        // AB vector = (x2 - x1, y2 - y1)
+        int dx1 = b[0] - a[0];
+        int dy1 = b[1] - a[1];
+
+        // AP vector = (x3 - x1, y3 - y1)
+        int dx2 = p[0] - a[0];
+        int dy2 = p[1] - a[1];
+
+        // Dot Product of AB . AP = (x1 * y2) + (x2 * y1)
+        int dotProduct = (dx1 * dy2) + (dx2 * dy1);
+        
+        // If dot product is not equal to 0 means points don't form rectangle
+        if (dotProduct == 0) {
+            
+            System.out.println("        - We can't create rectangle..");
+            return 0;
+        }
+
+        // else dot Product is equal to 0 get area of rectangle
+        // I don't know which one will be length and breath, I just wrote variable name for my understanding
+        double length = Math.sqrt((dx1 * dx1) + (dy1 * dy1)); 
+        double breath = Math.sqrt((dx2 * dx2) + (dy2 * dy2));
+
+        double areaOfRectangle = length * breath;
+
+        return areaOfRectangle;
     }
 
     public static void main(String[] args) {
