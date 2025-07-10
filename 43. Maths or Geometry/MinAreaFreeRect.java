@@ -49,52 +49,56 @@ public class MinAreaFreeRect {
         diagonalsMap.forEach((key, list) -> System.out.println("\t Key: \"" + key + "\"     -> " + list.stream().map(Arrays::deepToString).collect(Collectors.joining(", "))));
 
 
-        // // Phase 2 : For each group with the same midpoint and dist
-        // for (List<int[][]> group : diagonalsMap.values()) {
+        // Phase 2 : For each group with the same midpoint and dist
+        for (List<int[][]> group : diagonalsMap.values()) {
             
-        //     int size = group.size();
+            // Get size of list
+            int size = group.size();
 
-        //     // Try every pair in this group
-        //     for (int i = 0; i < size; i++) {
+            // Try every pair in this group
+            for (int i = 0; i < size; i++) {
+                for (int j = i + 1; j < size; j++) {
                 
-        //         int[] p1 = group.get(i);
+                    // Try every point in a group 
+                    // pairip1 - pair[i] point[1]
+                    int[] pairiP1 = group.get(i)[0];
+                    int[] pairiP2 = group.get(i)[1];
+                    int[] pairjP1 = group.get(j)[0];
+                    int[] pairjP2 = group.get(j)[1];
 
-        //         for (int j = i + 1; j < size; j++) {
-                
-        //             int[] p2 = group.get(j);
+                    // Debugger Sout
+                    System.out.println("Checking pairs from Group Whose size >= 2 ");
+                    System.out.println("    Pair[" + i + "]    -> p1 = " + Arrays.toString(pairiP1) + ", p2 = " + Arrays.toString(pairiP2));
+                    System.out.println("    Pair[" + j + "]    -> p1 = " + Arrays.toString(pairjP1) + ", p2 = " + Arrays.toString(pairjP2));
+               
 
-        //             System.out.println(" Checking pair: ");
-        //             System.out.println("    p1 = " + Arrays.toString(p1));
-        //             System.out.println("    p2 = " + Arrays.toString(p2));
-
-
-        //             // side1 = distance between p1 and p2
-        //             double side1 = Math.sqrt(distanceSquare(p1, p2));
-        //             System.out.println("    side1 (p1 to p2) = " + side1);
-
-
-        //             // Compute midpoint manually
-        //             double midX = (p1[0] + p2[0]) / 2.0;
-        //             double midY = (p1[1] + p2[1]) / 2.0;
-        //             System.out.println("    Midpoint = (" + midX + ", " + midY + ")");
+                    // // side1 = distance between p1 and p2
+                    // double side1 = Math.sqrt(distanceSquare(p1, p2));
+                    // System.out.println("    side1 (p1 to p2) = " + side1);
 
 
-        //             // side2 = distance from p1 to midpoint (we can compute midpoint manually)
-        //             double dx = p1[0] - midX;
-        //             double dy = p1[1] - midY;
-        //             double side2 = Math.sqrt(dx * dx + dy * dy) * 2; // since midpoint is halfway
-        //             System.out.println("    side2 (p1 to midpoint ×2) = " + side2);
+                    // // Compute midpoint manually
+                    // double midX = (p1[0] + p2[0]) / 2.0;
+                    // double midY = (p1[1] + p2[1]) / 2.0;
+                    // System.out.println("    Midpoint = (" + midX + ", " + midY + ")");
+
+
+                    // // side2 = distance from p1 to midpoint (we can compute midpoint manually)
+                    // double dx = p1[0] - midX;
+                    // double dy = p1[1] - midY;
+                    // double side2 = Math.sqrt(dx * dx + dy * dy) * 2; // since midpoint is halfway
+                    // System.out.println("    side2 (p1 to midpoint ×2) = " + side2);
                     
                     
-        //             // Get area of rectangle
-        //             double area = side1 * side2;
-        //             System.out.println("    Area = " + area);
+                    // // Get area of rectangle
+                    // double area = side1 * side2;
+                    // System.out.println("    Area = " + area);
 
-        //             minArea = Math.min(minArea, area);
-        //             System.out.println("    minArea = " + minArea);
-        //         }
-        //     }
-        // }
+                    // minArea = Math.min(minArea, area);
+                    // System.out.println("    minArea = " + minArea);
+                }
+            }
+        }
 
 
         // if out minArea is still Double.Max_Value 
@@ -214,10 +218,14 @@ public class MinAreaFreeRect {
             else return the minimum area
  
  
- * Pseudo Code :
- 
-
-
-
+    ^ Improveent :
+    
+    1.  We only check groups with ≥ 2 diagonals
+        Bcoz:
+            One diagonal -> not enough to form a rectangle.
+            Two diagonals with same midpoint and length  ->  can potentially form a rectangle.
+    
+    2. Storing full pair in map instead of just one point 
+    
 
  */
