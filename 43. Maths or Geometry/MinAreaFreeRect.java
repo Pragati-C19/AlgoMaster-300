@@ -77,11 +77,11 @@ public class MinAreaFreeRect {
                     double area1 = getArea(p1, p2, p3);     // If p3 forms 90° with p1 and p2
                     double area2 = getArea(p1, p2, p4);     // If p4 forms 90° with p1 and p2
 
-                    System.out.println("    Areas are = " + area1 + ", " + area2);
+                    System.out.println("    Area after cheking (p1, p2, p3) : " + area1 + " | Area after cheking (p1, p2, p4) : " + area2);
 
                     minArea = Math.min(minArea, area1);
                     minArea = Math.min(minArea, area2);
-                    System.out.println("    minArea = " + minArea);
+                    System.out.println("    Min Area so far : " + minArea);
                 }
             }
         }
