@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MinAreaFreeRect {
     
@@ -7,17 +8,18 @@ public class MinAreaFreeRect {
         
         // Declare variables
         int n = points.length;
-        Map<String, List<int[]>> diagonalsMap = new HashMap<>();
+        
+        // Changed value type to in[][] bcoz we want list of point pairs
+        Map<String, List<int[][]>> diagonalsMap = new HashMap<>();
         double minArea = Double.MAX_VALUE;
 
 
         // Phase1 : Store all point pairs as possible diagonals
         for (int i = 0; i < n; i++) {
-
-            int[] p1 = points[i];
-
             for (int j = i + 1; j < n; j++) {
                 
+                // declare variables for points
+                int[] p1 = points[i];
                 int[] p2 = points[j];
 
                 // Midpoint key(x1 + x2, y1 + y2) to avoid float division
@@ -30,75 +32,69 @@ public class MinAreaFreeRect {
                 // Build key as string: "midX,midY,distSq"
                 String key = midX + ", " + midY + ", " + distSq;
 
-                // Add that key and value in map
+                // Add that key and value in map 
                 if (!diagonalsMap.containsKey(key)) {
                 
                     diagonalsMap.put(key, new ArrayList<>());
                 }
 
-                diagonalsMap.get(key).add(p1);
+                // Store full diagonal pair
+                diagonalsMap.get(key).add(new int[][]{p1, p2});
             }
 
         }
 
         // Debugger Sout
-        for (Map.Entry<String, List<int[]>> entry : diagonalsMap.entrySet()) {
-                
-            System.out.println("  - Key: " + entry.getKey());
-                
-            for (int[] p : entry.getValue()) {
-                    
-                System.out.println("    Point: " + Arrays.toString(p));
-            }
-        }
+        System.out.println(" Diagonal Map : ");
+        diagonalsMap.forEach((key, list) -> System.out.println("\t Key: \"" + key + "\"     -> " + list.stream().map(Arrays::deepToString).collect(Collectors.joining(", "))));
 
 
-        // Phase 2 : For each group with the same midpoint and dist
-        for (List<int[]> group : diagonalsMap.values()) {
+        // // Phase 2 : For each group with the same midpoint and dist
+        // for (List<int[][]> group : diagonalsMap.values()) {
             
-            int size = group.size();
+        //     int size = group.size();
 
-            // Try every pair in this group
-            for (int i = 0; i < size; i++) {
+        //     // Try every pair in this group
+        //     for (int i = 0; i < size; i++) {
                 
-                int[] p1 = group.get(i);
+        //         int[] p1 = group.get(i);
 
-                for (int j = i + 1; j < size; j++) {
+        //         for (int j = i + 1; j < size; j++) {
                 
-                    int[] p2 = group.get(j);
+        //             int[] p2 = group.get(j);
 
-                    System.out.println(" Checking pair: ");
-                    System.out.println("    p1 = " + Arrays.toString(p1));
-                    System.out.println("    p2 = " + Arrays.toString(p2));
-
-
-                    // side1 = distance between p1 and p2
-                    double side1 = Math.sqrt(distanceSquare(p1, p2));
-                    System.out.println("    side1 (p1 to p2) = " + side1);
+        //             System.out.println(" Checking pair: ");
+        //             System.out.println("    p1 = " + Arrays.toString(p1));
+        //             System.out.println("    p2 = " + Arrays.toString(p2));
 
 
-                    // Compute midpoint manually
-                    double midX = (p1[0] + p2[0]) / 2.0;
-                    double midY = (p1[1] + p2[1]) / 2.0;
-                    System.out.println("    Midpoint = (" + midX + ", " + midY + ")");
+        //             // side1 = distance between p1 and p2
+        //             double side1 = Math.sqrt(distanceSquare(p1, p2));
+        //             System.out.println("    side1 (p1 to p2) = " + side1);
 
 
-                    // side2 = distance from p1 to midpoint (we can compute midpoint manually)
-                    double dx = p1[0] - midX;
-                    double dy = p1[1] - midY;
-                    double side2 = Math.sqrt(dx * dx + dy * dy) * 2; // since midpoint is halfway
-                    System.out.println("    side2 (p1 to midpoint ×2) = " + side2);
+        //             // Compute midpoint manually
+        //             double midX = (p1[0] + p2[0]) / 2.0;
+        //             double midY = (p1[1] + p2[1]) / 2.0;
+        //             System.out.println("    Midpoint = (" + midX + ", " + midY + ")");
+
+
+        //             // side2 = distance from p1 to midpoint (we can compute midpoint manually)
+        //             double dx = p1[0] - midX;
+        //             double dy = p1[1] - midY;
+        //             double side2 = Math.sqrt(dx * dx + dy * dy) * 2; // since midpoint is halfway
+        //             System.out.println("    side2 (p1 to midpoint ×2) = " + side2);
                     
                     
-                    // Get area of rectangle
-                    double area = side1 * side2;
-                    System.out.println("    Area = " + area);
+        //             // Get area of rectangle
+        //             double area = side1 * side2;
+        //             System.out.println("    Area = " + area);
 
-                    minArea = Math.min(minArea, area);
-                    System.out.println("    minArea = " + minArea);
-                }
-            }
-        }
+        //             minArea = Math.min(minArea, area);
+        //             System.out.println("    minArea = " + minArea);
+        //         }
+        //     }
+        // }
 
 
         // if out minArea is still Double.Max_Value 
