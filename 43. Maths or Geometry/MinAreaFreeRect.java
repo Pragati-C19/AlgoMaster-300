@@ -79,8 +79,17 @@ public class MinAreaFreeRect {
 
                     System.out.println("    Area after cheking (p1, p2, p3) : " + area1 + " | Area after cheking (p1, p2, p4) : " + area2);
 
-                    minArea = Math.min(minArea, area1);
-                    minArea = Math.min(minArea, area2);
+                
+                    // Problem is here if area1 and area2 will give output as zero is't it min value then?
+                    // but we are returning 0 bcoz we can't form rectangle with those point
+                    // so let's change below min(minArea, area1) , min(minArea, area2)
+                    if (area1 > 0) {
+                        minArea = Math.min(minArea, area1);
+                    }
+                    
+                    if (area2 > 0) {
+                        minArea = Math.min(minArea, area2);
+                    }
                     System.out.println("    Min Area so far : " + minArea);
                 }
             }
