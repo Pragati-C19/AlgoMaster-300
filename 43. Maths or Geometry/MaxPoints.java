@@ -5,9 +5,46 @@ public class MaxPoints {
     // Driver Function 
     public int maxPoints(int[][] points) {
         
-        isPointOnLine(points[0], points[1], points[2]);
+        // Declare variables
+        int n = points.length;
+        int maxPointsOnLine = 2;    
 
-        return 0;
+        // let's start checking points 
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                
+                // declare variable for points 
+                int[] p1 = points[i];
+                int[] p2 = points[j];
+
+                // Count how many points lie on the line defined by p1 and p2
+                int count = 2;  // p1 and p2 are already on line
+
+                // Check other points from array 
+                for (int k = 0; k < n; k++) {
+                    
+                    // if we are on index i and j we don't need to check it we have already check it
+                    if (k == i || k == j) {
+                        continue;
+                    }
+
+                    // declare variable for point p3
+                    int[] p3 = points[k];
+
+                    // check if point p3 is on line 
+                    if (isPointOnLine(p1, p2, p3)) {
+                        
+                        count++;
+                    }
+                }
+
+                // Update maxPoints on line count 
+                maxPointsOnLine = Math.max(maxPointsOnLine, count);
+            }
+        }
+
+        
+        return maxPointsOnLine;
     }
 
     // Helper Function : To check if Point P on line AB or not
