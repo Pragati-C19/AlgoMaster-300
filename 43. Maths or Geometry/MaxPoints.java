@@ -9,6 +9,13 @@ public class MaxPoints {
         int n = points.length;
         int maxPointsOnLine = 2;    
 
+        // Base Case : if points are less than 2 then we don't need to check full code
+        if (n <= 2) {
+            
+            System.out.println("    points are <= 2 so returning n : " + n);
+            return n;
+        }
+
         // let's start checking points 
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
