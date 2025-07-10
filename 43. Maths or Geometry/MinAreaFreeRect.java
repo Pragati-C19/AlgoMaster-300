@@ -128,8 +128,8 @@ public class MinAreaFreeRect {
         int dx2 = p[0] - a[0];
         int dy2 = p[1] - a[1];
 
-        // Dot Product of AB . AP = (x1 * y2) + (x2 * y1)
-        int dotProduct = (dx1 * dy2) + (dx2 * dy1);
+        // Dot Product of AB . AP = (x1 * x2) + (y2 * y2)
+        int dotProduct = (dx1 * dx2) + (dy1 * dy2);
         
         // If dot product is not equal to 0 means points don't form rectangle
         if (dotProduct != 0) {
