@@ -74,22 +74,34 @@ public class MinAreaFreeRect {
 
                     // Get area of rectangle
                     // Try forming rectangle using triangles: (p1, p2, p3) and (p1, p2, p4)
-                    double area1 = getArea(p1, p2, p3);     // If p3 forms 90° with p1 and p2
-                    double area2 = getArea(p1, p2, p4);     // If p4 forms 90° with p1 and p2
+                    // double area1 = getArea(p1, p2, p3);     // If p3 forms 90° with p1 and p2
+                    // double area2 = getArea(p1, p2, p4);     // If p4 forms 90° with p1 and p2
 
-                    System.out.println("    Area after cheking (p1, p2, p3) : " + area1 + " | Area after cheking (p1, p2, p4) : " + area2);
+                    // Check if p1p3 and p1p4 can form right angle
+                    if (isRightAngle(p1, p3, p4)) {
+                        
+                        double side1 = Math.sqrt(distanceSquare(p1, p3));
+                        double side2 = Math.sqrt(distanceSquare(p1, p4));
+
+                        double area1 = side1 * side2;
+
+                        System.out.println("    Area after cheking (p1, p3, p4) : " + area1);
+
+                        minArea = Math.min(minArea, area1);
+                    }
+                    // System.out.println("    Area after cheking (p1, p2, p3) : " + area1 + " | Area after cheking (p1, p2, p4) : " + area2);
 
                 
                     // Problem is here if area1 and area2 will give output as zero is't it min value then?
                     // but we are returning 0 bcoz we can't form rectangle with those point
                     // so let's change below min(minArea, area1) , min(minArea, area2)
-                    if (area1 > 0) {
-                        minArea = Math.min(minArea, area1);
-                    }
-                    
-                    if (area2 > 0) {
-                        minArea = Math.min(minArea, area2);
-                    }
+                    // if (area1 > 0) {
+                    //     minArea = Math.min(minArea, area1);
+                    // }
+
+                    // if (area2 > 0) {
+                    //     minArea = Math.min(minArea, area2);
+                    // }
                     System.out.println("    Min Area so far : " + minArea);
                 }
             }
@@ -125,7 +137,7 @@ public class MinAreaFreeRect {
     }
 
     // Helper Function : Check if angle is 90 degree using dot product, return area if so
-    private double getArea(int[] a, int[] b, int[] p) {
+    private boolean isRightAngle(int[] a, int[] b, int[] p) {
 
         // Get dx and dy values for vectors 
         
@@ -140,21 +152,16 @@ public class MinAreaFreeRect {
         // Dot Product of AB . AP = (x1 * x2) + (y2 * y2)
         int dotProduct = (dx1 * dx2) + (dy1 * dy2);
         
-        // If dot product is not equal to 0 means points don't form rectangle
-        if (dotProduct != 0) {
+        // If dot product is equal to 0 means points is perpedicular to line
+        if (dotProduct == 0) {
             
-            System.out.println("        - We can't create rectangle..");
-            return 0;
+            System.out.println("        - Point P" + Arrays.toString(p) + " is perpendicular to Point A" + Arrays.toString(a) + " and B" + Arrays.toString(b));
+            return true;
         }
 
-        // else dot Product is equal to 0 get area of rectangle
-        // I don't know which one will be length and breath, I just wrote variable name for my understanding
-        double length = Math.sqrt((dx1 * dx1) + (dy1 * dy1)); 
-        double breath = Math.sqrt((dx2 * dx2) + (dy2 * dy2));
+        System.out.println("        - Point P" + Arrays.toString(p) + " is Not perpendicular to Point A" + Arrays.toString(a) + " and B" + Arrays.toString(b));
+        return false;
 
-        double areaOfRectangle = length * breath;
-
-        return areaOfRectangle;
     }
 
     public static void main(String[] args) {
