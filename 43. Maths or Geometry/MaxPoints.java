@@ -2,6 +2,41 @@ import java.util.*;
 
 public class MaxPoints {
     
+    // Driver Function 
+    public int maxPoints(int[][] points) {
+        
+        return 0;
+    }
+
+    // Helper Function 
+    private boolean isPointOnLine(int[] a, int[] b, int p) {
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+
+        MaxPoints solution = new MaxPoints();
+
+        int[][] points1 = {
+            {1,1},
+            {2,2},
+            {3,3}
+        };
+        System.out.println(" Result1 -> " + solution.maxPoints(points1) + "\n");   // 3
+
+        int[][] points2 = {
+            {1,1},
+            {3,2},
+            {5,3},
+            {4,1},
+            {2,3},
+            {1,4}
+        };
+        System.out.println(" Result2 -> " + solution.maxPoints(points2) + "\n");    // 4
+
+    }
+
 }
 
 /*
