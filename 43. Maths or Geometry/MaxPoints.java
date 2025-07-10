@@ -5,12 +5,34 @@ public class MaxPoints {
     // Driver Function 
     public int maxPoints(int[][] points) {
         
+        isPointOnLine(points[0], points[1], points[2]);
+
         return 0;
     }
 
-    // Helper Function 
-    private boolean isPointOnLine(int[] a, int[] b, int p) {
+    // Helper Function : To check if Point P on line AB or not
+    private boolean isPointOnLine(int[] a, int[] b, int[] p) {
 
+        // Get x and y values for vectors 
+        
+        // AB vector = (x2 - x1, y2 - y1)
+        int x1 = b[0] - a[0];
+        int y1 = b[1] - a[1];
+
+        // AP vector = (x3 - x1, y3 - y1)
+        int x2 = p[0] - a[0];
+        int y2 = p[1] - a[1];
+
+        // Cross Product of AB x AP = (x1 * y2) - (x2 * y1)
+        int crossProduct = (x1 * y2) - (x2 * y1);
+        
+        if (crossProduct == 0) {
+            
+            System.out.println("    - point A" + Arrays.toString(a) + ", B" + Arrays.toString(b) + " and P" + Arrays.toString(p) + " are on Same Line.. ");
+            return true;
+        }
+
+        System.out.println("    - point A" + Arrays.toString(a) + ", B" + Arrays.toString(b) + " and P" + Arrays.toString(p) + " are on Different Line.. ");
         return false;
     }
 
