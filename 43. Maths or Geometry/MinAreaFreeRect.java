@@ -60,42 +60,28 @@ public class MinAreaFreeRect {
                 for (int j = i + 1; j < size; j++) {
                 
                     // Try every point in a group 
-                    // pairip1 - pair[i] point[1]
-                    int[] pairiP1 = group.get(i)[0];
-                    int[] pairiP2 = group.get(i)[1];
-                    int[] pairjP1 = group.get(j)[0];
-                    int[] pairjP2 = group.get(j)[1];
+                    // This points 4 points of rectangle
+                    int[] p1 = group.get(i)[0];
+                    int[] p2 = group.get(i)[1];
+                    int[] p3 = group.get(j)[0];
+                    int[] p4 = group.get(j)[1];
 
                     // Debugger Sout
-                    System.out.println("Checking pairs from Group Whose size >= 2 ");
-                    System.out.println("    Pair[" + i + "]    -> p1 = " + Arrays.toString(pairiP1) + ", p2 = " + Arrays.toString(pairiP2));
-                    System.out.println("    Pair[" + j + "]    -> p1 = " + Arrays.toString(pairjP1) + ", p2 = " + Arrays.toString(pairjP2));
+                    System.out.println("Checking side of rectangle and 4 points : ");
+                    System.out.println("    Side1   -> p1 = " + Arrays.toString(p1) + ", p2 = " + Arrays.toString(p2));
+                    System.out.println("    Side2   -> p1 = " + Arrays.toString(p3) + ", p2 = " + Arrays.toString(p4));
                
 
-                    // // side1 = distance between p1 and p2
-                    // double side1 = Math.sqrt(distanceSquare(p1, p2));
-                    // System.out.println("    side1 (p1 to p2) = " + side1);
+                    // Get area of rectangle
+                    // Try forming rectangle using triangles: (p1, p2, p3) and (p1, p2, p4)
+                    double area1 = getArea(p1, p2, p3);     // If p3 forms 90° with p1 and p2
+                    double area2 = getArea(p1, p2, p4);     // If p4 forms 90° with p1 and p2
 
+                    System.out.println("    Areas are = " + area1 + ", " + area2);
 
-                    // // Compute midpoint manually
-                    // double midX = (p1[0] + p2[0]) / 2.0;
-                    // double midY = (p1[1] + p2[1]) / 2.0;
-                    // System.out.println("    Midpoint = (" + midX + ", " + midY + ")");
-
-
-                    // // side2 = distance from p1 to midpoint (we can compute midpoint manually)
-                    // double dx = p1[0] - midX;
-                    // double dy = p1[1] - midY;
-                    // double side2 = Math.sqrt(dx * dx + dy * dy) * 2; // since midpoint is halfway
-                    // System.out.println("    side2 (p1 to midpoint ×2) = " + side2);
-                    
-                    
-                    // // Get area of rectangle
-                    // double area = side1 * side2;
-                    // System.out.println("    Area = " + area);
-
-                    // minArea = Math.min(minArea, area);
-                    // System.out.println("    minArea = " + minArea);
+                    minArea = Math.min(minArea, area1);
+                    minArea = Math.min(minArea, area2);
+                    System.out.println("    minArea = " + minArea);
                 }
             }
         }
@@ -127,6 +113,12 @@ public class MinAreaFreeRect {
         System.out.println("    - Distance of point A" + Arrays.toString(a) + " and B" + Arrays.toString(b) + " : " + distAB);
         
         return distAB;
+    }
+
+    // Helper Function : Check if angle is 90 degree using dot product, return area if so
+    private double getArea(int[] a, int[] b, int[] p) {
+
+        return 0;
     }
 
     public static void main(String[] args) {
@@ -226,6 +218,9 @@ public class MinAreaFreeRect {
             Two diagonals with same midpoint and length  ->  can potentially form a rectangle.
     
     2. Storing full pair in map instead of just one point 
-    
+    3. Need to write a helper function 
+        - which will check if point P is forming 90-degree with p1 and p2
+            if yes then will get area of rectangle
+            if not return 0 
 
  */
