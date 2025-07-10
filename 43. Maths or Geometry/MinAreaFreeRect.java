@@ -132,7 +132,7 @@ public class MinAreaFreeRect {
         int dotProduct = (dx1 * dy2) + (dx2 * dy1);
         
         // If dot product is not equal to 0 means points don't form rectangle
-        if (dotProduct == 0) {
+        if (dotProduct != 0) {
             
             System.out.println("        - We can't create rectangle..");
             return 0;
