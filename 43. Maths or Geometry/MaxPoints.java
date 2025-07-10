@@ -43,7 +43,7 @@ public class MaxPoints {
             }
         }
 
-        
+
         return maxPointsOnLine;
     }
 
@@ -93,6 +93,11 @@ public class MaxPoints {
             {1,4}
         };
         System.out.println(" Result2 -> " + solution.maxPoints(points2) + "\n");    // 4
+
+        int[][] points3 = {
+            {0,0}
+        };
+        System.out.println(" Result3 -> " + solution.maxPoints(points3) + "\n");   // 1
 
     }
 
