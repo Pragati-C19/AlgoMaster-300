@@ -86,10 +86,10 @@ public class MinInterval {
             // add it in result[queryIndex]
             result[queryIndex] = minHeap.peek()[0]; 
             
-            
+
         }
 
-        return new int[0];
+        return result;
     }
 
     public static void main(String[] args) {
