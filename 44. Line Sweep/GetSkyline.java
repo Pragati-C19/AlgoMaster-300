@@ -4,7 +4,33 @@ public class GetSkyline {
     
     public List<List<Integer>> getSkyline(int[][] buildings) {
         
-        return new ArrayList<>();
+        // Declare variables
+        List<int[]> events = new ArrayList<>();
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b) -> b - a);
+        int prevHeight = 0;
+        List<List<Integer>> result = new ArrayList<>();
+
+        // Phase 1 : Convert buildings into events
+        for (int[] building : buildings) {
+            
+            // Assign variable names for elements in int[]
+            int left = building[0];
+            int right = building[1];
+            int height = building[2];
+
+            // Add start event : use -height to distinguish from end event
+            events.add(new int[]{left, -height});
+
+            // Add end event : use +height to distinguish from start event
+            events.add(new int[]{right, height});
+        }
+        System.out.println(" Events List:");
+        events.stream().map(e -> "    " + Arrays.toString(e)).forEach(System.out::println);
+
+
+        
+        
+        return result;
     }
 
 
