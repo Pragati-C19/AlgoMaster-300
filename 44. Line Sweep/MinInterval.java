@@ -19,8 +19,17 @@ public class MinInterval {
             updatedQueries[i][0] = queries[i];  // Actual query 
             updatedQueries[i][1] = i;           // Original Index
         }
-        System.out.println(" Updated Queries : " + Arrays.deepToString(updatedQueries));
+        // System.out.println(" Updated Queries : " + Arrays.deepToString(updatedQueries));
        
+
+        // Phase 2 : Sort the intervals based on starting point
+        Arrays.sort(intervals, (a,b) -> a[0] - b[0]);
+
+        // Phase 3 : Sort queries based on value (not original index)
+        Arrays.sort(updatedQueries, (a,b) -> a[0] - b[0]);
+
+        System.out.println(" Sorted Intervals       : " + Arrays.deepToString(intervals));
+        System.out.println(" Sorted UpdatedQueries  : " + Arrays.deepToString(updatedQueries));
 
 
         return new int[0];
