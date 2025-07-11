@@ -61,6 +61,20 @@ public class GetSkyline {
                 System.out.println("    - End of building so removed height in maxHeap : " + maxHeap);
             }
 
+
+            // Declare a variable to check curr maxHeight for this event
+            int currHeight = maxHeap.peek();
+
+            if (currHeight != prevHeight) {
+                
+                System.out.println(" CurrMaxHeight(" + currHeight + ") is not equal to prevMaxHeight(" + prevHeight + ")");
+                
+                // Updated prevHeight 
+                prevHeight = currHeight;
+                
+                System.out.println("\t - PrevHeight : " + prevHeight);
+                System.out.println("\t - Result     : " + result);
+            }
             
         }
 
