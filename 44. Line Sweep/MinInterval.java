@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MinInterval {
     
@@ -31,6 +32,41 @@ public class MinInterval {
         System.out.println(" Sorted Intervals       : " + Arrays.deepToString(intervals));
         System.out.println(" Sorted UpdatedQueries  : " + Arrays.deepToString(updatedQueries));
 
+
+        // Phase 4 : Process each query in sorted order
+        for (int[] queryPair : updatedQueries) {
+            
+            int query = queryPair[0];
+            int queryIndex = queryPair[1];
+
+            System.out.println(" For query : " + Arrays.toString(queryPair));
+
+            // Add all Intervals in minHeap whose start <= query
+            while (intervalIndex < m && intervals[intervalIndex][0] <= query) {
+                
+                // get values of start and end with size
+                int start = intervals[intervalIndex][0];
+                int end = intervals[intervalIndex][1];
+                int size = end - start + 1;
+
+                System.out.println("    - Valid Interval : " + Arrays.toString(intervals[intervalIndex]));
+                System.out.println("    - Size : " + size);
+
+                // Push valid interval into heap
+                minHeap.add(new int[]{size, end});
+
+                intervalIndex++;
+            }
+
+            System.out.println("    minHeap : ");
+            System.out.println(
+                "         " + 
+                minHeap.stream()
+                    .map(Arrays::toString)
+                    .collect(Collectors.joining(", ", "[", "]"))
+            );
+
+        }
 
         return new int[0];
     }
