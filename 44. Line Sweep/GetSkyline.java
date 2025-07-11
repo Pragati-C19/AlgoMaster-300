@@ -2,6 +2,35 @@ import java.util.*;
 
 public class GetSkyline {
     
+    public List<List<Integer>> getSkyline(int[][] buildings) {
+        
+        return new ArrayList<>();
+    }
+
+
+    public static void main(String[] args) {
+        
+        GetSkyline solution = new GetSkyline();
+
+        // Testcase 1
+        int[][] buildings1 = {
+            {2,9,10},
+            {3,7,15},
+            {5,12,12},
+            {15,20,10},
+            {19,24,8}
+        };
+        System.out.println(" Result1 -> " + solution.getSkyline(buildings1) + "\n");    // [[2,10],[3,15],[7,12],[12,0],[15,10],[20,8],[24,0]]
+
+        // Testcase 2
+        int[][] buildings2 = {
+            {0, 2, 3},
+            {2, 5, 3}
+        };
+        System.out.println(" Result2 -> " + solution.getSkyline(buildings2) + "\n");    // [[0,3],[5,0]]
+
+    }
+
 }
 
 /*
@@ -56,7 +85,7 @@ public class GetSkyline {
         - if we check curr < prev, it will only gives us value for going down
         - so to avoid problem will check if it's not equal and then update prevHeight
 
-        
+
 
  * Pseudo Code :
  
