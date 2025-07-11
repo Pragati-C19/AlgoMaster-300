@@ -71,7 +71,10 @@ public class GetSkyline {
                 
                 // Updated prevHeight 
                 prevHeight = currHeight;
-                
+
+                // Added x-coordinate and height in result  
+                result.add(new ArrayList<>(Arrays.asList(xCoordinate, currHeight)));
+
                 System.out.println("\t - PrevHeight : " + prevHeight);
                 System.out.println("\t - Result     : " + result);
             }
