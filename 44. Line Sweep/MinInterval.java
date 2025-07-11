@@ -81,6 +81,12 @@ public class MinInterval {
                     .collect(Collectors.joining(", ", "[", "]"))
             );
 
+
+            // The top of heap is the smallest interval that includes the query
+            // add it in result[queryIndex]
+            result[queryIndex] = minHeap.peek()[0]; 
+            
+            
         }
 
         return new int[0];
