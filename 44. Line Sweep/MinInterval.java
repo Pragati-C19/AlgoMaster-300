@@ -58,7 +58,22 @@ public class MinInterval {
                 intervalIndex++;
             }
 
-            System.out.println("    minHeap : ");
+            System.out.println("    minHeap After Adding Valid Interval : ");
+            System.out.println(
+                "         " + 
+                minHeap.stream()
+                    .map(Arrays::toString)
+                    .collect(Collectors.joining(", ", "[", "]"))
+            );
+
+
+            // Remove all intervals from heap whose end < query
+            while (!minHeap.isEmpty() && minHeap.peek()[1] < query) {
+                
+                minHeap.poll();
+            }
+
+            System.out.println("    minHeap After Removing unvalid Interval : ");
             System.out.println(
                 "         " + 
                 minHeap.stream()
