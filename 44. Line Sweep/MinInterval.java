@@ -4,6 +4,25 @@ public class MinInterval {
     
     public int[] minInterval(int[][] intervals, int[] queries) {
         
+        // Declare variables
+        int m = intervals.length;
+        int n = queries.length;
+        int[] result = new int[n];
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a,b) -> a[0] - b[0]);
+        int intervalIndex = 0;
+        int[][] updatedQueries = new int[n][2];
+
+
+        // Phase 1 : Store original index and actual value in updated Queries
+        for (int i = 0; i < n; i++) {
+            
+            updatedQueries[i][0] = queries[i];  // Actual query 
+            updatedQueries[i][1] = i;           // Original Index
+        }
+        System.out.println(" Updated Queries : " + Arrays.deepToString(updatedQueries));
+       
+
+
         return new int[0];
     }
 
