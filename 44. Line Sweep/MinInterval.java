@@ -84,8 +84,15 @@ public class MinInterval {
 
             // The top of heap is the smallest interval that includes the query
             // add it in result[queryIndex]
-            result[queryIndex] = minHeap.peek()[0]; 
-            
+            if (!minHeap.isEmpty()) {
+                
+                result[queryIndex] = minHeap.peek()[0]; // Get the size
+            }
+            else {
+
+                // No valid interval for this query
+                result[queryIndex] = -1;     
+            }
 
         }
 
