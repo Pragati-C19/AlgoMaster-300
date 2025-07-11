@@ -28,8 +28,15 @@ public class GetSkyline {
         events.stream().map(e -> "    " + Arrays.toString(e)).forEach(System.out::println);
 
 
-        
-        
+        // Sort events Array
+        Collections.sort(events, (a,b) -> {
+            if (a[0] == b[0]) return Integer.compare(a[1], b[1]);   // Sort by height
+            return Integer.compare(a[0], b[0]);                     // Sort by x-coordinates
+        });
+        System.out.println(" Sorted Events List:");
+        events.stream().map(e -> "    " + Arrays.toString(e)).forEach(System.out::println);
+
+
         return result;
     }
 
