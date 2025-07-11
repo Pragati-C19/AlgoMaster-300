@@ -2,6 +2,36 @@ import java.util.*;
 
 public class MinInterval {
     
+    public int[] minInterval(int[][] intervals, int[] queries) {
+        
+        return new int[0];
+    }
+
+    public static void main(String[] args) {
+
+        MinInterval solution = new MinInterval();
+
+        // Testcase 1
+        int[][] intervals1 = {
+            {1, 4},
+            {2, 4},
+            {3, 6},
+            {4, 4}
+        };
+        int[] queries1 = {2, 3, 4, 5};
+        System.out.println(" Result1 -> " + Arrays.toString(solution.minInterval(intervals1, queries1)) + "\n");   // [3, 3, 1, 4]
+
+        // Testcase 2
+        int[][] intervals2 = {
+            {2, 3},
+            {2, 5},
+            {1, 8},
+            {20, 25}
+        };
+        int[] queries2 = {2, 19, 5, 22};
+        System.out.println(" Result2 -> " + Arrays.toString(solution.minInterval(intervals2, queries2)) + "\n");   // [2, -1, 4, 6]
+    }
+
 }
 
 /*
