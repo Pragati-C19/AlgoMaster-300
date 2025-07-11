@@ -24,11 +24,11 @@ public class GetSkyline {
             // Add end event : use +height to distinguish from start event
             events.add(new int[]{right, height});
         }
-        System.out.println(" Events List:");
-        events.stream().map(e -> "    " + Arrays.toString(e)).forEach(System.out::println);
+        // System.out.println(" Events List:");
+        // events.stream().map(e -> "    " + Arrays.toString(e)).forEach(System.out::println);
 
 
-        // Sort events Array
+        // Phase 2 : Sort events Array
         Collections.sort(events, (a,b) -> {
             if (a[0] == b[0]) return Integer.compare(a[1], b[1]);   // Sort by height
             return Integer.compare(a[0], b[0]);                     // Sort by x-coordinates
@@ -36,6 +36,33 @@ public class GetSkyline {
         System.out.println(" Sorted Events List:");
         events.stream().map(e -> "    " + Arrays.toString(e)).forEach(System.out::println);
 
+
+        // Phase 3 : Store initial active height 0 (ground level) in heap
+        maxHeap.add(0);
+
+        // Phase 4 : Process all events
+        for (int[] event : events) {
+            
+            // Get value of x-coordinate and height from event
+            int xCoordinate = event[0];
+            int height = event[1];        
+
+            // Check if it's start of building or end of building
+            if (height < 0) {
+                
+                // it will convert -height back to +height before adding in heap
+                maxHeap.add(-height);
+                System.out.println("    - Start of building so added height in maxHeap : " + maxHeap);
+            }
+            else {
+
+                // will not use -height bcoz for end we are storing value as +height in events
+                maxHeap.remove(height);
+                System.out.println("    - End of building so removed height in maxHeap : " + maxHeap);
+            }
+
+            
+        }
 
         return result;
     }
