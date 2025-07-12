@@ -29,7 +29,28 @@ public class LongestDupSubstring {
             }
         }
 
-        System.out.println(" Freq Map : " + freqMap);
+        System.out.println(" Freq Map : " + freqMap + "\n");
+
+
+        // Phase 2 : From freqMap, find all substrings with freq >= 2
+        for (Map.Entry<String,Integer> entry : freqMap.entrySet()) {
+            
+            // Assign variable to key and value and get length of key
+            String key = entry.getKey();
+            int currLength = key.length();
+            int freq = entry.getValue();
+
+            // check if freq >= 2 and keyLength > maxLength
+            if (freq >= 2 && currLength > maxLength) {
+                
+                System.out.println("    - currDupStr : " + key + " | currLength : " + currLength);
+
+                duplicateString = key;
+                maxLength = currLength;
+
+                System.out.println("      freq >= 2 so, longestDupStr : " + duplicateString + " | maxLength : " + maxLength);
+            }
+        }
 
         return "";
     }
