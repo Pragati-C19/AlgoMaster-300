@@ -52,7 +52,7 @@ public class LongestDupSubstring {
             }
         }
 
-        return "";
+        return duplicateString;
     }
 
     public static void main(String[] args) {
