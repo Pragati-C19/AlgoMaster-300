@@ -2,6 +2,20 @@ import java.util.*;
 
 public class LongestDupSubstring {
     
+    public String longestDupSubstring(String s) {
+        
+        return "";
+    }
+
+    public static void main(String[] args) {
+    
+        LongestDupSubstring solution = new LongestDupSubstring();
+
+        System.out.println(" Result 1 -> " + solution.longestDupSubstring("banana") + "\n");    // ana
+        System.out.println(" Result 2 -> " + solution.longestDupSubstring("abcd") + "\n");      // ""
+
+    }
+
 }
 
 /*
