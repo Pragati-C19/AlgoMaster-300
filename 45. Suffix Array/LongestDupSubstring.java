@@ -4,6 +4,33 @@ public class LongestDupSubstring {
     
     public String longestDupSubstring(String s) {
         
+        // Declare variables
+        int n = s.length();
+        String duplicateString = "";
+        int maxLength = 0;
+        Map<String, Integer> freqMap = new HashMap<>();
+
+
+        // Phase 1 : Try all substrings from j to i and add it's freq in map
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) {
+                
+                // Get substring including i
+                String currSubString = s.substring(j, i + 1);
+
+                // add that substring and it's freq in map
+                freqMap.put(currSubString, freqMap.getOrDefault(currSubString, 0) + 1);
+
+                // Debugging sout
+                System.out.println(" - i = " + i);
+                System.out.println("\t j = " + j + "  -> substring[" + j + "," + i + "] = " + currSubString);
+                System.out.println("\t Freq Map : " + freqMap);
+
+            }
+        }
+
+        System.out.println(" Freq Map : " + freqMap);
+
         return "";
     }
 
