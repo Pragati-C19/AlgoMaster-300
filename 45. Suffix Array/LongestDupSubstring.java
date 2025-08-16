@@ -151,6 +151,23 @@ public class LongestDupSubstring {
             so ans is "ana"
         
 
+    ^ Improvement :
+
+    1. we are getting TLE for 24th test case out of 68
+    2. We can use 2 things suffix Array or rolling hash 
+        - using suffix and understanding it will take time
+        - so let's use rolling hash + binary search here
+
+    3. Phase 1 : use binary search to narrow down maximum length of string in parts
+        - get mid 
+        - if we found duplicate substring of length (mid)
+            then try for longer length (right side of mid) 
+            means left = mid + 1
+        - if not then 
+            try shorter length (left side of mid)
+            means right = mid - 1
+
+    4. Phase 2 :
 
  * Pseudo Code :
  
